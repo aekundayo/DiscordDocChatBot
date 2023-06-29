@@ -8,7 +8,7 @@ WORKDIR /app
 RUN useradd appuser
 
 # Add the current directory contents into the container at /app
-COPY .env main.py requirements.txt /app/
+COPY main.py requirements.txt /app/
 RUN mkdir docs
 
 # Change ownership of /app to appuser
