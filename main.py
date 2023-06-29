@@ -207,7 +207,7 @@ def retrieve_answer(vectorstore):
   
   wandb_config = {"project": "wandb_prompts_quickstart"}
   qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)])
-  query = "Give and extremely detailed Summary of this document, including a title and ALL the important ideas expressed in the document as bullet points in markdown format"
+  query = "Give and extremely detailed Summary of this document, including THE title  AND A LIST OF THE AUTHORS WHEN AVAILABLE and ALL the IMPORTTANT IDEAS expressed in the document as bullet points in markdown format"
   answer=qa.run(query)
   logging.info(answer)
   return answer
@@ -261,108 +261,109 @@ async def on_message(message):
           answer = retrieve_answer(vectorstore=vectorstore)
         await send_long_message(message.channel, answer)
         return
-  #else:
-  #  user_prompt = message.content
-  #  logging.info(f"Received message from {message.author.name}: {user_prompt}")
-#
-  #  if vectorstore is None:
-  #    if bot.user in message.mentions:
+  else:
+    user_prompt = message.content
+    logging.info(f"Received message from {message.author.name}: {user_prompt}")
+
+    if vectorstore is None:
+      #is DISCORD BOT MENTIONED in message?
+      if bot.user in message.mentions:
         logging.info(f'{bot.user} sent a message with no vector to dicord bot')
-        #user_prompt = message.content
-        #logging.info(f"Received message from {message.author.name}: {user_prompt}")
-#
-        #system_prompt = f"You are a helpful assistant with concise and accurate responses. The current time is {get_current_date()}, and the person messaging you is {message.author.name}."
-#
-        #if message.author.id not in dialog_contexts:
-        #  dialog_contexts[message.author.id] = DialogContext()
-        #  dialog_contexts[message.author.id].add_message("system", system_prompt)
-#
-        ## Parse temperature
-        #temp_match = re.search(r'::temperature=([0-9]*\.?[0-9]+)::', user_prompt)
-        #temperature = 1.0  # default temperature
-        #if temp_match:
-        #  temperature = float(temp_match.group(1))
-        #  user_prompt = re.sub(
-        #    r'::temperature=([0-9]*\.?[0-9]+)::', '',
-        #    user_prompt)  # remove temperature command from user_prompt
-#
-        ## Parse model
-        #model_match = re.search(r'::model=(\w+[-]*\w+\.?\w*)::', user_prompt)
-        #model = "gpt-3.5-turbo"  # default model
-        #if model_match:
-        #  model = model_match.group(1)
-        #  user_prompt = re.sub(
-        #    r'::model=(\w+[-]*\w+\.?\w*)::', '',
-        #    user_prompt)  # remove model command from user_prompt
-#
-        ## Parse URL for scraping
-        #url_match = re.search(r'\bhttps?://\S+\b', user_prompt)
-        #if url_match:
-        #  url = url_match.group()
-        #  logging.info(f"URL detected: {url}")
-        #  job_id = scrape_and_summarize(url)
-        #  if job_id:
-        #    response = f"Received your request to scrape {url}. I've started the job (ID: {job_id}), and I'll let you know when it's completed."
-        #    await message.channel.send(response)
-        #    asyncio.create_task(check_job_status(job_id, message.channel))
-        #  else:
-        #    response = "Sorry, there was an issue starting the scraping job. Please try again later."
-        #    await message.channel.send(response)
-        #  return
-#
-        ## Parse search query
-        #search_match = re.search(r'::search\s(.*)::', user_prompt)
-        #if search_match:
-        #  search_query = search_match.group(1)
-        #  headers = {
-        #    "Accept": "application/json",
-        #    "X-Subscription-Token": brave_search_api_key
-        #  }
-        #  response = requests.get(
-        #    f"https://api.search.brave.com/res/v1/web/search?q={search_query}",
-        #    headers=headers)
-        #  if response.status_code == 200:
-        #    search_results = response.json()['web']
-#
-        #    print(f"Search results: {search_results}")
-#
-        #    # Here, we feed the search results into the summarizer
-        #    # Here, we feed the search results into the summarizer
-        #    for result in search_results:
-        #      logging.info(result)
-        #      logging.info("summarizing...")
-        #      url = result.get('url')
-        #      if url:
-        #        _, scraped_content = scrape_and_summarize(url)
-        #        if scraped_content:
-        #          system_prompt = "Please provide a brief summary of the following content: " + str(
-        #            scraped_content)
-        #          summary, _, _ = openAIGPTCall([{
-        #            "role": "system",
-        #            "content": system_prompt
-        #          }])
-        #          await send_long_message(message.channel, summary)
-        #    return
-#
-        #dialog_contexts[message.author.id].add_message("user", user_prompt)
-#
-        #ai_message, cost, elapsed_time = openAIGPTCall(
-        #  dialog_contexts[message.author.id].get_messages(),
-        #  model=model,
-        #  temperature=temperature)
-        #logging.info(f"Generated AI message: {ai_message}")
-        #logging.info(f"AI message cost: {cost}, elapsed time: {elapsed_time}")
-        #dialog_contexts[message.author.id].add_message("assistant", ai_message)
+        user_prompt = message.content
+        logging.info(f"Received message from {message.author.name}: {user_prompt}")
+
+        system_prompt = f"You are a helpful assistant with concise and accurate responses. The current time is {get_current_date()}, and the person messaging you is {message.author.name}."
+
+        if message.author.id not in dialog_contexts:
+          dialog_contexts[message.author.id] = DialogContext()
+          dialog_contexts[message.author.id].add_message("system", system_prompt)
+
+        # Parse temperature
+        temp_match = re.search(r'::temperature=([0-9]*\.?[0-9]+)::', user_prompt)
+        temperature = 1.0  # default temperature
+        if temp_match:
+          temperature = float(temp_match.group(1))
+          user_prompt = re.sub(
+            r'::temperature=([0-9]*\.?[0-9]+)::', '',
+            user_prompt)  # remove temperature command from user_prompt
+
+        # Parse model
+        model_match = re.search(r'::model=(\w+[-]*\w+\.?\w*)::', user_prompt)
+        model = "gpt-3.5-turbo"  # default model
+        if model_match:
+          model = model_match.group(1)
+          user_prompt = re.sub(
+            r'::model=(\w+[-]*\w+\.?\w*)::', '',
+            user_prompt)  # remove model command from user_prompt
+
+        # Parse URL for scraping
+        url_match = re.search(r'\bhttps?://\S+\b', user_prompt)
+        if url_match:
+          url = url_match.group()
+          logging.info(f"URL detected: {url}")  
+          job_id = scrape_and_summarize(url)
+          if job_id:
+            response = f"Received your request to scrape {url}. I've started the job (ID: {job_id}), and I'll let you know when it's completed."
+            await message.channel.send(response)
+            asyncio.create_task(check_job_status(job_id, message.channel))
+          else:
+            response = "Sorry, there was an issue starting the scraping job. Please try again later."
+            await message.channel.send(response)
+          return
+
+        # Parse search query
+        search_match = re.search(r'::search\s(.*)::', user_prompt)
+        if search_match:
+          search_query = search_match.group(1)
+          headers = {
+            "Accept": "application/json",
+            "X-Subscription-Token": brave_search_api_key
+          }
+          response = requests.get(
+            f"https://api.search.brave.com/res/v1/web/search?q={search_query}",
+            headers=headers)
+          if response.status_code == 200:
+            search_results = response.json()['web']
+
+            print(f"Search results: {search_results}")
+
+            # Here, we feed the search results into the summarizer
+            # Here, we feed the search results into the summarizer
+            for result in search_results:
+              logging.info(result)
+              logging.info("summarizing...")
+              url = result.get('url')
+              if url:
+                _, scraped_content = scrape_and_summarize(url)
+                if scraped_content:
+                  system_prompt = "Please provide a brief summary of the following content: " + str(
+                    scraped_content)
+                  summary, _, _ = openAIGPTCall([{
+                    "role": "system",
+                    "content": system_prompt
+                  }])
+                  await send_long_message(message.channel, summary)
+            return
+
+        dialog_contexts[message.author.id].add_message("user", user_prompt)
+
+        ai_message, cost, elapsed_time = openAIGPTCall(
+          dialog_contexts[message.author.id].get_messages(),
+          model=model,
+          temperature=temperature)
+        logging.info(f"Generated AI message: {ai_message}")
+        logging.info(f"AI message cost: {cost}, elapsed time: {elapsed_time}")
+        dialog_contexts[message.author.id].add_message("assistant", ai_message)
 #
         #await send_long_message(message.channel, ai_message)
-    #else:
-    #    wandb_config = {"project": "wandb_prompts_quickstart"}
-    #    qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(), chain_type="stuff", retriever=vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)])
-    #    query = "Give and extremely detailed Summary of this document, including a title and ALL the important ideas expressed in the document as bullet points in markdown format"
-    #    answer=qa.run(user_prompt)
-    #    logging.info(answer)
-#
-    #    await send_long_message(message.channel, answer)
+    else:
+        wandb_config = {"project": "wandb_prompts_quickstart"}
+        qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(), chain_type="stuff", retriever=vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)])
+        query = "Give and extremely detailed Summary of this document, including a title and ALL the important ideas expressed in the document as bullet points in markdown format"
+        answer=qa.run(user_prompt)
+        logging.info(answer)
+
+        await send_long_message(message.channel, answer)
 
 
 
