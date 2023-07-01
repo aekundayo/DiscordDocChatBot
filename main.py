@@ -40,7 +40,8 @@ vectorstore=None
 class DialogContext:
 
   load_dotenv()
-  wandb_config = {"project": "wandb_prompts_quickstart"}
+  wandb.login()
+  wandb_config = {"project": "DiscordChatBot"}
   def __init__(self, maxlen=5):
     self.maxlen = maxlen
     self.history = []
