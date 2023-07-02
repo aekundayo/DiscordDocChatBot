@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings, HuggingFaceInstructEmbeddings
-from langchain.vectorstores import FAISS
+from langchain.vectorstores import FAISS, qdrant, weaviate, Redis
 from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
@@ -40,8 +40,9 @@ vectorstore=None
 class DialogContext:
 
   load_dotenv()
-  wandb.login
-  wandb_config = {"project": "DiscordChatBot"}
+  if os.getenv('DEV_MODE'):
+    wandb.login
+    wandb_config = {"project": "DiscordChatBot"}
   def __init__(self, maxlen=5):
     self.maxlen = maxlen
     self.history = []
@@ -132,11 +133,16 @@ def get_current_date():
 
 
 def openAIGPTCall(messages, model="gpt-3.5-turbo", temperature=0.5):
-  wandb_config = {"project": "wandb_prompts_quickstart"}
   start_time = time.time()
-  response = openai.ChatCompletion.create(model=model,
-                                          messages=messages,
-                                          temperature=temperature,callbacks=[WandbTracer(wandb_config)])
+  if os.getenv('DEV_MODE'):
+    wandb_config = {"project": "wandb_prompts_quickstart"}
+    response = openai.ChatCompletion.create(model=model,
+                                            messages=messages,
+                                            temperature=temperature,callbacks=[WandbTracer(wandb_config)])
+  else:
+    response = openai.ChatCompletion.create(model=model,
+                                            messages=messages,
+                                            temperature=temperature)
   elapsed_time = (time.time() - start_time) * 1000
   cost_factor = 0.04
   cost = cost_factor * (response.usage["total_tokens"] / 1000)
@@ -205,9 +211,11 @@ def retrieve_answer(vectorstore):
   #  #llm = HuggingFacePipeline.from_model_id(model_id="tiiuae/falcon-40b-instruct", task="summarization", model_kwargs={"temperature":0, "max_length":64})
   #  logging.info("SETTING MODEL TO HUGGING FACE")
     
-  
-  wandb_config = {"project": "wandb_prompts_quickstart"}
-  qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)])
+  if os.getenv('DEV_MODE'):
+    wandb_config = {"project": "wandb_prompts_quickstart"}
+    qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)])
+  else:
+    qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorstore.as_retriever())
   query = "Give and extremely detailed Summary of this document, including THE title  AND A LIST OF THE AUTHORS WHEN AVAILABLE and ALL the IMPORTTANT IDEAS expressed in the document as bullet points in markdown format"
   answer=qa.run(query)
   logging.info(answer)
@@ -226,8 +234,9 @@ async def on_message(message):
   if message.author == bot.user:
     return
   global vectorstore
-  global wandb_config
-  wandb_config = {"project": "wandb_prompts_quickstart"}
+  if os.getenv('DEV_MODE'):
+    global wandb_config
+    wandb_config = {"project": "wandb_prompts_quickstart"}
   logging.info(f"MESSAGE RECEIVED!")
   
   if message.author == bot.user:
@@ -358,8 +367,11 @@ async def on_message(message):
 #
         #await send_long_message(message.channel, ai_message)
     else:
-        wandb_config = {"project": "wandb_prompts_quickstart"}
-        qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(), chain_type="stuff", retriever=vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)])
+        if os.getenv('DEV_MODE'):
+          wandb_config = {"project": "wandb_prompts_quickstart"}
+          qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(), chain_type="stuff", retriever=vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)])
+        else:
+          qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(), chain_type="stuff", retriever=vectorstore.as_retriever())
         query = "Give and extremely detailed Summary of this document, including a title and ALL the important ideas expressed in the document as bullet points in markdown format"
         answer=qa.run(user_prompt)
         logging.info(answer)
