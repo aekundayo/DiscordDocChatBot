@@ -4,6 +4,18 @@ Welcome to the DiscordDocChatBot project! This bot uses the OpenAI API to engage
 
 Please note that this bot is still under development and not yet ready for production. Also, it's not affiliated with OpenAI or Discord.
 
+## 🛠️ Installation 
+
+Before you start, ensure you have Python and Docker installed on your machine. 
+
+### Python 
+
+If you don't have Python installed, you can download it from the [official website](https://www.python.org/downloads/). Select the version suitable for your operating system and follow the provided instructions.
+
+### Docker 
+
+Docker can be downloaded from the [Docker official website](https://www.docker.com/products/docker-desktop). Choose the appropriate version for your OS. Follow the installation instructions provided on the website.
+
 ## 📚 Prerequisites
 
 To successfully run this bot, you'll need to set up the following environment variables:
