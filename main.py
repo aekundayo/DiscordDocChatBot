@@ -11,6 +11,7 @@ import logging
 import wandb
 import random
 import requests
+import urllib.parse as urlparse
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
@@ -25,6 +26,9 @@ from langchain.chains import RetrievalQA
 from langchain.document_loaders import UnstructuredHTMLLoader
 from wandb.integration.langchain import WandbTracer
 from langchain.document_loaders import BSHTMLLoader
+from googleapiclient.discovery import build
+from youtube_transcript_api import YouTubeTranscriptApi
+
 
 from bs4 import BeautifulSoup
 
@@ -221,7 +225,27 @@ def retrieve_answer(vectorstore):
   logging.info(answer)
   return answer
    
+def extract_yt_transcript(url):
+    """
+    Function to extract the YouTube video ID from a URL.
+    """
+    parsed_url = urlparse.urlparse(url)
+    video_id = urlparse.parse_qs(parsed_url.query)['v'][0]
 
+    transcriptlist = YouTubeTranscriptApi.get_transcript(video_id)
+    transcript = json.dumps(transcriptlist, indent=4)
+
+    api_key = os.getenv('GOOGLE_API_KEY')
+    youtube = build('youtube', 'v3', developerKey=api_key)
+    request = youtube.videos().list(
+        part="snippet",
+        id=video_id
+    )
+    response = request.execute()
+    creator = response['items'][0]['snippet']['channelTitle']
+    transcript_str = 'The creator of this video is '+ creator + '\n\n' + transcript
+    
+    return transcript_str
 
 
 @bot.event
@@ -244,6 +268,16 @@ async def on_message(message):
   #Process PDFs 
   pdf_path = './docs/pdfs'
   web_doc_path = './docs/web/download.html'
+
+  if 'youtube.com' in message.content:
+
+    raw_text = extract_yt_transcript(message.content)
+    chunks = get_text_chunks(''.join(raw_text))
+    vectorstore = get_vectorstore(chunks)
+    answer = retrieve_answer(vectorstore=vectorstore)
+  await send_long_message(message.channel, answer)
+  return
+    
 
   if 'http://' in  message.content or 'https://' in message.content:
     urls = extract_url(message.content)
@@ -306,56 +340,9 @@ async def on_message(message):
             r'::model=(\w+[-]*\w+\.?\w*)::', '',
             user_prompt)  # remove model command from user_prompt
 
-        # Parse URL for scraping
-        url_match = re.search(r'\bhttps?://\S+\b', user_prompt)
-        if url_match:
-          url = url_match.group()
-          logging.info(f"URL detected: {url}")  
-          job_id = scrape_and_summarize(url)
-          if job_id:
-            response = f"Received your request to scrape {url}. I've started the job (ID: {job_id}), and I'll let you know when it's completed."
-            await message.channel.send(response)
-            asyncio.create_task(check_job_status(job_id, message.channel))
-          else:
-            response = "Sorry, there was an issue starting the scraping job. Please try again later."
-            await message.channel.send(response)
-          return
+    
 
-        # Parse search query
-        search_match = re.search(r'::search\s(.*)::', user_prompt)
-        if search_match:
-          search_query = search_match.group(1)
-          headers = {
-            "Accept": "application/json",
-            "X-Subscription-Token": brave_search_api_key
-          }
-          response = requests.get(
-            f"https://api.search.brave.com/res/v1/web/search?q={search_query}",
-            headers=headers)
-          if response.status_code == 200:
-            search_results = response.json()['web']
-
-            print(f"Search results: {search_results}")
-
-            # Here, we feed the search results into the summarizer
-            # Here, we feed the search results into the summarizer
-            for result in search_results:
-              logging.info(result)
-              logging.info("summarizing...")
-              url = result.get('url')
-              if url:
-                _, scraped_content = scrape_and_summarize(url)
-                if scraped_content:
-                  system_prompt = "Please provide a brief summary of the following content: " + str(
-                    scraped_content)
-                  summary, _, _ = openAIGPTCall([{
-                    "role": "system",
-                    "content": system_prompt
-                  }])
-                  await send_long_message(message.channel, summary)
-            return
-
-        dialog_contexts[message.author.id].add_message("user", user_prompt)
+   
 
         ai_message, cost, elapsed_time = openAIGPTCall(
           dialog_contexts[message.author.id].get_messages(),
