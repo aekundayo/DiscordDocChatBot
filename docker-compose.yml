@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  discord-bot:
+    image: discord-bot-yt-reduced:latest
+    environment:
+      OPENAI_API_KEY: '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'
+      SCRAPER_API_KEY: 'ff373265d11344e971ea528a09da92a2'
+      BRAVE_SEARCH_API_KEY: 'BSAJ7jKDOddyBjbA4TGGk6nW4dZbhl'
+      DISCORD_TOKEN: 'MTEwODM3MzcyODM2NDA4MTE4Mg.G51ewh.vFLVoMoDGzfFkvQ343HqheTlG-Y8kOQNBSGSoY'
+      HUGGINGFACE_API_TOKEN: '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'
+      HUGGINGFACEHUB_API_TOKEN: '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'
+      DEV_MODE: 'false' 
+      GOOGLE_API_KEY: 'AIzaSyDSKPD9ymTTgazzFe0qnQTYOehfWwKH-Vs'
+    volumes:
+      - /tmp/discord:/app/docs
