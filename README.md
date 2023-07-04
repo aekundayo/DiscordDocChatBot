@@ -14,8 +14,13 @@ DISCORD_TOKEN=''
 HUGGINGFACE_API_TOKEN=''
 HUGGINGFACEHUB_API_TOKEN=''
 
-DEV_MODE='false' # this turns on wandb logging
 
 # GOOGLE API Token https://console.cloud.google.com/apis/credentials?project=angular-unison-352106
 # CREATE A PROJECT AND ENABLE THE YOUTUBE DATA API V3
 GOOGLE_API_KEY='' # this is used for the google search command 
+
+
+# To run this bot run the following commands:
+
+docker build -t discorddocchatbot .
+docker-compose up -d
