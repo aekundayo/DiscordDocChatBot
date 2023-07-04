@@ -34,6 +34,7 @@ from bs4 import BeautifulSoup
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
+#GET API KEYS FROM .ENV FILE
 openai.api_key = os.getenv('OPENAI_API_KEY')
 scraperapi_key = os.getenv('SCRAPER_API_KEY')
 brave_search_api_key = os.getenv('BRAVE_SEARCH_API_KEY')
@@ -42,7 +43,7 @@ bot = commands.Bot("/", intents=intents)
 vectorstore=None
 
 class DialogContext:
-
+#load dot env file
   load_dotenv()
   if os.getenv('DEV_MODE'):
     wandb.login
@@ -51,6 +52,8 @@ class DialogContext:
     self.maxlen = maxlen
     self.history = []
   
+  #add message to history
+  #role: user or bot
   def add_message(self, role, content):
     if len(self.history) >= self.maxlen:
       self.history.pop(0)
@@ -317,7 +320,7 @@ async def on_message(message):
         logging.info(f"Received message from {message.author.name}: {user_prompt}")
 
         system_prompt = f"You are a helpful assistant with concise and accurate responses. The current time is {get_current_date()}, and the person messaging you is {message.author.name}."
-
+        # Initialize dialog context
         if message.author.id not in dialog_contexts:
           dialog_contexts[message.author.id] = DialogContext()
           dialog_contexts[message.author.id].add_message("system", system_prompt)
@@ -343,7 +346,7 @@ async def on_message(message):
     
 
    
-
+        # Add user message to dialog context
         ai_message, cost, elapsed_time = openAIGPTCall(
           dialog_contexts[message.author.id].get_messages(),
           model=model,
