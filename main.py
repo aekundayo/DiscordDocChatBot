@@ -291,25 +291,27 @@ async def on_message(message):
 
 
   if 'http://' in  message.content or 'https://' in message.content:
-     chunks = None
-     if 'youtube.com' in message.content:
+    chunks = None
+    if 'youtube.com' in message.content:
         raw_text = extract_yt_transcript(message.content)
         chunks = get_text_chunks(''.join(raw_text))
         vectorstore = get_vectorstore(chunks)
-     else:        
-      
-      urls = extract_url(message.content)   
-      for url in urls:
-        download_html(url, web_doc_path)
-        loader = BSHTMLLoader(web_doc_path)
-        data = loader.load()
+        answer = retrieve_answer(vectorstore=vectorstore)
+        await send_long_message(message.channel, answer)
+    else:        
+        urls = extract_url(message.content)   
+        for url in urls:
+            download_html(url, web_doc_path)
+            loader = BSHTMLLoader(web_doc_path)
+            data = loader.load()
         
-        for page_info in data:
-          chunks = get_text_chunks(page_info.page_content)
-          vectorstore = get_vectorstore(chunks)
-      answer = retrieve_answer(vectorstore=vectorstore)
-      os.remove(os.path.join(web_doc_path))
-      await send_long_message(message.channel, answer)
+            for page_info in data:
+                chunks = get_text_chunks(page_info.page_content)
+                vectorstore = get_vectorstore(chunks)
+                answer = retrieve_answer(vectorstore=vectorstore)
+                os.remove(web_doc_path) # Change here
+                await send_long_message(message.channel, answer)
+
 
   if message.attachments:
     vectorstore=None
