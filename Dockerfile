@@ -8,10 +8,10 @@ WORKDIR /app
 RUN useradd appuser
 
 # Add the current directory contents into the container at /app
-COPY main.py requirements.txt /app/
+COPY main.py .
+COPY requirements.txt .
 RUN mkdir docs
-RUN mkdir docs/web
-RUN mkdir docs/pdfs
+
 
 # Change ownership of /app to appuser
 RUN chown -R appuser /app

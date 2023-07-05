@@ -84,6 +84,9 @@ def download_html(url, filepath):
             f.write(response.text)
     else:
         print(f'Failed to download {url}: status code {response.status_code}')
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write("THIS PAGE CANT BE DOWNLOADED: "+response.content.decode("utf-8"))
+
 
     
 def get_pdf_text(path):
@@ -227,6 +230,15 @@ def retrieve_answer(vectorstore):
   answer=qa.run(query)
   logging.info(answer)
   return answer
+
+def create_directories_if_not_exists(pdf_path):
+  if not os.path.exists(pdf_path):
+    # If it doesn't exist, create it
+    os.makedirs(pdf_path)
+    print(f"Directory '{pdf_path}' created")
+  else:
+      print(f"Directory '{pdf_path}' already exists") 
+   
    
 def extract_yt_transcript(url):
     """
@@ -269,29 +281,33 @@ async def on_message(message):
   if message.author == bot.user:
     return
   #Process PDFs 
+
   pdf_path = './docs/pdfs'
+  create_directories_if_not_exists(pdf_path)
   web_doc_path = './docs/web/download.html'
+  create_directories_if_not_exists('./docs/web')
 
-  if 'youtube.com' in message.content:
 
-    raw_text = extract_yt_transcript(message.content)
-    chunks = get_text_chunks(''.join(raw_text))
-    vectorstore = get_vectorstore(chunks)
-    answer = retrieve_answer(vectorstore=vectorstore)
-  await send_long_message(message.channel, answer)
-  return
-    
+
 
   if 'http://' in  message.content or 'https://' in message.content:
-    urls = extract_url(message.content)
-    for url in urls:
-      download_html(url, web_doc_path)
-      loader = BSHTMLLoader(web_doc_path)
-      data = loader.load()
-      for page_info in data:
-        chunks = get_text_chunks(page_info.page_content)
+     chunks = None
+     if 'youtube.com' in message.content:
+        raw_text = extract_yt_transcript(message.content)
+        chunks = get_text_chunks(''.join(raw_text))
         vectorstore = get_vectorstore(chunks)
-        answer = retrieve_answer(vectorstore=vectorstore)
+     else:        
+      
+      urls = extract_url(message.content)   
+      for url in urls:
+        download_html(url, web_doc_path)
+        loader = BSHTMLLoader(web_doc_path)
+        data = loader.load()
+        
+        for page_info in data:
+          chunks = get_text_chunks(page_info.page_content)
+          vectorstore = get_vectorstore(chunks)
+      answer = retrieve_answer(vectorstore=vectorstore)
       os.remove(os.path.join(web_doc_path))
       await send_long_message(message.channel, answer)
 
