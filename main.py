@@ -142,7 +142,7 @@ def get_current_date():
   return str(time.strftime("%Y-%m-%d, %H:%M:%S"))
 
 
-def openAIGPTCall(messages, model="gpt-3.5-turbo", temperature=0.5):
+def openAIGPTCall(messages, model="gpt-4", temperature=0):
   start_time = time.time()
   if os.getenv('DEV_MODE'):
     wandb_config = {"project": "wandb_prompts_quickstart"}
@@ -215,7 +215,7 @@ async def send_long_message(channel, message):
 
 
 def retrieve_answer(vectorstore):
-  llm = ChatOpenAI()
+  llm = ChatOpenAI(model_name="gpt-4")
   #if message.content.startswith('!hf'): 
   #  llm = HuggingFaceHub(repo_id="tiiuae/falcon-40b", task="summarization", model_kwargs={"temperature":0.5, "max_length":1512})
   #  #llm = HuggingFacePipeline.from_model_id(model_id="tiiuae/falcon-40b-instruct", task="summarization", model_kwargs={"temperature":0, "max_length":64})
@@ -226,7 +226,7 @@ def retrieve_answer(vectorstore):
     qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)])
   else:
     qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorstore.as_retriever())
-  query = "Give and extremely detailed Summary of this document, including THE title  AND A LIST OF THE AUTHORS WHEN AVAILABLE and ALL the IMPORTTANT IDEAS expressed in the document as bullet points in markdown format"
+  query = "Give and extremely detailed Summary of this document, including THE title  AND THE AUTHORS LISTED BELOW THE TITLE   and ALL the IMPORTANT IDEAS expressed in the document as bullet points in markdown format"
   answer=qa.run(query)
   logging.info(answer)
   return answer
@@ -354,7 +354,7 @@ async def on_message(message):
 
         # Parse model
         model_match = re.search(r'::model=(\w+[-]*\w+\.?\w*)::', user_prompt)
-        model = "gpt-3.5-turbo"  # default model
+        model = "gpt-4"  # default model
         if model_match:
           model = model_match.group(1)
           user_prompt = re.sub(
