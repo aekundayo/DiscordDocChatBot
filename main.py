@@ -29,14 +29,6 @@ from langchain.document_loaders import BSHTMLLoader
 from googleapiclient.discovery import build
 from youtube_transcript_api import YouTubeTranscriptApi
 
-from transformers import SpeechT5Processor, SpeechT5ForTextToSpeech, SpeechT5HifiGan
-from datasets import load_dataset
-import torch
-import soundfile as sf
-from datasets import load_dataset
-
-
-
 
 from bs4 import BeautifulSoup
 
@@ -73,25 +65,12 @@ class DialogContext:
 
 dialog_contexts = {}
 
-def make_spoken_response(text):
-  processor = SpeechT5Processor.from_pretrained("microsoft/speecht5_tts")
-  model = SpeechT5ForTextToSpeech.from_pretrained("microsoft/speecht5_tts")
-  vocoder = SpeechT5HifiGan.from_pretrained("microsoft/speecht5_hifigan")
 
-  inputs = processor(text="Hello, my dog is cute", return_tensors="pt")
-
-  # load xvector containing speaker's voice characteristics from a dataset
-  embeddings_dataset = load_dataset("Matthijs/cmu-arctic-xvectors", split="validation")
-  speaker_embeddings = torch.tensor(embeddings_dataset[7306]["xvector"]).unsqueeze(0)
-
-  speech = model.generate_speech(inputs["input_ids"], speaker_embeddings, vocoder=vocoder)
-
-  sf.write("speech.wav", speech.numpy(), samplerate=16000)
-  def extract_url(s):
-      # Regular expression to match URLs
-      url_pattern = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
-      urls = re.findall(url_pattern, s)
-      return urls
+def extract_url(s):
+    # Regular expression to match URLs
+    url_pattern = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
+    urls = re.findall(url_pattern, s)
+    return urls
 
 
 def download_html(url, filepath):
@@ -140,7 +119,7 @@ def get_text_chunks(text):
 def get_vectorstore(text_chunks):
     embeddings = OpenAIEmbeddings()
     #embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
-    
+    vectorstore
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
     vectorstore.save_local("faiss_discord_docs")
     return vectorstore
@@ -245,8 +224,12 @@ def retrieve_answer(vectorstore):
   #  #llm = HuggingFacePipeline.from_model_id(model_id="tiiuae/falcon-40b-instruct", task="summarization", model_kwargs={"temperature":0, "max_length":64})
   #  logging.info("SETTING MODEL TO HUGGING FACE")
     
-  qa = callOPenAI()
-  query = "Give and extremely detailed Summary of this document, including THE title  AND THE AUTHORS and ALL the IMPORTANT IDEAS expressed in the document as bullet points in markdown format"
+  if os.getenv('DEV_MODE'):
+    wandb_config = {"project": "wandb_prompts_quickstart"}
+    qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)])
+  else:
+    qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorstore.as_retriever())
+  query = "You are a helpful assistant with concise and accurate responses given in the tone of a professional presentation. Give and extremely detailed Summary of this document, including THE title  AND THE AUTHORS and ALL the IMPORTANT IDEAS expressed in the document as bullet points in markdown format"
   answer=qa.run(query)
   logging.info(answer)
   return answer
@@ -284,11 +267,9 @@ def extract_yt_transcript(url):
 
 def callOPenAI():
   if os.getenv('DEV_MODE'):
-   return RetrievalQA.from_chain_type(llm=ChatOpenAI(), chain_type="stuff", retriever=FAISS.load_local("faiss_midjourney_docs", OpenAIEmbeddings())
-        .as_retriever(search_type="similarity", search_kwargs={"k":1}),callbacks=[WandbTracer(wandb_config)])
+   return RetrievalQA.from_chain_type(llm=ChatOpenAI(), chain_type="stuff", retriever=vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)])
   else:
-    return RetrievalQA.from_chain_type(llm=ChatOpenAI(), chain_type="stuff", retriever=FAISS.load_local("faiss_midjourney_docs", OpenAIEmbeddings())
-        .as_retriever(search_type="similarity", search_kwargs={"k":1}))
+    return RetrievalQA.from_chain_type(llm=ChatOpenAI(), chain_type="stuff", retriever=vectorstore.as_retriever())
 
 
 @bot.event
@@ -403,8 +384,12 @@ async def on_message(message):
 #
         #await send_long_message(message.channel, ai_message)
     else:
-        qa = callOPenAI()
-        query = "Give and extremely detailed Summary of this document, including a title and ALL the important ideas expressed in the document as bullet points in markdown format"
+        if os.getenv('DEV_MODE'):
+          wandb_config = {"project": "wandb_prompts_quickstart"}
+          qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(), chain_type="stuff", retriever=vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)])
+        else:
+          qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(), chain_type="stuff", retriever=vectorstore.as_retriever())
+        query = "You are a helpful assistant with concise and accurate responses given in the tone of a professional presentation. Give and extremely detailed Summary of this document, including a title and ALL the important ideas expressed in the document as bullet points in markdown format"
         answer=qa.run(user_prompt)
         logging.info(answer)
 
