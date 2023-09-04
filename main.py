@@ -20,7 +20,7 @@ from langchain.vectorstores import FAISS, qdrant, weaviate, Redis
 from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
-from langchain.llms import HuggingFaceHub
+from langchain.llms import HuggingFaceHub,OpenAI
 from langchain import HuggingFacePipeline
 from langchain.chains import RetrievalQA
 from langchain.document_loaders import UnstructuredHTMLLoader
@@ -28,6 +28,14 @@ from wandb.integration.langchain import WandbTracer
 from langchain.document_loaders import BSHTMLLoader
 from googleapiclient.discovery import build
 from youtube_transcript_api import YouTubeTranscriptApi
+
+from transformers import SpeechT5Processor, SpeechT5ForTextToSpeech, SpeechT5HifiGan
+from datasets import load_dataset
+import torch
+import soundfile as sf
+from datasets import load_dataset
+
+
 
 
 from bs4 import BeautifulSoup
@@ -65,12 +73,25 @@ class DialogContext:
 
 dialog_contexts = {}
 
+def make_spoken_response(text):
+  processor = SpeechT5Processor.from_pretrained("microsoft/speecht5_tts")
+  model = SpeechT5ForTextToSpeech.from_pretrained("microsoft/speecht5_tts")
+  vocoder = SpeechT5HifiGan.from_pretrained("microsoft/speecht5_hifigan")
 
-def extract_url(s):
-    # Regular expression to match URLs
-    url_pattern = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
-    urls = re.findall(url_pattern, s)
-    return urls
+  inputs = processor(text="Hello, my dog is cute", return_tensors="pt")
+
+  # load xvector containing speaker's voice characteristics from a dataset
+  embeddings_dataset = load_dataset("Matthijs/cmu-arctic-xvectors", split="validation")
+  speaker_embeddings = torch.tensor(embeddings_dataset[7306]["xvector"]).unsqueeze(0)
+
+  speech = model.generate_speech(inputs["input_ids"], speaker_embeddings, vocoder=vocoder)
+
+  sf.write("speech.wav", speech.numpy(), samplerate=16000)
+  def extract_url(s):
+      # Regular expression to match URLs
+      url_pattern = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
+      urls = re.findall(url_pattern, s)
+      return urls
 
 
 def download_html(url, filepath):
@@ -119,12 +140,14 @@ def get_text_chunks(text):
 def get_vectorstore(text_chunks):
     embeddings = OpenAIEmbeddings()
     #embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
+    
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
+    vectorstore.save_local("faiss_discord_docs")
     return vectorstore
 
 
 def get_conversation_chain(vectorstore):
-    llm = ChatOpenAI()
+    llm = OpenAI()
     #llm = HuggingFaceHub(repo_id="tiiuae/falcon-40b", model_kwargs={"temperature":0.5, "max_length":512})
 
     memory = ConversationBufferMemory(
@@ -215,18 +238,15 @@ async def send_long_message(channel, message):
 
 
 def retrieve_answer(vectorstore):
-  llm = ChatOpenAI(model_name="gpt-4")
+ #llm = ChatOpenAI(model_name="gpt-4")
+  llm = ChatOpenAI()    
   #if message.content.startswith('!hf'): 
   #  llm = HuggingFaceHub(repo_id="tiiuae/falcon-40b", task="summarization", model_kwargs={"temperature":0.5, "max_length":1512})
   #  #llm = HuggingFacePipeline.from_model_id(model_id="tiiuae/falcon-40b-instruct", task="summarization", model_kwargs={"temperature":0, "max_length":64})
   #  logging.info("SETTING MODEL TO HUGGING FACE")
     
-  if os.getenv('DEV_MODE'):
-    wandb_config = {"project": "wandb_prompts_quickstart"}
-    qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)])
-  else:
-    qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorstore.as_retriever())
-  query = "Give and extremely detailed Summary of this document, including THE title  AND THE AUTHORS LISTED BELOW THE TITLE   and ALL the IMPORTANT IDEAS expressed in the document as bullet points in markdown format"
+  qa = callOPenAI()
+  query = "Give and extremely detailed Summary of this document, including THE title  AND THE AUTHORS and ALL the IMPORTANT IDEAS expressed in the document as bullet points in markdown format"
   answer=qa.run(query)
   logging.info(answer)
   return answer
@@ -262,6 +282,14 @@ def extract_yt_transcript(url):
     
     return transcript_str
 
+def callOPenAI():
+  if os.getenv('DEV_MODE'):
+   return RetrievalQA.from_chain_type(llm=ChatOpenAI(), chain_type="stuff", retriever=FAISS.load_local("faiss_midjourney_docs", OpenAIEmbeddings())
+        .as_retriever(search_type="similarity", search_kwargs={"k":1}),callbacks=[WandbTracer(wandb_config)])
+  else:
+    return RetrievalQA.from_chain_type(llm=ChatOpenAI(), chain_type="stuff", retriever=FAISS.load_local("faiss_midjourney_docs", OpenAIEmbeddings())
+        .as_retriever(search_type="similarity", search_kwargs={"k":1}))
+
 
 @bot.event
 async def on_ready():
@@ -292,7 +320,7 @@ async def on_message(message):
 
   if 'http://' in  message.content or 'https://' in message.content:
     chunks = None
-    if 'youtube.com' in message.content:
+    if 'youtube.com' in message.content or 'youtu.be' in message.content:
         raw_text = extract_yt_transcript(message.content)
         chunks = get_text_chunks(''.join(raw_text))
         vectorstore = get_vectorstore(chunks)
@@ -375,11 +403,7 @@ async def on_message(message):
 #
         #await send_long_message(message.channel, ai_message)
     else:
-        if os.getenv('DEV_MODE'):
-          wandb_config = {"project": "wandb_prompts_quickstart"}
-          qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(), chain_type="stuff", retriever=vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)])
-        else:
-          qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(), chain_type="stuff", retriever=vectorstore.as_retriever())
+        qa = callOPenAI()
         query = "Give and extremely detailed Summary of this document, including a title and ALL the important ideas expressed in the document as bullet points in markdown format"
         answer=qa.run(user_prompt)
         logging.info(answer)
