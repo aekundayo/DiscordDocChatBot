@@ -119,9 +119,9 @@ def get_text_chunks(text):
 def get_vectorstore(text_chunks):
     embeddings = OpenAIEmbeddings()
     #embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
-    vectorstore
-    vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
-    vectorstore.save_local("faiss_discord_docs")
+    vectorstore = FAISS.load_local("./vectorstore" , embeddings ,"faiss_discord_docs")
+    vectorstore.add_texts(text_chunks)
+    vectorstore.save_local("./vectorstore" ,"faiss_discord_docs")
     return vectorstore
 
 
@@ -275,13 +275,13 @@ def callOPenAI():
 @bot.event
 async def on_ready():
   logging.info(f'{bot.user} has connected to Discord!')
-
+vectorstore=FAISS.load_local("./vectorstore" , OpenAIEmbeddings() ,"faiss_discord_docs")
 #Event handler for bot messages. Could break into smaller functions.
 @bot.event
 async def on_message(message):
   if message.author == bot.user:
     return
-  global vectorstore
+  
   if os.getenv('DEV_MODE'):
     global wandb_config
     wandb_config = {"project": "wandb_prompts_quickstart"}
@@ -323,7 +323,6 @@ async def on_message(message):
 
 
   if message.attachments:
-    vectorstore=None
     for attachment in message.attachments:
         if attachment.filename.endswith('.pdf'):  # if the attachment is a pdf
           data = await attachment.read()  # read the content of the file
@@ -336,6 +335,7 @@ async def on_message(message):
         await send_long_message(message.channel, answer)
         return
   else:
+    vectorstore=FAISS.load_local("./vectorstore" , OpenAIEmbeddings() ,"faiss_discord_docs")
     user_prompt = message.content
     logging.info(f"Received message from {message.author.name}: {user_prompt}")
 
