@@ -41,6 +41,11 @@ brave_search_api_key = os.getenv('BRAVE_SEARCH_API_KEY')
 intents = discord.Intents.all()
 bot = commands.Bot("/", intents=intents)
 vectorstore=None
+vectorpath = './docs/vectorstore'
+
+
+pdf_path = './docs/pdfs'
+web_doc_path = './docs/web'
 
 class DialogContext:
 #load dot env file
@@ -119,10 +124,20 @@ def get_text_chunks(text):
 def get_vectorstore(text_chunks):
     embeddings = OpenAIEmbeddings()
     #embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
-    vectorstore = FAISS.load_local("./vectorstore" , embeddings ,"faiss_discord_docs")
-    vectorstore.add_texts(text_chunks)
-    vectorstore.save_local("./vectorstore" ,"faiss_discord_docs")
+    persist_new_chunks(text_chunks)
+    vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
+
     return vectorstore
+
+def persist_new_chunks(text_chunks):
+    hisotryvectorstore = FAISS.load_local(vectorpath , OpenAIEmbeddings() ,"faiss_discord_docs")
+    hisotryvectorstore.add_texts(text_chunks)
+    hisotryvectorstore.save_local(vectorpath ,"faiss_discord_docs")
+    return vectorstore
+
+def get_history_vectorstore():
+    hisotryvectorstore = FAISS.load_local(vectorpath , OpenAIEmbeddings() ,"faiss_discord_docs")
+    return hisotryvectorstore
 
 
 def get_conversation_chain(vectorstore):
@@ -229,7 +244,7 @@ def retrieve_answer(vectorstore):
     qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)])
   else:
     qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorstore.as_retriever())
-  query = "You are a helpful assistant with concise and accurate responses given in the tone of a professional presentation. Give and extremely detailed Summary of this document, including THE title  AND THE AUTHORS and ALL the IMPORTANT IDEAS expressed in the document as bullet points in markdown format"
+  query = "You are a helpful assistant with concise and accurate responses given in the tone of a professional presentation. Give and detailed Summary of this document, including THE title  AND THE AUTHORS and ALL the IMPORTANT IDEAS expressed in the document as bullet points in markdown format"
   answer=qa.run(query)
   logging.info(answer)
   return answer
@@ -275,7 +290,7 @@ def callOPenAI():
 @bot.event
 async def on_ready():
   logging.info(f'{bot.user} has connected to Discord!')
-vectorstore=FAISS.load_local("./vectorstore" , OpenAIEmbeddings() ,"faiss_discord_docs")
+vectorstore=FAISS.load_local(vectorpath , OpenAIEmbeddings() ,"faiss_discord_docs")
 #Event handler for bot messages. Could break into smaller functions.
 @bot.event
 async def on_message(message):
@@ -291,9 +306,9 @@ async def on_message(message):
     return
   #Process PDFs 
 
-  pdf_path = './docs/pdfs'
+
   create_directories_if_not_exists(pdf_path)
-  web_doc_path = './docs/web/download.html'
+  web_doc = web_doc_path +'/download.html'
   create_directories_if_not_exists('./docs/web')
 
 
@@ -305,23 +320,23 @@ async def on_message(message):
         raw_text = extract_yt_transcript(message.content)
         chunks = get_text_chunks(''.join(raw_text))
         vectorstore = get_vectorstore(chunks)
-        answer = retrieve_answer(vectorstore=vectorstore)
+        answer = retrieve_answer(vectorstore)
         await send_long_message(message.channel, answer)
     else:        
         urls = extract_url(message.content)   
         for url in urls:
-            download_html(url, web_doc_path)
-            loader = BSHTMLLoader(web_doc_path)
+            download_html(url, web_doc)
+            loader = BSHTMLLoader(web_doc)
             data = loader.load()
         
             for page_info in data:
                 chunks = get_text_chunks(page_info.page_content)
                 vectorstore = get_vectorstore(chunks)
                 answer = retrieve_answer(vectorstore=vectorstore)
-                os.remove(web_doc_path) # Change here
+                os.remove(web_doc) # Change here
                 await send_long_message(message.channel, answer)
 
-
+#handle PDFs
   if message.attachments:
     for attachment in message.attachments:
         if attachment.filename.endswith('.pdf'):  # if the attachment is a pdf
@@ -335,7 +350,7 @@ async def on_message(message):
         await send_long_message(message.channel, answer)
         return
   else:
-    vectorstore=FAISS.load_local("./vectorstore" , OpenAIEmbeddings() ,"faiss_discord_docs")
+    vectorstore=FAISS.load_local(vectorpath , OpenAIEmbeddings() ,"faiss_discord_docs")
     user_prompt = message.content
     logging.info(f"Received message from {message.author.name}: {user_prompt}")
 
@@ -384,13 +399,14 @@ async def on_message(message):
 #
         #await send_long_message(message.channel, ai_message)
     else:
+        hitory_vectorstore = get_history_vectorstore()
         if os.getenv('DEV_MODE'):
           wandb_config = {"project": "wandb_prompts_quickstart"}
-          qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(), chain_type="stuff", retriever=vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)])
+          qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(), chain_type="stuff", retriever=hitory_vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)])
         else:
-          qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(), chain_type="stuff", retriever=vectorstore.as_retriever())
-        query = "You are a helpful assistant with concise and accurate responses given in the tone of a professional presentation. Give and extremely detailed Summary of this document, including a title and ALL the important ideas expressed in the document as bullet points in markdown format"
-        answer=qa.run(user_prompt)
+          qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(), chain_type="stuff", retriever=hitory_vectorstore.as_retriever())
+        query = "You are a helpful assistant with concise and accurate responses given in the tone of a professional presentation. Try and answer the question as truthfully as possible. What is the answer to the question: " + user_prompt
+        answer=qa.run(query)
         logging.info(answer)
 
         await send_long_message(message.channel, answer)
