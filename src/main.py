@@ -6,7 +6,6 @@ import os
 import time
 import logging
 import wandb
-import urllib.parse as urlparse
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
@@ -21,8 +20,8 @@ from langchain.chains import RetrievalQA
 from langchain.document_loaders import UnstructuredHTMLLoader
 from wandb.integration.langchain import WandbTracer
 from langchain.document_loaders import BSHTMLLoader
-from googleapiclient.discovery import build
-from youtube_transcript_api import YouTubeTranscriptApi
+
+
 from summary_prompts import get_guidelines
 from utils import extract_url, download_html, get_pdf_text, get_text_chunks, create_directories_if_not_exists, extract_yt_transcript
 from vector import get_vectorstore, get_history_vectorstore

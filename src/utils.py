@@ -4,8 +4,9 @@ import re
 import json
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
-
-
+from youtube_transcript_api import YouTubeTranscriptApi
+import urllib.parse as urlparse
+from googleapiclient.discovery import build
 
 def extract_url(s):
     # Regular expression to match URLs
