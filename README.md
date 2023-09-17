@@ -49,6 +49,8 @@ To successfully run this bot, you'll need to set up the following environment va
 
 Once the environment variables are in place, execute the following Docker commands to run the bot:
 
+The directory ~/Documents/discord needs to exists or edit docker compose file to use another directory.
+
 ```shell
-docker build -t discorddocchatbot .
+docker build --no-cache -t discorddocchatbot .
 docker-compose up -d
