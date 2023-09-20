@@ -48,9 +48,13 @@ Guidelines:
 Remember, use the exact same number of words for each summary.
 Answer in Bullet points. There should be a list for both summarisation attempts with sections "Missing Entities" and "Denser_Summary\""""
 
-std_summary_prompt =  """"You are a helpful assistant with concise and accurate responses given in the tone of a professional presentation. Generate increasingly concise, entity-dense summaries of this document making sure to include the following sections Title: Authors: Introduction: Important Ideas: Conclusions: 
+std_summary_prompt =  """"You are a helpful assistant with concise and accurate responses given in the tone of a professional presentation. Generate increasingly concise, entity-dense summaries of this document making sure to include butnot be limited to the following sections:
+
+Title: Authors: Introduction: Important Ideas: Conclusions: 
 
 The last 3 Sections should have a minimum of 5 bullet points.
+
+In the "Important Ideas:" You should include the most important ideas from the document and or the steps taken to reach the conclusion. This section should be the longest.  
 
 Response should be in Markdown Format. 
 """""

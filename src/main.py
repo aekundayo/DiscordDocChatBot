@@ -24,7 +24,7 @@ from langchain.document_loaders import BSHTMLLoader
 
 from summary_prompts import get_guidelines
 from utils import extract_url, download_html, get_pdf_text, get_text_chunks, create_directories_if_not_exists, extract_yt_transcript
-from vector import get_vectorstore, get_history_vectorstore
+from vector import get_vectorstore, get_history_vectorstore, persist_new_chunks
 
 
 from bs4 import BeautifulSoup
@@ -176,6 +176,7 @@ async def on_message(message):
         raw_text = extract_yt_transcript(message.content)
         chunks = get_text_chunks(''.join(raw_text))
         vectorstore = get_vectorstore(chunks)
+        await persist_new_chunks(chunks)
         answer = retrieve_answer(vectorstore)
         await send_long_message(message.channel, answer)
     else:        
@@ -188,6 +189,7 @@ async def on_message(message):
             for page_info in data:
                 chunks = get_text_chunks(page_info.page_content)
                 vectorstore = get_vectorstore(chunks)
+                await persist_new_chunks(chunks)
                 answer = retrieve_answer(vectorstore=vectorstore)
                 os.remove(web_doc) # Change here
                 await send_long_message(message.channel, answer)
@@ -202,6 +204,7 @@ async def on_message(message):
           raw_text = get_pdf_text(pdf_path)
           chunks = get_text_chunks(raw_text)
           vectorstore = get_vectorstore(chunks)
+          await persist_new_chunks(chunks)
           answer = retrieve_answer(vectorstore=vectorstore)
         await send_long_message(message.channel, answer)
         return
