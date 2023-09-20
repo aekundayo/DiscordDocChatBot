@@ -48,11 +48,12 @@ Guidelines:
 Remember, use the exact same number of words for each summary.
 Answer in Bullet points. There should be a list for both summarisation attempts with sections "Missing Entities" and "Denser_Summary\""""
 
-std_summary_prompt =  """"You are a helpful assistant with concise and accurate responses given in the tone of a professional presentation.
+std_summary_prompt =  """"You are a helpful assistant with concise and accurate responses given in the tone of a professional presentation. Generate increasingly concise, entity-dense summaries of this document making sure to include the following sections Title: Authors: Introduction: Important Ideas: Conclusions: 
 
-You will generate increasingly concise, entity-dense summaries of the Article & Create an executive summary of the report.
+The last 3 Sections should have a minimum of 5 bullet points.
 
-Give and detailed Summary of this document, including THE title  AND THE AUTHORS and ALL the IMPORTANT IDEAS expressed in the document as bullet points in markdown format"""
+Response should be in Markdown Format. 
+"""""
 
 std_qa_prompt = "You are a helpful assistant with concise and accurate responses given in the tone of a professional presentation. Try and answer the question as truthfully as possible. What is the answer to the question: "
 
