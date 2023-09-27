@@ -20,10 +20,11 @@ from langchain.chains import RetrievalQA
 from langchain.document_loaders import UnstructuredHTMLLoader
 from wandb.integration.langchain import WandbTracer
 from langchain.document_loaders import BSHTMLLoader
+import threading
 
 
 from summary_prompts import get_guidelines
-from utils import extract_url, download_html, get_pdf_text, get_text_chunks, create_directories_if_not_exists, extract_yt_transcript
+from utils import extract_url, download_html, get_pdf_text, get_text_chunks, create_directories_if_not_exists, extract_yt_transcript, extract_text_from_htmls, unzip_website
 from vector import get_vectorstore, get_history_vectorstore, persist_new_chunks
 
 
@@ -43,6 +44,7 @@ vectorpath = './docs/vectorstore'
 
 pdf_path = './docs/pdfs'
 web_doc_path = './docs/web'
+zip_path = './docs/zip'
 
 class DialogContext:
 #load dot env file
@@ -165,6 +167,7 @@ async def on_message(message):
   create_directories_if_not_exists(pdf_path)
   web_doc = web_doc_path +'/download.html'
   create_directories_if_not_exists('./docs/web')
+  create_directories_if_not_exists(zip_path)
   create_directories_if_not_exists(vectorpath)
 
 
@@ -176,7 +179,7 @@ async def on_message(message):
         raw_text = extract_yt_transcript(message.content)
         chunks = get_text_chunks(''.join(raw_text))
         vectorstore = get_vectorstore(chunks)
-        await persist_new_chunks(chunks)
+        persist_new_chunks(chunks)
         answer = retrieve_answer(vectorstore)
         await send_long_message(message.channel, answer)
     else:        
@@ -189,12 +192,12 @@ async def on_message(message):
             for page_info in data:
                 chunks = get_text_chunks(page_info.page_content)
                 vectorstore = get_vectorstore(chunks)
-                await persist_new_chunks(chunks)
+                persist_new_chunks(chunks)
                 answer = retrieve_answer(vectorstore=vectorstore)
                 os.remove(web_doc) # Change here
                 await send_long_message(message.channel, answer)
 
-#handle PDFs
+#handle Attachments (pdf and zip)
   if message.attachments:
     for attachment in message.attachments:
         if attachment.filename.endswith('.pdf'):  # if the attachment is a pdf
@@ -204,10 +207,19 @@ async def on_message(message):
           raw_text = get_pdf_text(pdf_path)
           chunks = get_text_chunks(raw_text)
           vectorstore = get_vectorstore(chunks)
-          await persist_new_chunks(chunks)
+          persist_new_chunks(chunks)
           answer = retrieve_answer(vectorstore=vectorstore)
-        await send_long_message(message.channel, answer)
-        return
+          await send_long_message(message.channel, answer)
+          return
+        elif attachment.filename.endswith('.zip'):  # if the attachment is a pdf
+          data = await attachment.read()  # read the content of the file
+          with open(os.path.join(zip_path, attachment.filename), 'wb') as f:  # save the pdf to a file
+              f.write(data)
+          unzip_website(zip_path+"/"+attachment.filename, zip_path)
+          await extract_text_from_htmls(zip_path)
+          return
+
+          
   else:
     user_prompt = message.content
     logging.info(f"Received message from {message.author.name}: {user_prompt}")

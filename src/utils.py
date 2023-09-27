@@ -7,6 +7,10 @@ from langchain.text_splitter import CharacterTextSplitter
 from youtube_transcript_api import YouTubeTranscriptApi
 import urllib.parse as urlparse
 from googleapiclient.discovery import build
+import zipfile
+from bs4 import BeautifulSoup
+import threading
+from vector import persist_new_chunks
 
 def extract_url(s):
     # Regular expression to match URLs
@@ -29,7 +33,26 @@ def download_html(url, filepath):
         with open(filepath, 'w', encoding='utf-8') as f:
             f.write("THIS PAGE CANT BE DOWNLOADED: "+response.content.decode("utf-8"))
 
+def unzip_website(file_name, extract_folder="extracted_website"):
+    # Unzipping the website
+    with zipfile.ZipFile(file_name, 'r') as zip_ref:
+        zip_ref.extractall(extract_folder)
 
+async def extract_text_from_htmls(folder):
+    # Iterate through all files in the folder
+    for subdir, _, files in os.walk(folder):
+        for file in files:
+            if file.endswith(".html"):
+                file_path = os.path.join(subdir, file)
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    soup = BeautifulSoup(f, 'html.parser')
+                    # Extract text from the HTML
+                    text = soup.get_text()
+                    # Print or save the text as needed
+                    print(f"Text from {file_path}:\n{text}\n{'='*40}\n")
+                    chunks = get_text_chunks(text)
+                    persist_new_chunks(chunks)
+                    
     
 def get_pdf_text(path):
     # define the path
@@ -56,9 +79,6 @@ def get_text_chunks(text):
     )
     chunks = text_splitter.split_text(text)
     return chunks
-
-def is_folder_empty(folder_path):
-    return len(os.listdir(folder_path)) == 0
 
 
 
