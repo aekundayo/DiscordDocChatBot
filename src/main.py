@@ -18,7 +18,7 @@ from langchain.document_loaders import BSHTMLLoader
 from summary_prompts import get_guidelines
 from utils import extract_url, download_html, get_pdf_text, get_text_chunks, create_directories_if_not_exists, extract_yt_transcript, extract_text_from_htmls, unzip_website
 from vector import get_vectorstore, get_history_vectorstore, persist_new_chunks
-from qdrant_vector import get_Qvector_store, return_qdrant
+from qdrant_vector import get_Qvector_store, return_qdrant, update_qdrant
 from concurrent.futures import ThreadPoolExecutor
 from wandb.sdk.data_types.trace_tree import Trace
 

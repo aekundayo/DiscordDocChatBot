@@ -11,6 +11,7 @@ import zipfile
 from bs4 import BeautifulSoup
 import threading
 from vector import persist_new_chunks
+from qdrant_vector import update_qdrant
 
 def extract_url(s):
     # Regular expression to match URLs
@@ -51,7 +52,8 @@ async def extract_text_from_htmls(folder):
                     # Print or save the text as needed
                     print(f"Text from {file_path}:\n{text}\n{'='*40}\n")
                     chunks = get_text_chunks(text)
-                    persist_new_chunks(chunks)
+                    #persist_new_chunks(chunks)
+                    update_qdrant(chunks)
     
     remove_folder_contents(folder)
                     

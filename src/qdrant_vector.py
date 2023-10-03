@@ -46,6 +46,20 @@ def return_qdrant():
 
     return qdrant
 
+def update_qdrant(text_chunks):
+    embeddings = OpenAIEmbeddings()
+    client = qdrant_client.QdrantClient(
+    url=os.getenv("QDRANT_HOST_STRING")
+    )
+    qdrant = Qdrant(
+    client=client,
+    embeddings=embeddings,
+    collection_name="my_documents"
+    )
+    qdrant.add_texts(text_chunks)
+
+
+
 def is_folder_empty(folder_path):
     return len(os.listdir(folder_path)) == 0
 
