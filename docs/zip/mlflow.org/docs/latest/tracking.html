@@ -1,0 +1,1841 @@
+
+  
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MLflow Tracking &mdash; MLflow 2.7.1 documentation</title>
+  
+   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="canonical" href="tracking.html">
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    
+
+    
+
+  
+    
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer',"GTM-N6WMTTJ");</script>
+        <!-- End Google Tag Manager -->
+    
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="MLflow 2.7.1 documentation" href="index.html"/>
+        <link rel="next" title="MLflow LLM Tracking" href="https://mlflow.org/llm-tracking.html"/>
+        <link rel="prev" title="Concepts" href="https://mlflow.org/concepts.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+<script type="text/javascript" src="_static/jquery.js"></script>
+<script type="text/javascript" src="_static/underscore.js"></script>
+<script type="text/javascript" src="_static/doctools.js"></script>
+<script type="text/javascript" src="_static/languagesections.js"></script>
+
+<body class="wy-body-for-nav" role="document">
+  
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N6WMTTJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+  
+
+  
+  <nav class="wy-nav-top header" role="navigation" aria-label="top navigation">
+    <ul>
+  <li class="menu-toggle">
+    <i data-toggle="wy-nav-top" class="wy-nav-top-menu-button db-icon db-icon-menu pull-left"></i>
+    <a href="index.html" class="wy-nav-top-logo"
+      ><img src="_static/MLflow-logo-final-black.png" alt="MLflow"
+    /></a>
+    <span class="version">2.7.1</span>
+  </li>
+</ul>
+  </nav>
+  <page>
+    
+
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side relative">
+      <div class="wy-side-scroll">
+  <div class="wy-side-nav-search">
+    
+
+    
+
+    
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+
+    
+  </div>
+
+  <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+    
+      <a href="index.html" class="main-navigation-home"><img src="_static/icons/nav-home.svg"> MLflow</a>
+    
+
+    
+      
+
+      
+        <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="what-is-mlflow.html">What is MLflow?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart: Install MLflow, instrument code &amp; view results in minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart_mlops.html">Quickstart: Compare runs, choose a model, and deploy it to a REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials-and-examples/index.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Concepts</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="tracking.html#">MLflow Tracking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html#concepts">Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html#where-runs-are-recorded">Where Runs Are Recorded</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html#how-runs-and-artifacts-are-recorded">How runs and artifacts are recorded</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#scenario-1-mlflow-on-localhost">Scenario 1: MLflow on localhost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#scenario-2-mlflow-on-localhost-with-sqlite">Scenario 2: MLflow on localhost with SQLite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#scenario-3-mlflow-on-localhost-with-tracking-server">Scenario 3: MLflow on localhost with Tracking Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#scenario-4-mlflow-with-remote-tracking-server-backend-and-artifact-stores">Scenario 4: MLflow with remote Tracking Server, backend and artifact stores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#scenario-5-mlflow-tracking-server-enabled-with-proxied-artifact-storage-access">Scenario 5: MLflow Tracking Server enabled with proxied artifact storage access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#scenario-6-mlflow-tracking-server-used-exclusively-as-proxied-access-host-for-artifact-storage-access">Scenario 6: MLflow Tracking Server used exclusively as proxied access host for artifact storage access</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html#logging-data-to-runs">Logging Data to Runs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#logging-functions">Logging functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#launching-multiple-runs-in-one-program">Launching Multiple Runs in One Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#performance-tracking-with-metrics">Performance Tracking with Metrics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tracking.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#visualizing-metrics">Visualizing Metrics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html#automatic-logging">Automatic Logging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#scikit-learn">Scikit-learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#keras">Keras</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#gluon">Gluon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#xgboost">XGBoost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#lightgbm">LightGBM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#statsmodels">Statsmodels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#spark">Spark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#fastai">Fastai</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#pytorch">Pytorch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html#organizing-runs-in-experiments">Organizing Runs in Experiments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#managing-experiments-and-runs-with-the-tracking-service-api">Managing Experiments and Runs with the Tracking Service API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tracking.html#adding-tags-to-runs">Adding Tags to Runs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html#tracking-ui">Tracking UI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html#querying-runs-programmatically">Querying Runs Programmatically</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html#mlflow-tracking-servers">MLflow Tracking Servers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#id14">Storage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tracking.html#backend-stores">Backend Stores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tracking.html#artifact-stores">Artifact Stores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tracking.html#file-store-performance">File store performance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tracking.html#deletion-behavior">Deletion Behavior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tracking.html#sqlalchemy-options">SQLAlchemy Options</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#networking">Networking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#using-the-tracking-server-for-proxied-artifact-access">Using the Tracking Server for proxied artifact access</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tracking.html#optionally-using-a-tracking-server-instance-exclusively-for-artifact-handling">Optionally using a Tracking Server instance exclusively for artifact handling</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#logging-to-a-tracking-server">Logging to a Tracking Server</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tracking.html#tracking-server-versioning">Tracking Server versioning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html#system-tags">System Tags</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="llm-tracking.html">MLflow LLM Tracking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects.html">MLflow Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">MLflow Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model-registry.html">MLflow Model Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes.html">MLflow Recipes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gateway/index.html">MLflow AI Gateway (Experimental)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="llms/prompt-engineering.html">Prompt Engineering UI (Experimental)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">MLflow Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth/index.html">MLflow Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command-Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search-runs.html">Search Runs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search-experiments.html">Search Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_api/index.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="R-api.html">R API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="java_api/index.html">Java API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest-api.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Official MLflow Docker Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community-model-flavors.html">Community Model Flavors</a></li>
+</ul>
+
+      
+    
+  </div>
+
+  <div role="contentinfo">
+    
+
+    <p>
+      <a id='feedbacklink' href="https://github.com/mlflow/mlflow/blob/master/CONTRIBUTING.md" target="_blank">Contribute</a>
+    </p>
+  </div>
+</div>
+    </nav>
+
+    <main class="wy-grid-for-nav">
+      <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+        <div class="wy-nav-content">
+          <div class="rst-content">
+            
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Documentation</a> <span class="db-icon db-icon-chevron-right"></span></li>
+    
+    
+      <li>MLflow Tracking</li>
+    
+    
+    <!-- <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/mlflow/mlflow/blob/master/docs/source/tracking.rst" class="fa fa-github"> Edit on GitHub</a>
+    </li> -->
+    
+  </ul>
+</div>
+            <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <div itemprop="articleBody">
+                
+  <div class="section" id="mlflow-tracking">
+<span id="tracking"></span><h1>MLflow Tracking<a class="headerlink" href="tracking.html#mlflow-tracking" title="Permalink to this headline"> </a></h1>
+<p>The MLflow Tracking component is an API and UI for logging parameters, code versions, metrics, and output files
+when running your machine learning code and for later visualizing the results.
+MLflow Tracking lets you log and query experiments using <a class="reference internal" href="python_api/index.html#python-api"><span class="std std-ref">Python</span></a>, <a class="reference internal" href="rest-api.html#rest-api"><span class="std std-ref">REST</span></a>, <a class="reference internal" href="R-api.html#r-api"><span class="std std-ref">R API</span></a>, and <a class="reference internal" href="java_api/index.html#java-api"><span class="std std-ref">Java API</span></a> APIs.</p>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="tracking.html#concepts" id="id30">Concepts</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#where-runs-are-recorded" id="id31">Where Runs Are Recorded</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#how-runs-and-artifacts-are-recorded" id="id32">How runs and artifacts are recorded</a></p>
+<ul>
+<li><p><a class="reference internal" href="tracking.html#scenario-1-mlflow-on-localhost" id="id33">Scenario 1: MLflow on localhost</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#scenario-2-mlflow-on-localhost-with-sqlite" id="id34">Scenario 2: MLflow on localhost with SQLite</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#scenario-3-mlflow-on-localhost-with-tracking-server" id="id35">Scenario 3: MLflow on localhost with Tracking Server</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#scenario-4-mlflow-with-remote-tracking-server-backend-and-artifact-stores" id="id36">Scenario 4: MLflow with remote Tracking Server, backend and artifact stores</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#scenario-5-mlflow-tracking-server-enabled-with-proxied-artifact-storage-access" id="id37">Scenario 5: MLflow Tracking Server enabled with proxied artifact storage access</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#scenario-6-mlflow-tracking-server-used-exclusively-as-proxied-access-host-for-artifact-storage-access" id="id38">Scenario 6: MLflow Tracking Server used exclusively as proxied access host for artifact storage access</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="tracking.html#logging-data-to-runs" id="id39">Logging Data to Runs</a></p>
+<ul>
+<li><p><a class="reference internal" href="tracking.html#logging-functions" id="id40">Logging functions</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#launching-multiple-runs-in-one-program" id="id41">Launching Multiple Runs in One Program</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#performance-tracking-with-metrics" id="id42">Performance Tracking with Metrics</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#visualizing-metrics" id="id43">Visualizing Metrics</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="tracking.html#automatic-logging" id="id44">Automatic Logging</a></p>
+<ul>
+<li><p><a class="reference internal" href="tracking.html#scikit-learn" id="id45">Scikit-learn</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#keras" id="id46">Keras</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#gluon" id="id47">Gluon</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#xgboost" id="id48">XGBoost</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#lightgbm" id="id49">LightGBM</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#statsmodels" id="id50">Statsmodels</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#spark" id="id51">Spark</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#fastai" id="id52">Fastai</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#pytorch" id="id53">Pytorch</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="tracking.html#organizing-runs-in-experiments" id="id54">Organizing Runs in Experiments</a></p>
+<ul>
+<li><p><a class="reference internal" href="tracking.html#managing-experiments-and-runs-with-the-tracking-service-api" id="id55">Managing Experiments and Runs with the Tracking Service API</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="tracking.html#tracking-ui" id="id56">Tracking UI</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#querying-runs-programmatically" id="id57">Querying Runs Programmatically</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#mlflow-tracking-servers" id="id58">MLflow Tracking Servers</a></p>
+<ul>
+<li><p><a class="reference internal" href="tracking.html#id14" id="id59">Storage</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#networking" id="id60">Networking</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#using-the-tracking-server-for-proxied-artifact-access" id="id61">Using the Tracking Server for proxied artifact access</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#logging-to-a-tracking-server" id="id62">Logging to a Tracking Server</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="tracking.html#system-tags" id="id63">System Tags</a></p></li>
+</ul>
+</div>
+<div class="section" id="concepts">
+<span id="tracking-concepts"></span><h2><a class="toc-backref" href="tracking.html#id30">Concepts</a><a class="headerlink" href="tracking.html#concepts" title="Permalink to this headline"> </a></h2>
+<p>MLflow Tracking is organized around the concept of <em>runs</em>, which are executions of some piece of
+data science code. Each run records the following information:</p>
+<dl class="simple">
+<dt>Code Version</dt><dd><p>Git commit hash used for the run, if it was run from an <a class="reference internal" href="projects.html#projects"><span class="std std-ref">MLflow Project</span></a>.</p>
+</dd>
+<dt>Start &amp; End Time</dt><dd><p>Start and end time of the run</p>
+</dd>
+<dt>Source</dt><dd><p>Name of the file to launch the run, or the project name and entry point for the run
+if run from an <a class="reference internal" href="projects.html#projects"><span class="std std-ref">MLflow Project</span></a>.</p>
+</dd>
+<dt>Parameters</dt><dd><p>Key-value input parameters of your choice. Both keys and values are strings.</p>
+</dd>
+<dt>Metrics</dt><dd><p>Key-value metrics, where the value is numeric. Each metric can be updated throughout the
+course of the run (for example, to track how your model’s loss function is converging), and
+MLflow records and lets you visualize the metric’s full history.</p>
+</dd>
+<dt>Artifacts</dt><dd><p>Output files in any format. For example, you can record images (for example, PNGs), models
+(for example, a pickled scikit-learn model), and data files (for example, a
+<a class="reference external" href="https://parquet.apache.org/">Parquet</a> file) as artifacts.</p>
+</dd>
+</dl>
+<p>You can record runs using MLflow Python, R, Java, and REST APIs from anywhere you run your code. For
+example, you can record them in a standalone program, on a remote cloud machine, or in an
+interactive notebook. If you record runs in an <a class="reference internal" href="projects.html#projects"><span class="std std-ref">MLflow Project</span></a>, MLflow
+remembers the project URI and source version.</p>
+<p>You can optionally organize runs into <em>experiments</em>, which group together runs for a
+specific task. You can create an experiment using the <code class="docutils literal notranslate"><span class="pre">mlflow</span> <span class="pre">experiments</span></code> CLI, with
+<a class="reference internal" href="python_api/mlflow.html#mlflow.create_experiment" title="mlflow.create_experiment"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.create_experiment()</span></code></a>, or using the corresponding REST parameters. The MLflow API and
+UI let you create and search for experiments.</p>
+<p>Once your runs have been recorded, you can query them using the <a class="reference internal" href="tracking.html#tracking-ui"><span class="std std-ref">Tracking UI</span></a> or the MLflow
+API.</p>
+</div>
+<div class="section" id="where-runs-are-recorded">
+<span id="id1"></span><h2><a class="toc-backref" href="tracking.html#id31">Where Runs Are Recorded</a><a class="headerlink" href="tracking.html#where-runs-are-recorded" title="Permalink to this headline"> </a></h2>
+<p>MLflow runs can be recorded to local files, to a SQLAlchemy-compatible database, or remotely
+to a tracking server. By default, the MLflow Python API logs runs locally to files in an <code class="docutils literal notranslate"><span class="pre">mlruns</span></code> directory wherever you
+ran your program. You can then run <code class="docutils literal notranslate"><span class="pre">mlflow</span> <span class="pre">ui</span></code> to see the logged runs.</p>
+<p>To log runs remotely, set the <code class="docutils literal notranslate"><span class="pre">MLFLOW_TRACKING_URI</span></code> environment variable to a tracking server’s URI or
+call <a class="reference internal" href="python_api/mlflow.html#mlflow.set_tracking_uri" title="mlflow.set_tracking_uri"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.set_tracking_uri()</span></code></a>.</p>
+<p>There are different kinds of remote tracking URIs:</p>
+<ul class="simple">
+<li><p>Local file path (specified as <code class="docutils literal notranslate"><span class="pre">file:/my/local/dir</span></code>), where data is just directly stored locally.</p></li>
+<li><p>Database encoded as <code class="docutils literal notranslate"><span class="pre">&lt;dialect&gt;+&lt;driver&gt;://&lt;username&gt;:&lt;password&gt;&#64;&lt;host&gt;:&lt;port&gt;/&lt;database&gt;</span></code>. MLflow supports the dialects <code class="docutils literal notranslate"><span class="pre">mysql</span></code>, <code class="docutils literal notranslate"><span class="pre">mssql</span></code>, <code class="docutils literal notranslate"><span class="pre">sqlite</span></code>, and <code class="docutils literal notranslate"><span class="pre">postgresql</span></code>. For more details, see <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls">SQLAlchemy database uri</a>.</p></li>
+<li><p>HTTP server (specified as <code class="docutils literal notranslate"><span class="pre">https://my-server:5000</span></code>), which is a server hosting an <a class="reference internal" href="tracking.html#tracking-server"><span class="std std-ref">MLflow tracking server</span></a>.</p></li>
+<li><p>Databricks workspace (specified as <code class="docutils literal notranslate"><span class="pre">databricks</span></code> or as <code class="docutils literal notranslate"><span class="pre">databricks://&lt;profileName&gt;</span></code>, a <a class="reference external" href="https://github.com/databricks/databricks-cli#installation">Databricks CLI profile</a>.
+Refer to Access the MLflow tracking server from outside Databricks <a class="reference external" href="http://docs.databricks.com/applications/mlflow/access-hosted-tracking-server.html">[AWS]</a>
+<a class="reference external" href="http://docs.microsoft.com/azure/databricks/applications/mlflow/access-hosted-tracking-server">[Azure]</a>, or <a class="reference internal" href="quickstart.html#quickstart-tracking-server"><span class="std std-ref">the quickstart</span></a> to
+easily get started with hosted MLflow on Databricks Community Edition.</p></li>
+</ul>
+</div>
+<div class="section" id="how-runs-and-artifacts-are-recorded">
+<h2><a class="toc-backref" href="tracking.html#id32">How runs and artifacts are recorded</a><a class="headerlink" href="tracking.html#how-runs-and-artifacts-are-recorded" title="Permalink to this headline"> </a></h2>
+<p>As mentioned above, MLflow runs can be recorded to local files, to a SQLAlchemy-compatible database, or remotely to a tracking server. MLflow artifacts can be persisted to local files
+and a variety of remote file storage solutions. For storing runs and artifacts, MLflow uses two components for <a class="reference external" href="tracking.html#storage">storage</a>: backend store and artifact store. While the backend store persists
+MLflow entities (runs, parameters, metrics, tags, notes, metadata, etc), the artifact store persists artifacts
+(files, models, images, in-memory objects, or model summary, etc).</p>
+<p>The MLflow server can be configured with an artifacts HTTP proxy, passing artifact requests through the tracking server
+to store and retrieve artifacts without having to interact with underlying object store services.
+Usage of the proxied artifact access feature is described in Scenarios 5 and 6 below.</p>
+<p>The MLflow client can interface with a variety of <a class="reference external" href="tracking.html#backend-stores">backend</a> and <a class="reference external" href="tracking.html#artifact-stores">artifact</a> storage configurations.
+Here are four common configuration scenarios:</p>
+<div class="section" id="scenario-1-mlflow-on-localhost">
+<h3><a class="toc-backref" href="tracking.html#id33">Scenario 1: MLflow on localhost</a><a class="headerlink" href="tracking.html#scenario-1-mlflow-on-localhost" title="Permalink to this headline"> </a></h3>
+<p>Many developers run MLflow on their local machine, where both the backend and artifact store share a directory
+on the local filesystem—<code class="docutils literal notranslate"><span class="pre">./mlruns</span></code>—as shown in the diagram. The MLflow client directly interfaces with an
+instance of a <cite>FileStore</cite> and <cite>LocalArtifactRepository</cite>.</p>
+<div class="figure align-center" style="width: 600px">
+<img alt="_images/scenario_1.png" src="_images/scenario_1.png" />
+</div>
+<p>In this simple scenario, the MLflow client uses the following interfaces to record MLflow entities and artifacts:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>An instance of a <cite>LocalArtifactRepository</cite> (to store artifacts)</p></li>
+<li><p>An instance of a <cite>FileStore</cite> (to save MLflow entities)</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="scenario-2-mlflow-on-localhost-with-sqlite">
+<h3><a class="toc-backref" href="tracking.html#id34">Scenario 2: MLflow on localhost with SQLite</a><a class="headerlink" href="tracking.html#scenario-2-mlflow-on-localhost-with-sqlite" title="Permalink to this headline"> </a></h3>
+<p>Many users also run MLflow on their local machines with a <a class="reference external" href="https://docs.sqlalchemy.org/en/14/core/engines.html#database-urls">SQLAlchemy-compatible</a> database: <a class="reference external" href="https://sqlite.org/docs.html">SQLite</a>. In this case, artifacts
+are stored under the local <code class="docutils literal notranslate"><span class="pre">./mlruns</span></code> directory, and MLflow entities are inserted in a SQLite database file <code class="docutils literal notranslate"><span class="pre">mlruns.db</span></code>.</p>
+<div class="figure align-center" style="width: 600px">
+<img alt="_images/scenario_2.png" src="_images/scenario_2.png" />
+</div>
+<p>In this scenario, the MLflow client uses the following interfaces to record MLflow entities and artifacts:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>An instance of a <cite>LocalArtifactRepository</cite> (to save artifacts)</p></li>
+<li><p>An instance of an <cite>SQLAlchemyStore</cite> (to store MLflow entities to a SQLite file <code class="docutils literal notranslate"><span class="pre">mlruns.db</span></code>)</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="scenario-3-mlflow-on-localhost-with-tracking-server">
+<h3><a class="toc-backref" href="tracking.html#id35">Scenario 3: MLflow on localhost with Tracking Server</a><a class="headerlink" href="tracking.html#scenario-3-mlflow-on-localhost-with-tracking-server" title="Permalink to this headline"> </a></h3>
+<p>Similar to scenario 1 but a tracking server is launched, listening for REST request calls at the default port 5000.
+The arguments supplied to the <code class="docutils literal notranslate"><span class="pre">mlflow</span> <span class="pre">server</span> <span class="pre">&lt;args&gt;</span></code> dictate what backend and artifact stores are used.
+The default is local <cite>FileStore</cite>. For example, if a user launched a tracking server as
+<code class="docutils literal notranslate"><span class="pre">mlflow</span> <span class="pre">server</span> <span class="pre">--backend-store-uri</span> <span class="pre">sqlite:///mydb.sqlite</span></code>, then SQLite would be used for backend storage instead.</p>
+<p>As in scenario 1, MLflow uses a local <cite>mlruns</cite> filesystem directory as a backend store and artifact store. With a tracking
+server running, the MLflow client interacts with the tracking server via REST requests, as shown in the diagram.</p>
+<div class="figure align-center" style="width: 800px">
+<img alt="_images/scenario_3.png" src="_images/scenario_3.png" />
+</div>
+<div class="literal-block-wrapper docutils container" id="id22">
+<div class="code-block-caption"><span class="caption-text">Command to run the tracking server in this configuration</span><a class="headerlink" href="tracking.html#id22" title="Permalink to this code"> </a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mlflow<span class="w"> </span>server<span class="w"> </span>--backend-store-uri<span class="w"> </span>file:///path/to/mlruns<span class="w"> </span>--no-serve-artifacts
+</pre></div>
+</div>
+</div>
+<p>To store all runs’ MLflow entities, the MLflow client interacts with the tracking server via a series of REST requests:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Part 1a and b</strong>:</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>The MLflow client creates an instance of a <cite>RestStore</cite> and sends REST API requests to log MLflow entities</p></li>
+<li><p>The Tracking Server creates an instance of a <cite>FileStore</cite> to save MLflow entities and writes directly to the local <cite>mlruns</cite> directory</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<p>For the artifacts, the MLflow client interacts with the tracking server via a REST request:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Part 2a, b, and c</strong>:</p>
+<ul>
+<li><p>The MLflow client uses <cite>RestStore</cite> to send a REST request to fetch the artifact store URI location</p></li>
+<li><p>The Tracking Server responds with an artifact store URI location</p></li>
+<li><p>The MLflow client creates an instance of a <cite>LocalArtifactRepository</cite> and saves artifacts to the local filesystem location specified by the artifact store URI (a subdirectory of <cite>mlruns</cite>)</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="scenario-4-mlflow-with-remote-tracking-server-backend-and-artifact-stores">
+<h3><a class="toc-backref" href="tracking.html#id36">Scenario 4: MLflow with remote Tracking Server, backend and artifact stores</a><a class="headerlink" href="tracking.html#scenario-4-mlflow-with-remote-tracking-server-backend-and-artifact-stores" title="Permalink to this headline"> </a></h3>
+<p>MLflow also supports distributed architectures, where the tracking server, backend store, and artifact store
+reside on remote hosts. This example scenario depicts an architecture with a remote MLflow Tracking Server,
+a Postgres database for backend entity storage, and an S3 bucket for artifact storage.</p>
+<div class="figure align-center" style="width: 800px">
+<img alt="_images/scenario_4.png" src="_images/scenario_4.png" />
+</div>
+<div class="literal-block-wrapper docutils container" id="id23">
+<div class="code-block-caption"><span class="caption-text">Command to run the tracking server in this configuration</span><a class="headerlink" href="tracking.html#id23" title="Permalink to this code"> </a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mlflow<span class="w"> </span>server<span class="w"> </span>--backend-store-uri<span class="w"> </span>postgresql://user:password@postgres:5432/mlflowdb<span class="w"> </span>--default-artifact-root<span class="w"> </span>s3://bucket_name<span class="w"> </span>--host<span class="w"> </span>remote_host<span class="w"> </span>--no-serve-artifacts
+</pre></div>
+</div>
+</div>
+<p>To record all runs’ MLflow entities, the MLflow client interacts with the tracking server via a series of REST requests:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Part 1a and b</strong>:</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>The MLflow client creates an instance of a <cite>RestStore</cite> and sends REST API requests to log MLflow entities</p></li>
+<li><p>The Tracking Server creates an instance of an <cite>SQLAlchemyStore</cite> and connects to the remote host to
+insert MLflow entities in the database</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<p>For artifact logging, the MLflow client interacts with the remote Tracking Server and artifact storage host:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Part 2a, b, and c</strong>:</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>The MLflow client uses <cite>RestStore</cite> to send a REST request to fetch the artifact store URI location from the Tracking Server</p></li>
+<li><p>The Tracking Server responds with an artifact store URI location (an S3 storage URI in this case)</p></li>
+<li><p>The MLflow client creates an instance of an <cite>S3ArtifactRepository</cite>, connects to the remote AWS host using the
+<a class="reference external" href="https://boto3.amazonaws.com/v1/documentation/api/latest/index.html">boto client</a> libraries, and uploads the artifacts to the S3 bucket URI location</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<p>The <a class="reference external" href="https://github.com/mlflow/mlflow/blob/master/mlflow/store/tracking/file_store.py#L115">FileStore</a>,
+<a class="reference external" href="https://github.com/mlflow/mlflow/blob/master/mlflow/store/tracking/rest_store.py#L39">RestStore</a>,
+and <a class="reference external" href="https://github.com/mlflow/mlflow/blob/master/mlflow/store/tracking/sqlalchemy_store.py#L61">SQLAlchemyStore</a> are
+concrete implementations of the abstract class <a class="reference external" href="https://github.com/mlflow/mlflow/blob/master/mlflow/store/tracking/abstract_store.py">AbstractStore</a>,
+and the <a class="reference external" href="https://github.com/mlflow/mlflow/blob/master/mlflow/store/artifact/local_artifact_repo.py#L15">LocalArtifactRepository</a> and
+<a class="reference external" href="https://github.com/mlflow/mlflow/blob/master/mlflow/store/artifact/s3_artifact_repo.py#L14">S3ArtifactRepository</a> are
+concrete implementations of the abstract class <a class="reference external" href="https://github.com/mlflow/mlflow/blob/master/mlflow/store/artifact/artifact_repo.py#L13">ArtifactRepository</a>.</p>
+</div>
+<div class="section" id="scenario-5-mlflow-tracking-server-enabled-with-proxied-artifact-storage-access">
+<span id="scenario-5"></span><h3><a class="toc-backref" href="tracking.html#id37">Scenario 5: MLflow Tracking Server enabled with proxied artifact storage access</a><a class="headerlink" href="tracking.html#scenario-5-mlflow-tracking-server-enabled-with-proxied-artifact-storage-access" title="Permalink to this headline"> </a></h3>
+<p>MLflow’s Tracking Server supports utilizing the host as a proxy server for operations involving artifacts.
+Once configured with the appropriate access requirements, an administrator can start the tracking server to enable
+assumed-role operations involving the saving, loading, or listing of model artifacts, images, documents, and files.
+This eliminates the need to allow end users to have direct path access to a remote object store (e.g., s3, adls, gcs, hdfs) for artifact handling and eliminates the
+need for an end-user to provide access credentials to interact with an underlying object store.</p>
+<div class="figure align-center" style="width: 800px">
+<img alt="_images/scenario_5.png" src="_images/scenario_5.png" />
+</div>
+<div class="literal-block-wrapper docutils container" id="id24">
+<div class="code-block-caption"><span class="caption-text">Command to run the tracking server in this configuration</span><a class="headerlink" href="tracking.html#id24" title="Permalink to this code"> </a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mlflow<span class="w"> </span>server<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--backend-store-uri<span class="w"> </span>postgresql://user:password@postgres:5432/mlflowdb<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="c1"># Artifact access is enabled through the proxy URI &#39;mlflow-artifacts:/&#39;,</span>
+<span class="w">  </span><span class="c1"># giving users access to this location without having to manage credentials</span>
+<span class="w">  </span><span class="c1"># or permissions.</span>
+<span class="w">  </span>--artifacts-destination<span class="w"> </span>s3://bucket_name<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--host<span class="w"> </span>remote_host
+</pre></div>
+</div>
+</div>
+<p>Enabling the Tracking Server to perform proxied artifact access in order to route client artifact requests to an object store location:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Part 1a and b</strong>:</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>The MLflow client creates an instance of a <cite>RestStore</cite> and sends REST API requests to log MLflow entities</p></li>
+<li><p>The Tracking Server creates an instance of an <cite>SQLAlchemyStore</cite> and connects to the remote host for inserting
+tracking information in the database (i.e., metrics, parameters, tags, etc.)</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>Part 1c and d</strong>:</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>Retrieval requests by the client return information from the configured <cite>SQLAlchemyStore</cite> table</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>Part 2a and b</strong>:</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>Logging events for artifacts are made by the client using the <code class="docutils literal notranslate"><span class="pre">HttpArtifactRepository</span></code> to write files to MLflow Tracking Server</p></li>
+<li><p>The Tracking Server then writes these files to the configured object store location with assumed role authentication</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>Part 2c and d</strong>:</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>Retrieving artifacts from the configured backend store for a user request is done with the same authorized authentication that was configured at server start</p></li>
+<li><p>Artifacts are passed to the end user through the Tracking Server through the interface of the <code class="docutils literal notranslate"><span class="pre">HttpArtifactRepository</span></code></p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When an experiment is created, the artifact storage location from the configuration of the tracking server is logged in the experiment’s metadata.
+When enabling proxied artifact storage, any existing experiments that were created while operating a tracking server in
+non-proxied mode will continue to use a non-proxied artifact location. In order to use proxied artifact logging, a new experiment must be created.
+If the intention of enabling a tracking server in <code class="docutils literal notranslate"><span class="pre">-serve-artifacts</span></code> mode is to eliminate the need for a client to have authentication to
+the underlying storage, new experiments should be created for use by clients so that the tracking server can handle authentication after this migration.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The MLflow artifact proxied access service enables users to have an <em>assumed role of access to all artifacts</em> that are accessible to the Tracking Server.
+Administrators who are enabling this feature should ensure that the access level granted to the Tracking Server for artifact
+operations meets all security requirements prior to enabling the Tracking Server to operate in a proxied file handling role.</p>
+</div>
+</div>
+<div class="section" id="scenario-6-mlflow-tracking-server-used-exclusively-as-proxied-access-host-for-artifact-storage-access">
+<span id="scenario-6"></span><h3><a class="toc-backref" href="tracking.html#id38">Scenario 6: MLflow Tracking Server used exclusively as proxied access host for artifact storage access</a><a class="headerlink" href="tracking.html#scenario-6-mlflow-tracking-server-used-exclusively-as-proxied-access-host-for-artifact-storage-access" title="Permalink to this headline"> </a></h3>
+<p>MLflow’s Tracking Server can be used in an exclusive artifact proxied artifact handling role. Specifying the
+<code class="docutils literal notranslate"><span class="pre">--artifacts-only</span></code> flag restricts an MLflow server instance to only serve artifact-related API requests by proxying to an underlying object store.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Starting a Tracking Server with the <code class="docutils literal notranslate"><span class="pre">--artifacts-only</span></code> parameter will disable all Tracking Server functionality apart from API calls related to saving, loading, or listing artifacts.
+Creating runs, logging metrics or parameters, and accessing other attributes about experiments are all not permitted in this mode.</p>
+</div>
+<div class="figure align-center" style="width: 800px">
+<img alt="_images/scenario_6.png" src="_images/scenario_6.png" />
+</div>
+<div class="literal-block-wrapper docutils container" id="id25">
+<div class="code-block-caption"><span class="caption-text">Command to run the tracking server in this configuration</span><a class="headerlink" href="tracking.html#id25" title="Permalink to this code"> </a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mlflow<span class="w"> </span>server<span class="w"> </span>--artifacts-destination<span class="w"> </span>s3://bucket_name<span class="w"> </span>--artifacts-only<span class="w"> </span>--host<span class="w"> </span>remote_host
+</pre></div>
+</div>
+</div>
+<p>Running an MLFlow server in <code class="docutils literal notranslate"><span class="pre">--artifacts-only</span></code> mode:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Part 1a and b</strong>:</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>The MLflow client will interact with the Tracking Server using the <code class="docutils literal notranslate"><span class="pre">HttpArtifactRepository</span></code> interface.</p></li>
+<li><p>Listing artifacts associated with a run will be conducted from the Tracking Server using the access credentials set at server startup</p></li>
+<li><p>Saving of artifacts will transmit the files to the Tracking Server which will then write the files to the file store using credentials set at server start.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>Part 1c and d</strong>:</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>Listing of artifact responses will pass from the file store through the Tracking Server to the client</p></li>
+<li><p>Loading of artifacts will utilize the access credentials of the MLflow Tracking Server to acquire the files which are then passed on to the client</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>If migrating from Scenario 5 to Scenario 6 due to request volumes, it is important to perform two validations:</p>
+<ul>
+<li><p>Ensure that the new tracking server that is operating in <code class="docutils literal notranslate"><span class="pre">--artifacts-only</span></code> mode has access permissions to the
+location set by <code class="docutils literal notranslate"><span class="pre">--artifacts-destination</span></code> that the former multi-role tracking server had.</p></li>
+<li><p>The former multi-role tracking server that was serving artifacts must have the <code class="docutils literal notranslate"><span class="pre">-serve-artifacts</span></code> argument disabled.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Operating the Tracking Server in proxied artifact access mode by setting the parameter <code class="docutils literal notranslate"><span class="pre">--serve-artifacts</span></code> during server start, even in <code class="docutils literal notranslate"><span class="pre">--artifacts-only</span></code> mode,
+will give access to artifacts residing on the object store to any user that has authentication to access the Tracking Server. Ensure that any per-user
+security posture that you are required to maintain is applied accordingly to the proxied access that the Tracking Server will have in this mode
+of operation.</p>
+</div>
+</div>
+</div>
+<div class="section" id="logging-data-to-runs">
+<h2><a class="toc-backref" href="tracking.html#id39">Logging Data to Runs</a><a class="headerlink" href="tracking.html#logging-data-to-runs" title="Permalink to this headline"> </a></h2>
+<p>You can log data to runs using the MLflow Python, R, Java, or REST API. This section
+shows the Python API.</p>
+<div class="contents local topic" id="in-this-section">
+<p class="topic-title">In this section:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="tracking.html#logging-functions" id="id64">Logging functions</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#launching-multiple-runs-in-one-program" id="id65">Launching Multiple Runs in One Program</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#performance-tracking-with-metrics" id="id66">Performance Tracking with Metrics</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#visualizing-metrics" id="id67">Visualizing Metrics</a></p></li>
+</ul>
+</div>
+<div class="section" id="logging-functions">
+<span id="tracking-logging-functions"></span><h3><a class="toc-backref" href="tracking.html#id64">Logging functions</a><a class="headerlink" href="tracking.html#logging-functions" title="Permalink to this headline"> </a></h3>
+<p><a class="reference internal" href="python_api/mlflow.html#mlflow.set_tracking_uri" title="mlflow.set_tracking_uri"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.set_tracking_uri()</span></code></a> connects to a tracking URI. You can also set the
+<code class="docutils literal notranslate"><span class="pre">MLFLOW_TRACKING_URI</span></code> environment variable to have MLflow find a URI from there. In both cases,
+the URI can either be a HTTP/HTTPS URI for a remote server, a database connection string, or a
+local path to log data to a directory. The URI defaults to <code class="docutils literal notranslate"><span class="pre">mlruns</span></code>.</p>
+<p><a class="reference internal" href="python_api/mlflow.html#mlflow.get_tracking_uri" title="mlflow.get_tracking_uri"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.get_tracking_uri()</span></code></a> returns the current tracking URI.</p>
+<p><a class="reference internal" href="python_api/mlflow.html#mlflow.create_experiment" title="mlflow.create_experiment"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.create_experiment()</span></code></a> creates a new experiment and returns its ID. Runs can be
+launched under the experiment by passing the experiment ID to <code class="docutils literal notranslate"><span class="pre">mlflow.start_run</span></code>.</p>
+<p><a class="reference internal" href="python_api/mlflow.html#mlflow.set_experiment" title="mlflow.set_experiment"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.set_experiment()</span></code></a> sets an experiment as active. If the experiment does not exist,
+creates a new experiment. If you do not specify an experiment in <a class="reference internal" href="python_api/mlflow.html#mlflow.start_run" title="mlflow.start_run"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.start_run()</span></code></a>, new
+runs are launched under this experiment.</p>
+<p><a class="reference internal" href="python_api/mlflow.html#mlflow.start_run" title="mlflow.start_run"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.start_run()</span></code></a> returns the currently active run (if one exists), or starts a new run
+and returns a <a class="reference internal" href="python_api/mlflow.html#mlflow.ActiveRun" title="mlflow.ActiveRun"><code class="xref py py-class docutils literal notranslate"><span class="pre">mlflow.ActiveRun</span></code></a> object usable as a context manager for the
+current run. You do not need to call <code class="docutils literal notranslate"><span class="pre">start_run</span></code> explicitly: calling one of the logging functions
+with no active run automatically starts a new one.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>If the argument <code class="docutils literal notranslate"><span class="pre">run_name</span></code> is not set within <a class="reference internal" href="python_api/mlflow.html#mlflow.start_run" title="mlflow.start_run"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.start_run()</span></code></a>, a unique run name will be generated for each run.</p></li>
+</ul>
+</div>
+<p><a class="reference internal" href="python_api/mlflow.html#mlflow.end_run" title="mlflow.end_run"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.end_run()</span></code></a> ends the currently active run, if any, taking an optional run status.</p>
+<p><a class="reference internal" href="python_api/mlflow.html#mlflow.active_run" title="mlflow.active_run"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.active_run()</span></code></a> returns a <a class="reference internal" href="python_api/mlflow.entities.html#mlflow.entities.Run" title="mlflow.entities.Run"><code class="xref py py-class docutils literal notranslate"><span class="pre">mlflow.entities.Run</span></code></a> object corresponding to the
+currently active run, if any.
+<strong>Note</strong>: You cannot access currently-active run attributes
+(parameters, metrics, etc.) through the run returned by <code class="docutils literal notranslate"><span class="pre">mlflow.active_run</span></code>. In order to access
+such attributes, use the <a class="reference internal" href="python_api/mlflow.client.html#mlflow.client.MlflowClient" title="mlflow.client.MlflowClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">MlflowClient</span></code></a> as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">MlflowClient</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_run</span><span class="p">(</span><span class="n">mlflow</span><span class="o">.</span><span class="n">active_run</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">run_id</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="python_api/mlflow.html#mlflow.last_active_run" title="mlflow.last_active_run"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.last_active_run()</span></code></a> returns a <a class="reference internal" href="python_api/mlflow.entities.html#mlflow.entities.Run" title="mlflow.entities.Run"><code class="xref py py-class docutils literal notranslate"><span class="pre">mlflow.entities.Run</span></code></a> object corresponding to the
+currently active run, if any. Otherwise, it returns a <a class="reference internal" href="python_api/mlflow.entities.html#mlflow.entities.Run" title="mlflow.entities.Run"><code class="xref py py-class docutils literal notranslate"><span class="pre">mlflow.entities.Run</span></code></a> object corresponding
+the last run started from the current Python process that reached a terminal status (i.e. FINISHED, FAILED, or KILLED).</p>
+<p><a class="reference internal" href="python_api/mlflow.html#mlflow.get_parent_run" title="mlflow.get_parent_run"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.get_parent_run()</span></code></a> returns a <a class="reference internal" href="python_api/mlflow.entities.html#mlflow.entities.Run" title="mlflow.entities.Run"><code class="xref py py-class docutils literal notranslate"><span class="pre">mlflow.entities.Run</span></code></a> object corresponding to the
+parent run for the given run id, if one exists. Otherwise, it returns None.</p>
+<p><a class="reference internal" href="python_api/mlflow.html#mlflow.log_param" title="mlflow.log_param"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.log_param()</span></code></a> logs a single key-value param in the currently active run. The key and
+value are both strings. Use <a class="reference internal" href="python_api/mlflow.html#mlflow.log_params" title="mlflow.log_params"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.log_params()</span></code></a> to log multiple params at once.</p>
+<p><a class="reference internal" href="python_api/mlflow.html#mlflow.log_metric" title="mlflow.log_metric"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.log_metric()</span></code></a> logs a single key-value metric. The value must always be a number.
+MLflow remembers the history of values for each metric. Use <a class="reference internal" href="python_api/mlflow.html#mlflow.log_metrics" title="mlflow.log_metrics"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.log_metrics()</span></code></a> to log
+multiple metrics at once.</p>
+<p><a class="reference internal" href="python_api/mlflow.html#mlflow.log_input" title="mlflow.log_input"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.log_input()</span></code></a> logs a single <a class="reference internal" href="python_api/mlflow.data.html#mlflow.data.dataset.Dataset" title="mlflow.data.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">mlflow.data.dataset.Dataset</span></code></a> object corresponding to the currently
+active run. You may also log a dataset context string and a dict of key-value tags.</p>
+<p><a class="reference internal" href="python_api/mlflow.html#mlflow.set_tag" title="mlflow.set_tag"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.set_tag()</span></code></a> sets a single key-value tag in the currently active run. The key and
+value are both strings. Use <a class="reference internal" href="python_api/mlflow.html#mlflow.set_tags" title="mlflow.set_tags"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.set_tags()</span></code></a> to set multiple tags at once.</p>
+<p><a class="reference internal" href="python_api/mlflow.html#mlflow.log_artifact" title="mlflow.log_artifact"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.log_artifact()</span></code></a> logs a local file or directory as an artifact, optionally taking an
+<code class="docutils literal notranslate"><span class="pre">artifact_path</span></code> to place it in within the run’s artifact URI. Run artifacts can be organized into
+directories, so you can place the artifact in a directory this way.</p>
+<p><a class="reference internal" href="python_api/mlflow.html#mlflow.log_artifacts" title="mlflow.log_artifacts"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.log_artifacts()</span></code></a> logs all the files in a given directory as artifacts, again taking
+an optional <code class="docutils literal notranslate"><span class="pre">artifact_path</span></code>.</p>
+<p><a class="reference internal" href="python_api/mlflow.html#mlflow.get_artifact_uri" title="mlflow.get_artifact_uri"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.get_artifact_uri()</span></code></a> returns the URI that artifacts from the current run should be
+logged to.</p>
+</div>
+<div class="section" id="launching-multiple-runs-in-one-program">
+<h3><a class="toc-backref" href="tracking.html#id65">Launching Multiple Runs in One Program</a><a class="headerlink" href="tracking.html#launching-multiple-runs-in-one-program" title="Permalink to this headline"> </a></h3>
+<p>Sometimes you want to launch multiple MLflow runs in the same program: for example, maybe you are
+performing a hyperparameter search locally or your experiments are just very fast to run. This is
+easy to do because the <code class="docutils literal notranslate"><span class="pre">ActiveRun</span></code> object returned by <a class="reference internal" href="python_api/mlflow.html#mlflow.start_run" title="mlflow.start_run"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.start_run()</span></code></a> is a Python
+<a class="reference external" href="https://docs.python.org/2.5/whatsnew/pep-343.html">context manager</a>. You can “scope” each run to
+just one block of code as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">start_run</span><span class="p">():</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>The run remains open throughout the <code class="docutils literal notranslate"><span class="pre">with</span></code> statement, and is automatically closed when the
+statement exits, even if it exits due to an exception.</p>
+</div>
+<div class="section" id="performance-tracking-with-metrics">
+<h3><a class="toc-backref" href="tracking.html#id66">Performance Tracking with Metrics</a><a class="headerlink" href="tracking.html#performance-tracking-with-metrics" title="Permalink to this headline"> </a></h3>
+<p>You log MLflow metrics with <code class="docutils literal notranslate"><span class="pre">log</span></code> methods in the Tracking API. The <code class="docutils literal notranslate"><span class="pre">log</span></code> methods support two alternative methods for distinguishing metric values on the x-axis: <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> and <code class="docutils literal notranslate"><span class="pre">step</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code> is an optional long value that represents the time that the metric was logged. <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> defaults to the current time. <code class="docutils literal notranslate"><span class="pre">step</span></code> is an optional integer that represents any measurement of training progress (number of training iterations, number of epochs, and so on). <code class="docutils literal notranslate"><span class="pre">step</span></code> defaults to 0 and has the following requirements and properties:</p>
+<ul class="simple">
+<li><p>Must be a valid 64-bit integer value.</p></li>
+<li><p>Can be negative.</p></li>
+<li><p>Can be out of order in successive write calls. For example, (1, 3, 2) is a valid sequence.</p></li>
+<li><p>Can have “gaps” in the sequence of values specified in successive write calls. For example, (1, 5, 75, -20) is a valid sequence.</p></li>
+</ul>
+<p>If you specify both a timestamp and a step, metrics are recorded against both axes independently.</p>
+<div class="section" id="examples">
+<h4>Examples<a class="headerlink" href="tracking.html#examples" title="Permalink to this headline"> </a></h4>
+<dl>
+<dt>Python</dt><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">start_run</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s2">&quot;quality&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">epoch</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+<dt>Java and Scala</dt><dd><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">MlflowClient</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MlflowClient</span><span class="p">();</span>
+<span class="n">RunInfo</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="na">createRun</span><span class="p">();</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">epoch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">epoch</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">epoch</span><span class="w"> </span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">client</span><span class="p">.</span><span class="na">logMetric</span><span class="p">(</span><span class="n">run</span><span class="p">.</span><span class="na">getRunId</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;quality&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">epoch</span><span class="p">,</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">(),</span><span class="w"> </span><span class="n">epoch</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="visualizing-metrics">
+<h3><a class="toc-backref" href="tracking.html#id67">Visualizing Metrics</a><a class="headerlink" href="tracking.html#visualizing-metrics" title="Permalink to this headline"> </a></h3>
+<p>Here is an example plot of the <a class="reference internal" href="quickstart.html#quickstart"><span class="std std-ref">quick start tutorial</span></a> with the step x-axis and two timestamp axes:</p>
+<div class="figure align-default" id="id26">
+<img alt="_images/metrics-step.png" src="_images/metrics-step.png" />
+<p class="caption"><span class="caption-text">X-axis step</span><a class="headerlink" href="tracking.html#id26" title="Permalink to this image"> </a></p>
+</div>
+<div class="figure align-default" id="id27">
+<img alt="_images/metrics-time-wall.png" src="_images/metrics-time-wall.png" />
+<p class="caption"><span class="caption-text">X-axis wall time - graphs the absolute time each metric was logged</span><a class="headerlink" href="tracking.html#id27" title="Permalink to this image"> </a></p>
+</div>
+<div class="figure align-default" id="id28">
+<img alt="_images/metrics-time-relative.png" src="_images/metrics-time-relative.png" />
+<p class="caption"><span class="caption-text">X-axis relative time - graphs the time relative to the first metric logged, for each run</span><a class="headerlink" href="tracking.html#id28" title="Permalink to this image"> </a></p>
+</div>
+</div>
+</div>
+<div class="section" id="automatic-logging">
+<span id="id2"></span><h2><a class="toc-backref" href="tracking.html#id44">Automatic Logging</a><a class="headerlink" href="tracking.html#automatic-logging" title="Permalink to this headline"> </a></h2>
+<p>Automatic logging allows you to log metrics, parameters, and models without the need for explicit log statements.</p>
+<p>There are two ways to use autologging:</p>
+<ol class="arabic simple">
+<li><p>Call <a class="reference internal" href="python_api/mlflow.html#mlflow.autolog" title="mlflow.autolog"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.autolog()</span></code></a> before your training code. This will enable autologging for each supported library you have installed as soon as you import it.</p></li>
+<li><p>Use library-specific autolog calls for each library you use in your code. See below for examples.</p></li>
+</ol>
+<p>The following libraries support autologging:</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="tracking.html#scikit-learn" id="id68">Scikit-learn</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#keras" id="id69">Keras</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#gluon" id="id70">Gluon</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#xgboost" id="id71">XGBoost</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#lightgbm" id="id72">LightGBM</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#statsmodels" id="id73">Statsmodels</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#spark" id="id74">Spark</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#fastai" id="id75">Fastai</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#pytorch" id="id76">Pytorch</a></p></li>
+</ul>
+</div>
+<p>For flavors that automatically save models as an artifact, <a class="reference external" href="models.html#storage-format">additional files</a> for dependency management are logged.</p>
+<p>You can access the most recent autolog run through the <a class="reference internal" href="python_api/mlflow.html#mlflow.last_active_run" title="mlflow.last_active_run"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.last_active_run()</span></code></a> function. Here’s a short sklearn autolog example that makes use of this function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mlflow</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_diabetes</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+
+<span class="n">mlflow</span><span class="o">.</span><span class="n">autolog</span><span class="p">()</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">load_diabetes</span><span class="p">()</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+
+<span class="c1"># Create and train models.</span>
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Use the model to make predictions on the test dataset.</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">autolog_run</span> <span class="o">=</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">last_active_run</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="scikit-learn">
+<h3><a class="toc-backref" href="tracking.html#id68">Scikit-learn</a><a class="headerlink" href="tracking.html#scikit-learn" title="Permalink to this headline"> </a></h3>
+<p>Call <a class="reference internal" href="python_api/mlflow.sklearn.html#mlflow.sklearn.autolog" title="mlflow.sklearn.autolog"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.sklearn.autolog()</span></code></a> before your training code to enable automatic logging of sklearn metrics, params, and models.
+See example usage <a class="reference external" href="https://github.com/mlflow/mlflow/tree/master/examples/sklearn_autolog">here</a>.</p>
+<p>Autologging for estimators (e.g. <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html">LinearRegression</a>) and meta estimators (e.g. <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html">Pipeline</a>) creates a single run and logs:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 26%" />
+<col style="width: 30%" />
+<col style="width: 18%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Metrics</p></td>
+<td><p>Parameters</p></td>
+<td><p>Tags</p></td>
+<td><p>Artifacts</p></td>
+</tr>
+<tr class="row-even"><td><p>Training score obtained
+by <code class="docutils literal notranslate"><span class="pre">estimator.score</span></code></p></td>
+<td><p>Parameters obtained by
+<code class="docutils literal notranslate"><span class="pre">estimator.get_params</span></code></p></td>
+<td><ul class="simple">
+<li><p>Class name</p></li>
+<li><p>Fully qualified class name</p></li>
+</ul>
+</td>
+<td><p>Fitted estimator</p></td>
+</tr>
+</tbody>
+</table>
+<p>Autologging for parameter search estimators (e.g. <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html">GridSearchCV</a>) creates a single parent run and nested child runs</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">Parent</span> <span class="n">run</span>
+  <span class="o">-</span> <span class="n">Child</span> <span class="n">run</span> <span class="mi">1</span>
+  <span class="o">-</span> <span class="n">Child</span> <span class="n">run</span> <span class="mi">2</span>
+  <span class="o">-</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>containing the following data:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 18%" />
+<col style="width: 28%" />
+<col style="width: 19%" />
+<col style="width: 24%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Run type</p></td>
+<td><p>Metrics</p></td>
+<td><p>Parameters</p></td>
+<td><p>Tags</p></td>
+<td><p>Artifacts</p></td>
+</tr>
+<tr class="row-even"><td><p>Parent</p></td>
+<td><p>Training score</p></td>
+<td><ul class="simple">
+<li><p>Parameter search estimator’s parameters</p></li>
+<li><p>Best parameter combination</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Class name</p></li>
+<li><p>Fully qualified class name</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Fitted parameter search estimator</p></li>
+<li><p>Fitted best estimator</p></li>
+<li><p>Search results csv file</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Child</p></td>
+<td><p>CV test score for
+each parameter combination</p></td>
+<td><p>Each parameter combination</p></td>
+<td><ul class="simple">
+<li><p>Class name</p></li>
+<li><p>Fully qualified class name</p></li>
+</ul>
+</td>
+<td><p>–</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="keras">
+<h3><a class="toc-backref" href="tracking.html#id69">Keras</a><a class="headerlink" href="tracking.html#keras" title="Permalink to this headline"> </a></h3>
+<p>Call <a class="reference internal" href="python_api/mlflow.tensorflow.html#mlflow.tensorflow.autolog" title="mlflow.tensorflow.autolog"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.tensorflow.autolog()</span></code></a> before your training code to enable automatic logging of metrics and parameters. As an example, try running the <a class="reference external" href="https://github.com/mlflow/mlflow/blob/master/examples/keras/train.py">Keras/Tensorflow example</a>.</p>
+<p>Note that only <code class="docutils literal notranslate"><span class="pre">tensorflow&gt;=2.3</span></code> are supported.
+The respective metrics associated with <code class="docutils literal notranslate"><span class="pre">tf.estimator</span></code> and <code class="docutils literal notranslate"><span class="pre">EarlyStopping</span></code> are automatically logged.
+As an example, try running the <a class="reference external" href="https://github.com/mlflow/mlflow/blob/master/examples/keras/train.py">Keras/TensorFlow example</a>.</p>
+<p>Autologging captures the following information:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 17%" />
+<col style="width: 25%" />
+<col style="width: 4%" />
+<col style="width: 41%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Framework/module</p></td>
+<td><p>Metrics</p></td>
+<td><p>Parameters</p></td>
+<td><p>Tags</p></td>
+<td><p>Artifacts</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tf.keras</span></code></p></td>
+<td><p>Training loss; validation loss; user-specified metrics</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fit()</span></code> parameters; optimizer name; learning rate; epsilon</p></td>
+<td><p>–</p></td>
+<td><p>Model summary on training start; <a class="reference external" href="models.html">MLflow Model</a> (Keras model); TensorBoard logs on training end</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tf.keras.callbacks.EarlyStopping</span></code></p></td>
+<td><p>Metrics from the <code class="docutils literal notranslate"><span class="pre">EarlyStopping</span></code> callbacks. For example,
+<code class="docutils literal notranslate"><span class="pre">stopped_epoch</span></code>, <code class="docutils literal notranslate"><span class="pre">restored_epoch</span></code>,
+<code class="docutils literal notranslate"><span class="pre">restore_best_weight</span></code>, etc</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fit()</span></code> parameters from <code class="docutils literal notranslate"><span class="pre">EarlyStopping</span></code>.
+For example, <code class="docutils literal notranslate"><span class="pre">min_delta</span></code>, <code class="docutils literal notranslate"><span class="pre">patience</span></code>, <code class="docutils literal notranslate"><span class="pre">baseline</span></code>,
+<code class="docutils literal notranslate"><span class="pre">restore_best_weights</span></code>, etc</p></td>
+<td><p>–</p></td>
+<td><p>–</p></td>
+</tr>
+</tbody>
+</table>
+<p>If no active run exists when <code class="docutils literal notranslate"><span class="pre">autolog()</span></code> captures data, MLflow will automatically create a run to log information to.
+Also, MLflow will then automatically end the run once training ends via calls to <code class="docutils literal notranslate"><span class="pre">tf.keras.fit()</span></code>.</p>
+<p>If a run already exists when <code class="docutils literal notranslate"><span class="pre">autolog()</span></code> captures data, MLflow will log to that run but not automatically end that run after training.</p>
+</div>
+<div class="section" id="gluon">
+<h3><a class="toc-backref" href="tracking.html#id70">Gluon</a><a class="headerlink" href="tracking.html#gluon" title="Permalink to this headline"> </a></h3>
+<p>Call <a class="reference internal" href="python_api/mlflow.gluon.html#mlflow.gluon.autolog" title="mlflow.gluon.autolog"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.gluon.autolog()</span></code></a> before your training code to enable automatic logging of metrics and parameters.
+See example usages with <a class="reference external" href="https://github.com/mlflow/mlflow/tree/master/examples/gluon">Gluon</a> .</p>
+<p>Autologging captures the following information:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 20%" />
+<col style="width: 21%" />
+<col style="width: 5%" />
+<col style="width: 46%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Framework</p></td>
+<td><p>Metrics</p></td>
+<td><p>Parameters</p></td>
+<td><p>Tags</p></td>
+<td><p>Artifacts</p></td>
+</tr>
+<tr class="row-even"><td><p>Gluon</p></td>
+<td><p>Training loss; validation loss; user-specified metrics</p></td>
+<td><p>Number of layers; optimizer name; learning rate; epsilon</p></td>
+<td><p>–</p></td>
+<td><p><a class="reference external" href="models.html">MLflow Model</a> (Gluon model); on training end</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="xgboost">
+<h3><a class="toc-backref" href="tracking.html#id71">XGBoost</a><a class="headerlink" href="tracking.html#xgboost" title="Permalink to this headline"> </a></h3>
+<p>Call <a class="reference internal" href="python_api/mlflow.xgboost.html#mlflow.xgboost.autolog" title="mlflow.xgboost.autolog"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.xgboost.autolog()</span></code></a> before your training code to enable automatic logging of metrics and parameters.</p>
+<p>Autologging captures the following information:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 13%" />
+<col style="width: 16%" />
+<col style="width: 8%" />
+<col style="width: 57%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Framework</p></td>
+<td><p>Metrics</p></td>
+<td><p>Parameters</p></td>
+<td><p>Tags</p></td>
+<td><p>Artifacts</p></td>
+</tr>
+<tr class="row-even"><td><p>XGBoost</p></td>
+<td><p>user-specified metrics</p></td>
+<td><p><a class="reference external" href="https://xgboost.readthedocs.io/en/latest/python/python_api.html#xgboost.train">xgboost.train</a> parameters</p></td>
+<td><p>–</p></td>
+<td><p><a class="reference external" href="models.html">MLflow Model</a> (XGBoost model) with model signature on training end; feature importance; input example</p></td>
+</tr>
+</tbody>
+</table>
+<p>If early stopping is activated, metrics at the best iteration will be logged as an extra step/iteration.</p>
+</div>
+<div class="section" id="lightgbm">
+<h3><a class="toc-backref" href="tracking.html#id72">LightGBM</a><a class="headerlink" href="tracking.html#lightgbm" title="Permalink to this headline"> </a></h3>
+<p>Call <a class="reference internal" href="python_api/mlflow.lightgbm.html#mlflow.lightgbm.autolog" title="mlflow.lightgbm.autolog"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.lightgbm.autolog()</span></code></a> before your training code to enable automatic logging of metrics and parameters.</p>
+<p>Autologging captures the following information:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 13%" />
+<col style="width: 16%" />
+<col style="width: 8%" />
+<col style="width: 57%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Framework</p></td>
+<td><p>Metrics</p></td>
+<td><p>Parameters</p></td>
+<td><p>Tags</p></td>
+<td><p>Artifacts</p></td>
+</tr>
+<tr class="row-even"><td><p>LightGBM</p></td>
+<td><p>user-specified metrics</p></td>
+<td><p><a class="reference external" href="https://lightgbm.readthedocs.io/en/latest/pythonapi/lightgbm.train.html#lightgbm-train">lightgbm.train</a> parameters</p></td>
+<td><p>–</p></td>
+<td><p><a class="reference external" href="models.html">MLflow Model</a> (LightGBM model) with model signature on training end; feature importance; input example</p></td>
+</tr>
+</tbody>
+</table>
+<p>If early stopping is activated, metrics at the best iteration will be logged as an extra step/iteration.</p>
+</div>
+<div class="section" id="statsmodels">
+<h3><a class="toc-backref" href="tracking.html#id73">Statsmodels</a><a class="headerlink" href="tracking.html#statsmodels" title="Permalink to this headline"> </a></h3>
+<p>Call <a class="reference internal" href="python_api/mlflow.statsmodels.html#mlflow.statsmodels.autolog" title="mlflow.statsmodels.autolog"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.statsmodels.autolog()</span></code></a> before your training code to enable automatic logging of metrics and parameters.</p>
+<p>Autologging captures the following information:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 13%" />
+<col style="width: 27%" />
+<col style="width: 8%" />
+<col style="width: 43%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Framework</p></td>
+<td><p>Metrics</p></td>
+<td><p>Parameters</p></td>
+<td><p>Tags</p></td>
+<td><p>Artifacts</p></td>
+</tr>
+<tr class="row-even"><td><p>Statsmodels</p></td>
+<td><p>user-specified metrics</p></td>
+<td><p><a class="reference external" href="https://www.statsmodels.org/dev/dev/generated/statsmodels.base.model.Model.html">statsmodels.base.model.Model.fit</a> parameters</p></td>
+<td><p>–</p></td>
+<td><p><a class="reference external" href="models.html">MLflow Model</a> (<cite>statsmodels.base.wrapper.ResultsWrapper</cite>) on training end</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Each model subclass that overrides <cite>fit</cite> expects and logs its own parameters.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="spark">
+<h3><a class="toc-backref" href="tracking.html#id74">Spark</a><a class="headerlink" href="tracking.html#spark" title="Permalink to this headline"> </a></h3>
+<p>Initialize a SparkSession with the mlflow-spark JAR attached (e.g.
+<code class="docutils literal notranslate"><span class="pre">SparkSession.builder.config(&quot;spark.jars.packages&quot;,</span> <span class="pre">&quot;org.mlflow.mlflow-spark&quot;)</span></code>) and then
+call <a class="reference internal" href="python_api/mlflow.spark.html#mlflow.spark.autolog" title="mlflow.spark.autolog"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.spark.autolog()</span></code></a> to enable automatic logging of Spark datasource
+information at read-time, without the need for explicit
+log statements. Note that autologging of Spark ML (MLlib) models is not yet supported.</p>
+<p>Autologging captures the following information:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 65%" />
+<col style="width: 8%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Framework</p></td>
+<td><p>Metrics</p></td>
+<td><p>Parameters</p></td>
+<td><p>Tags</p></td>
+<td><p>Artifacts</p></td>
+</tr>
+<tr class="row-even"><td><p>Spark</p></td>
+<td><p>–</p></td>
+<td><p>–</p></td>
+<td><p>Single tag containing source path, version, format. The tag contains one line per datasource</p></td>
+<td><p>–</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Moreover, Spark datasource autologging occurs asynchronously - as such, it’s possible (though unlikely) to see race conditions when launching short-lived MLflow runs that result in datasource information not being logged.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="fastai">
+<h3><a class="toc-backref" href="tracking.html#id75">Fastai</a><a class="headerlink" href="tracking.html#fastai" title="Permalink to this headline"> </a></h3>
+<p>Call <a class="reference internal" href="python_api/mlflow.fastai.html#mlflow.fastai.autolog" title="mlflow.fastai.autolog"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.fastai.autolog()</span></code></a> before your training code to enable automatic logging of metrics and parameters.
+See an example usage with <a class="reference external" href="https://github.com/mlflow/mlflow/tree/master/examples/fastai">Fastai</a>.</p>
+<p>Autologging captures the following information:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 9%" />
+<col style="width: 21%" />
+<col style="width: 5%" />
+<col style="width: 61%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Framework</p></td>
+<td><p>Metrics</p></td>
+<td><p>Parameters</p></td>
+<td><p>Tags</p></td>
+<td><p>Artifacts</p></td>
+</tr>
+<tr class="row-even"><td><p>fastai</p></td>
+<td><p>user-specified metrics</p></td>
+<td><p>Logs optimizer data as parameters. For example,
+<code class="docutils literal notranslate"><span class="pre">epochs</span></code>, <code class="docutils literal notranslate"><span class="pre">lr</span></code>, <code class="docutils literal notranslate"><span class="pre">opt_func</span></code>, etc;
+Logs the parameters of the <a class="reference external" href="https://docs.fast.ai/callbacks.html#EarlyStoppingCallback">EarlyStoppingCallback</a> and
+<a class="reference external" href="https://docs.fast.ai/callbacks.html#OneCycleScheduler">OneCycleScheduler</a> callbacks</p></td>
+<td><p>–</p></td>
+<td><p>Model checkpoints are logged to a ‘models’ directory; <a class="reference external" href="models.html">MLflow Model</a> (fastai Learner model) on training end; Model summary text is logged</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="pytorch">
+<h3><a class="toc-backref" href="tracking.html#id76">Pytorch</a><a class="headerlink" href="tracking.html#pytorch" title="Permalink to this headline"> </a></h3>
+<p>Call <a class="reference internal" href="python_api/mlflow.pytorch.html#mlflow.pytorch.autolog" title="mlflow.pytorch.autolog"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.pytorch.autolog()</span></code></a> before your Pytorch Lightning training code to enable automatic logging of metrics, parameters, and models. See example usages <a class="reference external" href="https://github.com/chauhang/mlflow/tree/master/examples/pytorch/MNIST">here</a>. Note
+that currently, Pytorch autologging supports only models trained using Pytorch Lightning.</p>
+<p>Autologging is triggered on calls to <code class="docutils literal notranslate"><span class="pre">pytorch_lightning.trainer.Trainer.fit</span></code> and captures the following information:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 17%" />
+<col style="width: 24%" />
+<col style="width: 4%" />
+<col style="width: 41%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Framework/module</p></td>
+<td><p>Metrics</p></td>
+<td><p>Parameters</p></td>
+<td><p>Tags</p></td>
+<td><p>Artifacts</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pytorch_lightning.trainer.Trainer</span></code></p></td>
+<td><p>Training loss; validation loss; average_test_accuracy;
+user-defined-metrics.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fit()</span></code> parameters; optimizer name; learning rate; epsilon.</p></td>
+<td><p>–</p></td>
+<td><p>Model summary on training start, <a class="reference external" href="models.html">MLflow Model</a> (Pytorch model) on training end;</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pytorch_lightning.callbacks.earlystopping</span></code></p></td>
+<td><p>Training loss; validation loss; average_test_accuracy;
+user-defined-metrics.
+Metrics from the <code class="docutils literal notranslate"><span class="pre">EarlyStopping</span></code> callbacks.
+For example, <code class="docutils literal notranslate"><span class="pre">stopped_epoch</span></code>, <code class="docutils literal notranslate"><span class="pre">restored_epoch</span></code>,
+<code class="docutils literal notranslate"><span class="pre">restore_best_weight</span></code>, etc.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fit()</span></code> parameters; optimizer name; learning rate; epsilon
+Parameters from the <code class="docutils literal notranslate"><span class="pre">EarlyStopping</span></code> callbacks.
+For example, <code class="docutils literal notranslate"><span class="pre">min_delta</span></code>, <code class="docutils literal notranslate"><span class="pre">patience</span></code>, <code class="docutils literal notranslate"><span class="pre">baseline</span></code>,``restore_best_weights``, etc</p></td>
+<td><p>–</p></td>
+<td><p>Model summary on training start; <a class="reference external" href="models.html">MLflow Model</a> (Pytorch model) on training end;
+Best Pytorch model checkpoint, if training stops due to early stopping callback.</p></td>
+</tr>
+</tbody>
+</table>
+<p>If no active run exists when <code class="docutils literal notranslate"><span class="pre">autolog()</span></code> captures data, MLflow will automatically create a run to log information, ending the run once
+the call to <code class="docutils literal notranslate"><span class="pre">pytorch_lightning.trainer.Trainer.fit()</span></code> completes.</p>
+<p>If a run already exists when <code class="docutils literal notranslate"><span class="pre">autolog()</span></code> captures data, MLflow will log to that run but not automatically end that run after training.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Parameters not explicitly passed by users (parameters that use default values) while using <code class="docutils literal notranslate"><span class="pre">pytorch_lightning.trainer.Trainer.fit()</span></code> are not currently automatically logged</p></li>
+<li><p>In case of a multi-optimizer scenario (such as usage of autoencoder), only the parameters for the first optimizer are logged</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="organizing-runs-in-experiments">
+<span id="id10"></span><h2><a class="toc-backref" href="tracking.html#id54">Organizing Runs in Experiments</a><a class="headerlink" href="tracking.html#organizing-runs-in-experiments" title="Permalink to this headline"> </a></h2>
+<p>MLflow allows you to group runs under experiments, which can be useful for comparing runs intended
+to tackle a particular task. You can create experiments using the <a class="reference internal" href="cli.html#cli"><span class="std std-ref">Command-Line Interface</span></a> (<code class="docutils literal notranslate"><span class="pre">mlflow</span> <span class="pre">experiments</span></code>) or
+the <a class="reference internal" href="python_api/mlflow.html#mlflow.create_experiment" title="mlflow.create_experiment"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.create_experiment()</span></code></a> Python API. You can pass the experiment name for an individual run
+using the CLI (for example, <code class="docutils literal notranslate"><span class="pre">mlflow</span> <span class="pre">run</span> <span class="pre">...</span> <span class="pre">--experiment-name</span> <span class="pre">[name]</span></code>) or the <code class="docutils literal notranslate"><span class="pre">MLFLOW_EXPERIMENT_NAME</span></code>
+environment variable. Alternatively, you can use the experiment ID instead, via the
+<code class="docutils literal notranslate"><span class="pre">--experiment-id</span></code> CLI flag or the <code class="docutils literal notranslate"><span class="pre">MLFLOW_EXPERIMENT_ID</span></code> environment variable.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the experiment via environment variables</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MLFLOW_EXPERIMENT_NAME</span><span class="o">=</span>fraud-detection
+
+mlflow<span class="w"> </span>experiments<span class="w"> </span>create<span class="w"> </span>--experiment-name<span class="w"> </span>fraud-detection
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Launch a run. The experiment is inferred from the MLFLOW_EXPERIMENT_NAME environment</span>
+<span class="c1"># variable, or from the --experiment-name parameter passed to the MLflow CLI (the latter</span>
+<span class="c1"># taking precedence)</span>
+<span class="k">with</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">start_run</span><span class="p">():</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="managing-experiments-and-runs-with-the-tracking-service-api">
+<h3><a class="toc-backref" href="tracking.html#id55">Managing Experiments and Runs with the Tracking Service API</a><a class="headerlink" href="tracking.html#managing-experiments-and-runs-with-the-tracking-service-api" title="Permalink to this headline"> </a></h3>
+<p>MLflow provides a more detailed Tracking Service API for managing experiments and runs directly,
+which is available through client SDK in the <a class="reference internal" href="python_api/mlflow.client.html#module-mlflow.client" title="mlflow.client"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mlflow.client</span></code></a> module.
+This makes it possible to query data about past runs, log additional information about them, create experiments,
+add tags to a run, and more.</p>
+<p class="rubric">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mlflow.tracking</span> <span class="kn">import</span> <span class="n">MlflowClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">MlflowClient</span><span class="p">()</span>
+<span class="n">experiments</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">search_experiments</span><span class="p">()</span>
+<span class="p">)</span>  <span class="c1"># returns a list of mlflow.entities.Experiment</span>
+<span class="n">run</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_run</span><span class="p">(</span><span class="n">experiments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">experiment_id</span><span class="p">)</span>  <span class="c1"># returns mlflow.entities.Run</span>
+<span class="n">client</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">run_id</span><span class="p">,</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="s2">&quot;world&quot;</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">set_terminated</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">run_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="adding-tags-to-runs">
+<h4>Adding Tags to Runs<a class="headerlink" href="tracking.html#adding-tags-to-runs" title="Permalink to this headline"> </a></h4>
+<p>The <a class="reference internal" href="python_api/mlflow.client.html#mlflow.client.MlflowClient.set_tag" title="mlflow.client.MlflowClient.set_tag"><code class="xref py py-func docutils literal notranslate"><span class="pre">MlflowClient.set_tag()</span></code></a> function lets you add custom tags to runs. A tag can only have a single unique value mapped to it at a time. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">set_tag</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">run_id</span><span class="p">,</span> <span class="s2">&quot;tag_key&quot;</span><span class="p">,</span> <span class="s2">&quot;tag_value&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Do not use the prefix <code class="docutils literal notranslate"><span class="pre">mlflow.</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">mlflow.note</span></code>) for a tag.  This prefix is reserved for use by MLflow. See <a class="reference internal" href="tracking.html#system-tags"><span class="std std-ref">System Tags</span></a> for a list of reserved tag keys.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="tracking-ui">
+<span id="id11"></span><h2><a class="toc-backref" href="tracking.html#id56">Tracking UI</a><a class="headerlink" href="tracking.html#tracking-ui" title="Permalink to this headline"> </a></h2>
+<p>The Tracking UI lets you visualize, search and compare runs, as well as download run artifacts or
+metadata for analysis in other tools. If you log runs to a local <code class="docutils literal notranslate"><span class="pre">mlruns</span></code> directory,
+run <code class="docutils literal notranslate"><span class="pre">mlflow</span> <span class="pre">ui</span></code> in the directory above it, and it loads the corresponding runs.
+Alternatively, the <a class="reference internal" href="tracking.html#tracking-server"><span class="std std-ref">MLflow tracking server</span></a> serves the same UI and enables remote storage of run artifacts.
+In that case, you can view the UI using URL <code class="docutils literal notranslate"><span class="pre">http://&lt;ip</span> <span class="pre">address</span> <span class="pre">of</span> <span class="pre">your</span> <span class="pre">MLflow</span> <span class="pre">tracking</span> <span class="pre">server&gt;:5000</span></code> in your browser from any
+machine, including any remote machine that can connect to your tracking server.</p>
+<p>The UI contains the following key features:</p>
+<ul class="simple">
+<li><p>Experiment-based run listing and comparison (including run comparison across multiple experiments)</p></li>
+<li><p>Searching for runs by parameter or metric value</p></li>
+<li><p>Visualizing run metrics</p></li>
+<li><p>Downloading run results</p></li>
+</ul>
+</div>
+<div class="section" id="querying-runs-programmatically">
+<span id="tracking-query-api"></span><h2><a class="toc-backref" href="tracking.html#id57">Querying Runs Programmatically</a><a class="headerlink" href="tracking.html#querying-runs-programmatically" title="Permalink to this headline"> </a></h2>
+<p>You can access all of the functions in the Tracking UI programmatically. This makes it easy to do several common tasks:</p>
+<ul class="simple">
+<li><p>Query and compare runs using any data analysis tool of your choice, for example, <strong>pandas</strong>.</p></li>
+<li><p>Determine the artifact URI for a run to feed some of its artifacts into a new run when executing a workflow. For an example of querying runs and constructing a multistep workflow, see the MLflow <a class="reference external" href="https://github.com/mlflow/mlflow/blob/15cc05ce2217b7c7af4133977b07542934a9a19f/examples/multistep_workflow/main.py#L63">Multistep Workflow Example project</a>.</p></li>
+<li><p>Load artifacts from past runs as <a class="reference internal" href="models.html#models"><span class="std std-ref">MLflow Models</span></a>. For an example of training, exporting, and loading a model, and predicting using the model, see the MLflow <a class="reference external" href="https://github.com/mlflow/mlflow/blob/master/examples/keras/train.py">Keras/TensorFlow example</a>.</p></li>
+<li><p>Run automated parameter search algorithms, where you query the metrics from various runs to submit new ones. For an example of running automated parameter search algorithms, see the MLflow <a class="reference external" href="https://github.com/mlflow/mlflow/blob/master/examples/hyperparam/README.rst">Hyperparameter Tuning Example project</a>.</p></li>
+</ul>
+</div>
+<div class="section" id="mlflow-tracking-servers">
+<span id="tracking-server"></span><h2><a class="toc-backref" href="tracking.html#id58">MLflow Tracking Servers</a><a class="headerlink" href="tracking.html#mlflow-tracking-servers" title="Permalink to this headline"> </a></h2>
+<div class="contents local topic" id="id13">
+<p class="topic-title">In this section:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="tracking.html#id14" id="id77">Storage</a></p>
+<ul>
+<li><p><a class="reference internal" href="tracking.html#backend-stores" id="id78">Backend Stores</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#artifact-stores" id="id79">Artifact Stores</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#file-store-performance" id="id80">File store performance</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#deletion-behavior" id="id81">Deletion Behavior</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#sqlalchemy-options" id="id82">SQLAlchemy Options</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="tracking.html#networking" id="id83">Networking</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#using-the-tracking-server-for-proxied-artifact-access" id="id84">Using the Tracking Server for proxied artifact access</a></p>
+<ul>
+<li><p><a class="reference internal" href="tracking.html#optionally-using-a-tracking-server-instance-exclusively-for-artifact-handling" id="id85">Optionally using a Tracking Server instance exclusively for artifact handling</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="tracking.html#logging-to-a-tracking-server" id="id86">Logging to a Tracking Server</a></p>
+<ul>
+<li><p><a class="reference internal" href="tracking.html#tracking-server-versioning" id="id87">Tracking Server versioning</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>You run an MLflow tracking server using <code class="docutils literal notranslate"><span class="pre">mlflow</span> <span class="pre">server</span></code>.  An example configuration for a server is:</p>
+<div class="literal-block-wrapper docutils container" id="id29">
+<div class="code-block-caption"><span class="caption-text">Command to run the tracking server in this configuration</span><a class="headerlink" href="tracking.html#id29" title="Permalink to this code"> </a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mlflow<span class="w"> </span>server<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--backend-store-uri<span class="w"> </span>/mnt/persistent-disk<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--default-artifact-root<span class="w"> </span>s3://my-mlflow-bucket/<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When started in <code class="docutils literal notranslate"><span class="pre">--artifacts-only</span></code> mode, the tracking server will not permit any operation other than saving, loading, and listing artifacts.</p>
+</div>
+<div class="section" id="id14">
+<h3><a class="toc-backref" href="tracking.html#id77">Storage</a><a class="headerlink" href="tracking.html#id14" title="Permalink to this headline"> </a></h3>
+<p>An MLflow tracking server has two components for storage: a <em>backend store</em> and an <em>artifact store</em>.</p>
+<div class="section" id="backend-stores">
+<h4><a class="toc-backref" href="tracking.html#id78">Backend Stores</a><a class="headerlink" href="tracking.html#backend-stores" title="Permalink to this headline"> </a></h4>
+<p>The backend store is where MLflow Tracking Server stores experiment and run metadata as well as
+params, metrics, and tags for runs. MLflow supports two types of backend stores: <em>file store</em> and
+<em>database-backed store</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In order to use model registry functionality, you must run your server using a database-backed store.</p>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--backend-store-uri</span></code> to configure the type of backend store. You specify:</p>
+<ul class="simple">
+<li><p>A file store backend as <code class="docutils literal notranslate"><span class="pre">./path_to_store</span></code> or <code class="docutils literal notranslate"><span class="pre">file:/path_to_store</span></code></p></li>
+<li><p>A database-backed store as <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls">SQLAlchemy database URI</a>.
+The database URI typically takes the format <code class="docutils literal notranslate"><span class="pre">&lt;dialect&gt;+&lt;driver&gt;://&lt;username&gt;:&lt;password&gt;&#64;&lt;host&gt;:&lt;port&gt;/&lt;database&gt;</span></code>.
+MLflow supports the database dialects <code class="docutils literal notranslate"><span class="pre">mysql</span></code>, <code class="docutils literal notranslate"><span class="pre">mssql</span></code>, <code class="docutils literal notranslate"><span class="pre">sqlite</span></code>, and <code class="docutils literal notranslate"><span class="pre">postgresql</span></code>.
+Drivers are optional. If you do not specify a driver, SQLAlchemy uses a dialect’s default driver.
+For example, <code class="docutils literal notranslate"><span class="pre">--backend-store-uri</span> <span class="pre">sqlite:///mlflow.db</span></code> would use a local SQLite database.</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><code class="docutils literal notranslate"><span class="pre">mlflow</span> <span class="pre">server</span></code> will fail against a database-backed store with an out-of-date database schema.
+To prevent this, upgrade your database schema to the latest supported version using
+<code class="docutils literal notranslate"><span class="pre">mlflow</span> <span class="pre">db</span> <span class="pre">upgrade</span> <span class="pre">[db_uri]</span></code>. Schema migrations can result in database downtime, may
+take longer on larger databases, and are not guaranteed to be transactional. You should always
+take a backup of your database prior to running <code class="docutils literal notranslate"><span class="pre">mlflow</span> <span class="pre">db</span> <span class="pre">upgrade</span></code> - consult your database’s
+documentation for instructions on taking a backup.</p>
+</div>
+<p>By default <code class="docutils literal notranslate"><span class="pre">--backend-store-uri</span></code> is set to the local <code class="docutils literal notranslate"><span class="pre">./mlruns</span></code> directory (the same as when
+running <code class="docutils literal notranslate"><span class="pre">mlflow</span> <span class="pre">run</span></code> locally), but when running a server, make sure that this points to a
+persistent (that is, non-ephemeral) file system location.</p>
+</div>
+<div class="section" id="artifact-stores">
+<span id="id16"></span><h4><a class="toc-backref" href="tracking.html#id79">Artifact Stores</a><a class="headerlink" href="tracking.html#artifact-stores" title="Permalink to this headline"> </a></h4>
+<div class="contents local topic" id="id17">
+<p class="topic-title">In this section:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="tracking.html#amazon-s3-and-s3-compatible-storage" id="id88">Amazon S3 and S3-compatible storage</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#azure-blob-storage" id="id89">Azure Blob Storage</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#google-cloud-storage" id="id90">Google Cloud Storage</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#ftp-server" id="id91">FTP server</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#sftp-server" id="id92">SFTP Server</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#nfs" id="id93">NFS</a></p></li>
+<li><p><a class="reference internal" href="tracking.html#hdfs" id="id94">HDFS</a></p></li>
+</ul>
+</div>
+<p>The artifact store is a location suitable for large data (such as an S3 bucket or shared NFS
+file system) and is where clients log their artifact output (for example, models).
+<code class="docutils literal notranslate"><span class="pre">artifact_location</span></code> is a property recorded on <a class="reference internal" href="python_api/mlflow.entities.html#mlflow.entities.Experiment" title="mlflow.entities.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">mlflow.entities.Experiment</span></code></a> for
+default location to store artifacts for all runs in this experiment. Additionally, <code class="docutils literal notranslate"><span class="pre">artifact_uri</span></code>
+is a property on <a class="reference internal" href="python_api/mlflow.entities.html#mlflow.entities.RunInfo" title="mlflow.entities.RunInfo"><code class="xref py py-class docutils literal notranslate"><span class="pre">mlflow.entities.RunInfo</span></code></a> to indicate location where all artifacts for
+this run are stored.</p>
+<p>The MLflow client caches artifact location information on a per-run basis.
+It is therefore not recommended to alter a run’s artifact location before it has terminated.</p>
+<p>In addition to local file paths, MLflow supports the following storage systems as artifact
+stores: Amazon S3, Azure Blob Storage, Google Cloud Storage, SFTP server, and NFS.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--default-artifact-root</span></code> (defaults to local <code class="docutils literal notranslate"><span class="pre">./mlruns</span></code> directory) to configure default
+location to server’s artifact store. This will be used as artifact location for newly-created
+experiments that do not specify one. Once you create an experiment, <code class="docutils literal notranslate"><span class="pre">--default-artifact-root</span></code>
+is no longer relevant to that experiment.</p>
+<p>By default, a server is launched with the <code class="docutils literal notranslate"><span class="pre">--serve-artifacts</span></code> flag to enable proxied access for artifacts.
+The uri <code class="docutils literal notranslate"><span class="pre">mlflow-artifacts:/</span></code> replaces an otherwise explicit object store destination (e.g., “s3:/my_bucket/mlartifacts”)
+for interfacing with artifacts. The client can access artifacts via HTTP requests to the MLflow Tracking Server.
+This simplifies access requirements for users of the MLflow client, eliminating the need to
+configure access tokens or username and password environment variables for the underlying object store when writing or retrieving artifacts.
+To disable proxied access for artifacts, specify <code class="docutils literal notranslate"><span class="pre">--no-serve-artifacts</span></code>.</p>
+<p>Provided an Mlflow server configuration where the <code class="docutils literal notranslate"><span class="pre">--default-artifact-root</span></code> is <code class="docutils literal notranslate"><span class="pre">s3://my-root-bucket</span></code>,
+the following patterns will all resolve to the configured proxied object store location of <code class="docutils literal notranslate"><span class="pre">s3://my-root-bucket/mlartifacts</span></code>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">https://&lt;host&gt;:&lt;port&gt;/mlartifacts</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">http://&lt;host&gt;/mlartifacts</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mlflow-artifacts://&lt;host&gt;/mlartifacts</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mlflow-artifacts://&lt;host&gt;:&lt;port&gt;/mlartifacts</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mlflow-artifacts:/mlartifacts</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>If the <code class="docutils literal notranslate"><span class="pre">host</span></code> or <code class="docutils literal notranslate"><span class="pre">host:port</span></code> declaration is absent in client artifact requests to the MLflow server, the client API
+will assume that the host is the same as the MLflow Tracking uri.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If an MLflow server is running with the <code class="docutils literal notranslate"><span class="pre">--artifact-only</span></code> flag, the client should interact with this server explicitly by
+including either a <code class="docutils literal notranslate"><span class="pre">host</span></code> or <code class="docutils literal notranslate"><span class="pre">host:port</span></code> definition for uri location references for artifacts.
+Otherwise, all artifact requests will route to the MLflow Tracking server, defeating the purpose of running a distinct artifact server.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Access credentials and configuration for the artifact storage location are configured <em>once during server initialization</em> in the place
+of having users handle access credentials for artifact-based operations. Note that <em>all users who have access to the
+Tracking Server in this mode will have access to artifacts served through this assumed role</em>.</p>
+</div>
+<p>To allow the server and clients to access the artifact location, you should configure your cloud
+provider credentials as normal. For example, for S3, you can set the <code class="docutils literal notranslate"><span class="pre">AWS_ACCESS_KEY_ID</span></code>
+and <code class="docutils literal notranslate"><span class="pre">AWS_SECRET_ACCESS_KEY</span></code> environment variables, use an IAM role, or configure a default
+profile in <code class="docutils literal notranslate"><span class="pre">~/.aws/credentials</span></code>.
+See <a class="reference external" href="https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/setup-credentials.html">Set up AWS Credentials and Region for Development</a> for more info.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If you do not specify a <code class="docutils literal notranslate"><span class="pre">--default-artifact-root</span></code> or an artifact URI when creating the experiment
+(for example, <code class="docutils literal notranslate"><span class="pre">mlflow</span> <span class="pre">experiments</span> <span class="pre">create</span> <span class="pre">--artifact-location</span> <span class="pre">s3://&lt;my-bucket&gt;</span></code>), the artifact root
+is a path inside the file store. Typically this is not an appropriate location, as the client and
+server probably refer to different physical locations (that is, the same path on different disks).</p>
+</div>
+<p>You may set an MLflow environment variable to configure the timeout for artifact uploads and downloads:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_ARTIFACT_UPLOAD_DOWNLOAD_TIMEOUT</span></code> - (Experimental, may be changed or removed) Sets the timeout for artifact upload/download in seconds (Default set by individual artifact stores).</p></li>
+</ul>
+<div class="section" id="amazon-s3-and-s3-compatible-storage">
+<h5><a class="toc-backref" href="tracking.html#id88">Amazon S3 and S3-compatible storage</a><a class="headerlink" href="tracking.html#amazon-s3-and-s3-compatible-storage" title="Permalink to this headline"> </a></h5>
+<p>To store artifacts in S3 (whether on Amazon S3 or on an S3-compatible alternative, such as
+<a class="reference external" href="https://min.io/">MinIO</a> or <a class="reference external" href="https://www.digitalocean.com/products/spaces">Digital Ocean Spaces</a>), specify a URI of the form <code class="docutils literal notranslate"><span class="pre">s3://&lt;bucket&gt;/&lt;path&gt;</span></code>. MLflow obtains
+credentials to access S3 from your machine’s IAM role, a profile in <code class="docutils literal notranslate"><span class="pre">~/.aws/credentials</span></code>, or
+the environment variables <code class="docutils literal notranslate"><span class="pre">AWS_ACCESS_KEY_ID</span></code> and <code class="docutils literal notranslate"><span class="pre">AWS_SECRET_ACCESS_KEY</span></code> depending on which of
+these are available. For more information on how to set credentials, see
+<a class="reference external" href="https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/setup-credentials.html">Set up AWS Credentials and Region for Development</a>.</p>
+<p>To add S3 file upload extra arguments, set <code class="docutils literal notranslate"><span class="pre">MLFLOW_S3_UPLOAD_EXTRA_ARGS</span></code> to a JSON object of key/value pairs.
+For example, if you want to upload to a KMS Encrypted bucket using the KMS Key 1234:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">MLFLOW_S3_UPLOAD_EXTRA_ARGS</span><span class="o">=</span><span class="s1">&#39;{&quot;ServerSideEncryption&quot;: &quot;aws:kms&quot;, &quot;SSEKMSKeyId&quot;: &quot;1234&quot;}&#39;</span>
+</pre></div>
+</div>
+<p>For a list of available extra args see <a class="reference external" href="https://github.com/boto/boto3/blob/develop/docs/source/guide/s3-uploading-files.rst#the-extraargs-parameter">Boto3 ExtraArgs Documentation</a>.</p>
+<p>To store artifacts in a custom endpoint, set the <code class="docutils literal notranslate"><span class="pre">MLFLOW_S3_ENDPOINT_URL</span></code> to your endpoint’s URL. For example, if you are using Digital Ocean Spaces:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">MLFLOW_S3_ENDPOINT_URL</span><span class="o">=</span>https://&lt;region&gt;.digitaloceanspaces.com
+</pre></div>
+</div>
+<p>If you have a MinIO server at 1.2.3.4 on port 9000:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">MLFLOW_S3_ENDPOINT_URL</span><span class="o">=</span>http://1.2.3.4:9000
+</pre></div>
+</div>
+<p>If the MinIO server is configured with using SSL self-signed or signed using some internal-only CA certificate, you could set <code class="docutils literal notranslate"><span class="pre">MLFLOW_S3_IGNORE_TLS</span></code> or <code class="docutils literal notranslate"><span class="pre">AWS_CA_BUNDLE</span></code> variables (not both at the same time!) to disable certificate signature check, or add a custom CA bundle to perform this check, respectively:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">MLFLOW_S3_IGNORE_TLS</span><span class="o">=</span><span class="nb">true</span>
+<span class="c1">#or</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_CA_BUNDLE</span><span class="o">=</span>/some/ca/bundle.pem
+</pre></div>
+</div>
+<p>Additionally, if MinIO server is configured with non-default region, you should set <code class="docutils literal notranslate"><span class="pre">AWS_DEFAULT_REGION</span></code> variable:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span>my_region
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The MLflow tracking server utilizes specific reserved keywords to generate a qualified path. These environment configurations, if present in the client environment, can create path resolution issues.
+For example, providing <code class="docutils literal notranslate"><span class="pre">--default-artifact-root</span> <span class="pre">$MLFLOW_S3_ENDPOINT_URL</span></code> on the server side <strong>and</strong> <code class="docutils literal notranslate"><span class="pre">MLFLOW_S3_ENDPOINT_URL</span></code> on the client side will create a client path resolution issue for the artifact storage location.
+Upon resolving the artifact storage location, the MLflow client will use the value provided by <code class="docutils literal notranslate"><span class="pre">--default-artifact-root</span></code> and suffixes the location with the values provided in the environment variable  <code class="docutils literal notranslate"><span class="pre">MLFLOW_S3_ENDPOINT_URL</span></code>.
+Depending on the value set for the environment variable <code class="docutils literal notranslate"><span class="pre">MLFLOW_S3_ENDPOINT_URL</span></code>, the resulting artifact storage path for this scenario would be one of the following invalid object store paths:  <code class="docutils literal notranslate"><span class="pre">https://&lt;bucketname&gt;.s3.&lt;region&gt;.amazonaws.com/&lt;key&gt;/&lt;bucketname&gt;/&lt;key&gt;</span></code> or  <code class="docutils literal notranslate"><span class="pre">s3://&lt;bucketname&gt;/&lt;key&gt;/&lt;bucketname&gt;/&lt;key&gt;</span></code>.
+To prevent path parsing issues, ensure that reserved environment variables are removed (<code class="docutils literal notranslate"><span class="pre">unset</span></code>) from client environments.</p>
+</div>
+<p>Complete list of configurable values for an S3 client is available in <a class="reference external" href="https://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html#configuration">boto3 documentation</a>.</p>
+</div>
+<div class="section" id="azure-blob-storage">
+<h5><a class="toc-backref" href="tracking.html#id89">Azure Blob Storage</a><a class="headerlink" href="tracking.html#azure-blob-storage" title="Permalink to this headline"> </a></h5>
+<p>To store artifacts in Azure Blob Storage, specify a URI of the form
+<code class="docutils literal notranslate"><span class="pre">wasbs://&lt;container&gt;&#64;&lt;storage-account&gt;.blob.core.windows.net/&lt;path&gt;</span></code>.
+MLflow expects Azure Storage access credentials in the
+<code class="docutils literal notranslate"><span class="pre">AZURE_STORAGE_CONNECTION_STRING</span></code>, <code class="docutils literal notranslate"><span class="pre">AZURE_STORAGE_ACCESS_KEY</span></code> environment variables
+or having your credentials configured such that the <a class="reference external" href="https://docs.microsoft.com/en-us/python/api/overview/azure/identity-readme?view=azure-python">DefaultAzureCredential()</a>. class can pick them up.
+The order of precedence is:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">AZURE_STORAGE_CONNECTION_STRING</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AZURE_STORAGE_ACCESS_KEY</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DefaultAzureCredential()</span></code></p></li>
+</ol>
+<p>You must set one of these options on both your client application and your MLflow tracking server.
+Also, you must run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">azure-storage-blob</span></code> separately (on both your client and the server) to access Azure Blob Storage.
+Finally, if you want to use DefaultAzureCredential, you must <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">azure-identity</span></code>;
+MLflow does not declare a dependency on these packages by default.</p>
+<p>You may set an MLflow environment variable to configure the timeout for artifact uploads and downloads:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_ARTIFACT_UPLOAD_DOWNLOAD_TIMEOUT</span></code> - (Experimental, may be changed or removed) Sets the timeout for artifact upload/download in seconds (Default: 600 for Azure blob).</p></li>
+</ul>
+</div>
+<div class="section" id="google-cloud-storage">
+<h5><a class="toc-backref" href="tracking.html#id90">Google Cloud Storage</a><a class="headerlink" href="tracking.html#google-cloud-storage" title="Permalink to this headline"> </a></h5>
+<p>To store artifacts in Google Cloud Storage, specify a URI of the form <code class="docutils literal notranslate"><span class="pre">gs://&lt;bucket&gt;/&lt;path&gt;</span></code>.
+You should configure credentials for accessing the GCS container on the client and server as described
+in the <a class="reference external" href="https://google-cloud.readthedocs.io/en/latest/core/auth.html">GCS documentation</a>.
+Finally, you must run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">google-cloud-storage</span></code> (on both your client and the server)
+to access Google Cloud Storage; MLflow does not declare a dependency on this package by default.</p>
+<p>You may set some MLflow environment variables to troubleshoot GCS read-timeouts (eg. due to slow transfer speeds) using the following variables:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_ARTIFACT_UPLOAD_DOWNLOAD_TIMEOUT</span></code> - (Experimental, may be changed or removed) Sets the standard timeout for transfer operations in seconds (Default: 60 for GCS). Use -1 for indefinite timeout.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_GCS_DEFAULT_TIMEOUT</span></code> - (Deprecated, please use <code class="docutils literal notranslate"><span class="pre">MLFLOW_ARTIFACT_UPLOAD_DOWNLOAD_TIMEOUT</span></code>) Sets the standard timeout for transfer operations in seconds (Default: 60). Use -1 for indefinite timeout.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_GCS_UPLOAD_CHUNK_SIZE</span></code> - Sets the standard upload chunk size for bigger files in bytes (Default: 104857600 ≙ 100MiB), must be multiple of 256 KB.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_GCS_DOWNLOAD_CHUNK_SIZE</span></code> - Sets the standard download chunk size for bigger files in bytes (Default: 104857600 ≙ 100MiB), must be multiple of 256 KB</p></li>
+</ul>
+</div>
+<div class="section" id="ftp-server">
+<h5><a class="toc-backref" href="tracking.html#id91">FTP server</a><a class="headerlink" href="tracking.html#ftp-server" title="Permalink to this headline"> </a></h5>
+<p>To store artifacts in a FTP server, specify a URI of the form <a class="reference external" href="ftp://user&#64;host/path/to/directory">ftp://user&#64;host/path/to/directory</a> .
+The URI may optionally include a password for logging into the server, e.g. <code class="docutils literal notranslate"><span class="pre">ftp://user:pass&#64;host/path/to/directory</span></code></p>
+</div>
+<div class="section" id="sftp-server">
+<h5><a class="toc-backref" href="tracking.html#id92">SFTP Server</a><a class="headerlink" href="tracking.html#sftp-server" title="Permalink to this headline"> </a></h5>
+<p>To store artifacts in an SFTP server, specify a URI of the form <code class="docutils literal notranslate"><span class="pre">sftp://user&#64;host/path/to/directory</span></code>.
+You should configure the client to be able to log in to the SFTP server without a password over SSH (e.g. public key, identity file in ssh_config, etc.).</p>
+<p>The format <code class="docutils literal notranslate"><span class="pre">sftp://user:pass&#64;host/</span></code> is supported for logging in. However, for safety reasons this is not recommended.</p>
+<p>When using this store, <code class="docutils literal notranslate"><span class="pre">pysftp</span></code> must be installed on both the server and the client. Run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pysftp</span></code> to install the required package.</p>
+</div>
+<div class="section" id="nfs">
+<h5><a class="toc-backref" href="tracking.html#id93">NFS</a><a class="headerlink" href="tracking.html#nfs" title="Permalink to this headline"> </a></h5>
+<p>To store artifacts in an NFS mount, specify a URI as a normal file system path, e.g., <code class="docutils literal notranslate"><span class="pre">/mnt/nfs</span></code>.
+This path must be the same on both the server and the client – you may need to use symlinks or remount
+the client in order to enforce this property.</p>
+</div>
+<div class="section" id="hdfs">
+<h5><a class="toc-backref" href="tracking.html#id94">HDFS</a><a class="headerlink" href="tracking.html#hdfs" title="Permalink to this headline"> </a></h5>
+<p>To store artifacts in HDFS, specify a <code class="docutils literal notranslate"><span class="pre">hdfs:</span></code> URI. It can contain host and port: <code class="docutils literal notranslate"><span class="pre">hdfs://&lt;host&gt;:&lt;port&gt;/&lt;path&gt;</span></code> or just the path: <code class="docutils literal notranslate"><span class="pre">hdfs://&lt;path&gt;</span></code>.</p>
+<p>There are also two ways to authenticate to HDFS:</p>
+<ul class="simple">
+<li><p>Use current UNIX account authorization</p></li>
+<li><p>Kerberos credentials using following environment variables:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">MLFLOW_KERBEROS_TICKET_CACHE</span><span class="o">=</span>/tmp/krb5cc_22222222
+<span class="nb">export</span><span class="w"> </span><span class="nv">MLFLOW_KERBEROS_USER</span><span class="o">=</span>user_name_to_use
+</pre></div>
+</div>
+<p>Most of the cluster contest settings are read from <code class="docutils literal notranslate"><span class="pre">hdfs-site.xml</span></code> accessed by the HDFS native
+driver using the <code class="docutils literal notranslate"><span class="pre">CLASSPATH</span></code> environment variable.</p>
+<p>The used HDFS driver is <code class="docutils literal notranslate"><span class="pre">libhdfs</span></code>.</p>
+</div>
+</div>
+<div class="section" id="file-store-performance">
+<h4><a class="toc-backref" href="tracking.html#id80">File store performance</a><a class="headerlink" href="tracking.html#file-store-performance" title="Permalink to this headline"> </a></h4>
+<p>MLflow will automatically try to use <a class="reference external" href="https://pyyaml.org/wiki/LibYAML">LibYAML</a> bindings if they are already installed.
+However if you notice any performance issues when using <em>file store</em> backend, it could mean LibYAML is not installed on your system.
+On Linux or Mac you can easily install it using your system package manager:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Ubuntu/Debian</span>
+apt-get<span class="w"> </span>install<span class="w"> </span>libyaml-cpp-dev<span class="w"> </span>libyaml-dev
+
+<span class="c1"># On macOS using Homebrew</span>
+brew<span class="w"> </span>install<span class="w"> </span>yaml-cpp<span class="w"> </span>libyaml
+</pre></div>
+</div>
+<p>After installing LibYAML, you need to reinstall PyYAML:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reinstall PyYAML</span>
+pip<span class="w"> </span>--no-cache-dir<span class="w"> </span>install<span class="w"> </span>--force-reinstall<span class="w"> </span>-I<span class="w"> </span>pyyaml
+</pre></div>
+</div>
+</div>
+<div class="section" id="deletion-behavior">
+<h4><a class="toc-backref" href="tracking.html#id81">Deletion Behavior</a><a class="headerlink" href="tracking.html#deletion-behavior" title="Permalink to this headline"> </a></h4>
+<p>In order to allow MLflow Runs to be restored, Run metadata and artifacts are not automatically removed
+from the backend store or artifact store when a Run is deleted. The <a class="reference internal" href="cli.html#cli"><span class="std std-ref">mlflow gc</span></a> CLI is provided
+for permanently removing Run metadata and artifacts for deleted runs.</p>
+</div>
+<div class="section" id="sqlalchemy-options">
+<h4><a class="toc-backref" href="tracking.html#id82">SQLAlchemy Options</a><a class="headerlink" href="tracking.html#sqlalchemy-options" title="Permalink to this headline"> </a></h4>
+<p>You can inject some <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/pooling.html">SQLAlchemy connection pooling options</a> using environment variables.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 59%" />
+<col style="width: 41%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>MLflow Environment Variable</p></td>
+<td><p>SQLAlchemy QueuePool Option</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_SQLALCHEMYSTORE_POOL_SIZE</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pool_size</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_SQLALCHEMYSTORE_POOL_RECYCLE</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pool_recycle</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_SQLALCHEMYSTORE_MAX_OVERFLOW</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">max_overflow</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="networking">
+<h3><a class="toc-backref" href="tracking.html#id83">Networking</a><a class="headerlink" href="tracking.html#networking" title="Permalink to this headline"> </a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">--host</span></code> option exposes the service on all interfaces. If running a server in production, we
+would recommend not exposing the built-in server broadly (as it is unauthenticated and unencrypted),
+and instead putting it behind a reverse proxy like NGINX or Apache httpd, or connecting over VPN.
+You can then pass authentication headers to MLflow using these <a class="reference internal" href="tracking.html#tracking-auth"><span class="std std-ref">environment variables</span></a>.</p>
+<p>Additionally, you should ensure that the <code class="docutils literal notranslate"><span class="pre">--backend-store-uri</span></code> (which defaults to the
+<code class="docutils literal notranslate"><span class="pre">./mlruns</span></code> directory) points to a persistent (non-ephemeral) disk or database connection.</p>
+</div>
+<div class="section" id="using-the-tracking-server-for-proxied-artifact-access">
+<span id="artifact-only-mode"></span><h3><a class="toc-backref" href="tracking.html#id84">Using the Tracking Server for proxied artifact access</a><a class="headerlink" href="tracking.html#using-the-tracking-server-for-proxied-artifact-access" title="Permalink to this headline"> </a></h3>
+<p>To use an instance of the MLflow Tracking server for artifact operations ( <a class="reference internal" href="tracking.html#scenario-5"><span class="std std-ref">Scenario 5: MLflow Tracking Server enabled with proxied artifact storage access</span></a> ),
+start a server with the optional parameters <code class="docutils literal notranslate"><span class="pre">--serve-artifacts</span></code> to enable proxied artifact access and set a
+path to record artifacts to by providing a value for the argument <code class="docutils literal notranslate"><span class="pre">--artifacts-destination</span></code>. The tracking server will,
+in this mode, stream any artifacts that a client is logging directly through an assumed (server-side) identity,
+eliminating the need for access credentials to be handled by end-users.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Authentication access to the value set by <code class="docutils literal notranslate"><span class="pre">--artifacts-destination</span></code> must be configured when starting the tracking
+server, if required.</p>
+</div>
+<p>To start the MLflow server with proxy artifact access enabled to an HDFS location (as an example):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">HADOOP_USER_NAME</span><span class="o">=</span>mlflowserverauth
+
+mlflow<span class="w"> </span>server<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--port<span class="w"> </span><span class="m">8885</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--artifacts-destination<span class="w"> </span>hdfs://myhost:8887/mlprojects/models<span class="w"> </span><span class="se">\</span>
+</pre></div>
+</div>
+<div class="section" id="optionally-using-a-tracking-server-instance-exclusively-for-artifact-handling">
+<h4><a class="toc-backref" href="tracking.html#id85">Optionally using a Tracking Server instance exclusively for artifact handling</a><a class="headerlink" href="tracking.html#optionally-using-a-tracking-server-instance-exclusively-for-artifact-handling" title="Permalink to this headline"> </a></h4>
+<p>If the volume of tracking server requests is sufficiently large and performance issues are noticed, a tracking server
+can be configured to serve in <code class="docutils literal notranslate"><span class="pre">--artifacts-only</span></code> mode ( <a class="reference internal" href="tracking.html#scenario-6"><span class="std std-ref">Scenario 6: MLflow Tracking Server used exclusively as proxied access host for artifact storage access</span></a> ), operating in tandem with an instance that
+operates with <code class="docutils literal notranslate"><span class="pre">--no-serve-artifacts</span></code> specified. This configuration ensures that the processing of artifacts is isolated
+from all other tracking server event handling.</p>
+<p>When a tracking server is configured in <code class="docutils literal notranslate"><span class="pre">--artifacts-only</span></code> mode, any tasks apart from those concerned with artifact
+handling (i.e., model logging, loading models, logging artifacts, listing artifacts, etc.) will return an HTTPError.
+See the following example of a client REST call in Python attempting to list experiments from a server that is configured in
+<code class="docutils literal notranslate"><span class="pre">--artifacts-only</span></code> mode:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://0.0.0.0:8885/api/2.0/mlflow/experiments/list&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; HTTPError: Endpoint: /api/2.0/mlflow/experiments/list disabled due to the mlflow server running in `--artifacts-only` mode.
+</pre></div>
+</div>
+<p>Using an additional MLflow server to handle artifacts exclusively can be useful for large-scale MLOps infrastructure.
+Decoupling the longer running and more compute-intensive tasks of artifact handling from the faster and higher-volume
+metadata functionality of the other Tracking API requests can help minimize the burden of an otherwise single MLflow
+server handling both types of payloads.</p>
+</div>
+</div>
+<div class="section" id="logging-to-a-tracking-server">
+<span id="id19"></span><h3><a class="toc-backref" href="tracking.html#id86">Logging to a Tracking Server</a><a class="headerlink" href="tracking.html#logging-to-a-tracking-server" title="Permalink to this headline"> </a></h3>
+<p>To log to a tracking server, set the <code class="docutils literal notranslate"><span class="pre">MLFLOW_TRACKING_URI</span></code> environment variable to the server’s URI,
+along with its scheme and port (for example, <code class="docutils literal notranslate"><span class="pre">http://10.0.0.1:5000</span></code>) or call <a class="reference internal" href="python_api/mlflow.html#mlflow.set_tracking_uri" title="mlflow.set_tracking_uri"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.set_tracking_uri()</span></code></a>.</p>
+<p>The <a class="reference internal" href="python_api/mlflow.html#mlflow.start_run" title="mlflow.start_run"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.start_run()</span></code></a>, <a class="reference internal" href="python_api/mlflow.html#mlflow.log_param" title="mlflow.log_param"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.log_param()</span></code></a>, and <a class="reference internal" href="python_api/mlflow.html#mlflow.log_metric" title="mlflow.log_metric"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.log_metric()</span></code></a> calls
+then make API requests to your remote tracking server.</p>
+<blockquote>
+<div><div class="code-section docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mlflow</span>
+
+<span class="n">remote_server_uri</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span>  <span class="c1"># set to your server URI</span>
+<span class="n">mlflow</span><span class="o">.</span><span class="n">set_tracking_uri</span><span class="p">(</span><span class="n">remote_server_uri</span><span class="p">)</span>
+<span class="c1"># Note: on Databricks, the experiment name passed to mlflow_set_experiment must be a</span>
+<span class="c1"># valid path in the workspace</span>
+<span class="n">mlflow</span><span class="o">.</span><span class="n">set_experiment</span><span class="p">(</span><span class="s2">&quot;/my-experiment&quot;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">start_run</span><span class="p">():</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">mlflow</span><span class="p">)</span>
+<span class="nf">install_mlflow</span><span class="p">()</span>
+<span class="n">remote_server_uri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;...&quot;</span><span class="w"> </span><span class="c1"># set to your server URI</span>
+<span class="nf">mlflow_set_tracking_uri</span><span class="p">(</span><span class="n">remote_server_uri</span><span class="p">)</span>
+<span class="c1"># Note: on Databricks, the experiment name passed to mlflow_set_experiment must be a</span>
+<span class="c1"># valid path in the workspace</span>
+<span class="nf">mlflow_set_experiment</span><span class="p">(</span><span class="s">&quot;/my-experiment&quot;</span><span class="p">)</span>
+<span class="nf">mlflow_log_param</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+<p id="tracking-auth">In addition to the <code class="docutils literal notranslate"><span class="pre">MLFLOW_TRACKING_URI</span></code> environment variable, the following environment variables
+allow passing HTTP authentication to the tracking server:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_TRACKING_USERNAME</span></code> and <code class="docutils literal notranslate"><span class="pre">MLFLOW_TRACKING_PASSWORD</span></code> - username and password to use with HTTP
+Basic authentication. To use Basic authentication, you must set <cite>both</cite> environment variables .</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_TRACKING_TOKEN</span></code> - token to use with HTTP Bearer authentication. Basic authentication takes precedence if set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_TRACKING_INSECURE_TLS</span></code> - If set to the literal <code class="docutils literal notranslate"><span class="pre">true</span></code>, MLflow does not verify the TLS connection,
+meaning it does not validate certificates or hostnames for <code class="docutils literal notranslate"><span class="pre">https://</span></code> tracking URIs. This flag is not recommended for
+production environments. If this is set to <code class="docutils literal notranslate"><span class="pre">true</span></code> then <code class="docutils literal notranslate"><span class="pre">MLFLOW_TRACKING_SERVER_CERT_PATH</span></code> must not be set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_TRACKING_SERVER_CERT_PATH</span></code> - Path to a CA bundle to use. Sets the <code class="docutils literal notranslate"><span class="pre">verify</span></code> param of the
+<code class="docutils literal notranslate"><span class="pre">requests.request</span></code> function
+(see <a class="reference external" href="https://requests.readthedocs.io/en/master/api/">requests main interface</a>).
+When you use a self-signed server certificate you can use this to verify it on client side.
+If this is set <code class="docutils literal notranslate"><span class="pre">MLFLOW_TRACKING_INSECURE_TLS</span></code> must not be set (false).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_TRACKING_CLIENT_CERT_PATH</span></code> - Path to ssl client cert file (.pem). Sets the <code class="docutils literal notranslate"><span class="pre">cert</span></code> param
+of the <code class="docutils literal notranslate"><span class="pre">requests.request</span></code> function
+(see <a class="reference external" href="https://requests.readthedocs.io/en/master/api/">requests main interface</a>).
+This can be used to use a (self-signed) client certificate.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the MLflow server is <em>not configured</em> with the <code class="docutils literal notranslate"><span class="pre">--serve-artifacts</span></code> option, the client directly pushes artifacts
+to the artifact store. It does not proxy these through the tracking server by default.</p>
+<p>For this reason, the client needs direct access to the artifact store. For instructions on setting up these credentials,
+see <a class="reference internal" href="tracking.html#artifact-stores"><span class="std std-ref">Artifact Stores</span></a>.</p>
+</div>
+<div class="section" id="tracking-server-versioning">
+<h4><a class="toc-backref" href="tracking.html#id87">Tracking Server versioning</a><a class="headerlink" href="tracking.html#tracking-server-versioning" title="Permalink to this headline"> </a></h4>
+<p>The version of MLflow running on the server can be found by querying the <code class="docutils literal notranslate"><span class="pre">/version</span></code> endpoint.
+This can be used to check that the client-side version of MLflow is up-to-date with a remote tracking server prior to running experiments.
+For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">mlflow</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://&lt;mlflow-host&gt;:&lt;mlflow-port&gt;/version&quot;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">__version__</span>  <span class="c1"># Checking for a strict version match</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="system-tags">
+<span id="id21"></span><h2><a class="toc-backref" href="tracking.html#id63">System Tags</a><a class="headerlink" href="tracking.html#system-tags" title="Permalink to this headline"> </a></h2>
+<p>You can annotate runs with arbitrary tags. Tag keys that start with <code class="docutils literal notranslate"><span class="pre">mlflow.</span></code> are reserved for
+internal use. The following tags are set automatically by MLflow, when appropriate:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 74%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mlflow.note.content</span></code></p></td>
+<td><p>A descriptive note about this run. This reserved tag is not set automatically and can
+be overridden by the user to include additional information about the run. The content
+is displayed on the run’s page under the Notes section.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mlflow.parentRunId</span></code></p></td>
+<td><p>The ID of the parent run, if this is a nested run.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mlflow.user</span></code></p></td>
+<td><p>Identifier of the user who created the run.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mlflow.source.type</span></code></p></td>
+<td><p>Source type. Possible values: <code class="docutils literal notranslate"><span class="pre">&quot;NOTEBOOK&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;JOB&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;PROJECT&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;LOCAL&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;UNKNOWN&quot;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mlflow.source.name</span></code></p></td>
+<td><p>Source identifier (e.g., GitHub URL, local Python filename, name of notebook)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mlflow.source.git.commit</span></code></p></td>
+<td><p>Commit hash of the executed code, if in a git repository.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mlflow.source.git.branch</span></code></p></td>
+<td><p>Name of the branch of the executed code, if in a git repository.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mlflow.source.git.repoURL</span></code></p></td>
+<td><p>URL that the executed code was cloned from.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mlflow.project.env</span></code></p></td>
+<td><p>The runtime context used by the MLflow project.
+Possible values: <code class="docutils literal notranslate"><span class="pre">&quot;docker&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;conda&quot;</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mlflow.project.entryPoint</span></code></p></td>
+<td><p>Name of the project entry point associated with the current run, if any.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mlflow.docker.image.name</span></code></p></td>
+<td><p>Name of the Docker image used to execute this run.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mlflow.docker.image.id</span></code></p></td>
+<td><p>ID of the Docker image used to execute this run.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mlflow.log-model.history</span></code></p></td>
+<td><p>Model metadata collected by log-model calls. Includes the serialized
+form of the MLModel model files logged to a run, although the exact format and
+information captured is subject to change.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+              </div>
+            </div>
+            <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="concepts.html" class="btn btn-neutral" title="Concepts" accesskey="p"><span class="db-icon db-icon-chevron-left"></span> Previous</a>
+      
+      
+        <a href="llm-tracking.html" class="btn btn-neutral" title="MLflow LLM Tracking" accesskey="n">Next <span class="db-icon db-icon-chevron-right"></span></a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+      <p class="copyright">
+          &copy; MLflow Project, a Series of LF Projects, LLC. All rights reserved.
+      </p>
+
+  </div> 
+
+</footer>
+          </div>
+        </div>
+      </section>
+    </main>
+  </page>
+
+  
+
+
+  
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:'./',
+      VERSION:'2.7.1',
+      COLLAPSE_INDEX:false,
+      FILE_SUFFIX:'.html',
+      LINK_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  
+
+  <script type="text/javascript" src="_static/js/clipboard.min.js"></script>
+  <script type="text/javascript" src="_static/js/jquery.waypoints.min.js"></script>
+
+  
+  
+  
+  <script type="text/javascript">var CLIPPY_SVG_PATH = "_static/clippy.svg";</script>
+  <script type="text/javascript" src="_static/js/custom.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.StickyNav.enable();
+    });
+
+  </script>
+   
+</body>
+</html>

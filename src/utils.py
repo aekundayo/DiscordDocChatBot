@@ -52,8 +52,22 @@ async def extract_text_from_htmls(folder):
                     print(f"Text from {file_path}:\n{text}\n{'='*40}\n")
                     chunks = get_text_chunks(text)
                     persist_new_chunks(chunks)
-                    
     
+    remove_folder_contents(folder)
+                    
+
+def remove_folder_contents(path):
+    for filename in os.listdir(path):
+        filepath = os.path.join(path, filename)
+        
+        # If it's a file, remove it directly using os.remove
+        if os.path.isfile(filepath):
+            os.remove(filepath)
+        # If it's a directory, call the function recursively
+        elif os.path.isdir(filepath):
+            remove_folder_contents(filepath)
+            os.rmdir(filepath)
+
 def get_pdf_text(path):
     # define the path
     
