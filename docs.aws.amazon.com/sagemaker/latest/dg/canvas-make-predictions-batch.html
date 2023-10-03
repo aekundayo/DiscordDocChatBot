@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Make batch predictions - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="canvas-make-predictions-batch" /><meta name="default_state" content="canvas-make-predictions-batch" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="canvas-make-predictions-batch.html" /><meta name="description" content="Make batch predictions with a model that you've built in SageMaker Canvas." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="canvas-make-predictions-batch.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/canvas-make-predictions-batch.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/canvas-make-predictions-batch.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/canvas-make-predictions-batch.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/canvas-make-predictions-batch.html" hreflang="de" /><link rel="alternative" href="canvas-make-predictions-batch.html" hreflang="en-us" /><link rel="alternative" href="canvas-make-predictions-batch.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/canvas-make-predictions-batch.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/canvas-make-predictions-batch.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/canvas-make-predictions-batch.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/canvas-make-predictions-batch.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/canvas-make-predictions-batch.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/canvas-make-predictions-batch.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/canvas-make-predictions-batch.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/canvas-make-predictions-batch.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/canvas-make-predictions-batch.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/canvas-make-predictions-batch.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/canvas-make-predictions-batch.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/canvas-make-predictions-batch.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/canvas-make-predictions-batch.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/canvas-make-predictions-batch.html" hreflang="zh-tw" /><link rel="alternative" href="canvas-make-predictions-batch.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Make batch predictions" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Make batch predictions - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#canvas-make-predictions-batch" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-make-predictions-batch.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-make-predictions-batch.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-make-predictions-batch.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use machine learning environments offered by SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/machine-learning-environments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Canvas",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use custom models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas-custom-models.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Make predictions for your data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas-make-predictions.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Make batch predictions",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas-make-predictions.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#canvas-make-predictions-batch" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="canvas-make-predictions-batch.html#canvas-make-predictions-batch-manual">Make manual batch predictions</a><a href="canvas-make-predictions-batch.html#canvas-make-predictions-batch-auto">Make automatic batch predictions</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="canvas-make-predictions-batch">Make batch predictions</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Make batch predictions when you have an entire dataset for which you’d like to
+            generate predictions.</p><p>There are two types of batch predictions you can make:</p><div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                    <p><em>Manual</em> batch predictions are when you
+                        have a dataset for which you want to make one-time predictions.</p>
+            </li><li class="listitem">
+                    <p><em>Automatic</em> batch predictions are when
+                        you set up a configuration that runs a batch prediction whenever a specific
+                        dataset is updated. For example, if you’ve configured weekly updates to a
+                        SageMaker Canvas dataset of inventory data, you can set up automatic batch predictions
+                        that run whenever you update the dataset. After setting up an automated
+                        batch predictions workflow, see <a href="canvas-manage-automations.html">Manage automations</a>
+                        for more information about viewing and
+                        editing the details of your configuration. For more information about
+                        setting up automatic dataset updates, see <a href="canvas-update-dataset.html#canvas-update-dataset-auto">Configure automatic updates for a dataset</a>.</p>
+            </li></ul></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can only set up automatic batch predictions for datasets imported
+            through local upload or Amazon S3. Additionally, automatic batch predictions can only
+            run while you’re logged in to the Canvas application. If you log out of Canvas,
+            automatic batch prediction jobs resume when you log back in.</p></div></div><p>To get started, reviewing the following section for batch prediction dataset requirements, and then choose one of
+            the following manual or automatic batch prediction workflows.</p><p><b>Batch prediction dataset requirements</b></p><p>For batch predictions, make sure that your datasets meet the requirements outlined in
+            <a href="canvas-import-dataset.html">Create a dataset</a>.</p><p>You might not be able to make predictions on some datasets because they have incompatible
+            <em>schemas</em>. A <em>schema</em>
+            is an organizational structure. For a tabular dataset, the schema is the names of the
+            columns and the data type of the data in the columns. An incompatible schema might happen
+            for one of the following reasons:</p><div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>The dataset that you're using to make predictions has fewer columns than the
+                    dataset that you're using to build the model.</p>
+            </li><li class="listitem">
+                <p>The data types in the columns you used to build the dataset might be different
+                    from the data types in dataset that you're using to make predictions.</p>
+            </li><li class="listitem">
+                <p>The dataset that you're using to make predictions and the dataset that you've used
+                    to build the model have column names that don't match. The column names are case
+                    sensitive. <code class="code">Column1</code> is not the same as <code class="code">column1</code>.</p>
+            </li></ul></div><p>To ensure that you can successfully generate batch predictions, match the schema of your
+            batch predictions dataset to the dataset you used to train the model.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For batch predictions, if you dropped any columns when building your model, Canvas
+                adds the dropped columns back to the prediction results. However, Canvas does not
+                add the dropped columns to your batch predictions for time series models.</p></div></div>
+            <h2 id="canvas-make-predictions-batch-manual">Make manual batch predictions</h2>
+            <p>Choose one of the following procedures to make manual batch predictions based on your model type.</p>
+            
+             
+                <h3 id="canvas-make-predictions-batch-numeric-categorical">Make manual batch predictions with
+                        numeric and categorical prediction models</h3>
+                <p>To make manual batch predictions for a numeric or categorical prediction model, do the
+                    following:</p>
+                <div class="procedure"><ol><li>
+                        <p>In the left navigation pane of the Canvas application, choose <b>My
+                            models</b>.</p>
+                    </li><li>
+                        <p>On the <b>My models</b> page, choose your model.</p>
+                    </li><li>
+                        <p>After opening your model, choose the <b>Predict</b> tab.</p>
+                    </li><li>
+                        <p>On the <b>Run predictions</b> page, choose <b>Batch
+                            prediction</b>.</p>
+                    </li><li>
+                        <p>Choose <b>Select dataset</b> if you’ve already imported your
+                            dataset. If not, choose <b>Import new dataset</b>, and then you’ll
+                            be directed through the import data workflow.</p>
+                    </li><li>
+                        <p>From the list of available datasets, select your dataset and choose
+                            <b>Generate predictions</b> to get your predictions.</p>
+                    </li></ol></div>
+                <p>After the prediction job finishes running, on the <b>Run predictions</b>
+                    page, you see an output dataset listed under <b>Predictions</b>. This
+                    dataset contains your results, and if you select the <b>More options</b>
+                    icon (<span class="inlinemediaobject">
+                         
+                            <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/more-options-icon.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" />
+                         
+                    </span>), you can choose <b>Preview</b> to preview the output
+                    data. You can see the input data matched to the prediction and the probability that the
+                    prediction is correct. Then, you can choose <b>Download prediction</b> to
+                    download the results as a file.</p>
+             
+            
+             
+                <h3 id="canvas-make-predictions-batch-image">Make manual batch predictions with image prediction
+                        models</h3>
+                <p>To make manual batch predictions for a single-label image prediction model, do the
+                    following:</p>
+                <div class="procedure"><ol><li>
+                        <p>In the left navigation pane of the Canvas application, choose <b>My
+                            models</b>.</p>
+                    </li><li>
+                        <p>On the <b>My models</b> page, choose your model.</p>
+                    </li><li>
+                        <p>After opening your model, choose the <b>Predict</b> tab.</p>
+                    </li><li>
+                        <p>On the <b>Run predictions</b> page, choose <b>Batch
+                            prediction</b>.</p>
+                    </li><li>
+                        <p>Choose <b>Select dataset</b> if you’ve already imported your
+                            dataset. If not, choose <b>Import new dataset</b>, and then you’ll
+                            be directed through the import data workflow.</p>
+                    </li><li>
+                        <p>From the list of available datasets, select your dataset and choose
+                            <b>Generate predictions</b> to get your predictions.</p>
+                    </li></ol></div>
+                <p>After the prediction job finishes running, on the <b>Run predictions</b>
+                    page, you see an output dataset listed under <b>Predictions</b>. This
+                    dataset contains your results, and if you select the <b>More options</b>
+                    icon (<span class="inlinemediaobject">
+                         
+                            <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/more-options-icon.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" />
+                         
+                    </span>), you can choose <b>View prediction results</b> to
+                    see the output data. You can see the images along with their predicted labels and
+                    confidence scores. Then, you can choose <b>Download prediction</b> to
+                    download the results as a CSV or a ZIP file.</p>
+             
+            
+             
+                <h3 id="canvas-make-predictions-batch-text">Make manual batch predictions with text prediction
+                        models</h3>
+                <p>To make manual batch predictions for a multi-category text prediction model, do the
+                    following:</p>
+                <div class="procedure"><ol><li>
+                        <p>In the left navigation pane of the Canvas application, choose <b>My
+                            models</b>.</p>
+                    </li><li>
+                        <p>On the <b>My models</b> page, choose your model.</p>
+                    </li><li>
+                        <p>After opening your model, choose the <b>Predict</b> tab.</p>
+                    </li><li>
+                        <p>On the <b>Run predictions</b> page, choose <b>Batch
+                            prediction</b>.</p>
+                    </li><li>
+                        <p>Choose <b>Select dataset</b> if you’ve already imported your
+                            dataset. If not, choose <b>Import new dataset</b>, and then you’ll
+                            be directed through the import data workflow. The dataset you choose must have
+                            the same source column as the dataset with which you built the model.</p>
+                    </li><li>
+                        <p>From the list of available datasets, select your dataset and choose
+                            <b>Generate predictions</b> to get your predictions.</p>
+                    </li></ol></div>
+                <p>After the prediction job finishes running, on the <b>Run predictions</b>
+                    page, you see an output dataset listed under <b>Predictions</b>. This
+                    dataset contains your results, and if you select the <b>More options</b>
+                    icon (<span class="inlinemediaobject">
+                         
+                            <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/more-options-icon.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" />
+                         
+                    </span>), you can choose <b>Preview</b> to see the output
+                    data. You can see the images along with their predicted labels and confidence scores.
+                    Then, you can choose <b>Download prediction</b> to download the results.</p>
+             
+            
+         
+            <h2 id="canvas-make-predictions-batch-auto">Make automatic batch predictions</h2>
+            <p>To set up a schedule for automatic batch predictions, do the
+                        following:</p>
+                    <div class="orderedlist">
+                         
+                         
+                         
+                         
+                         
+                         
+                         
+                    <ol><li>
+                                <p>In the left navigation pane of Canvas, choose <b>My models</b>.</p>
+                        </li><li>
+                                <p>Choose your model.</p>
+                        </li><li>
+                                <p>Choose the <b>Predict</b>
+                                    tab.</p>
+                        </li><li>
+                                <p>Choose <b>Batch
+                                    prediction</b>.</p>
+                        </li><li>
+                                <p>For <b>Generate predictions</b>,
+                                    choose <b>Automatic</b>.</p>
+                        </li><li>
+                                <p>The <b>Automate batch
+                                        predictions</b> dialog box pops up. Choose <b>Select dataset</b> and choose the dataset
+                                    for which you want to automate predictions. Note that you can
+                                    only select a dataset that was imported through local upload or
+                                    Amazon S3.</p>
+                        </li><li>
+                                <p>After selecting a dataset, choose <b>Set
+                                        up</b>.</p>
+                        </li></ol></div>
+             <p>Canvas runs a batch predictions job for the dataset after
+                        you set up the configuration. Then, every time you <a href="canvas-update-dataset.html">Update a dataset</a>,
+                 either manually or automatically, another
+                        batch predictions job runs.</p>
+            <p>After the prediction job finishes running, on the <b>Run predictions</b> page, you
+                    see an output dataset listed under <b>Predictions</b>. This dataset contains your results, and
+                if you select the <b>More options</b> icon (<span class="inlinemediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/more-options-icon.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" />
+                     
+                </span>), you can choose
+                <b>Preview</b> to preview the output data. You can see the input
+                        data matched to the prediction and the probability that the prediction is
+                        correct. Then, you can choose <b>Download</b> to download the results.</p>
+            <p>The following sections describe how to view, update, and delete your automatic batch
+                prediction configuration through the <b>Datasets</b> page
+                in the Canvas application. You can only set up a maximum of 20 automatic configurations in Canvas.
+                For more information about viewing your automated
+                batch predictions job history or making changes to your automatic configuration through
+                the <b>Automations</b> page, see <a href="canvas-manage-automations.html">Manage automations</a>.</p>
+            
+             
+                <h3 id="canvas-make-predictions-batch-auto-view">View your automatic batch prediction jobs</h3>
+                <p></p>
+                <p>To view your job history for your automatic batch predictions, go to the
+                        <b>Predict</b> tab of your model.</p>
+                <p>Each automatic batch prediction job shows up in the <b>Predict</b> tab of your model. Under <b>Predictions</b>, you can see the <b>All
+                        jobs</b> tab and the <b>Configuration</b>
+                    tabs:</p>
+                <div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                            <p><b>All jobs</b> – In this tab, you can
+                                see all of the batch prediction jobs for this model. You can filter
+                                the jobs by configuration name. For each job, you can see fields
+                                such as the <b>Input dataset</b>, which includes the version of the dataset,
+                                and the <b>Prediction type</b>, such as whether the
+                                predictions were automatic or manual. If you choose the <b>More options</b>
+                                icon (<span class="inlinemediaobject">
+                                     
+                                        <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/more-options-icon.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" />
+                                     
+                                </span>), you can choose <b>View
+                                    prediction</b> or <b>Download
+                                    prediction</b>.</p>
+                    </li><li class="listitem">
+                            <p><b>Configuration</b> – In this tab, you
+                                can see all of the automatic batch prediction configurations you’ve
+                                created for this model. For each configuration, you can see fields
+                                such as the timestamp for when it was <b>Created</b>, the <b>Input
+                                    dataset</b> it tracks for updates, and the <b>Next job scheduled</b>. If you choose the
+                                <b>More options</b> icon (<span class="inlinemediaobject">
+                                     
+                                        <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/more-options-icon.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" />
+                                     
+                                </span>), you can choose <b>View all jobs</b> to see the job history and
+                                in progress jobs for the configuration.</p>
+                    </li></ul></div>
+             
+            
+             
+                <h3 id="canvas-make-predictions-batch-auto-edit">Edit your automatic batch prediction configuration</h3>
+                <p>You might want to make changes to your auto update configuration for a
+                    dataset, such as changing the frequency of the updates. You might also want to
+                    turn off your automatic update configuration to pause the updates to your
+                    dataset.</p>
+                <p>When you edit a batch prediction configuration, you can change the target
+                    dataset but not the frequency (since automatic batch predictions occur whenever
+                    the dataset is updated).</p>
+                <p>To edit your auto update configuration, do the following:</p>
+                <div class="orderedlist">
+                     
+                     
+                     
+                     
+                     
+                <ol><li>
+                            <p>Go to the <b>Predict</b> tab of your
+                                model.</p>
+                    </li><li>
+                            <p>Under <b>Predictions</b>, choose the
+                                    <b>Configuration</b> tab.</p>
+                    </li><li>
+                            <p>Find your configuration and choose the <b>More
+                                options</b> icon (<span class="inlinemediaobject">
+                                     
+                                        <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/more-options-icon.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" />
+                                     
+                                </span>).</p>
+                    </li><li>
+                            <p>From the dropdown menu, choose <b>Update
+                                    configuration</b>.</p>
+                    </li><li>
+                            <p>The <b>Automate batch prediction</b>
+                                dialog box opens. You can select another dataset and choose
+                                    <b>Set up</b> to save your
+                                changes.</p>
+                    </li></ol></div>
+                <p>Your automatic batch predictions configuration is now updated.</p>
+                <p>To pause your automatic batch predictions, turn off your automatic
+                    configuration by doing the following:</p>
+                <div class="orderedlist">
+                     
+                     
+                     
+                <ol><li>
+                            <p>Go to the <b>Predict</b> tab of your
+                                model.</p>
+                    </li><li>
+                            <p>Under <b>Predictions</b>, choose the
+                                    <b>Configuration</b> tab.</p>
+                    </li><li>
+                            <p>Find your configuration from the list and turn off the <b>Auto update</b> toggle.</p>
+                    </li></ol></div>
+                <p>Automatic batch predictions are now paused. You can turn the toggle back on at
+                    any time to resume the update schedule.</p>
+             
+            
+             
+                <h3 id="canvas-make-predictions-batch-auto-delete">Delete your automatic batch prediction configuration</h3>
+                <p>To learn how to delete your automatic batch prediction configuration, see
+                    <a href="canvas-manage-automations.html#canvas-manage-automations-delete">Delete an automatic configuration</a>.</p>
+                <p>You can also delete your configuration by doing the following:</p>
+                <div class="orderedlist">
+                     
+                     
+                     
+                     
+                <ol><li>
+                            <p>Go to the <b>Predict</b> tab of your
+                                model.</p>
+                    </li><li>
+                            <p>Under <b>Predictions</b>, choose the
+                                    <b>Configuration</b> tab.</p>
+                    </li><li>
+                            <p>Find your configuration from the list and choose the
+                                <b>More options</b> icon (<span class="inlinemediaobject">
+                                     
+                                        <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/more-options-icon.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" />
+                                     
+                                </span>).</p>
+                    </li><li>
+                            <p>From the dropdown menu, choose <b>Delete
+                                    configuration</b>.</p>
+                    </li></ol></div>
+                <p>Your configuration should now be deleted.</p>
+             
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./canvas-make-predictions-single.html">Make single predictions</div><div id="next" class="next-link" accesskey="n" href="./canvas-send-predictions.html">Send predictions to Amazon QuickSight</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-make-predictions-batch.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-make-predictions-batch.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

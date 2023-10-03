@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Create a model card - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="model-cards-create" /><meta name="default_state" content="model-cards-create" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="model-cards-create.html" /><meta name="description" content="Create an Amazon SageMaker Model Card." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="model-cards-create.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/model-cards-create.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/model-cards-create.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/model-cards-create.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/model-cards-create.html" hreflang="de" /><link rel="alternative" href="model-cards-create.html" hreflang="en-us" /><link rel="alternative" href="model-cards-create.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/model-cards-create.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/model-cards-create.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/model-cards-create.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/model-cards-create.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/model-cards-create.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/model-cards-create.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/model-cards-create.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/model-cards-create.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/model-cards-create.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/model-cards-create.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/model-cards-create.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/model-cards-create.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/model-cards-create.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/model-cards-create.html" hreflang="zh-tw" /><link rel="alternative" href="model-cards-create.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Create a model card" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Create a model card - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#model-cards-create" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-cards-create.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-cards-create.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-cards-create.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use governance to document and track model performance",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/governance.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Model Cards",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/model-cards.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Create a model card",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/model-cards.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#model-cards-create" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="model-cards-create.html#model-cards-console-create">Create a model card using the SageMaker console</a><a href="model-cards-create.html#model-cards-sdk-create">Create a model card using the SageMaker Python SDK</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="model-cards-create">Create a model card</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can create an Amazon SageMaker Model Card using either the SageMaker console or the SageMaker Python SDK. You can also use the API operations directly. For more information about the API operations, see <a href="model-cards-apis.html">Use model cards through the low-level APIs</a>.</p>
+        <h2 id="model-cards-console-create">Create a model card using the SageMaker console</h2>
+        <p>Go to the Amazon SageMaker console. In the navigation pane, under
+            <b>Governance</b>, choose <b>Model cards</b>. On the
+            upper right-hand corner, choose <b>Create model card</b>.</p>
+        <p>Go through the four steps in the <b>Create model card</b> prompt to
+            document details about your model.</p>
+         
+            <h3 id="model-cards-console-create-enter-model-details">Step 1: Enter
+                    model details and intended use</h3>
+            <p>If your model is an AWS resource, specify the exact model name in this field
+                to auto-populate model details. To browse existing model names, see
+                <b>Models</b> in the Amazon SageMaker console. Each unique model name
+                can have only one associated model card.</p>
+            <p>If your model is not an AWS resource, provide a unique name for your model.
+                To add a model as an AWS resource, see <a href="realtime-endpoints-deployment.html#realtime-endpoints-deployment-create-model">Create a model</a> in the <em>Amazon SageMaker Developer
+                        Guide</em>. Alternatively, you can add your model as a model package
+                using <a href="sagemaker-marketplace.html">SageMaker
+                    Marketplace</a> or <a href="model-registry.html">SageMaker Model
+                        Registry</a>.</p>
+            <p>For more information on intended uses, see <a href="model-cards.html#model-cards-intended-uses">Intended uses of a model</a>. For more information on risk
+                ratings, see <a href="model-cards.html#model-cards-risk-rating">Risk ratings</a>. </p>
+            
+             
+                <h4 id="model-cards-console-create-enter-training-details">Step 2:
+                        Enter training details</h4>
+                <p>Add any training details, training observations, datasets, hyperparameters,
+                    and details about the model's objective function to the model card.</p>
+                <p>The objective function in a model card can be any function that is optimized
+                    during training. This can include, but is not limited to, cost functions, loss
+                    functions, or objective metrics. In this section, document the objective
+                    function that is most critical to training your model.</p>
+                <p>We recommend that you catalog the following attributes of your objective
+                    function:</p>
+                <div class="itemizedlist">
+                     
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>Optimization direction</p>
+                    </li><li class="listitem">
+                        <p>Metric</p>
+                    </li><li class="listitem">
+                        <p>Description</p>
+                    </li></ul></div>
+                <p>For example, you might minimize (optimization direction) cross entropy loss
+                    (metric) for a binary classification problem (description) or maximize
+                    likelihood for logistic regression. Additionally, you can provide notes about
+                    why you chose this objective function over others. </p>
+             
+            
+             
+                <h4 id="model-cards-console-create-enter-evaluation-details">Step 3:
+                        Enter evaluation details</h4>
+                <p>If you have existing evaluation reports generated by SageMaker Clarify or Model Monitor,
+                    either provide an S3 URI for those reports or upload them manually to add them
+                    to the model card. </p>
+                <p>For more information on SageMaker Clarify, see <a href="clarify-processing-job-run.html">Run SageMaker Clarify
+                    Processing Jobs for Bias Analysis and Explainability</a>. </p>
+                <p>For more information on monitoring drift in model quality metrics using Model Monitor,
+                    see <a href="model-monitor-model-quality.html">Monitor model
+                        quality</a>. </p>
+                <p>To add your own evaluation report, choose <b>Generic model card
+                    evaluation</b>. All model card evaluation reports must be in the
+                    <a href="model-cards.html#model-cards-json-schema">Model card JSON schema</a>.</p>
+             
+            
+             
+                <h4 id="model-cards-console-create-enter-additional-details">Step 4:
+                        Enter additional details</h4>
+                <p>Add custom model card detail fields for any additional information that you
+                    want to address on your model card. For example, you might include the custom
+                    field <em>Line of business</em> with a value of
+                    <em>Personal finance</em>.</p>
+             
+            
+             
+                <h4 id="model-cards-console-create-save">Save model card</h4>
+                <p>After reviewing the information in your model card, choose
+                    <b>Save</b> in the lower right-hand corner to save your model
+                    card.</p>
+             
+            
+            
+         
+        
+        
+        
+     
+        <h2 id="model-cards-sdk-create">Create a model card using the SageMaker Python SDK</h2>
+        <p>Before creating a model card, you must first define the content of your model
+            card. When using the SageMaker Python SDK, model content consists of a model overview,
+            training details, intended uses, evaluation details, and additional information.</p>
+        <p>You can create model cards for:</p>
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Models that are hosted within SageMaker</p>
+            </li><li class="listitem">
+                <p>Model packages (models) within the SageMaker Model Registry</p>
+            </li><li class="listitem">
+                <p>Models that are hosted or registered outside of SageMaker</p>
+            </li></ul></div>
+        <p>You can also create model cards without associating any models to them.</p>
+        <p>We recommend adding the models that you've trained to the SageMaker Model Registry. The model registry helps you catalog models and track model versions. When you create a model card, the information about the model from the model registry automatically populates the model card. You can edit the model card or add information to it after you create it.</p>
+        <p>For information about using the model registry, see <a href="model-registry.html">Register and Deploy Models with Model Registry</a>. 
+            For information about creating a model card from a model registry, see <a href="model-cards-create.html#model-cards-sdk-create-model-registry">Create a model card for your model in the SageMaker Model Registry</a>.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>To use model cards with the SageMaker Python SDK, you first need to establish a
+                SageMaker Session. For more information, see <a href="https://sagemaker.readthedocs.io/en/stable/api/utility/session.html" rel="noopener noreferrer" target="_blank"><span>Session</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the SageMaker Python SDK API reference.</p></div></div>
+        <p>To create a model card for models that aren't in the SageMaker Model Registry, see <a href="model-cards-create.html#model-card-sdk-create-model-non-model-registry">Create a model that isn't in the model registry</a>.</p>
+         
+            <h3 id="model-card-sdk-create-model-non-model-registry">Create a model that isn't in the model registry</h3>
+            <p>Use the information in the following sections to create a model card for a model that you haven't added to the model registry.</p>
+             
+                <h4 id="model-cards-sdk-create-model-overview">Step 1: Define model
+                        overview</h4>
+                <p>Define an overview of your model.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">model_overview = ModelOverview.from_model_name(
+model_name=<code class="replaceable">model_name</code>,
+sagemaker_session=<code class="replaceable">sagemaker_session</code>,
+model_description=<code class="replaceable">"A-description-of-your-model"</code>,
+problem_type=<code class="replaceable">"Problem-type"</code>, # For example, "Binary Classification"
+algorithm_type=<code class="replaceable">"Algorithm-type"</code>, # For example, "Logistic Regression"
+model_creator=<code class="replaceable">"Name-of-model-creator"</code>,
+model_owner=<code class="replaceable">"Name-of-model-owner"</code>,
+)</code></pre>
+                <p>If your model is an AWS resource, then overview information such as the
+                    model ARN, inference container URI, and the S3 location of model artifacts is
+                    automatically retrievable. Print the associated AWS metadata with the
+                    following commands:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">print(model_overview.model_id)
+print(model_overview.inference_environment.container_image)
+print(model_overview.model_artifact)</code></pre>
+             
+             
+                <h4 id="model-cards-sdk-create-training-details">Step 2: Define training
+                        details</h4>
+                <p>To define your model's training details, you must first define its objective
+                    function.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">objective_function = ObjectiveFunction(
+    function=Function(
+        function=ObjectiveFunctionEnum.MINIMIZE,
+        facet=FacetEnum.LOSS,
+    ),
+    notes=<code class="replaceable">"An-explanation-about-objective-function"</code>,
+)</code></pre>
+                <p>Next, you can define your training details using your existing model overview,
+                    session, and objective function. Add any training observations here.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">training_details = TrainingDetails.from_model_overview(
+    model_overview=model_overview,
+    sagemaker_session=sagemaker_session,
+    objective_function=objective_function,
+    training_observations="<code class="replaceable">Model-training-observations</code>",
+)</code></pre>
+                <p>Once again, if your model is an AWS resource, certain training details are
+                    autopopulated. Print the training job ARN, training container URI, and training
+                    metrics with the following commands:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">print(training_details.training_job_details.training_arn)
+print(training_details.training_job_details.training_environment.container_image) 
+print([<span>{</span>"name": i.name, "value": i.value} for i in training_details.training_job_details.training_metrics]) </code></pre>
+             
+             
+                <h4 id="model-cards-sdk-create-evalutation-details">Define evaluation
+                        details</h4>
+                <p>To define your model's evaluation details, you must first define one or more
+                    metric groups to describe metrics used for any evaluation jobs.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">my_metric_group = MetricGroup(
+name=<code class="replaceable">"binary classification metrics"</code>,
+metric_data=[Metric(name=<code class="replaceable">"accuracy"</code>, type=<code class="replaceable">MetricTypeEnum.NUMBER</code>, value=<code class="replaceable">0.5</code>)]
+)</code></pre>
+                <p>Next, you can define your evaluation details using evaluation metrics and
+                    datasets for each evaluation job. Add any evaluation observations here and give
+                    your evaluation job a unique name.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">evaluation_details = [
+    EvaluationJob(
+        name="<code class="replaceable">Example-evaluation-job</code>",
+        evaluation_observation=<code class="replaceable">"Evaluation-observations"</code>,
+        datasets=["<code class="replaceable">s3://path/to/evaluation/data</code>"],
+        metric_groups=[<code class="replaceable">my_metric_group</code>],
+    )
+]</code></pre>
+                <p>If you have existing evaluation reports generated by <a href="clarify-processing-job-run.html">SageMaker
+                    Clarify</a> or <a href="model-monitor-model-quality.html">SageMaker Model
+                        Monitor</a>, upload them to Amazon S3 and provide an S3 URI to
+                    automatically parse evaluation metrics. To add your own generic model card
+                    evaluation report, provide a report in the <a href="model-cards-json-schema.html">evaluation results
+                        JSON format</a>.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">report_type = <code class="replaceable">"clarify_bias.json"</code>
+example_evaluation_job.add_metric_group_from_json(
+    f"example_metrics/<span>{</span>report_type}", EvaluationMetricTypeEnum.CLARIFY_BIAS
+) </code></pre>
+             
+             
+                <h4 id="model-cards-sdk-create-intended-uses">Step 3: Define intended
+                        uses</h4>
+                <p>Define the intended uses of the model, including the general purpose of the
+                    model and the use cases for which it was intended. It is also recommended to
+                    include any factors that potentially a this model's efficacy in a particular use
+                    case and your organization's risk rating of the model. For more information, see
+                    <a href="model-cards.html#model-cards-intended-uses">Intended uses of a model</a>and <a href="model-cards.html#model-cards-risk-rating">Risk ratings</a>.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">intended_uses = IntendedUses(
+purpose_of_model=<code class="replaceable">"Purpose-of-the-model"</code>,
+intended_uses=<code class="replaceable">"The-intended-uses-of-this-model"</code>,
+factors_affecting_model_efficiency=<code class="replaceable">"Any-factors-effecting-model-efficacy"</code>,
+risk_rating=<code class="replaceable">RiskRatingEnum.LOW</code>,
+explanations_for_risk_rating=<code class="replaceable">"Explanation-for-low-risk-rating"</code>,
+)</code></pre>
+             
+             
+                <h4 id="model-cards-sdk-create-additional-details">Define additional
+                        information</h4>
+                <p>Lastly, you can add additional custom information to your model card. You can
+                    document any ethical considerations, caveats, and recommendations about the
+                    model. You can also add any custom details that you would like in the form of
+                    key-value pairs. </p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">additional_information = AdditionalInformation(
+ethical_considerations=<code class="replaceable">"Any-ethical-considerations"</code>,
+caveats_and_recommendations=<code class="replaceable">"Any-caveats-and-recommendations"</code>,
+custom_details=<span>{</span><code class="replaceable">"custom details1"</code>: <code class="replaceable">"details-value"</code>},
+)</code></pre>
+             
+             
+                <h4 id="model-cards-sdk-create-define">Step 4: Create model card</h4>
+                <p>Name your model card, define a model card, and then use that definition to
+                    create a model card using the SageMaker Python SDK.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">model_card_name = <code class="replaceable">"my-model-card"</code>
+<code class="replaceable">my_card</code> = ModelCard(
+    name=model_card_name,
+    status=ModelCardStatusEnum.DRAFT,
+    model_overview=model_overview,
+    training_details=training_details,
+    intended_uses=intended_uses,
+    evaluation_details=evaluation_details,
+    additional_information=additional_information,
+    sagemaker_session=sagemaker_session,
+)
+<code class="replaceable">my_card</code>.create()</code></pre>
+             
+         
+         
+            <h3 id="model-cards-sdk-create-model-registry">Create a model card for your model in the SageMaker Model Registry</h3>
+            <p>Before you begin creating a model card, make sure that you've created a model package group and a model package. For more information about using model registry, see <a href="model-registry.html">Register and Deploy Models with Model Registry</a>.</p>
+            <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>You must have permissions to use the operations in SageMaker Model Registry. We recommend using <code class="code">AmazonSageMakerModelRegistryFullAccess</code> AWS managed policy. For more information about the managed policy, see <a href="security-iam-awsmanpol-model-registry.html">AWS Managed Policies for Model Registry</a>.</p></div></div>
+            <p>Use the SageMaker Python SDK to create a model card for a model package within the SageMaker Model Registry. A model package is a model that you've trained. When you create a model card, Amazon SageMaker Model Cards automatically imports the data from the model package into the model card.</p>
+                
+
+            <p>When you create a model card for a model package, Amazon SageMaker Model Card uses the <a href="https://docs.aws.amazon.com/APIReference/API_DescribeModelPackage.html#API_DescribeModelPackage_ResponseSyntax">DescribeModelPackage</a> operation to add the data from the model package to the model card. The following are examples of the fields that can be imported from a model package into a model card:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ModelPackageContainerDefinition.html#sagemaker-Type-ModelPackageContainerDefinition-ModelDataUrl">ModelDataUrl</a></p>
+                </li><li class="listitem">
+                    <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeModelPackage.html#sagemaker-DescribeModelPackage-response-ModelPackageDescription">ModelPackageDescription</a></p>
+                </li><li class="listitem">
+                    <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeModelPackage.html#sagemaker-DescribeModelPackage-response-ModelPackageGroupName">ModelPackageGroupName</a></p>
+                </li><li class="listitem">
+                    <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeModelPackage.html#sagemaker-DescribeModelPackage-response-ModelPackageStatus">ModelPackageStatus</a></p>
+                </li><li class="listitem">
+                    <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeModelPackage.html#sagemaker-DescribeModelPackage-response-ModelPackageVersion">ModelPackageVersion</a></p>
+                </li></ul></div>
+            
+            <p>Use the following code to define the model package and create a model card from it:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">
+mp_details = ModelPackage.from_model_package_arn(
+    model_package_arn="<code class="replaceable">example_model_package_arn</code>",
+    sagemaker_session=<code class="replaceable">sagemaker_session</code>,
+)
+
+model_card_name = "example-model-card"
+my_card = ModelCard(
+    name=model_card_name,
+    status=ModelCardStatusEnum.<code class="replaceable">status</code>,
+    model_package_details=mp_details,
+    sagemaker_session=<code class="replaceable">sagemaker_session</code>,
+)
+my_card.create()
+            </code></pre>
+            <p>For <code class="code"><code class="replaceable">status</code></code>, you're specifying the approval status of the model card. If you don't specify a status, SageMaker Model Cards uses the default value of <code class="code">DRAFT</code>. If you don't specify a SageMaker session, SageMaker Model Cards uses the default SageMaker session.</p>
+            <p>You must specify a name for the model and the Amazon Resource Name (ARN) of the model package.  For information about getting the Amazon Resource Name (ARN) for the model package, see <a href="model-registry-details.html#model-registry-details-api">View the Details of a Model Version
+                    (Boto3)</a>.</p>
+            <p>The model card that you've created from the model package might have information that is either missing or inaccurate. You can add information to the model card or edit it. For more information about managing your model cards, see <a href="model-cards-manage.html">Manage model cards</a>.</p>
+            <p>SageMaker Model Registry supports versioning of your model packages. You can version your model package and create a model card for each version. The information from model cards of preceding versions carry over to model cards created from subsequent versions. For example, you could have version 1, version 2, and version 3 of a model package.
+                Suppose you've already created a model card for version 1, but you haven't created one for version 2. If you create a model card for version 3, Amazon SageMaker Model Cards automatically carries over the information from the model card for version 1 to the model card for version 3.</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can also create model cards for model packages that don't use versioning. However, most machine learning workflows involve multiple versions of the same model, so we recommend doing the following:</p><div class="orderedlist">
+                     
+                     
+                <ol><li>
+                        <p>Creating a version for each model package</p>
+                    </li><li>
+                        <p>Creating a model card for each version of the model package</p>
+                    </li></ol></div></div></div>
+
+         
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./model-cards.html">Model Cards</div><div id="next" class="next-link" accesskey="n" href="./model-cards-manage.html">Manage model cards</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-cards-create.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-cards-create.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

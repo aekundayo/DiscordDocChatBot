@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Use Managed Spot Training in Amazon SageMaker - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="model-managed-spot-training" /><meta name="default_state" content="model-managed-spot-training" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="model-managed-spot-training.html" /><meta name="description" content="Use managed spot training to lower model training costs." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="model-managed-spot-training.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/model-managed-spot-training.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/model-managed-spot-training.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/model-managed-spot-training.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/model-managed-spot-training.html" hreflang="de" /><link rel="alternative" href="model-managed-spot-training.html" hreflang="en-us" /><link rel="alternative" href="model-managed-spot-training.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/model-managed-spot-training.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/model-managed-spot-training.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/model-managed-spot-training.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/model-managed-spot-training.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/model-managed-spot-training.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/model-managed-spot-training.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/model-managed-spot-training.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/model-managed-spot-training.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/model-managed-spot-training.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/model-managed-spot-training.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/model-managed-spot-training.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/model-managed-spot-training.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/model-managed-spot-training.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/model-managed-spot-training.html" hreflang="zh-tw" /><link rel="alternative" href="model-managed-spot-training.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Use Managed Spot Training in Amazon SageMaker" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Use Managed Spot Training in Amazon SageMaker - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#model-managed-spot-training" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-managed-spot-training.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-managed-spot-training.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-managed-spot-training.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Use Managed Spot Training in Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#model-managed-spot-training" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="model-managed-spot-training.html#model-managed-spot-training-using">Using Managed Spot Training</a><a href="model-managed-spot-training.html#model-managed-spot-training-status">Managed Spot Training Lifecycle</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="model-managed-spot-training">Use Managed Spot Training in Amazon SageMaker</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon SageMaker makes it easy to train machine learning models using managed Amazon EC2 Spot instances.
+  Managed spot training can optimize the cost of training models up to 90% over on-demand instances.
+  SageMaker manages the Spot interruptions on your behalf. </p><p>Managed Spot Training uses Amazon EC2 Spot instance to run training jobs instead of on-demand
+  instances. You can specify which training jobs use spot instances and a stopping condition that
+  specifies how long SageMaker waits for a job to run using Amazon EC2 Spot instances. Metrics and logs
+  generated during training runs are available in CloudWatch. </p><p>Amazon SageMaker automatic model tuning, also known as hyperparameter tuning, can use managed spot
+  training. For more information on automatic model tuning, see <a href="automatic-model-tuning.html">Perform Automatic Model Tuning with SageMaker</a>.</p><p>Spot instances can be interrupted, causing jobs to take longer to start or finish. You can
+  configure your managed spot training job to use checkpoints. SageMaker copies checkpoint data from a
+  local path to Amazon S3. When the job is restarted, SageMaker copies the data from Amazon S3 back into the local
+  path. The training job can then resume from the last checkpoint instead of restarting. For more
+  information about checkpointing, see <a href="model-checkpoints.html">Use Checkpoints in Amazon SageMaker</a>.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Unless your training job will complete quickly, we recommend you use checkpointing with
+   managed spot training. SageMaker built-in algorithms and marketplace algorithms that do not checkpoint
+   are currently limited to a <code class="code">MaxWaitTimeInSeconds</code> of 3600 seconds (60 minutes).
+  </p></div></div><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="model-managed-spot-training.html#model-managed-spot-training-using">Using Managed Spot Training</a></li><li><a href="model-managed-spot-training.html#model-managed-spot-training-status">Managed Spot Training Lifecycle</a></li></ul></div>
+  <h2 id="model-managed-spot-training-using">Using Managed Spot Training</h2>
+  <p>To use managed spot training, create a training job. Set
+    <code class="code">EnableManagedSpotTraining</code> to <code class="code">True</code> and specify the
+    <code class="code">MaxWaitTimeInSeconds</code>. <code class="code">MaxWaitTimeInSeconds</code> must be larger than
+    <code class="code">MaxRuntimeInSeconds</code>. For more information about creating a training job, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeTrainingJob.html">DescribeTrainingJob</a>. </p>
+  <p>You can calculate the savings from using managed spot training using the formula <code class="code">(1 -
+    (BillableTimeInSeconds / TrainingTimeInSeconds)) * 100</code>. For example, if
+    <code class="code">BillableTimeInSeconds</code> is 100 and <code class="code">TrainingTimeInSeconds</code> is 500, this
+   means that your training job ran for 500 seconds, but you were billed for only 100 seconds. Your savings is (1 - (100 / 500)) * 100 = 80%.</p>
+  <p>To learn how to run training jobs on Amazon SageMaker spot instances and how managed spot training
+   works and reduces the billable time, see the following example notebooks:</p>
+  <div class="itemizedlist">
+    
+    
+    
+    
+  <ul class="itemizedlist"><li class="listitem">
+    <p><a href="https://sagemaker-examples.readthedocs.io/en/latest/sagemaker-python-sdk/managed_spot_training_tensorflow_estimator/managed_spot_training_tensorflow_estimator.html" rel="noopener noreferrer" target="_blank"><span>Managed Spot Training with TensorFlow</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+   </li><li class="listitem">
+    <p><a href="https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_amazon_algorithms/xgboost_abalone/xgboost_managed_spot_training.html" rel="noopener noreferrer" target="_blank"><span>Managed Spot Training with XGBoost</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+   </li><li class="listitem">
+    <p><a href="https://github.com/aws/amazon-sagemaker-examples-community/blob/215215eb25b40eadaf126d055dbb718a245d7603/training/sagemaker-debugger/mxnet-spot-training-with-sagemakerdebugger.ipynb#L41" rel="noopener noreferrer" target="_blank"><span>Managed Spot Training with MXNet</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+   </li><li class="listitem">
+    <p><a href="https://github.com/aws-samples/amazon-sagemaker-managed-spot-training" rel="noopener noreferrer" target="_blank"><span>Amazon
+      SageMaker Managed Spot Training Examples GitHub repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+   </li></ul></div>
+  
+  <h2 id="model-managed-spot-training-status">Managed Spot Training Lifecycle</h2>
+  <p>You can monitor a training job using <code class="code">TrainingJobStatus</code> and
+    <code class="code">SecondaryStatus</code> returned by <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeTrainingJob.html">DescribeTrainingJob</a>.
+   The list below shows how <code class="code">TrainingJobStatus</code> and <code class="code">SecondaryStatus</code> values
+   change depending on the training scenario:</p>
+  <div class="itemizedlist">
+    
+    
+    
+    
+  <ul class="itemizedlist"><li class="listitem">
+    <p><b>Spot instances acquired with no interruption during
+      training</b></p>
+    <div class="orderedlist">
+      
+    <ol><li>
+      <p><code class="code">InProgress</code>: <code class="code">Starting</code>↠ <code class="code">Downloading</code> ↠
+        <code class="code">Training</code> ↠ <code class="code">Uploading</code></p>
+     </li></ol></div>
+   </li><li class="listitem">
+    <p><b>Spot instances interrupted once. Later, enough spot instances were
+      acquired to finish the training job.</b></p>
+    <div class="orderedlist">
+      
+    <ol><li>
+      <p><code class="code">InProgress</code>: <code class="code">Starting</code> ↠ <code class="code">Downloading</code> ↠
+        <code class="code">Training</code> ↠ <code class="code">Interrupted</code> ↠ <code class="code">Starting</code> ↠
+        <code class="code">Downloading</code> ↠ <code class="code">Training</code> ↠ <code class="code">Uploading</code>
+      </p>
+     </li></ol></div>
+   </li><li class="listitem">
+    <p><b>Spot instances interrupted twice and
+       <code class="code">MaxWaitTimeInSeconds</code> exceeded.</b></p>
+    <div class="orderedlist">
+      
+      
+      
+    <ol><li>
+      <p><code class="code">InProgress</code>: <code class="code">Starting</code> ↠ <code class="code">Downloading</code> ↠
+        <code class="code">Training</code> ↠ <code class="code">Interrupted</code> ↠ <code class="code">Starting</code> ↠
+        <code class="code">Downloading</code> ↠ <code class="code">Training</code> ↠ <code class="code">Interrupted</code> ↠
+        <code class="code">Downloading</code> ↠ <code class="code">Training</code>
+      </p>
+     </li><li>
+      <p><code class="code">Stopping</code>: <code class="code">Stopping</code>
+      </p>
+     </li><li>
+      <p><code class="code">Stopped</code>: <code class="code">MaxWaitTimeExceeded</code>
+      </p>
+     </li></ol></div>
+   </li><li class="listitem">
+    <p><b>Spot instances were never launched.</b></p>
+    <div class="orderedlist">
+      
+      
+      
+    <ol><li>
+      <p><code class="code">InProgress</code>: <code class="code">Starting</code>
+      </p>
+     </li><li>
+      <p><code class="code">Stopping</code>: <code class="code">Stopping</code>
+      </p>
+     </li><li>
+      <p><code class="code">Stopped</code>: <code class="code">MaxWaitTimeExceeded</code>
+      </p>
+     </li></ol></div>
+   </li></ul></div>
+ <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./incremental-training.html">Use Incremental Training</div><div id="next" class="next-link" accesskey="n" href="./train-warm-pools.html">Use Managed Warm Pools</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-managed-spot-training.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-managed-spot-training.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

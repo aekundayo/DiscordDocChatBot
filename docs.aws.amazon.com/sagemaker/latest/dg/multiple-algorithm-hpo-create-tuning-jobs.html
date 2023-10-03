@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Create a Hyperparameter Optimization Tuning Job for One or More Algorithms (Console) - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="multiple-algorithm-hpo-create-tuning-jobs" /><meta name="default_state" content="multiple-algorithm-hpo-create-tuning-jobs" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="multiple-algorithm-hpo-create-tuning-jobs.html" /><meta name="description" content="Configure and create an HPO tuning job for single or multiple algorithms." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="multiple-algorithm-hpo-create-tuning-jobs.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="de" /><link rel="alternative" href="multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="en-us" /><link rel="alternative" href="multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="zh-tw" /><link rel="alternative" href="multiple-algorithm-hpo-create-tuning-jobs.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Create a Hyperparameter Optimization Tuning Job for One or More Algorithms (Console)" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Create a Hyperparameter Optimization Tuning Job for One or More Algorithms (Console) - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#multiple-algorithm-hpo-create-tuning-jobs" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,automatic model tuning,hyperparameter optimization,tune multiple algorithms,create hyperparameter tuning job" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Perform Automatic Model Tuning with SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Tune Multiple Algorithms with Hyperparameter Optimization to Find the Best Model",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/multiple-algorithm-hpo.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Create a Hyperparameter Optimization Tuning Job for One or More Algorithms (Console)",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/multiple-algorithm-hpo.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#multiple-algorithm-hpo-create-tuning-jobs" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="multiple-algorithm-hpo-create-tuning-jobs.html#multiple-algorithm-hpo-create-tuning-jobs-define-settings">Components of a
+          tuning job</a><a href="multiple-algorithm-hpo-create-tuning-jobs.html#multiple-algorithm-hpo-create-tuning-jobs-define-example">HPO tuning job
+          example</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="multiple-algorithm-hpo-create-tuning-jobs">Create a Hyperparameter
+        Optimization Tuning Job for One or More Algorithms (Console)</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>This guide shows you how to create a new hyperparameter optimization (HPO) tuning job for
+      one or more algorithms. To create an HPO job, define the settings for the tuning job, and
+      create training job definitions for each algorithm being tuned. Next, configure the resources
+      for and create the tuning job. The following sections provide details about how to complete
+      each step. We provide an example of how to tune multiple algorithms using the SageMaker
+        SDK for Python client at the end of this guide.</p>
+      <h2 id="multiple-algorithm-hpo-create-tuning-jobs-define-settings">Components of a
+          tuning job</h2>
+      <p>An HPO tuning job contains the following three components:</p>
+      <div class="itemizedlist">
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>Tuning job settings</p>
+        </li><li class="listitem">
+          <p>Training job definitions</p>
+        </li><li class="listitem">
+          <p>Tuning job configuration</p>
+        </li></ul></div>
+      <p>The way that these components are included in your HPO tuning job depends on whether
+        your tuning job contains one or multiple training algorithms. The following guide describes
+        each of the components and gives an example of both types of tuning jobs.</p>
+      <div class="collapsible"><awsui-expandable-section variant="container" header="Tuning job settings" id="multiple-algorithm-hpo-create-tuning-jobs-components-tuning-settings" expanded="true"><p>Your tuning job settings are applied across all of the algorithms in the HPO tuning
+            job. Warm start and early stopping are available only when you're tuning a single
+            algorithm. After you define the job settings, you can create individual training
+            definitions for each algorithm or variation that you want to tune. </p>
+            <h6>Warm start</h6>
+            <p>If you cloned this job, you can use the results from a previous tuning job to
+              improve the performance of this new tuning job. This is the warm start feature, and
+              it's only available when tuning a single algorithm. With the warm start option, you
+              can choose up to five previous hyperparameter tuning jobs to use. Alternatively, you
+              can use transfer learning to add additional data to the parent tuning job. When you
+              select this option, you choose one previous tuning job as the parent. </p>
+          <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Warm start is compatible only with tuning jobs that were created after October 1,
+              2018. For more information, see <a href="automatic-model-tuning-considerations.html" rel="noopener noreferrer" target="_blank">Run a warm start
+              job</a>.</p></div></div>
+            <h6>Early stopping</h6>
+            <p>To reduce compute time and avoid overfitting your model, you can stop training
+              jobs early. Early stopping is helpful when the training job is unlikely to improve the
+              current best objective metric of the hyperparameter tuning job. Like warm start, this
+              feature is only available when tuning a single algorithm. This is an automatic feature
+              without configuration options, and it’s disabled by default. For more information
+              about how early stopping works, the algorithms that support it, and how to use it with
+              your own algorithms, see <a href="automatic-model-tuning-early-stopping.html" rel="noopener noreferrer" target="_blank">Stop
+                Training Jobs Early</a>.</p>
+           
+            <h6>Tuning strategy</h6>
+            <p>Tuning strategy can be either random, Bayesian, or Hyperband. These
+              selections specify how automatic tuning algorithms search specified hyperparameter
+              ranges that are selected in a later step. Random search chooses random combinations of
+              values from the specified ranges and can be run sequentially or in parallel. Bayesian
+              optimization chooses values based on what is likely to get the best result according
+              to the known history of previous selections. Hyperband uses a
+              multi-fidelity strategy that dynamically allocates resources toward well-utilized jobs
+              and automatically stops those that underperform. The new configuration that starts
+              after stopping other configurations is chosen randomly.</p>
+           
+            <p>
+              Hyperband can only be used with iterative algorithms, or algorithms
+              that run steps in iterations, such as <a href="xgboost.html">XGBoost</a> or <a href="randomcutforest.html">Random Cut
+                Forest</a>. Hyperband can't be used with non-iterative
+              algorithms, such as decision trees or <a href="k-nearest-neighbors.html">k-Nearest Neighbors</a>. For
+              more information about search strategies, see <a href="automatic-model-tuning-how-it-works.html" rel="noopener noreferrer" target="_blank">How Hyperparameter Tuning
+                Works</a>.</p>
+          <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Hyperband uses an advanced internal mechanism to apply early
+              stopping. Therefore, when you use the Hyperband internal early stopping
+              feature, the parameter <code class="code">TrainingJobEarlyStoppingType</code> in the
+                <code class="code">HyperParameterTuningJobConfig</code> API must be set to
+              <code class="code">OFF</code>.</p></div></div>
+            <h6>Tags</h6>
+            <p>To help you manage tuning jobs, you can enter tags as key-value pairs to assign
+              metadata to tuning jobs. Values in the key-value pair are not required. You can use
+              the key without values. To see the keys associated with a job, choose
+                the <b>Tags</b> tab on the details page for tuning job. For more
+              information about using tags for tuning jobs, see <a href="multiple-algorithm-hpo-manage-tuning-jobs.html">Manage Hyperparameter Tuning and
+        Training Jobs</a>.</p>
+          </awsui-expandable-section><awsui-expandable-section variant="container" header="Training job definitions" id="multiple-algorithm-hpo-create-tuning-jobs-training-definitions" expanded="false"><p>To create a training job definition, you must configure the algorithm and
+            parameters, define the data input and output, and configure resources. Provide at least
+            one <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TrainingJobDefinition.html"><code class="code">TrainingJobDefinition</code></a> for each HPO tuning job. Each training
+            definition specifies the configuration for an algorithm.</p><p>To create several definitions for your training job, you can clone a job definition.
+            Cloning a job can save time because it copies all of the job settings, including data
+            channels and Amazon S3 storage locations for output artifacts. You can edit a cloned job to
+            change what you need for your use case.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="multiple-algorithm-hpo-create-tuning-jobs.html#multiple-algorithm-hpo-algorithm-configuration">Configure algorithm
+                and parameters</a></li><li><a href="multiple-algorithm-hpo-create-tuning-jobs.html#multiple-algorithm-hpo-data">Define data input and output</a></li><li><a href="multiple-algorithm-hpo-create-tuning-jobs.html#multiple-algorithm-hpo-training-job-definition-resources">Configure
+                training job resources</a></li><li><a href="multiple-algorithm-hpo-create-tuning-jobs.html#multiple-algorithm-hpo-add-training-job">Add or clone a training
+                job</a></li></ul></div>
+            <h4 id="multiple-algorithm-hpo-algorithm-configuration">Configure algorithm
+                and parameters</h4>
+            <p> The following list describes what you need to configure the set of hyperparameter
+              values for each training job. </p>
+            <div class="itemizedlist">
+               
+               
+               
+               
+               
+            <ul class="itemizedlist"><li class="listitem">
+                <p>A name for your tuning job</p>
+              </li><li class="listitem">
+                <p>Permission to access services</p>
+              </li><li class="listitem">
+                <p>Parameters for any algorithm options</p>
+              </li><li class="listitem">
+                <p>An objective metric</p>
+              </li><li class="listitem">
+                <p>The range of hyperparameter values, when required</p>
+              </li></ul></div>
+             
+              <h6>Name</h6>
+              <p> Provide a unique name for the training definition. </p>
+             
+             
+              <h6>Permissions</h6>
+              <p> Amazon SageMaker requires permissions to call other services on your behalf. Choose an
+                AWS Identity and Access Management (IAM) role, or let AWS create a role with the
+                  <code class="code">AmazonSageMakerFullAccess</code> IAM policy attached. </p>
+             
+             
+              <h6>Optional security settings</h6>
+              <p> The network isolation setting prevents the container from making any outbound
+                network calls. This is required for AWS Marketplace machine learning offerings. </p>
+             
+            <p> You can also choose to use a virtual private cloud (VPC).</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p> Inter-container encryption is only available when you create a job definition
+                from the API. </p></div></div>
+             
+              <h6>Algorithm options</h6>
+              <p>You can choose built-in algorithms, your own algorithm, your own container with
+                an algorithm, or you can subscribe to an algorithm from AWS Marketplace. </p>
+             
+            <div class="itemizedlist">
+               
+               
+               
+            <ul class="itemizedlist"><li class="listitem">
+                <p>If you choose a built-in algorithm, it has the Amazon Elastic Container Registry (Amazon ECR) image
+                  information pre-populated.</p>
+              </li><li class="listitem">
+                <p>If you choose your own container, you must specify the (Amazon ECR) image
+                  information. You can select the input mode for the algorithm as file or
+                  pipe.</p>
+              </li><li class="listitem">
+                <p>If you plan to supply your data using a CSV file from Amazon S3, you should select
+                  the file.</p>
+              </li></ul></div>
+             
+              <h6>Metrics</h6>
+              <p>When you choose a built-in algorithm, metrics are provided for you. If you
+                choose your own algorithm, you must define your metrics. You can define up to 20
+                metrics for your tuning job to monitor. You must choose one metric as the objective
+                metric. For more information about how to define a metric for a tuning job, see
+                  <a href="automatic-model-tuning-define-metrics-variables.html#automatic-model-tuning-define-metrics">Define metrics Specify environment
+          variables</a>.</p>
+             
+             
+              <h6>Objective metric</h6>
+              <p>To find the best training job, set an objective metric and whether to maximize
+                or minimize it. After the training job is complete, you can view the tuning job
+                detail page. The detail page provides a summary of the best training job that is
+                found using this objective metric. </p>
+             
+             
+              <h6>Hyperparameter configuration</h6>
+              <p>When you choose a built-in algorithm, the default values for its hyperparameters
+                are set for you, using ranges that are optimized for the algorithm that's being
+                tuned. You can change these values as you see fit. For example, instead of a range,
+                you can set a fixed value for a hyperparameter by setting the parameter’s type
+                  to <strong>static</strong>. Each algorithm has different
+                required and optional parameters. For more information, see <a href="automatic-model-tuning-considerations.html" rel="noopener noreferrer" target="_blank">Best Practices for Hyperparameter
+                  Tuning</a> and <a href="automatic-model-tuning-define-ranges.html" rel="noopener noreferrer" target="_blank">Define
+                  Hyperparameter Ranges</a>. </p>
+             
+           
+            <h4 id="multiple-algorithm-hpo-data">Define data input and output</h4>
+            <p>Each training job definition for a tuning job must configure the channels for data
+              inputs, data output locations, and optionally, any checkpoint storage locations for
+              each training job. </p>
+             
+              <h6>Input data configuration</h6>
+              <p>Input data is defined by channels. Each channel its own source location (Amazon S3
+                or Amazon Elastic File System), compression, and format options. You can define up to 20 channels of
+                input sources. If the algorithm that you choose supports multiple input channels,
+                you can specify those, too. For example, when you use the <a href="https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_applying_machine_learning/xgboost_customer_churn/xgboost_customer_churn.html" rel="noopener noreferrer" target="_blank"><span>XGBoost churn prediction notebook</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, you can add two
+                channels: train and validation.</p>
+             
+             
+              <h6>Checkpoint configuration</h6>
+              <p>Checkpoints are periodically generated during training. For the checkpoints to
+                be saved, you must choose an Amazon S3 location. Checkpoints are used in metrics
+                reporting, and are also used to resume managed spot training jobs. For more
+                information, see <a href="model-checkpoints.html">Use Checkpoints in Amazon SageMaker</a>.</p>
+             
+             
+              <h6>Output data configuration</h6>
+              <p>Define an Amazon S3 location for the artifacts of the training job to be stored. You
+                have the option of adding encryption to the output using an AWS Key Management Service (AWS KMS) key.
+              </p>
+             
+           
+            <h4 id="multiple-algorithm-hpo-training-job-definition-resources">Configure
+                training job resources</h4>
+            <p>Each training job definition for a tuning job must configure the resources to
+              deploy, including instance types and counts, managed spot training, and stopping
+              conditions.</p>
+             
+              <h6>Resource configuration</h6>
+              <p>Each training definition can have a different resource configuration. You choose
+                the instance type and number of nodes. </p>
+             
+             
+              <h6>Managed spot training</h6>
+              <p>You can save computer costs for jobs if you have flexibility in start and end
+                times by allowing SageMaker to use spare capacity to run jobs. For more information, see
+                  <a href="model-managed-spot-training.html">Use Managed Spot Training in Amazon SageMaker</a>.</p>
+             
+             
+              <h6>Stopping condition</h6>
+              <p>The stopping condition specifies the maximum duration that's allowed for each
+                training job. </p>
+             
+           
+            <h4 id="multiple-algorithm-hpo-add-training-job">Add or clone a training
+                job</h4>
+            <p>After you create a training job definition for a tuning job, you will return to
+              the <b>Training Job Definition(s)</b> panel. This panel is where you can
+              create additional training job definitions to train additional algorithms. You can
+              select the <b>Add training job definition</b> and work through the steps
+              to define a training job again. </p>
+            <p>Alternatively, to replicate an existing training job definition and edit it for
+              the new algorithm, choose <b>Clone</b> from the
+                <b>Action</b> menu. The clone option can save time because it copies
+              all of the job’s settings, including the data channels and Amazon S3 storage locations. For
+              more information about cloning, see <a href="multiple-algorithm-hpo-manage-tuning-jobs.html">Manage Hyperparameter Tuning and
+        Training Jobs</a>.</p>
+          </awsui-expandable-section><awsui-expandable-section variant="container" header="Tuning job&#xA;              configuration" id="multiple-algorithm-hpo-resource-config" expanded="false">
+            <h6>Resource Limits</h6>
+            <p>You can specify the maximum number of concurrent training jobs that a
+              hyperparameter tuning job can run concurrently (10 at most). You can also specify the
+              maximum number of training jobs that the hyperparameter tuning job can run (500 at
+              most). The number of parallel jobs should not exceed the number of nodes that you
+              have requested across all of your training definitions. The total number of jobs can’t
+              exceed the number of jobs that your definitions are expected to run.</p>
+          <p>Review the job settings, the training job definitions, and the resource limits. Then
+            select <b>Create hyperparameter tuning job</b>.</p></awsui-expandable-section></div>
+     
+      <h2 id="multiple-algorithm-hpo-create-tuning-jobs-define-example">HPO tuning job
+          example</h2>
+      <p>To run a hyperparameter optimization (HPO) training job, first create a training job
+        definition for each algorithm that's being tuned. Next, define the tuning job settings and
+        configure the resources for the tuning job. Finally, run the tuning job.</p>
+
+      <p>If your HPO tuning job contains a single training algorithm, the SageMaker tuning function
+        will call the <code class="code">HyperparameterTuner</code> API directly and pass in your parameters. If
+        your HPO tuning job contains multiple training algorithms, your tuning function will call
+        the <code class="code">create</code> function of the <code class="code">HyperparameterTuner</code> API. The
+          <code class="code">create</code> function tells the API to expect a dictionary containing one or more
+        estimators.</p>
+
+      <p>In the following section, code examples show how to tune a job containing either a
+        single training algorithm or multiple algorithms using the SageMaker Python
+        SDK.</p>
+
+       
+        <h3 id="multiple-algorithm-hpo-create-tuning-jobs-define-example-train">Create
+            training job definitions</h3>
+        <p>When you create a tuning job that includes multiple training algorithms, your tuning
+          job configuration will include the estimators and metrics and other parameters for your
+          training jobs. Therefore, you need to create the training job definition first, and then
+          configure your tuning job. </p>
+        <p>The following code example shows how to retrieve two SageMaker containers containing the
+          built-in algorithms <a href="xgboost.html">XGBoost</a> and <a href="linear-learner.html">Linear Learner</a>. If
+          your tuning job contains only one training algorithm, omit one of the containers and one
+          of the estimators.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import sagemaker
+from sagemaker import image_uris
+
+from sagemaker.estimator import Estimator
+
+sess = sagemaker.Session()
+region = sess.boto_region_name
+role = sagemaker.get_execution_role()
+
+bucket = sess.default_bucket()
+prefix = "sagemaker/multi-algo-hpo"
+
+# Define the training containers and intialize the estimators
+xgb_container = image_uris.retrieve("xgboost", region, "latest")
+ll_container = image_uris.retrieve("linear-learner", region, "latest")
+
+xgb_estimator = Estimator(
+    xgb_container,
+    role=role,
+    instance_count=1,
+    instance_type="ml.m4.xlarge",
+    output_path='s3://<span>{</span>}/<span>{</span>}/xgb_output".format(bucket, prefix)',
+    sagemaker_session=sess,
+)
+
+ll_estimator = Estimator(
+    ll_container,
+    role,
+    instance_count=1,
+    instance_type="ml.c4.xlarge",
+    output_path="s3://<span>{</span>}/<span>{</span>}/ll_output".format(bucket, prefix),
+    sagemaker_session=sess,
+)
+
+# Set static hyperparameters
+ll_estimator.set_hyperparameters(predictor_type="binary_classifier")
+xgb_estimator.set_hyperparameters(
+    eval_metric="auc",
+    objective="binary:logistic",
+    num_round=100,
+    rate_drop=0.3,
+    tweedie_variance_power=1.4,
+)</code></pre>
+        <p>Next, define your input data by specifying the training, validation, and testing
+          datasets, as shown in the following code example. This example shows how to tune multiple
+          training algorithms.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">training_data = sagemaker.inputs.TrainingInput(
+    s3_data="s3://<span>{</span>}/<span>{</span>}/train".format(bucket, prefix), content_type="csv"
+)
+validation_data = sagemaker.inputs.TrainingInput(
+    s3_data="s3://<span>{</span>}/<span>{</span>}/validate".format(bucket, prefix), content_type="csv"
+)
+test_data = sagemaker.inputs.TrainingInput(
+    s3_data="s3://<span>{</span>}/<span>{</span>}/test".format(bucket, prefix), content_type="csv"
+)
+
+train_inputs = <span>{</span>
+    "estimator-1": <span>{</span>
+        "train": training_data,
+        "validation": validation_data,
+        "test": test_data,
+    },
+    "estimator-2": <span>{</span>
+        "train": training_data,
+        "validation": validation_data,
+        "test": test_data,
+    },
+}</code></pre>
+        <p>If your tuning algorithm contains only one training algorithm, your
+            <code class="code">train_inputs</code> should contain only one estimator.</p>
+        <p>You must upload the inputs for the training, validation, and training datasets to your
+          Amazon S3 bucket before you use those in an HPO tuning job.</p>
+       
+       
+        <h3 id="multiple-algorithm-hpo-create-tuning-jobs-define-example-resources">Define resources and settings for your tuning job</h3>
+        <p>This section shows how to initialize a tuner, define resources, and specify job
+          settings for your tuning job. If your tuning job contains multiple training algorithms,
+          these settings are applied to all of the algorithms that are contained inside your tuning
+          job. This section provides two code examples to define a tuner. The code examples show you
+          how to optimize a single training algorithm followed by an example of how to tune multiple
+          training algorithms.</p>
+         
+          <h4 id="multiple-algorithm-hpo-create-tuning-jobs-define-example-resources-single">
+              Tune a single training algorithm</h4>
+          <p>The following code example shows how to initialize a tuner and set hyperparameter
+            ranges for one SageMaker built-in algorithm, XGBoost.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from sagemaker.tuner import HyperparameterTuner
+from sagemaker.parameter import ContinuousParameter, IntegerParameter
+
+hyperparameter_ranges = <span>{</span>
+    "max_depth": IntegerParameter(1, 10),
+    "eta": ContinuousParameter(0.1, 0.3),
+}
+
+objective_metric_name = "validation:accuracy"
+
+tuner = HyperparameterTuner(
+    xgb_estimator,
+    objective_metric_name,
+    hyperparameter_ranges,
+    objective_type="Maximize",
+    max_jobs=5,
+    max_parallel_jobs=2,
+)       </code></pre>
+         
+         
+          <h4 id="multiple-algorithm-hpo-create-tuning-jobs-define-example-resources-multiple"> Tune multiple training algorithms</h4>
+          <p>Each training job requires different configurations, and these are specified using a
+            dictionary. The following code example shows how to initialize a tuner with
+            configurations for two SageMaker built-in algorithms, XGBoost and
+              Linear Learner. The code example also shows how to set a tuning
+            strategy and other job settings, such as the compute resources for the tuning job. The
+            following code example uses <code class="code">metric_definitions_dict</code>, which is
+            optional.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">from sagemaker.tuner import HyperparameterTuner
+from sagemaker.parameter import ContinuousParameter, IntegerParameter
+
+# Initialize your tuner
+tuner = HyperparameterTuner.create(
+    estimator_dict=<span>{</span>
+        "estimator-1": xgb_estimator,
+        "estimator-2": ll_estimator,
+    },
+    objective_metric_name_dict=<span>{</span>
+        "estimator-1": "validation:auc",
+        "estimator-2": "test:binary_classification_accuracy",
+    },
+    hyperparameter_ranges_dict=<span>{</span>
+        "estimator-1": <span>{</span>"eta": ContinuousParameter(0.1, 0.3)},
+        "estimator-2": <span>{</span>"learning_rate": ContinuousParameter(0.1, 0.3)},
+    },
+    metric_definitions_dict=<span>{</span>
+        "estimator-1": [
+            <span>{</span>"Name": "validation:auc", "Regex": "Overall test accuracy: (.*?);"}
+        ],
+        "estimator-2": [
+            <span>{</span>
+                "Name": "test:binary_classification_accuracy",
+                "Regex": "Overall test accuracy: (.*?);",
+            }
+        ],
+    },
+    strategy="Bayesian",
+    max_jobs=10,
+    max_parallel_jobs=3,
+)          </code></pre>
+         
+       
+       
+        <h3 id="multiple-algorithm-hpo-create-tuning-jobs-define-example-run"> Run your
+            HPO tuning job</h3>
+        <p>Now you can run your tuning job by passing your training inputs to the
+            <code class="code">fit</code> function of the <code class="code">HyperparameterTuner</code> class. The following
+          code example shows how to pass the <code class="code">train_inputs</code> parameter, that is defined in
+          a previous code example, to your tuner.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">tuner.fit(inputs=train_inputs, include_cls_metadata =<span>{</span>}, estimator_kwargs =<span>{</span>})   </code></pre>
+       
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./multiple-algorithm-hpo.html">Tune Multiple Algorithms</div><div id="next" class="next-link" accesskey="n" href="./multiple-algorithm-hpo-manage-tuning-jobs.html">Manage Jobs for HPO</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/multiple-algorithm-hpo-create-tuning-jobs.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

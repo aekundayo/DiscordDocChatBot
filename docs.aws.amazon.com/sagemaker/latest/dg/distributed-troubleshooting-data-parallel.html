@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Data Parallel Troubleshooting - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="distributed-troubleshooting-data-parallel" /><meta name="default_state" content="distributed-troubleshooting-data-parallel" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="distributed-troubleshooting-data-parallel.html" /><meta name="description" content="Troubleshooting info for distributed training in Amazon SageMaker." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="distributed-troubleshooting-data-parallel.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" hreflang="de" /><link rel="alternative" href="distributed-troubleshooting-data-parallel.html" hreflang="en-us" /><link rel="alternative" href="distributed-troubleshooting-data-parallel.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" hreflang="zh-tw" /><link rel="alternative" href="distributed-troubleshooting-data-parallel.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Data Parallel Troubleshooting" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Data Parallel Troubleshooting - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#distributed-troubleshooting-data-parallel" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Distributed training in Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/distributed-training.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "SageMaker's Data Parallelism Library",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-parallel.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Data Parallel Troubleshooting",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-parallel.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#distributed-troubleshooting-data-parallel" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="distributed-troubleshooting-data-parallel.html#distributed-ts-data-parallel-debugger">Using SageMaker Distributed Data
+                Parallel with Amazon SageMaker Debugger and Checkpoints</a><a href="distributed-troubleshooting-data-parallel.html#distributed-ts-data-parallel-pytorch-prefix">An Unexpected Prefix
+                Attached to Model Parameter Keys</a><a href="distributed-troubleshooting-data-parallel.html#distributed-ts-data-parallel-efa-sg">SageMaker Distributed Training Job
+                Stalling During Initialization</a><a href="distributed-troubleshooting-data-parallel.html#distributed-ts-data-parallel-stall-at-the-end">SageMaker Distributed
+                Training Job Stalling at the End of Training</a><a href="distributed-troubleshooting-data-parallel.html#distributed-ts-data-parallel-fxs-bottleneck">Observing Scaling
+                Efficiency Degradation Due to Amazon FSx Throughput Bottlenecks</a><a href="distributed-troubleshooting-data-parallel.html#distributed-ts-data-parallel-deprecation-warnings">SageMaker Distributed
+                Training Job with PyTorch Returns Deprecation Warnings</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="distributed-troubleshooting-data-parallel">Data Parallel
+            Troubleshooting</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>If you have problems in running a training job when you use the library, use the following
+        list to try to troubleshoot. If you need further support, reach out to the SageMaker team through
+            <a href="https://console.aws.amazon.com/support/" rel="noopener noreferrer" target="_blank"><span>AWS Support Center</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> or <a href="https://forums.aws.amazon.com/forum.jspa?forumID=285" rel="noopener noreferrer" target="_blank"><span>AWS Developer Forums for
+            Amazon Amazon SageMaker</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="distributed-troubleshooting-data-parallel.html#distributed-ts-data-parallel-debugger">Using SageMaker Distributed Data
+                Parallel with Amazon SageMaker Debugger and Checkpoints</a></li><li><a href="distributed-troubleshooting-data-parallel.html#distributed-ts-data-parallel-pytorch-prefix">An Unexpected Prefix
+                Attached to Model Parameter Keys</a></li><li><a href="distributed-troubleshooting-data-parallel.html#distributed-ts-data-parallel-efa-sg">SageMaker Distributed Training Job
+                Stalling During Initialization</a></li><li><a href="distributed-troubleshooting-data-parallel.html#distributed-ts-data-parallel-stall-at-the-end">SageMaker Distributed
+                Training Job Stalling at the End of Training</a></li><li><a href="distributed-troubleshooting-data-parallel.html#distributed-ts-data-parallel-fxs-bottleneck">Observing Scaling
+                Efficiency Degradation Due to Amazon FSx Throughput Bottlenecks</a></li><li><a href="distributed-troubleshooting-data-parallel.html#distributed-ts-data-parallel-deprecation-warnings">SageMaker Distributed
+                Training Job with PyTorch Returns Deprecation Warnings</a></li></ul></div>
+        <h2 id="distributed-ts-data-parallel-debugger">Using SageMaker Distributed Data
+                Parallel with Amazon SageMaker Debugger and Checkpoints</h2>
+        <p>To monitor system bottlenecks, profile framework operations, and debug model output
+            tensors for training jobs with SageMaker distributed data parallel, use Amazon SageMaker Debugger. </p>
+        <p>However, when you use SageMaker Debugger, SageMaker distributed data parallel, and SageMaker
+            checkpoints, you might see an error that looks like the following example. </p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">SMDebug Does Not Currently Support Distributed Training Jobs With Checkpointing Enabled</code></pre>
+        <p>This is due to an internal error between Debugger and checkpoints, which occurs when you
+            enable SageMaker distributed data parallel. </p>
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>If you enable all three features, SageMaker Python SDK automatically turns off
+                    Debugger by passing <code class="code">debugger_hook_config=False</code>, which is equivalent
+                    to the following framework <code class="code">estimator</code> example.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">bucket=sagemaker.Session().default_bucket()
+base_job_name="sagemaker-checkpoint-test"
+checkpoint_in_bucket="checkpoints"
+
+# The S3 URI to store the checkpoints
+checkpoint_s3_bucket="s3://<span>{</span>}/<span>{</span>}/<span>{</span>}".format(bucket, base_job_name, checkpoint_in_bucket)
+
+estimator = TensorFlow(
+    ...
+
+    distribution=<span>{</span>"smdistributed": <span>{</span>"dataparallel": <span>{</span> "enabled": True }}},
+    checkpoint_s3_uri=checkpoint_s3_bucket,
+    checkpoint_local_path="/opt/ml/checkpoints",
+    debugger_hook_config=False
+)</code></pre>
+            </li><li class="listitem">
+                <p>If you want to keep using both SageMaker distributed data parallel and SageMaker Debugger,
+                    a workaround is manually adding checkpointing functions to your training script
+                    instead of specifying the <code class="code">checkpoint_s3_uri</code> and
+                        <code class="code">checkpoint_local_path</code> parameters from the estimator. For more
+                    information about setting up manual checkpointing in a training script, see
+                        <a href="distributed-troubleshooting-model-parallel.html#distributed-ts-model-parallel-checkpoints">Saving Checkpoints</a>.</p>
+            </li></ul></div>
+     
+        <h2 id="distributed-ts-data-parallel-pytorch-prefix">An Unexpected Prefix
+                Attached to Model Parameter Keys</h2>
+        <p>For PyTorch distributed training jobs, an unexpected prefix (<code class="code">model</code> for
+            example) might be attached to <code class="code">state_dict</code> keys (model parameters). The SageMaker
+            data parallel library does not directly alter or prepend any model parameter names when
+            PyTorch training jobs save model artifacts. The PyTorch's distributed training changes
+            the names in the <code class="code">state_dict</code> to go over the network, prepending the prefix.
+            If you encounter any model failure problem due to different parameter names while you
+            are using the SageMaker data parallel library and checkpointing for PyTorch training, adapt
+            the following example code to remove the prefix at the step you load checkpoints in your
+            training script.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">state_dict = <span>{</span>k.partition('<code class="replaceable">model.</code>')[2]:state_dict[k] for k in state_dict.keys()}</code></pre>
+        <p>This takes each <code class="code">state_dict</code> key as a string value, separates the string at
+            the first occurrence of <code class="code">'model.'</code>, and takes the third list item (with index
+            2) of the partitioned string.</p>
+        <p>For more information about the prefix issue, see a discussion thread at <a href="https://discuss.pytorch.org/t/prefix-parameter-names-in-saved-model-if-trained-by-multi-gpu/494" rel="noopener noreferrer" target="_blank"><span>Prefix parameter names in saved model if trained by multi-GPU?</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the
+                <em>PyTorch discussion forum</em>.</p>
+        <p>For more information about the PyTorch methods for saving and loading models, see
+                <a href="https://pytorch.org/tutorials/beginner/saving_loading_models.html#saving-loading-model-across-devices" rel="noopener noreferrer" target="_blank"><span>Saving &amp; Loading Model Across Devices</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the <em>PyTorch
+                documentation</em>.</p>
+     
+        <h2 id="distributed-ts-data-parallel-efa-sg">SageMaker Distributed Training Job
+                Stalling During Initialization</h2>
+        <p>If your SageMaker distributed data parallel training job stalls during initialization when
+            using EFA-enabled instances (<code class="code">ml.p3dn.24xlarge</code> and
+                <code class="code">ml.p4d.24xlarge</code>), this might be due to a misconfiguration in the
+            security group of the VPC subnet that's used for the training job. EFA requires a proper
+            security group configuration to enable traffic between the nodes.</p>
+        <div class="orderedlist">
+            <h6>To configure inbound and outbound rules for the security group</h6>
+             
+             
+             
+             
+             
+             
+             
+             
+             
+        <ol><li><p>Sign in to the AWS Management Console and open the Amazon VPC console at
+         <a href="https://console.aws.amazon.com/vpc/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/vpc/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></li><li>
+                <p>Choose <b>Security Groups</b> in the left navigation
+                    pane.</p>
+            </li><li>
+                <p>Select the security group that's tied to the VPC subnet you use for training.
+                </p>
+            </li><li>
+                <p>In the <b>Details</b> section, copy the <b>Security group ID</b>.</p>
+            </li><li>
+                <p>On the <b>Inbound rules</b> tab, choose <b>Edit inbound rules</b>.</p>
+            </li><li>
+                <p>On the <b>Edit inbound rules</b> page, do the
+                    following: </p>
+                <div class="orderedlist">
+                     
+                     
+                     
+                <ol><li>
+                        <p>Choose <b>Add rule</b>.</p>
+                    </li><li>
+                        <p>For <b>Type</b>, choose <b>All traffic</b>.</p>
+                    </li><li>
+                        <p>For <b>Source</b>, choose <b>Custom</b>, paste the security group ID into the
+                            search box, and select the security group that pops up.</p>
+                    </li></ol></div>
+            </li><li>
+                <p>Choose <b>Save rules</b> to finish configuring the
+                    inbound rule for the security group.</p>
+            </li><li>
+                <p>On the <b>Outbound rules</b> tab, choose <b>Edit outbound rules</b>.</p>
+            </li><li>
+                <p>Repeat the step 6 and 7 to add the same rule as an outbound rule.</p>
+            </li></ol></div>
+        <p>After you complete the preceding steps for configuring the security group with the
+            inbound and outbound rules, rerun the training job and verify if the stalling issue is
+            resolved.</p>
+        <p>For more information about configuring security groups for VPC and EFA, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html">Security
+                groups for your VPC</a> and <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html">Elastic Fabric Adapter</a>.</p>
+     
+        <h2 id="distributed-ts-data-parallel-stall-at-the-end">SageMaker Distributed
+                Training Job Stalling at the End of Training</h2>
+        <p>One of the root causes of stalling issues at the end of training is a mismatch in the
+            number of batches that are processed per epoch across different ranks. All workers
+            (GPUs) synchronize their local gradients in the backward pass to ensure they all have
+            the same copy of the model at the end of the batch iteration. If the batch sizes are
+            unevenly assigned to different worker groups during the final epoch of training, the
+            training job stalls. For example, while a group of workers (group A) finishes processing
+            all batches and exits the training loop, another group of workers (group B) starts
+            processing another batch and still expects communication from group A to synchronize the
+            gradients. This causes group B to wait for group A, which already completed training and
+            does not have any gradients to synchronize. </p>
+        <p>Therefore, when setting up your training dataset, it is important that each worker
+            gets the same number of data samples so that each worker goes through the same number of
+            batches while training. Make sure each rank gets the same number of batches to avoid
+            this stalling issue.</p>
+     
+        <h2 id="distributed-ts-data-parallel-fxs-bottleneck">Observing Scaling
+                Efficiency Degradation Due to Amazon FSx Throughput Bottlenecks</h2>
+        <p>One potential cause of lowered scaling efficiency is the FSx throughput limit. If you
+            observe a sudden drop in scaling efficiency when you switch to a larger training
+            cluster, try using a larger FSx for Lustre file system with a higher throughput limit. For
+            more information, see <a href="https://docs.aws.amazon.com/fsx/latest/LustreGuide/performance.html#fsx-aggregate-perf">Aggregate file
+                system performance</a> and <a href="https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html">Managing storage and
+                throughput capacity</a> in the <em>Amazon FSx for Lustre User
+            Guide</em>.</p>
+     
+        <h2 id="distributed-ts-data-parallel-deprecation-warnings">SageMaker Distributed
+                Training Job with PyTorch Returns Deprecation Warnings</h2>
+        <p>Since v1.4.0, the SageMaker distributed data parallelism library works as a backend of
+            PyTorch distributed. Because of the breaking change of using the library with PyTorch,
+            you might encounter a warning message that the <code class="code">smdistributed</code> APIs for the
+            PyTorch distributed package are deprecated. The warning message should be similar to the
+            following:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">smdistributed.dataparallel.torch.dist is deprecated in the SageMaker distributed data parallel library v1.4.0+.
+Please use torch.distributed and specify 'smddp' as a backend when initializing process group as follows:
+torch.distributed.init_process_group(backend='smddp')
+For more information, see the library's API documentation at
+https://docs.aws.amazon.com/sagemaker/latest/dg/data-parallel-modify-sdp-pt.html</code></pre>
+        <p>In v1.4.0 and later, the library only needs to be imported once at the top of your
+            training script and set as the backend during the PyTorch distributed initialization.
+            With the single line of backend specification, you can keep your PyTorch training script
+            unchanged and directly use the PyTorch distributed modules. See <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/data-parallel-modify-sdp-pt.html">Modify a PyTorch Training Script</a>
+            to learn about the breaking changes and the new way to use the library with
+            PyTorch.</p>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./data-parallel-faq.html">FAQ</div><div id="next" class="next-link" accesskey="n" href="./model-parallel.html">SageMaker's Model Parallelism Library</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/distributed-troubleshooting-data-parallel.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Train a Deep Graph Network - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="deep-graph-library" /><meta name="default_state" content="deep-graph-library" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="deep-graph-library.html" /><meta name="description" content="How to train a deep graph network with Deep Graph Library (DGL)." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="deep-graph-library.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/deep-graph-library.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/deep-graph-library.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/deep-graph-library.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/deep-graph-library.html" hreflang="de" /><link rel="alternative" href="deep-graph-library.html" hreflang="en-us" /><link rel="alternative" href="deep-graph-library.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/deep-graph-library.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/deep-graph-library.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/deep-graph-library.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/deep-graph-library.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/deep-graph-library.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/deep-graph-library.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/deep-graph-library.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/deep-graph-library.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/deep-graph-library.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/deep-graph-library.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/deep-graph-library.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/deep-graph-library.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/deep-graph-library.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/deep-graph-library.html" hreflang="zh-tw" /><link rel="alternative" href="deep-graph-library.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Train a Deep Graph Network" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Train a Deep Graph Network - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#deep-graph-library" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/deep-graph-library.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/deep-graph-library.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/deep-graph-library.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use Docker containers to build models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/docker-containers.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Use Pre-built SageMaker Docker images",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/docker-containers-prebuilt.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Train a Deep Graph Network",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/docker-containers-prebuilt.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#deep-graph-library" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="deep-graph-library.html#deep-graph-library-what-is">What Is a Deep Graph Network?</a><a href="deep-graph-library.html#deep-graph-library-get-started">Get Started</a><a href="deep-graph-library.html#deep-graph-library-run-a-graph-network-training-example">Run a Graph Network
+        Training Example</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="deep-graph-library">Train a Deep Graph Network</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>In this overview, you learn how to get started with a deep graph network by using one of the
+    DGL containers in Amazon Elastic Container Registry (Amazon ECR). You can also see links to practical examples for deep graph
+    networks. </p>
+    <h2 id="deep-graph-library-what-is">What Is a Deep Graph Network?</h2>
+    <p>Deep graph networks refer to a type of neural network that is trained to solve graph
+      problems. A deep graph network uses an underlying deep learning framework like PyTorch or
+      MXNet. The potential for graph networks in practical AI applications is highlighted in the
+      Amazon SageMaker tutorials for <a href="https://www.dgl.ai/" rel="noopener noreferrer" target="_blank"><span>Deep Graph Library</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> (DGL).
+      Examples for training models on graph datasets include social networks, knowledge bases,
+      biology, and chemistry. </p>
+    <p>
+      <span class="inlinemediaobject">
+         
+          
+          <img src="../../../images/sagemaker/latest/dg/images/dgl_white_background_bold.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;          The DGL ecosystem.&#xA;        " style="max-width:90%" />
+         
+         
+      </span>
+    </p>
+    <p>
+      <em>Figure 1. The DGL ecosystem</em>
+    </p>
+    <p>Several examples are provided using Amazon SageMaker’s deep learning containers that are
+      preconfigured with DGL. If you have special modules you want to use with DGL, you can also
+      build your own container. The examples involve heterographs, which are graphs that have
+      multiple types of nodes and edges, and draw on a variety of applications across disparate
+      scientific fields, such as bioinformatics and social network analysis. DGL provides a wide
+      array of <a href="https://docs.dgl.ai/tutorials/models/index.html" rel="noopener noreferrer" target="_blank"><span>graph neural network
+        implementations for different types models</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. Some of the highlights include: </p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+<p>Graph convolutional network (GCN)</p>
+      </li><li class="listitem">
+<p>Relational graph convolutional network (R-GCN)</p>
+      </li><li class="listitem">
+<p>Graph attention network (GAT)</p>
+      </li><li class="listitem">
+<p>Deep generative models of graphs (DGMG)</p>
+      </li><li class="listitem">
+<p>Junction tree neural network (JTNN)</p>
+      </li></ul></div>
+   
+    <h2 id="deep-graph-library-get-started">Get Started</h2>
+    <p>DGL is available as a deep learning container in Amazon ECR. You can select deep learning
+      containers when you write your estimator function in an Amazon SageMaker notebook. You can also craft
+      your own custom container with DGL by following the <a href="your-algorithms.html">Bring Your Own
+        Container</a> guide. The easiest way to get started with a deep graph network uses one
+      of the DGL containers in Amazon ECR.  </p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+      Backend framework support is limited to PyTorch and MXNet.
+    </p></div></div>
+     
+      <h6>Setup</h6>
+      <p>If you are using Amazon SageMaker Studio, you need to clone the examples repository first. If
+        you are using a notebook instance, you can find the examples by choosing the SageMaker icon at
+        bottom of the left toolbar. </p>
+     
+    <div class="procedure"><h6>To clone the Amazon SageMaker SDK and notebook examples repository</h6><ol><li>
+        <p>From the <b>JupyterLab</b> view in Amazon SageMaker, go to the <b>File
+            Browser</b> at the top of the left toolbar. From the <b>File Browser
+            panel</b>, you can see a
+          new
+          navigation at the top of the panel. </p>
+      </li><li>
+        <p>Choose the
+          icon
+          on the far right to clone a Git repository. </p>
+      </li><li>
+        <p>Add the repository URL: <a href="https://github.com/awslabs/amazon-sagemaker-examples.git" rel="noopener noreferrer" target="_blank"><span>https://github.com/awslabs/amazon-sagemaker-examples.git</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+        </p>
+      </li><li>
+        <p>Browse the newly added folder and its contents. The DGL examples are stored in the
+            <b>sagemaker-python-sdk</b> folder. </p>
+      </li></ol></div>
+
+   
+    <h2 id="deep-graph-library-run-a-graph-network-training-example">Run a Graph Network
+        Training Example</h2>
+    <div class="procedure"><h6>To train a deep graph network</h6><ol><li>
+        <p>From the <b>JupyterLab</b> view in Amazon SageMaker, browse the <a href="https://github.com/awslabs/amazon-sagemaker-examples/tree/master/sagemaker-python-sdk" rel="noopener noreferrer" target="_blank"><span>example notebooks</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and look for
+          DGL
+          folders. Several files may be included to support an example. Examine the README for any
+          prerequisites. </p>
+      </li><li>
+        <p>Run the .ipynb notebook example. 
+        </p>
+      </li><li>
+        <p>Find the estimator function, and note the line where it is using an Amazon ECR container
+          for DGL and a specific instance type. You may want to update this to use a container in
+          your preferred Region. </p>
+      </li><li>
+        <p>Run the function to launch the instance and use the DGL container for training a graph network. Charges are incurred for launching this instance. The instance self-terminates when the training is complete.
+        </p>
+      </li></ol></div>
+
+     
+      <h3 id="deep-graph-library-examples">Examples</h3>
+      <p>An example of knowledge graph embedding (KGE) is provided.
+        It
+        uses the Freebase dataset, a knowledge base of general facts. An example use case would be
+        to graph the relationships of persons and predict their nationality. 
+        </p>
+      <p>An example implementation of a graph convolutional network (GCN) shows how you can train
+        a graph network to predict toxicity. A physiology dataset, Tox21, provides toxicity
+        measurements for how substances affect biological responses.  </p>
+      <p>Another GCN example shows you how to train a graph network on a scientific publications
+        bibliography dataset, known as Cora. You can use it to find relationships between authors,
+        topics, and conferences. </p>
+      <p>The last example is a recommender system for movie reviews. It uses a graph
+        convolutional matrix completion (GCMC) network trained on the MovieLens datasets. These
+        datasets consist of movie titles, genres, and ratings by users. </p>
+     
+     
+      <h3 id="deep-graph-library-deep-learning-container">Use a Deep Learning Container
+          with DGL</h3>
+      <p>The following example uses preconfigured deep learning containers. This is the easiest
+        to try since it works out of the box on Amazon SageMaker. </p>
+      <div class="itemizedlist">
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><a href="https://github.com/awslabs/amazon-sagemaker-examples/tree/master/sagemaker-python-sdk/dgl_gcn" rel="noopener noreferrer" target="_blank"><span>Semi-supervised classification of a knowledge base using a GCN</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+          </p>
+        </li></ul></div>
+     
+     
+      <h3 id="deep-graph-library-bring-your-own-container">Bring Your Own Container with
+          DGL</h3>
+      <p>The following examples enable you to bring your own container (BYOC). Read the <a href="your-algorithms.html">BYOC guide</a> and familiarize yourself with that process before trying
+        these. Configuration is required. </p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+<p><a href="https://github.com/awslabs/amazon-sagemaker-examples/tree/master/sagemaker-python-sdk/dgl_gcn_tox21" rel="noopener noreferrer" target="_blank"><span>Molecular property prediction of toxicity using a GCN</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+</p>
+        </li><li class="listitem">
+<p><a href="https://github.com/awslabs/amazon-sagemaker-examples/tree/master/sagemaker-python-sdk/dgl_gcmc" rel="noopener noreferrer" target="_blank"><span>Recommender system for movies using a GCMC implementation</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+</p>
+        </li></ul></div>
+     
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./pre-built-docker-containers-scikit-learn-spark.html">Prebuilt Scikit-learn and Spark ML Images</div><div id="next" class="next-link" accesskey="n" href="./prebuilt-containers-extend.html">Extend a Pre-built
+            Container</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/deep-graph-library.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/deep-graph-library.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

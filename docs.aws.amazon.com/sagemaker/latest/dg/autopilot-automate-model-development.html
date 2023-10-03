@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>SageMaker Autopilot - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="autopilot-automate-model-development" /><meta name="default_state" content="autopilot-automate-model-development" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="autopilot-automate-model-development.html" /><meta name="description" content="Automatically build, train, tune, and deploy models using Autopilot." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="autopilot-automate-model-development.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/autopilot-automate-model-development.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/autopilot-automate-model-development.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/autopilot-automate-model-development.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/autopilot-automate-model-development.html" hreflang="de" /><link rel="alternative" href="autopilot-automate-model-development.html" hreflang="en-us" /><link rel="alternative" href="autopilot-automate-model-development.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/autopilot-automate-model-development.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/autopilot-automate-model-development.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/autopilot-automate-model-development.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/autopilot-automate-model-development.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/autopilot-automate-model-development.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/autopilot-automate-model-development.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/autopilot-automate-model-development.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/autopilot-automate-model-development.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/autopilot-automate-model-development.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/autopilot-automate-model-development.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/autopilot-automate-model-development.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/autopilot-automate-model-development.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/autopilot-automate-model-development.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/autopilot-automate-model-development.html" hreflang="zh-tw" /><link rel="alternative" href="autopilot-automate-model-development.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="SageMaker Autopilot" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>SageMaker Autopilot - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#autopilot-automate-model-development" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-automate-model-development.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-automate-model-development.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-automate-model-development.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,Autopilot,automatic machine learning,Auto ML" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use automated ML, no-code, or low-code",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/use-auto-ml.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "SageMaker Autopilot",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/use-auto-ml.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#autopilot-automate-model-development" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="autopilot-automate-model-development">SageMaker Autopilot</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon SageMaker Autopilot is a feature-set that simplifies and accelerates various stages of the machine
+    learning workflow by automating the process of building and deploying machine learning models
+    (AutoML).</p><p>Autopilot performs the following key tasks that you can use on autopilot (hence the name) or
+    with various degrees of human guidance:</p><div class="itemizedlist">
+     
+     
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><strong>Data analysis and preprocessing:</strong> Autopilot identifies
+        your specific problem type, handles missing values, normalizes your data, selects features,
+        and overall prepares the data for model training.</p>
+    </li><li class="listitem">
+      <p><strong>Model selection:</strong> Autopilot explores a variety of
+        algorithms and uses a cross-validation resampling technique to generate metrics that
+        evaluate the predictive quality of the algorithms based on predefined objective
+        metrics.</p>
+    </li><li class="listitem">
+      <p><strong>Hyperparameter Optimization:</strong> Autopilot automates the
+        search for optimal hyperparameter configurations.</p>
+    </li><li class="listitem">
+      <p><strong>Model Training and Evaluation:</strong> Autopilot automates the
+        process of training and evaluating various model candidates. It splits the data into
+        training and validation sets, trains the selected model candidates using the training data,
+        and evaluates their performance on the unseen data of the validation set. Lastly, it ranks
+        the optimized model candidates based on their performance and identifies the best performing
+        model.</p>
+    </li><li class="listitem">
+      <p><strong>Model Deployment:</strong> Once Autopilot has identified the best
+        performing model, it provides the option to deploy the model automatically by generating the
+        model artifacts and the endpoint exposing an API (Application Programming Interface).
+        External applications can send data to the endpoint and receive the corresponding
+        predictions or inferences.</p>
+    </li></ul></div><p>Autopilot supports building machine learning models on large datasets up to hundreds of
+    GBs.</p><p>The following outlines the tasks of this AutoML process managed by Autopilot.</p><div class="mediaobject">
+     
+      <img src="../../../images/sagemaker/latest/dg/images/Autopilot-process-graphic-1.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;      Overview of Amazon SageMaker Autopilot AutoML process.&#xA;    " style="max-width:80%" />
+     
+     
+  </div><p>Depending on your comfort level with the machine learning process and coding experience, you
+    can use Autopilot in different ways:</p><div class="itemizedlist">
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p>Fully automated mode without any additional human input with Amazon SageMaker Studio UI. This
+        approach requires minimal coding or technical knowledge. Only experiments created from
+        tabular data for problem types such as regression or classification are available via the
+        Studio UI.</p>
+    </li><li class="listitem">
+      <p>Human input with specific option and parameter selection in Amazon SageMaker Studio UI. Users can
+        better customize and control the creation of their machine learning experiment by selecting
+        specific options and parameter values.</p>
+    </li><li class="listitem">
+      <p>Code implementation using SDKs. If you have coding experience, you can use available
+        software development kits (SDKs) to create an Autopilot experiment into your own code. This
+        approach provides greater flexibility and customization options.</p>
+    </li></ul></div><p>Autopilot currently supports the following problem types:</p><div class="itemizedlist">
+     
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><strong>Regression, binary, and multiclass classification</strong>
+        with tabular data formatted as CSV or Parquet files in which each column contains a feature
+        with a specific data type and each row contains an observation. The column data types
+        accepted include numerical, categorical, text, and time series that consists of strings of
+        comma-separated numbers.</p>
+    </li><li class="listitem">
+      <p><strong>Text classification</strong> with data formatted as CSV or
+        Parquet files in which a column provides the sentences to be classified, while another
+        column should provide the corresponding class label.</p>
+    </li><li class="listitem">
+      <p><strong>Image classification</strong> with images formats such as PNG,
+        JPEG or a combination of both.</p>
+    </li><li class="listitem">
+      <p><strong>Time-series forecasting</strong> with time-series data
+        formatted as CSV or as Parquet files.</p>
+    </li></ul></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For regression or classification problems involving tabular data, users can choose between
+      two options: using the Studio user interface or the <a href="autopilot-reference.html">API Reference</a>.</p><p>Tasks such as text and image classification, as well as timeseries forecasting, are
+      exclusively available through the latest version of the SageMaker API. Users who prefer the
+      convenience of a user interface can use <a href="canvas-getting-started.html">Amazon SageMaker Canvas</a> to access
+      pre-trained models or create custom models tailored for specific text, image classification,
+      or forecasting needs.</p></div></div><p>Additionally, Autopilot helps users understand how models make predictions by automatically
+    generating reports that show the importance of each individual feature. This provides
+    transparency and insights into the factors influencing the predictions, which can be used by
+    risk and compliance teams and external regulators. Autopilot also provides a model performance
+    report, which encompasses a summary of evaluation metrics, a confusion matrix, various
+    visualizations such as receiver operating characteristic curves and precision-recall curves, and
+    more. The specific content of each report vary depending on the problem type of the Autopilot
+    experiment.</p><p>The explainability and performance reports of Autopilot are available for all problem types for
+    the best model candidate.</p><p>For tabular data use cases such as regression or classification, Autopilot offers additional
+    visibility into how the data was wrangled and how the model candidates were selected, trained,
+    and tuned, by generating notebooks that contain the code used to explore the data and find the
+    best performing model. These notebooks provide an interactive and exploratory environment to
+    help you learn about the impact of various inputs or the trade-offs made in the experiments. You
+    can experiment further with the higher performing model candidate by making your own
+    modifications to the data exploration and candidate definition notebooks provided by Autopilot. </p><p>With Amazon SageMaker, you pay only for what you use. You pay for the underlying compute and storage
+    resources within SageMaker or other AWS services, based on your usage. For more information about
+    the cost of using SageMaker, see <a href="http://aws.amazon.com/sagemaker/pricing" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker
+      Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><div class="highlights"><h6>Topics</h6><ul><li><a href="autopilot-automate-model-development-create-experiment.html">Create an Amazon SageMaker Autopilot
+      experiment for tabular data</a></li><li><a href="autopilot-create-experiment-image-classification.html">Create an Amazon SageMaker Autopilot experiment
+      for image classification</a></li><li><a href="autopilot-create-experiment-text-classification.html">Create an Amazon SageMaker Autopilot experiment
+      for text classification</a></li><li><a href="autopilot-create-experiment-timeseries-forecasting.html">Create an Amazon SageMaker Autopilot experiment
+      for time-series forecasting</a></li><li><a href="autopilot-example-notebooks.html">Amazon SageMaker Autopilot example notebooks</a></li><li><a href="autopilot-quotas.html">Amazon SageMaker Autopilot quotas</a></li><li><a href="autopilot-reference.html">API Reference guide for Amazon SageMaker Autopilot</a></li></ul></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./use-auto-ml.html">Use automated ML, no-code, or low-code</div><div id="next" class="next-link" accesskey="n" href="./autopilot-automate-model-development-create-experiment.html">Create an Autopilot Experiment for Tabular Data</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-automate-model-development.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-automate-model-development.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

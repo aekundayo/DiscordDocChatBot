@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Troubleshoot Inference Pipelines - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="inference-pipeline-troubleshoot" /><meta name="default_state" content="inference-pipeline-troubleshoot" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="inference-pipeline-troubleshoot.html" /><meta name="description" content="Troubleshoot Pipelines" /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="inference-pipeline-troubleshoot.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" hreflang="de" /><link rel="alternative" href="inference-pipeline-troubleshoot.html" hreflang="en-us" /><link rel="alternative" href="inference-pipeline-troubleshoot.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" hreflang="zh-tw" /><link rel="alternative" href="inference-pipeline-troubleshoot.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Troubleshoot Inference Pipelines" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Troubleshoot Inference Pipelines - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#inference-pipeline-troubleshoot" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/inference-pipeline-troubleshoot.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,inference,deploy model,endpoint,prediction,ML application,serverless machine learning,multi model deployment,inference pipelines,ML model" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploy models for inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Real-time inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Hosting options",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints-options.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Host models along with pre-processing logic as serial inference pipeline behind one endpoint",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/inference-pipelines.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Troubleshoot Inference Pipelines",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/inference-pipelines.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#inference-pipeline-troubleshoot" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="inference-pipeline-troubleshoot.html#inference-pipeline-troubleshoot-permissions">ECR Permissions</a><a href="inference-pipeline-troubleshoot.html#inference-pipeline-troubleshoot-logs">Logs</a><a href="inference-pipeline-troubleshoot.html#inference-pipeline-troubleshoot-errors">Error Messages</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="inference-pipeline-troubleshoot">Troubleshoot Inference
+                Pipelines</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>To troubleshoot inference pipeline issues,
+            use
+            CloudWatch logs and error messages.
+            If
+            you are using custom Docker images in a pipeline that includes Amazon SageMaker built-in
+            algorithms, you might also encounter permissions problems. To grant the required
+            permissions, create an Amazon Elastic Container Registry (Amazon ECR) policy.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="inference-pipeline-troubleshoot.html#inference-pipeline-troubleshoot-permissions">Troubleshoot Amazon ECR
+                    Permissions for Inference Pipelines</a></li><li><a href="inference-pipeline-troubleshoot.html#inference-pipeline-troubleshoot-logs">Use
+                    CloudWatch Logs to Troubleshoot SageMaker Inference Pipelines</a></li><li><a href="inference-pipeline-troubleshoot.html#inference-pipeline-troubleshoot-errors">Use Error Messages to
+                    Troubleshoot Inference Pipelines </a></li></ul></div>
+            <h2 id="inference-pipeline-troubleshoot-permissions">Troubleshoot Amazon ECR
+                    Permissions for Inference Pipelines</h2>
+            <p>When
+                you use custom Docker images in a pipeline that includes <a href="sagemaker-algo-docker-registry-paths.html">SageMaker built-in algorithms</a>, you
+                need
+                an <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/what-is-ecr.html">Amazon ECR policy</a>. The policy allows your Amazon ECR repository to grant
+                permission for SageMaker to pull the image. The policy must add the following
+                permissions:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Version": "2008-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "allowSageMakerToPull",
+            "Effect": "Allow",
+            "Principal": <span>{</span>
+                "Service": "sagemaker.amazonaws.com"
+            },
+            "Action": [
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage",
+                "ecr:BatchCheckLayerAvailability"
+            ]
+        }
+    ]
+}</code></pre>
+         
+            <h2 id="inference-pipeline-troubleshoot-logs">Use
+                    CloudWatch Logs to Troubleshoot SageMaker Inference Pipelines</h2>
+            <p>SageMaker publishes the container logs for endpoints that deploy an inference pipeline
+                to Amazon CloudWatch at the following path for each container.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">/aws/sagemaker/Endpoints/<span>{</span>EndpointName}/<span>{</span>Variant}/<span>{</span>InstanceId}/<span>{</span>ContainerHostname}</code></pre>
+            <p>For
+                example, logs for this endpoint are published to the following log groups and
+                streams:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">EndpointName: MyInferencePipelinesEndpoint
+Variant: MyInferencePipelinesVariant
+InstanceId: i-0179208609ff7e488
+ContainerHostname: MyContainerName1 and MyContainerName2</code></pre>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">logGroup: /aws/sagemaker/Endpoints/MyInferencePipelinesEndpoint
+logStream: MyInferencePipelinesVariant/i-0179208609ff7e488/MyContainerName1
+logStream: MyInferencePipelinesVariant/i-0179208609ff7e488/MyContainerName2</code></pre>
+            <p>A
+                    <em>log stream</em> is a sequence of log events that
+                share the same source. Each separate source of logs into CloudWatch makes up a separate
+                log stream. A <em>log group</em> is a group of log streams
+                that share the same retention, monitoring, and access control settings.</p>
+            <div class="procedure"><h6>To
+                    see the log groups and streams</h6><ol><li><p>Open the CloudWatch console at
+         <a href="https://console.aws.amazon.com/cloudwatch/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/cloudwatch/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></li><li>
+                    <p>In the navigation page, choose <b>Logs</b>.</p>
+                </li><li>
+                    <p>In <b>Log Groups</b>. filter on
+                            <code class="userinput">MyInferencePipelinesEndpoint</code>: </p>
+                    <div class="mediaobject">
+                         
+                            <img src="../../../images/sagemaker/latest/dg/images/pipeline-log-group-filter.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                            The CloudWatch log groups filtered for the inference pipeline&#xA;                                endpoint.&#xA;                        " style="max-width:80%" />
+                         
+                         
+                    </div>
+                </li><li>
+                    <p>To see the log streams, on the CloudWatch <b>Log Groups</b> page,
+                        choose <code class="userinput">MyInferencePipelinesEndpoint</code>, and then
+                            <b>Search Log Group</b>.</p>
+                    <div class="mediaobject">
+                         
+                            <img src="../../../images/sagemaker/latest/dg/images/pipeline-log-streams-2.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                            The CloudWatch log stream for the inference pipeline.&#xA;                        " style="max-width:80%" />
+                         
+                         
+                    </div>
+                </li></ol></div>
+            <p>For a list of the logs that SageMaker publishes, see <a href="inference-pipeline-logs-metrics.html">Inference Pipeline Logs and
+                Metrics</a>.</p>
+         
+            <h2 id="inference-pipeline-troubleshoot-errors">Use Error Messages to
+                    Troubleshoot Inference Pipelines </h2>
+            <p>The
+                inference pipeline error messages indicate which containers
+                failed.
+            </p>
+            <p>If an error occurs while SageMaker is invoking an endpoint, the service returns a
+                    <code class="code">ModelError</code> (error code 424), which indicates which container
+                failed. If the request payload (the response from the previous container) exceeds
+                the limit of 5 MB, SageMaker provides a detailed error message, such as: </p>
+            <p><strong class="errortext"><code>Received response from MyContainerName1 with status code 200. However,
+                    the request payload from MyContainerName1 to MyContainerName2 is 6000000 bytes,
+                    which has exceeded the maximum limit of 5 MB.</code></strong></p>
+                   
+            <p><code class="code"></code></p>
+
+            <p>If a container fails the ping health check while SageMaker is creating an endpoint, it
+                returns a <code class="code">ClientError</code> and indicates all of the containers that failed
+                the ping check in the last health check.</p>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./inference-pipeline-logs-metrics.html">Logs and Metrics</div><div id="next" class="next-link" accesskey="n" href="./endpoint-auto-scaling.html">Automatically scale models</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/inference-pipeline-troubleshoot.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/inference-pipeline-troubleshoot.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

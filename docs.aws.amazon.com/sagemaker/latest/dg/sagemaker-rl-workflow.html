@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Sample RL Workflow Using Amazon SageMaker RL - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="sagemaker-rl-workflow" /><meta name="default_state" content="sagemaker-rl-workflow" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="sagemaker-rl-workflow.html" /><meta name="description" content="The following example describes the steps for developing RL models using Amazon SageMaker RL." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="sagemaker-rl-workflow.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/sagemaker-rl-workflow.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/sagemaker-rl-workflow.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/sagemaker-rl-workflow.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/sagemaker-rl-workflow.html" hreflang="de" /><link rel="alternative" href="sagemaker-rl-workflow.html" hreflang="en-us" /><link rel="alternative" href="sagemaker-rl-workflow.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/sagemaker-rl-workflow.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/sagemaker-rl-workflow.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/sagemaker-rl-workflow.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/sagemaker-rl-workflow.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/sagemaker-rl-workflow.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/sagemaker-rl-workflow.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sagemaker-rl-workflow.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sagemaker-rl-workflow.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/sagemaker-rl-workflow.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/sagemaker-rl-workflow.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/sagemaker-rl-workflow.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/sagemaker-rl-workflow.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/sagemaker-rl-workflow.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/sagemaker-rl-workflow.html" hreflang="zh-tw" /><link rel="alternative" href="sagemaker-rl-workflow.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Sample RL Workflow Using Amazon SageMaker RL" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Sample RL Workflow Using Amazon SageMaker RL - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#sagemaker-rl-workflow" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sagemaker-rl-workflow.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sagemaker-rl-workflow.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sagemaker-rl-workflow.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Choose an Algorithm",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-choose.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Reinforcement Learning with Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/reinforcement-learning.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Sample RL Workflow Using Amazon SageMaker RL",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/reinforcement-learning.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#sagemaker-rl-workflow" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="sagemaker-rl-workflow">Sample RL Workflow Using Amazon SageMaker RL</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>The following example describes the steps for developing RL models using Amazon SageMaker
+            RL.</p><div class="procedure"><ol><li>
+                <p><b>Formulate the RL problem</b>—First,
+                    formulate the business problem into an RL problem. For example, auto scaling
+                    enables services to dynamically increase or decrease capacity depending on
+                    conditions that you define. Currently, this requires setting up alarms, scaling
+                    policies, thresholds, and other manual steps. To solve this with RL, we define
+                    the components of the Markov Decision Process:</p>
+                <ol><li>
+                        <p><b>Objective</b>—Scale instance capacity so that it matches the
+                            desired load profile.</p>
+                    </li><li>
+                        <p><b>Environment</b>—A custom environment that includes the load
+                            profile. It generates a simulated load with daily and weekly variations
+                            and occasional spikes. The simulated system has a delay between when new
+                            resources are requested and when they become available for serving
+                            requests.</p>
+                    </li><li>
+                        <p><b>State</b>—The current load, number
+                            of failed jobs, and number of active machines.</p>
+                    </li><li>
+                        <p><b>Action</b>—Remove, add, or keep the same number of
+                            instances.</p>
+                    </li><li>
+                        <p><b>Reward</b>—A positive reward for
+                            successful transactions and a high penalty for failing transactions
+                            beyond a specified threshold.</p>
+                    </li></ol>
+            </li><li>
+                <p><b>Define the RL environment</b>—The RL
+                    environment can be the real world where the RL agent interacts or a simulation
+                    of the real world. You can connect open source and custom environments developed
+                    using Gym interfaces and commercial simulation environments such as MATLAB and
+                    Simulink.</p>
+            </li><li>
+                <p><b>Define the presets</b>—The presets configure the RL training jobs and
+                    define the hyperparameters for the RL algorithms.</p>
+            </li><li>
+                <p><b>Write the training code</b>—Write training
+                    code as a Python script and pass the script to a SageMaker training job. In your
+                    training code, import the environment files and the preset files, and then
+                    define the <code class="code">main()</code> function.</p>
+            </li><li>
+                <p><b>Train the RL Model</b>—Use the SageMaker
+                        <code class="code">RLEstimator</code> in the <a href="https://sagemaker.readthedocs.io" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to start an RL training
+                    job. If you are using local mode, the training job runs on the notebook
+                    instance. When you use SageMaker for training, you can select GPU or CPU instances.
+                    Store the output from the training job in a local directory if you train in
+                    local mode, or on Amazon S3 if you use SageMaker training.</p>
+                <p>The <code class="code">RLEstimator</code> requires the following information as parameters. </p>
+                <ol><li>
+                        <p>The source directory where the environment, presets, and training code
+                            are uploaded.</p>
+                    </li><li>
+                        <p>The path to the training script.</p>
+                    </li><li>
+                        <p>The RL toolkit and deep learning framework you want to use. This
+                            automatically resolves to the Amazon ECR path for the RL container.</p>
+                    </li><li>
+                        <p>The training parameters, such as the instance count, job name, and S3
+                            path for output.</p>
+                    </li><li>
+                        <p>Metric definitions that you want to capture in your logs. These can
+                            also be visualized in CloudWatch and in SageMaker notebooks.</p>
+                    </li></ol>
+
+            </li><li>
+                <p><b>Visualize training metrics and output</b>—After a training job that uses an
+                    RL model completes, you can view the metrics you defined in the training jobs in
+                    CloudWatch,. You can also plot the metrics in a notebook by using the <a href="https://sagemaker.readthedocs.io" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+                    analytics library. Visualizing metrics helps you understand how the performance
+                    of the model as measured by the reward improves over time.</p>
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you train in local mode, you can't visualize metrics in CloudWatch.</p></div></div>
+            </li><li>
+                <p><b>Evaluate the model</b>—Checkpointed data
+                    from the previously trained models can be passed on for evaluation and inference
+                    in the checkpoint channel. In local mode, use the local directory. In SageMaker
+                    training mode, you need to upload the data to S3 first.</p>
+            </li><li>
+                <p><b>Deploy RL models</b>—Finally, deploy the
+                    trained model on an endpoint hosted on SageMaker containers or on an edge device by
+                    using AWS IoT Greengrass.</p>
+            </li></ol></div><p>For more information on RL with SageMaker, see <a href="https://sagemaker.readthedocs.io/en/stable/using_rl.html" rel="noopener noreferrer" target="_blank"><span>Using RL with the SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./reinforcement-learning.html">Use Reinforcement Learning</div><div id="next" class="next-link" accesskey="n" href="./sagemaker-rl-environments.html">RL Environments in Amazon SageMaker</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sagemaker-rl-workflow.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sagemaker-rl-workflow.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

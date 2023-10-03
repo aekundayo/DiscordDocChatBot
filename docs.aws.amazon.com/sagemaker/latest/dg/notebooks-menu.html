@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Use the Studio Notebook Toolbar - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="notebooks-menu" /><meta name="default_state" content="notebooks-menu" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="notebooks-menu.html" /><meta name="description" content="Describes the function of each Amazon SageMaker Studio notebook toolbar tool." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="notebooks-menu.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/notebooks-menu.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/notebooks-menu.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/notebooks-menu.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/notebooks-menu.html" hreflang="de" /><link rel="alternative" href="notebooks-menu.html" hreflang="en-us" /><link rel="alternative" href="notebooks-menu.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/notebooks-menu.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/notebooks-menu.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/notebooks-menu.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/notebooks-menu.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/notebooks-menu.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/notebooks-menu.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/notebooks-menu.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/notebooks-menu.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/notebooks-menu.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/notebooks-menu.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/notebooks-menu.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/notebooks-menu.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/notebooks-menu.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/notebooks-menu.html" hreflang="zh-tw" /><link rel="alternative" href="notebooks-menu.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Use the Studio Notebook Toolbar" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Use the Studio Notebook Toolbar - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#notebooks-menu" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/notebooks-menu.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/notebooks-menu.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/notebooks-menu.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use machine learning environments offered by SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/machine-learning-environments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Studio",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Amazon SageMaker Studio Notebooks",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/notebooks.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Use the Studio Notebook Toolbar",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/notebooks.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#notebooks-menu" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="notebooks-menu">Use the Studio Notebook Toolbar</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon SageMaker Studio notebooks extend the JupyterLab interface. For an overview of the original JupyterLab
+    interface, see <a href="https://jupyterlab.readthedocs.io/en/latest/user/interface.html" rel="noopener noreferrer" target="_blank"><span>The JupyterLab
+      Interface</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><p>The following image shows the toolbar and an empty cell from a Studio notebook.</p><div class="mediaobject">
+     
+      <img src="../../../images/sagemaker/latest/dg/images/studio/studio-notebook-menu.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;      SageMaker Studio notebook menu.&#xA;    " style="max-width:100%" />
+     
+     
+  </div><p>When you pause on a toolbar icon, a tooltip displays the icon function. Additional
+    notebook commands are found in the Studio main menu. The toolbar includes the following
+      icons:</p><div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac13c11c26c37c13"><thead>
+        <tr>
+          <th>Icon</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+        <tr>
+          <td tabindex="-1">
+            <div class="mediaobject">
+               
+                <img src="../../../images/sagemaker/latest/dg/images/studio/icons/notebook-save-and-checkpoint.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:40px" />
+               
+            </div>
+          </td>
+          <td tabindex="-1">
+            <p><b>Save and checkpoint</b></p>
+            <p>Saves the notebook and updates the checkpoint file. For more information, see
+                <a href="notebooks-diff.html#notebooks-diff-checkpoint">Get the Difference Between the Last
+          Checkpoint</a>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td tabindex="-1">
+            <div class="mediaobject">
+               
+                <img src="../../../images/sagemaker/latest/dg/images/studio/icons/notebook-insert-cell.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:40px" />
+               
+            </div>
+          </td>
+          <td tabindex="-1">
+            <p><b>Insert cell</b></p>
+            <p>Inserts a code cell below the current cell. The current
+              cell is noted by the blue vertical marker in the left margin.</p>
+          </td>
+        </tr>
+        <tr>
+          <td tabindex="-1">
+            <div class="mediaobject">
+               
+                <img src="../../../images/sagemaker/latest/dg/images/studio/icons/notebook-cut-copy-paste.png" class="aws-docs-img-whiteBg aws-docs-img-padding" />
+               
+            </div>
+          </td>
+          <td tabindex="-1">
+            <p><b>Cut, copy, and paste cells</b></p>
+            <p>Cuts, copies, and pastes the selected cells.</p>
+          </td>
+        </tr>
+        <tr>
+          <td tabindex="-1">
+            <div class="mediaobject">
+               
+                <img src="../../../images/sagemaker/latest/dg/images/studio/icons/notebook-run.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:40px" />
+               
+            </div>
+          </td>
+          <td tabindex="-1">
+            <p><b>Run cells</b></p>
+            <p>Runs the selected cells and then makes the cell that follows the last selected
+              cell the new selected cell.</p>
+          </td>
+        </tr>
+        <tr>
+          <td tabindex="-1">
+            <div class="mediaobject">
+               
+                <img src="../../../images/sagemaker/latest/dg/images/studio/icons/notebook-interrupt-kernel.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:40px" />
+               
+            </div>
+          </td>
+          <td tabindex="-1">
+            <p><b>Interrupt kernel</b></p>
+            <p>Interrupts the kernel, which cancels the currently running operation. The kernel remains
+              active.</p>
+          </td>
+        </tr>
+        <tr>
+          <td tabindex="-1">
+            <div class="mediaobject">
+               
+                <img src="../../../images/sagemaker/latest/dg/images/studio/icons/notebook-restart-kernel.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:40px" />
+               
+            </div>
+          </td>
+          <td tabindex="-1">
+            <p><b>Restart kernel</b></p>
+            <p>Restarts the kernel. Variables are reset. Unsaved information is not affected.</p>
+          </td>
+        </tr>
+        <tr>
+          <td tabindex="-1">
+            <div class="mediaobject">
+               
+                <img src="../../../images/sagemaker/latest/dg/images/studio/icons/notebook-restart-kernel-run-all-cells.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:40px" />
+               
+            </div>
+          </td>
+          <td tabindex="-1">
+            <p><b>Restart kernel and run all cells</b></p>
+            <p>Restarts the kernel, then run all the cells of the notebook.</p>
+          </td>
+        </tr>
+        <tr>
+          <td tabindex="-1">
+            <div class="mediaobject">
+               
+                <img src="../../../images/sagemaker/latest/dg/images/studio/icons/notebook-cell-type.png" class="aws-docs-img-whiteBg aws-docs-img-padding" />
+               
+            </div>
+          </td>
+          <td tabindex="-1">
+            <p><b>Cell type</b></p>
+            <p>Displays or changes the current cell type. The cell types are:</p>
+            <div class="itemizedlist">
+               
+               
+               
+            <ul class="itemizedlist"><li class="listitem">
+                <p>Code – Code that the kernel runs.</p>
+              </li><li class="listitem">
+                <p>Markdown – Text rendered as markdown.</p>
+              </li><li class="listitem">
+                <p>Raw – Content, including Markdown markup, that's displayed as text.</p>
+              </li></ul></div>
+          </td>
+        </tr>
+        <tr>
+          <td tabindex="-1">
+            <div class="mediaobject">
+              
+                <img src="../../../images/sagemaker/latest/dg/images/studio/icons/notebook-launch-terminal.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:40px" />
+               
+            </div>
+          </td>
+          <td tabindex="-1">
+            <p><b>Launch terminal</b></p>
+            <p>Launches a terminal in the SageMaker image hosting the notebook.
+              For an example, see
+              <a href="notebooks-run-and-manage-metadata.html#notebooks-run-and-manage-metadata-app">Get App Metadata</a>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td tabindex="-1">
+            <div class="mediaobject">
+              
+                <img src="../../../images/sagemaker/latest/dg/images/studio/icons/notebook-checkpoint-diff.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:40px" />
+               
+            </div>
+          </td>
+          <td tabindex="-1">
+            <p><b>Checkpoint diff</b></p>
+            <p>Opens a new tab that displays the difference between the notebook and the
+              checkpoint file. For more information, see
+              <a href="notebooks-diff.html#notebooks-diff-checkpoint">Get the Difference Between the Last
+          Checkpoint</a>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td tabindex="-1">
+            <div class="mediaobject">
+              
+                <img src="../../../images/sagemaker/latest/dg/images/studio/icons/notebook-git-diff.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:40px" />
+               
+            </div>
+          </td>
+          <td tabindex="-1">
+            <p><b>Git diff</b></p>
+            <p>Only enabled if the notebook is opened from a Git repository. Opens a new tab
+              that displays the difference between the notebook and the last Git commit. For more
+              information, see
+              <a href="notebooks-diff.html#notebooks-diff-git">Get the Difference Between the Last Commit</a>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td tabindex="-1">
+            <p><b>2 vCPU + 4 GiB</b></p>
+          </td>
+          <td tabindex="-1">
+            <p><b>Instance type</b></p>
+            <p>Displays or changes the instance type the notebook runs in. The format is as follows:</p>
+            <p><code class="code">number of vCPUs + amount of memory + number of GPUs</code></p>
+            <p><code class="code">Unknown</code> indicates the notebook was opened without specifying a
+              kernel. The notebook runs on the SageMaker Studio instance and doesn't accrue runtime
+              charges. You can't assign the notebook to an instance type. You must specify a
+              kernel and then Studio assigns the notebook to a default type.</p>
+            <p>For more information, see
+              <a href="notebooks-create-open.html">Create or Open an Amazon SageMaker Studio Notebook</a>
+              and
+              <a href="notebooks-run-and-manage-switch-instance-type.html">Change an Instance
+          Type</a>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td tabindex="-1">
+            <div class="mediaobject">
+              
+                <img src="../../../images/sagemaker/latest/dg/images/studio/icons/notebook-cluster.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:80px" />
+               
+            </div>
+          </td>
+          <td tabindex="-1">
+            <p><b>Cluster</b></p>
+            <p>Connect your notebook to an Amazon EMR cluster and scale your ETL jobs or run large-scale model training using Apache Spark, Hive, or Presto.</p>
+            
+            <p>For more information, see
+              <a href="studio-notebooks-emr-cluster.html">Prepare data using Amazon EMR</a>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td tabindex="-1">
+            <p><b>Python 3 (Data Science)</b></p>
+          </td>
+          <td tabindex="-1">
+            <p><b>Kernel and SageMaker Image</b></p>
+            <p>Displays or changes the kernel that processes the cells in the notebook. The format is as
+              follows:</p>
+            <p><code class="code">Kernel (SageMaker Image)</code></p>
+            <p><code class="code">No Kernel</code> indicates the notebook was opened without specifying a
+              kernel. You can edit the notebook but you can't run any cells.</p>
+            <p>For more information, see
+              <a href="notebooks-run-and-manage-change-image.html">Change an Image or a Kernel</a>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td tabindex="-1">
+            <div class="mediaobject">
+              
+                <img src="../../../images/sagemaker/latest/dg/images/studio/icons/notebook-kernel-status.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:40px" />
+               
+            </div>
+          </td>
+          <td tabindex="-1">
+            <p><b>Kernel busy status</b></p>
+            <p>Displays the busy status of the kernel. When the edge of the circle and its interior are the
+              same color, the kernel is busy. The kernel is busy when it is starting and when it is processing
+              cells. Additional kernel states are displayed in the status bar at the bottom-left corner of
+              SageMaker Studio.</p>
+          </td>
+        </tr>
+        <tr>
+          <td tabindex="-1">
+            <div class="mediaobject">
+               
+                <img src="../../../images/sagemaker/latest/dg/images/studio/icons/notebook-share.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:80px" />
+               
+            </div>
+          </td>
+          <td tabindex="-1">
+            <p><b>Share notebook</b></p>
+            <p>Shares the notebook. For more information, see
+              <a href="notebooks-sharing.html">Share and Use an Amazon SageMaker Studio Notebook</a>.</p>
+          </td>
+        </tr>
+      </table></div></div><p>To select multiple cells, click in the left margin outside of a cell. Hold down the
+    <code class="code">Shift</code> key and use <code class="code">K</code> or the <code class="code">Up</code> key to select previous
+    cells, or  use <code class="code">J</code> or the <code class="code">Down</code> key to select following cells.</p><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./notebooks-create-open.html">Create or Open a Notebook</div><div id="next" class="next-link" accesskey="n" href="./studio-notebooks-add-external.html">Install External Libraries and Kernels in
+        Amazon SageMaker Studio</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/notebooks-menu.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/notebooks-menu.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

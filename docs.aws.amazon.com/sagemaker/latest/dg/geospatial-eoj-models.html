@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Types of Operations - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="geospatial-eoj-models" /><meta name="default_state" content="geospatial-eoj-models" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="geospatial-eoj-models.html" /><meta name="description" content="Learn about the different operations you can use to create Earth Observation jobs." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="geospatial-eoj-models.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/geospatial-eoj-models.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/geospatial-eoj-models.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/geospatial-eoj-models.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/geospatial-eoj-models.html" hreflang="de" /><link rel="alternative" href="geospatial-eoj-models.html" hreflang="en-us" /><link rel="alternative" href="geospatial-eoj-models.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/geospatial-eoj-models.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/geospatial-eoj-models.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/geospatial-eoj-models.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/geospatial-eoj-models.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/geospatial-eoj-models.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/geospatial-eoj-models.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/geospatial-eoj-models.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/geospatial-eoj-models.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/geospatial-eoj-models.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/geospatial-eoj-models.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/geospatial-eoj-models.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/geospatial-eoj-models.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/geospatial-eoj-models.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/geospatial-eoj-models.html" hreflang="zh-tw" /><link rel="alternative" href="geospatial-eoj-models.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Types of Operations" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Types of Operations - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#geospatial-eoj-models" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/geospatial-eoj-models.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/geospatial-eoj-models.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/geospatial-eoj-models.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,Geospatial analysis,Location-based analysis,Geospatial models,Geospatial inference" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use machine learning environments offered by SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/machine-learning-environments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker geospatial capabilities",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/geospatial.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Earth Observation Jobs",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/geospatial-eoj.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Types of Operations",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/geospatial-eoj.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#geospatial-eoj-models" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="geospatial-eoj-models.html#geospatial-eoj-models-avail">Availability of EOJ Operations</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="geospatial-eoj-models">Types of Operations</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>When you create an EOJ, you select an operation based on your use case. 
+            Amazon SageMaker geospatial capabilities provide a combination of purpose-built operations and pre-trained models. 
+            You can use these operations to understand the impact of environmental changes and
+            human activities over time or identify cloud and cloud-free pixels.</p><p><b>Cloud Masking</b></p><p>Identify clouds in satellite images is an essential pre-processing step
+            in producing high-quality geospatial data. Ignoring cloud pixels can 
+            lead to errors in analysis, and over-detection of cloud pixels can decrease the
+            number of valid observations. Cloud masking has the ability to identify cloudy and cloud-free
+            pixels in satellite images. An accurate cloud mask helps get satellite images for
+            processing and improves data generation. The following is the class map for cloud masking.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+0: "No_cloud",
+1: "cloud"
+}</code></pre><p><b>Cloud Removal</b></p><p>Cloud removal for Sentinel-2 data uses an ML-based semantic segmentation model to identify clouds in the image. 
+            Cloudy pixels can be replaced by with pixels from other timestamps. 
+            USGS Landsat data contains landsat metadata that is used for cloud removal.</p><p><b>Temporal Statistics</b></p><p>Temporal statistics calculate statistics for geospatial data through time. The temporal statistics currently supported include mean, median, and standard deviation.
+        You can calculate these statistics by using <code class="code">GROUPBY</code> and set it to either <code class="code">all</code>
+        or <code class="code">yearly</code>. You can also mention the <code class="code">TargetBands</code>.</p><p><b>Zonal Statistics</b></p><p>Zonal statistics performs statistical operations over a specified area on the image. </p><p><b>Resampling</b></p><p>Resampling is used to upscale and downscale the resolution of a geospatial image. 
+            The <code class="code">value</code> attribute in resampling represents the length of a side of the pixel.</p><p><b>Geomosaic</b></p><p>Geomosaic allows you to stitch smaller images into a large image.</p><p><b>Band Stacking</b></p><p>Band stacking takes more than one image band as input and stacks them into a single GeoTIFF. The <code class="code">OutputResolution</code> attribute 
+        determines the resolution of the output image. Based on the resolutions of the input images, you can
+        set it to <code class="code">lowest</code>, <code class="code">highest</code> or <code class="code">average</code>.</p><p><b>Band Math</b></p><p>Band Math, also known as Spectral Index, is a process of transforming the observations from multiple spectral bands to a single band, 
+            indicating the relative abundance of features of interests. For instance, Normalized Difference Vegetation Index (NDVI) 
+            and Enhanced Vegetation Index (EVI) are helpful for observing the presence of green vegetation features.</p><p><b>Land Cover Segmentation</b></p><p>Land Cover segmentation is a semantic segmentation model that has the capability to identify the 
+            physical material, such as vegetation, water, and bare ground, at the earth surface. 
+            Having an accurate way to map the land cover patterns helps you understand the 
+            impact of environmental change and human activities over time. Land Cover segmentation 
+            is often used for region planning, disaster response, ecological management, and 
+            environmental impact assessment. The following is the class map for Land Cover segmentation.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+0: "No_data",
+1: "Saturated_or_defective",
+2: "Dark_area_pixels",
+3: "Cloud_shadows",
+4: "Vegetation",
+5: "Not_vegetated",
+6: "Water",
+7: "Unclassified",
+8: "Cloud_medium_probability",
+9: "Cloud_high_probability",
+10: "Thin_cirrus",
+11: "Snow_ice"
+}</code></pre>
+            <h2 id="geospatial-eoj-models-avail">Availability of EOJ Operations</h2>
+            <p>The availability of operations depends on whether you are using the SageMaker geospatial UI 
+                or the Amazon SageMaker Studio notebooks with a SageMaker geospatial image. Currently, notebooks support all functionalities. 
+                To summarize, the following geospatial operations are supported by SageMaker:</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac13c19c16c11c45b5"><thead>
+                    <tr>
+                        <th>Operations</th>
+                        <th>
+                            <p>Description</p>             
+                        </th>
+                        <th>
+                            <p>Availability</p>
+                        </th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><p>Cloud Masking</p></td>
+                        <td tabindex="-1"><p>Identify cloud and cloud-free pixels to get improved and 
+                            accurate satellite imagery.</p></td>
+                        <td tabindex="-1"><p>UI, Notebook</p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><p>Cloud Removal</p></td>
+                        <td tabindex="-1"><p>Remove pixels containing parts of a cloud from satellite imagery.</p></td>
+                        <td tabindex="-1"><p>Notebook</p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><p>Temporal Statistics</p></td>
+                        <td tabindex="-1"><p>Calculate statistics through time for a given GeoTIFF.</p></td>
+                        <td tabindex="-1"><p>Notebook</p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><p>Zonal Statistics</p></td>
+                        <td tabindex="-1"><p>Calculate statistics on user-defined regions.</p></td>
+                        <td tabindex="-1"><p>Notebook</p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><p>Resampling</p></td>
+                        <td tabindex="-1"><p>Scale images to different resolutions.</p></td>
+                        <td tabindex="-1"><p>Notebook</p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><p>Geomosaic</p></td>
+                        <td tabindex="-1"><p>Combine multiple images for greater fidelity.</p></td>
+                        <td tabindex="-1"><p>Notebook</p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><p>Band Stacking</p></td>
+                        <td tabindex="-1"><p>Combine multiple spectral bands to create a single image.</p></td>
+                        <td tabindex="-1"><p>Notebook</p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><p>Band Math / Spectral Index</p></td>
+                        <td tabindex="-1"><p>Obtain a combination of spectral bands that indicate the abundance of features 
+                        of interest.</p></td>
+                        <td tabindex="-1"><p>UI, Notebook</p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><p>Land Cover Segmentation</p></td>
+                        <td tabindex="-1"><p>Identify land cover types such as vegetation and water in satellite imagery.</p></td>
+                        <td tabindex="-1"><p>UI, Notebook</p></td>
+                    </tr>
+                </table></div></div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./geospatial-eoj-ntb.html">Create an Earth Observation Job</div><div id="next" class="next-link" accesskey="n" href="./geospatial-data-collections.html">Data Collections</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/geospatial-eoj-models.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/geospatial-eoj-models.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Create an Amazon SageMaker Autopilot experiment for time-series forecasting - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="autopilot-create-experiment-timeseries-forecasting" /><meta name="default_state" content="autopilot-create-experiment-timeseries-forecasting" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="autopilot-create-experiment-timeseries-forecasting.html" /><meta name="description" content="Create an Autopilot experiment for time-series forecasting." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="autopilot-create-experiment-timeseries-forecasting.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" hreflang="de" /><link rel="alternative" href="autopilot-create-experiment-timeseries-forecasting.html" hreflang="en-us" /><link rel="alternative" href="autopilot-create-experiment-timeseries-forecasting.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" hreflang="zh-tw" /><link rel="alternative" href="autopilot-create-experiment-timeseries-forecasting.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Create an Amazon SageMaker Autopilot experiment for time-series forecasting" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Create an Amazon SageMaker Autopilot experiment for time-series forecasting - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#autopilot-create-experiment-timeseries-forecasting" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,Autopilot,automatic machine learning,Auto ML,Autopilot experiment,Timeseries forecasting,Time-series forecasting" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use automated ML, no-code, or low-code",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/use-auto-ml.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "SageMaker Autopilot",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Create an Amazon SageMaker Autopilot experiment for time-series forecasting",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#autopilot-create-experiment-timeseries-forecasting" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="autopilot-create-experiment-timeseries-forecasting.html#timeseries-forecasting-use-sagemaker-api">Create an Autopilot Experiment Programmatically</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="autopilot-create-experiment-timeseries-forecasting">Create an Amazon SageMaker Autopilot experiment
+      for time-series forecasting</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Forecasting in machine learning refers to the process of predicting future outcomes or
+    trends based on historical data and patterns. By analyzing past time-series data and identifying
+    underlying patterns, machine learning algorithms can make predictions and provide valuable
+    insights into future behavior. In forecasting, the goal is to develop models that can accurately
+    capture the relationship between input variables and the target variable over time. This
+    involves examining various factors such as trends, seasonality, and other relevant patterns
+    within the data. The collected information is then used to train a machine learning model. The
+    trained model is capable of generating predictions by taking new input data and applying the
+    learned patterns and relationships. It can provide forecasts for a wide range of use cases, such
+    as sales projections, stock market trends, weather forecasts, demand forecasting, and many
+    more.</p><p>The following instructions show how to create an Amazon SageMaker Autopilot job as a pilot experiment for
+    time-series forecasting problem types using SageMaker <a href="autopilot-reference.html">API Reference</a>.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Tasks such as text and image classification, as well as timeseries forecasting, are
+  exclusively available through the latest version of the SageMaker API.</p><p>Users who prefer the
+  convenience of a user interface can use <a href="canvas-getting-started.html">Amazon SageMaker Canvas</a> to access
+  pre-trained models or create custom models tailored for specific text, image classification,
+  or forecasting needs.</p></div></div><p>Before using Autopilot to create a time-series forecasting experiment in SageMaker, make sure
+    to:</p><div class="itemizedlist">
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p>Prepare your time-series dataset. Dataset preparation involves collecting relevant data
+        from various sources, cleaning and filtering it to remove noise and inconsistencies, and
+        organizing it into a structured format. See <a href="timeseries-forecasting-data-format.html">Time-series datasets format and missing
+        values filling methods</a> to learn more about time-series
+        formats requirements in Autopilot. Optionally, you can supplement your dataset with the public
+        holiday calendar of the country of your choice to capture associated patterns. For more
+        information on holiday calendars, see <a href="autopilot-timeseries-forecasting-holiday-calendars.html">National holiday
+      calendars</a>.</p>
+    </li><li class="listitem">
+      <p>Place your time-series data in an Amazon S3 bucket.</p>
+    </li><li class="listitem">
+      <p>Grant full access to the Amazon S3 bucket containing your input data for the SageMaker execution
+        role used to run your experiment. Once this is done, you can use the ARN of this execution
+        role in Autopilot API requests.</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>For information on retrieving your SageMaker execution role, see <a href="sagemaker-roles.html#sagemaker-roles-get-execution-role">Get execution role</a>.</p>
+        </li><li class="listitem">
+          <p>For information on granting your SageMaker execution role permissions to access one or
+            more specific buckets in Amazon S3, see <em> Add Additional Amazon S3
+              Permissions to a SageMaker Execution Role</em> in <a href="sagemaker-roles.html#sagemaker-roles-create-execution-role">Create execution
+                    role</a>.</p>
+        </li></ul></div>
+    </li></ul></div>
+    <h2 id="timeseries-forecasting-use-sagemaker-api">Create an Autopilot experiment
+        programmatically</h2>
+
+    <p>You can create an Autopilot time-series forecasting experiment programmatically by calling
+      the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html"><code class="code">CreateAutoMLJobV2</code></a> API in any language supported by Amazon SageMaker Autopilot or the
+      AWS CLI.</p>
+    <p>For information on how this API action translates into a function in the language of your
+      choice, see the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html#API_CreateAutoMLJobV2_SeeAlso"> See Also</a> section of <code class="code">CreateAutoMLJobV2</code> and choose an SDK. As an example, for Python users, see the full request syntax of <code class="code"><a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker.html#SageMaker.Client.create_auto_ml_job_v2" rel="noopener noreferrer" target="_blank"><span>create_auto_ml_job_v2</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> in AWS SDK for Python (Boto3).</p>
+    <p>Autopilot trains several model candidates with your target time-series, then selects an
+      optimal forecasting model for a given objective metric. When your model candidates have been
+      trained, you can find the best candidate metrics in the response to <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeAutoMLJobV2.html">DescribeAutoMLJobV2</a></code> at <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CandidateProperties.html#sagemaker-Type-CandidateProperties-CandidateMetrics">BestCandidate</a></code>.</p>
+
+    <p>The following sections define the mandatory and optional input request parameters for the
+        <code class="code">CreateAutoMLJobV2</code> API used in time-series forecasting.</p>
+
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Refer to the notebook <a href="https://github.com/aws/amazon-sagemaker-examples/blob/main/autopilot/autopilot_time_series.ipynb" rel="noopener noreferrer" target="_blank"><span>Time-Series Forecasting with Amazon SageMaker Autopilot</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> for a practical, hands-on
+        time-series forecasting example. In this notebook, you use Amazon SageMaker Autopilot to train a
+        time-series model and produce predictions using the trained model. The notebook provides
+        instructions for retrieving a ready-made dataset of tabular historical data on Amazon S3.</p></div></div>
+
+     
+      <h3 id="timeseries-forecasting-api-required-params">Required parameters</h3>
+
+      <p>When calling <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html">CreateAutoMLJobV2</a></code> to create an Autopilot experiment for time-series
+        forecasting, you must provide the following values:</p>
+
+      <div class="itemizedlist">
+         
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>An <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html#API_CreateAutoMLJobV2_RequestSyntax">AutoMLJobName</a></code> to specify the name of your job. The name should be of
+            type <code class="code">string</code>, and should have a minimum length of 1 character and a maximum
+            length of 32.</p>
+        </li><li class="listitem">
+          <p>At least one <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLJobChannel.html">AutoMLJobChannel</a></code> in <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html#sagemaker-CreateAutoMLJobV2-request-AutoMLJobInputDataConfig">AutoMLJobInputDataConfig</a></code> in which you specify the name of the Amazon S3
+            bucket that contains your data. Optionally, you can specify the content (CSV or Parquet
+            files) and compression (GZip) types.</p>
+        </li><li class="listitem">
+          <p>An <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html#sagemaker-CreateAutoMLJobV2-request-AutoMLProblemTypeConfig">AutoMLProblemTypeConfig</a></code> of type <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TimeSeriesForecastingJobConfig.html">TimeSeriesForecastingJobConfig</a></code> to configure the settings of your
+            time-series forecasting job. In particular, you must specify:</p>
+          <div class="itemizedlist">
+             
+             
+             
+          <ul class="itemizedlist"><li class="listitem">
+              <p>The <strong>frequency</strong> of predictions, which refers to
+                the desired granularity (hourly, daily, monthly, etc) of your forecast.</p>
+              <p>Valid intervals are an integer followed by <code class="code">Y</code> (Year), <code class="code">M</code>
+                (Month), <code class="code">W</code> (Week), <code class="code">D</code> (Day), <code class="code">H</code> (Hour), and
+                  <code class="code">min</code> (Minute). For example, <code class="code">1D</code> indicates every day and
+                  <code class="code">15min</code> indicates every 15 minutes. The value of a frequency must not
+                overlap with the next larger frequency. For example, you must use a frequency of
+                  <code class="code">1H</code> instead of <code class="code">60min</code>.</p>
+              <p>The valid values for each frequency are the following:</p>
+              <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+                 
+              <ul class="itemizedlist"><li class="listitem">
+                  <p>Minute - 1-59</p>
+                </li><li class="listitem">
+                  <p>Hour - 1-23</p>
+                </li><li class="listitem">
+                  <p>Day - 1-6</p>
+                </li><li class="listitem">
+                  <p>Week - 1-4</p>
+                </li><li class="listitem">
+                  <p>Month - 1-11</p>
+                </li><li class="listitem">
+                  <p>Year - 1</p>
+                </li></ul></div>
+            </li><li class="listitem">
+              <p>The <strong>horizon</strong> of predictions in your forecast,
+                which refers to the number of time-steps that the model predicts. The forecast
+                horizon is also called the prediction length. The maximum forecast horizon is the
+                lesser of 500 time-steps or 1/4 of the time-steps in the dataset.</p>
+            </li><li class="listitem">
+              <p>A <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TimeSeriesConfig.html">TimeSeriesConfig</a> in which you define the schema of your dataset to map
+                the column headers to your forecast by specifying:</p>
+              <div class="itemizedlist">
+                 
+                 
+                 
+              <ul class="itemizedlist"><li class="listitem">
+                  <p>A <code class="code">TargetAttributeName</code>: The column that contains historical data
+                    of the target field to forecast.</p>
+                </li><li class="listitem">
+                  <p>A <code class="code">TimestampAttributeName</code>: The column that contains a point in
+                    time at which the target value of a given item is recorded.</p>
+                </li><li class="listitem">
+                  <p>A <code class="code">ItemIdentifierAttributeName</code>: The column that contains the
+                    item identifiers for which you want to predict the target value.</p>
+                </li></ul></div>
+            </li></ul></div>
+          <p>The following is an example of those request parameters. In this example, you are
+            setting up a daily forecast for the expected quantity or level of demand of specific
+            items over a period of 20 days.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON ">"AutoMLProblemTypeConfig": <span>{</span> 
+        "ForecastFrequency": "D",
+        "ForecastHorizon": 20,
+        "TimeSeriesConfig": <span>{</span>
+            "TargetAttributeName": "demand",
+            "TimestampAttributeName": "timestamp",
+            "ItemIdentifierAttributeName": "item_id"
+        },</code></pre>
+        </li><li class="listitem">
+          <p>An <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLOutputDataConfig.html">OutputDataConfig</a></code> to specify the Amazon S3 output path to store the
+            artifacts of your AutoML job.</p>
+        </li><li class="listitem">
+          <p>A <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html#sagemaker-CreateAutoMLJob-request-RoleArn">RoleArn</a></code> to specify the ARN of the role used to access your data. You
+            can use the ARN of the execution role to which you have granted access to your
+            data.</p>
+        </li></ul></div>
+      <p>All other parameters are optional. For example, you can set specific forecast quantiles,
+        choose a filling method for missing values in the dataset, or define how to aggregate data
+        that does not align with forecast frequency. To learn how to set those additional
+        parameters, see <a href="autopilot-create-experiment-timeseries-forecasting.html#timeseries-forecasting-api-optional-params">Optional parameters</a>.</p>
+     
+     
+      <h3 id="timeseries-forecasting-api-optional-params">Optional parameters</h3>
+
+      <p>The following sections provide details of some optional parameters that you can pass to
+        your time-series forecasting AutoML job.</p>
+
+      <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="How to specify custom&#xA;              quantiles" id="timeseries-forecasting-custom-quantiles" expanded="false"><p>Autopilot trains 6 models candidates with your target time-series, then combines these
+            models using a stacking ensemble method to create an optimal forecasting model for a
+            given objective metric. Each Autopilot forecasting model generates a probabilistic forecast
+            by producing forecasts at quantiles between P1 and P99. These quantiles are used to
+            account for forecast uncertainty. By default, forecasts will be generated for the 0.1
+              (<code class="code">p10</code>), 0.5 (<code class="code">p50</code>), and 0.9 (<code class="code">p90</code>). You can choose
+            to specify your own quantiles. </p><p>In Autopilot, you can specify up to five forecast quantiles from 0.01 (<code class="code">p1</code>)
+            to 0.99 (<code class="code">p99</code>), by increments of 0.01 or higher in the
+              <code class="code">ForecastQuantiles</code> attribute of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TimeSeriesForecastingJobConfig.html">TimeSeriesForecastingJobConfig</a>.</p><p>In the following example, you are setting up a daily 10th, 25th, 50th, 75th, and
+            90th percentile forecast for the expected quantity or level of demand of specific items
+            over a period of 20 days.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON ">"AutoMLProblemTypeConfig": <span>{</span> 
+        "ForecastFrequency": "D",
+        "ForecastHorizon": 20,
+        "ForecastQuantiles": ["p10", "p25", "p50", "p75", "p90"],
+        "TimeSeriesConfig": <span>{</span>
+            "TargetAttributeName": "demand",
+            "TimestampAttributeName": "timestamp",
+            "ItemIdentifierAttributeName": "item_id"
+        },</code></pre></awsui-expandable-section><awsui-expandable-section variant="container" header="How to aggregate data for different&#xA;              forecast frequencies" id="timeseries-forecasting-aggregation" expanded="false"><p>To create a forecast model (also referred to as the best model candidate from your
+            experiment), you must specify a forecast frequency. The forecast frequency determines
+            the frequency of predictions in your forecasts. For example, monthly sales forecasts.
+            Autopilot best model can generate forecasts for data frequencies that are higher than the
+            frequency at which your data is recorded.</p><p>During training, Autopilot aggregates any data that does not align with the forecast
+            frequency you specify. For example, you might have some daily data but specify a weekly
+            forecast frequency. Autopilot aligns the daily data based on the week that it belongs in.
+            Autopilot then combines it into single record for each week.</p><p>During aggregation, the default transformation method is to sum the data. You can
+            configure the aggregation when you create your AutoML job in the
+              <code class="code">Transformations</code> attribute of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TimeSeriesForecastingJobConfig.html">TimeSeriesForecastingJobConfig</a>. The supported aggregation methods are
+              <code class="code">sum</code> (default), <code class="code">avg</code>, <code class="code">first</code>, <code class="code">min</code>,
+              <code class="code">max</code>. Aggregation is only supported for the target column.</p><p>In the following example, you configure the aggregation to calculate the average of
+            the individual promo forecasts to provide the final aggregated forecast values.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">"Transformations": <span>{</span>
+            "Aggregation": <span>{</span>
+                "promo": "avg"
+            }
+        }</code></pre></awsui-expandable-section><awsui-expandable-section variant="container" header="How to handle missing&#xA;              values in your input datasets" id="timeseries-forecasting-fill-missing-values" expanded="false"><p>Autopilot provides a number of filling methods to handle missing values in the target
+            and other numeric columns of your time-series datasets. For information on the list of
+            supported filling methods and their available filling logic, see <a href="timeseries-forecasting-data-format.html#timeseries-missing-values">Handle missing values</a>.</p><p>You configure your filling strategy in the <code class="code">Transformations</code> attribute of
+              <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TimeSeriesForecastingJobConfig.html">TimeSeriesForecastingJobConfig</a> when creating your AutoML job.</p><p>To set a filling method, you need to provide a key-value pair:</p><div class="itemizedlist">
+             
+             
+          <ul class="itemizedlist"><li class="listitem">
+              <p>The key is the name of the column for which you want to specify the filling
+                method.</p>
+            </li><li class="listitem">
+              <p>The value associated with the key is an object that defines the filling strategy
+                for that column.</p>
+            </li></ul></div><p>You can specify multiple filling methods for a single column.</p><p>To set a specific value for the filling method, you should set the fill parameter to
+            the desired filling method value (for example <code class="code">"backfill" : "value"</code>), and
+            define the actual filling value in an additional parameter suffixed with "_value". For
+            example, to set <code class="code">backfill</code> to a value of <code class="code">2</code>, you must include two
+            parameters: <code class="code">"backfill": "value"</code> and
+            <code class="code">"backfill_value":"2"</code>.</p><p>In the following example, you specify the filling strategy for the incomplete data
+            column, "price" as follows: All missing values between the first data point of an item
+            and the last are set to <code class="code">0</code> after which all missing values are filled with
+            the value <code class="code">2</code> until the end date of the dataset.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">"Transformations": <span>{</span>
+            "Filling": <span>{</span>
+                "price": <span>{</span>
+                        "middlefill" : "zero",
+                        "backfill" : "value",
+                        "backfill_value": "2"
+                }
+            }
+        }</code></pre></awsui-expandable-section><awsui-expandable-section variant="container" header="How to specify an&#xA;              objective metric" id="timeseries-forecasting-set-objective-metric" expanded="false"><p>Autopilot produces accuracy metrics to evaluate the model candidates and help you
+            choose which to use to generate forecasts. When you run a time-series forecasting
+            experiment, you can either choose AutoML to let Autopilot optimize the predictor for you,
+            or you can manually choose an algorithm for your predictor.</p><p>By default, Autopilot uses the Average Weighted Quantile Loss. However, you can
+            configure the objective metric when you create your AutoML job in the
+              <code class="code">MetricName</code> attribute of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLJobObjective.html">AutoMLJobObjective</a>.</p><p>For the list of available algorithms, see <a href="timeseries-forecasting-algorithms.html">Algorithms support for time-series
+        forecasting</a>.</p></awsui-expandable-section><awsui-expandable-section variant="container" header="How to incorporate&#xA;              national holiday information to your dataset" id="timeseries-forecasting-add-holiday-calendar" expanded="false"><p>In Autopilot, you can incorporate a feature-engineered dataset of national holiday
+            information to your time-series. Autopilot provide native support for the holiday calendars
+            of over 250 countries. After you choose a country, Autopilot applies that country’s holiday
+            calendar to every item in your dataset during training. This allows the model to
+            identify patterns associated with specific holidays.</p><p>You can enable the holiday featurization when you create your AutoML job by passing
+            an <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HolidayConfigAttributes.html">HolidayConfigAttributes</a> object to the <code class="code">HolidayConfig</code> attribute of
+              <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TimeSeriesForecastingJobConfig.html">TimeSeriesForecastingJobConfig</a>. The <code class="code">HolidayConfigAttributes</code>
+            object contains the two letters <code class="code">CountryCode</code> attribute that determines the
+            country of the public national holiday calendar used to augment your time-series
+            dataset.</p><p>Refer to <a href="autopilot-timeseries-forecasting-holiday-calendars.html#holiday-country-codes">Country Codes</a> for the list of supported calendars and their corresponding country code.</p></awsui-expandable-section><awsui-expandable-section variant="container" header="How to enable automatic&#xA;              deployment" id="timeseries-forecasting-auto-model-deployment" expanded="false"><p>Autopilot allows you to automatically deploy your forecast model to an endpoint. To
+            enable automatic deployment for the best model candidate of an AutoML job, include a
+                <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html#sagemaker-CreateAutoMLJobV2-request-ModelDeployConfig">ModelDeployConfig</a></code> in the AutoML job request. This allows the
+            deployment of the best model to a SageMaker endpoint. Below are the available configurations
+            for customization.</p><div class="itemizedlist">
+             
+             
+          <ul class="itemizedlist"><li class="listitem">
+              <p>To let Autopilotgenerate the endpoint name, set <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ModelDeployConfig.html#API_ModelDeployConfig_Contents">AutoGenerateEndpointName</a></code> to <code class="code">True</code>.</p>
+            </li><li class="listitem">
+              <p>To provide your own name for the endpoint, set <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ModelDeployConfig.html#API_ModelDeployConfig_Contents">AutoGenerateEndpointName</a> to <code class="code">False</code> and provide a name of
+                  your choice in <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ModelDeployConfig.html#API_ModelDeployConfig_Contents">EndpointName</a></code>.</p>
+            </li></ul></div></awsui-expandable-section></div>
+     
+
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./text-classification-model-performance-report.html">Model Performance Report</div><div id="next" class="next-link" accesskey="n" href="./timeseries-forecasting-data-format.html">Datasets Format and Missing Values Filling Methods</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-create-experiment-timeseries-forecasting.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

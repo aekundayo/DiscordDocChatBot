@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>How SageMaker Clarify Processing Jobs Work - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="clarify-processing-job-configure-how-it-works" /><meta name="default_state" content="clarify-processing-job-configure-how-it-works" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="clarify-processing-job-configure-how-it-works.html" /><meta name="description" content="Configure the processing job to compute your desired analysis." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="clarify-processing-job-configure-how-it-works.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" hreflang="de" /><link rel="alternative" href="clarify-processing-job-configure-how-it-works.html" hreflang="en-us" /><link rel="alternative" href="clarify-processing-job-configure-how-it-works.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" hreflang="zh-tw" /><link rel="alternative" href="clarify-processing-job-configure-how-it-works.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="How SageMaker Clarify Processing Jobs Work" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>How SageMaker Clarify Processing Jobs Work - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#clarify-processing-job-configure-how-it-works" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,explainability,bias,configure processing job about" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Detect bias and understand explanations",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/model-explainability.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Use Amazon SageMaker Clarify Bias Detection and Model Explainability",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-configure-processing-jobs.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "How SageMaker Clarify Processing Jobs Work",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-configure-processing-jobs.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#clarify-processing-job-configure-how-it-works" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="clarify-processing-job-configure-how-it-works">How SageMaker Clarify Processing
+            Jobs Work</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can use SageMaker Clarify to analyze your datasets and models for explainability and bias. A
+        SageMaker Clarify processing job uses the SageMaker Clarify processing container to interact with an Amazon S3 bucket
+        containing your input datasets. You can also use SageMaker Clarify to analyze a customer model that
+        is deployed to a SageMaker inference endpoint.</p><p>The following graphic shows how a SageMaker Clarify processing job interacts with your input data
+        and optionally, with a customer model. This interaction depends on the specific type of
+        analysis being performed. The SageMaker Clarify processing container obtains the input dataset and
+        configuration for analysis from an S3 bucket. For certain analysis types, including
+        feature analysis, the SageMaker Clarify processing container must send requests to the model
+        container. Then it retrieves the model predictions from the response that the model
+        container sends. After that, the SageMaker Clarify processing container computes and saves analysis
+        results to the S3 bucket.</p><div class="mediaobject">
+         
+            <img src="../../../images/sagemaker/latest/dg/images/clarify/clarify-processing-job.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;            SageMaker Clarify can analyze your data or a customer model for explainability and&#xA;                bias.&#xA;        " style="max-width:80%" />
+         
+         
+    </div><p>You can run a SageMaker Clarify processing job at multiple stages in the lifecycle of the machine
+        learning workflow. SageMaker Clarify can help you compute the following analysis types:</p><div class="itemizedlist">
+         
+         
+         
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-measure-data-bias">Pre-training bias
+                metrics</a> can help you understand the bias in your data so that you
+                can address it and train your model on a more fair dataset. To run a job to
+                analyze pre-training bias metrics, you must provide the dataset and a JSON
+                analysis configuration file to <a href="clarify-processing-job-configure-analysis.html">Configure the Analysis</a>.</p>
+        </li><li class="listitem">
+            <p><a href="clarify-measure-post-training-bias.html">Post-training bias metrics</a> can help you understand any bias
+                introduced by an algorithm, hyperparameter choices, or any bias that wasn't
+                apparent earlier in the flow. SageMaker Clarify uses the model predictions in addition to
+                the data and labels to identify bias. To run a job to analyze post-training bias
+                metrics, you must provide the dataset and a JSON analysis configuration file.
+                The configuration should include the model or endpoint name.</p>
+        </li><li class="listitem">
+            <p><a href="clarify-shapley-values.html">SHAP values for
+                explainability</a> can help you understand what impact your feature has
+                on what your model predicts. This feature requires a trained model.</p>
+        </li><li class="listitem">
+            <p><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-partial-dependence-plots.html">Partial
+                dependence plots (PDP)</a> can help you understand how much your
+                predicted target variable would change if you varied the value of one feature.
+                This feature requires a trained model.</p>
+        </li></ul></div><p>SageMaker Clarify needs model predictions to compute post-training bias metrics and feature
+        attributions. You can provide an endpoint or SageMaker Clarify will create an ephemeral endpoint
+        using your model name, also known as a <em>shadow
+            endpoint</em>. The SageMaker Clarify container deletes the shadow endpoint after the
+        computations are completed. At a high level, the SageMaker Clarify container completes the following
+        steps:</p><div class="orderedlist">
+         
+         
+         
+         
+         
+         
+         
+    <ol><li>
+            <p>Validates inputs and parameters.</p>
+        </li><li>
+            <p>Creates the shadow endpoint (if a model name is provided).</p>
+        </li><li>
+            <p>Loads the input dataset into a data frame.</p>
+        </li><li>
+            <p>Obtains model predictions from the endpoint, if necessary.</p>
+        </li><li>
+            <p>Computes bias metrics and features attributions.</p>
+        </li><li>
+            <p>Deletes the shadow endpoint.</p>
+        </li><li>
+            <p>Generate the analysis results.</p>
+        </li></ol></div><p>After the SageMaker Clarify processing job is complete, the analysis results will be saved in the
+        output location that you specified in the processing output parameter of the job. These
+        results include a JSON file with bias metrics and global feature attributions, a visual
+        report, and additional files for local feature attributions. You can download the
+        results from the output location and view them.</p><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./clarify-configure-processing-jobs.html">Use SageMaker Clarify Bias Detection and Model Explainability</div><div id="next" class="next-link" accesskey="n" href="./clarify-processing-job-configure-parameters.html">Configure a SageMaker Clarify Processing Job</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-processing-job-configure-how-it-works.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

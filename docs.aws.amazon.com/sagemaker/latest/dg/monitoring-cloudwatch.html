@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Monitor Amazon SageMaker with Amazon CloudWatch - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="monitoring-cloudwatch" /><meta name="default_state" content="monitoring-cloudwatch" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="monitoring-cloudwatch.html" /><meta name="description" content="You can monitor Amazon SageMaker using Amazon CloudWatch, which collects raw data and processes it into readable, near real-time metrics. These statistics are kept for 15 months, so that you can access historical information and gain a better perspective on how your web application or service is performing. However, the Amazon CloudWatch console limits the search to metrics that were updated in the last 2 weeks. This limitation ensures that the most current jobs are shown in your namespace. To graph metrics without using a search, specify its exact name in the source view. You can also set alarms that watch for certain thresholds, and send notifications or take actions when those thresholds are met. For more information, see the" /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="monitoring-cloudwatch.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/monitoring-cloudwatch.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/monitoring-cloudwatch.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/monitoring-cloudwatch.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/monitoring-cloudwatch.html" hreflang="de" /><link rel="alternative" href="monitoring-cloudwatch.html" hreflang="en-us" /><link rel="alternative" href="monitoring-cloudwatch.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/monitoring-cloudwatch.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/monitoring-cloudwatch.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/monitoring-cloudwatch.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/monitoring-cloudwatch.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/monitoring-cloudwatch.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/monitoring-cloudwatch.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/monitoring-cloudwatch.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/monitoring-cloudwatch.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/monitoring-cloudwatch.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/monitoring-cloudwatch.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/monitoring-cloudwatch.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/monitoring-cloudwatch.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/monitoring-cloudwatch.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/monitoring-cloudwatch.html" hreflang="zh-tw" /><link rel="alternative" href="monitoring-cloudwatch.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Monitor Amazon SageMaker with Amazon CloudWatch" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Monitor Amazon SageMaker with Amazon CloudWatch - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#monitoring-cloudwatch" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/monitoring-cloudwatch.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/monitoring-cloudwatch.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/monitoring-cloudwatch.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Monitor AWS resources provisioned while using Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/monitoring-overview.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Monitor Amazon SageMaker with Amazon CloudWatch",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/monitoring-overview.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#monitoring-cloudwatch" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="monitoring-cloudwatch.html#cloudwatch-metrics-endpoint-invocation">Endpoint Invocation
+          Metrics</a><a href="monitoring-cloudwatch.html#cloudwatch-metrics-multimodel-endpoints">Multi-Model Endpoint
+          Metrics</a><a href="monitoring-cloudwatch.html#cloudwatch-metrics-jobs">Jobs and Endpoint
+          Metrics</a><a href="monitoring-cloudwatch.html#cloudwatch-metrics-inference-recommender">Inference Recommender Metrics</a><a href="monitoring-cloudwatch.html#cloudwatch-metrics-ground-truth">Ground Truth
+          Metrics</a><a href="monitoring-cloudwatch.html#cloudwatch-metrics-feature-store">Feature Store Metrics</a><a href="monitoring-cloudwatch.html#cloudwatch-metrics-pipelines">Pipelines Metrics</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="monitoring-cloudwatch">Monitor Amazon SageMaker with Amazon CloudWatch</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can monitor Amazon SageMaker using Amazon CloudWatch, which collects raw data and processes it into
+      readable, near real-time metrics. These statistics are kept for 15 months, so that you can
+      access historical information and gain a better perspective on how your web application or
+      service is performing. However, the Amazon CloudWatch console limits the search to metrics that were
+      updated in the last 2 weeks. This limitation ensures that the most current jobs are shown in
+      your namespace. To graph metrics without using a search, specify its exact name in the source
+      view. You can also set alarms that watch for certain thresholds, and send notifications or
+      take actions when those thresholds are met. For more information, see the
+      <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/">Amazon CloudWatch User Guide</a>.</p><p></p><div class="highlights" id="inline-topiclist"><h6>SageMaker Metrics and Dimensions</h6><ul><li><a href="monitoring-cloudwatch.html#cloudwatch-metrics-endpoint-invocation">SageMaker Endpoint Invocation
+          Metrics</a></li><li><a href="monitoring-cloudwatch.html#cloudwatch-metrics-multimodel-endpoints">SageMaker Multi-Model Endpoint
+          Metrics</a></li><li><a href="monitoring-cloudwatch.html#cloudwatch-metrics-jobs">SageMaker Jobs and Endpoint Metrics</a></li><li><a href="monitoring-cloudwatch.html#cloudwatch-metrics-inference-recommender">SageMaker Inference Recommender Jobs Metrics</a></li><li><a href="monitoring-cloudwatch.html#cloudwatch-metrics-ground-truth">SageMaker Ground Truth Metrics</a></li><li><a href="monitoring-cloudwatch.html#cloudwatch-metrics-feature-store">Amazon SageMaker Feature Store Metrics</a></li><li><a href="monitoring-cloudwatch.html#cloudwatch-metrics-pipelines">SageMaker Pipelines Metrics</a></li></ul></div>
+      <h2 id="cloudwatch-metrics-endpoint-invocation">SageMaker Endpoint Invocation
+          Metrics</h2>
+      <p>The <code class="code">AWS/SageMaker</code> namespace includes the following request metrics from
+        calls to <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_InvokeEndpoint.html">
+        InvokeEndpoint</a>.</p>
+      <p>Metrics are available at a 1-minute frequency.</p>
+      <p>The following illustration shows how a SageMaker endpoint interacts with the Amazon SageMaker Runtime
+        API. The overall time between sending a request to an endpoint and receiving a response
+        depends on the following three components.</p>
+      <div class="itemizedlist">
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>Network latency – the time that it takes between making a request to the
+            SageMaker Runtime API and receiving a response back from the SageMaker Runtime
+            API.</p>
+        </li><li class="listitem">
+          <p>Overhead latency – the time that it takes to transport a request to the model
+            container from the SageMaker Runtime API and transport the response back to the
+            SageMaker Runtime API.</p>
+        </li><li class="listitem">
+          <p>Model latency – the time that it takes the model container to process the
+            request and return a response.</p>
+        </li></ul></div>
+      <div class="mediaobject">
+         
+          <img src="../../../images/sagemaker/latest/dg/images/cloudwatch-latency-types.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;          An illustration showing that total latency is the sum of network, overhead and model&#xA;            latencies.&#xA;        " style="max-width:100%" />
+         
+         
+      </div>
+      <p>For more information about total latency, see <a href="http://aws.amazon.com/blogs/machine-learning/best-practices-for-load-testing-amazon-sagemaker-real-time-inference-endpoints/" rel="noopener noreferrer" target="_blank"><span>Best practices for load testing Amazon SageMaker real-time inference endpoints</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. For
+        information about how long CloudWatch metrics are retained for, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricStatistics.html">GetMetricStatistics</a> in the <em>Amazon CloudWatch API Reference</em>.</p>
+      <p><b>Endpoint Invocation Metrics</b></p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac45c13c15c17"><thead>
+            <tr>
+              <th>Metric</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1"><code class="code">Invocation4XXErrors</code></td>
+              <td tabindex="-1">
+                <p>The number of <code class="code">InvokeEndpoint</code> requests where the model returned a
+                  4xx HTTP response code. For each 4xx response, 1 is sent; otherwise, 0 is
+                  sent.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Average, Sum</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">Invocation5XXErrors</code></td>
+              <td tabindex="-1">
+                <p>The number of <code class="code">InvokeEndpoint</code> requests where the model returned a
+                  5xx HTTP response code. For each 5xx response, 1 is sent; otherwise, 0 is
+                  sent.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Average, Sum</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">InvocationModelErrors</code></td>
+              <td tabindex="-1">
+                <p>The number of model invocation requests which did not result in 2XX HTTP
+                  response. This includes 4XX/5XX status codes, low-level socket errors, malformed
+                  HTTP responses, and request timeouts. For each error response, 1 is sent;
+                  otherwise, 0 is sent.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Average, Sum</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">Invocations</code></td>
+              <td tabindex="-1">
+                <p>The number of <code class="code">InvokeEndpoint</code> requests sent to a model endpoint. </p>
+                <p>To get the total number of requests sent to a model endpoint, use the Sum
+                  statistic.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Sum</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">InvocationsPerInstance</code></td>
+              <td tabindex="-1">
+                <p>The number of invocations sent to a model, normalized by
+                    <code class="code">InstanceCount</code> in each ProductionVariant.
+                    1/<code class="code">numberOfInstances</code> is sent as the value on each request, where
+                    <code class="code">numberOfInstances</code> is the number of active instances for the
+                  ProductionVariant behind the endpoint at the time of the request.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Sum</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">ModelLatency</code></td>
+              <td tabindex="-1">
+                <p>The interval of time taken by a model to respond to a SageMaker API request.
+                  This interval includes the local communication times taken to send the request and
+                  to fetch the response from the model container and the time taken to complete the
+                  inference in the container.</p>
+                <p>Units: Microseconds</p>
+                <p>Valid statistics: Average, Sum, Min, Max, Sample Count</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">OverheadLatency</code></td>
+              <td tabindex="-1">
+                <p>The interval of time added to the time taken to respond to a client request by
+                  SageMaker overheads. This interval is measured from the time SageMaker receives the request
+                  until it returns a response to the client, minus the <code class="code">ModelLatency</code>.
+                  Overhead latency can vary depending on multiple factors, including request and
+                  response payload sizes, request frequency, and authentication/authorization of the
+                  request.</p>
+                <p>Units: Microseconds</p>
+                <p>Valid statistics: Average, Sum, Min, Max, Sample Count</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">ModelSetupTime</code></td>
+              <td tabindex="-1">
+                <p>The time it takes to launch new compute resources for a serverless endpoint.
+                  The time can vary depending on the model size, how long it takes to download the
+                  model, and the start-up time of the container.</p>
+                <p>Units: Microseconds</p>
+                <p>Valid statistics: Average, Min, Max, Sample Count, Percentiles</p>
+              </td>
+            </tr>
+          </table></div></div>
+
+      <p><b>Dimensions for Endpoint Invocation Metrics</b></p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac45c13c15c21"><thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1"><code class="code">EndpointName, VariantName</code></td>
+              <td tabindex="-1">
+                <p>Filters endpoint invocation metrics for a <code class="code">ProductionVariant</code> of
+                  the specified endpoint and variant.</p>
+              </td>
+            </tr>
+          </table></div></div>
+     
+      <h2 id="cloudwatch-metrics-multimodel-endpoints">SageMaker Multi-Model Endpoint
+          Metrics</h2>
+      <p>The <code class="code">AWS/SageMaker</code> namespace includes the following model loading metrics
+        from calls to <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_InvokeEndpoint.html">
+        InvokeEndpoint</a>.</p>
+      <p>Metrics are available at a 1-minute frequency.</p>
+      <p>For information about how long CloudWatch metrics are retained for, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricStatistics.html">GetMetricStatistics</a> in the <em>Amazon CloudWatch API Reference</em>.</p>
+      <p><b>Multi-Model Endpoint Model Loading Metrics</b></p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac45c13c17c11"><thead>
+            <tr>
+              <th>Metric</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1"><code class="code">ModelLoadingWaitTime </code></td>
+              <td tabindex="-1">
+                <p>The interval of time that an invocation request has waited for the target
+                  model to be downloaded, or loaded, or both in order to perform inference. </p>
+                <p>Units: Microseconds </p>
+                <p>Valid statistics: Average, Sum, Min, Max, Sample Count </p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">ModelUnloadingTime </code></td>
+              <td tabindex="-1">
+                <p>The interval of time that it took to unload the model through the container's
+                    <code class="code">UnloadModel</code> API call. </p>
+                <p>Units: Microseconds </p>
+                <p>Valid statistics: Average, Sum, Min, Max, Sample Count </p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">ModelDownloadingTime</code></td>
+              <td tabindex="-1">
+                <p>The interval of time that it took to download the model from Amazon Simple Storage Service
+                  (Amazon S3).</p>
+                <p>Units: Microseconds</p>
+                <p>Valid statistics: Average, Sum, Min, Max, Sample Count </p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">ModelLoadingTime </code></td>
+              <td tabindex="-1">
+                <p>The interval of time that it took to load the model through the container's
+                    <code class="code">LoadModel</code> API call.</p>
+                <p>Units: Microseconds </p>
+                <p>Valid statistics: Average, Sum, Min, Max, Sample Count </p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">ModelCacheHit </code></td>
+              <td tabindex="-1">
+                <p>The number of <code class="code">InvokeEndpoint</code> requests sent to the multi-model
+                  endpoint for which the model was already loaded.</p>
+                <p>The Average statistic shows the ratio of requests for which the model was
+                  already loaded.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Average, Sum, Sample Count</p>
+              </td>
+            </tr>
+          </table></div></div>
+
+      <p><b>Dimensions for Multi-Model Endpoint Model Loading Metrics</b></p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac45c13c17c15"><thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1"><code class="code">EndpointName, VariantName</code></td>
+              <td tabindex="-1">
+                <p>Filters endpoint invocation metrics for a <code class="code">ProductionVariant</code> of
+                  the specified endpoint and variant.</p>
+              </td>
+            </tr>
+          </table></div></div>
+
+      <p>The <code class="code">/aws/sagemaker/Endpoints</code> namespaces include the following instance
+        metrics from calls to <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_InvokeEndpoint.html">
+        InvokeEndpoint</a>.</p>
+      <p>Metrics are available at a 1-minute frequency.</p>
+      <p>For information about how long CloudWatch metrics are retained for, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricStatistics.html">GetMetricStatistics</a> in the <em>Amazon CloudWatch API Reference</em>.</p>
+      <p><b>Multi-Model Endpoint Model Instance Metrics</b></p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac45c13c17c25"><thead>
+            <tr>
+              <th>Metric</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1"><code class="code">LoadedModelCount </code></td>
+              <td tabindex="-1">
+                <p>The number of models loaded in the containers of the multi-model endpoint.
+                  This metric is emitted per instance.</p>
+                <p>The Average statistic with a period of 1 minute tells you the average number
+                  of models loaded per instance.</p>
+                <p>The Sum statistic tells you the total number of models loaded across all
+                  instances in the endpoint.</p>
+                <p>The models that this metric tracks are not necessarily unique because a model
+                  might be loaded in multiple containers at the endpoint.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Average, Sum, Min, Max, Sample Count</p>
+              </td>
+            </tr>
+          </table></div></div>
+
+      <p><b>Dimensions for Multi-Model Endpoint Model Loading Metrics</b></p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac45c13c17c29"><thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1"><code class="code">EndpointName, VariantName</code></td>
+              <td tabindex="-1">
+                <p>Filters endpoint invocation metrics for a <code class="code">ProductionVariant</code> of
+                  the specified endpoint and variant.</p>
+              </td>
+            </tr>
+          </table></div></div>
+     
+      <h2 id="cloudwatch-metrics-jobs">SageMaker Jobs and Endpoint Metrics</h2>
+      <p>The <code class="code">/aws/sagemaker/ProcessingJobs</code>,
+        <code class="code">/aws/sagemaker/TrainingJobs</code>, <code class="code">/aws/sagemaker/TransformJobs</code>, and
+          <code class="code">/aws/sagemaker/Endpoints</code> namespaces include the following metrics for the
+        training jobs and endpoint instances.</p>
+      <p>Metrics are available at a 1-minute frequency.</p>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Amazon CloudWatch supports <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html">high-resolution custom
+            metrics</a> and its finest resolution is 1 second. However, the finer the
+          resolution, the shorter the lifespan of the CloudWatch metrics. For the 1-second frequency
+          resolution, the CloudWatch metrics are available for 3 hours. For more information about the
+          resolution and the lifespan of the CloudWatch metrics, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricStatistics.html">GetMetricStatistics</a> in the <em>Amazon CloudWatch API
+            Reference</em>. </p></div></div>
+      <div class="awsdocs-note awsdocs-tip"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Tip</h6></div><div class="awsdocs-note-text"><p>If you want to profile your training job with a finer resolution down to
+          100-millisecond (0.1 second) granularity and store the training metrics indefinitely in
+          Amazon S3 for custom analysis at any time, consider using <a href="train-debugger.html">Amazon SageMaker Debugger</a>. SageMaker Debugger provides
+          built-in rules to automatically detect common training issues; it detects hardware
+          resource utilization issues (such as CPU, GPU, and I/O bottlenecks) and non-converging
+          model issues (such as overfit, vanishing gradients, and exploding tensors). SageMaker Debugger
+          also provides visualizations through Studio and its profiling report. To explore the
+          Debugger visualizations, see <a href="debugger-on-studio-insights-walkthrough.htm">SageMaker Debugger
+            Insights Dashboard Walkthrough</a>, <a href="debugger-profiling-report.html#debugger-profiling-report-walkthrough">Debugger Profiling Report Walkthrough</a>, and <a href="debugger-analyze-data.html">Analyze Data Using the SMDebug
+            Client Library</a>.</p></div></div>
+
+      <p><b>Processing Job, Training Job, Batch Transform Job, and Endpoint Instance
+          Metrics</b></p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac45c13c19c13"><thead>
+            <tr>
+              <th>Metric</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1"><code class="code">CPUUtilization</code></td>
+              <td tabindex="-1">The sum of each individual CPU core's utilization. The CPU utilization of each
+                core range is 0–100. For example, if there are four CPUs, the
+                  <code class="code">CPUUtilization</code> range is 0%–400%. For processing jobs, the
+                value is the CPU utilization of the processing container on the instance.<p>For
+                  training jobs, the value is the CPU utilization of the algorithm container on the
+                  instance.</p><p>For batch transform jobs, the value is the CPU utilization
+                  of the transform container on the instance.</p><p>For endpoint variants, the
+                  value is the sum of the CPU utilization of the primary and supplementary
+                  containers on the instance.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For multi-instance jobs, each instance reports CPU utilization metrics.
+                    However, the default view in CloudWatch shows the average CPU utilization across all
+                    instances.</p></div></div><p>Units: Percent</p></td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">MemoryUtilization</code></td>
+              <td tabindex="-1"><p>The percentage of memory that is used by the containers on an instance.
+                  This value range is 0%–100%.</p>For processing jobs, the value is the
+                memory utilization of the processing container on the instance.<p>For training
+                  jobs, the value is the memory utilization of the algorithm container on the
+                  instance.</p><p>For batch transform jobs, the value is the memory
+                  utilization of the transform container on the instance.</p><p>For endpoint
+                  variants, the value is the sum of the memory utilization of the primary and
+                  supplementary containers on the instance.</p><p>Units: Percent</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For multi-instance jobs, each instance reports memory utilization metrics.
+                    However, the default view in CloudWatch shows the average memory utilization across
+                    all instances.</p></div></div></td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">GPUUtilization</code></td>
+              <td tabindex="-1"><p>The percentage of GPU units that are used by the containers on an
+                  instance. The value can range betweenrange is 0–100 and is multiplied by
+                  the number of GPUs. For example, if there are four GPUs, the
+                    <code class="code">GPUUtilization</code> range is 0%–400%.</p>For processing jobs,
+                the value is the GPU utilization of the processing container on the
+                  instance.<p>For training jobs, the value is the GPU utilization of the
+                  algorithm container on the instance.</p><p>For batch transform jobs, the
+                  value is the GPU utilization of the transform container on the
+                  instance.</p><p>For endpoint variants, the value is the sum of the GPU
+                  utilization of the primary and supplementary containers on the instance.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For multi-instance jobs, each instance reports GPU utilization metrics.
+                    However, the default view in CloudWatch shows the average GPU utilization across all
+                    instances.</p></div></div><p>Units: Percent</p></td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">GPUMemoryUtilization</code></td>
+              <td tabindex="-1"><p>The percentage of GPU memory used by the containers on an instance. The
+                  value range is 0–100 and is multiplied by the number of GPUs. For example,
+                  if there are four GPUs, the <code class="code">GPUMemoryUtilization</code> range is
+                  0%–400%.</p>For processing jobs, the value is the GPU memory utilization
+                of the processing container on the instance.<p>For training jobs, the value is
+                  the GPU memory utilization of the algorithm container on the
+                  instance.</p><p>For batch transform jobs, the value is the GPU memory
+                  utilization of the transform container on the instance.</p><p>For endpoint
+                  variants, the value is the sum of the GPU memory utilization of the primary and
+                  supplementary containers on the instance.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For multi-instance jobs, each instance reports GPU memory utilization
+                    metrics. However, the default view in CloudWatch shows the average GPU memory
+                    utilization across all instances.</p></div></div><p>Units: Percent</p></td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">DiskUtilization</code></td>
+              <td tabindex="-1"><p>The percentage of disk space used by the containers on an instance uses.
+                  This value range is 0%–100%. This metric is not supported for batch
+                  transform jobs.</p>For processing jobs, the value is the disk space utilization
+                of the processing container on the instance.<p>For training jobs, the value is
+                  the disk space utilization of the algorithm container on the
+                  instance.</p><p>For endpoint variants, the value is the sum of the disk
+                  space utilization of the primary and supplementary containers on the
+                  instance.</p><p>Units: Percent</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For multi-instance jobs, each instance reports disk utilization metrics.
+                    However, the default view in CloudWatch shows the average disk utilization across all
+                    instances.</p></div></div></td>
+            </tr>
+          </table></div></div>
+
+      <p><b>Dimensions for Processing Job, Training Job and Batch Transform Job Instance
+          Metrics</b></p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac45c13c19c17"><thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1"><code class="code">Host</code></td>
+              <td tabindex="-1">
+                <p>For processing jobs, the value for this dimension has the format
+                    <code class="code">[processing-job-name]/algo-[instance-number-in-cluster]</code>. Use this
+                  dimension to filter instance metrics for the specified processing job and
+                  instance. This dimension format is present only in the
+                    <code class="code">/aws/sagemaker/ProcessingJobs</code> namespace.</p>
+                <p>For training jobs, the value for this dimension has the format
+                    <code class="code">[training-job-name]/algo-[instance-number-in-cluster]</code>. Use this
+                  dimension to filter instance metrics for the specified training job and instance.
+                  This dimension format is present only in the
+                    <code class="code">/aws/sagemaker/TrainingJobs</code> namespace.</p>
+                <p>For batch transform jobs, the value for this dimension has the format
+                    <code class="code">[transform-job-name]/[instance-id]</code>. Use this dimension to filter
+                  instance metrics for the specified batch transform job and instance. This
+                  dimension format is present only in the <code class="code">/aws/sagemaker/TransformJobs</code>
+                  namespace.</p>
+              </td>
+            </tr>
+          </table></div></div>
+     
+      <h2 id="cloudwatch-metrics-inference-recommender">SageMaker Inference Recommender Jobs Metrics</h2>
+      <p>The <code class="code">/aws/sagemaker/InferenceRecommendationsJobs</code> namespace includes the
+        following metrics for inference recommendation jobs.</p>
+      <p><b>Inference Recommender Metrics</b></p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac45c13c21b7"><thead>
+            <tr>
+              <th>Metric</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1"><code class="code">ClientInvocations</code></td>
+              <td tabindex="-1">
+                <p>The number of <code class="code">InvokeEndpoint</code> requests sent to a model endpoint,
+                  as observed by Inference Recommender.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Sum</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">ClientInvocationErrors</code></td>
+              <td tabindex="-1">
+                <p>The number of <code class="code">InvokeEndpoint</code> requests that failed, as observed by
+                  Inference Recommender.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Sum</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">ClientLatency</code></td>
+              <td tabindex="-1">
+                <p>The interval of time taken between sending an <code class="code">InvokeEndpoint</code> call
+                  and receiving a response as observed by Inference Recommender. Note that the time is in
+                  milliseconds, whereas the <code class="code">ModelLatency</code> endpoint invocation metric is
+                  in microseconds.</p>
+                <p>Units: Milliseconds</p>
+                <p>Valid statistics: Average, Sum, Min, Max, Sample Count, Percentiles</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">NumberOfUsers</code></td>
+              <td tabindex="-1">
+                <p>The number of concurrent users sending <code class="code">InvokeEndpoint</code> requests to
+                  the model endpoint.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Max, Min, Average</p>
+              </td>
+            </tr>
+          </table></div></div>
+      <p><b>Dimensions for Inference Recommender Job Metrics</b></p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac45c13c21c11"><thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1"><code class="code">JobName</code></td>
+              <td tabindex="-1">
+                <p>Filters Inference Recommender job metrics for the specified Inference Recommender job.</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">EndpointName</code></td>
+              <td tabindex="-1">
+                <p>Filters Inference Recommender job metrics for the specified endpoint.</p>
+              </td>
+            </tr>
+          </table></div></div>
+     
+      <h2 id="cloudwatch-metrics-ground-truth">SageMaker Ground Truth Metrics</h2>
+      <p><b>Ground Truth Metrics</b></p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac45c13c23b5"><thead>
+            <tr>
+              <th>Metric</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1"><code class="code">ActiveWorkers</code></td>
+              <td tabindex="-1">
+                <p>A single active worker on a private work team submitted, released, or declined
+                  a task. To get the total number of active workers, use the Sum statistic. Ground
+                  Truth attempts to deliver each individual <code class="code">ActiveWorkers</code> event once.
+                  If this delivery is unsuccessful, this metric may not report the total number of
+                  active workers</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Sum, Sample Count</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">DatasetObjectsAutoAnnotated</code></td>
+              <td tabindex="-1">
+                <p>The number of dataset objects auto-annotated in a labeling job. This metric is
+                  only emitted when automated labeling is enabled. To view the labeling job
+                  progress, use the Max metric.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Max</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">DatasetObjectsHumanAnnotated</code></td>
+              <td tabindex="-1">
+                <p>The number of dataset objects annotated by a human in a labeling job. To view
+                  the labeling job progress, use the Max metric.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Max</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">DatasetObjectsLabelingFailed</code></td>
+              <td tabindex="-1">
+                <p>The number of dataset objects that failed labeling in a labeling job. To view
+                  the labeling job progress, use the Max metric.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Max</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">JobsFailed</code></td>
+              <td tabindex="-1">
+                <p>A single labeling job failed. To get the total number of labeling jobs that
+                  failed, use the Sum statistic.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Sum, Sample Count</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">JobsSucceeded</code></td>
+              <td tabindex="-1">
+                <p>A single labeling job succeeded. To get the total number of labeling jobs that
+                  succeeded, use the Sum statistic.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Sum, Sample Count</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">JobsStopped</code></td>
+              <td tabindex="-1">
+                <p>A single labeling jobs was stopped. To get the total number of labeling jobs
+                  that were stopped, use the Sum statistic.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Sum, Sample Count</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">TasksAccepted</code></td>
+              <td tabindex="-1">
+                <p>A single task was accepted by a worker. To get the total number of tasks
+                  accepted by workers, use the Sum statistic. Ground Truth attempts to deliver each
+                  individual <code class="code">TaskAccepted</code> event once. If this delivery is unsuccessful,
+                  this metric may not report the total number of tasks accepted.</p>
+                <p>Units: None </p>
+                <p>Valid statistics: Sum, Sample Count</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">TasksDeclined</code></td>
+              <td tabindex="-1">
+                <p>A single task was declined by a worker. To get the total number of tasks
+                  declined by workers, use the Sum statistic. Ground Truth attempts to deliver each
+                  individual <code class="code">TasksDeclined</code> event once. If this delivery is
+                  unsuccessful, this metric may not report the total number of tasks
+                  declined.</p>
+                <p>Units: None</p>
+                <p>Valid Statistics: Sum, Sample Count</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">TasksReturned</code></td>
+              <td tabindex="-1">
+                <p>A single task was returned. To get the total number of tasks returned, use the
+                  Sum statistic. Ground Truth attempts to deliver each individual
+                    <code class="code">TasksReturned</code> event once. If this delivery is unsuccessful, this
+                  metric may not report the total number of tasks returned.</p>
+                <p>Units: None </p>
+                <p>Valid statistics: Sum, Sample Count</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">TasksSubmitted</code></td>
+              <td tabindex="-1">
+                <p>A single task was submitted/completed by a private worker. To get the total
+                  number of tasks submitted by workers, use the Sum statistic. Ground Truth attempts
+                  to deliver each individual <code class="code">TasksSubmitted</code> event once. If this
+                  delivery is unsuccessful, this metric may not report the total number of tasks
+                  submitted.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Sum, Sample Count</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">TimeSpent</code></td>
+              <td tabindex="-1">
+                <p>Time spent on a task completed by a private worker. This metric does not
+                  include time when a worker paused or took a break. Ground Truth attempts to
+                  deliver each <code class="code">TimeSpent</code> event once. If this delivery is unsuccessful,
+                  this metric may not report the total amount of time spent.</p>
+                <p>Units: Seconds</p>
+                <p>Valid statistics: Sum, Sample Count</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">TotalDatasetObjectsLabeled</code></td>
+              <td tabindex="-1">
+                <p>The number of dataset objects labeled successfully in a labeling job. To view
+                  the labeling job progress, use the Max metric.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Max</p>
+              </td>
+            </tr>
+          </table></div></div>
+      <p><b>Dimensions for Dataset Object Metrics</b></p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac45c13c23b9"><thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1"><code class="code">LabelingJobName</code></td>
+              <td tabindex="-1">
+                <p>Filters dataset object count metrics for a labeling job.</p>
+              </td>
+            </tr>
+          </table></div></div>
+     
+      <h2 id="cloudwatch-metrics-feature-store">Amazon SageMaker Feature Store Metrics</h2>
+      <p><b>Feature Store Consumption Metrics</b></p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac45c13c25b5"><thead>
+            <tr>
+              <th>Metric</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1"><code class="code">ConsumedReadRequestsUnits</code></td>
+              <td tabindex="-1">
+                <p>The number of consumed read units over the specified time period. You can
+                  retrieve the consumed read units for a feature store runtime operation and its
+                  corresponding feature group.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: All</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">ConsumedWriteRequestsUnits</code></td>
+              <td tabindex="-1">
+                <p>The number of consumed write units over the specified time period. You can
+                  retrieve the consumed write units for a feature store runtime operation and its
+                  corresponding feature group.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: All</p>
+              </td>
+            </tr>
+
+          </table></div></div>
+      <p><b>Dimensions for Feature Store Consumption Metrics</b></p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac45c13c25b9"><thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1"><code class="code">FeatureGroupName</code>, <code class="code">OperationName</code></td>
+              <td tabindex="-1">
+                <p>Filters feature store runtime consumption metrics of the feature group and the
+                  operation that you've specified.</p>
+              </td>
+            </tr>
+          </table></div></div>
+
+      <p><b>Feature Store Operational Metrics</b></p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac45c13c25c13"><thead>
+            <tr>
+              <th>Metric</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1"><code class="code">Invocations</code></td>
+              <td tabindex="-1">
+                <p>The number of requests made to the feature store runtime operations over the
+                  specified time period.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Sum</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">Operation4XXErrors</code></td>
+              <td tabindex="-1">
+                <p>The number of requests made to the Feature Store runtime operations where the operation
+                  returned a 4xx HTTP response code. For each 4xx response, 1 is sent; otherwise, 0
+                  is sent.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Average, Sum</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">Operation5XXErrors</code></td>
+              <td tabindex="-1"><p>The number of requests made to the feature store runtime operations where
+                  the operation returned a 5xx HTTP response code. For each 5xx response, 1 is sent;
+                  otherwise, 0 is sent.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Average, Sum</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">ThrottledRequests</code></td>
+              <td tabindex="-1">
+                <p>The number of requests made to the feature store runtime operations where the
+                  request got throttled. For each throttled request, 1 is sent; otherwise, 0 is
+                  sent.</p>
+                <p>Units: None</p>
+                <p>Valid statistics: Average, Sum</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">Latency</code></td>
+              <td tabindex="-1">
+                <p>The time interval to process requests made to the Feature Store runtime operations.
+                  This interval is measured from the time SageMaker receives the request until it returns
+                  a response to the client.</p>
+                <p>Units: Microseconds</p>
+                <p>Valid statistics: Average, Sum, Min, Max, Sample Count, Percentiles</p>
+              </td>
+            </tr>
+          </table></div></div>
+
+      <p><b>Dimensions for Feature Store Operational Metrics</b></p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac45c13c25c17"><thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1">
+                <p><code class="code">FeatureGroupName</code>, <code class="code">OperationName</code></p>
+              </td>
+              <td tabindex="-1">Filters feature store runtime operational metrics of the feature group and the
+                operation that you've specified. You can use these dimensions for non batch
+                operations, such as GetRecord, PutRecord, and DeleteRecord.</td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">OperationName</code></td>
+              <td tabindex="-1">
+                <p>Filters feature store runtime operational metrics for the operation that
+                  you've specified. You can use this dimension for batch operations such as
+                  BatchGetRecord.</p>
+              </td>
+            </tr>
+
+          </table></div></div>
+
+     
+      <h2 id="cloudwatch-metrics-pipelines">SageMaker Pipelines Metrics</h2>
+      <p>The <code class="code">AWS/Sagemaker/ModelBuildingPipeline</code> namespace includes the following
+        metrics for pipeline executions.</p>
+      <p>Two categories of Pipelines execution metrics are available:</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>
+            <b>Execution Metrics across All Pipelines</b> – Account
+            level pipeline execution metrics (for all pipelines in the current account)</p>
+        </li><li class="listitem">
+          <p>
+            <b>Execution Metrics by Pipeline</b> – Pipeline
+            execution metrics per pipeline</p>
+        </li></ul></div>
+      <p>Metrics are available at a 1-minute frequency.</p>
+      <p><b>Pipelines Execution Metrics</b></p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac45c13c27c13"><thead>
+            <tr>
+              <th>Metric</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1"><code class="code">ExecutionStarted</code></td>
+              <td tabindex="-1">
+                <p>The number of pipeline executions that started.</p>
+                <p>Units: Count</p>
+                <p>Valid statistics: Average, Sum</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">ExecutionFailed</code></td>
+              <td tabindex="-1">
+                <p>The number of pipeline executions that failed.</p>
+                <p>Units: Count</p>
+                <p>Valid statistics: Average, Sum</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">ExecutionSucceeded</code></td>
+              <td tabindex="-1">
+                <p>The number of pipeline executions that succeeded.</p>
+                <p>Units: Count</p>
+                <p>Valid statistics: Average, Sum</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">ExecutionStopped</code></td>
+              <td tabindex="-1">
+                <p>The number of pipeline executions that stopped.</p>
+                <p>Units: Count</p>
+                <p>Valid statistics: Average, Sum</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">ExecutionDuration</code></td>
+              <td tabindex="-1">
+                <p>The duration in milliseconds that the pipeline execution ran.</p>
+                <p>Units: Milliseconds</p>
+                <p>Valid statistics: Average, Sum, Min, Max, Sample Count</p>
+              </td>
+            </tr>
+          </table></div></div>
+      <p><b>Dimensions for Execution Metrics by Pipeline</b></p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac45c13c27c17"><thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1"><code class="code">PipelineName</code></td>
+              <td tabindex="-1">
+                <p>Filters pipeline execution metrics for a specified pipeline.</p>
+              </td>
+            </tr>
+          </table></div></div>
+
+      <p><b>Pipelines Step Metrics</b></p>
+      <p>The <code class="code">AWS/Sagemaker/ModelBuildingPipeline</code> namespace includes the following
+        metrics for pipeline steps.</p>
+      <p>Metrics are available at a 1-minute frequency.</p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac45c13c27c25"><thead>
+            <tr>
+              <th>Metric</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1"><code class="code">StepStarted</code></td>
+              <td tabindex="-1">
+                <p>The number of steps that started.</p>
+                <p>Units: Count</p>
+                <p>Valid statistics: Average, Sum</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">StepFailed</code></td>
+              <td tabindex="-1">
+                <p>The number of steps that failed.</p>
+                <p>Units: Count</p>
+                <p>Valid statistics: Average, Sum</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">StepSucceeded</code></td>
+              <td tabindex="-1">
+                <p>The number of steps that succeeded.</p>
+                <p>Units: Count</p>
+                <p>Valid statistics: Average, Sum</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">StepStopped</code></td>
+              <td tabindex="-1">
+                <p>The number of steps that stopped.</p>
+                <p>Units: Count</p>
+                <p>Valid statistics: Average, Sum</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><code class="code">StepDuration</code></td>
+              <td tabindex="-1">
+                <p>The duration in milliseconds that the step ran.</p>
+                <p>Units: Milliseconds</p>
+                <p>Valid statistics: Average, Sum, Min, Max, Sample Count</p>
+              </td>
+            </tr>
+          </table></div></div>
+      <p><b>Dimensions for Pipelines Step Metrics</b></p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac45c13c27c29"><thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1"><code class="code">PipelineName</code>, <code class="code">StepName</code></td>
+              <td tabindex="-1">
+                <p>Filters step metrics for a specified pipeline and step.</p>
+              </td>
+            </tr>
+          </table></div></div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./monitoring-overview.html">Monitor AWS resources provisioned while using
+      Amazon SageMaker</div><div id="next" class="next-link" accesskey="n" href="./logging-cloudwatch.html">Logging with CloudWatch</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/monitoring-cloudwatch.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/monitoring-cloudwatch.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

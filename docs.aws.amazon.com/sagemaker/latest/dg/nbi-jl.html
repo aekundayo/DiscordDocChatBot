@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>JupyterLab versioning - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="nbi-jl" /><meta name="default_state" content="nbi-jl" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="nbi-jl.html" /><meta name="description" content="Select the JupyterLab version to use for your Amazon SageMaker notebook instance." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="nbi-jl.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/nbi-jl.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/nbi-jl.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/nbi-jl.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/nbi-jl.html" hreflang="de" /><link rel="alternative" href="nbi-jl.html" hreflang="en-us" /><link rel="alternative" href="nbi-jl.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/nbi-jl.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/nbi-jl.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/nbi-jl.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/nbi-jl.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/nbi-jl.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/nbi-jl.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/nbi-jl.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/nbi-jl.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/nbi-jl.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/nbi-jl.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/nbi-jl.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/nbi-jl.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/nbi-jl.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/nbi-jl.html" hreflang="zh-tw" /><link rel="alternative" href="nbi-jl.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="JupyterLab versioning" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>JupyterLab versioning - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#nbi-jl" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/nbi-jl.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/nbi-jl.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/nbi-jl.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use machine learning environments offered by SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/machine-learning-environments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Notebook Instances",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/nbi.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "JupyterLab versioning",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/nbi.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#nbi-jl" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="nbi-jl.html#nbi-jl-3">JupyterLab 3</a><a href="nbi-jl.html#nbi-jl-create">Creating a notebook with your JupyterLab version</a><a href="nbi-jl.html#nbi-jl-view">View the JupyterLab version of a notebook from the console</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="nbi-jl">JupyterLab versioning</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p> The Amazon SageMaker notebook instance interface is based on JupyterLab, which is a web-based
+    interactive development environment for notebooks, code, and data. Notebooks now support using
+    either JupyterLab 1 or JupyterLab 3. A single notebook instance can run a single instance of
+    JupyterLab (at most). You can have multiple notebook instances with different JupyterLab
+    versions. </p><p> You can configure your notebook to run your preferred JupyterLab version by selecting the
+    appropriate platform identifier. Use either the AWS CLI or the SageMaker console when creating your
+    notebook instance. For more information about platform identifiers, see <a href="nbi-al2.html">Amazon Linux 2 vs Amazon Linux notebook
+      instances</a>. If you don’t explicitly configure a platform identifier, your notebook
+    instance defaults to running JupyterLab 1. </p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="nbi-jl.html#nbi-jl-3">JupyterLab 3</a></li><li><a href="nbi-jl.html#nbi-jl-create">Creating a notebook with your JupyterLab version</a></li><li><a href="nbi-jl.html#nbi-jl-view">View the JupyterLab version of a notebook from the console</a></li></ul></div>
+    <h2 id="nbi-jl-3">JupyterLab 3</h2>
+<p>
+  JupyterLab 3 support is available only on the Amazon Linux 2 operating system
+  platform. JupyterLab 3 includes the following features that are not
+  available in JupyterLab 1. For more information about these features,
+  see <a href="https://blog.jupyter.org/jupyterlab-3-0-is-out-4f58385e25bb" rel="noopener noreferrer" target="_blank"><span>JupyterLab 3.0 is released!</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>
+        Visual debugger when using the following kernels:
+        </p>
+        <div class="itemizedlist">
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>
+              conda_pytorch_p38
+            </p>
+          </li><li class="listitem">
+            <p> conda_tensorflow2_p38 </p>
+          </li><li class="listitem">
+            <p> conda_amazonei_pytorch_latest_p37 </p>
+          </li></ul></div>
+      </li><li class="listitem">
+        <p>File browser filter</p>
+      </li><li class="listitem">
+        <p>Table of Contents (TOC)</p>
+      </li><li class="listitem">
+        <p>Multi-language support</p>
+      </li><li class="listitem">
+        <p>Simple mode</p>
+      </li><li class="listitem">
+        <p>Single interface mode</p>
+      </li><li class="listitem">
+        <p>Live editing SVG files with updated
+          rendering</p>
+      </li><li class="listitem">
+        <p>User interface for notebook cell tags</p>
+      </li></ul></div>
+     
+      <h3 id="nbi-jl-3-changes">Important changes to JupyterLab 3</h3>
+<p> For information about important changes when using JupyterLab 3, see the following JupyterLab
+        change logs: </p>
+<div class="itemizedlist">
+   
+   
+<ul class="itemizedlist"><li class="listitem">
+    <p>
+      <a href="https://github.com/jupyterlab/jupyterlab/releases" rel="noopener noreferrer" target="_blank"><span>v2.0.0</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+    </p>
+  </li><li class="listitem">
+    <p>
+      <a href="https://jupyterlab.readthedocs.io/en/stable/getting_started/changelog.html#for-developers" rel="noopener noreferrer" target="_blank"><span>v3.0.0</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+    </p>
+  </li></ul></div>
+<p>
+        <strong>Package version changes</strong>
+      </p>
+<p>
+  JupyterLab 3 has the following package version changes from JupyterLab
+  1:
+</p>
+<div class="itemizedlist">
+   
+   
+   
+   
+<ul class="itemizedlist"><li class="listitem">
+    <p> JupyterLab has been upgraded from 1.x to 3.x.</p>
+  </li><li class="listitem">
+    <p> Jupyter notebook has been upgraded from 5.x to 6.x.</p>
+  </li><li class="listitem">
+    <p> jupyterlab-git has been updated to version 0.37.1.</p>
+  </li><li class="listitem">
+    <p> nbserverproxy 0.x (0.3.2) has been replaced with jupyter-server-proxy 3.x (3.2.1).</p>
+  </li></ul></div>
+   
+   
+    <h2 id="nbi-jl-create">Creating a notebook with your JupyterLab version</h2>
+<p> You can select the JupyterLab version when creating your notebook instance from the console
+      following the steps in <a href="howitworks-create-ws.html">Create a Notebook Instance</a>. </p>
+<p> You can also select the JupyterLab version by passing the <code class="code">platform-identifier</code>
+      parameter when creating your notebook instance using the AWS CLI as follows: </p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">create-notebook-instance --notebook-instance-name <code class="replaceable">&lt;NEW_NOTEBOOK_NAME&gt;</code> \
+--instance-type <code class="replaceable">&lt;INSTANCE_TYPE&gt;</code> \
+--role-arn <code class="replaceable">&lt;YOUR_ROLE_ARN&gt;</code> \
+--platform-identifier <code class="replaceable">&lt;PLATFORM_TO_USE&gt;</code></code></pre>
+   
+    <h2 id="nbi-jl-view">View the JupyterLab version of a notebook from the console</h2>
+<p>
+  You can view the JupyterLab version of a notebook using the following
+  procedure:
+</p>
+<div class="procedure"><ol><li>
+    <p>Open the Amazon SageMaker console at <a href="https://console.aws.amazon.com/sagemaker/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/sagemaker/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+  </li><li>
+    <p>From the left navigation, select <b>Notebook</b>.</p>
+  </li><li>
+    <p>
+      From the dropdown menu, select <b>Notebook instances</b> to navigate to the <b>Notebook instances</b> page.
+    </p>
+  </li><li>
+    <p> From the list of notebook instances, select your notebook instance name. </p>
+  </li><li>
+    <p> On the <b>Notebook instance settings</b> page, view the <b>Platform
+            Identifier</b> to see the JupyterLab version of the notebook. </p>
+  </li></ol></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./nbi-al2.html">AL2 instances</div><div id="next" class="next-link" accesskey="n" href="./howitworks-create-ws.html">Create a Notebook Instance</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/nbi-jl.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/nbi-jl.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

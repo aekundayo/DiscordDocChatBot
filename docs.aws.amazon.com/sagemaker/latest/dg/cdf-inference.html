@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Common Data Formats for Inference - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="cdf-inference" /><meta name="default_state" content="cdf-inference" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="cdf-inference.html" /><meta name="description" content="Lists the media types that models accept as input for inference." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="cdf-inference.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/cdf-inference.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/cdf-inference.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/cdf-inference.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/cdf-inference.html" hreflang="de" /><link rel="alternative" href="cdf-inference.html" hreflang="en-us" /><link rel="alternative" href="cdf-inference.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/cdf-inference.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/cdf-inference.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/cdf-inference.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/cdf-inference.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/cdf-inference.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/cdf-inference.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/cdf-inference.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/cdf-inference.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/cdf-inference.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/cdf-inference.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/cdf-inference.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/cdf-inference.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/cdf-inference.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/cdf-inference.html" hreflang="zh-tw" /><link rel="alternative" href="cdf-inference.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Common Data Formats for Inference" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Common Data Formats for Inference - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#cdf-inference" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/cdf-inference.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/cdf-inference.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/cdf-inference.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Choose an Algorithm",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-choose.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Amazon SageMaker Built-in Algorithms or Pre-trained Models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Common Information About Built-in Algorithms",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/common-info-all-im-models.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Common Data Formats for Built-in Algorithms",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-common-data-formats.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 9,
+        "name" : "Common Data Formats for Inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-common-data-formats.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#cdf-inference" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="cdf-inference.html#ir-serialization"> Convert Data for Inference Request
+                            Serialization</a><a href="cdf-inference.html#ir-deserialization"> Convert Data for Inference Response
+                            Deserialization</a><a href="cdf-inference.html#common-in-formats">Common Request Formats for All
+                            Algorithms</a><a href="cdf-inference.html#cm-batch">Use Batch Transform with Built-in
+                            Algorithms</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="cdf-inference">Common Data Formats for Inference</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon SageMaker algorithms accept and produce several different MIME types for the
+                    HTTP payloads used in retrieving online and mini-batch predictions. You can use
+                    various AWS services to transform or preprocess records prior to running
+                    inference. At a minimum, you need to convert the data for the following:</p><div class="itemizedlist">
+                     
+                     
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>Inference request serialization (handled by you) </p>
+                    </li><li class="listitem">
+                        <p>Inference request deserialization (handled by the algorithm) </p>
+                    </li><li class="listitem">
+                        <p>Inference response serialization (handled by the algorithm) </p>
+                    </li><li class="listitem">
+                        <p>Inference response deserialization (handled by you) </p>
+                    </li></ul></div><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="cdf-inference.html#ir-serialization"> Convert Data for Inference Request
+                            Serialization</a></li><li><a href="cdf-inference.html#ir-deserialization"> Convert Data for Inference Response
+                            Deserialization</a></li><li><a href="cdf-inference.html#common-in-formats">Common Request Formats for All
+                            Algorithms</a></li><li><a href="cdf-inference.html#cm-batch">Use Batch Transform with Built-in
+                            Algorithms</a></li></ul></div>
+                    <h2 id="ir-serialization"> Convert Data for Inference Request
+                            Serialization</h2>
+                    <p>Content type options for Amazon SageMaker algorithm inference requests include:
+                            <code class="code">text/csv</code>, <code class="code">application/json</code>, and
+                            <code class="code">application/x-recordio-protobuf</code>. Algorithms that don't
+                        support all of these types can support other types. XGBoost, for example,
+                        only supports <code class="code">text/csv</code> from this list, but also supports
+                            <code class="code">text/libsvm</code>.</p>
+                    <p>For <code class="code">text/csv</code>, the value for the Body argument to
+                            <code class="code">invoke_endpoint</code> should be a string with commas separating
+                        the values for each feature. For example, a record for a model with four
+                        features might look like <code class="code">1.5,16.0,14,23.0</code>. Any transformations
+                        performed on the training data should also be performed on the data before
+                        obtaining inference. The order of the features matters and must remain
+                        unchanged. </p>
+                    <p><code class="code">application/json</code> is significantly more flexible and provides
+                        multiple possible formats for developers to use in their applications. At a
+                        high level, in JavaScript, the payload might look like the following: </p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">let request = <span>{</span>
+  // Instances might contain multiple rows that predictions are sought for.
+  "instances": [
+    <span>{</span>
+      // Request and algorithm specific inference parameters.
+      "configuration": <span>{</span>},
+      // Data in the specific format required by the algorithm.
+      "data": <span>{</span>
+         "&lt;field name&gt;": dataElement
+       }
+    }
+  ]
+}</code></pre>
+                    <p>You have the following options for specifying the
+                        <code class="code">dataElement</code>: </p>
+                    <p><b>Protocol buffers equivalent</b></p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">// Has the same format as the protocol buffers implementation described for training.
+let dataElement = <span>{</span>
+  "keys": [],
+  "values": [],
+  "shape": []
+}</code></pre>
+                    <p><b>Simple numeric vector </b></p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">// An array containing numeric values is treated as an instance containing a
+// single dense vector.
+let dataElement = [1.5, 16.0, 14.0, 23.0]
+
+// It will be converted to the following representation by the SDK.
+let converted = <span>{</span>
+  "features": <span>{</span>
+    "values": dataElement
+  }
+}</code></pre>
+                    <p><b>For multiple records</b></p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">let request = <span>{</span>
+  "instances": [
+    // First instance.
+    <span>{</span>
+      "features": [ 1.5, 16.0, 14.0, 23.0 ]
+    },
+    // Second instance.
+    <span>{</span>
+      "features": [ -2.0, 100.2, 15.2, 9.2 ]
+    }
+  ]
+}</code></pre>
+                 
+                    <h2 id="ir-deserialization"> Convert Data for Inference Response
+                            Deserialization</h2>
+                    <p>Amazon SageMaker algorithms return JSON in several layouts. At a high level, the
+                        structure is:</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">let response = <span>{</span>
+  "predictions": [<span>{</span>
+    // Fields in the response object are defined on a per algorithm-basis.
+  }]
+}</code></pre>
+                    <p>The fields that are included in predictions differ across algorithms. The
+                        following are examples of output for the k-means algorithm.</p>
+                    <p><b>Single-record inference</b>
+                    </p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">let response = <span>{</span>
+  "predictions": [<span>{</span>
+    "closest_cluster": 5,
+    "distance_to_cluster": 36.5
+  }]
+}</code></pre>
+                    <p><b>Multi-record inference</b></p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">let response = <span>{</span>
+  "predictions": [
+    // First instance prediction.
+    <span>{</span>
+      "closest_cluster": 5,
+      "distance_to_cluster": 36.5
+    },
+    // Second instance prediction.
+    <span>{</span>
+      "closest_cluster": 2,
+      "distance_to_cluster": 90.3
+    }
+  ]
+}</code></pre>
+                    <p><b>Multi-record inference with protobuf input
+                        </b></p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+  "features": [],
+  "label": <span>{</span>
+    "closest_cluster": <span>{</span>
+      "values": [ 5.0 ] // e.g. the closest centroid/cluster was 1.0
+    },
+    "distance_to_cluster": <span>{</span>
+      "values": [ 36.5 ]
+    }
+  },
+  "uid": "abc123",
+  "metadata": "<span>{</span> "created_at": '2017-06-03' }"
+}</code></pre>
+
+                    <p>SageMaker algorithms also support the JSONLINES format, where the per-record
+                        response content is same as that in JSON format. The multi-record structure
+                        is a concatenation of per-record response objects separated by newline
+                        characters. The response content for the built-in KMeans algorithm for 2
+                        input data points is:</p>
+
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>"distance_to_cluster": 23.40593910217285, "closest_cluster": 0.0}
+<span>{</span>"distance_to_cluster": 27.250282287597656, "closest_cluster": 0.0}</code></pre>
+                    <p>While running batch transform, we recommended using the
+                            <code class="code">jsonlines</code> response type by setting the <code class="code">Accept</code>
+                        field in the <code class="code">CreateTransformJobRequest</code> to
+                            <code class="code">application/jsonlines</code>.</p>
+                 
+                    <h2 id="common-in-formats">Common Request Formats for All
+                            Algorithms</h2>
+
+                    <p>Most algorithms use several of the following inference request
+                        formats.</p>
+
+                     
+                        <h3 id="cm-json">JSON Request Format</h3>
+
+                        <p><b>Content type:</b> application/JSON</p>
+
+                        <p><b>Dense format</b></p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">let request =   <span>{</span>
+    "instances":    [
+        <span>{</span>
+            "features": [1.5, 16.0, 14.0, 23.0]
+        }
+    ]
+}
+
+
+let request =   <span>{</span>
+    "instances":    [
+        <span>{</span>
+            "data": <span>{</span>
+                "features": <span>{</span>
+                    "values": [ 1.5, 16.0, 14.0, 23.0]
+                }
+            }
+        }
+    ]
+}</code></pre>
+                        <p><b>Sparse format</b></p>
+
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+	"instances": [
+		<span>{</span>"data": <span>{</span>"features": <span>{</span>
+					"keys": [26, 182, 232, 243, 431],
+					"shape": [2000],
+					"values": [1, 1, 1, 4, 1]
+				}
+			}
+		},
+		<span>{</span>"data": <span>{</span>"features": <span>{</span>
+					"keys": [0, 182, 232, 243, 431],
+					"shape": [2000],
+					"values": [13, 1, 1, 4, 1]
+				}
+			}
+		},
+	]
+}</code></pre>
+
+                     
+
+                     
+                        <h3 id="cm-jsonlines">JSONLINES Request Format</h3>
+
+                        <p><b>Content type:</b>
+                            application/JSONLINES</p>
+
+                        <p><b>Dense format</b></p>
+
+                        <p>A single record in dense format can be represented as either:</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span> "features": [1.5, 16.0, 14.0, 23.0] }</code></pre>
+
+                        <p>or:</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span> "data": <span>{</span> "features": <span>{</span> "values": [ 1.5, 16.0, 14.0, 23.0] } }</code></pre>
+
+                        <p><b>Sparse Format</b></p>
+
+                        <p>A single record in sparse format is represented as:</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>"data": <span>{</span>"features": <span>{</span> "keys": [26, 182, 232, 243, 431], "shape": [2000], "values": [1, 1, 1, 4, 1] } } }</code></pre>
+
+                        <p>Multiple records are represented as a concatenation of the above
+                            single-record representations, separated by newline characters:</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>"data": <span>{</span>"features": <span>{</span> "keys": [0, 1, 3], "shape": [4], "values": [1, 4, 1] } } }
+<span>{</span> "data": <span>{</span> "features": <span>{</span> "values": [ 1.5, 16.0, 14.0, 23.0] } }
+<span>{</span> "features": [1.5, 16.0, 14.0, 23.0] }</code></pre>
+
+                     
+                     
+                        <h3 id="cm-csv">CSV Request Format</h3>
+
+                        <p><b>Content type:</b> text/CSV;
+                            label_size=0</p>
+
+                        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>CSV support is not available for factorization machines.</p></div></div>
+
+                     
+
+                     
+                        <h3 id="cm-recordio">RECORDIO Request Format</h3>
+
+                        <p>Content type: application/x-recordio-protobuf</p>
+
+
+                     
+                 
+                    <h2 id="cm-batch">Use Batch Transform with Built-in
+                            Algorithms</h2>
+
+                    <p>While running batch transform, we recommended using the JSONLINES response
+                        type instead of JSON, if supported by the algorithm. This is accomplished by
+                        setting the <code class="code">Accept</code> field in the
+                            <code class="code">CreateTransformJobRequest</code> to
+                            <code class="code">application/jsonlines</code>.</p>
+                    <p>When you create a transform job, the <code class="code">SplitType</code> must be set
+                        according to the <code class="code">ContentType</code> of the input data. Similarly,
+                        depending on the <code class="code">Accept</code> field in the
+                            <code class="code">CreateTransformJobRequest</code>, <code class="code">AssembleWith</code> must
+                        be set accordingly. Please use the following table to help appropriately set
+                        these fields:</p>
+
+                    <div class="table-container"><div class="table-contents"><table id="w714aac23c11c21c29c15b9c15b7"><thead>
+                                <tr>
+                                    <th>ContentType</th>
+                                    <th>Recommended SplitType</th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td tabindex="-1"><code class="code">application/x-recordio-protobuf</code></td>
+                                    <td tabindex="-1"><code class="code">RecordIO</code></td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1"><code class="code">text/csv</code></td>
+                                    <td tabindex="-1"><code class="code">Line</code></td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1"><code class="code">application/jsonlines</code></td>
+                                    <td tabindex="-1"><code class="code">Line</code></td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1"><code class="code">application/json</code></td>
+                                    <td tabindex="-1"><code class="code">None</code></td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1"><code class="code">application/x-image</code></td>
+                                    <td tabindex="-1"><code class="code">None</code></td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1"><code class="code">image/*</code></td>
+                                    <td tabindex="-1"><code class="code">None</code></td>
+                                </tr>
+                            <thead>
+                                <tr>
+                                    <th>Accept</th>
+                                    <th>Recommended AssembleWith</th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td tabindex="-1"><code class="code">application/x-recordio-protobuf</code></td>
+                                    <td tabindex="-1"><code class="code">None</code></td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1"><code class="code">application/json</code></td>
+                                    <td tabindex="-1"><code class="code">None</code></td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1"><code class="code">application/jsonlines</code></td>
+                                    <td tabindex="-1"><code class="code">Line</code></td>
+                                </tr>
+                            </table></div></div>
+
+
+                <p>For more information on response formats for specific
+                    algorithms,
+                    see the following:</p><div class="itemizedlist">
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p><a href="deepar-in-formats.html">DeepAR Inference Formats</a></p>
+                    </li><li class="listitem">
+                        <p><a href="fm-in-formats.html">Factorization Machines Response Formats</a></p>
+                    </li><li class="listitem">
+                        <p><a href="ip-insights-inference-data-formats.html">IP Insights Inference Data
+                    Formats</a></p>
+                    </li><li class="listitem">
+                        <p><a href="km-in-formats.html">K-Means Response Formats</a></p>
+                    </li><li class="listitem">
+                        <p><a href="kNN-inference-formats.html">k-NN Request and Response Formats</a></p>
+                    </li><li class="listitem">
+                        <p><a href="LL-in-formats.html">Linear learner response formats</a></p>
+                    </li><li class="listitem">
+                        <p><a href="ntm-in-formats.html">NTM Response Formats</a></p>
+                    </li><li class="listitem">
+                        <p><a href="object2vec-inference-formats.html"> Data Formats for Object2Vec
+                Inference</a></p>
+                    </li><li class="listitem">
+                        <p><a href="object2vec-encoder-embeddings.html"> Encoder Embeddings for Object2Vec </a></p>
+                    </li><li class="listitem">
+                        <p><a href="PCA-in-formats.html">PCA Response Formats</a></p>
+                    </li><li class="listitem">
+                        <p><a href="rcf-in-formats.html">RCF Response Formats</a></p>
+                    </li></ul></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./cdf-training.html">Common Data Formats for Training</div><div id="next" class="next-link" accesskey="n" href="./cmn-info-instance-types.html">Suggested instance types</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/cdf-inference.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/cdf-inference.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

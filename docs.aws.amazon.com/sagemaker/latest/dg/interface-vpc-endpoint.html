@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Connect to SageMaker Within your VPC - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="interface-vpc-endpoint" /><meta name="default_state" content="interface-vpc-endpoint" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="interface-vpc-endpoint.html" /><meta name="description" content="Access the SageMaker API or SageMaker Runtime using a VPC." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="interface-vpc-endpoint.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/interface-vpc-endpoint.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/interface-vpc-endpoint.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/interface-vpc-endpoint.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/interface-vpc-endpoint.html" hreflang="de" /><link rel="alternative" href="interface-vpc-endpoint.html" hreflang="en-us" /><link rel="alternative" href="interface-vpc-endpoint.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/interface-vpc-endpoint.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/interface-vpc-endpoint.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/interface-vpc-endpoint.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/interface-vpc-endpoint.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/interface-vpc-endpoint.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/interface-vpc-endpoint.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/interface-vpc-endpoint.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/interface-vpc-endpoint.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/interface-vpc-endpoint.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/interface-vpc-endpoint.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/interface-vpc-endpoint.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/interface-vpc-endpoint.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/interface-vpc-endpoint.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/interface-vpc-endpoint.html" hreflang="zh-tw" /><link rel="alternative" href="interface-vpc-endpoint.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Connect to SageMaker Within your VPC" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Connect to SageMaker Within your VPC - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#interface-vpc-endpoint" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/interface-vpc-endpoint.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/interface-vpc-endpoint.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/interface-vpc-endpoint.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,VPC" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Configure security in Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/security.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Infrastructure Security in Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-security.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Connect to SageMaker Within your VPC",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-security.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#interface-vpc-endpoint" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="interface-vpc-endpoint.html#interface-vpc-endpoint-interface">Connect to SageMaker through a VPC interface
+                endpoint</a><a href="interface-vpc-endpoint.html#use-resources-vpc">Using SageMaker training and hosting with resources
+                inside your VPC</a><a href="interface-vpc-endpoint.html#api-private-link-policy">Create a VPC Endpoint Policy for SageMaker</a><a href="interface-vpc-endpoint.html#api-private-link-feature-store">Create a VPC Endpoint Policy for
+                Amazon SageMaker Feature Store</a><a href="interface-vpc-endpoint.html#notebook-private-link-vpn">Connect Your Private Network to Your
+                VPC</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="interface-vpc-endpoint">Connect to SageMaker Within your VPC</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can connect directly to the SageMaker API or to Amazon SageMaker Runtime through an <a href="https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpce-interface.html">interface
+            endpoint</a> in your virtual private cloud (VPC) instead of connecting over the
+        internet. When you use a VPC interface endpoint, communication between your VPC and the SageMaker
+        API or Runtime is conducted entirely and securely within an AWS network. </p>
+        <h2 id="interface-vpc-endpoint-interface">Connect to SageMaker through a VPC interface
+                endpoint</h2>
+        <p>The SageMaker API and SageMaker Runtime support <a href="https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Introduction.html">Amazon Virtual Private Cloud</a> (Amazon VPC)
+            interface endpoints that are powered by <a href="http://aws.amazon.com/privatelink" rel="noopener noreferrer" target="_blank"><span>AWS PrivateLink</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. Each VPC endpoint is represented by one or more <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html">Elastic Network
+                Interfaces</a> with private IP addresses in your VPC subnets. For example, an
+            application inside your VPC uses AWS PrivateLink to communicate with SageMaker Runtime. SageMaker
+            Runtime in turn communicates with the SageMaker endpoint. Using AWS PrivateLink allows you to
+            invoke your SageMaker endpoint from within your VPC, as shown in the following
+            diagram.</p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/security-vpc-SM.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                A VPC uses AWS PrivateLink to communicate with a SageMaker endpoint.&#xA;            " style="max-width:85%" />
+             
+             
+        </div>
+        <p>The VPC interface endpoint connects your VPC directly to the SageMaker API or SageMaker Runtime
+            using AWS PrivateLink without using an internet gateway, NAT device, VPN connection, or
+            AWS Direct Connect connection. The instances in your VPC do not need to connect to the public
+            internet in order to communicate with the SageMaker API or SageMaker Runtime.</p>
+        <p>You can create an AWS PrivateLink interface endpoint to connect to SageMaker or to SageMaker
+            Runtime using either the AWS Management Console or AWS Command Line Interface (AWS CLI). For instructions, see
+                <a href="https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpce-interface.html#create-interface-endpoint">Creating an Interface Endpoint</a>.</p>
+        <p>If you haven't enabled a private Domain Name System (DNS) hostname for your VPC
+            endpoint, <em>after you have created a VPC endpoint</em>, specify the
+            internet endpoint URL to the SageMaker API or SageMaker Runtime. Example code using AWS CLI commands
+            to specify the <code class="code">endpoint-url</code> parameter follows.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="bash ">aws sagemaker list-notebook-instances --endpoint-url <code class="replaceable">VPC_Endpoint_ID</code>.api.sagemaker.<code class="replaceable">Region</code>.vpce.amazonaws.com
+
+aws sagemaker list-training-jobs --endpoint-url <code class="replaceable">VPC_Endpoint_ID.api</code>.sagemaker.<code class="replaceable">Region</code>.vpce.amazonaws.com
+
+aws sagemaker-runtime invoke-endpoint --endpoint-url <code class="replaceable">VPC_Endpoint_ID</code>.runtime.sagemaker.<code class="replaceable">Region</code>.vpce.amazonaws.com  \
+    --endpoint-name <code class="replaceable">Endpoint_Name</code> \
+    --body "<code class="replaceable">Endpoint_Body</code>" \
+    --content-type "<code class="replaceable">Content_Type</code>" \
+            <code class="replaceable">Output_File</code></code></pre>
+        <p>If you enable private DNS hostnames for your VPC endpoint, you don't need to specify
+            the endpoint URL because the default hostname
+                (https://api.sagemaker.<code class="replaceable">Region</code>.amazon.com) resolves to
+            your VPC endpoint. Similarly, the default SageMaker Runtime DNS hostname
+                (https://runtime.sagemaker.<code class="replaceable">Region</code>.amazonaws.com) also
+            resolves to your VPC endpoint.</p>
+        <p>The SageMaker API and SageMaker Runtime support VPC endpoints in all AWS Regions where both
+                <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html#vpc_region">Amazon
+                VPC</a> and <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html#sagemaker_region">SageMaker</a> are
+            available. SageMaker supports making calls to all of its <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Operations.html"><code class="code">Operations</code></a> inside your VPC. The result
+                <code class="code">AuthorizedUrl</code> from the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreatePresignedNotebookInstanceUrl.html">&#x2028;
+                    CreatePresignedNotebookInstanceUrl</a>
+            command is not supported by AWS PrivateLink. For information about how to enable
+            AWS PrivateLink for the authorized URL that users use to connect to a notebook instance,
+            see <a href="notebook-interface-endpoint.html">Connect to a Notebook Instance Through a
+                VPC Interface Endpoint</a>.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When setting up a
+                VPC
+                interface endpoint for the SageMaker Runtime service
+                        (https://runtime.sagemaker.<code class="code"><code class="replaceable">Region</code></code>.amazonaws.com),
+                you must ensure that the VPC interface endpoint is activated in the
+                Availability
+                Zone of your
+                client
+                in order for private DNS resolution to work. Otherwise, you may
+                see DNS failures when attempting to resolve the URL.</p></div></div>
+        <p>To learn more about AWS PrivateLink, see the <a href="https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Introduction.html#what-is-privatelink">AWS PrivateLink documentation</a>. Refer to <a href="https://aws.amazon.com/privatelink/pricing/" rel="noopener noreferrer" target="_blank"><span>AWS PrivateLink Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> for the
+            price of VPC endpoints. To learn more about VPC and endpoints, see <a href="https://aws.amazon.com/vpc/" rel="noopener noreferrer" target="_blank"><span>Amazon VPC</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. For information about how to use
+            identity-based AWS Identity and Access Management policies to restrict access to the SageMaker API and SageMaker Runtime,
+            see <a href="security_iam_id-based-policy-examples.html#api-access-policy">Control Access to the SageMaker API by Using
+                    Identity-based Policies</a>.</p>
+     
+        <h2 id="use-resources-vpc">Using SageMaker training and hosting with resources
+                inside your VPC</h2>
+        <p>SageMaker uses your execution role to download and upload information from an Amazon S3 bucket
+            and Amazon Elastic Container Registry (Amazon ECR), in isolation from your training or inference container. If you
+            have resources that are located inside your VPC, you can still grant SageMaker access to
+            those resources. The following sections explain how to make your resources available to
+            SageMaker with or without network isolation.</p>
+         
+            <h3 id="use-resources-vpc-flat">Without network isolation enabled</h3>
+            <p>If you haven't set network isolation on your training job or model, SageMaker can
+                access resources using either of the following methods.</p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>SageMaker training and deployed inference containers can access the internet by
+                        default. SageMaker containers are able to access external services and resources
+                        on the public internet as part of your training and inference workloads.
+                        SageMaker containers are not able to access resources inside your VPC without a
+                        VPC configuration, as shown in the following illustration.</p>
+                    <div class="mediaobject">
+                         
+                            <img src="../../../images/sagemaker/latest/dg/images/security-vpc-no-config.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                            SageMaker cannot access resources inside your VPC without a VPC&#xA;                                configuration.&#xA;                        " style="max-width:85%" />
+                         
+                         
+                    </div>
+                </li><li class="listitem">
+                    <p>Use a VPC configuration to communicate with resources inside your VPC
+                        through an elastic network interface (ENI). The communication between the
+                        container and the resources in your VPC takes place securely within your VPC
+                        network, as shown in the following illustration. In this case, you manage
+                        networking access to your VPC resources and internet.</p>
+                    <div class="mediaobject">
+                         
+                            <img src="../../../images/sagemaker/latest/dg/images/security-vpc-config.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                            SageMaker can access and communicate with resources inside your VPC&#xA;                                with a VPC configuration.&#xA;                        " style="max-width:85%" />
+                         
+                         
+                    </div>
+                </li></ul></div>
+         
+         
+            <h3 id="use-resources-vpc-isolated">With network isolation</h3>
+            <p>If you employ network isolation, the SageMaker container can't communicate with
+                resources inside your VPC or make any network calls, as shown in the following
+                illustration. If you provide a VPC configuration, the download and upload operations
+                will be run through your VPC. For more information about hosting and training with
+                network isolation while using a VPC, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/mkt-algo-model-internet-free.html#mkt-algo-model-internet-free-isolation">Network Isolation</a>.</p>
+            <div class="mediaobject">
+                 
+                    <img src="../../../images/sagemaker/latest/dg/images/security-network-isolation-no-config.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                    SageMaker can access and communicate with resources inside your VPC with a VPC&#xA;                        configuration.&#xA;                " style="max-width:85%" />
+                 
+                 
+            </div>
+            
+         
+     
+        <h2 id="api-private-link-policy">Create a VPC Endpoint Policy for SageMaker</h2>
+        <p>You can create a policy for Amazon VPC endpoints for SageMaker to specify the following:</p>
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>The principal that can perform actions.</p>
+            </li><li class="listitem">
+                <p>The actions that can be performed.</p>
+            </li><li class="listitem">
+                <p>The resources on which actions can be performed.</p>
+            </li></ul></div>
+        <p>For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-access.html">Controlling
+                Access to Services with VPC Endpoints</a> in the <em>Amazon VPC User
+                Guide</em>.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>VPC endpoint policies aren't supported for Federal Information Processing Standard
+                (FIPS) SageMaker runtime endpoints for <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html">runtime_InvokeEndpoint</a>.</p></div></div>
+
+        <p>The following example VPC endpoint policy specifies that all users who have access to
+            the VPC interface endpoint are allowed to invoke the SageMaker hosted endpoint named
+                <code class="code">myEndpoint</code>.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+  "Statement": [
+      <span>{</span>
+          "Action": "sagemaker:InvokeEndpoint",
+          "Effect": "Allow",
+          "Resource": "arn:aws:sagemaker:us-west-2:123456789012:endpoint/myEndpoint",
+          "Principal": "*"
+      }
+  ]
+}</code></pre>
+        <p>In this example, the following are denied:</p>
+        <div class="itemizedlist">
+             
+             
+
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Other SageMaker API actions, such as <code class="code">sagemaker:CreateEndpoint</code> and
+                        <code class="code">sagemaker:CreateTrainingJob</code>.</p>
+            </li><li class="listitem">
+                <p>Invoking SageMaker hosted endpoints other than <code class="code">myEndpoint</code>.</p>
+            </li></ul></div>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>In this example, users can still take other SageMaker API actions from outside the VPC.
+                For information about how to restrict API calls to those from within the VPC, see
+                    <a href="security_iam_id-based-policy-examples.html#api-access-policy">Control Access to the SageMaker API by Using
+                    Identity-based Policies</a>.</p></div></div>
+     
+        <h2 id="api-private-link-feature-store">Create a VPC Endpoint Policy for
+                Amazon SageMaker Feature Store</h2>
+
+        <p> To create a VPC Endpoint for Amazon SageMaker Feature Store, use the following endpoint template,
+            substituting your <code class="replaceable">VPC_Endpoint_ID.api</code> and
+                <code class="replaceable">Region</code>:</p>
+
+        <p><code class="code"><code class="replaceable">VPC_Endpoint_ID.api</code>.featurestore-runtime.sagemaker.<code class="replaceable">Region</code>.vpce.amazonaws.com</code></p>
+        <p></p>
+     
+        <h2 id="notebook-private-link-vpn">Connect Your Private Network to Your
+                VPC</h2>
+        <p>To call the SageMaker API and SageMaker Runtime through your VPC, you have to connect from an
+            instance that is inside the VPC or connect your private network to your VPC by using an
+            AWS Virtual Private Network (AWS VPN) or AWS Direct Connect. For information about AWS VPN, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpn-connections.html">VPN
+                Connections</a> in the <em>Amazon Virtual Private Cloud User Guide</em>. For
+            information about AWS Direct Connect, see <a href="https://docs.aws.amazon.com/directconnect/latest/UserGuide/create-connection.html">Creating
+                a Connection</a> in the <em>AWS Direct Connect User
+            Guide</em>.</p>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./mkt-algo-model-internet-free.html">Run Training and Inference Containers in Internet-Free
+        Mode</div><div id="next" class="next-link" accesskey="n" href="./studio-interface-endpoint.html">Connect to Studio Through a VPC
+            Endpoint</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/interface-vpc-endpoint.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/interface-vpc-endpoint.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

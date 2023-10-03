@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>CORS Permission Requirement - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="sms-cors-update" /><meta name="default_state" content="sms-cors-update" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="sms-cors-update.html" /><meta name="description" content="Earlier in 2020, widely used browsers like Chrome and Firefox changed their default behavior for rotating images based on image metadata, referred to as EXIF data . Previously, browsers would always display images in exactly the manner in which they are stored on disk, which is typically unrotated. After the change, images now rotate according to a piece of image metadata called" /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="sms-cors-update.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/sms-cors-update.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/sms-cors-update.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/sms-cors-update.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/sms-cors-update.html" hreflang="de" /><link rel="alternative" href="sms-cors-update.html" hreflang="en-us" /><link rel="alternative" href="sms-cors-update.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/sms-cors-update.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/sms-cors-update.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/sms-cors-update.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/sms-cors-update.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/sms-cors-update.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/sms-cors-update.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sms-cors-update.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sms-cors-update.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/sms-cors-update.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/sms-cors-update.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/sms-cors-update.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/sms-cors-update.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/sms-cors-update.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/sms-cors-update.html" hreflang="zh-tw" /><link rel="alternative" href="sms-cors-update.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="CORS Permission Requirement" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>CORS Permission Requirement - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#sms-cors-update" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-cors-update.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-cors-update.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-cors-update.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Label data with a human-in-the-loop",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-label.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Use Amazon SageMaker Ground Truth to Label Data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Ground Truth Security and Permissions",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms-security-general.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "CORS Permission Requirement",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms-security-general.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#sms-cors-update" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="sms-cors-update">CORS Permission Requirement</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Earlier in 2020, widely used browsers like Chrome and Firefox changed their default
+            behavior for rotating images based on image metadata, referred to as <a href="https://en.wikipedia.org/wiki/Exif" rel="noopener noreferrer" target="_blank"><span>EXIF data</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. Previously, browsers
+            would always display images in exactly the manner in which they are stored on disk,
+            which is typically unrotated. After the change, images now rotate according to a piece
+            of image metadata called <em>orientation value</em>. This has
+            important implications for the entire machine learning (ML) community. For example, if
+            applications that annotate images do not consider the EXIF orientation, they may display
+            images in unexpected orientations, resulting in incorrect labels. </p><p>Starting with Chrome 89, AWS can no longer automatically prevent the rotation of
+            images because the web standards group W3C has decided that the ability to control
+            rotation of images violates the web’s Same-origin Policy. Therefore, to ensure human
+            workers annotate your input images in a predictable orientation when you submit requests
+            to create a labeling job, you must add a CORS header policy to the Amazon S3 buckets that
+            contain your input images.</p><div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>If you do not add a CORS configuration to the Amazon S3 buckets that contain your input
+                data, labeling tasks for those input data objects will fail.</p></div></div><p>If you create a job through the Ground Truth console, CORS is enabled by default. If all of
+            your input data is <em>not</em> located in the same Amazon S3 bucket
+            as your input manifest file, you must add a CORS configuration to all Amazon S3 buckets that
+            contain input data using the following instructions.</p><p>If you are using the <code class="code">CreateLabelingJob</code> API to create a Ground Truth labeling
+            job, you can add a CORS policy to an Amazon S3 bucket that contains input data in the S3
+            console. To set the required CORS headers on the Amazon S3 bucket that contain your input
+            images in the Amazon S3 console, follow the directions detailed in <a href="https://docs.aws.amazon.com/AmazonS3/latest/user-guide/add-cors-configuration.html">How do I add cross-domain resource sharing with CORS?</a>. Use the following
+            CORS configuration code for the buckets that host your images. If you use the Amazon S3
+            console to add the policy to your bucket, you must use the JSON format.</p><div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>If you create a 3D point cloud or video frame labeling job, you must add
+                additional rules to your CORS configuration. To learn more, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud-general-information.html#sms-security-permission-3d-point-cloud">3D Point Cloud Labeling Job Permission Requirements</a> and <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-video-overview.html#sms-security-permission-video-frame">Video Frame Job Permission
+                Requirements</a> respectively. </p></div></div><p><b>JSON</b></p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">[<span>{</span>
+   "AllowedHeaders": [],
+   "AllowedMethods": ["GET"],
+   "AllowedOrigins": ["*"],
+   "ExposeHeaders": ["Access-Control-Allow-Origin"]
+}]</code></pre><p><b>XML</b></p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">&lt;CORSConfiguration&gt;
+ &lt;CORSRule&gt;
+   &lt;AllowedOrigin&gt;*&lt;/AllowedOrigin&gt;
+   &lt;AllowedMethod&gt;GET&lt;/AllowedMethod&gt;
+   &lt;ExposeHeader&gt;Access-Control-Allow-Origin&lt;/ExposeHeader&gt;
+ &lt;/CORSRule&gt;
+&lt;/CORSConfiguration&gt;</code></pre><p>The following GIF demonstrates the instructions found in the Amazon S3
+            documentation to add a CORS header policy using the Amazon S3 console. For written
+            instructions, see <b>Using the Amazon S3 console</b> on the documentation page
+                <a href="https://docs.aws.amazon.com/AmazonS3/latest/user-guide/add-cors-configuration.html">How do I add cross-domain resource sharing with CORS?</a> in the
+            Amazon Simple Storage Service User Guide.</p><div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/sms/gifs/cors-config.gif" class="aws-docs-img-whiteBg aws-docs-img-padding" />
+             
+        </div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./sms-security-general.html">Security and Permissions</div><div id="next" class="next-link" accesskey="n" href="./sms-security-permission.html">IAM Permissions</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-cors-update.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-cors-update.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

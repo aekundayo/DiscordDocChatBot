@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Cross-Account Support for SageMaker Pipelines - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="build-and-manage-xaccount" /><meta name="default_state" content="build-and-manage-xaccount" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="build-and-manage-xaccount.html" /><meta name="description" content="Access pipeline entities from another AWS account." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="build-and-manage-xaccount.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/build-and-manage-xaccount.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/build-and-manage-xaccount.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/build-and-manage-xaccount.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/build-and-manage-xaccount.html" hreflang="de" /><link rel="alternative" href="build-and-manage-xaccount.html" hreflang="en-us" /><link rel="alternative" href="build-and-manage-xaccount.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/build-and-manage-xaccount.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/build-and-manage-xaccount.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/build-and-manage-xaccount.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/build-and-manage-xaccount.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/build-and-manage-xaccount.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/build-and-manage-xaccount.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/build-and-manage-xaccount.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/build-and-manage-xaccount.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/build-and-manage-xaccount.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/build-and-manage-xaccount.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/build-and-manage-xaccount.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/build-and-manage-xaccount.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/build-and-manage-xaccount.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/build-and-manage-xaccount.html" hreflang="zh-tw" /><link rel="alternative" href="build-and-manage-xaccount.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Cross-Account Support for SageMaker Pipelines" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Cross-Account Support for SageMaker Pipelines - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#build-and-manage-xaccount" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/build-and-manage-xaccount.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/build-and-manage-xaccount.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/build-and-manage-xaccount.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Implement MLOps",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/mlops.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "SageMaker Workflows",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/workflows.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Amazon SageMaker Model Building Pipelines",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "SageMaker Pipelines Overview",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-sdk.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Cross-Account Support for SageMaker Pipelines",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-sdk.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#build-and-manage-xaccount" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="build-and-manage-xaccount.html#build-and-manage-xaccount-set-up">Set up cross-account pipeline
+          sharing</a><a href="build-and-manage-xaccount.html#build-and-manage-xaccount-permissions">Permission policies for SageMaker Pipelines resources</a><a href="build-and-manage-xaccount.html#build-and-manage-xaccount-api-calls">Access shared pipeline entities through direct API calls</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="build-and-manage-xaccount">Cross-Account Support for SageMaker Pipelines</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can use cross-account support for Amazon SageMaker Model Building Pipelines to share
+      pipeline entities across AWS accounts and access shared pipelines through direct API calls. </p>
+      <h2 id="build-and-manage-xaccount-set-up">Set up cross-account pipeline
+          sharing</h2>
+      <p>SageMaker uses <a href="https://docs.aws.amazon.com/ram/latest/userguide/what-is.html">AWS
+          Resource Access Manager</a> (AWS RAM) to help you securely share your pipeline
+        entities across accounts. </p>
+       
+        <h3 id="build-and-manage-xaccount-set-up-console">Create a resource share</h3>
+        <div class="procedure"><ol><li>
+            <p>Select <b>Create a resource share</b> through the <a href="https://console.aws.amazon.com/ram/home" rel="noopener noreferrer" target="_blank"><span>AWS RAM console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+          </li><li>
+            <p>When specifying resource share details, choose the SageMaker Pipelines resource
+              type and select one or more pipelines that you want to share. When you share a
+              pipeline with any other account, all of its executions are also shared
+              implicitly.</p>
+          </li><li>
+            <p>Associate permissions with your resource share. Choose either the default
+              read-only permission policy or the extended pipeline execution permission policy. For
+              more detailed information, see <a href="build-and-manage-xaccount.html#build-and-manage-xaccount-permissions">Permission policies for SageMaker Pipelines resources</a>.
+            </p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you select the extended pipeline execution policy, note that any start,
+              stop, and retry commands called by shared accounts use resources in the AWS account that shared the
+              pipeline.</p></div></div>
+          </li><li>
+            <p>Use AWS account IDs to specify the accounts to which you want to grant access to your
+              shared resources.</p>
+          </li><li>
+            <p>Review your resource share configuration and select <b>Create resource
+                share</b>. It may take a few minutes for the resource share and principal
+              associations to complete.</p>
+          </li></ol></div>
+        <p>For more information, see <a href="https://docs.aws.amazon.com/ram/latest/userguide/getting-started-sharing.html">Sharing your AWS resources</a> in the <em>AWS
+            Resource Access Manager User Guide</em>.</p>
+       
+       
+        <h3 id="build-and-manage-xaccount-set-up-responses">Get responses to your
+            resource share invitation</h3>
+        <p>Once the resource share and principal associations are set, the specified AWS accounts
+          receive an invitation to join the resource share. The AWS accounts must accept the invite
+          to gain access to any shared resources.</p>
+        <p>For more information on accepting a resource share invite through AWS RAM, see <a href="https://docs.aws.amazon.com/ram/latest/userguide/getting-started-shared.html">Using
+            shared AWS resources </a>in the <em>AWS Resource Access Manager
+            User Guide</em>.</p>
+       
+     
+      <h2 id="build-and-manage-xaccount-permissions">Permission policies for SageMaker Pipelines resources</h2>
+      <p>When creating your resource share, choose one of two supported permission policies to
+        associate with the SageMaker pipeline resource type. Both policies grant access to any
+        selected pipeline and all of its executions. </p>
+       
+        <h3 id="build-and-manage-xaccount-permissions-default">Default read-only permissions</h3>
+        <p>The <code class="code">AWSRAMDefaultPermissionSageMakerPipeline</code> policy allows the following
+          read-only actions:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON ">"sagemaker:DescribePipeline"
+"sagemaker:DescribePipelineDefinitionForExecution"   
+"sagemaker:DescribePipelineExecution"
+"sagemaker:ListPipelineExecutions"
+"sagemaker:ListPipelineExecutionSteps"
+"sagemaker:ListPipelineParametersForExecution"
+"sagemaker:Search"</code></pre>
+       
+       
+        <h3 id="build-and-manage-xaccount-permissions-extended">Extended pipeline
+            execution permissions</h3>
+        <p>The <code class="code">AWSRAMPermissionSageMakerPipelineAllowExecution</code> policy includes all
+          of the read-only permissions from the default policy and also allows shared accounts to
+          start, stop, and retry pipeline executions.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Be mindful of AWS resource usage when using the extended pipeline execution
+            permission policy. With this policy, shared accounts are allowed to start, stop, and
+            retry pipeline executions. Any resources used for shared pipeline executions are
+            consumed by the owner account. </p></div></div>
+        <p>The extended pipeline execution permission policy allows the following actions:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON ">"sagemaker:DescribePipeline"
+"sagemaker:DescribePipelineDefinitionForExecution"   
+"sagemaker:DescribePipelineExecution"
+"sagemaker:ListPipelineExecutions"
+"sagemaker:ListPipelineExecutionSteps"
+"sagemaker:ListPipelineParametersForExecution"
+"sagemaker:StartPipelineExecution"
+"sagemaker:StopPipelineExecution"
+"sagemaker:RetryPipelineExecution"
+"sagemaker:Search"               </code></pre>
+       
+     
+      <h2 id="build-and-manage-xaccount-api-calls">Access shared pipeline entities through direct API calls</h2>
+      <p>Once cross-account pipeline sharing is set up, you can call the following SageMaker API actions using a pipeline ARN:</p>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can only call API commands if they are included in the permissions associated with your
+          resource share. If you select the
+            <code class="code">AWSRAMPermissionSageMakerPipelineAllowExecution</code> policy, then the start,
+          stop, and retry commands use resources in the AWS account that shared the
+          pipeline.</p></div></div>
+      <div class="itemizedlist">
+         
+         
+         
+         
+         
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribePipeline.html">DescribePipeline</a></p>
+        </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribePipelineDefinitionForExecution.html">DescribePipelineDefinitionForExecution</a></p>
+        </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribePipelineExecution.html">DescribePipelineExecution</a></p>
+        </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ListPipelineExecutions.html">ListPipelineExecutions</a></p>
+        </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ListPipelineExecutionSteps.html">ListPipelineExecutionSteps</a></p>
+        </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ListPipelineParametersForExecution.html">ListPipelineParametersForExecution</a></p>
+        </li><li class="listitem">
+            <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_StartPipelineExecution.html">StartPipelineExecution</a></p>
+        </li><li class="listitem">
+            <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_StopPipelineExecution.html">StopPipelineExecution</a></p>
+        </li><li class="listitem">
+            <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_RetryPipelineExecution.html">RetryPipelineExecution</a></p>
+        </li></ul></div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./build-and-manage-access.html">Access Management</div><div id="next" class="next-link" accesskey="n" href="./build-and-manage-parameters.html">Pipeline Parameters</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/build-and-manage-xaccount.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/build-and-manage-xaccount.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

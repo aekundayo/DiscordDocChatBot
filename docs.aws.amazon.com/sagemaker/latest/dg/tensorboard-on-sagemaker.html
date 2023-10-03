@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Use TensorBoard to debug and analyze training jobs in Amazon SageMaker - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="tensorboard-on-sagemaker" /><meta name="default_state" content="tensorboard-on-sagemaker" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="tensorboard-on-sagemaker.html" /><meta name="description" content="Use TensorBoard within Amazon SageMaker to debug and analyze your machine learning model and the training job of the model." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="tensorboard-on-sagemaker.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/tensorboard-on-sagemaker.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/tensorboard-on-sagemaker.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/tensorboard-on-sagemaker.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/tensorboard-on-sagemaker.html" hreflang="de" /><link rel="alternative" href="tensorboard-on-sagemaker.html" hreflang="en-us" /><link rel="alternative" href="tensorboard-on-sagemaker.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/tensorboard-on-sagemaker.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/tensorboard-on-sagemaker.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/tensorboard-on-sagemaker.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/tensorboard-on-sagemaker.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/tensorboard-on-sagemaker.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/tensorboard-on-sagemaker.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/tensorboard-on-sagemaker.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/tensorboard-on-sagemaker.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/tensorboard-on-sagemaker.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/tensorboard-on-sagemaker.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/tensorboard-on-sagemaker.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/tensorboard-on-sagemaker.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/tensorboard-on-sagemaker.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/tensorboard-on-sagemaker.html" hreflang="zh-tw" /><link rel="alternative" href="tensorboard-on-sagemaker.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Use TensorBoard to debug and analyze training jobs in Amazon SageMaker" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Use TensorBoard to debug and analyze training jobs in Amazon SageMaker - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#tensorboard-on-sagemaker" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/tensorboard-on-sagemaker.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/tensorboard-on-sagemaker.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/tensorboard-on-sagemaker.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Debug and improve model performance",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-debug-and-improve-model-performance.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use TensorBoard to debug and analyze training jobs in Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-debug-and-improve-model-performance.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#tensorboard-on-sagemaker" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="tensorboard-on-sagemaker.html#debugger-htb-support">Supported frameworks and AWS Regions</a><a href="tensorboard-on-sagemaker.html#debugger-htb-prerequisites">Prerequisites</a><a href="tensorboard-on-sagemaker.html#debugger-htb-prepare-training-job">Prepare a training job with a
+                TensorBoard output data configuration</a><a href="tensorboard-on-sagemaker.html#debugger-htb-access-tb">How to access TensorBoard on SageMaker</a><a href="tensorboard-on-sagemaker.html#debugger-htb-access-tb-data">Access and visualize training output data in
+                TensorBoard</a><a href="tensorboard-on-sagemaker.html#debugger-htb-explore">Explore training output data visualized in TensorBoard</a><a href="tensorboard-on-sagemaker.html#debugger-htb-delete-app">Delete unused TensorBoard applications</a><a href="tensorboard-on-sagemaker.html#debugger-htb-considerations">Considerations</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="tensorboard-on-sagemaker">Use TensorBoard to debug and analyze training
+            jobs in Amazon SageMaker</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon SageMaker with TensorBoard is a capability of Amazon SageMaker that brings the visualization tools
+        of <a href="https://www.tensorflow.org/tensorboard" rel="noopener noreferrer" target="_blank"><span>TensorBoard</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to SageMaker,
+        integrated with SageMaker Training and Domain. It provides options to administer your AWS
+        account and users belonging to the account through <a href="sm-domain.html">SageMaker Domain</a>, to give the Domain
+        users access to the TensorBoard data with appropriate permissions to Amazon S3, and
+        help the Domain users perform model debugging tasks using the TensorBoard visualization
+        plugins. SageMaker with TensorBoard is extended with the SageMaker Data Manager plugin, with which
+        Domain users can access a number of training jobs in one place within the TensorBoard
+        application.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This feature is for training and debugging deep learning models using the PyTorch or
+            TensorFlow framework.</p></div></div><p><b>For data scientists</b></p><p>Training large models can have scientific problems that require data scientists to debug
+        and resolve them in order to improve model convergence and stabilize gradient descent
+        processes.</p><p>When you encounter model training issues, such as loss not converging, or vanishing or
+        exploding weights and gradients, you need to access tensor data to dive deep and analyze the
+        model parameters, scalars, and any custom metrics. Using SageMaker with TensorBoard, you can
+        visualize model output tensors extracted from training jobs. As you experiment with
+        different models, multiple training runs, and model hyperparameters, you can select multiple
+        training jobs in TensorBoard and compare them in one place.</p><p><b>For administrators</b></p><p>Through the TensorBoard landing page in the SageMaker console or <a href="sm-domain.html">SageMaker Domain</a>, you can manage
+        TensorBoard application users if you are an administrator of an AWS account or SageMaker
+        Domain. Each Domain user can access their own TensorBoard application given the
+        granted permissions. As a SageMaker Domain administrator and Domain user, you can create
+        and delete the TensorBoard application given the permission level you have.</p>
+        <h2 id="debugger-htb-support">Supported frameworks and AWS Regions</h2>
+        <p>This feature supports the following machine learning frameworks and
+            AWS Regions.</p>
+        <div class="itemizedlist">
+            <h6>Frameworks</h6>
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>PyTorch</p>
+            </li><li class="listitem">
+                <p>TensorFlow</p>
+            </li><li class="listitem">
+                <p>Hugging Face Transformers</p>
+            </li></ul></div>
+        <div class="itemizedlist">
+            <h6>AWS Regions</h6>
+             
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>US East (N. Virginia) (<code class="code">us-east-1</code>)</p>
+            </li><li class="listitem">
+                <p>US East (Ohio) (<code class="code">us-east-2</code>)</p>
+            </li><li class="listitem">
+                <p>US West (Oregon) (<code class="code">us-west-2</code>)</p>
+            </li><li class="listitem">
+                <p>Europe (Frankfurt) (<code class="code">eu-central-1</code>)</p>
+            </li><li class="listitem">
+                <p>Europe (Ireland) (<code class="code">eu-west-1</code>)</p>
+            </li></ul></div>
+        
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Amazon SageMaker with TensorBoard runs the TensorBoard application on an
+                <code class="code">ml.r5.large</code> instance and incurs charges after the SageMaker free tier or the
+            free trial period of the feature. For more information, see <a href="https://aws.amazon.com/sagemaker/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker
+            Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></div></div>
+        <h2 id="debugger-htb-prerequisites">Prerequisites</h2>
+        <p>The following list shows the prerequisites to start using SageMaker with TensorBoard.</p>
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>A SageMaker Domain that's set up with Amazon VPC in your AWS account. </p>
+                <p>For instructions on setting up a Domain, see <a href="onboard-quick-start.html">Onboard to Amazon SageMaker
+                        Domain using quick setup</a>. You also need to add Domain user
+                    profiles for individual users to access the TensorBoard on SageMaker. For more
+                    information, see <a href="domain-user-profile-add-remove.html">Add and remove
+                        SageMaker Domain user profiles</a>.</p>
+            </li><li class="listitem">
+                <p>The following list is the minimum set of permissions for using TensorBoard on
+                    SageMaker.</p>
+                <div class="itemizedlist">
+                     
+                     
+                     
+                     
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="code">sagemaker:CreateApp</code></p>
+                    </li><li class="listitem">
+                        <p><code class="code">sagemaker:DeleteApp</code></p>
+                    </li><li class="listitem">
+                        <p><code class="code">sagemaker:DescribeTrainingJob</code></p>
+                    </li><li class="listitem">
+                        <p><code class="code">sagemaker:Search</code></p>
+                    </li><li class="listitem">
+                        <p><code class="code">s3:GetObject</code></p>
+                    </li><li class="listitem">
+                        <p><code class="code">s3:ListBucket</code></p>
+                    </li></ul></div>
+            </li></ul></div>
+     
+        <h2 id="debugger-htb-prepare-training-job">Prepare a training job with a
+                TensorBoard output data configuration</h2>
+        <p>A typical training job for deep learning in SageMaker consists of two main steps: preparing
+            a training script and configuring a SageMaker Training job launcher. In this section, you can
+            check the required changes to collect TensorBoard-compatible data from SageMaker
+            Training.</p>
+         
+            <h3 id="debugger-htb-prepare-training-job-1">Step 1: Modify your training script</h3>
+            <p>Make sure you determine which output tensors and scalars to collect, and modify
+                code lines in your training script using any of the following tools: TensorBoardX,
+                TensorFlow Summary Writer, PyTorch Summary Writer, or SageMaker Debugger.</p>
+            <p>Also make sure that you specify the TensorBoard data output path as the log
+                directory (<code class="code">log_dir</code>) for callback in the training container. </p>
+            <p>For more information about callbacks per framework, see the following
+                resources.</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>For PyTorch, use <a href="https://pytorch.org/docs/stable/tensorboard.html#module-torch.utils.tensorboard" rel="noopener noreferrer" target="_blank"><span>torch.utils.tensorboard.SummaryWriter</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. See also the <a href="https://pytorch.org/tutorials/recipes/recipes/tensorboard_with_pytorch.html#using-tensorboard-in-pytorch" rel="noopener noreferrer" target="_blank"><span>Using TensorBoard in PyTorch</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and <a href="https://pytorch.org/tutorials/recipes/recipes/tensorboard_with_pytorch.html#log-scalars" rel="noopener noreferrer" target="_blank"><span>Log scalars</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> sections in the <em>PyTorch
+                            tutorials</em>. Alternatively, you can use <a href="https://tensorboardx.readthedocs.io/en/latest/tutorial.html" rel="noopener noreferrer" target="_blank"><span>TensorBoardX Summary Writer</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">LOG_DIR="/opt/ml/output/tensorboard"
+tensorboard_callback=torch.utils.tensorboard.writer.SummaryWriter(log_dir=LOG_DIR)</code></pre>
+                </li><li class="listitem">
+                    <p>For TensorFlow, use the native callback for TensorBoard, <a href="https://www.tensorflow.org/api_docs/python/tf/keras/callbacks/TensorBoard" rel="noopener noreferrer" target="_blank"><span>tf.keras.callbacks.TensorBoard</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">LOG_DIR="/opt/ml/output/tensorboard"
+tensorboard_callback=tf.keras.callbacks.TensorBoard(
+    log_dir=LOG_DIR, histogram_freq=1)</code></pre>
+                </li><li class="listitem">
+                    <p>For Transformers with PyTorch, you can use <a href="https://huggingface.co/docs/transformers/main/en/main_classes/callback#transformers.integrations.TensorBoardCallback" rel="noopener noreferrer" target="_blank"><span>transformers.integrations.TensorBoardCallback</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p>
+                    <p>For Transformers with TensorFlow, use the
+                            <code class="code">tf.keras.tensorboard.callback</code>, and pass that to the keras
+                        callback in transformers.</p>
+                    <div class="awsdocs-note awsdocs-tip"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Tip</h6></div><div class="awsdocs-note-text"><p>You can also use a different container local output path. However, in
+                                <a href="tensorboard-on-sagemaker.html#debugger-htb-prepare-training-job-2">Step 2: Construct a SageMaker
+                    training launcher with TensorBoard data configuration</a>, you must map
+                            the paths correctly for SageMaker to successfully search the local path and
+                            save the TensorBoard data to the S3 output bucket.</p></div></div>
+                </li><li class="listitem">
+                    <p>For guidance on modifying training scripts using the SageMaker Debugger Python
+                        library, see <a href="debugger-modify-script.html">Step 1: Adapt Your Training Script to Register a
+            Hook</a>.</p>
+                </li></ul></div>
+         
+         
+            <h3 id="debugger-htb-prepare-training-job-2">Step 2: Construct a SageMaker
+                    training launcher with TensorBoard data configuration</h3>
+            <p>Use the <code class="code">sagemaker.debugger.TensorBoardOutputConfig</code> while configuring
+                a SageMaker framework estimator. This configuration API maps the S3 bucket you specify
+                for saving TensorBoard data with the local path in the training container
+                    (<code class="code">/opt/ml/output/tensorboard</code>). Pass the object of the module to the
+                    <code class="code">tensorboard_output_config</code> parameter of the estimator class. The
+                following code snippet shows an example of preparing a TensorFlow estimator with the
+                TensorBoard output configuration parameter.</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This example assumes that you use the SageMaker Python SDK. If you use the
+                    low-level SageMaker API, you should include the following to the request syntax
+                    of the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html">CreateTrainingJob</a> API.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json ">"TensorBoardOutputConfig": <span>{</span> 
+  "LocalPath": "/opt/ml/output/tensorboard",
+  "S3OutputPath": "<code class="replaceable">s3_output_bucket</code>"
+}</code></pre></div></div>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.tensorflow import TensorFlow
+from sagemaker.debugger import TensorBoardOutputConfig
+
+# Set variables for training job information, 
+# such as s3_out_bucket and other unique tags.
+... 
+
+LOG_DIR="/opt/ml/output/tensorboard"
+
+output_path = os.path.join(
+    "<code class="replaceable">s3_output_bucket</code>", "<code class="replaceable">sagemaker-output</code>", "<code class="replaceable">date_str</code>", "<code class="replaceable">your-training_job_name</code>"
+)
+
+<b>tensorboard_output_config = TensorBoardOutputConfig(
+    s3_output_path=os.path.join(output_path, '<code class="replaceable">tensorboard</code>'),
+    container_local_output_path=LOG_DIR
+)</b>
+
+estimator = TensorFlow(
+    entry_point="<code class="replaceable">train.py</code>",
+    source_dir="<code class="replaceable">src</code>",
+    role=<code class="replaceable">role</code>,
+    image_uri=<code class="replaceable">image_uri</code>,
+    instance_count=<code class="replaceable">1</code>,
+    instance_type="<code class="replaceable">ml.c5.xlarge</code>",
+    base_job_name="<code class="replaceable">your-training_job_name</code>",
+    <b>tensorboard_output_config=<code class="userinput">tensorboard_output_config</code>,</b>
+    hyperparameters=<code class="userinput">hyperparameters</code>
+)</code></pre>
+         
+     
+        <h2 id="debugger-htb-access-tb">How to access TensorBoard on SageMaker</h2>
+        <p>You can access TensorBoard by two methods: programmatically using the
+                <code class="code">sagemaker.interactive_apps.tensorboard</code> module that generates an
+            unsigned or a presigned URL, or using the TensorBoard landing page in the SageMaker console.
+            After you open TensorBoard, SageMaker runs the TensorBoard plugin and automatically finds all
+            training job output data in TensorBoard-compatible file format.</p>
+        <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="tensorboard-on-sagemaker.html#debugger-htb-access-tb-url">Open TensorBoard using the
+                        sagemaker.interactive_apps.tensorboard module</a></li><li><a href="tensorboard-on-sagemaker.html#debugger-htb-access-tb-get-app-url-estimator-method">Open TensorBoard using
+                    the get_app_url function as an estimator class method </a></li><li><a href="tensorboard-on-sagemaker.html#debugger-htb-access-tb-console">Open TensorBoard through the SageMaker
+                    console</a></li></ul></div>
+         
+            <h3 id="debugger-htb-access-tb-url">Open TensorBoard using the
+                        <code class="code">sagemaker.interactive_apps.tensorboard</code> module</h3>
+            <p>The <code class="code">sagemaker.interactive_apps.tensorboard</code> module provides a function
+                called <code class="code">get_app_url</code> that generates unsigned or presigned URLs to open
+                the TensorBoard application in any environment in SageMaker or Amazon EC2. This is to provide
+                a unified experience for both Studio and non-Studio users. For the Studio
+                environment, you can open TensorBoard by running the <code class="code">get_app_url()</code>
+                function as it is, or you can also specify a job name to start tracking as the
+                TensorBoard application opens. For non-Studio environments, you can open TensorBoard
+                by providing your Domain and user profile information to the utility function.
+                With this functionality, regardless of where or how you run training code and launch
+                training jobs, you can directly access TensorBoard by running the
+                    <code class="code">get_app_url</code> function in your Jupyter notebook or terminal.</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This functionality is available in the SageMaker Python SDK v2.184.0 and later. To
+                    use this functionality, make sure that you upgrade the SDK by running <code class="code">pip
+                        install sagemaker --upgrade</code>.</p></div></div>
+            <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="tensorboard-on-sagemaker.html#debugger-htb-access-tb-url-unsigned">Option 1: For SageMaker
+                        Studio</a></li><li><a href="tensorboard-on-sagemaker.html#debugger-htb-access-tb-url-presigned">Option 2: For non-Studio
+                        environments</a></li></ul></div>
+             
+                <h4 id="debugger-htb-access-tb-url-unsigned">Option 1: For SageMaker
+                        Studio</h4>
+                <p>If you are using SageMaker Studio, you can directly open the TensorBoard
+                    application or retrieve an unsigned URL by running the <code class="code">get_app_url</code>
+                    function as follows. As you are already within the Studio environment and
+                    signed in as a Domain user, <code class="code">get_app_url()</code> generates unsigned
+                    URL because it is not necessary to authenticate again. </p>
+                <p><b>To open the TensorBoard application</b>
+                </p>
+                <p>The following code automatically opens the TensorBoard application from the
+                    unsigned URL that the <code class="code">get_app_url()</code> function returns in the your
+                    environment's default web browser.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.interactive_apps import tensorboard
+
+region = "<code class="replaceable">us-west-2</code>"
+app = tensorboard.TensorBoardApp(region)
+
+app.get_app_url(
+    training_job_name="<code class="replaceable">your-training_job_name</code>" # Optional. Specify the job name to track a specific training job 
+)</code></pre>
+                <p><b>To retrieve an unsigned URL and open the TensorBoard
+                        application manually</b></p>
+                <p>The following code prints an unsigned URL that you can copy to a web browser
+                    and open the TensorBoard application.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.interactive_apps import tensorboard
+
+region = "<code class="replaceable">us-west-2</code>"
+app = tensorboard.TensorBoardApp(region)
+print("Navigate to the following URL:")
+print(
+    app.get_app_url(
+        training_job_name="<code class="replaceable">your-training_job_name</code>", # Optional. Specify the name of the job to track.
+        open_in_default_web_browser=<code class="replaceable">False</code>           # Set to False to print the URL to terminal.
+    )
+)</code></pre>
+                <p>Note that if you run the preceding two code samples outside the SageMaker
+                    Studio environment, the function will return a URL to the TensorBoard
+                    landing page in the SageMaker console, because these do not have sign-in information
+                    to your Domain and user profile. For creating a presigned URL, see Option 2
+                    in the following section.</p>
+             
+             
+                <h4 id="debugger-htb-access-tb-url-presigned">Option 2: For non-Studio
+                        environments</h4>
+                <p>If you use non-Studio environments, such as SageMaker Notebook instance or
+                    Amazon EC2, and want to open TensorBoard directly from the environment you are in,
+                    you need to generate a URL presigned with your Domain and user profile
+                    information. A <em>presigned</em> URL is a URL that's signed in to
+                    Amazon SageMaker Studio while the URL is being created with your Domain and user
+                    profile, and therefore granted access to all of the Domain applications and
+                    files associated with your Domain. To open TensorBoard through a presigned
+                    URL, use the <code class="code">get_app_url</code> function with your Domain and user
+                    profile name as follows.</p>
+                <p>Note that this option requires the Domain user to have the
+                        <code class="code">sagemaker:CreatePresignedDomainUrl</code> permission. Without the
+                    permission, the Domain user will receive an exception error.</p>
+                <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>Do not share any presigned URLs. The <code class="code">get_app_url</code> function
+                        creates presigned URLs, which automatically authenticates with your
+                        Domain and user profile and gives access to any applications and files
+                        associated with your Domain.</p></div></div>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">print(
+    app.get_app_url(
+        training_job_name="<code class="replaceable">your-training_job_name</code>", # Optional. Specify the name of the job to track.
+        create_presigned_domain_url=<code class="replaceable">True</code>,           # Reguired to be set to True for creating a presigned URL.
+        domain_id="<code class="replaceable">your-domain-id</code>",                 # Required if creating a presigned URL (create_presigned_domain_url=True).
+        user_profile_name="<code class="replaceable">your-user-profile-name</code>", # Required if creating a presigned URL (create_presigned_domain_url=True).
+        open_in_default_web_browser=<code class="replaceable">False</code>,          # Optional. Set to False to print the URL to terminal.
+        optional_create_presigned_url_kwargs=<span>{</span>}     # Optional. Add any additional args for Boto3 create_presigned_domain_url
+    )
+)</code></pre>
+             
+            <div class="awsdocs-note awsdocs-tip"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Tip</h6></div><div class="awsdocs-note-text"><p>The <code class="code">get_app_url</code> function runs the <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker/client/create_presigned_domain_url.html" rel="noopener noreferrer" target="_blank"><span><code class="code">SageMaker.Client.create_presigned_domain_url</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> API
+                    in the AWS SDK for Python (Boto3) in the backend. As the Boto3
+                        <code class="code">create_presigned_domain_url</code> API creates presigned domain URLs
+                    that expire in 300 seconds by default, presigned TensorBoard application URLs
+                    also expire in 300 seconds. If you want to extend the expiration time, pass the
+                        <code class="code">ExpiresInSeconds</code> argument to the
+                        <code class="code">optional_create_presigned_url_kwargs</code> argument of the
+                        <code class="code">get_app_url</code> function as follows.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">optional_create_presigned_url_kwargs=<span>{</span>"ExpiresInSeconds": <code class="replaceable">1500</code>}</code></pre></div></div>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If any of your input passed to the arguments of <code class="code">get_app_url</code> is
+                    invalid, the function outputs a URL to the TensorBoard landing page instead of
+                    opening the TensorBoard application. The output message would be similar to the
+                    following.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="txt ">Navigate to the following URL:
+https://us-west-2.console.aws.amazon.com/sagemaker/home?region=us-west-2#/tensor-board-landing</code></pre></div></div>
+         
+         
+            <h3 id="debugger-htb-access-tb-get-app-url-estimator-method">Open TensorBoard using
+                    the <code class="code">get_app_url</code> function as an <code class="code">estimator</code> class method </h3>
+            <p>If you are in the process of running a training job using the
+                    <code class="code">estimator</code> class of the SageMaker Python SDK and have an active object of
+                the <code class="code">estimator</code> class, you can also access the <a href="https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html#sagemaker.estimator.EstimatorBase.get_app_url" rel="noopener noreferrer" target="_blank"><span><code class="code">get_app_url</code> function as a class method</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the
+                    <code class="code">estimator</code> class. Open the TensorBoard application or retrieve an
+                unsigned URL by running the <code class="code">get_app_url</code> method as follows. The
+                    <code class="code">get_app_url</code> class method pulls the training job name from the
+                estimator and opens the TensorBoard application with the specified job.</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This functionality is available in the SageMaker Python SDK v2.184.0 and later. To
+                    use this functionality, make sure that you upgrade the SDK by running <code class="code">pip
+                        install sagemaker --upgrade</code>.</p></div></div>
+            <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="tensorboard-on-sagemaker.html#debugger-htb-access-tb-get-app-url-estimator-method-studio">Option 1: For SageMaker Studio</a></li><li><a href="tensorboard-on-sagemaker.html#debugger-htb-access-tb-get-app-url-estimator-method-non-studio">Option 2: For non-Studio environments</a></li></ul></div>
+             
+                <h4 id="debugger-htb-access-tb-get-app-url-estimator-method-studio">Option 1: For SageMaker Studio</h4>
+                <p><b>To open the TensorBoard application</b>
+                </p>
+                <p>The following code automatically opens the TensorBoard application from the
+                    unsigned URL that the <code class="code">get_app_url()</code> method returns in the your
+                    environment's default web browser.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">estimator.get_app_url(
+    app_type=SupportedInteractiveAppTypes.TENSORBOARD # Required.
+)</code></pre>
+                <p><b>To retrieve an unsigned URL and open the TensorBoard
+                        application manually</b></p>
+                <p>The following code prints an unsigned URL that you can copy to a web browser
+                    and open the TensorBoard application.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">print(
+    estimator.get_app_url(
+        app_type=SupportedInteractiveAppTypes.TENSORBOARD, # Required.
+        open_in_default_web_browser=False, # Optional. Set to False to print the URL to terminal.
+    )
+) </code></pre>
+                <p>Note that if you run the preceding two code samples outside the SageMaker
+                    Studio environment, the function will return a URL to the TensorBoard
+                    landing page in the SageMaker console, because these do not have sign-in information
+                    to your Domain and user profile. For creating a presigned URL, see Option 2
+                    in the following section.</p>
+             
+             
+                <h4 id="debugger-htb-access-tb-get-app-url-estimator-method-non-studio">Option 2: For non-Studio environments</h4>
+                <p>If you use non-Studio environments, such as SageMaker Notebook instance and
+                    Amazon EC2, and want to generate a presigned URL to open the TensorBoard application,
+                    use the <code class="code">get_app_url</code> method with your Domain and user profile
+                    information as follows.</p>
+                <p>Note that this option requires the Domain user to have the
+                        <code class="code">sagemaker:CreatePresignedDomainUrl</code> permission. Without the
+                    permission, the Domain user will receive an exception error.</p>
+                <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>Do not share any presigned URLs. The <code class="code">get_app_url</code> function
+                        creates presigned URLs, which automatically authenticates with your
+                        Domain and user profile and gives access to any applications and files
+                        associated with your Domain.</p></div></div>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">print(
+    estimator.get_app_url(
+        app_type=SupportedInteractiveAppTypes.TENSORBOARD, # Required
+        create_presigned_domain_url=<code class="replaceable">True</code>,           # Reguired to be set to True for creating a presigned URL.
+        domain_id="<code class="replaceable">your-domain-id</code>",                 # Required if creating a presigned URL (create_presigned_domain_url=True).
+        user_profile_name="<code class="replaceable">your-user-profile-name</code>", # Required if creating a presigned URL (create_presigned_domain_url=True).
+        open_in_default_web_browser=False,            # Optional. Set to False to print the URL to terminal.
+        optional_create_presigned_url_kwargs=<span>{</span>}       # Optional. Add any additional args for Boto3 create_presigned_domain_url
+    )
+) </code></pre>
+             
+         
+         
+            <h3 id="debugger-htb-access-tb-console">Open TensorBoard through the SageMaker
+                    console</h3>
+            <p>You can also use the SageMaker console UI to open the TensorBoard application. There
+                are two options to open the TensorBoard application through the SageMaker console.</p>
+            <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="tensorboard-on-sagemaker.html#debugger-htb-access-tb-console-domain-detail">Option 1: Launch
+                        TensorBoard from the Domain details page</a></li><li><a href="tensorboard-on-sagemaker.html#debugger-htb-access-tb-console-landing-pg">Option 2: Launch
+                        TensorBoard from the TensorBoard landing page</a></li></ul></div>
+             
+                <h4 id="debugger-htb-access-tb-console-domain-detail">Option 1: Launch
+                        TensorBoard from the Domain details page</h4>
+                <p><b>Navigate to the Domain details
+                    page</b></p>
+                <p> The following procedure shows how to navigate to the Domain details page. </p>
+                <div class="procedure"><ol><li>
+                        <p>Open the Amazon SageMaker console at <a href="https://console.aws.amazon.com/sagemaker/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/sagemaker/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                    </li><li>
+                        <p>On the left navigation pane, choose <b>Admin
+                                configurations</b>.</p>
+                    </li><li>
+                        <p>Under <b>Admin configurations</b>, choose
+                                <b>Domains</b>. </p>
+                    </li><li>
+                        <p>From the list of Domains, select the Domain in which you want
+                            to launch the TensorBoard application.</p>
+                    </li></ol></div>
+                <p><b>Launch a user profile application</b></p>
+                <p>The following procedure shows how to launch a Studio application that is
+                    scoped to a user profile. </p>
+                <div class="orderedlist">
+                     
+                     
+                     
+                <ol><li>
+                        <p>On the Domain details page, choose the <b>User
+                                profiles</b> tab. </p>
+                    </li><li>
+                        <p>Identify the user profile for which you want to launch the Studio
+                            application. </p>
+                    </li><li>
+                        <p>Choose <b>Launch</b> for your selected user profile,
+                            then choose <b>TensorBoard</b>. </p>
+                    </li></ol></div>
+             
+             
+                <h4 id="debugger-htb-access-tb-console-landing-pg">Option 2: Launch
+                        TensorBoard from the TensorBoard landing page</h4>
+                <p>The following procedure describes how to launch a TensorBoard application from
+                    the TensorBoard landing page. </p>
+                <div class="orderedlist">
+                     
+                     
+                     
+                     
+                     
+                <ol><li>
+                        <p>Open the Amazon SageMaker console at <a href="https://console.aws.amazon.com/sagemaker/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/sagemaker/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                    </li><li>
+                        <p>On the left navigation pane, choose
+                            <b>TensorBoard</b>.</p>
+                    </li><li>
+                        <p>Under <b>Get started</b>, select the Domain in which
+                            you want to launch the Studio application. If your user profile only
+                            belongs to one Domain, you do not see the option for selecting a
+                            Domain.</p>
+                    </li><li>
+                        <p>Select the user profile for which you want to launch the Studio
+                            application. If there is no user profile in the Domain, choose
+                                <b>Create user profile</b>. For more information, see
+                                <a href="domain-user-profile-add-remove.html">Add
+                                and Remove User Profiles</a>.</p>
+                    </li><li>
+                        <p>Choose <b>Open TensorBoard</b>.</p>
+                    </li></ol></div>
+                <p>The following screenshot shows the location of TensorBoard in the left
+                    navigation pane of the SageMaker console and the SageMaker with TensorBoard landing page
+                    in the main pane.</p>
+                <div class="mediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/debugger/htb-landing-page.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                        The TensorBoard landing page&#xA;                    " style="max-width:100%" />
+                     
+                     
+                </div>
+             
+         
+     
+        <h2 id="debugger-htb-access-tb-data">Access and visualize training output data in
+                TensorBoard</h2>
+        <p>You can conduct an online or offline analysis by loading collected output tensors from
+            S3 buckets paired with training jobs during or after training.</p>
+        <p>When you open the TensorBoard application, TensorBoard opens with the <b>SageMaker
+                Data Manager</b> tab. The following screenshot shows the full view of the
+            SageMaker Data Manager tab in the TensorBoard application.</p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/debugger/htb-sagemaker-manager-tab.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="A screenshot of the SageMaker Data Manager tab in the TensorBoard application" style="max-width:100%" />
+             
+             
+        </div>
+        <p>In the <b>SageMaker Data Manager</b> tab, you can select any training job and
+            load TensorBoard-compatible training output data from Amazon S3. </p>
+        <div class="orderedlist">
+             
+             
+             
+        <ol><li>
+                <p>In the <b>Search training jobs</b> section, use the filters to
+                    narrow down the list of training jobs you want to find, load, and
+                    visualize.</p>
+            </li><li>
+                <p>In the <b>List of training jobs</b> section, use the check boxes
+                    to choose training jobs from which you want to pull data and visualize for
+                    debugging.</p>
+            </li><li>
+                <p>Choose <b>Add selected jobs</b>. The selected jobs should appear
+                    in the <b>Tracked training jobs</b> section, as shown in the
+                    following screenshot. </p>
+                <div class="mediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/debugger/htb-sagemaker-manager-tab-tracked-jobs.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="A screenshot of the Tracked training jobs section under the SageMaker Data&#xA;                            Manager tab in the TensorBoard application" style="max-width:100%" />
+                     
+                     
+                </div>
+            </li></ol></div>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The <b>SageMaker Data Manager</b> tab only shows training jobs configured
+                with the <code class="code">TensorBoardOutputConfig</code> parameter. Make sure you have
+                configured the SageMaker estimator with this parameter. For more information, see <a href="tensorboard-on-sagemaker.html#debugger-htb-prepare-training-job-2">Step 2: Construct a SageMaker
+                    training launcher with TensorBoard data configuration</a>.</p></div></div>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The visualization tabs might not appear if you are using SageMaker with TensorBoard for
+                the first time or no data is loaded from a previous use. After adding training jobs
+                and waiting for a few seconds, refresh the viewer by choosing the clockwise circular
+                arrow on the upper-right corner. The visualization tabs should appear after the job
+                data are successfully loaded. You can also set to auto-refresh using the
+                    <b>Settings</b> button next to the refresh button in the upper
+                right corner.</p></div></div>
+     
+        <h2 id="debugger-htb-explore">Explore training output data visualized in TensorBoard</h2>
+        <p>In the graphics tabs, you can see the list of the loaded training jobs in the left
+            pane. You can also use the check boxes of the training jobs to show or hide
+            visualizations. The TensorBoard dynamic plugins are activated dynamically depending on
+            how you have set your training script to include summary writers and pass callbacks for
+            tensor and scalar collection, and therefore the graphics tabs also appear dynamically.
+            The following screenshots show example views of each tab with visualization of two
+            training jobs that collected metrics for time series, scalar, graph, distribution, and
+            histogram plugins.</p>
+        <p><b>The TIME SERIES tab view</b></p>
+        
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/debugger/htb-time-series.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                A screenshot of the TIME SERIES tab that shows the&#xA;                    TensorBoard data of selected training jobs for tracking, and the serialized&#xA;                    histogram plots in the main pane&#xA;                .&#xA;            " style="max-width:100%" />
+             
+             
+        </div>
+        <p><b>The SCALARS tab view</b></p>
+        
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/debugger/htb-scalars.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="A screenshot of the SCALARS tab that shows the TensorBoard data of&#xA;                    selected training jobs for tracking, and the plots of scalar values, such as&#xA;                    accuracy and loss, with respect to step (or epoch) in the main pane." style="max-width:100%" />
+             
+             
+        </div>
+        <p><b>The GRAPHS tab view</b></p>
+        
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/debugger/htb-graphs.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="A screenshot of the GRAPHS tab that shows the model graph of a selected&#xA;                    training job." style="max-width:100%" />
+             
+             
+        </div>
+        <p><b>The DISTRIBUTIONS tab view</b></p>
+        
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/debugger/htb-distribution.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="A screenshot of the DISTRIBUTIONS tab that shows the TensorBoard data of&#xA;                    selected training jobs for tracking, and the changes in distribution of model&#xA;                    parameters, such as biases and kernels, with respect to step (or epoch) in the&#xA;                    main pane." style="max-width:100%" />
+             
+             
+        </div>
+        <p><b>The HISTOGRAMS tab view</b></p>
+        
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/debugger/htb-histogram.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="A screenshot of the HISTOGRAMS tab that shows the TensorBoard data of&#xA;                    selected training jobs for tracking, and the serialized histograms of model&#xA;                    parameters, such as biases and kernels, in the main pane." style="max-width:100%" />
+             
+             
+        </div>
+     
+        <h2 id="debugger-htb-delete-app">Delete unused TensorBoard applications</h2>
+        <p>After you are done with monitoring and experimenting with jobs in TensorBoard, shut the
+            TensorBoard application down.</p>
+        <div class="procedure"><ol><li>
+                <p>Open the SageMaker console.</p>
+            </li><li>
+                <p>On the left navigation pane, choose <b>Admin configurations</b>.</p>
+            </li><li>
+                <p>Under <b>Admin configurations</b>, choose <b>Domains</b>. </p>
+            </li><li>
+                <p>Choose your domain.</p>
+            </li><li>
+                <p>Choose your user profile.</p>
+            </li><li>
+                <p>Under <b>Apps</b>, choose <b>Delete App</b> for
+                    the TensorBoard row.</p>
+            </li><li>
+                <p>Choose <b>Yes, delete app</b>.</p>
+            </li><li>
+                <p>Type <code class="userinput">delete</code> in the text box, then choose
+                        <b>Delete</b>.</p>
+            </li><li>
+                <p>A blue message should appear at the top of the screen: <b>default is
+                        being deleted</b>.</p>
+            </li></ol></div>
+     
+        <h2 id="debugger-htb-considerations">Considerations</h2>
+        <p>Consider the following when using SageMaker with TensorBoard.</p>
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>You cannot share the TensorBoard applications for collaboration purposes
+                    because SageMaker Domain does not allow application sharing among users. Users
+                    can share the output tensors saved in an S3 bucket, if they have access to the
+                    bucket.</p>
+            </li><li class="listitem">
+                <p>The visualization plugins might not appear when you first launch the
+                    TensorBoard application. After you select training jobs in the SageMaker Data Manager
+                    plugin, the TensorBoard application loads the TensorBoard data and populates the
+                    visualization plugins.</p>
+            </li><li class="listitem">
+                <p>The TensorBoard applications automatically shuts down after 1 hour of
+                    inactivity. If you want to shut the application down when you are done using it,
+                    make sure to manually shut down TensorBoard to avoid paying for the instance
+                    hosting it. For instructions on deleting the application, see <a href="tensorboard-on-sagemaker.html#debugger-htb-delete-app">Delete unused TensorBoard applications</a>.</p>
+            </li></ul></div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./train-debug-and-improve-model-performance.html">Debug and improve model
+            performance</div><div id="next" class="next-link" accesskey="n" href="./train-debugger.html">Use SageMaker Debugger</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/tensorboard-on-sagemaker.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/tensorboard-on-sagemaker.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Choose an Algorithm - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="algorithms-choose" /><meta name="default_state" content="algorithms-choose" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="algorithms-choose.html" /><meta name="description" content="Machine learning can help you accomplish empirical tasks that require some sort of inductive inference. This task involves induction as it uses data to train algorithms to make generalizable inferences. This means that the algorithms can make statistically reliable predictions or decisions, or complete other tasks when applied to new data that was not used to train them." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="algorithms-choose.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/algorithms-choose.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/algorithms-choose.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/algorithms-choose.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/algorithms-choose.html" hreflang="de" /><link rel="alternative" href="algorithms-choose.html" hreflang="en-us" /><link rel="alternative" href="algorithms-choose.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/algorithms-choose.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/algorithms-choose.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/algorithms-choose.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/algorithms-choose.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/algorithms-choose.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/algorithms-choose.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/algorithms-choose.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/algorithms-choose.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/algorithms-choose.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/algorithms-choose.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/algorithms-choose.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/algorithms-choose.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/algorithms-choose.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/algorithms-choose.html" hreflang="zh-tw" /><link rel="alternative" href="algorithms-choose.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Choose an Algorithm" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Choose an Algorithm - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#algorithms-choose" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/algorithms-choose.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/algorithms-choose.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/algorithms-choose.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Choose an Algorithm",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#algorithms-choose" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="algorithms-choose.html#algorithms-choose-implementation">Choose an algorithm implementation</a><a href="algorithms-choose.html#basic-machine-learning-paradigms">Problem types for the basic machine
+        learning paradigms</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="algorithms-choose">Choose an Algorithm</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Machine learning can help you accomplish empirical tasks that require some sort of inductive
+    inference. This task involves induction as it uses data to train algorithms to make
+    generalizable inferences. This means that the algorithms can make statistically reliable
+    predictions or decisions, or complete other tasks when applied to new data that was not used to
+    train them. </p><p>To help you select the best algorithm for your task, we classify these tasks on various
+    levels of abstraction. At the highest level of abstraction, machine learning attempts to find
+    patterns or relationships between features or less structured items, such as text in a data set.
+    Pattern recognition techniques can be classified into distinct machine learning paradigms, each
+    of which address specific problem types. There are currently three basic paradigms for machine
+    learning used to address various problem types: </p><div class="itemizedlist">
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><a href="algorithms-choose.html#algorithms-choose-supervised-learning">Supervised learning</a></p>
+    </li><li class="listitem">
+      <p><a href="algorithms-choose.html#algorithms-choose-unsupervised-learning">Unsupervised learning</a></p>
+    </li><li class="listitem">
+      <p><a href="algorithms-choose.html#algorithms-choose-reinforcement-learning">Reinforcement learning</a></p>
+    </li></ul></div><p>The types of problems that each learning paradigm can address are identified by considering
+    the inferences (or predictions, decisions, or other tasks) you want to make from the type of
+    data that you have or could collect. Machine learning paradigms use algorithmic methods to
+    address their various problem types. The algorithms provide recipes for solving these problems. </p><p>However, many algorithms, such as neural networks, can be deployed with different learning
+    paradigms and on different types of problems. Multiple algorithms can also address a specific
+    problem type. Some algorithms are more generally applicable and others are quite specific for
+    certain kinds of objectives and data. So the mapping between machine learning algorithms and
+    problem types is many-to-many. Also, there are various implementation options available for
+    algorithms. </p><p>The following sections provide guidance concerning implementation options, machine learning
+    paradigms, and algorithms appropriate for different problem types.</p><div class="highlights"><h6>Topics</h6><ul><li><a href="algorithms-choose.html#algorithms-choose-implementation">Choose an algorithm implementation</a></li><li><a href="algorithms-choose.html#basic-machine-learning-paradigms">Problem types for the basic machine
+        learning paradigms</a></li><li><a href="algos.html">Use Amazon SageMaker Built-in Algorithms or Pre-trained Models</a></li><li><a href="reinforcement-learning.html">Use Reinforcement Learning with Amazon SageMaker</a></li></ul></div>
+    <h2 id="algorithms-choose-implementation">Choose an algorithm implementation</h2>
+    <p>After choosing an algorithm, you must decide which implementation of it you want to use.
+      Amazon SageMaker supports three implementation options that require increasing levels of effort. </p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>Pre-trained models</b> require the least effort and are
+          models ready to deploy or to fine-tune and deploy using SageMaker JumpStart.</p>
+      </li><li class="listitem">
+        <p><b>Built-in algorithms</b> require more effort and scale
+          if the data set is large and significant resources are needed to train and deploy the
+          model.</p>
+      </li><li class="listitem">
+        <p>If there is no built-in solution that works, try to develop one that uses <b>pre-made images for machine and deep learning frameworks</b> for
+          supported frameworks such as Scikit-Learn, TensorFlow, PyTorch, MXNet, or Chainer.</p>
+      </li><li class="listitem">
+        <p>If you need to run custom packages or use any code which isn’t a part of a supported
+          framework or available via PyPi, then you need to build <b>your own
+            custom Docker image</b> that is configured to install the necessary packages or
+          software. The custom image must also be pushed to an online repository like the
+          Amazon Elastic Container Registry.</p>
+      </li></ul></div>
+    <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="algorithms-choose.html#built-in-algorithms-benefits">Use a built-in algorithm</a></li><li><a href="algorithms-choose.html#supported-frameworks-benefits">Use script mode in a supported
+          framework</a></li><li><a href="algorithms-choose.html#custom-image-use-case">Use a custom Docker image</a></li></ul></div>
+    <div class="table-container"><div class="table-contents"><table id="w714aac23c11c17b9"><thead><tr><th class="table-header" colspan="100"><div class="title">Algorithm implementation guidance</div></th></tr>
+          <tr>
+            <th>Implementation</th>
+            <th>Requires code</th>
+            <th>Pre-coded algorithms</th>
+            <th>Support for third party packages</th>
+            <th>Support for custom code</th>
+            <th>Level of effort</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">Built-in</td>
+            <td tabindex="-1">No</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">No</td>
+            <td tabindex="-1">No</td>
+            <td tabindex="-1">Low</td>
+          </tr>
+          <tr>
+            <td tabindex="-1">Scikit-learn</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">PyPi only</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">Medium</td>
+          </tr>
+          <tr>
+            <td tabindex="-1">Spark ML</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">PyPi only</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">Medium</td>
+          </tr>
+          <tr>
+            <td tabindex="-1">XGBoost (open source)</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">PyPi only</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">Medium</td>
+          </tr>
+          <tr>
+            <td tabindex="-1">TensorFlow</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">No</td>
+            <td tabindex="-1">PyPi only</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">Medium-high</td>
+          </tr>
+          <tr>
+            <td tabindex="-1">PyTorch</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">No</td>
+            <td tabindex="-1">PyPi only</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">Medium-high</td>
+          </tr>
+          <tr>
+            <td tabindex="-1">MXNet</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">No</td>
+            <td tabindex="-1">PyPi only</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">Medium-high</td>
+          </tr>
+          <tr>
+            <td tabindex="-1">Chainer</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">No</td>
+            <td tabindex="-1">PyPi only</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">Medium-high</td>
+          </tr>
+          <tr>
+            <td tabindex="-1">Custom image</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">No</td>
+            <td tabindex="-1">Yes, from any source</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">High</td>
+          </tr>
+        </table></div></div>
+     
+      <h3 id="built-in-algorithms-benefits">Use a built-in algorithm</h3>
+      <p>When choosing an algorithm for your type of problem and data, the easiest option is to
+        use one of Amazon SageMaker's built-in algorithms. These built-in algorithms come with two major
+        benefits.</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>The built-in algorithms require no coding to start running experiments. The only
+            inputs you need to provide are the data, hyperparameters, and compute resources. This
+            allows you to run experiments more quickly, with less overhead for tracking results and
+            code changes.</p>
+        </li><li class="listitem">
+          <p>The built-in algorithms come with parallelization across multiple compute instances
+            and GPU support right out of the box for all applicable algorithms (some algorithms may
+            not be included due to inherent limitations). If you have a lot of data with which to
+            train your model, most built-in algorithms can easily scale to meet the demand. Even if
+            you already have a pre-trained model, it may still be easier to use its corollary in
+            SageMaker and input the hyper-parameters you already know than to port it over, using script
+            mode on a supported framework.</p>
+        </li></ul></div>
+      <p>For more information on the built-in algorithms provided by SageMaker, see <a href="algos.html">Use Amazon SageMaker Built-in Algorithms or Pre-trained Models</a>.</p>
+      <p>For important information about docker registry paths, data formats, recommended EC2
+        instance types, and CloudWatch logs common to all of the built-in algorithms provided by SageMaker,
+        see <a href="common-info-all-im-models.html">Common Information About Built-in
+                Algorithms</a>.</p>
+     
+     
+      <h3 id="supported-frameworks-benefits">Use script mode in a supported
+          framework</h3>
+      <p>If the algorithm you want to use for your model is not supported by a built-in choice
+        and you are comfortable coding your own solution, then you should consider using an Amazon SageMaker
+        supported framework. This is referred to as "script mode" because you write your custom code
+        (script) in a text file with a <code>.py</code> extension. As the table above
+        indicates, SageMaker supports most of the popular machine learning frameworks. These frameworks
+        come preloaded with the corresponding framework and some additional Python packages, such as
+        Pandas and NumPy, so you can write your own code for training an algorithm. These frameworks
+        also allow you to install any Python package hosted on PyPi by including a requirements.txt
+        file with your training code or to include your own code directories. R is also supported
+        natively in SageMaker notebook kernels. Some frameworks, like scikit-learn and Spark ML, have
+        pre-coded algorithms you can use easily, while other frameworks like TensorFlow and PyTorch
+        may require you to implement the algorithm yourself. The only limitation when using a
+        supported framework image is that you cannot import any software packages that are not
+        hosted on PyPi or that are not already included with the framework’s image.</p>
+      <p>For more information on the frameworks supported by SageMaker, see <a href="frameworks.html">Machine Learning Frameworks and Languages</a>.</p>
+     
+     
+      <h3 id="custom-image-use-case">Use a custom Docker image</h3>
+      <p>Amazon SageMaker's built-in algorithms and supported frameworks should cover most use cases, but
+        there are times when you may need to use an algorithm from a package not included in any of
+        the supported frameworks. You might also have a pre-trained model picked or persisted
+        somewhere which you need to deploy. SageMaker uses Docker images to host the training and serving
+        of all models, so you can supply your own custom Docker image if the package or software you
+        need is not included in a supported framework. This may be your own Python package or an
+        algorithm coded in a language like Stan or Julia. For these images you must also configure
+        the training of the algorithm and serving of the model properly in your Dockerfile. This
+        requires intermediate knowledge of Docker and is not recommended unless you are comfortable
+        writing your own machine learning algorithm. Your Docker image must be uploaded to an online
+        repository, such as the Amazon Elastic Container Registry (ECR) before you can train and serve your model
+        properly.</p>
+      <p> For more information on custom Docker images in SageMaker, see <a href="your-algorithms.html">Use Docker containers to build models</a>.</p>
+      
+     
+   
+    <h2 id="basic-machine-learning-paradigms">Problem types for the basic machine
+        learning paradigms</h2>
+    <p>The following three sections describe the main problem types addressed by the three basic
+      paradigms for machine learning. For a list of the built-in algorithms that SageMaker provides to
+      address these problem types, see <a href="algos.html">Use Amazon SageMaker Built-in Algorithms or Pre-trained Models</a>.</p>
+    <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="algorithms-choose.html#algorithms-choose-supervised-learning">Supervised learning</a></li><li><a href="algorithms-choose.html#algorithms-choose-unsupervised-learning">Unsupervised learning</a></li><li><a href="algorithms-choose.html#algorithms-choose-reinforcement-learning">Reinforcement learning</a></li></ul></div>
+     
+      <h3 id="algorithms-choose-supervised-learning">Supervised learning</h3>
+      <p>If your data set consists of features or attributes (inputs) that contain target values
+        (outputs), then you have a supervised learning problem. If your target values are
+        categorical (mathematically discrete), then you have a <b>classification
+          problem</b>. It is a standard practice to distinguish binary from multiclass
+        classification. </p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><b>Binary classification</b> is a type of supervised
+            learning that assigns an individual to one of two predefined and mutually exclusive
+            classes based on the individual's attributes. It is supervised because the models are
+            trained using examples in which the attributes are provided with correctly labeled
+            objects. A medical diagnosis for whether an individual has a disease or not based on the
+            results of diagnostic tests is an example of binary classification.</p>
+        </li><li class="listitem">
+          <p><b>Multiclass classification</b> is a type of supervised
+            learning that assigns an individual to one of several classes based on the individual's
+            attributes. It is supervised because the models are trained using examples in which the
+            attributes are provided with correctly labeled objects. An example is the prediction of
+            the topic most relevant to a text document. A document may be classified as being about
+            religion, politics, or finance, or as about one of several other predefined topic
+            classes.</p>
+        </li></ul></div>
+      <p>If the target values you are trying to predict are mathematically continuous, then you
+        have a <b>regression</b> problem. Regression estimates the values
+        of a dependent target variable based on one or more other variables or attributes that are
+        correlated with it. An example is the prediction of house prices using features like the
+        number of bathrooms and bedrooms and the square footage of the house and garden. Regression
+        analysis can create a model that takes one or more of these features as an input and
+        predicts the price of a house.</p>
+      <p>For more information on the built-in supervised learning algorithms provided by SageMaker,
+        see <a href="algos.html#algorithms-built-in-supervised-learning">Supervised Learning</a>.</p>
+     
+     
+      <h3 id="algorithms-choose-unsupervised-learning">Unsupervised learning</h3>
+      <p>If your data set consists of features or attributes (inputs) that do not contain labels
+        or target values (outputs), then you have an unsupervised learning problem. In this type of
+        problem, the output must be predicted based on the pattern discovered in the input data. The
+        goal in unsupervised learning problems is to discover patterns such as groupings within the
+        data. There are a large variety of tasks or problem types to which unsupervised learning can
+        be applied. Principal component and cluster analyses are two of the main methods commonly
+        deployed for preprocessing data. Here is a short list of problem types that can be addressed
+        by unsupervised learning:</p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><b>Dimension reduction</b> is typically part of a data
+            exploration step used to determine the most relevant features to use for model
+            construction. The idea is to transform data from a high-dimensional, sparsely populated
+            space into a low-dimensional space that retains most significant properties of the
+            original data. This provides relief for the curse of dimensionality that can arise with
+            sparsely populated, high-dimensional data on which statistical analysis becomes
+            problematic. It can also be used to help understand data, reducing high-dimensional data
+            to a lower dimensionality that can be visualized.</p>
+        </li><li class="listitem">
+          <p><b>Cluster analysis</b> is a class of techniques that are
+            used to classify objects or cases into groups called clusters. It attempts to find
+            discrete groupings within data, where members of a group are as similar as possible to
+            one another and as different as possible from members of other groups. You define the
+            features or attributes that you want the algorithm to use to determine similarity,
+            select a distance function to measure similarity, and specify the number of clusters to
+            use in the analysis.</p>
+        </li><li class="listitem">
+          <p><b>Anomaly detection</b> is the identification of rare
+            items, events, or observations in a data set which raise suspicions because they differ
+            significantly from the rest of the data. The identification of anomalous items can be
+            used, for example, to detect bank fraud or medical errors. Anomalies are also referred
+            to as outliers, novelties, noise, deviations, and exceptions.</p>
+        </li><li class="listitem">
+          <p><b>Density estimation</b> is the construction of estimates
+            of unobservable underlying probability density functions based on observed data. A
+            natural use of density estimates is for data exploration. Density estimates can discover
+            features such as skewness and multimodality in the data. The most basic form of density
+            estimation is a rescaled histogram.</p>
+        </li></ul></div>
+      <p>SageMaker provides several built-in machine learning algorithms that you can use for these
+        unsupervised learning tasks. For more information on the built-in unsupervised algorithms
+        provided by SageMaker, see <a href="algos.html#algorithms-built-in-unsupervised-learning">Unsupervised
+                Learning</a>.</p>
+     
+     
+      <h3 id="algorithms-choose-reinforcement-learning">Reinforcement learning</h3>
+      <p>Reinforcement learning is a type of learning that is based on interaction with the
+        environment. This type of learning is used by an agent that must learn behavior through
+        trial-and-error interactions with a dynamic environment in which the goal is to maximize the
+        long-term rewards that the agent receives as a result of its actions. Rewards are maximized
+        by trading off exploring actions that have uncertain rewards with exploiting actions that
+        have known rewards. </p>
+      <p>For more information on SageMaker's frameworks, toolkits, and environments for reinforcement
+        learning, see <a href="reinforcement-learning.html">Use Reinforcement Learning with Amazon SageMaker</a>.</p>
+     
+    
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./how-it-works-training.html">Model Training</div><div id="next" class="next-link" accesskey="n" href="./algos.html">Use Built-in Algorithms</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/algorithms-choose.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/algorithms-choose.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

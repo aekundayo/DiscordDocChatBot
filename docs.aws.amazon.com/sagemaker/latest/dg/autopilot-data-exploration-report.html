@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Amazon SageMaker Autopilot Data exploration report - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="autopilot-data-exploration-report" /><meta name="default_state" content="autopilot-data-exploration-report" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="autopilot-data-exploration-report.html" /><meta name="description" content="Identify problems in your dataset and get recommendations about how to address them." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="autopilot-data-exploration-report.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/autopilot-data-exploration-report.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/autopilot-data-exploration-report.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/autopilot-data-exploration-report.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/autopilot-data-exploration-report.html" hreflang="de" /><link rel="alternative" href="autopilot-data-exploration-report.html" hreflang="en-us" /><link rel="alternative" href="autopilot-data-exploration-report.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/autopilot-data-exploration-report.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/autopilot-data-exploration-report.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/autopilot-data-exploration-report.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/autopilot-data-exploration-report.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/autopilot-data-exploration-report.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/autopilot-data-exploration-report.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/autopilot-data-exploration-report.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/autopilot-data-exploration-report.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/autopilot-data-exploration-report.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/autopilot-data-exploration-report.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/autopilot-data-exploration-report.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/autopilot-data-exploration-report.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/autopilot-data-exploration-report.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/autopilot-data-exploration-report.html" hreflang="zh-tw" /><link rel="alternative" href="autopilot-data-exploration-report.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Amazon SageMaker Autopilot Data exploration report" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Amazon SageMaker Autopilot Data exploration report - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#autopilot-data-exploration-report" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-data-exploration-report.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-data-exploration-report.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-data-exploration-report.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,Autopilot,automatic machine learning,Auto ML,Autopilot experiment for tabular data,model evaluation,generated notebooks,model insights,data exploration,candidate definition,data problems,data analysis,dataset summary,recommendations" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use automated ML, no-code, or low-code",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/use-auto-ml.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "SageMaker Autopilot",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Create an Amazon SageMaker Autopilot experiment for tabular data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Amazon SageMaker Autopilot notebooks generated to manage AutoML tasks",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-notebook-output.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Amazon SageMaker Autopilot Data exploration report",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-notebook-output.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#autopilot-data-exploration-report" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="autopilot-data-exploration-report.html#autopilot-data-exploration-report-dataset-summary">Dataset Summary</a><a href="autopilot-data-exploration-report.html#autopilot-data-exploration-report-target-analysis">Target Analysis</a><a href="autopilot-data-exploration-report.html#autopilot-data-exploration-report-data-sample">Data Sample</a><a href="autopilot-data-exploration-report.html#autopilot-data-exploration-report-duplicate-rows">Duplicate rows</a><a href="autopilot-data-exploration-report.html#autopilot-data-exploration-report-cross-column-correlations">Cross column
+          correlations</a><a href="autopilot-data-exploration-report.html#autopilot-data-exploration-report-cross-anomolous-rows">Anomalous
+          Rows</a><a href="autopilot-data-exploration-report.html#autopilot-data-exploration-report-description-statistics-and-values">Missing values, cardinality, and descriptive statistics</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="autopilot-data-exploration-report">Amazon SageMaker Autopilot Data exploration report</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon SageMaker Autopilot cleans and pre-processes your dataset automatically. High-quality data improves
+      machine learning efficiency and produces models that make more accurate predictions. </p><p>There are issues with customer-provided datasets that cannot be fixed automatically
+      without the benefit of some domain knowledge. Large outlier values in the target column for
+      regression problems, for example, may cause suboptimal predictions for the non-outlier values.
+      Outliers may need to be removed depending on the modeling objective. If a target column is
+      included by accident as one of the input features, the final model will validate well, but be
+      of little value for future predictions. </p><p>To help customers discover these sorts of issues, Autopilot provides a data exploration
+      report that contains insights into potential issues with their data. The report also suggests
+      how to handle the issues.</p><p>A data exploration notebook containing the report is generated for every Autopilot job. The
+      report is stored in an Amazon S3 bucket and can be accessed from your output path. The path of the
+      data exploration report usually adheres to the following pattern.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">[s3 output path]/[name of the automl job]/sagemaker-automl-candidates/[name of processing job used for data analysis]/notebooks/SageMakerAutopilotDataExplorationNotebook.ipynb</code></pre><p>The location of the data exploration notebook can be obtained from the Autopilot API using
+      the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeAutoMLJob.html"><code class="code">DescribeAutoMLJob</code></a> operation response, which is stored in <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLJobArtifacts.html#sagemaker-Type-AutoMLJobArtifacts-DataExplorationNotebookLocation">DataExplorationNotebookLocation</a>. </p><p>When running Autopilot from SageMaker Studio, you can open the data exploration report using
+      the following steps:</p><div class="procedure"><ol><li>
+        <p>Choose the <b>Home</b> icon <span class="inlinemediaobject">
+             
+              <img src="../../../images/sagemaker/latest/dg/images/studio/icons/house.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" style="max-width:3%" />
+             
+          </span> from the <em>left navigation pane</em> to view the
+          top-level <b>Amazon SageMaker Studio</b> navigation menu.</p>
+      </li><li>
+        <p>Select the <b>AutoML</b> card from the main working area. This opens a
+          new <b>Autopilot</b> tab.</p>
+      </li><li>
+        <p>In the <b>Name</b> section, select the Autopilot job that has the data
+          exploration notebook that you want to examine. This opens a new <b>Autopilot
+            job</b> tab.</p>
+      </li><li>
+        <p>Select <b>Open data exploration notebook</b> from the top right section
+          of the <b>Autopilot job</b> tab.</p>
+      </li></ol></div><p>The data exploration report is generated from your data before the training process
+      begins. This allows you to stop Autopilot jobs that might lead to meaningless results. Likewise,
+      you can address any issues or improvements with your dataset before rerunning Autopilot. This
+      way, you can use your domain expertise to improve the data quality manually, before you train
+      a model on a better-curated dataset.</p><p>The data report contains only static markdown and can be opened in any Jupyter environment.
+      The notebook that contains the report can be converted to other formats, such as PDF or HTML.
+      For more information about conversions, see <a href="https://nbconvert.readthedocs.io/en/latest/usage.html " rel="noopener noreferrer" target="_blank"><span>Using the nbconvert script to
+        convert Jupyter notebooks to other formats.</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="autopilot-data-exploration-report.html#autopilot-data-exploration-report-dataset-summary">Dataset Summary</a></li><li><a href="autopilot-data-exploration-report.html#autopilot-data-exploration-report-target-analysis">Target Analysis</a></li><li><a href="autopilot-data-exploration-report.html#autopilot-data-exploration-report-data-sample">Data Sample</a></li><li><a href="autopilot-data-exploration-report.html#autopilot-data-exploration-report-duplicate-rows">Duplicate rows</a></li><li><a href="autopilot-data-exploration-report.html#autopilot-data-exploration-report-cross-column-correlations">Cross column
+          correlations</a></li><li><a href="autopilot-data-exploration-report.html#autopilot-data-exploration-report-cross-anomolous-rows">Anomalous
+          Rows</a></li><li><a href="autopilot-data-exploration-report.html#autopilot-data-exploration-report-description-statistics-and-values">Missing values, cardinality, and descriptive statistics</a></li></ul></div>
+      <h2 id="autopilot-data-exploration-report-dataset-summary">Dataset Summary</h2>
+      <p>This <b>Dataset Summary</b> provides key statistics characterizing your
+        dataset including the number of rows, columns, percent duplicate rows and missing target
+        values. It is intended to provide you with a quick alert when there are issue with your
+        dataset that Amazon SageMaker Autopilot has detected and that are likely to require your intervention. The
+        insights are surfaced as warnings that are classified as being of either “high” or “low”
+        severity. The classification depends on the level of confidence that the issue will
+        adversely impact the performance of the model.</p>
+      <p>The high and low severity insights appear in the summary as pop-ups. For most of the
+        insights, recommendations are offered for how to confirm that there is an issue with the
+        dataset that requires your attention. Proposals are also provided for how to resolve the
+        issues.</p>
+      <p>Autopilot provides additional statistics about missing or not valid target values in our
+        dataset to help you detect other issues that may not be captured by high severity insights.
+        An unexpected number of columns of a particular type might indicate that some columns that
+        you want to use may be missing from the dataset. It could also indicate that there was an
+        issue with how the data was prepared or stored. Fixing these data problems brought to your
+        attention by Autopilot can improve the performance of the machine learning models trained on
+        your data. </p>
+
+      <p>High severity insights are shown in the summary section and in other relevant sections
+        in the report. Examples of high and low-severity insights are usually given depending on the
+        section of the data report.</p>
+     
+      <h2 id="autopilot-data-exploration-report-target-analysis">Target Analysis</h2>
+      <p>Various high and low-severity insights are shown in this section related to the
+        distribution of values in the target column. Check that target column contains the correct
+        values. Incorrect values in target column will likely result in a machine learning model
+        that doesn't serve the intended business purpose. Several data insights of high and low
+        severity are present in this section. Here are several examples.</p>
+
+
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><b>Outlier target values </b>- Skewed or unusual target
+            distribution for regression, such as heavy tailed targets.</p>
+        </li><li class="listitem">
+          <p><b>High or low target cardinality </b>- Infrequent number
+            of class labels or a large number of unique classes for classification.</p>
+        </li></ul></div>
+
+      <p>For both regression and classification problem types, not valid values such as numeric
+        infinity, <code class="code">NaN</code> or empty space in target column are surfaced. Depending on the
+        problem type, different dataset statistics are presented. A distribution of target column
+        values for a regression problem allows you to verify if the distribution is what you
+        expected. </p>
+      <p>The following screenshot shows an Autopilot data report, which includes statistics such as
+        the mean, median, minimum, maximum, percentage of outliers in your dataset. The screenshot
+        also includes a histogram showing the distribution of labels in the target column. The
+        histogram shows <b>Target Column Values</b> on the horizontal axis and
+          <b>Count </b>on the vertical axis. A box highlights the <b>Outliers
+          Percentage</b> section of the screenshot to indicate where this statistic
+        appears.</p>
+
+      <div class="mediaobject">
+         
+          <img src="../../../images/sagemaker/latest/dg/images/autopilot/autopilot-data-report-target-analysis.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;          Autopilot data report on the distribution of target column values.&#xA;        " style="max-width:75%" />
+         
+         
+      </div>
+
+      <p>Multiple statistics are shown regarding target values and their distribution. If any of
+        the outliers, not valid values, or missing percentages are greater than zero, these values
+        are surfaced so you can investigate why your data contains unusable target values. Some
+        unusable target values are highlighted as a low severity insight warning. </p>
+      <p>In the following screenshot, a ` symbol was added accidentally to the target column,
+        which prevented the numeric value of the target from being parsed. A <b>Low severity
+          insight: "Invalid target values"</b> warning appears. The warning in this example
+        states "0.14% of the labels in the target column could not be converted to numeric values.
+        The most common non-numeric values are:
+        ["-3.8e-05","-9-05","-4.7e-05","-1.4999999999999999e-05","-4.3e-05"]. That usually indicates
+        that there are problems with data collection or processing. Amazon SageMaker Autopilot ignores all observations
+        with invalid target label."</p>
+      <div class="mediaobject">
+         
+          <img src="../../../images/sagemaker/latest/dg/images/autopilot/autopilot-data-report-target-analysis-invalid-target-values.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;          Autopilot data report low severity warning about invalid target values.&#xA;        " style="max-width:75%" />
+         
+         
+      </div>
+
+      <p>Autopilot also provides a histogram showing the distribution of labels for classification. </p>
+      <p>The following screenshot shows an example of statistics given for your target column
+        including the number of classes, missing or not valid values. A histogram with
+          <b>Target Label</b> on the horizontal axis and
+          <b>Frequency</b> on the vertical axis shows the distribution of each label
+        category.</p>
+      <div class="mediaobject">
+         
+          <img src="../../../images/sagemaker/latest/dg/images/autopilot/autopilot-data-report-target-analysis-invalid-classification.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;          Autopilot data report high cardinality for classification.&#xA;        " style="max-width:75%" />
+         
+         
+      </div>
+
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can find definitions of all the terms presented in this and other sections in
+            <b>Definitions</b> section at the bottom of the report notebook.</p></div></div>
+
+     
+      <h2 id="autopilot-data-exploration-report-data-sample">Data Sample</h2>
+      <p>Autopilot presents an actual sample of your data to help you spot issues with your dataset.
+        The sample table scrolls horizontally. Inspect the sample data to verify that all the
+        necessary columns are present in the dataset. </p>
+
+      <p>Autopilot also calculates a measure of prediction power, that can be used to identify a
+        linear or nonlinear relationship between a feature and the target variable. A value of
+          <code class="code">0</code> indicates that the feature has no predictive value in predicting the target
+        variable. A value of <code class="code">1</code> indicates the highest predictive power for the target
+        variable. For more information on predictive power, see the <b>Definitions</b>
+        section. </p>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>It is not recommended that you use prediction power as a substitute for feature
+          importance. Only use it if you're certain that prediction power is an appropriate measure
+          for your use case.</p></div></div>
+      <p>The following screenshot shows example data sample. The top row contains the prediction
+        power of each column in your dataset. The second row contains the column data type.
+        Subsequent rows contain the labels. The columns contain the target column followed by each
+        feature column. Each feature column has an associated prediction power, highlighted in this
+        screenshot, with a box. In this example, the column containing the feature <code class="code">x51</code>
+        has a predictive power of <code class="code">0.68</code> for the target variable <code class="code">y</code>. The
+        feature <code class="code">x55</code> is slightly less predictive with a prediction power of
+          <code class="code">0.59</code>.</p>
+      <div class="mediaobject">
+         
+          <img src="../../../images/sagemaker/latest/dg/images/autopilot/autopilot-data-report-data-sample-prediction.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;          Autopilot data report data sample prediction power.&#xA;        " style="max-width:75%" />
+         
+         
+      </div>
+
+     
+      <h2 id="autopilot-data-exploration-report-duplicate-rows">Duplicate rows</h2>
+      <p>If duplicate rows are present in the dataset, Amazon SageMaker Autopilot displays a sample of them.</p>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>It is not recommended to balance a dataset by up-sampling before providing it to
+          Autopilot. This may result in inaccurate validation scores for the models trained by Autopilot,
+          and the models that are produced may be unusable.</p></div></div>
+     
+      <h2 id="autopilot-data-exploration-report-cross-column-correlations">Cross column
+          correlations</h2>
+      <p>Autopilot uses the Pearson's correlation coefficient, a measure of linear correlation
+        between two features, to populate a correlation matrix. In the correlation matrix, numeric
+        features are plotted on both the horizontal and vertical axes, with the Pearson's
+        correlation coefficient plotted at their intersections. The higher the correlation between
+        two features, the higher the coefficient, with a maximum value of <code class="code">|1|</code>.</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>A value of <code class="code">-1</code> indicates that the features are perfectly negatively
+            correlated.</p>
+        </li><li class="listitem">
+          <p>A value of <code class="code">1</code>, which occurs when a feature is correlated with itself,
+            indicates perfect positive correlation.</p>
+        </li></ul></div>
+      <p>You can use the information in the correlation matrix to remove highly correlated
+        features. A smaller number of features reduces chances of overfitting a model and can reduce
+        the costs of production in two ways. It lessens the Autopilot runtime needed and, for some
+        applications, can make data collection procedures cheaper. </p>
+      <p>The following screenshot shows an example of a correlation matrix between <code class="code">7</code>
+        features. Each feature is displayed in a matrix on both the horizontal and vertical axes.
+        The Pearson's correlation coefficient is displayed at the intersection between two features.
+        Each feature intersection has a color tone associated with it. The higher the correlation,
+        the darker the tone. The darkest tones occupy the diagonal of the matrix, where each feature
+        is correlated with itself, representing perfect correlation.</p>
+      <div class="mediaobject">
+         
+          <img src="../../../images/sagemaker/latest/dg/images/autopilot/autopilot-data-report-data-cross-column-statistics.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;          Autopilot data report data cross-correlation matrix.&#xA;        " style="max-width:75%" />
+         
+         
+      </div>
+
+     
+      <h2 id="autopilot-data-exploration-report-cross-anomolous-rows">Anomalous
+          Rows</h2>
+      <p>Amazon SageMaker Autopilot detects which rows in your dataset might be anomalous. It then assigns an anomaly
+        score to each row. Rows with negative anomaly scores are considered anomalous. </p>
+      <p>The following screenshot shows the output from an Autopilot analysis for rows containing
+        anomalies. A column containing an anomalous score appears next to the dataset columns for
+        each row.</p>
+      <div class="mediaobject">
+         
+          <img src="../../../images/sagemaker/latest/dg/images/autopilot/autopilot-data-report-data-anomalous-rows.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;          Autopilot dataset with anomalous rows, showing negative anomaly scores.&#xA;        " style="max-width:75%" />
+         
+         
+      </div>
+
+     
+      <h2 id="autopilot-data-exploration-report-description-statistics-and-values">Missing values, cardinality, and descriptive statistics</h2>
+
+      <p>Amazon SageMaker Autopilot examines and reports on properties of the individual columns of your dataset. In
+        each section of the data report that presents this analysis, the content is arranged in
+        order. This is so you can check the most “suspicious” values first. Using these statistics
+        you can improve contents of individual columns, and improve the quality of the model
+        produced by Autopilot.</p>
+
+      <p>Autopilot calculates several statistics on the categorical values in columns that contain
+        them. These include the number of unique entries and, for text, the number of unique
+        words.</p>
+
+      <p>Autopilot calculates several standard statistics on the numerical values in columns that
+        contain them. The following image depicts these statistics, including the mean, median,
+        minimum and maximum values, and the percentages of numerical types and of outlier values. </p>
+      <div class="mediaobject">
+         
+          <img src="../../../images/sagemaker/latest/dg/images/autopilot/autopilot-data-report-data-descriptive-statistics.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;          Autopilot data report statistics on columns with numerical values.&#xA;        " style="max-width:75%" />
+         
+         
+      </div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./autopilot-automate-model-development-notebook-output.html">Notebooks generated</div><div id="next" class="next-link" accesskey="n" href="./autopilot-candidate-generation-notebook.html">Candidate definition
+        notebook</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-data-exploration-report.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-data-exploration-report.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

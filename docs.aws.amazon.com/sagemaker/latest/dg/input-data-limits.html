@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Input Data Quotas - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="input-data-limits" /><meta name="default_state" content="input-data-limits" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="input-data-limits.html" /><meta name="description" content="Input datasets used in semantic segmentation labeling jobs have a quota of 20,000 items. For all other labeling job types, the dataset size quota is 100,000 items. To request an increase to the quota for labeling jobs other than semantic segmentation jobs, review the procedures in" /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="input-data-limits.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/input-data-limits.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/input-data-limits.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/input-data-limits.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/input-data-limits.html" hreflang="de" /><link rel="alternative" href="input-data-limits.html" hreflang="en-us" /><link rel="alternative" href="input-data-limits.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/input-data-limits.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/input-data-limits.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/input-data-limits.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/input-data-limits.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/input-data-limits.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/input-data-limits.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/input-data-limits.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/input-data-limits.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/input-data-limits.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/input-data-limits.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/input-data-limits.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/input-data-limits.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/input-data-limits.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/input-data-limits.html" hreflang="zh-tw" /><link rel="alternative" href="input-data-limits.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Input Data Quotas" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Input Data Quotas - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#input-data-limits" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/input-data-limits.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/input-data-limits.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/input-data-limits.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Label data with a human-in-the-loop",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-label.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Use Amazon SageMaker Ground Truth to Label Data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Input and Output Data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms-data.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Input Data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms-data-input.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Input Data Quotas",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms-data-input.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#input-data-limits" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="input-data-limits.html#input-file-size-limit">Input File Size Quota</a><a href="input-data-limits.html#non-active-learning-input-data-limits">Input Image Resolution
+                        Quotas</a><a href="input-data-limits.html#sms-label-quotas">Label Category Quotas</a><a href="input-data-limits.html#sms-input-data-quotas-other">3D Point Cloud and Video Frame Labeling Job
+                        Quotas</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="input-data-limits">Input Data Quotas</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Input datasets used in semantic segmentation labeling jobs have a quota of 20,000
+                items. For all other labeling job types, the dataset size quota is 100,000 items. To
+                request an increase to the quota for labeling jobs other than semantic segmentation
+                jobs, review the procedures in <a href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">AWS Service Quotas</a> to
+                request a quota increase.</p><p>Input image data for active and non-active learning labeling jobs must not exceed
+                size and resolution quotas. <em>Active learning</em>
+                refers to labeling job that use <a href="sms-automated-labeling.html">automated data labeling</a>. <em>Non-active
+                    learning</em> refers to labeling jobs that don't use automated data
+                labeling.</p><p>Additional quotas apply for label categories for all task types, and for input
+                data and labeling category attributes for 3D point cloud and video frame task types. </p>
+                <h2 id="input-file-size-limit">Input File Size Quota</h2>
+                <p>Input files can't exceed the following size- quotas for both active and
+                    non-active learning labeling jobs. There is no input file size quota for videos
+                    used in <a href="sms-video-classification.html">video
+                        classification</a> labeling jobs.</p>
+                <div class="table-container"><div class="table-contents"><table id="w714aac15b9c39c11c27b9b5"><thead>
+                            <tr>
+                                <th>Labeling Job Task Type</th>
+                                <th>Input File Size Quota</th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <td tabindex="-1">Image classification</td>
+                                <td tabindex="-1">40 MB</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Bounding box (Object detection)</td>
+                                <td tabindex="-1">40 MB</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Semantic segmentation</td>
+                                <td tabindex="-1">40 MB</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Bounding box (Object detection) label adjustment</td>
+                                <td tabindex="-1">40 MB</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Semantic segmentation label adjustment</td>
+                                <td tabindex="-1">40 MB</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Bounding box (Object detection) label verification</td>
+                                <td tabindex="-1">40 MB</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Semantic segmentation label verification</td>
+                                <td tabindex="-1">40 MB</td>
+                            </tr>
+                        </table></div></div>
+             
+                <h2 id="non-active-learning-input-data-limits">Input Image Resolution
+                        Quotas</h2>
+                <p>Image file resolution refers to the number of pixels in an image, and
+                    determines the amount of detail an image holds. Image resolution quotas differ
+                    depending on the labeling job type and the SageMaker built-in algorithm used. The
+                    following table lists the resolution quotas for images used in active and
+                    non-active learning labeling jobs.</p>
+                <div class="table-container"><div class="table-contents"><table id="w714aac15b9c39c11c27c11b5"><thead>
+                            <tr>
+                                <th>Labeling Job Task Type</th>
+                                <th><b>Resolution Quota - Non Active
+                                        Learning</b></th>
+                                <th>Resolution Quota - Active Learning</th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <td tabindex="-1">Image classification</td>
+                                <td tabindex="-1">100 million pixels</td>
+                                <td tabindex="-1">3840 x 2160 pixels (4 K)</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Bounding box (Object detection)</td>
+                                <td tabindex="-1">100 million pixels</td>
+                                <td tabindex="-1">3840 x 2160 pixels (4 K)</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Semantic segmentation</td>
+                                <td tabindex="-1">100 million pixels</td>
+                                <td tabindex="-1">1920 x 1080 pixels (1080 p)</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Object detection label adjustment</td>
+                                <td tabindex="-1">100 million pixels</td>
+                                <td tabindex="-1">3840 x 2160 pixels (4 K)</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Semantic segmentation label adjustment</td>
+                                <td tabindex="-1">100 million pixels</td>
+                                <td tabindex="-1">1920 x 1080 pixels (1080 p)</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Object detection label verification</td>
+                                <td tabindex="-1">100 million pixels</td>
+                                <td tabindex="-1">Not available</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Semantic segmentation label verification</td>
+                                <td tabindex="-1">100 million pixels</td>
+                                <td tabindex="-1">Not available</td>
+                            </tr>
+                        </table></div></div>
+             
+                <h2 id="sms-label-quotas">Label Category Quotas</h2>
+                <p>Each labeling job task type has a quota for the number of label categories you
+                    can specify. Workers select label categories to create annotations. For example,
+                    you may specify label categories <em>car</em>,
+                        <em>pedestrian</em>, and <em>biker</em> when creating a bounding box labeling job and workers will
+                    select the <em>car</em> category before drawing
+                    bounding boxes around cars.</p>
+                <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>Label category names cannot exceed 256 characters. </p><p>All label categories must be unique. You cannot specify duplicate label
+                        categories. </p></div></div>
+                <p>The following label category limits apply to labeling jobs. Quotas for label
+                    categories depend on whether you use the SageMaker API operation
+                        <code class="code">CreateLabelingJob</code> or the console to create a labeling
+                    job.</p>
+                <div class="table-container"><div class="table-contents"><table id="w714aac15b9c39c11c27c13b9"><thead>
+                            <tr>
+                                <th>Labeling Job Task Type</th>
+                                <th>Label Category Quota - API</th>
+                                <th>Label Category Quota - Console</th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <td tabindex="-1">Image classification (Multi-label)</td>
+                                <td tabindex="-1">50</td>
+                                <td tabindex="-1">50</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Image classification (Single label)</td>
+                                <td tabindex="-1">Unlimited</td>
+                                <td tabindex="-1">30</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Bounding box (Object detection)</td>
+                                <td tabindex="-1">50</td>
+                                <td tabindex="-1">50</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Label verification</td>
+                                <td tabindex="-1">Unlimited</td>
+                                <td tabindex="-1">30</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Semantic segmentation (with active learning)</td>
+                                <td tabindex="-1">20</td>
+                                <td tabindex="-1">10</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Semantic segmentation (without active learning)</td>
+                                <td tabindex="-1">Unlimited</td>
+                                <td tabindex="-1">10</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Named entity recognition</td>
+                                <td tabindex="-1">Unlimited</td>
+                                <td tabindex="-1">30</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Text classification (Multi-label)</td>
+                                <td tabindex="-1">50</td>
+                                <td tabindex="-1">50</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Text classification (Single label)</td>
+                                <td tabindex="-1">Unlimited</td>
+                                <td tabindex="-1">30</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Video classification</td>
+                                <td tabindex="-1">30</td>
+                                <td tabindex="-1">30</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Video frame object detection</td>
+                                <td tabindex="-1">30</td>
+                                <td tabindex="-1">30</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Video frame object tracking</td>
+                                <td tabindex="-1">30</td>
+                                <td tabindex="-1">30</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">3D point cloud object detection</td>
+                                <td tabindex="-1">30</td>
+                                <td tabindex="-1">30</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">3D point cloud object tracking</td>
+                                <td tabindex="-1">30</td>
+                                <td tabindex="-1">30</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">3D point cloud semantic segmentation</td>
+                                <td tabindex="-1">30</td>
+                                <td tabindex="-1">30</td>
+                            </tr>
+                        </table></div></div>
+             
+                <h2 id="sms-input-data-quotas-other">3D Point Cloud and Video Frame Labeling Job
+                        Quotas</h2>
+                <p>The following quotas apply for 3D point cloud and video frame labeling job
+                    input data.</p>
+                <div class="table-container"><div class="table-contents"><table id="w714aac15b9c39c11c27c15b5"><thead>
+                            <tr>
+                                <th>Labeling Job Task Type</th>
+                                <th>Input Data Quota</th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <td tabindex="-1">Video frame object detection </td>
+                                <td tabindex="-1">
+                                   2,000 video frames (images) per sequence
+                                </td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Video frame object detection </td>
+                                <td tabindex="-1"> 10 video frame sequences per manifest file</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Video frame object tracking</td>
+                                <td tabindex="-1"> 2,000 video frames (images) per sequence </td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Video frame object tracking</td>
+                                <td tabindex="-1"> 10 video frame sequences per manifest file</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">3D point cloud object detection</td>
+                                <td tabindex="-1"> 100,000 point cloud frames per labeling job</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">3D point cloud object tracking</td>
+                                <td tabindex="-1"> 100,000 point cloud frame sequences per labeling job</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">3D point cloud object tracking</td>
+                                <td tabindex="-1"> 500 point cloud frames in each sequence file</td>
+                            </tr>
+                        </table></div></div>
+                <p>When you create a video frame or 3D point cloud labeling job, you can add one
+                    or more <em>label category attributes</em> to each
+                    label category that you specify to have workers provide more information about
+                    an annotation.</p>
+                <p>Each label category attribute has a single label category attribute
+                        <code class="code">name</code>, and a list of one or more options (values) to choose
+                    from. To learn more, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud-general-information.html#sms-point-cloud-worker-task-ui">Worker User Interface (UI)</a> for 3D point cloud labeling
+                    jobs and <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-video-overview.html#sms-video-worker-task-ui">Worker User Interface (UI)</a> for video frame labeling jobs. </p>
+                    <p> The following quotas apply to the number of label category attributes
+                    names and values you can specify for labeling jobs.</p>
+                <div class="table-container"><div class="table-contents"><table id="w714aac15b9c39c11c27c15c13"><thead>
+                            <tr>
+                                <th>Labeling Job Task Type</th>
+                                <th>Label Category Attribute (name) Quota</th>
+                                <th>Label Category Attribute Values Quota</th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <td tabindex="-1">Video frame object detection </td>
+                                <td tabindex="-1">10</td>
+                                <td tabindex="-1">10</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Video frame object tracking</td>
+                                <td tabindex="-1">10</td>
+                                <td tabindex="-1">10</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">3D point cloud object detection</td>
+                                <td tabindex="-1">10</td>
+                                <td tabindex="-1">10</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">3D point cloud object tracking</td>
+                                <td tabindex="-1">10</td>
+                                <td tabindex="-1">10</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">3D point cloud semantic segmentation</td>
+                                <td tabindex="-1">10</td>
+                                <td tabindex="-1">10</td>
+                            </tr>
+                        </table></div></div>
+            <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./sms-streaming-labeling-job.html">Streaming Labeling Jobs</div><div id="next" class="next-link" accesskey="n" href="./sms-data-filtering.html">Filter and Select Data for Labeling </div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/input-data-limits.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/input-data-limits.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

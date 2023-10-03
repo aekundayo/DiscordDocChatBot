@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Explore the Amazon SageMaker Debugger Insights dashboard - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="debugger-on-studio-insights-walkthrough" /><meta name="default_state" content="debugger-on-studio-insights-walkthrough" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="debugger-on-studio-insights-walkthrough.html" /><meta name="description" content="This guide walks through the content of the Amazon SageMaker Debugger Insights dashboard tabs." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="debugger-on-studio-insights-walkthrough.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" hreflang="de" /><link rel="alternative" href="debugger-on-studio-insights-walkthrough.html" hreflang="en-us" /><link rel="alternative" href="debugger-on-studio-insights-walkthrough.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" hreflang="zh-tw" /><link rel="alternative" href="debugger-on-studio-insights-walkthrough.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Explore the Amazon SageMaker Debugger Insights dashboard" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Explore the Amazon SageMaker Debugger Insights dashboard - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#debugger-on-studio-insights-walkthrough" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Profile and optimize computational performance",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-profile-computational-performance.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Monitor AWS compute resource utilization in Amazon SageMaker Studio",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-profile-training-jobs.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Amazon SageMaker Debugger UI in Amazon SageMaker Studio Experiments",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-on-studio.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Explore the Amazon SageMaker Debugger Insights dashboard",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-on-studio.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#debugger-on-studio-insights-walkthrough" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="debugger-on-studio-insights-walkthrough.html#debugger-insights-system-metrics-tab">System metrics</a><a href="debugger-on-studio-insights-walkthrough.html#debugger-on-studio-insights-rules">Rules</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="debugger-on-studio-insights-walkthrough">Explore the Amazon SageMaker Debugger Insights
+                dashboard</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>When you initiate a SageMaker training job, SageMaker Debugger starts monitoring the resource
+            utilization of the Amazon EC2 instances by default. You can track the system utilization
+            rates, statistics overview, and built-in rule analysis through the Insights dashboard.
+            This guide walks you through the content of the SageMaker Debugger Insights dashboard under the
+            following tabs: <b>System Metrics</b> and <b>Rules</b>. </p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The SageMaker Debugger Insights dashboard runs a Studio application on an
+                    <code class="code">ml.m5.4xlarge</code> instance to process and render the visualizations.
+                Each SageMaker Debugger Insights tab runs one Studio kernel session. Multiple kernel
+                sessions for multiple SageMaker Debugger Insights tabs run on the single instance. When you
+                close a SageMaker Debugger Insights tab, the corresponding kernel session is also closed. The
+                Studio application remains active and accrues charges for the
+                    <code class="code">ml.m5.4xlarge</code> instance usage. For information about pricing, see
+                the <a href="https://aws.amazon.com/sagemaker/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+                page.</p></div></div><div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>When you are done using the SageMaker Debugger Insights dashboard, shut down the
+                    <code class="code">ml.m5.4xlarge</code> instance to avoid accruing charges. For instructions
+                on how to shut down the instance, see <a href="debugger-on-studio-insights-close.html">Shut down the Amazon SageMaker Debugger Insights
+                instance</a>.</p></div></div><div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>In the reports, plots and recommendations are provided for informational purposes
+                and are not definitive. You are responsible for making your own independent
+                assessment of the information.</p></div></div><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="debugger-on-studio-insights-walkthrough.html#debugger-insights-system-metrics-tab">System metrics</a></li><li><a href="debugger-on-studio-insights-walkthrough.html#debugger-on-studio-insights-rules">Rules</a></li></ul></div>
+            <h2 id="debugger-insights-system-metrics-tab">System metrics</h2>
+            <p>In the <b>System Metrics</b> tab, you can use the summary table and
+                timeseries plots to understand resource utilization.</p>
+             
+                <h3 id="debugger-on-studio-insights-sys-resource-summary">Resource
+                        utilization summary</h3>
+                <p>This summary table shows the statistics of compute resource utilization metrics of
+                    all nodes (denoted as algo-<em>n</em>). The resource utilization metrics
+                    include the total CPU utilization, the total GPU utilization, the total CPU memory
+                    utilization, the total GPU memory utilization, the total I/O wait time, and the
+                    total network in bytes. The table shows the minimum and the maximum values, and p99,
+                    p90, and p50 percentiles.</p>
+                <div class="mediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/debugger/debugger-studio-insights-resource-util-summary.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                        A summary table of resource utilization&#xA;                    " style="max-width:100%" />
+                     
+                     
+                </div>
+             
+             
+                <h3 id="debugger-on-studio-insights-sys-controller">Resource utilization
+                        time series plots</h3>
+                <p>Use the time series graphs to see more details of resource utilization and
+                    identify at what time interval each instance shows any undesired utilization rate,
+                    such as low GPU utilization and CPU bottlenecks that can cause a waste of the
+                    expensive instance.</p>
+                <p><b>The time series graph controller UI</b></p>
+                <p>The following screenshot shows the UI controller for adjusting the time series
+                    graphs.</p>
+                <div class="mediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/debugger/debugger-insights-graph-controller.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                        The UI controller in the SageMaker Debugger Insights dashboard.&#xA;                    " style="max-width:50%" />
+                     
+                     
+                </div>
+                <div class="itemizedlist">
+                     
+                     
+                     
+                     
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p><b>algo-1</b>: Use this dropdown menu to choose the node
+                            that you want to look into.</p>
+                    </li><li class="listitem">
+                        <p><b>Zoom In</b>: Use this button to zoom in the time series
+                            graphs and view shorter time intervals.</p>
+                    </li><li class="listitem">
+                        <p><b>Zoom Out</b>: Use this button to zoom out the time series
+                            graphs and view wider time intervals.</p>
+                    </li><li class="listitem">
+                        <p><b>Pan Left</b>: Move the time series graphs to an earlier
+                            time interval.</p>
+                    </li><li class="listitem">
+                        <p><b>Pan Right</b>: Move the time series graphs to a later
+                            time interval.</p>
+                    </li><li class="listitem">
+                        <p><b>Fix Timeframe</b>: Use this check box to fix or bring
+                            back the time series graphs to show the whole view from the first data point
+                            to the last data point.</p>
+                    </li></ul></div>
+                <p><b>CPU utilization and I/O wait time</b></p>
+                <p>The first two graphs show CPU utilization and I/O wait time over time. By default,
+                    the graphs show the average of CPU utilization rate and I/O wait time spent on the
+                    CPU cores. You can select one or more CPU cores by selecting the labels to graph
+                    them on single chart and compare utilization across cores. You can drag and zoom in
+                    and out to have a closer look at specific time intervals.</p>
+                <div class="mediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/debugger/debugger-insights-node-cpu.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                        debugger-studio-insight-mockup&#xA;                    " style="max-width:100%" />
+                     
+                     
+                </div>
+                <p><b>GPU utilization and GPU memory utilization</b></p>
+                <p>The following graphs show GPU utilization and GPU memory utilization over time. By
+                    default, the graphs show the mean utilization rate over time. You can select the GPU
+                    core labels to see the utilization rate of each core. Taking the mean of utilization
+                    rate over the total number of GPU cores shows the mean utilization of the entire
+                    hardware system resource. By looking at the mean utilization rate, you can check the
+                    overall system resource usage of an Amazon EC2 instance. The following figure shows an
+                    example training job on an <code class="code">ml.p3.16xlarge</code> instance with 8 GPU cores.
+                    You can monitor if the training job is well distributed, fully utilizing all
+                    GPUs.</p>
+                <div class="mediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/debugger/debugger-studio-insights-node-gpu.gif" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                        debugger-studio-insight-mockup&#xA;                    " style="max-width:100%" />
+                     
+                     
+                </div>
+                <p><b>Overall system utilization over time</b></p>
+                <p>The following heatmap shows an example of the entire system utilization of an
+                    <code class="code">ml.p3.16xlarge</code> instance over time, projected onto the
+                    two-dimensional plot. Every CPU and GPU core is listed in the vertical axis, and the
+                    utilization is recorded over time with a color scheme, where the bright colors
+                    represent low utilization and the darker colors represent high utilization. See the
+                    labeled color bar on the right side of the plot to find out which color level
+                    corresponds to which utilization rate.</p>
+                <div class="mediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/debugger/debugger-studio-insights-node-heatmap.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                        debugger-studio-insight-mockup&#xA;                    " style="max-width:100%" />
+                     
+                     
+                </div>
+             
+         
+            <h2 id="debugger-on-studio-insights-rules">Rules</h2>
+            <p>Use the <b>Rules</b> tab to find a summary of the profiling rule
+                analysis on your training job. If the profiling rule is activated with the training
+                job, the text appears highlighted with the solid white text. Inactive rules are
+                dimmed in gray text. To activate these rules, follow instructions at <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/use-debugger-built-in-profiler-rules.html">Configure built-in profiler rules
+            managed by Amazon SageMaker Debugger</a>.</p>
+            <div class="mediaobject">
+                 
+                    <img src="../../../images/sagemaker/latest/dg/images/debugger/debugger-insights-rules.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                    The Rules tab in the SageMaker Debugger Insights&#xA;                        dashboard&#xA;                " style="max-width:100%" />
+                 
+                 
+            </div>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./debugger-on-studio-insights-controllers.html">SageMaker Debugger Insights dashboard controller</div><div id="next" class="next-link" accesskey="n" href="./debugger-on-studio-insights-close.html">Shut Down SageMaker Debugger Insights</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-on-studio-insights-walkthrough.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

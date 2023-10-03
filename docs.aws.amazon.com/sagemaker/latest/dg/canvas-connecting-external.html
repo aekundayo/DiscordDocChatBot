@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Connect to data sources - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="canvas-connecting-external" /><meta name="default_state" content="canvas-connecting-external" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="canvas-connecting-external.html" /><meta name="description" content="Connect to data sources and import data into Amazon SageMaker Canvas" /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="canvas-connecting-external.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/canvas-connecting-external.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/canvas-connecting-external.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/canvas-connecting-external.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/canvas-connecting-external.html" hreflang="de" /><link rel="alternative" href="canvas-connecting-external.html" hreflang="en-us" /><link rel="alternative" href="canvas-connecting-external.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/canvas-connecting-external.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/canvas-connecting-external.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/canvas-connecting-external.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/canvas-connecting-external.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/canvas-connecting-external.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/canvas-connecting-external.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/canvas-connecting-external.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/canvas-connecting-external.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/canvas-connecting-external.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/canvas-connecting-external.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/canvas-connecting-external.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/canvas-connecting-external.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/canvas-connecting-external.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/canvas-connecting-external.html" hreflang="zh-tw" /><link rel="alternative" href="canvas-connecting-external.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Connect to data sources" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Connect to data sources - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#canvas-connecting-external" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-connecting-external.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-connecting-external.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-connecting-external.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use machine learning environments offered by SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/machine-learning-environments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Canvas",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use custom models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas-custom-models.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Import data into Canvas",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas-importing-data.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Connect to data sources",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas-importing-data.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#canvas-connecting-external" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="canvas-connecting-external.html#canvas-connecting-external-permissions">Permissions</a><a href="canvas-connecting-external.html#canvas-connecting-internal-database">Connect to a database stored in AWS</a><a href="canvas-connecting-external.html#canvas-connecting-jdbc">Connect to your data with JDBC connectors</a><a href="canvas-connecting-external.html#canvas-connecting-oauth">Connect to data sources with OAuth</a><a href="canvas-connecting-external.html#canvas-connecting-saas">Connect to a SaaS platform</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="canvas-connecting-external">Connect to data sources</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>In Amazon SageMaker Canvas, you can import data from a location outside of your local file system
+            through an AWS service, a SaaS platform, or other databases using JDBC connectors. For
+            example, you might want to import tables from a data warehouse in Amazon Redshift, or you might
+            want to import Google Analytics data.</p><p>When you go through the <b>Import</b> workflow to import data in the Canvas application,
+            you can choose your data source and then select the data that you want to import. For certain data sources, like
+            Snowflake and Amazon Redshift, you must specify your credentials and add a connection to the data source.</p><p>The following screenshot shows the data sources toolbar in the <b>Import</b> workflow,
+            with all of the available data sources highlighted. You can only import data from the data sources that are available to you.
+            Contact your administrator if your desired data source isn’t available.</p><div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/data-sources.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                The Data Source dropdown menu on the Import data page in Canvas.&#xA;            " style="max-width:80%" />
+             
+             
+        </div><p>The following sections provide information about establishing connections to external
+            data sources and and importing data from them. Review the following section first to
+            determine what permissions you need to import data from your data source.</p>
+            <h2 id="canvas-connecting-external-permissions">Permissions</h2>
+            <p>Review the following information to ensure that you have the necessary permissions to import data from your data source:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem"><p><b>Amazon S3:</b> You can import data from any Amazon S3 bucket as long as
+                    your user has permissions to access the bucket. For more information about using AWS IAM to control access to Amazon S3 buckets, see
+                    <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html">Identity and access management in Amazon S3</a>
+                    in the <em>Amazon S3 User Guide</em>.</p></li><li class="listitem"><p><b>Amazon Athena:</b> If you have the
+                    <a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonSageMakerFullAccess.html">AmazonSageMakerFullAccess</a>
+                    policy and the <a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonSageMakerCanvasFullAccess.html">AmazonSageMakerCanvasFullAccess</a>
+                    policy attached to your user’s execution role, then you’ll be able to query your AWS Glue Data Catalog with Amazon Athena. If you’re part of an Athena workgroup,
+                    make sure that the Canvas user has permissions to run Athena queries on the data. For more information, see
+                    <a href="https://docs.aws.amazon.com/athena/latest/ug/workgroups.html">Using workgroups for running queries</a>
+                    in the <em>Amazon Athena User Guide</em>.</p></li><li class="listitem"><p><b>Amazon Redshift:</b> To give yourself the necessary permissions to import data from Amazon Redshift,
+                    see <a href="canvas-redshift-permissions.html">Grant Users Permissions
+                        to Import Amazon Redshift Data</a>.</p></li><li class="listitem"><p><b>Amazon RDS:</b> If you have the
+                    <a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonSageMakerCanvasFullAccess.html">AmazonSageMakerCanvasFullAccess</a>
+                    policy attached to your user’s execution role, then you’ll be able to access your Amazon RDS databases from Canvas.</p></li><li class="listitem"><p><b>SaaS platforms:</b> If you have the
+                    <a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonSageMakerFullAccess.html">AmazonSageMakerFullAccess</a>
+                    policy and the <a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonSageMakerCanvasFullAccess.html">AmazonSageMakerCanvasFullAccess</a>
+                    policy attached to your user’s execution role, then you’ll have the necessary permissions to import data from SaaS platforms. See
+                    <a href="canvas-connecting-external.html#canvas-connecting-external-appflow">Use SaaS connectors with Canvas</a> for more information about connecting to a specific SaaS connector.</p></li><li class="listitem"><p><b>JDBC connectors:</b> For database sources such as
+                    Databricks, MySQL or MariaDB, you must enable username and password authentication on the source database
+                    before attempting to connect from Canvas. If you’re connecting to a Databricks database, you must have the
+                    JDBC URL that contains the necessary credentials.</p></li></ul></div>
+         
+            <h2 id="canvas-connecting-internal-database">Connect to a database stored in AWS</h2>
+            <p>You might want to import data that you’ve stored in AWS. You can import data from Amazon S3, use Amazon Athena to query a database
+                in the AWS Glue Data Catalog, import data from <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html">Amazon RDS</a>, or make a connection to an Amazon Redshift database.</p>
+            <p>You can create multiple connections to Amazon Redshift. For Amazon Athena, you can access any databases that you have in your
+                <a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/serverless-etl-aws-glue/aws-glue-data-catalog.html">AWS Glue Data Catalog</a>.
+                For Amazon S3, you can import data from a bucket as long as you have the necessary permissions.</p>
+            <p>Review the following sections for more detailed information.</p>
+            
+            
+            
+             
+                <h3 id="canvas-connecting-internal-database-s3-athena">Connect to data in Amazon S3, Amazon Athena, or Amazon RDS</h3>
+                <p>For Amazon S3, you can import data from an Amazon S3 bucket as long as you have permissions to access the bucket.</p>
+                <p>For Amazon Athena, you can access databases in your AWS Glue Data Catalog as long as you have permissions through your
+                    <a href="https://docs.aws.amazon.com/athena/latest/ug/manage-queries-control-costs-with-workgroups.html">Amazon Athena workgroup</a>.</p>
+                <p>For Amazon RDS, if you have the <a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonSageMakerCanvasFullAccess.html">AmazonSageMakerCanvasFullAccess</a>
+                    policy attached to your user’s role, then you’ll be able to import data from your Amazon RDS databases into Canvas.</p>
+                <p>To import data from an Amazon S3 bucket, or to run queries and import data tables with Amazon Athena, see
+                    <a href="canvas-import-dataset.html">Create a dataset</a>. You can only import tabular
+                    data from Amazon Athena, and you can import tabular and image data from Amazon S3.</p>
+             
+            
+            
+            
+             
+                <h3 id="canvas-connecting-redshift">Connect to an Amazon Redshift database</h3>
+                <p>You can import data from Amazon Redshift, a data warehouse where your organization keeps its
+                    data. Before you can import data from Amazon Redshift, the AWS IAM role you use must have
+                    the <code class="code">AmazonRedshiftFullAccess</code> managed policy attached. For instructions on how
+                    to attach this policy, see <a href="canvas-redshift-permissions.html">Grant Users Permissions to Import Amazon Redshift Data</a>.
+                </p>
+                <p>To import data from Amazon Redshift, you do the following:</p>
+                <div class="orderedlist">
+                     
+                     
+                     
+                <ol><li>
+                        <p>Create a connection to an Amazon Redshift database.</p>
+                    </li><li>
+                        <p>Choose the data that you're importing.</p>
+                    </li><li>
+                        <p>Import the data.</p>
+                    </li></ol></div>
+                <p>You can use the Amazon Redshift editor to drag datasets onto the import pane and import
+                    them into SageMaker Canvas. For more control over the values returned in the dataset, you can
+                    use the following:</p>
+                <div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>SQL queries</p>
+                    </li><li class="listitem">
+                        <p>Joins</p>
+                    </li></ul></div>
+                <p>SQL queries give you the ability to customize how you import the values in the
+                    dataset. For example, you can specify the columns returned in the dataset or the
+                    range of values for a column.</p>
+                <p>You can use joins to combine multiple datasets from Amazon Redshift into a single
+                    dataset. You can drag your datasets from Amazon Redshift into the panel that gives you the
+                    ability to join the datasets.</p>
+                <p>You can use the SQL editor to edit the dataset that you've joined and convert the joined dataset into a single node. You can join another dataset to the node. You can import the data that you've selected
+                    into SageMaker Canvas.</p>
+                <p>Use the following procedure to import data from Amazon Redshift.</p>
+                <div class="procedure"><ol><li><p>In the SageMaker Canvas application, go to the <b>Datasets</b> page.</p></li><li><p>Choose <b>Create</b>, and from the dropdown menu, choose
+                                <b>Tabular</b>.</p></li><li>
+                        <p>Enter a name for the dataset and choose
+                            <b>Create</b>.</p>
+                    </li><li><p>For <b>Data Source</b>, open the dropdown menu and choose <b>Redshift</b>.</p></li><li>
+                        <p>Choose <b>Add connection</b>.</p>
+                    </li><li>
+                        <p>In the dialog box, specify your Amazon Redshift credentials:</p>
+                        <ol><li>
+                                            <p>For <b>Authentication method</b>,
+                                    choose <b>IAM</b>.</p>
+                                    </li><li>
+                                            <p>Enter the <b>Cluster identifier</b>
+                                    to specify to which cluster you want to connect. Enter only the
+                                    cluster identifier and not the full endpoint of the Amazon Redshift
+                                    cluster.</p>
+                                    </li><li>
+                                            <p>Enter the <b>Database name</b> of
+                                    the database to which you want to connect.</p>
+                                    </li><li>
+                                            <p>Enter a <b>Database user</b> to
+                                    identify the user you want to use to connect to the
+                                    database.</p>
+                                    </li><li>
+                                            <p>For <b>ARN</b>, enter the IAM role
+                                    ARN of the role that the Amazon Redshift cluster should assume to move and
+                                    write data to Amazon S3. For more information about this role, see
+                                        <a href="https://docs.aws.amazon.com/redshift/latest/mgmt/authorizing-redshift-service.html"> Authorizing Amazon Redshift to access other AWS services on your
+                                        behalf</a> in the <em>Amazon Redshift
+                                        Management Guide</em>.</p>
+                                    </li><li>
+                                            <p>Enter a <b>Connection name</b>. This
+                                    is a name used by Canvas to identify this connection.</p>
+                                    </li></ol>
+                    </li><li>
+                        <p>From the tab that has the name of your connection, drag the .csv file that
+                            you're importing to the <b>Drag and drop table to import</b>
+                            pane.</p>
+                    </li><li>
+                        <p>Optional: Drag additional tables to the import pane. You can use the GUI
+                            to join the tables. For more specificity in your joins, choose
+                            <b>Edit in SQL</b>.</p>
+                    </li><li>
+                        <p>Optional: If you're using SQL to query the data, you can choose <b>Context</b> to add context to the connection by specifying values
+                            for the following:</p>
+                        <div class="itemizedlist">
+                             
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p><b>Warehouse</b></p>
+                            </li><li class="listitem">
+                                <p><b>Database</b></p>
+                            </li><li class="listitem">
+                                <p><b>Schema</b></p>
+                            </li></ul></div>
+                    </li><li>
+                        <p>Choose <b>Import data</b>.</p>
+                    </li></ol></div>
+                <p>The following image shows an example of fields specified for an Amazon Redshift connection.</p>
+                <div class="mediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/canvas-redshift-add-connection.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:80%" />
+                     
+                </div>
+                <p>The following image shows the page used to join datasets in Amazon Redshift.</p>
+                <div class="mediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/canvas-redshift-join.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:80%" />
+                     
+                </div>
+                <p>The following image shows an SQL query being used to edit a join in Amazon Redshift.</p>
+                <div class="mediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/canvas-redshift-edit-sql.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:80%" />
+                     
+                </div>
+             
+            
+         
+            <h2 id="canvas-connecting-jdbc">Connect to your data with JDBC connectors</h2>
+            <p>With JDBC, you can connect to your databases from sources such as Databricks,
+                SQLServer, MySQL, PostgreSQL, MariaDB, Amazon RDS, and Amazon Aurora.</p>
+            <p>You must make sure that you have the necessary credentials and
+                    permissions to create the connection from Canvas.</p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem"><p>For Databricks, you must provide a JDBC URL. The URL formatting can vary between Databricks
+                        instances. For information about finding the URL and the specifying the
+                        parameters within it, see <a href="https://docs.databricks.com/integrations/bi/jdbc-odbc-bi.html#jdbc-configuration-and-connection-parameters" rel="noopener noreferrer" target="_blank"><span>JDBC configuration and connection parameters</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in
+                        the Databricks documentation. The following is an example of how a URL can
+                        be formatted: <code class="code">jdbc:spark://aws-sagemaker-datawrangler.cloud.databricks.com:443/default;transportMode=http;ssl=1;httpPath=sql/protocolv1/o/3122619508517275/0909-200301-cut318;AuthMech=3;UID=token;PWD=personal-access-token</code></p></li><li class="listitem"><p>For other database sources, you must set up username and
+                            password authentication, and then specify those credentials when
+                            connecting to the database from Canvas.
+                    </p></li></ul></div>
+            <p>Additionally, your data source must either be accessible through the public
+                internet, or if your Canvas application is running in VPC-only mode, then the data
+                source must run in the same VPC. For more information about configuring an Amazon RDS
+                database in a VPC, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.html">Amazon VPC VPCs and Amazon RDS</a> in the <em>Amazon RDS User
+                Guide</em>.</p>
+            <p>After you’ve configured your data source credentials, you can sign in to
+                    the Canvas application and create a connection to the data source. Specify your
+                    credentials (or, for Databricks, the URL) when creating the
+                    connection.</p>
+         
+            <h2 id="canvas-connecting-oauth">Connect to data sources with OAuth</h2>
+            <p>Canvas supports using OAuth as an authentication method for connecting to your
+                data in Snowflake and Salesforce Data Cloud. <a href="https://oauth.net/2/" rel="noopener noreferrer" target="_blank"><span>OAuth</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> is a common authentication platform for
+                granting access to resources without sharing passwords.</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can only establish one OAuth connection for each data source.</p></div></div>
+            <p>To authorize the connection, you must following the initial setup described in
+                <a href="canvas-setting-up-oauth.html">Set up connections to data sources with OAuth</a>.</p>
+            <p>After setting up the OAuth credentials, you can do the following to add
+                    a Snowflake or Salesforce Data Cloud connection with
+                    OAuth:</p>
+            <div class="procedure"><ol><li><p>Sign in to the Canvas application.</p></li><li><p>Create a tabular dataset. When prompted to upload data,
+                    choose Snowflake or Salesforce Data Cloud as your data source.</p></li><li><p>Create a new connection to your Snowflake or Salesforce Data Cloud data source.
+                    Specify OAuth as the authentication method and enter your connection details.</p></li></ol></div>
+            <p>You should now be able to import data from your databases in Snowflake or Salesforce Data Cloud.</p>
+         
+            <h2 id="canvas-connecting-saas">Connect to a SaaS platform</h2>
+            <p>You can import data from Snowflake and over 40 other external SaaS platforms. For a full list
+                of the connectors, see the table on <a href="canvas-importing-data.html">Import data into Canvas</a>.</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can only import tabular data, such as data tables, from SaaS platforms.</p></div></div>
+            
+            
+             
+                <h3 id="canvas-using-snowflake">Use Snowflake with Canvas</h3>
+                <p>Snowflake is a data storage and analytics service, and you can import your data from Snowflake
+                    into SageMaker Canvas. For more information about Snowflake, see the <a href="https://www.snowflake.com/en/" rel="noopener noreferrer" target="_blank"><span>Snowflake documentation</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                <p>You can import data from your Snowflake account by doing the following:</p>
+                <div class="orderedlist">
+                     
+                     
+                     
+                <ol><li>
+                        <p>Create a connection to the Snowflake database.</p>
+                    </li><li>
+                        <p>Choose the data that you're importing by dragging and dropping the table from the left navigation menu into the editor.</p>
+                    </li><li>
+                        <p>Import the data.</p>
+                    </li></ol></div>
+                <p>You can use the Snowflake editor to drag datasets onto the import pane and import
+                    them into SageMaker Canvas. For more control over the values returned in the dataset, you can
+                    use the following:</p>
+                <div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>SQL queries</p>
+                    </li><li class="listitem">
+                        <p>Joins</p>
+                    </li></ul></div>
+                <p>SQL queries give you the ability to customize how you import the values in the
+                    dataset. For example, you can specify the columns returned in the dataset or the
+                    range of values for a column.</p>
+                <p>You can join multiple Snowflake datasets into a single dataset before you import
+                    into Canvas using SQL or the Canvas interface. You can drag your datasets from
+                    Snowflake into the panel that gives you the ability to join the datasets, or you can edit the
+                    joins in SQL and convert the SQL into a single node. You can join other nodes to the node
+                    that you've converted. You can then combine the datasets that you've joined into a single
+                    node and join the nodes to a different Snowflake dataset. Finally, you can import the data
+                    that you've selected into Canvas.</p>
+                <p>Use the following procedure to import data from Snowflake to Amazon SageMaker Canvas.</p>
+                <div class="procedure"><ol><li><p>In the SageMaker Canvas application, go to the <b>Datasets</b> page.</p></li><li><p>Choose <b>Import</b>.</p></li><li><p>For <b>Data Source</b>, open the dropdown menu and choose <b>Snowflake</b>.</p></li><li>
+                        <p>Choose <b>Add connection</b>.</p>
+                    </li><li>
+                        <p>In the <b>Add a new Snowflake connection</b> dialog box,
+                            specify your Snowflake credentials. For the <b>Authentication
+                                method</b>, you can choose <b>Basic - username
+                                password</b>, <b>ARN</b> or
+                                <b>OAuth</b>. OAuth lets you authenticate without
+                            providing a password but requires additional setup. For more information
+                            about setting up OAuth credentials for Snowflake, see <a href="canvas-setting-up-oauth.html">Set up connections to data sources with OAuth</a>.</p></li><li>
+                        <p>Choose <b>Add connection</b>.</p>
+                    </li><li>
+                        <p>From the tab that has the name of your connection, drag the .csv file that
+                            you're importing to the <b>Drag and drop table to import</b>
+                            pane.</p>
+                    </li><li>
+                        <p>Optional: Drag additional tables to the import pane. You can use the user
+                            interface to join the tables. For more specificity in your joins, choose
+                            <b>Edit in SQL</b>.</p>
+                    </li><li>
+                        <p>Optional: If you're using SQL to query the data, you can choose <b>Context</b> to add context to the connection by specifying values
+                            for the following:</p>
+                        <div class="itemizedlist">
+                             
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p><b>Warehouse</b></p>
+                            </li><li class="listitem">
+                                <p><b>Database</b></p>
+                            </li><li class="listitem">
+                                <p><b>Schema</b></p>
+                            </li></ul></div>
+                        <p>Adding context to a connection makes it easier to specify future queries.</p>
+                    </li><li>
+                        <p>Choose <b>Import data</b>.</p>
+                    </li></ol></div>
+                <p>The following image shows an example of fields specified for a Snowflake connection.</p>
+                <div class="mediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/canvas-snowflake-connection.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:80%" />
+                     
+                </div>
+                <p>The following image shows the page used to add context to a connection.</p>
+                <div class="mediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/canvas-connection-context.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:80%" />
+                     
+                </div>
+                <p>The following image shows the page used to join datasets in Snowflake.</p>
+                <div class="mediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/canvas-snowflake-join.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:80%" />
+                     
+                </div>
+                <p>The following image shows a SQL query being used to edit a join in Snowflake.</p>
+                <div class="mediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/canvas-snowflake-edit-sql.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:80%" />
+                     
+                </div>
+             
+            
+            
+             
+                <h3 id="canvas-connecting-external-appflow">Use SaaS connectors with Canvas</h3>
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For SaaS platforms besides Snowflake, you can only have one connection per data source.</p></div></div>
+                <p>Before you can import data from a SaaS platform, your administrator must authenticate and create a
+                    connection to the data source. For more information about how administrators can create a connection with
+                    a SaaS platform, see <a href="https://docs.aws.amazon.com/appflow/latest/userguide/connections.html">Managing Amazon AppFlow connections</a>
+                    in the <em>Amazon AppFlow User Guide</em>.</p>
+                <p>If you’re an administrator getting started with Amazon AppFlow for the first time, see
+                    <a href="https://docs.aws.amazon.com/appflow/latest/userguide/getting-started.html">Getting started</a> in the <em>Amazon AppFlow User Guide</em>.</p>
+                <p>To import data from a SaaS platform, you can follow the standard
+                    <a href="canvas-import-dataset.html#canvas-import-dataset-tabular">Import tabular data</a>
+                    procedure, which shows you how to import tabular datasets into Canvas.</p>
+             
+            
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./canvas-update-dataset.html">Update a dataset</div><div id="next" class="next-link" accesskey="n" href="./canvas-joining-data.html">Join data that you've imported into SageMaker Canvas</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-connecting-external.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-connecting-external.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

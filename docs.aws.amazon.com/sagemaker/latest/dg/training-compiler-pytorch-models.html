@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>PyTorch - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="training-compiler-pytorch-models" /><meta name="default_state" content="training-compiler-pytorch-models" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="training-compiler-pytorch-models.html" /><meta name="description" content="Use Amazon SageMaker Training Compiler to compile PyTorch models." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="training-compiler-pytorch-models.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/training-compiler-pytorch-models.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/training-compiler-pytorch-models.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/training-compiler-pytorch-models.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/training-compiler-pytorch-models.html" hreflang="de" /><link rel="alternative" href="training-compiler-pytorch-models.html" hreflang="en-us" /><link rel="alternative" href="training-compiler-pytorch-models.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/training-compiler-pytorch-models.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/training-compiler-pytorch-models.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/training-compiler-pytorch-models.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/training-compiler-pytorch-models.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/training-compiler-pytorch-models.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/training-compiler-pytorch-models.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/training-compiler-pytorch-models.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/training-compiler-pytorch-models.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/training-compiler-pytorch-models.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/training-compiler-pytorch-models.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/training-compiler-pytorch-models.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/training-compiler-pytorch-models.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/training-compiler-pytorch-models.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/training-compiler-pytorch-models.html" hreflang="zh-tw" /><link rel="alternative" href="training-compiler-pytorch-models.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="PyTorch" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>PyTorch - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#training-compiler-pytorch-models" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-pytorch-models.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-pytorch-models.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-pytorch-models.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,amazon sagemaker training compiler, sagemaker training compiler, sm training compiler,compile deep learning model, compile transformer model, compile tensorflow model, compile pytorch model, compile nlp model,amazon sagemaker training compiler, sagemaker training compiler, sm training compiler,compile deep learning model, compile transformer model, compile tensorflow model, compile pytorch model, compile nlp model,transformers, transformer, model,tensorflow, pytorch, hugging face,tf.keras.model,modify training script, modify script,distributed training, data parallelism, distributed data parallel,use sagemaker training compiler for pytorch, sagemaker training compiler for pytorch, training compiler pytorch" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Training Compiler",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/training-compiler.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Bring Your Own Deep Learning Model",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/training-compiler-modify-scripts.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "PyTorch",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/training-compiler-modify-scripts.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#training-compiler-pytorch-models" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="training-compiler-pytorch-models.html#training-compiler-pytorch-models-transformers">PyTorch Models with
+                Hugging Face Transformers</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="training-compiler-pytorch-models">PyTorch</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Bring your own PyTorch model to SageMaker, and run the training job with SageMaker Training Compiler.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="training-compiler-pytorch-models.html#training-compiler-pytorch-models-transformers">PyTorch Models with
+                Hugging Face Transformers</a></li></ul></div>
+        <h2 id="training-compiler-pytorch-models-transformers">PyTorch Models with
+                Hugging Face Transformers</h2>
+        <p>PyTorch models with <a href="https://huggingface.co/docs/transformers/index" rel="noopener noreferrer" target="_blank"><span>Hugging Face Transformers</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> are based on PyTorch's <a href="https://pytorch.org/docs/stable/nn.html#torch.nn.Module" rel="noopener noreferrer" target="_blank"><span>torch.nn.Module</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> API. Hugging Face Transformers also provides <a href="https://huggingface.co/docs/transformers/main_classes/trainer" rel="noopener noreferrer" target="_blank"><span>Trainer</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and pretrained model classes for PyTorch to help reduce the effort
+            for configuring natural language processing (NLP) models. After preparing your training
+            script, you can launch a training job using the SageMaker <code class="code">PyTorch</code> or
+                <code class="code">HuggingFace</code> estimator with the SageMaker Training Compiler configuration when you'll
+            proceed to the next topic at <a href="training-compiler-enable.html">Enable SageMaker Training Compiler</a>.</p>
+        <div class="awsdocs-note awsdocs-tip"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Tip</h6></div><div class="awsdocs-note-text"><p>When you create a tokenizer for an NLP model using Transformers in your training
+                script, make sure that you use a static input tensor shape by specifying
+                    <code class="code">padding='max_length'</code>. Do not use <code class="code">padding='longest'</code>
+                because padding to the longest sequence in the batch can change the tensor shape for
+                each training batch. The dynamic input shape can trigger recompilation of the model
+                and might increase total training time. For more information about padding options
+                of the Transformers tokenizers, see <a href="https://huggingface.co/docs/transformers/pad_truncation" rel="noopener noreferrer" target="_blank"><span>Padding and
+                    truncation</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the <em>Hugging Face Transformers
+                    documentation</em>.</p></div></div>
+        <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="training-compiler-pytorch-models.html#training-compiler-pytorch-models-transformers-trainer">Large
+                    Language Models Using the Hugging Face Transformers Trainer
+                    Class</a></li><li><a href="training-compiler-pytorch-models.html#training-compiler-pytorch-models-non-trainer">Large Language Models
+                    Using PyTorch Directly (without the Hugging Face Transformers Trainer
+                    API)</a></li></ul></div>
+         
+            <h3 id="training-compiler-pytorch-models-transformers-trainer">Large
+                    Language Models Using the Hugging Face Transformers <code class="code">Trainer</code>
+                    Class</h3>
+            <p>If you use the transformers library’s Trainer class, you don’t need to make any
+                additional changes to your training script. SageMaker Training Compiler automatically compiles your
+                Trainer model if you enable it through the estimator class. The following code shows
+                the basic form of a PyTorch training script with Hugging Face Trainer API.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from transformers import Trainer, TrainingArguments
+
+training_args=TrainingArguments(**kwargs)
+trainer=Trainer(args=training_args, **kwargs)</code></pre>
+            <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="training-compiler-pytorch-models.html#training-compiler-pytorch-models-transformers-trainer-single-gpu">For single GPU training</a></li><li><a href="training-compiler-pytorch-models.html#training-compiler-pytorch-models-transformers-trainer-distributed">For distributed training</a></li><li><a href="training-compiler-pytorch-models.html#training-compiler-pytorch-models-transformers-trainer-best-practices">Best Practices to Use SageMaker Training Compiler with Trainer</a></li></ul></div>
+             
+                <h4 id="training-compiler-pytorch-models-transformers-trainer-single-gpu">For single GPU training</h4>
+                <p>You don't need to change your code when you use the <a href="https://huggingface.co/docs/transformers/main_classes/trainer" rel="noopener noreferrer" target="_blank"><span><code class="code">transformers.Trainer</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> class. </p>
+             
+             
+                <h4 id="training-compiler-pytorch-models-transformers-trainer-distributed">For distributed training</h4>
+                <p><b>PyTorch v1.11.0 and later</b></p>
+                <p>To run distributed training with SageMaker Training Compiler, you must add the following
+                        <code class="code">_mp_fn()</code> function in your training script and wrap the
+                        <code class="code">main()</code> function. It redirects the <code class="code">_mp_fn(index)</code>
+                    function calls from the SageMaker distributed runtime for PyTorch
+                        (<code class="code">pytorchxla</code>) to the <code class="code">main()</code> function of your
+                    training script. </p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">def _mp_fn(index):
+    main()</code></pre>
+                <p>This function accepts the <code class="code">index</code> argument to indicate the rank of
+                    the current GPU in the cluster for distributed training. To find more example
+                    scripts, see the <a href="https://github.com/huggingface/transformers/blob/v4.21.1/examples/pytorch/language-modeling" rel="noopener noreferrer" target="_blank"><span>Hugging Face Transformers language modeling example scripts</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                <p><b>For Transformers v4.17 and before with PyTorch v1.10.2
+                        and before</b></p>
+                <p>SageMaker Training Compiler uses an alternate mechanism for launching a distributed training job,
+                    and you don't need to make any modification in your training script. Instead,
+                    SageMaker Training Compiler requires you to pass a SageMaker distributed training launcher script to the
+                        <code class="code">entry_point</code> argument and pass your training script to the
+                        <code class="code">hyperparameters</code> argument in the SageMaker Hugging Face
+                    estimator.</p>
+             
+             
+                <h4 id="training-compiler-pytorch-models-transformers-trainer-best-practices">Best Practices to Use SageMaker Training Compiler with <code class="code">Trainer</code></h4>
+                <div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>Make sure that you use SyncFree optimizers by setting the
+                                <code class="code">optim</code> argument to <code class="code">adamw_torch_xla</code> while
+                            setting up <a href="https://huggingface.co/docs/transformers/main_classes/trainer#transformers.TrainingArguments" rel="noopener noreferrer" target="_blank"><span>transformers.TrainingArgument</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. See also <a href="https://huggingface.co/docs/transformers/v4.23.1/en/perf_train_gpu_one#optimizer" rel="noopener noreferrer" target="_blank"><span>Optimizer</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the <em>Hugging Face
+                                Transformers documentation</em>.</p>
+                    </li><li class="listitem">
+                        <p>Ensure that the throughput of the data processing pipeline is higher
+                            than the training throughput. You can tweak the
+                                <code class="code">dataloader_num_workers</code> and
+                                <code class="code">preprocessing_num_workers</code> arguments of the <a href="https://huggingface.co/docs/transformers/main_classes/trainer#transformers.TrainingArguments" rel="noopener noreferrer" target="_blank"><span>transformers.TrainingArgument</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> class to achieve this.
+                            Typically, these need to be greater than or equal to the number of GPUs
+                            but less than the number of CPUs.</p>
+                    </li></ul></div>
+                
+             
+            <p>After you have completed adapting your training script, proceed to <a href="training-compiler-enable-pytorch.html">Run PyTorch Training Jobs with SageMaker Training Compiler</a>.</p>
+         
+         
+            <h3 id="training-compiler-pytorch-models-non-trainer">Large Language Models
+                    Using PyTorch Directly (without the Hugging Face Transformers Trainer
+                    API)</h3>
+            <p>If you have a training script that uses PyTorch directly, you need to make
+                additional changes to your PyTorch training script to implement PyTorch/XLA. Follow
+                the instructions to modify your script to properly set up the PyTorch/XLA
+                primatives.</p>
+            <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="training-compiler-pytorch-models.html#training-compiler-pytorch-models-non-trainer-single-gpu">For
+                        single GPU training</a></li><li><a href="training-compiler-pytorch-models.html#training-compiler-pytorch-models-non-trainer-distributed">For
+                        distributed training</a></li><li><a href="training-compiler-pytorch-models.html#training-compiler-pytorch-models-best-practices">Best Practices
+                        to Use SageMaker Training Compiler with PyTorch/XLA</a></li></ul></div>
+             
+                <h4 id="training-compiler-pytorch-models-non-trainer-single-gpu">For
+                        single GPU training</h4>
+                <div class="orderedlist">
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                <ol><li>
+                        <p>Import the optimization libraries.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import torch_xla
+import torch_xla.core.xla_model as xm</code></pre>
+                    </li><li>
+                        <p>Change the target device to be XLA instead of
+                                <code class="code">torch.device("cuda")</code></p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">device=xm.xla_device()</code></pre>
+                    </li><li>
+                        <p>If you're using PyTorch's <a href="https://pytorch.org/docs/stable/amp.html" rel="noopener noreferrer" target="_blank"><span>Automatic Mixed
+                                Precision</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> (AMP), do the following:</p>
+                        <div class="orderedlist">
+                             
+                             
+                             
+                        <ol><li>
+                                <p>Replace <code class="code">torch.cuda.amp</code> with the following:</p>
+                                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import torch_xla.amp</code></pre>
+                            </li><li>
+                                <p>Replace <code class="code">torch.optim.SGD</code> and
+                                        <code class="code">torch.optim.Adam</code> with the following:</p>
+                                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import torch_xla.amp.syncfree.Adam as adam
+import torch_xla.amp.syncfree.SGD as SGD</code></pre>
+                            </li><li>
+                                <p>Replace <code class="code">torch.cuda.amp.GradScaler</code> with the
+                                    following:</p>
+                                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import torch_xla.amp.GradScaler as grad_scaler</code></pre>
+                            </li></ol></div>
+                    </li><li>
+                        <p>If you're not using AMP, replace <code class="code">optimizer.step()</code> with
+                            the following:</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">xm.optimizer_step(optimizer)</code></pre>
+                    </li><li>
+                        <p>If you're using a distributed dataloader, wrap your dataloader in the
+                            PyTorch/XLA's <code class="code">ParallelLoader</code> class:</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import torch_xla.distributed.parallel_loader as pl
+parallel_loader=pl.ParallelLoader(dataloader, [device]).per_device_loader(device)</code></pre>
+                    </li><li>
+                        <p>Add <code class="code">mark_step</code> at the end of the training loop when you're
+                            not using <code class="code">parallel_loader</code>:</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">xm.mark_step()</code></pre>
+                    </li><li>
+                        <p>To checkpoint your training, use the PyTorch/XLA's model checkpoint
+                            method:</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">xm.save(model.state_dict(), path_to_save)</code></pre>
+                    </li></ol></div>
+                <p>After you have completed adapting your training script, proceed to <a href="training-compiler-enable-pytorch.html">Run PyTorch Training Jobs with SageMaker Training Compiler</a>.</p>
+             
+             
+                <h4 id="training-compiler-pytorch-models-non-trainer-distributed">For
+                        distributed training</h4>
+                <p>In addition to the changes listed in the previous <a href="training-compiler-pytorch-models.html#training-compiler-pytorch-models-non-trainer-single-gpu">For
+                        single GPU training</a>
+                    section, add the following changes to properly distribute workload across
+                    GPUs.</p>
+                <div class="orderedlist">
+                     
+                     
+                     
+                     
+                     
+                <ol><li>
+                        <p>If you're using AMP, add <code class="code">all_reduce</code> after
+                                <code class="code">scaler.scale(loss).backward()</code>:</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">gradients=xm._fetch_gradients(optimizer)
+xm.all_reduce('sum', gradients, scale=1.0/xm.xrt_world_size())</code></pre>
+                    </li><li>
+                        <p>If you need to set variables for <code class="code">local_ranks</code> and
+                                <code class="code">world_size</code>, use similar code to the following:</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">local_rank=xm.get_local_ordinal()
+world_size=xm.xrt_world_size()</code></pre>
+                    </li><li>
+                        <p>For any <code class="code">world_size</code>
+                                (<code class="code">num_gpus_per_node*num_nodes</code>) greater than
+                                <code class="code">1</code>, you must define a train sampler which should look
+                            similar to the following:</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import torch_xla.core.xla_model as xm
+
+if xm.xrt_world_size() &gt; 1:
+    train_sampler=torch.utils.data.distributed.DistributedSampler(
+        train_dataset,
+        num_replicas=xm.xrt_world_size(),
+        rank=xm.get_ordinal(),
+        shuffle=True
+    )
+
+train_loader=torch.utils.data.DataLoader(
+    train_dataset, 
+    batch_size=args.batch_size,
+    sampler=train_sampler,
+    drop_last=args.drop_last,
+    shuffle=False if train_sampler else True,
+    num_workers=args.num_workers
+)</code></pre>
+                    </li><li>
+                        <p>Make the following changes to make sure you use the
+                                <code class="code">parallel_loader</code> provided by the <code class="code">torch_xla
+                                distributed</code> module. </p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import torch_xla.distributed.parallel_loader as pl
+train_device_loader=pl.MpDeviceLoader(train_loader, device)</code></pre>
+                        <p>The <code class="code">train_device_loader</code> functions like a regular PyTorch
+                            loader as follows: </p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">for step, (data, target) in enumerate(train_device_loader):
+    optimizer.zero_grad()
+    output=model(data)
+    loss=torch.nn.NLLLoss(output, target)
+    loss.backward()</code></pre>
+                        <p>With all of these changes, you should be able to launch distributed
+                            training with any PyTorch model without the Transformer Trainer API.
+                            Note that these instructions can be used for both single-node multi-GPU
+                            and multi-node multi-GPU.</p>
+                    </li><li>
+                        <p><b>For PyTorch v1.11.0 and later</b></p>
+                        <p>To run distributed training with SageMaker Training Compiler, you must add the following
+                                <code class="code">_mp_fn()</code> function in your training script and wrap the
+                                <code class="code">main()</code> function. It redirects the
+                                <code class="code">_mp_fn(index)</code> function calls from the SageMaker distributed
+                            runtime for PyTorch (<code class="code">pytorchxla</code>) to the <code class="code">main()</code>
+                            function of your training script. </p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">def _mp_fn(index):
+    main()</code></pre>
+                        <p>This function accepts the <code class="code">index</code> argument to indicate the
+                            rank of the current GPU in the cluster for distributed training. To find
+                            more example scripts, see the <a href="https://github.com/huggingface/transformers/blob/v4.21.1/examples/pytorch/language-modeling" rel="noopener noreferrer" target="_blank"><span>Hugging Face Transformers language modeling example
+                            scripts</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                        <p><b>For Transformers v4.17 and before with PyTorch
+                                v1.10.2 and before</b></p>
+                        <p>SageMaker Training Compiler uses an alternate mechanism for launching a distributed
+                            training job and requires you to pass a SageMaker distributed training
+                            launcher script to the <code class="code">entry_point</code> argument and pass your
+                            training script to the <code class="code">hyperparameters</code> argument in the SageMaker
+                            Hugging Face estimator.</p>
+                    </li></ol></div>
+                <p>After you have completed adapting your training script, proceed to <a href="training-compiler-enable-pytorch.html">Run PyTorch Training Jobs with SageMaker Training Compiler</a>.</p>
+             
+             
+                <h4 id="training-compiler-pytorch-models-best-practices">Best Practices
+                        to Use SageMaker Training Compiler with PyTorch/XLA</h4>
+                <p>If you want to leverage the SageMaker Training Compiler on your native PyTorch training script, you
+                    may want to first get familiar with <a href="https://pytorch.org/xla/release/1.9/index.html" rel="noopener noreferrer" target="_blank"><span>PyTorch on XLA
+                        devices</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. The following sections list some best practices to enable XLA
+                    for PyTorch.</p>
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This section for best practices assumes that you use the following
+                        PyTorch/XLA modules:</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import torch_xla.core.xla_model as xm
+import torch_xla.distributed.parallel_loader as pl</code></pre></div></div>
+                 
+                    <h5 id="training-compiler-pytorch-models-best-practices-lazy-mode">Understand the lazy mode in PyTorch/XLA</h5>
+                    <p>One significant difference between PyTorch/XLA and native PyTorch is that the
+                        PyTorch/XLA system runs in lazy mode while the native PyTorch runs in eager
+                        mode. Tensors in lazy mode are placeholders for building the computational graph
+                        until they are materialized after the compilation and evaluation are complete.
+                        The PyTorch/XLA system builds the computational graph on the fly when you call
+                        PyTorch APIs to build the computation using tensors and operators. The
+                        computational graph gets compiled and executed when <code class="code">xm.mark_step()</code>
+                        is called explicitly or implicitly by
+                        <code class="code">pl.MpDeviceLoader/pl.ParallelLoader</code>, or when you explicitly
+                        request the value of a tensor such as by calling <code class="code">loss.item()</code> or
+                        <code class="code">print(loss)</code>. </p>
+                 
+                 
+                    <h5 id="training-compiler-pytorch-models-best-practices-minimize-comp-exec">Minimize the number of <em>compilation-and-executions</em> using
+                            <code class="code">pl.MpDeviceLoader/pl.ParallelLoader</code> and
+                            <code class="code">xm.step_closure</code></h5>
+                    <p>For best performance, you should keep in mind the possible ways to initiate
+                        <em>compilation-and-executions</em> as described
+                        in <a href="training-compiler-pytorch-models.html#training-compiler-pytorch-models-best-practices-lazy-mode">Understand the lazy mode in PyTorch/XLA</a>
+                        and should try to minimize the number of compilation-and-executions. Ideally,
+                        only one compilation-and-execution is necessary per training iteration and is
+                        initiated automatically by <code class="code">pl.MpDeviceLoader/pl.ParallelLoader</code>. The
+                        <code class="code">MpDeviceLoader</code> is optimized for XLA and should always be used
+                        if possible for best performance. During training, you might want to examine
+                        some intermediate results such as loss values. In such case, the printing of
+                        lazy tensors should be wrapped using <code class="code">xm.add_step_closure()</code> to avoid
+                        unnecessary compilation-and-executions.</p>
+                 
+                 
+                    <h5 id="training-compiler-pytorch-models-best-practices-amp-optimizers">Use
+                            AMP and <code class="code">syncfree</code> optimizers</h5>
+                    <p>Training in Automatic Mixed Precision (AMP) mode significantly accelerates
+                        your training speed by leveraging the Tensor cores of NVIDIA GPUs. SageMaker Training Compiler
+                        provides <code class="code">syncfree</code> optimizers that are optimized for XLA to improve
+                        AMP performance. Currently, the following three <code class="code">syncfree</code> optimizers
+                        are available and should be used if possible for best performance.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">torch_xla.amp.syncfree.SGD
+torch_xla.amp.syncfree.Adam
+torch_xla.amp.syncfree.AdamW</code></pre>
+                    <p>These <code class="code">syncfree</code> optimizers should be paired with
+                        <code class="code">torch_xla.amp.GradScaler</code> for gradient scaling/unscaling.</p>
+                    <div class="awsdocs-note awsdocs-tip"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Tip</h6></div><div class="awsdocs-note-text"><p>Starting PyTorch 1.13.1, SageMaker Training Compiler improves performance by letting
+                            PyTorch/XLA to automatically override the optimizers (such as SGD, Adam,
+                            AdamW) in <code class="code">torch.optim</code> or
+                                <code class="code">transformers.optimization</code> with the syncfree versions of
+                            them in <code class="code">torch_xla.amp.syncfree</code> (such as
+                                <code class="code">torch_xla.amp.syncfree.SGD</code>,
+                                <code class="code">torch_xla.amp.syncfree.Adam</code>,
+                                <code class="code">torch_xla.amp.syncfree.AdamW</code>). You don't need to change
+                            those code lines where you define optimizers in your training
+                            script.</p></div></div>
+                 
+             
+         
+        
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./training-compiler-modify-scripts.html">Bring Your Own Deep Learning
+                Model</div><div id="next" class="next-link" accesskey="n" href="./training-compiler-tensorflow-models.html">TensorFlow</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-pytorch-models.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-pytorch-models.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

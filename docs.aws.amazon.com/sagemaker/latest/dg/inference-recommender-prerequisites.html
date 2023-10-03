@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Prerequisites - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="inference-recommender-prerequisites" /><meta name="default_state" content="inference-recommender-prerequisites" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="inference-recommender-prerequisites.html" /><meta name="description" content="Desrcibes the prerequisites you must satisfy before you can use Amazon SageMaker Inference Recommender. Instructions on how to satisfy the requirements are provided." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="inference-recommender-prerequisites.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/inference-recommender-prerequisites.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/inference-recommender-prerequisites.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/inference-recommender-prerequisites.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/inference-recommender-prerequisites.html" hreflang="de" /><link rel="alternative" href="inference-recommender-prerequisites.html" hreflang="en-us" /><link rel="alternative" href="inference-recommender-prerequisites.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/inference-recommender-prerequisites.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/inference-recommender-prerequisites.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/inference-recommender-prerequisites.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/inference-recommender-prerequisites.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/inference-recommender-prerequisites.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/inference-recommender-prerequisites.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/inference-recommender-prerequisites.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/inference-recommender-prerequisites.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/inference-recommender-prerequisites.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/inference-recommender-prerequisites.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/inference-recommender-prerequisites.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/inference-recommender-prerequisites.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/inference-recommender-prerequisites.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/inference-recommender-prerequisites.html" hreflang="zh-tw" /><link rel="alternative" href="inference-recommender-prerequisites.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Prerequisites" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Prerequisites - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#inference-recommender-prerequisites" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/inference-recommender-prerequisites.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/inference-recommender-prerequisites.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/inference-recommender-prerequisites.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,inference,deploy model,endpoint,prediction,ML application,serverless machine learning,multi model deployment,inference pipelines,ML model" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploy models for inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Inference Recommender",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/inference-recommender.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Prerequisites",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/inference-recommender.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#inference-recommender-prerequisites" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="inference-recommender-prerequisites">Prerequisites</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>To use Amazon SageMaker Inference Recommender, first make sure you have met the prerequisites listed below. As an example, 
+            we show how to use a PyTorch (v1.7.1) ResNet-18 pre-trained 
+            model for both types of Amazon SageMaker Inference Recommender recommendation jobs.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem"><p>The following code examples use Python. Remove the <code class="code">!</code> prefix character if you run 
+                    any of the following code samples in your terminal or AWS CLI.</p></li><li class="listitem"><p>This example uses the <code class="code">conda_pytorch_p36_latest</code> kernel within a 
+                    Amazon SageMaker Notebook instance. This kernel is provided by SageMaker and uses 
+                    Python 3.6 and PyTorch 1.7.1. For more information about SageMaker Notebooks, see 
+                    <a href="nbi.html">Amazon SageMaker Notebook Instances</a>.</p></li></ul></div></div></div><div class="procedure"><ol><li>
+                <p><b>Create an IAM role for Amazon SageMaker.</b></p>
+                <p>Create an IAM Role for Amazon SageMaker that has the
+                        <code class="code">AmazonSageMakerFullAccess</code> IAM managed policy attached.</p>
+            </li><li>
+                <p><b>(Optional) Review existing models benchmarked by Inference Recommender.</b></p>
+                <p>Inference Recommender benchmarks models from popular model zoos. Inference Recommender supports your model
+                    even if it is not already benchmarked.</p>
+                <p>Use <code class="code">ListModelMetaData</code> to get  a response object that lists the domain, framework, 
+                    task, and model name of machine learning models found in common model zoos.</p>
+                <p>You use the domain, framework, framework version, task, and model name in later steps to both
+                    select an inference Docker image and register your model with SageMaker Model Registry.
+                    The following demonstrates how to list model metadata with SDK for Python (Boto3): </p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import boto3
+aws_region=<code class="replaceable">"&lt;INSERT&gt;"</code>
+sagemaker_client = boto3.client("sagemaker", aws_region) 
+
+list_model_metadata_response=sagemaker_client.list_model_metadata()</code></pre>
+                <p>The output includes model summaries (<code class="code">ModelMetadataSummaries</code>) and
+                    response metadata (<code class="code">ResponseMetadata</code>) similar to the
+                    following:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python "><span>{</span>
+    'ModelMetadataSummaries': [<span>{</span>
+            'Domain': 'NATURAL_LANGUAGE_PROCESSING',
+            'Framework': 'PYTORCH:1.6.0',
+             'Model': 'bert-base-cased',
+             'Task': 'FILL_MASK'
+             },
+            <span>{</span>
+             'Domain': 'NATURAL_LANGUAGE_PROCESSING',
+             'Framework': 'PYTORCH:1.6.0',
+             'Model': 'bert-base-uncased',
+             'Task': 'FILL_MASK'
+             },
+            <span>{</span>
+            'Domain': 'COMPUTER_VISION',
+             'Framework': 'MXNET:1.8.0',
+             'Model': 'resnet18v2-gluon',
+             'Task': 'IMAGE_CLASSIFICATION'
+             },
+             <span>{</span>
+             'Domain': 'COMPUTER_VISION',
+             'Framework': 'PYTORCH:1.6.0',
+             'Model': 'resnet152',
+             'Task': 'IMAGE_CLASSIFICATION'
+             }],
+    'ResponseMetadata': <span>{</span>
+                            'HTTPHeaders': <span>{</span>
+                            'content-length': '2345',
+                            'content-type': 'application/x-amz-json-1.1',
+                            'date': 'Tue, 19 Oct 2021 20:52:03 GMT',
+                            'x-amzn-requestid': 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+                          },
+    'HTTPStatusCode': 200,
+    'RequestId': 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
+    'RetryAttempts': 0
+    }
+}</code></pre>
+                <p>For this demo, we use a PyTorch (v1.7.1) ResNet-18 model to perform 
+                    image classification. The following Python code sample stores
+                    the framework, framework version, domain, and task into variables for later
+                    use:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python "># ML framework details
+framework = 'PYTORCH'
+framework_version = '1.7.1'
+
+# ML model details
+ml_domain = 'COMPUTER_VISION'
+ml_task = 'IMAGE_CLASSIFICATION'</code></pre>
+            </li><li>
+                <p><b>Upload your machine learning model to Amazon S3.</b></p>
+                <p>Use this PyTorch (v1.7.1) ResNet-18 model if you do not 
+                    have a pre-trained machine learning model:</p>
+                
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python "># Optional: Download a sample PyTorch model
+import torch
+from torchvision import models, transforms, datasets
+
+# Create an example input for tracing
+image = torch.zeros([1, 3, 256, 256], dtype=torch.float32)
+
+# Load a pretrained resnet18 model from TorchHub
+model = models.resnet18(pretrained=True)
+
+# Tell the model we are using it for evaluation (not training). Note this is required for Inferentia compilation.
+model.eval()
+model_trace = torch.jit.trace(model, image)
+
+# Save your traced model
+model_trace.save('model.pth')</code></pre>
+                
+                <p>Download a sample inference script <code>inference.py</code>. 
+                    Create a <code>code</code> directory and move the inference script to the 
+                    <code>code</code> directory.</p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="bash "># Download the inference script
+!wget https://aws-ml-blog-artifacts.s3.us-east-2.amazonaws.com/inference.py
+
+# move it into a code/ directory
+!mkdir code
+!mv inference.py code/</code></pre>
+                
+                <p>Amazon SageMaker requires pre-trained machine learning models be packaged as a
+                    compressed  TAR file (<code>*.tar.gz</code>). Compress your model to
+                    satisfy this requirement:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">!tar -czf test.tar.gz model.pth resnet18.py</code></pre>
+                <p>When your endpoint is provisioned, the files in the archive are extracted to 
+                    <code>/opt/ml/model/</code> on the endpoint.</p>
+                <p>After you compress your model and model artifacts as a <code>.tar.gz</code> file, upload them
+                    to your Amazon S3 bucket. The following demonstrates how to upload your model to Amazon S3
+                    using the AWS CLI:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">!aws s3 cp test.tar.gz s3://<code class="replaceable"><span>{</span>your-bucket}</code>/models/</code></pre>
+            </li><li>
+                <p><b>Select a prebuilt Docker inference image or create your own
+                    Inference Docker Image.</b></p>
+                <p>SageMaker provides containers for its built-in algorithms and prebuilt Docker
+                    images for some of the most common machine learning frameworks, such as Apache
+                    MXNet, TensorFlow, PyTorch, and Chainer. For a full list of the available SageMaker
+                    images, see <a href="https://github.com/aws/deep-learning-containers/blob/master/available_images.md" rel="noopener noreferrer" target="_blank"><span>Available Deep Learning Containers Images</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                <p>If none of the existing SageMaker containers meet your needs and you don't have an
+                    existing container of your own, create a new Docker image. See <a href="your-algorithms-inference-main.html">Use your own inference code</a> for information about how
+                    to create your Docker image.</p>
+                <p>The following demonstrates how to retrieve a PyTorch version 1.7.1 
+                    inference image using the SageMaker Python SDK:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from sagemaker import image_uris
+
+aws_region=<code class="replaceable">"&lt;aws_region&gt;"</code>
+
+## Uncomment and replace with your own values if you did not define  
+## these variables a previous step.
+#framework = 'PYTORCH'
+#framework_version = '1.7.1'
+
+# Note: you can use any CPU-based instance here, 
+# this is just to set the arch as CPU for the Docker image
+instance_type = 'ml.m5.2xlarge' 
+
+image_uri = image_uris.retrieve(framework, 
+                                region=aws_region, 
+                                version=framework_version, 
+                                py_version='py3', 
+                                instance_type=instance_type, 
+                                image_scope='inference')
+</code></pre>
+                <p>For a list of available SageMaker Instances, see <a href="https://aws.amazon.com/sagemaker/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker
+                    Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            </li><li>
+                <p><b>Create a sample payload archive.</b></p>
+                <p>Create an archive that contains individual files that the load testing tool
+                    can send to your SageMaker endpoints. Your inference code must be able to read the
+                    file formats from the sample payload.</p>
+                <p>The following downloads a .jpg image that this example uses in a later step
+                    for the ResNet-18 model.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">!wget https://cdn.pixabay.com/photo/2020/12/18/05/56/flowers-5841251_1280.jpg</code></pre>
+                <p>Compress the sample payload as a tarball:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">!tar -cvzf payload.tar.gz flowers-5841251_1280.jpg</code></pre>
+                <p>Upload the sample payload to Amazon S3 and note the Amazon S3 URI:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">!aws s3 cp payload.tar.gz s3://<span>{</span>bucket}/models/</code></pre>
+                <p>You need the Amazon S3 URI in a later step, so store it in a variable:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">bucket_prefix='models'
+bucket = <code class="replaceable">'&lt;your-bucket-name&gt;'</code> # Provide the name of your S3 bucket
+payload_s3_key = f"<span>{</span>bucket_prefix}/payload.tar.gz"
+sample_payload_url= f"s3://<span>{</span>bucket}/<span>{</span>payload_s3_key}"</code></pre>
+            </li><li>
+                <p><b>Prepare your model input for the recommendations
+                        job</b></p>
+                <p>For the last prerequisite, you have two options to prepare your model input.
+                    You can either register your model with SageMaker Model Registry, which you can use
+                    to catalog models for production, or you can create a SageMaker model and specify it
+                    in the <code class="code">ContainerConfig</code> field when creating a recommendations job.
+                    The first option is best if you want to take advantage of the features that
+                    <a href="model-registry.html">Model Registry</a>
+                    provides, such as managing model versions and automating model
+                    deployment. The second option is ideal if you want to get started quickly. For
+                    the first option, go to step 7. For the second option, skip step 7 and go to
+                    step 8.</p>
+            </li><li>
+                <p><b>Option 1: Register your model in the model
+                        registry</b></p>
+                <p>With SageMaker Model Registry, you can catalog models for production, manage model
+                    versions, associate metadata (such as training metrics) with a model, manage the
+                    approval status of a model, deploy models to production, and automate model
+                    deployment with CI/CD.</p>
+                <p>When you use SageMaker Model Registry to track and manage your models, they are
+                    represented as a versioned model package within model package groups.
+                    Unversioned model packages are not part a model group. Model package groups hold
+                    multiple versions or iterations of a model. Though it is not required to create
+                    them for every model in the registry, they help organize various models that all
+                    have the same purpose and provide automatic versioning.</p>
+                               
+                
+                <p>To use Amazon SageMaker Inference Recommender, you must have a versioned model package. You can create a
+                    versioned model package programmatically with the AWS SDK for Python (Boto3) or with
+                    Amazon SageMaker Studio. To create a versioned model package programmatically, first
+                    create a model package group with the <code class="code">CreateModelPackageGroup</code> API.
+                    Next, create a model package using the <code class="code">CreateModelPackage</code> API.
+                    Calling this method makes a versioned model package.</p>
+                <p>See <a href="model-registry-model-group.html">Create a Model Group</a> and <a href="model-registry-version.html">Register a Model Version</a>
+                    for detailed instructions about how to programmatically and interactively create
+                    a model package group and how to create a versioned model package, respectively,
+                    with the AWS SDK for Python (Boto3) and Amazon SageMaker Studio.</p>
+                <p>The following code sample demonstrates how to create a versioned model package
+                    using the AWS SDK for Python (Boto3).</p>
+                
+                
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You do not need to approve the model package to create an Inference Recommender job.</p></div></div>
+                
+                <ol><li>
+                        <p><b>Create a model package group</b></p>
+                        <p>Create a model package group with the
+                                <code class="code">CreateModelPackageGroup</code> API. Provide a name to the
+                            model package group for the <code class="code">ModelPackageGroupName</code> and
+                            optionally provide a description of the model package in the
+                                <code class="code">ModelPackageGroupDescription</code> field.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">model_package_group_name = <code class="replaceable">'&lt;INSERT&gt;'</code>
+model_package_group_description = <code class="replaceable">'&lt;INSERT&gt;'</code> 
+
+model_package_group_input_dict = <span>{</span>
+ "ModelPackageGroupName" : model_package_group_name,
+ "ModelPackageGroupDescription" : model_package_group_description,
+}
+
+model_package_group_response = sagemaker_client.create_model_package_group(**model_package_group_input_dict)</code></pre>
+                        <p>See the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/Welcome.html">Amazon SageMaker API Reference Guide</a> 
+                            for a full list of optional and required arguments you can pass to 
+                            <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModelPackageGroup.html"><code class="code">CreateModelPackageGroup</code></a>.</p>
+                        <p>Create a Model Package by specifying a Docker image that runs
+                            your inference code and the Amazon S3 location of your model artifacts and
+                            provide values for <code class="code">InferenceSpecification</code>.
+                                <code class="code">InferenceSpecification</code> should contain information about
+                            inference jobs that can be run with models based on this Model Package,
+                            including the following:</p>
+                        <div class="itemizedlist">
+                             
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem"><p>The Amazon ECR paths of images that run your inference code.</p></li><li class="listitem"><p>(Optional) The instance types that the Model Package supports for transform jobs and real-time 
+                                endpoints used for inference.</p></li><li class="listitem"><p>The input and output content formats that the Model Package supports for inference.</p></li></ul></div>
+                        <p>In addition, you must specify the following parameters when you create a model package:</p>
+                        <div class="itemizedlist">
+                             
+                             
+                             
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem"><p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModelPackage.html#sagemaker-CreateModelPackage-request-Domain">Domain</a>: The machine learning 
+                                domain of your model package and its components. Common machine learning domains include computer vision and natural language processing.</p></li><li class="listitem"><p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModelPackage.html#sagemaker-CreateModelPackage-request-Task">Task</a>: The machine learning 
+                                task your model package accomplishes. Common machine learning tasks include object detection and image classification. Specify "OTHER" if none of the tasks listed in the 
+                                <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/Welcome.html">API Reference Guide</a> satisfy your use case. 
+                                See the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModelPackage.html#sagemaker-CreateModelPackage-request-Task">Task</a> 
+                                API field descriptions for a list of supported machine learning tasks.</p></li><li class="listitem"><p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModelPackage.html#sagemaker-CreateModelPackage-request-SamplePayloadUrl">SamplePayloadUrl</a>: The Amazon Simple Storage Service (Amazon S3) 
+                                path where the sample payload are stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix).</p></li><li class="listitem"><p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ModelPackageContainerDefinition.html#sagemaker-Type-ModelPackageContainerDefinition-Framework">Framework</a>: The 
+                                machine learning framework of the model package container image.</p></li><li class="listitem"><p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ModelPackageContainerDefinition.html#sagemaker-Type-ModelPackageContainerDefinition-FrameworkVersion">FrameworkVersion</a>: 
+                                The framework version of the Model Package Container Image.</p></li></ul></div>
+                        <p>If you provide an allow list of instance types to use to generate inferences in real-time for the 
+                            <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_InferenceSpecification.html#sagemaker-Type-InferenceSpecification-SupportedRealtimeInferenceInstanceTypes">SupportedRealtimeInferenceInstanceTypes</a>, 
+                            Inference Recommender will limit the search space for instance types during a <code class="code">Default</code> job. Use this parameter if you have 
+                            budget constraints or know there's a specific set of instance types that can support your model and container image.</p>
+                        <p>In a previous step we downloaded a pre-trained ResNet18 model and
+                            stored it in an Amazon S3 bucket in a directory called <code class="code">models</code>.
+                            We retrieved a PyTorch (v1.7.1) Deep Learning Container inference image
+                            and stored the URI in a variable called <code class="code">image_uri</code>. We use
+                            those variables in the following code sample where we define a
+                            dictionary used as input to the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModelPackage.html"><code class="code">CreateModelPackage</code></a> API.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python "># Provide the Amazon S3 URI of your compressed tarfile
+# so that Model Registry knows where to find your model artifacts
+bucket_prefix='models'
+bucket = <code class="replaceable">'&lt;your-bucket-name&gt;'</code> # Provide the name of your S3 bucket
+model_s3_key = f"<span>{</span>bucket_prefix}/test.tar.gz"
+model_url= f"s3://<span>{</span>bucket}/<span>{</span>model_s3_key}"
+
+# Similar open source model to the packaged model
+# The name of the ML model as standardized by common model zoos
+nearest_model_name = 'resnet18'
+
+# The supported MIME types for input and output data. In this example, 
+# we are using images as input.
+input_content_type='image/jpeg'
+
+
+# Optional - provide a description of your model.
+model_package_description = <code class="replaceable">'&lt;INSERT&gt;'</code>
+
+## Uncomment if you did not store the domain and task in an earlier
+## step 
+#ml_domain = 'COMPUTER_VISION'
+#ml_task = 'IMAGE_CLASSIFICATION'
+
+## Uncomment if you did not store the framework and framework version
+## in a previous step.
+#framework = 'PYTORCH'
+#framework_version = '1.7.1'
+
+# Optional: Used for optimizing your model using SageMaker Neo
+# PyTorch uses NCHW format for images
+data_input_configuration = "[[1,3,256,256]]"
+
+# Create a dictionary to use as input for creating a model pacakge group
+model_package_input_dict = <span>{</span>
+        "ModelPackageGroupName" : model_package_group_name,
+        "ModelPackageDescription" : model_package_description,
+        "Domain": ml_domain,
+        "Task": ml_task,
+        "SamplePayloadUrl": sample_payload_url,
+        "InferenceSpecification": <span>{</span>
+                "Containers": [
+                    <span>{</span>
+                        "Image": image_uri,
+                        "ModelDataUrl": model_url,
+                        "Framework": framework.upper(), 
+                        "FrameworkVersion": framework_version,
+                        "NearestModelName": nearest_model_name,
+                        "ModelInput": <span>{</span>"DataInputConfig": data_input_configuration}
+                    }
+                    ],
+                "SupportedContentTypes": [input_content_type]
+        }
+    }</code></pre>
+                    </li><li>
+                        <p><b>Create a Model Package</b></p>
+                        <p>Use the <code class="code">CreateModelPackage</code> API to create a Model Package. Pass the input dictionary defined in the previous step:</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">model_package_response = sagemaker_client.create_model_package(**model_package_input_dict)</code></pre>
+                        <p>You need the model package ARN to use Amazon SageMaker Inference Recommender. Note the ARN of the
+                            model package or store it in a variable:</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">model_package_arn = model_package_response["ModelPackageArn"]
+
+print('ModelPackage Version ARN : <span>{</span>}'.format(model_package_arn))</code></pre>
+                    </li></ol>
+            </li><li>
+                <p><b>Option 2: Create a model and configure the
+                            <code class="code">ContainerConfig</code> field</b></p>
+                <p>Use this option if you want to start an inference recommendations job and
+                    don't need to register your model in the Model Registry. In the following steps,
+                    you create a model in SageMaker and configure the <code class="code">ContainerConfig</code> field
+                    as input for the recommendations job.</p>
+                <ol><li>
+                        <p><b>Create a model</b></p>
+                        <p>Create a model with the <code class="code">CreateModel</code> API. For an example that calls this method when deploying a model to SageMaker Hosting,
+                            see <a href="realtime-endpoints-deployment.html#realtime-endpoints-deployment-create-model">Create a Model (AWS SDK for Python (Boto3))</a>.</p>
+                        <p>In a previous step, we downloaded a pre-trained ResNet18 model and stored it in an Amazon S3 bucket in a directory called <code class="code">models</code>.
+                            We retrieved a PyTorch (v1.7.1) Deep Learning Container inference image and stored the URI in a variable called <code class="code">image_uri</code>.
+                            We use those variables in the following code example where we define a dictionary used as input to the
+                            <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html#sagemaker-CreateModel-request-ModelName">CreateModel</a></code> API.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">
+model_name = '<code class="replaceable">&lt;name_of_the_model&gt;</code>'
+# Role to give SageMaker permission to access AWS services.
+sagemaker_role= "arn:aws:iam::<code class="replaceable">&lt;region&gt;</code>:<code class="replaceable">&lt;account&gt;</code>:role/*"
+
+# Provide the Amazon S3 URI of your compressed tarfile
+# so that Model Registry knows where to find your model artifacts
+bucket_prefix='models'
+bucket = '<code class="replaceable">&lt;your-bucket-name&gt;</code>' # Provide the name of your S3 bucket
+model_s3_key = f"<span>{</span>bucket_prefix}/test.tar.gz"
+model_url= f"s3://<span>{</span>bucket}/<span>{</span>model_s3_key}"
+
+#Create model
+create_model_response = sagemaker_client.create_model(
+    ModelName = model_name,
+    ExecutionRoleArn = sagemaker_role, 
+    PrimaryContainer = <span>{</span>
+        'Image': image_uri,
+        'ModelDataUrl': model_url,
+    })
+</code></pre>
+                    </li><li>
+                        <p><b>Configure the <code class="code">ContainerConfig</code> field</b></p>
+                        <p>Next, you must configure the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_RecommendationJobInputConfig.html#sagemaker-Type-RecommendationJobInputConfig-ContainerConfig">ContainerConfig</a> field with the model you just created and
+                            specify the following parameters in it:</p>
+                        <div class="itemizedlist">
+                             
+                             
+                             
+                             
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem"><p><code class="code">Domain</code>: The machine learning domain of the model and its components, such as computer vision or natural language processing.</p></li><li class="listitem"><p><code class="code">Task</code>: The machine learning task that the model accomplishes, such as image classification or object detection.</p></li><li class="listitem"><p><code class="code">PayloadConfig</code>: The configuration for the payload for a recommendation job. For more information about the subfields, see
+                                <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_RecommendationJobPayloadConfig.html#sagemaker-Type-RecommendationJobPayloadConfig-SamplePayloadUrl">RecommendationJobPayloadConfig</a></code>.</p></li><li class="listitem"><p><code class="code">Framework</code>: The machine learning framework of the container image, such as PyTorch.</p></li><li class="listitem"><p><code class="code">FrameworkVersion</code>: The framework version of the container image.</p></li><li class="listitem"><p>(Optional) <code class="code">SupportedInstanceTypes</code>: A list of the instance types that are used to generate inferences in real-time.</p></li></ul></div>
+                        <p>If you use the <code class="code">SupportedInstanceTypes</code> parameter, Inference Recommender limits the search space for instance types during a <code class="code">Default</code> job.
+                            Use this parameter if you have budget constraints or know there's a specific set of instance types that can support your model and container image.</p>
+                        <p>In the following code example, we use the previously defined parameters, along with <code class="code">NearestModelName</code>, to define a dictionary used as input to the
+                            <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateInferenceRecommendationsJob.html">CreateInferenceRecommendationsJob</a></code> API.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">## Uncomment if you did not store the domain and task in a previous step
+#ml_domain = 'COMPUTER_VISION'
+#ml_task = 'IMAGE_CLASSIFICATION'
+
+## Uncomment if you did not store the framework and framework version in a previous step
+#framework = 'PYTORCH'
+#framework_version = '1.7.1'
+
+# The name of the ML model as standardized by common model zoos
+nearest_model_name = 'resnet18'
+
+# The supported MIME types for input and output data. In this example, 
+# we are using images as input
+input_content_type='image/jpeg'
+
+# Optional: Used for optimizing your model using SageMaker Neo
+# PyTorch uses NCHW format for images
+data_input_configuration = "[[1,3,256,256]]"
+
+# Create a dictionary to use as input for creating an inference recommendation job
+container_config = <span>{</span>
+        "Domain": ml_domain,
+        "Framework": framework.upper(), 
+        "FrameworkVersion": framework_version,
+        "NearestModelName": nearest_model_name,
+        "PayloadConfig": <span>{</span> 
+            "SamplePayloadUrl": sample_payload_url,
+            "SupportedContentTypes": [ input_content_type ]
+         },
+        "DataInputConfig": data_input_configuration
+        "Task": ml_task,
+        }</code></pre>
+                    </li></ol>
+            </li></ol></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./inference-recommender.html">Get an endpoint inference recommendation</div><div id="next" class="next-link" accesskey="n" href="./inference-recommender-recommendation-jobs.html">Recommendation jobs</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/inference-recommender-prerequisites.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/inference-recommender-prerequisites.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Visualization Using SageMaker geospatial capabilities - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="geospatial-visualize" /><meta name="default_state" content="geospatial-visualize" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="geospatial-visualize.html" /><meta name="description" content="Learn about visualizing data using SageMaker geospatial capabilities." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="geospatial-visualize.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/geospatial-visualize.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/geospatial-visualize.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/geospatial-visualize.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/geospatial-visualize.html" hreflang="de" /><link rel="alternative" href="geospatial-visualize.html" hreflang="en-us" /><link rel="alternative" href="geospatial-visualize.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/geospatial-visualize.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/geospatial-visualize.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/geospatial-visualize.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/geospatial-visualize.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/geospatial-visualize.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/geospatial-visualize.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/geospatial-visualize.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/geospatial-visualize.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/geospatial-visualize.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/geospatial-visualize.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/geospatial-visualize.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/geospatial-visualize.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/geospatial-visualize.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/geospatial-visualize.html" hreflang="zh-tw" /><link rel="alternative" href="geospatial-visualize.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Visualization Using SageMaker geospatial capabilities" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Visualization Using SageMaker geospatial capabilities - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#geospatial-visualize" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/geospatial-visualize.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/geospatial-visualize.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/geospatial-visualize.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,Geospatial analysis,Location-based analysis,Geospatial models,Geospatial inference" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use machine learning environments offered by SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/machine-learning-environments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker geospatial capabilities",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/geospatial.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Visualization Using SageMaker geospatial capabilities",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/geospatial.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#geospatial-visualize" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="geospatial-visualize.html#geo-legends-eoj">Legends for EOJ in the SageMaker geospatial UI</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="geospatial-visualize">Visualization Using SageMaker geospatial capabilities</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Using the visualization functionalities provided by Amazon SageMaker geospatial you can visualize geospatial data,
+        the inputs to your EOJ or VEJ jobs as well as the outputs exported from your Amazon S3 bucket.  
+        The visualization tool is powered by <a href="https://studio.foursquare.com/home" rel="noopener noreferrer" target="_blank"><span>Foursquare Studio</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. 
+        The following image depicts the visualization tool supported by SageMaker geospatial capabilities.
+    </p><div class="mediaobject">
+         
+            <img src="../../../images/sagemaker/latest/dg/images/geospatial_vis.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;            Visualization tool using SageMaker geospatial capabilities shows a map of the California&#xA;                coast.&#xA;        " />
+         
+         
+    </div><p>You can use the left navigation panel to add data, layers, filters, and columns. You can
+        also make modifications to how you interact with the map.</p><p><b>Dataset</b></p><p>The source of data used for visualization is called a <b>Dataset</b>.
+        To add data for visualization, choose <b>Add Data</b> in the left navigation panel. 
+        You can either upload the data from your Amazon S3 bucket or your local machine. 
+        The data formats supported are  CSV, JSON and GeoJSON. You can add multiple datasets to your map. 
+        After you upload the dataset, you can see it loaded on the map screen.
+    </p><p><b>Layers</b></p><p>In the layer panel, a layer is created and populated automatically when you add a dataset.
+        If your map consists of more than one dataset, you can select which dataset belongs to a
+        layer. You can create new layers and group them. SageMaker SageMaker geospatial capabilities support various
+        layer types, including point, arc, icon, and polygon. </p><p>You can choose any data point in a layer to have an <b>Outline</b>. You can
+        also further customize the data points. For example, you can choose the layer type as
+        <b>Point</b> and then <b>Fill Color</b> based on any column
+        of your dataset. You can also change the radius of the points. </p><p>The following image shows the layers panel supported by SageMaker geospatial capabilities.</p><div class="mediaobject">
+         
+            <img src="../../../images/sagemaker/latest/dg/images/geospatial_vis_layer.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;            The layers panel with data points on a USA map, supported by SageMaker SageMaker geospatial&#xA;                capabilities.&#xA;        " />
+         
+         
+    </div><p><b>Columns</b></p><p>You can view the columns present in your dataset by using the <b>Columns</b>
+        tab in the left navigation panel.</p><p><b>Filters</b></p><p>You can use filters to limit the data points that display on the map.</p><p><b>Interactions</b></p><p>In the <b>Interactions</b> panel, you can customize how you interact with
+        the map. For example, you can choose what metrics to display when you hover the tooltip over
+        a data point.</p><p><b>Base map</b></p><p>Currently, SageMaker only supports the Amazon Dark base map.</p><p><b>Split Map Modes</b></p><p>You can have a <b>Single Map</b>, <b>Dual Maps</b> or <b>Swipe Maps</b>. 
+        With <b>Dual Maps</b>, you can compare the same map side-by-side using different layers. 
+        Use <b>Swipe Maps</b> to overlay two maps on each other and use the sliding separator to compare them. 
+        You can choose the split map mode by choosing the <b>Split Mode</b> button on the top right corner of your map.</p> 
+        <h2 id="geo-legends-eoj">Legends for EOJ in the SageMaker geospatial UI</h2>
+        <p>The output visualization of an EOJ depends on the operation you choose to create it. 
+            The legend is based on the default color scale. You can view the legend by choosing the <b>Show legend</b> button on the top right corner of your map.</p>
+        <p><b>Spectral Index</b></p>
+        <p>When you visualize the output for an EOJ that uses the spectral index operation, you can map the category based on the color from the legend as shown.</p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/geo_spectral_index.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                The legend for spectral index mapping.&#xA;            " style="max-width:40%" />
+             
+             
+        </div>
+        <p><b>Cloud Masking</b></p>
+        <p>When you visualize the output for an EOJ that uses the cloud masking operation, you can map the category based on the color from the legend as shown.</p> 
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/geo_cloud_masking.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                The legend for cloud masking mapping.&#xA;            " style="max-width:40%" />
+             
+             
+        </div>
+        <p><b>Land Cover Segmentation</b></p>
+        <p>When you visualize the output for an EOJ that uses the Land Cover Segmentation operation, you can map the category based on the color from the legend as shown.</p> 
+        
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/geo_landcover_ss.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                The legend for land cover segmentation mapping.&#xA;            " style="max-width:40%" />
+             
+             
+        </div>  
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./geospatial-vej.html">Vector Enrichment Jobs</div><div id="next" class="next-link" accesskey="n" href="./geospatial-notebook-sdk.html">Amazon SageMaker geospatial Map SDK</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/geospatial-visualize.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/geospatial-visualize.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -17,7 +17,7 @@ def get_vectorstore(text_chunks):
 def is_folder_empty(folder_path):
     return len(os.listdir(folder_path)) == 0
 
-def persist_new_chunks(text_chunks):
+async def persist_new_chunks(text_chunks):
     historyvectorstore = None
     if is_folder_empty(vectorpath):
       historyvectorstore = FAISS.from_texts(texts=text_chunks, embedding=OpenAIEmbeddings())

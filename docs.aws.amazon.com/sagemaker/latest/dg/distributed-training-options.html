@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Distributed computing with SageMaker best practices - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="distributed-training-options" /><meta name="default_state" content="distributed-training-options" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="distributed-training-options.html" /><meta name="description" content="Learn best practices for distributed training jobs and parallel processing jobs at scale with Amazon SageMaker." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="distributed-training-options.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/distributed-training-options.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/distributed-training-options.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/distributed-training-options.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/distributed-training-options.html" hreflang="de" /><link rel="alternative" href="distributed-training-options.html" hreflang="en-us" /><link rel="alternative" href="distributed-training-options.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/distributed-training-options.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/distributed-training-options.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/distributed-training-options.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/distributed-training-options.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/distributed-training-options.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/distributed-training-options.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/distributed-training-options.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/distributed-training-options.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/distributed-training-options.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/distributed-training-options.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/distributed-training-options.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/distributed-training-options.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/distributed-training-options.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/distributed-training-options.html" hreflang="zh-tw" /><link rel="alternative" href="distributed-training-options.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Distributed computing with SageMaker best practices" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Distributed computing with SageMaker best practices - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#distributed-training-options" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/distributed-training-options.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/distributed-training-options.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/distributed-training-options.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Distributed training in Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/distributed-training.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Distributed computing with SageMaker best practices",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/distributed-training.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#distributed-training-options" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="distributed-training-options.html#distributed-training-options-1">Option 1: Use a SageMaker built-in algorithm
+                that supports distributed training</a><a href="distributed-training-options.html#distributed-training-options-2">Option 2: Run a custom ML code in the
+                SageMaker managed training or processing environment</a><a href="distributed-training-options.html#distributed-training-options-3">Option 3: Write your own custom
+                distributed training code</a><a href="distributed-training-options.html#distributed-training-options-4">Option 4: Launch multiple jobs in
+                parallel or sequentially</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="distributed-training-options">Distributed computing with SageMaker best
+            practices</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>This best practices page presents various flavors of distributed computing for machine
+        learning (ML) jobs in general. The term <em>distributed computing</em>
+        in this page encompasses distributed training for machine learning tasks and parallel
+        computing for data processing, data generation, feature engineering, and reinforcement
+        learning. In this page, we discuss about common challenges in distributed computing, and
+        available options in SageMaker Training and SageMaker Processing. For additional reading materials
+        about distributed computing, see <a href="http://aws.amazon.com/what-is/distributed-computing/" rel="noopener noreferrer" target="_blank"><span>What Is Distributed Computing?</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><p>You can configure ML tasks to run in a distributed manner across multiple nodes
+        (instances), accelerators (NVIDIA GPUs, AWS Trainium chips), and vCPU cores. By running
+        distributed computation, you can achieve a variety of goals such as computing operations
+        faster, handling large datasets, or training large ML models.</p><p>The following list covers common challenges that you might face when you run an ML
+        training job at scale.</p><div class="itemizedlist">
+         
+         
+         
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p>You need to make decisions on how to distribute computation depending on ML tasks,
+                software libraries you want to use, and compute resources.</p>
+        </li><li class="listitem">
+            <p>Not all ML tasks are straightforward to distribute. Also, not all ML libraries
+                support distributed computation.</p>
+        </li><li class="listitem">
+            <p>Distributed computation might not always result in a linear increase in compute
+                efficiency. In particular, you need to identify if data I/O and inter-GPU
+                communication have bottlenecks or cause overhead. </p>
+        </li><li class="listitem">
+            <p>Distributed computation might disturb numerical processes and change model
+                accuracy. Specifically to data-parallel neural network training, when you change the
+                global batch size while scaling up to a larger compute cluster, you also need to
+                adjust the learning rate accordingly.</p>
+        </li></ul></div><p>SageMaker provides distributed training solutions to ease such challenges for various use
+        cases. Choose one of the following options that best fits your use case.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="distributed-training-options.html#distributed-training-options-1">Option 1: Use a SageMaker built-in algorithm
+                that supports distributed training</a></li><li><a href="distributed-training-options.html#distributed-training-options-2">Option 2: Run a custom ML code in the
+                SageMaker managed training or processing environment</a></li><li><a href="distributed-training-options.html#distributed-training-options-3">Option 3: Write your own custom
+                distributed training code</a></li><li><a href="distributed-training-options.html#distributed-training-options-4">Option 4: Launch multiple jobs in
+                parallel or sequentially</a></li></ul></div>
+        <h2 id="distributed-training-options-1">Option 1: Use a SageMaker built-in algorithm
+                that supports distributed training</h2>
+        <p>SageMaker provides <a href="algos.html">built-in algorithms</a> that you can use out of the box through the SageMaker
+            console or the SageMaker Python SDK. Using the built-in algorithms, you don’t need to spend
+            time for code customization, understanding science behind the models, or running Docker
+            on provisioned Amazon EC2 instances. </p>
+        <p>A subset of the SageMaker built-in algorithms support distributed training. To check if the
+            algorithm of your choice supports distributed training, see the
+                <b>Parallelizable</b> column in the <a href="common-info-all-im-models.html">Common Information About
+                Built-in Algorithms</a> table. Some of the algorithms support multi-instance
+            distributed training, while the rest of the parallelizable algorithms support
+            parallelization across multiple GPUs in a single instance, as indicated in the
+                <b>Parallelizable</b> column.</p>
+     
+        <h2 id="distributed-training-options-2">Option 2: Run a custom ML code in the
+                SageMaker managed training or processing environment</h2>
+        <p>SageMaker jobs can instantiate distributed training environment for specific use cases and
+            frameworks. This environment acts as a ready-to-use whiteboard, where you can bring and
+            run your own ML code. </p>
+         
+            <h3 id="distributed-training-options-2-1">If your ML code uses a deep
+                    learning framework</h3>
+            <p>You can launch distributed training jobs using the <a href="https://github.com/aws/deep-learning-containers" rel="noopener noreferrer" target="_blank"><span>Deep Learning Containers
+                    (DLC)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> for SageMaker Training, which you can orchestrate either through the
+                dedicated Python modules in the <a href="http://sagemaker.readthedocs.io/" rel="noopener noreferrer" target="_blank"><span>SageMaker
+                    Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, or through the SageMaker APIs with <a href="https://docs.aws.amazon.com/cli/latest/reference/sagemaker/index.html">AWS CLI</a>, <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker.html" rel="noopener noreferrer" target="_blank"><span>AWS SDK for Python (Boto3)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. SageMaker provides training containers for machine learning
+                frameworks, including <a href="https://sagemaker.readthedocs.io/en/stable/frameworks/pytorch/index.html" rel="noopener noreferrer" target="_blank"><span>PyTorch</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, <a href="https://sagemaker.readthedocs.io/en/stable/frameworks/tensorflow/index.html" rel="noopener noreferrer" target="_blank"><span>TensorFlow</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, <a href="https://sagemaker.readthedocs.io/en/stable/frameworks/huggingface/index.html" rel="noopener noreferrer" target="_blank"><span>Hugging Face Transformers</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, and <a href="https://sagemaker.readthedocs.io/en/stable/frameworks/mxnet/index.html" rel="noopener noreferrer" target="_blank"><span>Apache MXNet</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. You have two options to write deep learning code for
+                distributed training.</p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><b>The SageMaker distributed training
+                        libraries</b></p>
+                    <p>The SageMaker distributed training libraries propose AWS-managed code for
+                        neural network data parallelism and model parallelism. SageMaker distributed
+                        training also comes with launcher clients built into the SageMaker Python SDK,
+                        and you don’t need to author parallel launch code. To learn more, see <a href="data-parallel.html">SageMaker's
+                            data parallelism library</a> and <a href="model-parallel.html">SageMaker's model parallelism
+                            library</a>.</p>
+                </li><li class="listitem">
+                    <p><b>Open-source distributed training
+                            libraries</b>
+                    </p>
+                    <p>Open source frameworks have their own distribution mechanisms such as
+                            <a href="https://pytorch.org/docs/stable/notes/ddp.html" rel="noopener noreferrer" target="_blank"><span>DistributedDataParallelism (DDP) in PyTorch</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> or
+                            <code class="code">tf.distribute</code> modules in TensorFlow. You can choose to run these
+                        distributed training frameworks in the SageMaker-managed framework containers.
+                        For example, the sample code for <a href="https://github.com/aws-samples/amazon-sagemaker-cv" rel="noopener noreferrer" target="_blank"><span>training
+                            MaskRCNN in SageMaker</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> shows how to use both PyTorch DDP in the SageMaker
+                        PyTorch framework container and <a href="https://horovod.readthedocs.io/en/stable/" rel="noopener noreferrer" target="_blank"><span>Horovod</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the
+                        SageMaker TensorFlow framework container.</p>
+                </li></ul></div>
+            <p>SageMaker ML containers also come with <a href="https://github.com/aws/amazon-sagemaker-examples/blob/main/training/distributed_training/mpi_on_sagemaker/intro/mpi_demo.ipynb" rel="noopener noreferrer" target="_blank"><span>MPI</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> preinstalled, so you can parallelize your entry point script using
+                    <a href="https://mpi4py.readthedocs.io/en/stable/" rel="noopener noreferrer" target="_blank"><span>mpi4py</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. Using the
+                MPI integrated training containers is a great option when you launch a third-party
+                distributed training launcher or write ad-hoc parallel code in the SageMaker managed
+                training environment.</p>
+            <p><u>Notes for data-parallel neural network training on
+                    GPUs</u></p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><b>Scale to multi-GPU and multi-machine parallelism
+                            when appropriate</b></p>
+                    <p>We often run neural network training jobs on multiple-CPU or multiple-GPU
+                        instances. Each GPU-based instance usually contains multiple GPU devices.
+                        Consequently, distributed GPU computing can happen either within a single
+                        GPU instance with multiple GPUs (single-node multi-GPU training), or across
+                        multiple GPU instances with multiple GPU cores in each (multi-node multi-GPU
+                        training). Single-instance training is easier to write code and debug, and
+                        the intra-node GPU-to-GPU throughput is usually faster than the inter-node
+                        GPU-to-GPU throughput. Therefore, it is a good idea to scale data
+                        parallelism vertically first (use one GPU instance with multiple GPUs) and
+                        expand to multiple GPU instances if needed. This might not apply to cases
+                        where the CPU budget is high (for example, a massive workload for data
+                        pre-processing) and when the CPU-to-GPU ratio of a multi-GPU instance is too
+                        low. In all cases, you need to experiment with different combinations of
+                        instance types based on your own ML training needs and workload. </p>
+                </li><li class="listitem">
+                    <p><b>Monitor the quality of convergence</b></p>
+                    <p>When training a neural network with data parallelism, increasing the
+                        number of GPUs while keeping the mini-batch size per GPU constant leads to
+                        increasing the size of global mini-batch for the mini-batch stochastic
+                        gradient descent (MSGD) process. The size of mini-batches for MSGD is known
+                        to impact the descent noise and convergence. For properly scaling while
+                        preserving accuracy, you need to adjust other hyperparameters such as the
+                        learning rate [<a href="https://arxiv.org/abs/1706.02677" rel="noopener noreferrer" target="_blank"><span>Goyal et
+                            al.</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> (2017)].</p>
+                </li><li class="listitem">
+                    <p><b>Monitor I/O bottlenecks</b></p>
+                    <p>As you increase the number of GPUs, the throughput for reading and writing
+                        storage should also increase. Make sure that your data source and pipeline
+                        don’t become bottlenecks.</p>
+                </li><li class="listitem">
+                    <p><b>Modify your training script as
+                        needed</b></p>
+                    <p>Training scripts written for single-GPU training must be modified for
+                        multi-node multi-GPU training. In most data parallelism libraries, script
+                        modification is required to do the following.</p>
+                    <div class="itemizedlist">
+                         
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>Assign batches of training data to each GPU.</p>
+                        </li><li class="listitem">
+                            <p>Use an optimizer that can deal with gradient computation and
+                                parameter updates across multiple GPUs.</p>
+                        </li><li class="listitem">
+                            <p>Assign responsibility of checkpointing to a specific host and GPU.
+                            </p>
+                        </li></ul></div>
+                    <p> </p>
+                </li></ul></div>
+         
+         
+            <h3 id="distributed-training-options-2-2">If your ML code involves tabular
+                    data processing</h3>
+            <p>PySpark is a Python frontend of Apache Spark, which is an open-source distributed
+                computing framework. PySpark has been widely adopted for distributed tabular data
+                processing for large-scale production workloads. If you want to run tabular data
+                processing code, consider using the <a href="use-spark-processing-container.html">SageMaker Processing
+                    PySpark containers</a> and running parallel jobs. You can also run data
+                processing jobs in parallel using SageMaker Training and SageMaker Processing APIs in
+                Amazon SageMaker Studio, which is integrated with <a href="http://aws.amazon.com/blogs/machine-learning/part-1-create-and-manage-amazon-emr-clusters-from-sagemaker-studio-to-run-interactive-spark-and-ml-workloads/" rel="noopener noreferrer" target="_blank"><span>Amazon EMR</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and <a href="http://aws.amazon.com/about-aws/whats-new/2022/09/sagemaker-studio-supports-glue-interactive-sessions/?nc1=h_ls" rel="noopener noreferrer" target="_blank"><span>AWS Glue</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+         
+     
+        <h2 id="distributed-training-options-3">Option 3: Write your own custom
+                distributed training code</h2>
+        <p>When you submit a training or processing job to SageMaker, SageMaker Training and SageMaker
+            Processing APIs launch Amazon EC2 compute instances. You can customize training and
+            processing environment in the instances by running your own Docker container or
+            installing additional libraries in the AWS managed containers. For more information
+            about Docker with SageMaker Training, see <a href="docker-containers-adapt-your-own.html">Adapting your own
+                Docker container to work with SageMaker</a> and <a href="docker-containers-create.html">Create a container with your
+                own algorithms and models</a>. For more information about Docker with SageMaker
+            Processing, see <a href="use-your-own-processing-code.html">Use Your Own Processing
+                Code</a>.</p>
+        <p>Every SageMaker training job environment contains a configuration file at
+                <code class="code">/opt/ml/input/config/resourceconfig.json</code>, and every SageMaker processing job
+            environment contains a similar configuration file at
+                <code class="code">/opt/ml/config/resourceconfig.json</code>. Your code can read this file to
+            find <code class="code">hostnames</code> and establish inter-node communications. To learn more,
+            including the schema of the JSON file, see <a href="your-algorithms-training-algo-running-container.html#your-algorithms-training-algo-running-container-dist-training">Distributed Training Configuration</a> and <a href="build-your-own-processing-container.html#byoc-config">How
+                Amazon SageMaker Processing Configures Your Processing Container</a>. You can also
+            install and use third-party distributed computing libraries such as <a href="https://github.com/aws-samples/aws-samples-for-ray/tree/main/sagemaker" rel="noopener noreferrer" target="_blank"><span>Ray</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> or DeepSpeed in SageMaker.</p>
+        <p>You can also use SageMaker Training and SageMaker Processing to run custom distributed
+            computations that do not require inter-worker communication. In the computing
+            literature, those tasks are often described as <em>embarrassingly
+                parallel</em> or <em>share-nothing</em>. Examples
+            include parallel processing of data files, training models in parallel on different
+            configurations, or running batch inference on a collection of records. You can trivially
+            parallelize such share-nothing use cases with Amazon SageMaker. When you launch a SageMaker Training
+            or SageMaker Processing job on a cluster with multiple nodes, SageMaker by default replicates and
+            launches your training code (in Python or Docker) on all the nodes. Tasks requiring
+            random spread of input data across such multiple nodes can be facilitated by setting
+                <code class="code">S3DataDistributionType=ShardedByS3Key</code> in the data input configuration
+            of the SageMaker <code class="code">TrainingInput</code> API. </p>
+     
+        <h2 id="distributed-training-options-4">Option 4: Launch multiple jobs in
+                parallel or sequentially</h2>
+        <p>You can also distribute an ML compute workflow into smaller parallel or sequential
+            compute tasks, each represented by its own SageMaker Training or SageMaker Processing job.
+            Splitting a task into multiple jobs can be beneficial for the following situations or
+            tasks:</p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>When you have specific <a href="model-train-storage.html">data channels</a> and
+                    metadata entries (such as hyperparameters, model configuration, or instance
+                    types) for each sub-tasks.</p>
+            </li><li class="listitem">
+                <p>When you implement retry steps at a sub-task level.</p>
+            </li><li class="listitem">
+                <p>When you vary the configuration of the sub-tasks over the course of the
+                    workload, such as when training on increasing batch sizes.</p>
+            </li><li class="listitem">
+                <p>When you need to run an ML task that takes longer than the maximum training
+                    time allowed for a single training job (28 days maximum).</p>
+            </li><li class="listitem">
+                <p>When different steps of a compute workflow require different instance
+                    types.</p>
+            </li></ul></div>
+        <p>For the specific case of hyperparameter search, use <a href="automatic-model-tuning.html">SageMaker Automated Model
+                Tuning</a>. SageMaker Automated Model Tuning is a serverless parameter search
+            orchestrator that launches multiple training jobs on your behalf, according to a search
+            logic that can be random, Bayesian, or HyperBand. </p>
+        <p>Additionally, to orchestrate multiple training jobs, you can also consider workflow
+            orchestration tools, such as <a href="https://sagemaker-examples.readthedocs.io/en/latest/sagemaker-pipelines/index.html" rel="noopener noreferrer" target="_blank"><span>SageMaker Pipelines</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-sagemaker.html">AWS Step Functions</a>,
+            and Apache Airflow supported by <a href="http://aws.amazon.com/managed-workflows-for-apache-airflow/" rel="noopener noreferrer" target="_blank"><span>Amazon Managed
+                Workflows for Apache Airflow (MWAA)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and <a href="https://sagemaker.readthedocs.io/en/stable/workflows/airflow/using_workflow.html" rel="noopener noreferrer" target="_blank"><span>SageMaker Workflows</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./distributed-training-notebook-examples.html">SageMaker Distributed Training Notebook Examples</div><div id="next" class="next-link" accesskey="n" href="./training-compiler.html">Training Compiler</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/distributed-training-options.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/distributed-training-options.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

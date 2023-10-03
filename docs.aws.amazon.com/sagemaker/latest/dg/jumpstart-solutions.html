@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Solution Templates - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="jumpstart-solutions" /><meta name="default_state" content="jumpstart-solutions" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="jumpstart-solutions.html" /><meta name="description" content="You can use SageMaker JumpStart to launch solutions that set up the infrastructure for common use cases." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="jumpstart-solutions.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/jumpstart-solutions.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/jumpstart-solutions.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/jumpstart-solutions.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/jumpstart-solutions.html" hreflang="de" /><link rel="alternative" href="jumpstart-solutions.html" hreflang="en-us" /><link rel="alternative" href="jumpstart-solutions.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/jumpstart-solutions.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/jumpstart-solutions.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/jumpstart-solutions.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/jumpstart-solutions.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/jumpstart-solutions.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/jumpstart-solutions.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/jumpstart-solutions.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/jumpstart-solutions.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/jumpstart-solutions.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/jumpstart-solutions.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/jumpstart-solutions.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/jumpstart-solutions.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/jumpstart-solutions.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/jumpstart-solutions.html" hreflang="zh-tw" /><link rel="alternative" href="jumpstart-solutions.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Solution Templates" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Solution Templates - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#jumpstart-solutions" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-solutions.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-solutions.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-solutions.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use automated ML, no-code, or low-code",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/use-auto-ml.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "SageMaker JumpStart",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Solution Templates",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#jumpstart-solutions" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="jumpstart-solutions.html#jumpstart-solutions-demand-forecasting">Demand forecasting</a><a href="jumpstart-solutions.html#jumpstart-solutions-credit-prediction">Credit rating prediction</a><a href="jumpstart-solutions.html#jumpstart-solutions-fraud-detection">Fraud detection</a><a href="jumpstart-solutions.html#jumpstart-solutions-computer-vision">Computer vision</a><a href="jumpstart-solutions.html#jumpstart-solutions-documents">Extract and analyze data from
+          documents</a><a href="jumpstart-solutions.html#jumpstart-solutions-predictive-maintenance">Predictive maintenance</a><a href="jumpstart-solutions.html#jumpstart-solutions-churn-prediction">Churn prediction</a><a href="jumpstart-solutions.html#jumpstart-solutions-recommendations">Personalized recommendations</a><a href="jumpstart-solutions.html#jumpstart-solutions-reinforcement-learning">Reinforcement learning</a><a href="jumpstart-solutions.html#jumpstart-solutions-healthcare-life-sciences">Healthcare and life
+          sciences</a><a href="jumpstart-solutions.html#jumpstart-solutions-financial-pricing">Financial pricing</a><a href="jumpstart-solutions.html#jumpstart-solutions-causal-inference">Causal inference</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="jumpstart-solutions">Solution Templates</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>SageMaker JumpStart provides one-click, end-to-end solutions for many common machine learning
+      use cases. Explore the following use cases for more information on available solution
+      templates.</p><div class="itemizedlist">
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><a href="jumpstart-solutions.html#jumpstart-solutions-demand-forecasting">Demand forecasting</a></p>
+      </li><li class="listitem">
+        <p><a href="jumpstart-solutions.html#jumpstart-solutions-credit-prediction">Credit rating prediction</a></p>
+      </li><li class="listitem">
+        <p><a href="jumpstart-solutions.html#jumpstart-solutions-fraud-detection">Fraud detection</a></p>
+      </li><li class="listitem">
+        <p><a href="jumpstart-solutions.html#jumpstart-solutions-computer-vision">Computer vision</a></p>
+      </li><li class="listitem">
+        <p><a href="jumpstart-solutions.html#jumpstart-solutions-documents">Extract and analyze data from
+          documents</a></p>
+      </li><li class="listitem">
+        <p><a href="jumpstart-solutions.html#jumpstart-solutions-predictive-maintenance">Predictive maintenance</a></p>
+      </li><li class="listitem">
+        <p><a href="jumpstart-solutions.html#jumpstart-solutions-churn-prediction">Churn prediction</a></p>
+      </li><li class="listitem">
+        <p><a href="jumpstart-solutions.html#jumpstart-solutions-recommendations">Personalized recommendations</a></p>
+      </li><li class="listitem">
+        <p><a href="jumpstart-solutions.html#jumpstart-solutions-reinforcement-learning">Reinforcement learning</a></p>
+      </li><li class="listitem">
+        <p><a href="jumpstart-solutions.html#jumpstart-solutions-healthcare-life-sciences">Healthcare and life
+          sciences</a></p>
+      </li><li class="listitem">
+        <p><a href="jumpstart-solutions.html#jumpstart-solutions-financial-pricing">Financial pricing</a></p>
+      </li><li class="listitem">
+        <p><a href="jumpstart-solutions.html#jumpstart-solutions-causal-inference">Causal inference</a></p>
+      </li></ul></div><p>Choose the solution template that best fits your use case from the JumpStart landing page.
+      When you choose a solution template, JumpStart opens a new tab showing a description of the
+      solution and a <b>Launch</b> button. When you select
+      <b>Launch</b>, JumpStart creates all of the resources that you need to run the
+      solution, including training and model hosting instances. For more information on launching a
+      JumpStart solution, see <a href="jumpstart-solutions-launch.html">Launch a Solution</a>.</p><p>After launching the solution, you can explore solution features and any generated
+      artifacts in JumpStart. Use the <b>Launched JumpStart assets</b> menu to find
+      your solution. In your solution's tab, select <b>Open Notebook</b> to use
+      provided notebooks and explore the solution’s features. When artifacts are generated during
+      launch or after running the provided notebooks, they're listed in the <b>Generated
+        Artifacts</b> table. You can delete individual artifacts with the trash icon (<span class="inlinemediaobject">
+         
+          <img src="../../../images/sagemaker/latest/dg/images/jumpstart/jumpstart-trash.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;          The trash icon for JumpStart.&#xA;        " style="max-width:30px" />
+         
+         
+      </span>). You can delete all of the solution’s resources by choosing
+        <b>Delete solution resources</b>.</p>
+      <h2 id="jumpstart-solutions-demand-forecasting">Demand forecasting</h2>
+      <p>Demand forecasting uses historical time series data in order to make future estimations
+        in relation to customer demand over a specific period and streamline the supply-demand
+        decision-making process across businesses. </p>
+      <p>Demand forecasting use cases include predicting ticket sales in the transportation
+        industry, stock prices, number of hospital visits, number of customer representatives to
+        hire for multiple locations in the next month, product sales across multiple regions in the
+        next quarter, cloud server usage for the next day for a video streaming service, electricity
+        consumption for multiple regions over the next week, number of IoT devices and sensors such
+        as energy consumption, and more.</p>
+      <p>Time series data is categorized as <em>univariate</em> and
+          <em>multi-variate</em>. For example, the total electricity
+        consumption for a single household is a univariate time series over a period of time. When
+        multiple univariate time series are stacked on each other, it’s called a multi-variate time
+        series. For example, the total electricity consumption of 10 different (but correlated)
+        households in a single neighborhood make up a multi-variate time series dataset.</p>
+      <div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac11c11c13c11b9"><thead>
+            <tr>
+              <th>Solution name </th>
+              <th>Description </th>
+              <th>Get started </th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1">Demand forecasting </td>
+              <td tabindex="-1">Demand forecasting for multivariate time series data using three
+                state-of-the-art time series forecasting algorithms: <a href="https://ts.gluon.ai/stable/api/gluonts/gluonts.mx.model.lstnet.html" rel="noopener noreferrer" target="_blank"><span>LSTNet</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>,
+                  <a href="https://facebook.github.io/prophet/" rel="noopener noreferrer" target="_blank"><span>Prophet</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, and <a href="deepar.html">SageMaker
+                DeepAR</a>.</td>
+              <td tabindex="-1">
+                <p><a href="https://github.com/awslabs/sagemaker-deep-demand-forecast" rel="noopener noreferrer" target="_blank"><span>GitHub
+                    »</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+              </td>
+            </tr>
+          </table></div></div>
+     
+      <h2 id="jumpstart-solutions-credit-prediction">Credit rating prediction</h2>
+      <p>Use JumpStart's credit rating prediction solutions to predict corporate credit ratings
+        or to explain credit prediction decisions made by machine learning models. Compared to
+        traditional credit rating modeling methods, machine learning models can automate and improve
+        the accuracy of credit prediction. </p>
+      <div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac11c11c13c13b5"><thead>
+            <tr>
+              <th>Solution name </th>
+              <th>Description </th>
+              <th>Get started </th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1">Corporate credit rating prediction </td>
+              <td tabindex="-1">Multimodal (long text and tabular) machine learning for quality credit
+                predictions using AWS <a href="https://auto.gluon.ai/scoredebugweight/tutorials/tabular_prediction/index.html" rel="noopener noreferrer" target="_blank"><span>AutoGluon Tabular</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</td>
+              <td tabindex="-1"><a href="https://github.com/awslabs/sagemaker-corporate-credit-rating" rel="noopener noreferrer" target="_blank"><span>GitHub »</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+            </tr>
+            <tr>
+              <td tabindex="-1">Graph-based credit scoring </td>
+              <td tabindex="-1">Predict corporate credit ratings using tabular data and a corporate network by
+                training a <a href="https://cs.stanford.edu/people/jure/pubs/graphsage-nips17.pdf" rel="noopener noreferrer" target="_blank"><span>Graph Neural
+                  Network GraphSAGE</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and AWS <a href="https://auto.gluon.ai/scoredebugweight/tutorials/tabular_prediction/index.html" rel="noopener noreferrer" target="_blank"><span>AutoGluon Tabular</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> model.</td>
+              <td tabindex="-1">Find in Amazon SageMaker Studio. </td>
+            </tr>
+            <tr>
+              <td tabindex="-1">Explain credit decisions </td>
+              <td tabindex="-1">Predict credit default in credit applications and provide explanations using
+                  <a href="https://lightgbm.readthedocs.io/en/latest/" rel="noopener noreferrer" target="_blank"><span>LightGBM</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and
+                  <a href="https://shap.readthedocs.io/en/latest/index.html" rel="noopener noreferrer" target="_blank"><span>SHAP (SHapley
+                  Additive exPlanations)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</td>
+              <td tabindex="-1">
+                <p><a href="https://github.com/awslabs/sagemaker-explaining-credit-decisions" rel="noopener noreferrer" target="_blank"><span>GitHub »</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+              </td>
+            </tr>
+          </table></div></div>
+     
+      <h2 id="jumpstart-solutions-fraud-detection">Fraud detection</h2>
+      <p>Many businesses lose billions annually to fraud. Machine learning based fraud detection
+        models can help systematically identify likely fraudulent activities from a tremendous
+        amount of data. The following solutions use transaction and user identity datasets to
+        identify fraudulent transactions.</p>
+      <div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac11c11c13c15b5"><thead>
+            <tr>
+              <th>Solution name </th>
+              <th>Description </th>
+              <th>Get started </th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1">Detect malicious users and transactions</td>
+              <td tabindex="-1">Automatically detect potentially fraudulent activity in transactions using
+                  <a href="xgboost.html">SageMaker
+                  XGBoost</a> with the over-sampling technique <a href="https://arxiv.org/abs/1106.1813" rel="noopener noreferrer" target="_blank"><span>Synthetic Minority Over-sampling</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+                (SMOTE).</td>
+              <td tabindex="-1">
+                <p><a href="https://github.com/awslabs/fraud-detection-using-machine-learning" rel="noopener noreferrer" target="_blank"><span>GitHub »</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1">Fraud detection in financial transactions using deep graph library</td>
+              <td tabindex="-1">Detect fraud in financial transactions by training a <a href="https://arxiv.org/pdf/1703.06103.pdf" rel="noopener noreferrer" target="_blank"><span>graph convolutional network</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+                with the <a href="https://www.dgl.ai/" rel="noopener noreferrer" target="_blank"><span>deep graph library</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and a <a href="xgboost.html">SageMaker XGBoost</a>
+                model.</td>
+              <td tabindex="-1">
+                <p><a href="https://github.com/awslabs/sagemaker-graph-fraud-detection" rel="noopener noreferrer" target="_blank"><span>GitHub
+                    »</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1">Financial payment classification</td>
+              <td tabindex="-1">Classify financial payments based on transaction information using <a href="xgboost.html">SageMaker XGBoost</a>.
+                Use this solution template as an intermediate step in fraud detection,
+                personalization, or anomaly detection.</td>
+              <td tabindex="-1">
+                <p>Find in Amazon SageMaker Studio.</p>
+              </td>
+            </tr>
+          </table></div></div>
+     
+      <h2 id="jumpstart-solutions-computer-vision">Computer vision</h2>
+      <p>With the rise of business use cases such as autonomous vehicles, smart video
+        surveillance, healthcare monitoring and various object counting tasks, fast and accurate
+        object detection systems are rising in demand. These systems involve not only recognizing
+        and classifying every object in an image, but localizing each one by drawing the appropriate
+        bounding box around it. In the last decade, the rapid advances of deep learning techniques
+        greatly accelerated the momentum of object detection.</p>
+      <div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac11c11c13c17b5"><thead>
+            <tr>
+              <th>Solution name </th>
+              <th>Description </th>
+              <th>Get started </th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1">Visual product defect detection</td>
+              <td tabindex="-1">Identify defective regions in product images either by training an <a href="https://ieeexplore.ieee.org/document/8709818" rel="noopener noreferrer" target="_blank"><span>object detection model from
+                  scratch</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> or fine-tuning pretrained SageMaker models.</td>
+              <td tabindex="-1">
+                <p><a href="https://github.com/awslabs/sagemaker-defect-detection" rel="noopener noreferrer" target="_blank"><span>GitHub
+                    »</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1">Handwriting recognition </td>
+              <td tabindex="-1">Recognize handwritten text in images by training an <a href="https://mxnet.apache.org/versions/1.0.0/api/python/gluon/model_zoo.html#mxnet.gluon.model_zoo.vision.resnet34_v1" rel="noopener noreferrer" target="_blank"><span>object detection model</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and <a href="https://arxiv.org/abs/1910.00663" rel="noopener noreferrer" target="_blank"><span>handwriting recognition model</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. Label your own data using <a href="http://aws.amazon.com/sagemaker/data-labeling/" rel="noopener noreferrer" target="_blank"><span>SageMaker Ground Truth</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</td>
+              <td tabindex="-1"><a href="https://github.com/awslabs/sagemaker-handwritten-text-recognition" rel="noopener noreferrer" target="_blank"><span>GitHub »</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+            </tr>
+            <tr>
+              <td tabindex="-1">Object detection for bird species</td>
+              <td tabindex="-1">Identify birds species in a scene using a <a href="object-detection.html">SageMaker object detection
+                  model</a>.</td>
+              <td tabindex="-1">
+                <p>Find in Amazon SageMaker Studio.</p>
+              </td>
+            </tr>
+          </table></div></div>
+     
+      <h2 id="jumpstart-solutions-documents">Extract and analyze data from
+          documents</h2>
+      <p>JumpStart provides solutions for you to uncover valuable insights and connections in
+        business-critical documents. Use cases include text classification, document summarization,
+        handwriting recognition, relationship extraction, question and answering, and filling in
+        missing values in tabular records.</p>
+      <div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac11c11c13c19b5"><thead>
+            <tr>
+              <th>Solution name </th>
+              <th>Description </th>
+              <th>Get started </th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1">Privacy for sentiment classification </td>
+              <td tabindex="-1"><a href="https://www.amazon.science/blog/preserving-privacy-in-analyses-of-textual-data" rel="noopener noreferrer" target="_blank"><span>Anonymize text </span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to better preserve user privacy in sentiment
+                classification.</td>
+              <td tabindex="-1">
+                <p><a href="https://github.com/awslabs/sagemaker-privacy-for-nlp" rel="noopener noreferrer" target="_blank"><span>GitHub
+                    »</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1">Document understanding</td>
+              <td tabindex="-1">Document summarization, entity, and relationship extraction using the <a href="https://huggingface.co/docs/transformers/index" rel="noopener noreferrer" target="_blank"><span>transformers</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> library
+                in PyTorch.</td>
+              <td tabindex="-1">
+                <p><a href="https://github.com/awslabs/sagemaker-document-understanding" rel="noopener noreferrer" target="_blank"><span>GitHub »</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1">Handwriting recognition </td>
+              <td tabindex="-1">Recognize handwritten text in images by training an <a href="https://mxnet.apache.org/versions/1.0.0/api/python/gluon/model_zoo.html#mxnet.gluon.model_zoo.vision.resnet34_v1" rel="noopener noreferrer" target="_blank"><span>object detection model</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and <a href="https://arxiv.org/abs/1910.00663" rel="noopener noreferrer" target="_blank"><span>handwriting recognition model</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. Label your own data using <a href="http://aws.amazon.com/sagemaker/data-labeling/" rel="noopener noreferrer" target="_blank"><span>SageMaker Ground Truth</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</td>
+              <td tabindex="-1"><a href="https://github.com/awslabs/sagemaker-handwritten-text-recognition" rel="noopener noreferrer" target="_blank"><span>GitHub »</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+            </tr>
+            <tr>
+              <td tabindex="-1">Filling in missing values in tabular records </td>
+              <td tabindex="-1">Fill missing values in tabular records by training a <a href="http://aws.amazon.com/sagemaker/autopilot/" rel="noopener noreferrer" target="_blank"><span>SageMaker AutoPilot</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> model.</td>
+              <td tabindex="-1">
+                <p><a href="https://github.com/awslabs/filling-in-missing-values-in-tabular-records" rel="noopener noreferrer" target="_blank"><span>GitHub »</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+              </td>
+            </tr>
+          </table></div></div>
+     
+      <h2 id="jumpstart-solutions-predictive-maintenance">Predictive maintenance</h2>
+      <p>Predictive maintenance aims to optimize the balance between corrective and preventative
+        maintenance by facilitating the timely replacement of components. The following solutions
+        use sensor data from industrial assets to predict machine failures, unplanned downtime, and
+        repair costs.</p>
+      <div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac11c11c13c21b5"><thead>
+            <tr>
+              <th>Solution name </th>
+              <th>Description </th>
+              <th>Get started </th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1">Predictive maintenance for vehicle fleets </td>
+              <td tabindex="-1">Predict vehicle fleet failures using vehicle sensor and maintenance information
+                with a convolutional neural network model.</td>
+              <td tabindex="-1">
+                <p><a href="https://github.com/awslabs/aws-fleet-predictive-maintenance/" rel="noopener noreferrer" target="_blank"><span>GitHub »</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1">Predictive maintenance for manufacturing </td>
+              <td tabindex="-1">Predict the remaining useful life for each sensor by training a <a href="https://arxiv.org/pdf/1801.02143.pdf" rel="noopener noreferrer" target="_blank"><span>stacked Bidirectional LSTM neural
+                  network</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> model using historical sensor readings.</td>
+              <td tabindex="-1">
+                <p><a href="https://github.com/awslabs/predictive-maintenance-using-machine-learning" rel="noopener noreferrer" target="_blank"><span>GitHub »</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+              </td>
+            </tr>
+          </table></div></div>
+     
+      <h2 id="jumpstart-solutions-churn-prediction">Churn prediction</h2>
+      <p>Customer churn, or rate of attrition, is a costly problem faced by a wide range of
+        companies. In an effort to reduce churn, companies can identify customers that are likely to
+        leave their service in order to focus their efforts on customer retention. Use a JumpStart
+        churn prediction solution to analyze data sources such as user behavior and customer support
+        chat logs to identify customers that are at a high risk of cancelling a subscription or
+        service.</p>
+      <div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac11c11c13c23b5"><thead>
+            <tr>
+              <th>Solution name </th>
+              <th>Description </th>
+              <th>Get started </th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1">Churn prediction with text </td>
+              <td tabindex="-1">Predict churn using numerical, categorical, and textual features with <a href="https://huggingface.co/" rel="noopener noreferrer" target="_blank"><span>BERT encoder</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html" rel="noopener noreferrer" target="_blank"><span>RandomForestClassifier</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</td>
+              <td tabindex="-1">
+                <p><a href="https://github.com/awslabs/sagemaker-churn-prediction-text" rel="noopener noreferrer" target="_blank"><span>GitHub
+                    »</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1">Churn prediction for mobile phone customers</td>
+              <td tabindex="-1">Identify unhappy mobile phone customers using <a href="xgboost.html">SageMaker XGBoost</a>.</td>
+              <td tabindex="-1">
+                <p>Find in Amazon SageMaker Studio.</p>
+              </td>
+            </tr>
+          </table></div></div>
+     
+      <h2 id="jumpstart-solutions-recommendations">Personalized recommendations</h2>
+      <p>You can use JumpStart solutions to analyze customer identity graphs or user sessions to
+        better understand and predict customer behavior. Use the following solutions for
+        personalized recommendations to model customer identity across multiple devices, to
+        determine the likelihood of a customer making a purchase, or to create a custom movie
+        recommender based on past customer behavior. </p>
+      <div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac11c11c13c25b5"><thead>
+            <tr>
+              <th>Solution name </th>
+              <th>Description </th>
+              <th>Get started </th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1">Entity resolution in identity graphs with deep graph library </td>
+              <td tabindex="-1">Perform cross-device entity linking for online advertising by training a <a href="https://arxiv.org/pdf/1703.06103.pdf" rel="noopener noreferrer" target="_blank"><span>graph convolutional network</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+                with <a href="https://www.dgl.ai/" rel="noopener noreferrer" target="_blank"><span>deep graph library</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</td>
+              <td tabindex="-1">
+                <p><a href="https://github.com/awslabs/sagemaker-graph-entity-resolution" rel="noopener noreferrer" target="_blank"><span>GitHub »</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1">Purchase modeling</td>
+              <td tabindex="-1">Predict whether a customer will make a purchase by training a <a href="xgboost.html">SageMaker XGBoost</a>
+                model.</td>
+              <td tabindex="-1">
+                <p><a href="https://github.com/awslabs/sagemaker-purchase-modelling" rel="noopener noreferrer" target="_blank"><span>GitHub
+                    »</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1">Customized recommender system</td>
+              <td tabindex="-1">
+                <p>Train and deploy a custom recommender system that generates movie suggestions
+                  for a customer based on past behavior using Neural Collaborative Filtering in
+                  SageMaker.</p>
+              </td>
+              <td tabindex="-1">
+                <p>Find in Amazon SageMaker Studio.</p>
+              </td>
+            </tr>
+          </table></div></div>
+     
+      <h2 id="jumpstart-solutions-reinforcement-learning">Reinforcement learning</h2>
+      <p>Reinforcement learning (RL) is a type of learning that is based on interaction with the
+        environment. This type of learning is used by an agent that must learn behavior through
+        trial-and-error interactions with a dynamic environment in which the goal is to maximize the
+        long-term rewards that the agent receives as a result of its actions. Rewards are maximized
+        by trading off exploring actions that have uncertain rewards with exploiting actions that
+        have known rewards.</p>
+      <p>RL is well-suited for solving large, complex problems, such as supply chain management,
+        HVAC systems, industrial robotics, game artificial intelligence, dialog systems, and
+        autonomous vehicles. </p>
+      <div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac11c11c13c27b7"><thead>
+            <tr>
+              <th>Solution name </th>
+              <th>Description </th>
+              <th>Get started </th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1">Reinforcement learning for Battlesnake AI competitions </td>
+              <td tabindex="-1">Provide a reinforcement learning workflow for training and inference with the
+                  <a href="https://play.battlesnake.com/" rel="noopener noreferrer" target="_blank"><span>BattleSnake</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> AI
+                competitions.</td>
+              <td tabindex="-1">
+                <p><a href="https://github.com/awslabs/sagemaker-battlesnake-ai" rel="noopener noreferrer" target="_blank"><span>GitHub
+                    »</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1">Distributed reinforcement learning for Procgen challenge </td>
+              <td tabindex="-1">Distributed reinforcement learning starter kit for <a href="https://www.aicrowd.com/challenges/neurips-2020-procgen-competition" rel="noopener noreferrer" target="_blank"><span>NeurIPS
+                  2020 Procgen</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> Reinforcement learning challenge.</td>
+              <td tabindex="-1"><a href="https://github.com/aws-samples/sagemaker-rl-procgen-ray" rel="noopener noreferrer" target="_blank"><span>GitHub
+                  »</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+            </tr>
+          </table></div></div>
+     
+      <h2 id="jumpstart-solutions-healthcare-life-sciences">Healthcare and life
+          sciences</h2>
+      <p>Clinicians and researchers can use JumpStart solutions to analyze medical imagery,
+        genomic information, and clinical health records. </p>
+      <div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac11c11c13c29b5"><thead>
+            <tr>
+              <th>Solution name </th>
+              <th>Description </th>
+              <th>Get started </th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1">Lung cancer survival prediction</td>
+              <td tabindex="-1">Predict non-small cell lung cancer patient survival status with 3-dimensional
+                lung computerized tomography (CT) scans, genomic data, and clinical health records
+                using <a href="xgboost.html">SageMaker
+                  XGBoost</a>.</td>
+              <td tabindex="-1">
+                <p><a href="https://github.com/aws-samples/machine-learning-pipelines-for-multimodal-health-data/tree/sagemaker-soln-lcsp" rel="noopener noreferrer" target="_blank"><span>GitHub »</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+              </td>
+            </tr>
+          </table></div></div>
+     
+      <h2 id="jumpstart-solutions-financial-pricing">Financial pricing</h2>
+      <p>Many businesses dynamically adjust pricing on a regular basis in order to maximize their
+        returns. Use the following JumpStart solutions for price optimization, dynamic pricing,
+        option pricing, or portfolio optimization use cases. </p>
+      <div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac11c11c13c31b5"><thead>
+            <tr>
+              <th>Solution name </th>
+              <th>Description </th>
+              <th>Get started </th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1">Price optimization</td>
+              <td tabindex="-1">
+                <p>Estimate price elasticity using Double Machine Learning (ML) for causal
+                  inference and the <a href="https://facebook.github.io/prophet/" rel="noopener noreferrer" target="_blank"><span>Prophet</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+                  forecasting procedure. Use these estimates to optimize daily prices.</p>
+              </td>
+              <td tabindex="-1">
+                <p>Find in Amazon SageMaker Studio.</p>
+              </td>
+            </tr>
+          </table></div></div>
+     
+      <h2 id="jumpstart-solutions-causal-inference">Causal inference</h2>
+      <p>Researchers can use machine learning models such as Bayesian networks to represent
+        causal dependencies and draw causal conclusions based on data. Use the following JumpStart
+        solution to understand the causal relationship between Nitrogen-based fertilizer application
+        and corn crop yields.</p>
+      <div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac11c11c13c33b5"><thead>
+            <tr>
+              <th>Solution name </th>
+              <th>Description </th>
+              <th>Get started </th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1">Crop yield counterfactuals</td>
+              <td tabindex="-1">
+                <p>Generate a counterfactual analysis of corn response to nitrogen. This solution
+                  learns the crop phenology cycle in its entirety using multi-spectral satellite
+                  imagery and <a href="https://www.sciencedirect.com/science/article/pii/S2352340921010283#tbl0001" rel="noopener noreferrer" target="_blank"><span>ground-level observations</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+              </td>
+              <td tabindex="-1">
+                <p>Find in Amazon SageMaker Studio.</p>
+              </td>
+            </tr>
+          </table></div></div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./studio-jumpstart.html">SageMaker JumpStart</div><div id="next" class="next-link" accesskey="n" href="./jumpstart-solutions-launch.html">Launch a Solution</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-solutions.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-solutions.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

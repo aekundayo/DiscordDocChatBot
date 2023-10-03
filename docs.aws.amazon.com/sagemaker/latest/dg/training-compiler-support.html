@@ -1,0 +1,2690 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Supported Frameworks, AWS Regions, Instance Types, and Tested Models - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="training-compiler-support" /><meta name="default_state" content="training-compiler-support" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="training-compiler-support.html" /><meta name="description" content="Check supported frameworks, AWS Regions, instances, and models by SageMaker Training Compiler." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="training-compiler-support.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/training-compiler-support.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/training-compiler-support.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/training-compiler-support.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/training-compiler-support.html" hreflang="de" /><link rel="alternative" href="training-compiler-support.html" hreflang="en-us" /><link rel="alternative" href="training-compiler-support.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/training-compiler-support.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/training-compiler-support.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/training-compiler-support.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/training-compiler-support.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/training-compiler-support.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/training-compiler-support.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/training-compiler-support.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/training-compiler-support.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/training-compiler-support.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/training-compiler-support.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/training-compiler-support.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/training-compiler-support.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/training-compiler-support.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/training-compiler-support.html" hreflang="zh-tw" /><link rel="alternative" href="training-compiler-support.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Supported Frameworks, AWS Regions, Instance Types, and Tested Models" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Supported Frameworks, AWS Regions, Instance Types, and Tested Models - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#training-compiler-support" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-support.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-support.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-support.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,amazon sagemaker training compiler, sagemaker training compiler, sm training compiler,compile deep learning model, compile transformer model, compile tensorflow model, compile pytorch model, compile nlp model,amazon sagemaker training compiler, sagemaker training compiler, sm training compiler,supported instances, supported frameworks,aws region" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Training Compiler",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/training-compiler.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Supported Frameworks, AWS Regions, Instance Types, and Tested Models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/training-compiler.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#training-compiler-support" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="training-compiler-support.html#training-compiler-supported-frameworks">Supported
+                    Frameworks</a><a href="training-compiler-support.html#training-compiler-availablity-zone">AWS Regions</a><a href="training-compiler-support.html#training-compiler-supported-instance-types">Supported Instance
+                    Types</a><a href="training-compiler-support.html#training-compiler-tested-models">Tested Models</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="training-compiler-support">Supported Frameworks, AWS Regions,
+                Instance Types, and Tested Models</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Before using SageMaker Training Compiler, check if your framework of choice is supported, the instance
+            types are available in your AWS account, and your AWS account is in one of the
+            supported AWS Regions.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>SageMaker Training Compiler is available in the SageMaker Python SDK v2.70.0 or later.</p></div></div>
+            <h2 id="training-compiler-supported-frameworks">Supported
+                    Frameworks</h2>
+            <p>SageMaker Training Compiler supports the following deep learning frameworks and is available through
+                AWS Deep Learning Containers.</p>
+            <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="training-compiler-support.html#training-compiler-supported-frameworks-pytorch">PyTorch</a></li><li><a href="training-compiler-support.html#training-compiler-supported-frameworks-tensorflow">TensorFlow</a></li></ul></div>
+             
+                <h3 id="training-compiler-supported-frameworks-pytorch">PyTorch</h3>
+                <div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac23c26c11b7b7b3"><thead>
+                            <tr>
+                                <th>Framework</th>
+                                <th>Framework version</th>
+                                <th>Deep Learning Container URI</th>
+                                <th>Extendable for Docker customization</th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <td rowspan="2" tabindex="-1">PyTorch</td>
+                                <td tabindex="-1">PyTorch v1.13.1</td>
+                                <td tabindex="-1">763104351884.dkr.ecr.<code class="replaceable">&lt;region&gt;</code>.amazonaws.com/pytorch-trcomp-training:1.12.0-gpu-py38-cu113-ubuntu20.04-sagemaker</td>
+                                <td tabindex="-1">No</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">PyTorch v1.12.0</td>
+                                <td tabindex="-1">763104351884.dkr.ecr.<code class="replaceable">&lt;region&gt;</code>.amazonaws.com/pytorch-trcomp-training:1.13.1-gpu-py39-cu117-ubuntu20.04-sagemaker</td>
+                                <td tabindex="-1">No</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3" tabindex="-1">PyTorch with Hugging Face Transformers</td>
+                                <td tabindex="-1">
+                                    <p>Transformers v4.21.1</p>
+                                    <p>PyTorch v1.11.0</p>
+                                </td>
+                                <td tabindex="-1">
+                                    <p>763104351884.dkr.ecr.<code class="replaceable">&lt;region&gt;</code>.amazonaws.com/huggingface-pytorch-trcomp-training:1.11.0-transformers4.21.1-gpu-py38-cu113-ubuntu20.04</p>
+                                </td>
+                                <td tabindex="-1">No</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">
+                                    <p>Transformers v4.17.0</p>
+                                    <p>PyTorch v1.10.2</p>
+                                </td>
+                                <td tabindex="-1">
+                                    <p>763104351884.dkr.ecr.<code class="replaceable">&lt;region&gt;</code>.amazonaws.com/huggingface-pytorch-trcomp-training:1.10.2-transformers4.17.0-gpu-py38-cu113-ubuntu20.04</p>
+                                </td>
+                                <td tabindex="-1">No</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">
+                                    <p>Transformers v4.11.0</p>
+                                    <p>PyTorch v1.9.0</p>
+                                </td>
+                                <td tabindex="-1">
+                                    <p>763104351884.dkr.ecr.<code class="replaceable">&lt;region&gt;</code>.amazonaws.com/huggingface-pytorch-training-comp:1.9.0-transformers4.11.0-gpu-py38-cu111-ubuntu20.04</p>
+                                </td>
+                                <td tabindex="-1">No</td>
+                            </tr>
+                        </table></div></div>
+             
+             
+                <h3 id="training-compiler-supported-frameworks-tensorflow">TensorFlow</h3>
+                <div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac23c26c11b7b9b3"><thead>
+                            <tr>
+                                <th>Framework</th>
+                                <th>Framework version</th>
+                                <th>Deep Learning Container URI</th>
+                                <th>Extendable for Docker customization</th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <td rowspan="3" tabindex="-1">TensorFlow</td>
+                                <td tabindex="-1">
+                                    <p>TensorFlow v2.11.0</p>
+                                </td>
+                                <td tabindex="-1">
+                                    <p>763104351884.dkr.ecr.<code class="replaceable">&lt;region&gt;</code>.amazonaws.com/tensorflow-training:2.11.0-gpu-py39-cu112-ubuntu20.04-sagemaker</p>
+                                </td>
+                                <td tabindex="-1">Yes</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">
+                                    <p>TensorFlow v2.10.0</p>
+                                </td>
+                                <td tabindex="-1">
+                                    <p>763104351884.dkr.ecr.<code class="replaceable">&lt;region&gt;</code>.amazonaws.com/tensorflow-training:2.10.0-gpu-py39-cu112-ubuntu20.04-sagemaker</p>
+                                </td>
+                                <td tabindex="-1">Yes</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">
+                                    <p>TensorFlow v2.9.1</p>
+                                </td>
+                                <td tabindex="-1">
+                                    <p>763104351884.dkr.ecr.<code class="replaceable">&lt;region&gt;</code>.amazonaws.com/tensorflow-training:2.9.1-gpu-py39-cu112-ubuntu20.04-sagemaker</p>
+                                </td>
+                                <td tabindex="-1">Yes</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" tabindex="-1">TensorFlow with Hugging Face Transformers</td>
+                                <td tabindex="-1">
+                                    <p>Transformers v4.17.0</p>
+                                    <p>TensorFlow v2.6.3</p>
+                                </td>
+                                <td tabindex="-1">
+                                    <p>763104351884.dkr.ecr.<code class="replaceable">&lt;region&gt;</code>.amazonaws.com/huggingface-tensorflow-trcomp-training:2.6.3-transformers4.17.0-gpu-py38-cu112-ubuntu20.04</p>
+                                </td>
+                                <td tabindex="-1">No</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">
+                                    <p>Transformers v4.11.0</p>
+                                    <p>TensorFlow v2.5.1</p>
+                                </td>
+                                <td tabindex="-1">
+                                    <p>763104351884.dkr.ecr.<code class="replaceable">&lt;region&gt;</code>.amazonaws.com/huggingface-tensorflow-training-comp:2.5.1-transformers4.11.0-gpu-py37-cu112-ubuntu18.04</p>
+                                </td>
+                                <td tabindex="-1">No</td>
+                            </tr>
+                        </table></div></div>
+                         
+            
+            <p>For more information, see <a href="https://github.com/aws/deep-learning-containers/blob/master/available_images.md" rel="noopener noreferrer" target="_blank"><span>Available Images</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the <em>AWS Deep Learning
+                    Containers GitHub repository</em>.</p>
+         
+            <h2 id="training-compiler-availablity-zone">AWS Regions</h2>
+            <p>The <a href="https://github.com/aws/deep-learning-containers/blob/master/available_images.md#sagemaker-training-compiler-containers" rel="noopener noreferrer" target="_blank"><span>SageMaker Training Compiler Containers</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> are available in the AWS Regions where <a href="https://github.com/aws/deep-learning-containers/blob/master/available_images.md" rel="noopener noreferrer" target="_blank"><span>AWS Deep Learning Containers</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> are in service except the China
+                regions.</p>
+         
+            <h2 id="training-compiler-supported-instance-types">Supported Instance
+                    Types</h2>
+            <p>SageMaker Training Compiler is tested on and supports the following ML instance types.</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>P4 instances</p>
+                </li><li class="listitem">
+                    <p>P3 instances</p>
+                </li><li class="listitem">
+                    <p>G4dn instances</p>
+                </li><li class="listitem">
+                    <p>G5 instances</p>
+                </li></ul></div>
+            <p>For specs of the instance types, see the <b>Accelerated
+                    Computing</b> section in the <a href="http://aws.amazon.com/ec2/instance-types/" rel="noopener noreferrer" target="_blank"><span>Amazon EC2 Instance Types page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. For information
+                about instance pricing, see <a href="http://aws.amazon.com/sagemaker/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            <p>If you encountered an error message similar to the following, follow the
+                instructions at <a href="regions-quotas.html#service-limit-increase-request-procedure">Request a service quota increase for SageMaker resources</a>.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="txt ">ResourceLimitExceeded: An error occurred (ResourceLimitExceeded) when calling
+the CreateTrainingJob operation: The account-level service limit 'ml.p3dn.24xlarge
+for training job usage' is 0 Instances, with current utilization of 0 Instances
+and a request delta of 1 Instances.
+Please contact AWS support to request an increase for this limit.</code></pre>
+         
+            <h2 id="training-compiler-tested-models">Tested Models</h2>
+            <p>The following table includes a list of the models that have been tested with
+                SageMaker Training Compiler. For reference, the largest batch size that is able to fit into memory is
+                also included alongside other training parameters. SageMaker Training Compiler can change the memory
+                footprint of the model training process; as a result, a larger batch size can often
+                be used during the training process, further decreasing total training time. In some
+                cases, SageMaker Training Compiler intelligently promotes caching which leads to a decrease in the
+                largest batch size that can fit on the GPU. You must retune your model
+                hyperparameters and find an optimal batch size for your case. To save time, use the
+                following reference tables to look up a batch size that can be a good starting point
+                for your use case.</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The batch sizes are local batch size that fit into each individual GPU in the
+                    respective instance type. You should also adjust the learning rate when changing
+                    the batch size.</p></div></div>
+            <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="PyTorch 1.13.1" id="training-compiler-tested-models-pt1131" expanded="false"><p><b>Natural language processing (NLP) models</b></p><p>The following models are tested for training jobs for all combinations of
+                        single-node and multi-node with single or multi GPU cores and Automatic
+                        Mixed Precision (AMP) as indicated.</p><div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac23c26c11c13b7b1b7"><thead>
+                                <tr>
+                                    <th colspan="7">Single-node/multi-node
+                                        single-GPU/multi-GPU</th>
+                                </tr>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Dataset</th>
+                                    <th>Instance type</th>
+                                    <th>Precision</th>
+                                    <th>Sequence Length</th>
+                                    <th>Batch size for native frameworks </th>
+                                    <th>Batch size for SageMaker Training Compiler </th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td tabindex="-1">albert-base-v2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g4dn.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">80</td>
+                                    <td tabindex="-1">192</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">albert-base-v2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">332</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">albert-base-v2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">80</td>
+                                    <td tabindex="-1">224</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">160</td>
+                                    <td tabindex="-1">288</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">camembert-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">160</td>
+                                    <td tabindex="-1">280</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilbert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">240</td>
+                                    <td tabindex="-1">472</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilgpt2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g4dn.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">77</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilgpt2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">138</td>
+                                    <td tabindex="-1">390</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilgpt2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">96</td>
+                                    <td tabindex="-1">256</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilroberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g4dn.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">96</td>
+                                    <td tabindex="-1">192</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilroberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">171</td>
+                                    <td tabindex="-1">380</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilroberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">112</td>
+                                    <td tabindex="-1">256</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g4dn.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">52</td>
+                                    <td tabindex="-1">152</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">84</td>
+                                    <td tabindex="-1">240</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">58</td>
+                                    <td tabindex="-1">164</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">microsoft/deberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g4dn.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">48</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">microsoft/deberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">84</td>
+                                    <td tabindex="-1">207</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">microsoft/deberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">53</td>
+                                    <td tabindex="-1">133</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">roberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">125</td>
+                                    <td tabindex="-1">224</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">facebook/bart-base</td>
+                                    <td tabindex="-1">xsum</td>
+                                    <td tabindex="-1">g4dn.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">10</td>
+                                    <td tabindex="-1">16</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">facebook/bart-base</td>
+                                    <td tabindex="-1">xsum</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">16</td>
+                                    <td tabindex="-1">32</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">facebook/bart-large</td>
+                                    <td tabindex="-1">xsum</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">5</td>
+                                    <td tabindex="-1">8</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">facebook/bart-large</td>
+                                    <td tabindex="-1">xsum</td>
+                                    <td tabindex="-1">p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">2</td>
+                                    <td tabindex="-1">4</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">xlm-roberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g4dn.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">16</td>
+                                    <td tabindex="-1">31</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">xlm-roberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">18</td>
+                                    <td tabindex="-1">50</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">xlnet-base-cased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">240</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-103-v1</td>
+                                    <td tabindex="-1">g5.48xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">512</td>
+                                    <td tabindex="-1">29</td>
+                                    <td tabindex="-1">50</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilbert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-103-v1</td>
+                                    <td tabindex="-1">g5.48xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">512</td>
+                                    <td tabindex="-1">45</td>
+                                    <td tabindex="-1">64</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">wikitext-103-v1</td>
+                                    <td tabindex="-1">g5.48xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">512</td>
+                                    <td tabindex="-1">18</td>
+                                    <td tabindex="-1">45</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">roberta-base</td>
+                                    <td tabindex="-1">wikitext-103-v1</td>
+                                    <td tabindex="-1">g5.48xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">512</td>
+                                    <td tabindex="-1">23</td>
+                                    <td tabindex="-1">44</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">wikitext-103-v1</td>
+                                    <td tabindex="-1">p4d.24xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">512</td>
+                                    <td tabindex="-1">36</td>
+                                    <td tabindex="-1">64</td>
+                                </tr>
+                            </table></div></div><p><b>Computer Vision (CV) models</b></p><p>Tested using <a href="https://github.com/tensorflow/models" rel="noopener noreferrer" target="_blank"><span>TensorFlow
+                            Model Garden</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> with Automatic Mixed Precision (AMP) as
+                        indicated.</p><div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac23c26c11c13b7b1c13"><thead>
+                                <tr>
+                                    <th colspan="6">Single/multi-node
+                                        single/multi-GPU</th>
+                                </tr>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Dataset</th>
+                                    <th>Instance type</th>
+                                    <th>Precision</th>
+                                    <th>Batch size for native frameworks </th>
+                                    <th>Batch size for SageMaker Training Compiler </th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td tabindex="-1">ResNet152</td>
+                                    <td tabindex="-1">food101</td>
+                                    <td tabindex="-1">g4dn.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">144</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ResNet152</td>
+                                    <td tabindex="-1">food101</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">192</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ResNet152</td>
+                                    <td tabindex="-1">food101</td>
+                                    <td tabindex="-1">p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">152</td>
+                                    <td tabindex="-1">156</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ViT</td>
+                                    <td tabindex="-1">food101</td>
+                                    <td tabindex="-1">g4dn.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">512</td>
+                                    <td tabindex="-1">512</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ViT</td>
+                                    <td tabindex="-1">food101</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">992</td>
+                                    <td tabindex="-1">768</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ViT</td>
+                                    <td tabindex="-1">food101</td>
+                                    <td tabindex="-1">p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">848</td>
+                                    <td tabindex="-1">768</td>
+                                </tr>
+                            </table></div></div></awsui-expandable-section></div>
+            <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="PyTorch 1.12.0" id="training-compiler-tested-models-pt1120" expanded="false"><p><b>Natural language processing (NLP)
+                        models</b></p><p>The following models are tested for training jobs for all combinations of
+                        single-node and multi-node with single or multi GPU cores and Automatic
+                        Mixed Precision (AMP) as indicated.</p><div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac23c26c11c13b9b1b7"><thead>
+                                <tr>
+                                    <th colspan="7">Single-node/multi-node
+                                        single-GPU/multi-GPU</th>
+                                </tr>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Dataset</th>
+                                    <th>Instance type</th>
+                                    <th>Precision</th>
+                                    <th>Sequence Length</th>
+                                    <th>Batch size for native frameworks </th>
+                                    <th>Batch size for SageMaker Training Compiler </th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td tabindex="-1">albert-base-v2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">248</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">160</td>
+                                    <td tabindex="-1">288</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">camembert-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">160</td>
+                                    <td tabindex="-1">279</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">camembert-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">105</td>
+                                    <td tabindex="-1">164</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilgpt2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">136</td>
+                                    <td tabindex="-1">256</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilgpt2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">80</td>
+                                    <td tabindex="-1">118</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">84</td>
+                                    <td tabindex="-1">240</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">80</td>
+                                    <td tabindex="-1">119</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">microsoft/deberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">93</td>
+                                    <td tabindex="-1">197</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">microsoft/deberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">113</td>
+                                    <td tabindex="-1">130</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">roberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">125</td>
+                                    <td tabindex="-1">224</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">roberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">78</td>
+                                    <td tabindex="-1">112</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">xlnet-base-cased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">138</td>
+                                    <td tabindex="-1">240</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-103-v1</td>
+                                    <td tabindex="-1">ml.p4d.24xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">512</td>
+                                    <td tabindex="-1"></td>
+                                    <td tabindex="-1">52</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilbert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-103-v1</td>
+                                    <td tabindex="-1">ml.p4d.24xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">512</td>
+                                    <td tabindex="-1"></td>
+                                    <td tabindex="-1">160</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">wikitext-103-v1</td>
+                                    <td tabindex="-1">ml.p4d.24xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">512</td>
+                                    <td tabindex="-1"></td>
+                                    <td tabindex="-1">25</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">roberta-base</td>
+                                    <td tabindex="-1">wikitext-103-v1</td>
+                                    <td tabindex="-1">ml.p4d.24xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">512</td>
+                                    <td tabindex="-1"></td>
+                                    <td tabindex="-1">64</td>
+                                </tr>
+                            </table></div></div></awsui-expandable-section></div>
+            <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="TensorFlow&#xA;                            2.11.0" id="training-compiler-tested-models-tf2110" expanded="false"><p><b>Computer Vision (CV) models</b></p><p>Tested using <a href="https://github.com/tensorflow/models" rel="noopener noreferrer" target="_blank"><span>TensorFlow
+                            Model Garden</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> with Automatic Mixed Precision (AMP) as
+                        indicated.</p><div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac23c26c11c13c11b1b7"><thead>
+                                <tr>
+                                    <th colspan="6">Single/multi-node
+                                        single/multi-GPU</th>
+                                </tr>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Dataset</th>
+                                    <th>Instance type</th>
+                                    <th>Precision</th>
+                                    <th>Batch size for native frameworks </th>
+                                    <th>Batch size for SageMaker Training Compiler </th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td tabindex="-1">MaskRCNN-ResNet50-FPN</td>
+                                    <td tabindex="-1">COCO-2017</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">6</td>
+                                    <td tabindex="-1">8</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">MaskRCNN-ResNet50-FPN</td>
+                                    <td tabindex="-1">COCO-2017</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">6</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ResNet50</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">192</td>
+                                    <td tabindex="-1">256</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ResNet50</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">256</td>
+                                    <td tabindex="-1">256</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ResNet101</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">256</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ResNet101</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ResNet152</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">224</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ResNet152</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">VisionTransformer</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">112</td>
+                                    <td tabindex="-1">144</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">VisionTransformer</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">96</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                            </table></div></div><p><b>Natural Language Processing (NLP)
+                        models</b></p><p>Tested using <a href="https://github.com/huggingface/transformers" rel="noopener noreferrer" target="_blank"><span>Transformer models</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> with <code class="code">Sequence_Len=128</code> and
+                        Automatic Mixed Precision (AMP) as indicated.</p><div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac23c26c11c13c11b1c13"><thead>
+                                <tr>
+                                    <th colspan="6">Single/multi-node
+                                        single/multi-GPU</th>
+                                </tr>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Dataset</th>
+                                    <th>Instance type</th>
+                                    <th>Precision</th>
+                                    <th>Batch size for native frameworks </th>
+                                    <th>Batch size for SageMaker Training Compiler </th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td tabindex="-1">albert-base-v2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">160</td>
+                                    <td tabindex="-1">197</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">albert-base-v2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">95</td>
+                                    <td tabindex="-1">127</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">160</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">104</td>
+                                    <td tabindex="-1">111</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-large-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">65</td>
+                                    <td tabindex="-1">48</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-large-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">40</td>
+                                    <td tabindex="-1">35</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">camembert-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">162</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">camembert-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">105</td>
+                                    <td tabindex="-1">111</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilbert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">256</td>
+                                    <td tabindex="-1">264</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilbert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">169</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">120</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">80</td>
+                                    <td tabindex="-1">83</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">jplu/tf-xlm-roberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">32</td>
+                                    <td tabindex="-1">32</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">jplu/tf-xlm-roberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">32</td>
+                                    <td tabindex="-1">36</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">microsoft/mpnet-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">144</td>
+                                    <td tabindex="-1">160</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">microsoft/mpnet-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">106</td>
+                                    <td tabindex="-1">110</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">roberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">roberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">72</td>
+                                    <td tabindex="-1">98</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">albert-base-v2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.48xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">192</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">albert-base-v2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.p3.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">95</td>
+                                    <td tabindex="-1">96</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilbert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.48xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">256</td>
+                                    <td tabindex="-1">256</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilbert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.p3.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">140</td>
+                                    <td tabindex="-1">184</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">google/electra-small-discriminator</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.48xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">256</td>
+                                    <td tabindex="-1">384</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">google/electra-small-discriminator</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.p3.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">256</td>
+                                    <td tabindex="-1">268</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.48xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">116</td>
+                                    <td tabindex="-1">116</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.p3.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">85</td>
+                                    <td tabindex="-1">83</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.p4d.24xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">94</td>
+                                    <td tabindex="-1">110</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">microsoft/mpnet-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.g5.48xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">187</td>
+                                    <td tabindex="-1">164</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">microsoft/mpnet-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">ml.p3.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">106</td>
+                                    <td tabindex="-1">111</td>
+                                </tr>
+                            </table></div></div></awsui-expandable-section></div>
+            <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="TensorFlow&#xA;                            2.10.0" id="training-compiler-tested-models-tf2100" expanded="false"><p><b>Computer Vision (CV) models</b></p><p>Tested using <a href="https://github.com/tensorflow/models" rel="noopener noreferrer" target="_blank"><span>TensorFlow
+                            Model Garden</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> with Automatic Mixed Precision (AMP) as
+                        indicated.</p><div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac23c26c11c13c13b1b7"><thead>
+                                <tr>
+                                    <th colspan="6">Single-node
+                                        single-GPU/multi-GPU</th>
+                                </tr>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Dataset</th>
+                                    <th>Instance type</th>
+                                    <th>Precision</th>
+                                    <th>Batch size for native frameworks </th>
+                                    <th>Batch size for SageMaker Training Compiler </th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td tabindex="-1">DetectionTransformer-ResNet50</td>
+                                    <td tabindex="-1">COCO-2017</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">float32</td>
+                                    <td tabindex="-1">2</td>
+                                    <td tabindex="-1">4</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">DetectionTransformer-ResNet50</td>
+                                    <td tabindex="-1">COCO-2017</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float32</td>
+                                    <td tabindex="-1">3</td>
+                                    <td tabindex="-1">6</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">DetectionTransformer-ResNet50</td>
+                                    <td tabindex="-1">COCO-2017</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float32</td>
+                                    <td tabindex="-1">2</td>
+                                    <td tabindex="-1">4</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">MaskRCNN-ResNet50-FPN</td>
+                                    <td tabindex="-1">COCO-2017</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">6</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">MaskRCNN-ResNet50-FPN</td>
+                                    <td tabindex="-1">COCO-2017</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">6</td>
+                                    <td tabindex="-1">8</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">MaskRCNN-ResNet50-FPN</td>
+                                    <td tabindex="-1">COCO-2017</td>
+                                    <td tabindex="-1">ml.g5.48xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">48</td>
+                                    <td tabindex="-1">64</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">MaskRCNN-ResNet50-FPN</td>
+                                    <td tabindex="-1">COCO-2017</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">6</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ResNet50</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">224</td>
+                                    <td tabindex="-1">256</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ResNet50</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">192</td>
+                                    <td tabindex="-1">160</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ResNet50</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.g5.48xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">2048</td>
+                                    <td tabindex="-1">2048</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ResNet50</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">224</td>
+                                    <td tabindex="-1">160</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ResNet101</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">160</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ResNet101</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">192</td>
+                                    <td tabindex="-1">256</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ResNet101</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.g5.48xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">2048</td>
+                                    <td tabindex="-1">2048</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ResNet101</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">160</td>
+                                    <td tabindex="-1">224</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ResNet152</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ResNet152</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">192</td>
+                                    <td tabindex="-1">224</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ResNet152</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.g5.48xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">1536</td>
+                                    <td tabindex="-1">1792</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ResNet152</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">160</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">VisionTransformer</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">80</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">VisionTransformer</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">112</td>
+                                    <td tabindex="-1">144</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">VisionTransformer</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.g5.48xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">896</td>
+                                    <td tabindex="-1">1152</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">VisionTransformer</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">80</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                            </table></div></div><p><b>Natural Language Processing (NLP)
+                        models</b></p><p>Tested using <a href="https://github.com/huggingface/transformers" rel="noopener noreferrer" target="_blank"><span>Transformer models</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> with <code class="code">Sequence_Len=128</code> and
+                        Automatic Mixed Precision (AMP) as indicated.</p><div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac23c26c11c13c13b1c13"><thead>
+                                <tr>
+                                    <th colspan="6">Single-node
+                                        single-GPU/multi-GPU</th>
+                                </tr>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Dataset</th>
+                                    <th>Instance type</th>
+                                    <th>Precision</th>
+                                    <th>Batch size for native frameworks </th>
+                                    <th>Batch size for SageMaker Training Compiler </th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td tabindex="-1">albert-base-v2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g4dn.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">112</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">albert-base-v2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">albert-base-v2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.8xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">135</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">albert-base-v2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">191</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g4dn.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">64</td>
+                                    <td tabindex="-1">94</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">96</td>
+                                    <td tabindex="-1">101</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.8xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">96</td>
+                                    <td tabindex="-1">96</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-large-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g4dn.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">35</td>
+                                    <td tabindex="-1">21</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-large-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">39</td>
+                                    <td tabindex="-1">26</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-large-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">60</td>
+                                    <td tabindex="-1">50</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">camembert-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g4dn.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">96</td>
+                                    <td tabindex="-1">90</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">camembert-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">96</td>
+                                    <td tabindex="-1">98</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">camembert-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.8xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">96</td>
+                                    <td tabindex="-1">96</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">camembert-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilbert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g4dn.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">256</td>
+                                    <td tabindex="-1">160</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilbert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">176</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilbert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.8xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">160</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilbert-base-uncased</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">256</td>
+                                    <td tabindex="-1">258</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">google_electra-small-discriminator</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g4dn.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">256</td>
+                                    <td tabindex="-1">216</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">google_electra-small-discriminator</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">256</td>
+                                    <td tabindex="-1">230</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">google_electra-small-discriminator</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.8xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">256</td>
+                                    <td tabindex="-1">224</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">google_electra-small-discriminator</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">256</td>
+                                    <td tabindex="-1">320</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g4dn.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">80</td>
+                                    <td tabindex="-1">64</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">80</td>
+                                    <td tabindex="-1">77</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.8xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">80</td>
+                                    <td tabindex="-1">72</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">120</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">jplu_tf-xlm-roberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g4dn.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">28</td>
+                                    <td tabindex="-1">24</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">jplu_tf-xlm-roberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">32</td>
+                                    <td tabindex="-1">24</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">jplu_tf-xlm-roberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.8xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">32</td>
+                                    <td tabindex="-1">26</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">jplu_tf-xlm-roberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">66</td>
+                                    <td tabindex="-1">52</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">microsoft_mpnet-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g4dn.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">96</td>
+                                    <td tabindex="-1">92</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">microsoft_mpnet-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">96</td>
+                                    <td tabindex="-1">101</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">microsoft_mpnet-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.8xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">96</td>
+                                    <td tabindex="-1">101</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">microsoft_mpnet-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">152</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">roberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g4dn.16xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">64</td>
+                                    <td tabindex="-1">72</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">roberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.2xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">64</td>
+                                    <td tabindex="-1">84</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">roberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">p3.8xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">64</td>
+                                    <td tabindex="-1">86</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">roberta-base</td>
+                                    <td tabindex="-1">wikitext-2-raw-v1</td>
+                                    <td tabindex="-1">g5.4xlarge</td>
+                                    <td tabindex="-1">float16</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                            </table></div></div></awsui-expandable-section><awsui-expandable-section variant="container" header="TensorFlow&#xA;                            2.9.1" id="training-compiler-tested-models-tf291" expanded="false"><p>Tested using <a href="https://github.com/tensorflow/models" rel="noopener noreferrer" target="_blank"><span>TensorFlow
+                            Model Garden</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> with Automatic Mixed Precision (AMP).</p><div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac23c26c11c13c13b3b5"><thead>
+                                <tr>
+                                    <th colspan="5">Single-node
+                                        single-GPU/multi-GPU</th>
+                                </tr>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Dataset</th>
+                                    <th>Instance type</th>
+                                    <th>Batch size for native frameworks </th>
+                                    <th>Batch size for SageMaker Training Compiler </th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td tabindex="-1">ResNet50</td>
+                                    <td tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">192</td>
+                                    <td tabindex="-1">256*</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3" tabindex="-1">ResNet101</td>
+                                    <td rowspan="3" tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">160</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">224</td>
+                                    <td tabindex="-1">256*</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.p3.16xlarge</td>
+                                    <td tabindex="-1">1536</td>
+                                    <td tabindex="-1">1792</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3" tabindex="-1">ResNet152</td>
+                                    <td rowspan="3" tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">192</td>
+                                    <td tabindex="-1">224</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">160</td>
+                                    <td tabindex="-1">160</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.p3.16xlarge</td>
+                                    <td tabindex="-1">1024</td>
+                                    <td tabindex="-1">1280</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="4" tabindex="-1">VisionTransformer</td>
+                                    <td rowspan="4" tabindex="-1">ImageNet</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">80</td>
+                                    <td tabindex="-1">128*</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">112</td>
+                                    <td tabindex="-1">128*</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">56</td>
+                                    <td tabindex="-1">128*</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.p3.16xlarge</td>
+                                    <td tabindex="-1">640</td>
+                                    <td tabindex="-1">1024*</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="4" tabindex="-1">DetectionTransformer-ResNet50</td>
+                                    <td rowspan="4" tabindex="-1">COCO-2017</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">2</td>
+                                    <td tabindex="-1">2</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">3</td>
+                                    <td tabindex="-1">6</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">2</td>
+                                    <td tabindex="-1">4</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.p3.16xlarge</td>
+                                    <td tabindex="-1">8</td>
+                                    <td tabindex="-1">32</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3" tabindex="-1">MaskRCNN-ResNet50-FPN</td>
+                                    <td rowspan="3" tabindex="-1">COCO-2017</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">4</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">6</td>
+                                    <td tabindex="-1">8</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">6</td>
+                                </tr>
+                            </table></div></div><p>* The batch sizes marked with the asterisk symbol (*) indicate the largest
+                        batch size tested by the SageMaker Training Compiler developer team. For the marked cells, the
+                        instance may be able to fit a larger batch size than what is
+                        indicated.</p></awsui-expandable-section><awsui-expandable-section variant="container" header="Transformers&#xA;                            4.21.1 with PyTorch 1.11.0" id="training-compiler-tested-models-hf421-pt111" expanded="false"><p>Tested with <code class="code">Sequence_Len=512</code> and Automatic Mixed Precision
+                        (AMP).</p><div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac23c26c11c13c13b5b5"><thead>
+                                <tr>
+                                    <th colspan="6">Single-node single-GPU</th>
+                                </tr>
+                                <tr>
+                                    <th>Model </th>
+                                    <th>Dataset</th>
+                                    <th>Instance type</th>
+                                    <th>Instance count</th>
+                                    <th>Batch size for native frameworks</th>
+                                    <th>Batch size for Training Compiler</th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td rowspan="3" tabindex="-1">albert-base-v2</td>
+                                    <td rowspan="3" tabindex="-1">wikitext-2</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">14</td>
+                                    <td tabindex="-1">28</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">18</td>
+                                    <td tabindex="-1">40</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">14</td>
+                                    <td tabindex="-1">32</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3" tabindex="-1">bert-base-cased</td>
+                                    <td rowspan="3" tabindex="-1">wikitext-2</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">24</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">28</td>
+                                    <td tabindex="-1">44</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">16</td>
+                                    <td tabindex="-1">20</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3" tabindex="-1">camembert-base</td>
+                                    <td rowspan="3" tabindex="-1">wikitext-2</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">16</td>
+                                    <td tabindex="-1">28</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">24</td>
+                                    <td tabindex="-1">40</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">16</td>
+                                    <td tabindex="-1">24</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="4" tabindex="-1">distilbert-base-uncased</td>
+                                    <td rowspan="3" tabindex="-1">wikitext-2</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">28</td>
+                                    <td tabindex="-1">52</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">40</td>
+                                    <td tabindex="-1">76</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">32</td>
+                                    <td tabindex="-1">48</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">wikitext-103-v1</td>
+                                    <td tabindex="-1">ml.p4d.24xlarge</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">82</td>
+                                    <td tabindex="-1">160</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3" tabindex="-1">distilgpt2</td>
+                                    <td rowspan="3" tabindex="-1">wikitext-2</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">6</td>
+                                    <td tabindex="-1">18</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">28</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">6</td>
+                                    <td tabindex="-1">16</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3" tabindex="-1">distilroberta-base</td>
+                                    <td rowspan="3" tabindex="-1">wikitext-2</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">20</td>
+                                    <td tabindex="-1">40</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">28</td>
+                                    <td tabindex="-1">56</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">24</td>
+                                    <td tabindex="-1">40</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3" tabindex="-1">EleutherAI/gpt-neo-125M</td>
+                                    <td rowspan="3" tabindex="-1">wikitext-2</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">8</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">6</td>
+                                    <td tabindex="-1">14</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">10</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="4" tabindex="-1">gpt2</td>
+                                    <td rowspan="3" tabindex="-1">wikitext-2</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">8</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">6</td>
+                                    <td tabindex="-1">16</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">10</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">wikitext-103-v1</td>
+                                    <td tabindex="-1">ml.p4d.24xlarge</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">13</td>
+                                    <td tabindex="-1">25</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="4" tabindex="-1">roberta-base</td>
+                                    <td rowspan="3" tabindex="-1">wikitext-2</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">20</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">24</td>
+                                    <td tabindex="-1">36</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">20</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">wikitext-103-v1</td>
+                                    <td tabindex="-1">ml.p4d.24xlarge</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">36</td>
+                                    <td tabindex="-1">64</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3" tabindex="-1">xlnet-base-cased</td>
+                                    <td rowspan="3" tabindex="-1">wikitext-2</td>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">2</td>
+                                    <td tabindex="-1">6</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g5.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">2</td>
+                                    <td tabindex="-1">10</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">1</td>
+                                    <td tabindex="-1">2</td>
+                                    <td tabindex="-1">8</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="4" tabindex="-1">bert-base-uncased</td>
+                                    <td rowspan="4" tabindex="-1">wikitext-103-v1</td>
+                                    <td rowspan="4" tabindex="-1">ml.p4d.24xlarge</td>
+                                    <td tabindex="-1">2</td>
+                                    <td tabindex="-1">32</td>
+                                    <td tabindex="-1">64</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">32</td>
+                                    <td tabindex="-1">64</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">8</td>
+                                    <td tabindex="-1">32</td>
+                                    <td tabindex="-1">64</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">16</td>
+                                    <td tabindex="-1">32</td>
+                                    <td tabindex="-1">64</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">roberta-large</td>
+                                    <td tabindex="-1">wikitext-103-v1</td>
+                                    <td tabindex="-1">ml.p4d.24xlarge</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">16</td>
+                                    <td tabindex="-1">24</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">microsoft/deberta-v3-base</td>
+                                    <td tabindex="-1">wikitext-103-v1</td>
+                                    <td tabindex="-1">ml.p4d.24xlarge</td>
+                                    <td tabindex="-1">16</td>
+                                    <td tabindex="-1">9</td>
+                                    <td tabindex="-1">23</td>
+                                </tr>
+                            </table></div></div></awsui-expandable-section><awsui-expandable-section variant="container" header="Transformers&#xA;                            4.17.0 with PyTorch 1.10.2" id="training-compiler-tested-models-hf417-pt110" expanded="false"><p>Tested with <code class="code">Sequence_Len=512</code> and Automatic Mixed Precision
+                        (AMP).</p><div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac23c26c11c13c13b7b5"><thead>
+                                <tr>
+                                    <th colspan="4">Single-node single-GPU</th>
+                                </tr>
+                                <tr>
+                                    <th>Model </th>
+                                    <th>Instance type</th>
+                                    <th>Batch size for native frameworks</th>
+                                    <th>Batch size for Training Compiler</th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td rowspan="2" tabindex="-1">albert-base-v2</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">14</td>
+                                    <td tabindex="-1">28</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">14</td>
+                                    <td tabindex="-1">24</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2" tabindex="-1">bert-base-cased</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">16</td>
+                                    <td tabindex="-1">24</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">24</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2" tabindex="-1">bert-base-uncased</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">16</td>
+                                    <td tabindex="-1">24</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">28</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2" tabindex="-1">camembert-base</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">24</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">28</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2" tabindex="-1">distilbert-base-uncased</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">28</td>
+                                    <td tabindex="-1">48</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">24</td>
+                                    <td tabindex="-1">52</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2" tabindex="-1">distilgpt2</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">6</td>
+                                    <td tabindex="-1">12</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">6</td>
+                                    <td tabindex="-1">14</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2" tabindex="-1">distilroberta-base</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">20</td>
+                                    <td tabindex="-1">40</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">40</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2" tabindex="-1">EleutherAI/gpt-neo-125M</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">2</td>
+                                    <td tabindex="-1">10</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">2</td>
+                                    <td tabindex="-1">8</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2" tabindex="-1">facebook/bart-base</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">2</td>
+                                    <td tabindex="-1">6</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">2</td>
+                                    <td tabindex="-1">6</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2" tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">8</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">2</td>
+                                    <td tabindex="-1">8</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2" tabindex="-1">roberta-base</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">20</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">20</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2" tabindex="-1">xlnet-base-cased</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">2</td>
+                                    <td tabindex="-1">8</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">ml.g4dn.2xlarge</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">6</td>
+                                </tr>
+                            </table></div></div></awsui-expandable-section><awsui-expandable-section variant="container" header="Transformers&#xA;                            4.11.0 with PyTorch 1.9.0 " id="training-compiler-tested-models-hf411-pt190" expanded="false"><p>Tested with <code class="code">Sequence_Len=512</code> and Automatic Mixed Precision
+                        (AMP).</p><div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac23c26c11c13c13b9b5"><thead>
+                                <tr>
+                                    <th colspan="4">Single-node single-GPU</th>
+                                </tr>
+                                <tr>
+                                    <th>Model </th>
+                                    <th>Instance type</th>
+                                    <th>Batch size for native</th>
+                                    <th>Batch size for Training Compiler</th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td tabindex="-1">albert-base-v2 </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">32</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-cased </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">14</td>
+                                    <td tabindex="-1">24</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-chinese</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">16</td>
+                                    <td tabindex="-1">24</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-multilingual-cased </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">16</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-multilingual-uncased </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">8</td>
+                                    <td tabindex="-1">16</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-uncased </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">24</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">cl-tohoku/bert-base-japanese-whole-word-masking</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">24</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">cl-tohoku/bert-base-japanese </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">24</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilbert-base-uncased </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">28</td>
+                                    <td tabindex="-1">32</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilbert-base-uncased-finetuned-sst-2-english</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">28</td>
+                                    <td tabindex="-1">32</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilgpt2 </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">16</td>
+                                    <td tabindex="-1">32</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">facebook/bart-base </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">8</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">6</td>
+                                    <td tabindex="-1">20</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">nreimers/MiniLMv2-L6-H384-distilled-from-RoBERTa-Large </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">20</td>
+                                    <td tabindex="-1">32</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">roberta-base </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">20</td>
+                                </tr>
+                            </table></div></div><div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac23c26c11c13c13b9b7"><thead>
+                                <tr>
+                                    <th colspan="4">Single-node multi-GPU</th>
+                                </tr>
+                                <tr>
+                                    <th>Model </th>
+                                    <th>Instance type</th>
+                                    <th>Batch size for native</th>
+                                    <th>Batch size for Training Compiler</th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td tabindex="-1">bert-base-chinese </td>
+                                    <td tabindex="-1">ml.p3.8xlarge</td>
+                                    <td tabindex="-1">16</td>
+                                    <td tabindex="-1">26</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-multilingual-cased </td>
+                                    <td tabindex="-1">ml.p3.8xlarge</td>
+                                    <td tabindex="-1">6</td>
+                                    <td tabindex="-1">16</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-multilingual-uncased</td>
+                                    <td tabindex="-1">ml.p3.8xlarge</td>
+                                    <td tabindex="-1">6</td>
+                                    <td tabindex="-1">16</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-uncased </td>
+                                    <td tabindex="-1">ml.p3.8xlarge</td>
+                                    <td tabindex="-1">14</td>
+                                    <td tabindex="-1">24</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilbert-base-uncased </td>
+                                    <td tabindex="-1">ml.p3.8xlarge</td>
+                                    <td tabindex="-1">14</td>
+                                    <td tabindex="-1">32</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilgpt2</td>
+                                    <td tabindex="-1">ml.p3.8xlarge</td>
+                                    <td tabindex="-1">6</td>
+                                    <td tabindex="-1">32</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">facebook/bart-base</td>
+                                    <td tabindex="-1">ml.p3.8xlarge</td>
+                                    <td tabindex="-1">8</td>
+                                    <td tabindex="-1">16</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2 </td>
+                                    <td tabindex="-1">ml.p3.8xlarge</td>
+                                    <td tabindex="-1">8</td>
+                                    <td tabindex="-1">20</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">roberta-base </td>
+                                    <td tabindex="-1">ml.p3.8xlarge</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">20</td>
+                                </tr>
+                            </table></div></div></awsui-expandable-section><awsui-expandable-section variant="container" header="Transformers&#xA;                            4.17.0 with TensorFlow 2.6.3" id="training-compiler-tested-models-hf417-tf263" expanded="false"><p>Tested with <code class="code">Sequence_Len=128</code> and Automatic Mixed Precision
+                        (AMP).</p><div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac23c26c11c13c13c11b5"><thead>
+                                <tr>
+                                    <th>Model </th>
+                                    <th>Instance type</th>
+                                    <th>Batch size for native frameworks</th>
+                                    <th>Batch size for Training Compiler</th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td tabindex="-1">albert-base-v2</td>
+                                    <td tabindex="-1">ml.g4dn.16xlarge</td>
+                                    <td tabindex="-1">136</td>
+                                    <td tabindex="-1">208</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">albert-base-v2</td>
+                                    <td tabindex="-1">ml.g5.4xlarge</td>
+                                    <td tabindex="-1">219</td>
+                                    <td tabindex="-1">312</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">albert-base-v2</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">152</td>
+                                    <td tabindex="-1">208</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">albert-base-v2</td>
+                                    <td tabindex="-1">ml.p3.8xlarge</td>
+                                    <td tabindex="-1">152</td>
+                                    <td tabindex="-1">192</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-uncased</td>
+                                    <td tabindex="-1">ml.g4dn.16xlarge</td>
+                                    <td tabindex="-1">120</td>
+                                    <td tabindex="-1">101</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-uncased</td>
+                                    <td tabindex="-1">ml.g5.4xlarge</td>
+                                    <td tabindex="-1">184</td>
+                                    <td tabindex="-1">160</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-uncased</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">108</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-large-uncased</td>
+                                    <td tabindex="-1">ml.g4dn.16xlarge</td>
+                                    <td tabindex="-1">37</td>
+                                    <td tabindex="-1">28</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-large-uncased</td>
+                                    <td tabindex="-1">ml.g5.4xlarge</td>
+                                    <td tabindex="-1">64</td>
+                                    <td tabindex="-1">55</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-large-uncased</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">40</td>
+                                    <td tabindex="-1">32</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">camembert-base</td>
+                                    <td tabindex="-1">ml.g4dn.16xlarge</td>
+                                    <td tabindex="-1">96</td>
+                                    <td tabindex="-1">100</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">camembert-base</td>
+                                    <td tabindex="-1">ml.g5.4xlarge</td>
+                                    <td tabindex="-1">190</td>
+                                    <td tabindex="-1">160</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">camembert-base</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">129</td>
+                                    <td tabindex="-1">108</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">camembert-base</td>
+                                    <td tabindex="-1">ml.p3.8xlarge</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">104</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilbert-base-uncased</td>
+                                    <td tabindex="-1">ml.g4dn.16xlarge</td>
+                                    <td tabindex="-1">210</td>
+                                    <td tabindex="-1">160</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilbert-base-uncased</td>
+                                    <td tabindex="-1">ml.g5.4xlarge</td>
+                                    <td tabindex="-1">327</td>
+                                    <td tabindex="-1">288</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilbert-base-uncased</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">224</td>
+                                    <td tabindex="-1">196</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilbert-base-uncased</td>
+                                    <td tabindex="-1">ml.p3.8xlarge</td>
+                                    <td tabindex="-1">192</td>
+                                    <td tabindex="-1">182</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">google_electra-small-discriminator</td>
+                                    <td tabindex="-1">ml.g4dn.16xlarge</td>
+                                    <td tabindex="-1">336</td>
+                                    <td tabindex="-1">288</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">google_electra-small-discriminator</td>
+                                    <td tabindex="-1">ml.g5.4xlarge</td>
+                                    <td tabindex="-1">504</td>
+                                    <td tabindex="-1">384</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">google_electra-small-discriminator</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">352</td>
+                                    <td tabindex="-1">323</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">ml.g4dn.16xlarge</td>
+                                    <td tabindex="-1">89</td>
+                                    <td tabindex="-1">64</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">ml.g5.4xlarge</td>
+                                    <td tabindex="-1">140</td>
+                                    <td tabindex="-1">146</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">94</td>
+                                    <td tabindex="-1">96</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2</td>
+                                    <td tabindex="-1">ml.p3.8xlarge</td>
+                                    <td tabindex="-1">96</td>
+                                    <td tabindex="-1">88</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">jplu_tf-xlm-roberta-base</td>
+                                    <td tabindex="-1">ml.g4dn.16xlarge</td>
+                                    <td tabindex="-1">52</td>
+                                    <td tabindex="-1">16</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">jplu_tf-xlm-roberta-base</td>
+                                    <td tabindex="-1">ml.g5.4xlarge</td>
+                                    <td tabindex="-1">64</td>
+                                    <td tabindex="-1">44</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">microsoft_mpnet-base</td>
+                                    <td tabindex="-1">ml.g4dn.16xlarge</td>
+                                    <td tabindex="-1">120</td>
+                                    <td tabindex="-1">100</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">microsoft_mpnet-base</td>
+                                    <td tabindex="-1">ml.g5.4xlarge</td>
+                                    <td tabindex="-1">192</td>
+                                    <td tabindex="-1">160</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">microsoft_mpnet-base</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">104</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">microsoft_mpnet-base</td>
+                                    <td tabindex="-1">ml.p3.8xlarge</td>
+                                    <td tabindex="-1">130</td>
+                                    <td tabindex="-1">92</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">roberta-base</td>
+                                    <td tabindex="-1">ml.g4dn.16xlarge</td>
+                                    <td tabindex="-1">108</td>
+                                    <td tabindex="-1">64</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">roberta-base</td>
+                                    <td tabindex="-1">ml.g5.4xlarge</td>
+                                    <td tabindex="-1">176</td>
+                                    <td tabindex="-1">142</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">roberta-base</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">118</td>
+                                    <td tabindex="-1">100</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">roberta-base</td>
+                                    <td tabindex="-1">ml.p3.8xlarge</td>
+                                    <td tabindex="-1">112</td>
+                                    <td tabindex="-1">88</td>
+                                </tr>
+                            </table></div></div></awsui-expandable-section><awsui-expandable-section variant="container" header="Transformers&#xA;                            4.11.0 with TensorFlow 2.5.1" id="training-compiler-tested-models-hf411-tf251" expanded="false"><p>Tested with <code class="code">Sequence_Len=128</code> and Automatic Mixed Precision
+                        (AMP).</p><div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac23c26c11c13c13c13b5"><thead>
+                                <tr>
+                                    <th colspan="4">Single-node single-GPU</th>
+                                </tr>
+                                <tr>
+                                    <th>Model </th>
+                                    <th>Instance type</th>
+                                    <th>Batch size for native</th>
+                                    <th>Batch size for Training Compiler</th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td tabindex="-1">albert-base-v2 </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bart-base </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">64</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bart-large </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">28</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-cased </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">16</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-chinese</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">16</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-multilingual-cased </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">64</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-multilingual-uncased </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">16</td>
+                                    <td tabindex="-1">96</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-base-uncased</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">16</td>
+                                    <td tabindex="-1">96</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">bert-large-uncased </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">24</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">cl-tohoku/bert-base-japanese </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">16</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">cl-tohoku/bert-base-japanese-whole-word-masking </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">16</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilbert-base-sst2 </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">32</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilbert-base-uncased </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">32</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">distilgpt2</td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">32</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2 </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">64</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">gpt2-large </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">2</td>
+                                    <td tabindex="-1">24</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">jplu/tf-xlm-roberta-base </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">12</td>
+                                    <td tabindex="-1">32</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">roberta-base </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">64</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">roberta-large </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">4</td>
+                                    <td tabindex="-1">64</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">t5-base </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">64</td>
+                                    <td tabindex="-1">64</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">t5-small </td>
+                                    <td tabindex="-1">ml.p3.2xlarge</td>
+                                    <td tabindex="-1">128</td>
+                                    <td tabindex="-1">128</td>
+                                </tr>
+                            </table></div></div></awsui-expandable-section></div>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./training-compiler.html">Training Compiler</div><div id="next" class="next-link" accesskey="n" href="./training-compiler-modify-scripts.html">Bring Your Own Deep Learning
+                Model</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-support.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-support.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

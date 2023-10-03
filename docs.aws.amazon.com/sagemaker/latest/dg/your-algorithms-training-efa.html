@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Run Training with EFA - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="your-algorithms-training-efa" /><meta name="default_state" content="your-algorithms-training-efa" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="your-algorithms-training-efa.html" /><meta name="description" content="SageMaker provides integration with EFA devices to accelerate High Performance Computing (HPC) and machine learning applications. This integration allows you to leverage an EFA device when running your distributed training jobs. You can add EFA integration to an existing Docker container that you bring to SageMaker. The following information outlines how to configure your own container to use an EFA device for your distributed training jobs." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="your-algorithms-training-efa.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/your-algorithms-training-efa.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/your-algorithms-training-efa.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/your-algorithms-training-efa.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/your-algorithms-training-efa.html" hreflang="de" /><link rel="alternative" href="your-algorithms-training-efa.html" hreflang="en-us" /><link rel="alternative" href="your-algorithms-training-efa.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/your-algorithms-training-efa.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/your-algorithms-training-efa.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/your-algorithms-training-efa.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/your-algorithms-training-efa.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/your-algorithms-training-efa.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/your-algorithms-training-efa.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/your-algorithms-training-efa.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/your-algorithms-training-efa.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/your-algorithms-training-efa.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/your-algorithms-training-efa.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/your-algorithms-training-efa.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/your-algorithms-training-efa.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/your-algorithms-training-efa.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/your-algorithms-training-efa.html" hreflang="zh-tw" /><link rel="alternative" href="your-algorithms-training-efa.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Run Training with EFA" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Run Training with EFA - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#your-algorithms-training-efa" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/your-algorithms-training-efa.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/your-algorithms-training-efa.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/your-algorithms-training-efa.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,create Docker container" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use Docker containers to build models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/docker-containers.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Create a container with your own algorithms and models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/docker-containers-create.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Your Own Training Algorithms",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-training-algo.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Run Training with EFA",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-training-algo.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#your-algorithms-training-efa" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="your-algorithms-training-efa.html#your-algorithms-training-efa-prereq">Prerequisites</a><a href="your-algorithms-training-efa.html#your-algorithms-training-efa-install">Install EFA and required
+        packages</a><a href="your-algorithms-training-efa.html#your-algorithms-training-efa-considerations">Considerations when creating
+        your container</a><a href="your-algorithms-training-efa.html#your-algorithms-training-efa-verify">Verify that your EFA device is
+        recognized</a><a href="your-algorithms-training-efa.html#your-algorithms-training-efa-run">Running a training job with EFA</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="your-algorithms-training-efa">Run Training with EFA</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p> SageMaker provides integration with <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html">EFA</a> devices to
+    accelerate High Performance Computing (HPC) and machine learning applications. This integration
+    allows you to leverage an EFA device when running your distributed training jobs.
+    
+    You can add EFA integration to an existing Docker container that you bring to SageMaker. The
+    following information outlines how to configure your own container to use an EFA device for your
+    distributed training jobs. </p>
+    <h2 id="your-algorithms-training-efa-prereq">Prerequisites</h2>
+    <p> Your container must satisfy the <a href="your-algorithms-training-algo-dockerfile.html">SageMaker Training container specification</a>.  </p>
+   
+    <h2 id="your-algorithms-training-efa-install">Install EFA and required
+        packages</h2>
+    <p>Your container must download and install the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa-start.html"> EFA
+        software</a>. This allows your container to recognize the EFA device, and provides
+      compatible versions of Libfabric and Open MPI. </p>
+    <p>Any tools like MPI and NCCL must be installed and managed inside the container to be used
+      as part of your EFA-enabled training job. The following example shows how to modify the
+      Dockerfile of your EFA-enabled container to install EFA, MPI, OFI, NCCL, and NCCL-TEST. </p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When using PyTorch with EFA on your container, the NCCL version of your container should
+        match the NCCL version of your PyTorch installation. To verify the PyTorch NCCL version, use
+        the following command:</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">torch.cuda.nccl.version()</code></pre></div></div>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">ARG OPEN_MPI_PATH=/opt/amazon/openmpi/
+ENV NCCL_VERSION=2.7.8
+ENV EFA_VERSION=1.11.2
+ENV BRANCH_OFI=1.1.1
+
+#################################################
+## EFA and MPI SETUP
+RUN cd $HOME \
+  &amp;&amp; curl -O https://s3-us-west-2.amazonaws.com/aws-efa-installer/aws-efa-installer-$<span>{</span>EFA_VERSION}.tar.gz \
+  &amp;&amp; tar -xf aws-efa-installer-$<span>{</span>EFA_VERSION}.tar.gz \
+  &amp;&amp; cd aws-efa-installer \
+  &amp;&amp; ./efa_installer.sh -y --skip-kmod -g \
+
+ENV PATH="$OPEN_MPI_PATH/bin:$PATH"
+ENV LD_LIBRARY_PATH="$OPEN_MPI_PATH/lib/:$LD_LIBRARY_PATH"
+
+#################################################
+## NCCL, OFI, NCCL-TEST SETUP
+RUN cd $HOME \
+  &amp;&amp; git clone https://github.com/NVIDIA/nccl.git -b v$<span>{</span>NCCL_VERSION}-1 \
+  &amp;&amp; cd nccl \
+  &amp;&amp; make -j64 src.build BUILDDIR=/usr/local
+
+RUN apt-get update &amp;&amp; apt-get install -y autoconf
+RUN cd $HOME \
+  &amp;&amp; git clone https://github.com/aws/aws-ofi-nccl.git -b v$<span>{</span>BRANCH_OFI} \
+  &amp;&amp; cd aws-ofi-nccl \
+  &amp;&amp; ./autogen.sh \
+  &amp;&amp; ./configure --with-libfabric=/opt/amazon/efa \
+       --with-mpi=/opt/amazon/openmpi \
+       --with-cuda=/usr/local/cuda \
+       --with-nccl=/usr/local --prefix=/usr/local \
+  &amp;&amp; make &amp;&amp; make install
+  
+RUN cd $HOME \
+  &amp;&amp; git clone https://github.com/NVIDIA/nccl-tests \
+  &amp;&amp; cd nccl-tests \
+  &amp;&amp; make MPI=1 MPI_HOME=/opt/amazon/openmpi CUDA_HOME=/usr/local/cuda NCCL_HOME=/usr/local</code></pre>
+    
+   
+    <h2 id="your-algorithms-training-efa-considerations">Considerations when creating
+        your container</h2>
+    <p>The EFA device is mounted to the container as <code class="code">/dev/infiniband/uverbs0</code> under the list of
+      devices accessible to the container. On P4d instances, the container has access to 4 EFA devices. The
+      EFA devices can be found in the list of devices accessible to the container as: </p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>
+          <code class="code">/dev/infiniband/uverbs0</code>
+        </p>
+      </li><li class="listitem">
+        <p>
+          <code class="code">/dev/infiniband/uverbs1</code>
+        </p>
+      </li><li class="listitem">
+        <p>
+          <code class="code">/dev/infiniband/uverbs2</code>
+        </p>
+      </li><li class="listitem">
+        <p>
+          <code class="code">/dev/infiniband/uverbs3</code>
+        </p>
+      </li></ul></div>
+    <p> To get information about hostname, peer hostnames, and network interface (for MPI) from
+        the <code class="code">resourceconfig.json</code> file provided to each container instances, see <a href="your-algorithms-training-algo-running-container.html#your-algorithms-training-algo-running-container-dist-training">Distributed Training Configuration</a>. Your container handles regular TCP traffic
+      among peers through the default Elastic Network Interfaces (ENI), while handling OFI (kernel
+      bypass) traffic through the EFA device. </p>
+   
+    <h2 id="your-algorithms-training-efa-verify">Verify that your EFA device is
+        recognized</h2>
+    <p>  To verify that the EFA device is recognized, run the following command from within your
+      container. </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">/opt/amazon/efa/bin/fi_info -p efa</code></pre>
+    <p>Your output should look similar to the following.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">provider: efa
+    fabric: EFA-fe80::e5:56ff:fe34:56a8
+    domain: efa_0-rdm
+    version: 2.0
+    type: FI_EP_RDM
+    protocol: FI_PROTO_EFA
+provider: efa
+    fabric: EFA-fe80::e5:56ff:fe34:56a8
+    domain: efa_0-dgrm
+    version: 2.0
+    type: FI_EP_DGRAM
+    protocol: FI_PROTO_EFA
+provider: efa;ofi_rxd
+    fabric: EFA-fe80::e5:56ff:fe34:56a8
+    domain: efa_0-dgrm
+    version: 1.0
+    type: FI_EP_RDM
+    protocol: FI_PROTO_RXD</code></pre>
+   
+    <h2 id="your-algorithms-training-efa-run">Running a training job with EFA</h2>
+    <p> Once you’ve created an EFA-enabled container, you can run a training job with EFA using a SageMaker
+      Estimator the same way as you would with any other Docker image. For more information on registering
+      your container and using it for training, see <a href="adapt-training-container.html#byoc-training-step5">Adapting Your Own Training
+        Container</a>.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./your-algorithms-training-algo-running-container.html">Provide Training Information</div><div id="next" class="next-link" accesskey="n" href="./your-algorithms-training-signal-success-failure.html">Signal Success or Failure</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/your-algorithms-training-efa.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/your-algorithms-training-efa.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

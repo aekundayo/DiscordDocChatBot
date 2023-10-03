@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Use TensorBoard in Amazon SageMaker Studio - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="studio-tensorboard" /><meta name="default_state" content="studio-tensorboard" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="studio-tensorboard.html" /><meta name="description" content="The following doc outlines how to install and run TensorBoard in Amazon SageMaker Studio." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="studio-tensorboard.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-tensorboard.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-tensorboard.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-tensorboard.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-tensorboard.html" hreflang="de" /><link rel="alternative" href="studio-tensorboard.html" hreflang="en-us" /><link rel="alternative" href="studio-tensorboard.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-tensorboard.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-tensorboard.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-tensorboard.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-tensorboard.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-tensorboard.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-tensorboard.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-tensorboard.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-tensorboard.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-tensorboard.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-tensorboard.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-tensorboard.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-tensorboard.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/studio-tensorboard.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/studio-tensorboard.html" hreflang="zh-tw" /><link rel="alternative" href="studio-tensorboard.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Use TensorBoard in Amazon SageMaker Studio" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Use TensorBoard in Amazon SageMaker Studio - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-tensorboard" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-tensorboard.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-tensorboard.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-tensorboard.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use machine learning environments offered by SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/machine-learning-environments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Studio",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Perform Common Tasks in Amazon SageMaker Studio",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-tasks.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Use TensorBoard in Amazon SageMaker Studio",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-tasks.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-tensorboard" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="studio-tensorboard.html#studio-tensorboard-prereq">Prerequisites</a><a href="studio-tensorboard.html#studio-tensorboard-setup">Set Up TensorBoardCallback</a><a href="studio-tensorboard.html#studio-tensorboard-install">Install TensorBoard</a><a href="studio-tensorboard.html#studio-tensorboard-launch">Launch TensorBoard</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="studio-tensorboard">Use TensorBoard in Amazon SageMaker Studio</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p> The following doc outlines how to install and run TensorBoard in Amazon SageMaker Studio. </p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This guide shows how to open the TensorBoard application through a SageMaker Studio
+      notebook server of an individual SageMaker Domain user profile. For a more comprehensive
+      TensorBoard experience integrated with SageMaker Training and the access control functionalities of
+      SageMaker Domain, see <a href="tensorboard-on-sagemaker.html">Use TensorBoard to debug and analyze training
+            jobs in Amazon SageMaker</a>.</p></div></div>
+    <h2 id="studio-tensorboard-prereq">Prerequisites</h2>
+    <p>This tutorial requires an Amazon SageMaker Studio Domain. For more information, see <a href="gs-studio-onboard.html">Onboard to Amazon SageMaker Domain</a></p>
+   
+    <h2 id="studio-tensorboard-setup">Set Up <code class="code">TensorBoardCallback</code></h2>
+    <div class="procedure"><ol><li>
+        <p>Launch Studio, and open the Launcher. For more information, see <a href="studio-launcher.html">Use the Amazon SageMaker Studio Launcher</a></p>
+      </li><li>
+        <p>In the Amazon SageMaker Studio Launcher, under <code class="code">Notebooks and compute resources</code>,
+          choose the <b>Change environment</b> button.</p>
+      </li><li>
+        <p>On the <b>Change environment</b> dialog, use the dropdown menus to
+          select the <code class="code">TensorFlow 2.3 Python 3.7(optimized for CPU)</code> Studio
+            <b>Image</b>.</p>
+      </li><li>
+        <p>Back to the Launcher, click the <b>Create notebook</b> tile. Your
+          notebook launches and opens in a new Studio tab.</p>
+      </li><li>
+        <p>Run this code from within your notebook cells.</p>
+      </li><li>
+        <p>Import the required packages. </p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import os
+import datetime
+import tensorflow as tf</code></pre>
+      </li><li>
+        <p>Create a Keras model.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">mnist = tf.keras.datasets.mnist
+
+(x_train, y_train),(x_test, y_test) = mnist.load_data()
+x_train, x_test = x_train / 255.0, x_test / 255.0
+
+def create_model():
+  return tf.keras.models.Sequential([
+    tf.keras.layers.Flatten(input_shape=(28, 28)),
+    tf.keras.layers.Dense(512, activation='relu'),
+    tf.keras.layers.Dropout(0.2),
+    tf.keras.layers.Dense(10, activation='softmax')
+  ])</code></pre>
+      </li><li>
+        <p>Create a directory for your TensorBoard logs</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">LOG_DIR = os.path.join(os.getcwd(), "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S"))</code></pre>
+      </li><li>
+        <p>Run training with TensorBoard.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">model = create_model()
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+              
+              
+tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=LOG_DIR, histogram_freq=1)
+
+model.fit(x=x_train,
+          y=y_train,
+          epochs=5,
+          validation_data=(x_test, y_test),
+          callbacks=[tensorboard_callback])</code></pre>
+      </li><li>
+        <p>Generate the EFS path for the TensorBoard logs. You use this path to set up your logs
+          from the terminal.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">EFS_PATH_LOG_DIR = "/".join(LOG_DIR.strip("/").split('/')[1:-1])
+print (EFS_PATH_LOG_DIR)</code></pre>
+        <p>Retrieve the <code class="code">EFS_PATH_LOG_DIR</code>. You will need it in the TensorBoard
+          installation section.</p>
+      </li></ol></div>
+   
+    <h2 id="studio-tensorboard-install">Install TensorBoard</h2>
+
+    <div class="procedure"><ol><li>
+        <p>Click on the  <code class="code">Amazon SageMaker Studio</code> button on the top left corner of Studio
+          to open the Amazon SageMaker Studio Launcher. This launcher must be opened from your root
+          directory. For more information, see <a href="studio-launcher.html">Use the Amazon SageMaker Studio Launcher</a></p>
+      </li><li>
+        <p>In the Launcher, under <code class="code">Utilities and files</code>, click <code class="code">System
+            terminal</code>. </p>
+      </li><li>
+        <p>From the terminal, run the following commands. Copy <code class="code">EFS_PATH_LOG_DIR</code> from
+          the Jupyter notebook. You must run this from the <code class="code">/home/sagemaker-user</code> root
+          directory.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">pip install tensorboard
+tensorboard --logdir <code class="replaceable">&lt;EFS_PATH_LOG_DIR&gt;</code></code></pre>
+      </li></ol></div>
+   
+    <h2 id="studio-tensorboard-launch">Launch TensorBoard</h2>
+
+    <div class="procedure"><ol><li>
+        <p>To launch TensorBoard, copy your Studio URL and replace <code class="code">lab?</code> with
+            <code class="code">proxy/6006/</code> as follows. You must include the trailing <code class="code">/</code>
+          character.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">https://<code class="replaceable">&lt;YOUR_URL&gt;</code>.studio.region.sagemaker.aws/jupyter/default/proxy/6006/</code></pre>
+      </li><li>
+        <p>Navigate to the URL to examine your results. </p>
+      </li></ol></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./studio-tasks-stop-training-job.html">Stop a Training Job</div><div id="next" class="next-link" accesskey="n" href="./sm-cw-cg.html">Using CodeWhisperer and CodeGuru extensions with SageMaker</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-tensorboard.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-tensorboard.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

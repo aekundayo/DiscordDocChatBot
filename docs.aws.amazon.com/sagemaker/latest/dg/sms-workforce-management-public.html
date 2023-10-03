@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Using the Amazon Mechanical Turk Workforce - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="sms-workforce-management-public" /><meta name="default_state" content="sms-workforce-management-public" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="sms-workforce-management-public.html" /><meta name="description" content="The Amazon Mechanical Turk (Mechanical Turk) workforce provides the most workers for your Amazon SageMaker Ground Truth labeling job and Amazon Augmented AI human review task. The Amazon Mechanical Turk workforce is a world-wide resource. Workers are available 24 hours a day, 7 days a week. You typically get the fastest turnaround for your human review tasks and labeling jobs when you use the Amazon Mechanical Turk workforce." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="sms-workforce-management-public.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/sms-workforce-management-public.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/sms-workforce-management-public.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/sms-workforce-management-public.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/sms-workforce-management-public.html" hreflang="de" /><link rel="alternative" href="sms-workforce-management-public.html" hreflang="en-us" /><link rel="alternative" href="sms-workforce-management-public.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/sms-workforce-management-public.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/sms-workforce-management-public.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/sms-workforce-management-public.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/sms-workforce-management-public.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/sms-workforce-management-public.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/sms-workforce-management-public.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sms-workforce-management-public.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sms-workforce-management-public.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/sms-workforce-management-public.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/sms-workforce-management-public.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/sms-workforce-management-public.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/sms-workforce-management-public.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/sms-workforce-management-public.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/sms-workforce-management-public.html" hreflang="zh-tw" /><link rel="alternative" href="sms-workforce-management-public.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Using the Amazon Mechanical Turk Workforce" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Using the Amazon Mechanical Turk Workforce - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#sms-workforce-management-public" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-workforce-management-public.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-workforce-management-public.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-workforce-management-public.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Label data with a human-in-the-loop",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-label.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Create and Manage Workforces",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-management.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Using the Amazon Mechanical Turk Workforce",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-management.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#sms-workforce-management-public" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="sms-workforce-management-public.html#sms-workforce-management-public-unsupported">Use Mechanical Turk with Ground Truth</a><a href="sms-workforce-management-public.html#sms-workforce-management-public-gt">Use Mechanical Turk with Amazon A2I</a><a href="sms-workforce-management-public.html#sms-workforce-management-public-a2i">When is Mechanical Turk Not Supported?</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="sms-workforce-management-public">Using the Amazon Mechanical Turk Workforce</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>The Amazon Mechanical Turk (Mechanical Turk) workforce provides the most workers for your <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/a2i.html">Amazon SageMaker Ground Truth</a> labeling job
+        and <a href="a2i-use-augmented-ai-a2i-human-review-loops.html">Amazon Augmented AI</a> human review task. The Amazon Mechanical Turk workforce is a world-wide resource.
+        Workers are available 24 hours a day, 7 days a week. You typically get the fastest
+        turnaround for your human review tasks and labeling jobs when you use the Amazon Mechanical Turk
+        workforce.</p><p>Any Amazon Mechanical Turk workforce billing is handled as part of your Ground Truth or Amazon Augmented AI billing. You
+        do not need to create a separate Mechanical Turk account to use the Amazon Mechanical Turk workforce.</p><div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>You should not share confidential information, personal information, or protected
+            health information with this workforce. You should not use the Amazon Mechanical Turk workforce when
+            you use Amazon A2I in conjunction with AWS HIPAA-eligible services, such as
+            Amazon Textract and Amazon Rekognition, for workloads containing protected health
+            information.</p></div></div><p>You can choose Mechanical Turk as your workforce when you create a Ground Truth labeling job or
+        Amazon A2I human review workflow (flow definition). You can create a labeling job and a
+        human review workflow using the SageMaker console and API. </p><p>When you use an API operation to create a labeling job or human review workflow, you use
+        the following ARN for the Amazon Mechanical Turk workforce for your <code class="code">WorkteamArn</code>. Replace
+                <code class="replaceable"><code class="code">region</code></code> with the AWS Region you are using to
+        create the labeling job or human loops. For example, if you create a labeling job in
+        US West (Oregon), replace <code class="replaceable"><code class="code">region</code></code> with
+            <code class="code">us-west-2</code>.</p><div class="itemizedlist">
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p><code class="code">
+                    arn:aws:sagemaker:<code class="replaceable">region</code>:394669845002:workteam/public-crowd/default</code></p>
+        </li></ul></div><p>Ground Truth and Amazon A2I <em>require</em> that your input data is
+        free of personally identifiable information (PII) when you use Mechanical Turk. If you use the Mechanical Turk
+        workforce and do not specify that your input data is free of PII, your Ground Truth labeling jobs
+        and Augmented AI tasks will fail. You specify that your input data is free of PII when you create a
+        Ground Truth labeling job and when you create a Amazon A2I human loop using a built-in integration
+        or the <code class="code">StartHumanLoop</code> operation.</p><p>Use the following sections to learn how to use Mechanical Turk with these services.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="sms-workforce-management-public.html#sms-workforce-management-public-unsupported">Use Mechanical Turk with Ground Truth</a></li><li><a href="sms-workforce-management-public.html#sms-workforce-management-public-gt">Use Mechanical Turk with Amazon A2I</a></li><li><a href="sms-workforce-management-public.html#sms-workforce-management-public-a2i">When is Mechanical Turk Not Supported?</a></li></ul></div>
+            <h2 id="sms-workforce-management-public-unsupported">Use Mechanical Turk with Ground Truth</h2>
+        <p>You can use Mechanical Turk with Ground Truth when you create a labeling job using the console, or the
+            <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateLabelingJob.html">CreateLabelingJob</a></code> operation.</p>
+        <p>When you create a labeling job, we recommend you adjust the number of workers that
+            annotate each data object based on the complexity of the job and the quality that you
+            need. Amazon SageMaker Ground Truth uses annotation consolidation to improve the quality of the labels. More
+            workers can make a difference in the quality of the labels for more complex labeling
+            jobs, but might not make a difference for simpler jobs. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-annotation-consolidation.html">Consolidate Annotations</a>. Note that annotation consolidation is not supported for Amazon A2I human review
+            workflows. </p>
+        <div class="procedure"><h6>To use Mechanical Turk when you create a labeling job (console):</h6><ol><li>
+                <p>Use the following to create a labeling job using the Ground Truth area of the SageMaker
+                    console: <a href="sms-create-labeling-job-console.html">Create a Labeling Job (Console)</a>. </p>
+            </li><li>
+                <p>When you are selecting <b>Worker types</b> in the
+                        <b>Workers</b> section, select
+                    <b>Amazon Mechanical Turk</b>.</p>
+            </li><li>
+                <p>Specify the total amount of time workers have to complete a task using
+                        <b>Task timeout</b>.</p>
+            </li><li>
+                <p>Specify the total amount of time a task remains available to workers in
+                        <b>Task expiration</b>. This is how long workers have to pick
+                    up a task before it fails.</p>
+            </li><li>
+                <p>Select the <b>Price per task</b> using the dropdown list. This
+                    is the amount of money a worker receives for completing a single task.</p>
+            </li><li>
+                <p>(Optional) If applicable, select <b>The dataset does not contain adult
+                        content</b>. SageMaker may restrict the Mechanical Turk workers that can view your
+                    task if it contains adult content.</p>
+            </li><li>
+                <p>You must read and confirm the following statement by selecting the check box
+                    to use the Mechanical Turk workforce. If your input data contains confidential information,
+                    personal information, or protected health information, you must select another
+                    workforce.</p>
+                <p><b>You understand and agree that the Mechanical Turk workforce consists of
+                        independent contractors located worldwide and that you should not share
+                        confidential information, personal information, or protected health
+                        information with this workforce.</b></p>
+            </li><li>
+                <p>(Optional) Select the check box next to <b>Enable automated data
+                        labeling</b> if you want to enable automated data labeling. To learn
+                    more about this feature, see <a href="sms-automated-labeling.html">Automate Data Labeling</a>.</p>
+            </li><li>
+                <p>You can specify the <b>Number of workers per dataset object</b>
+                    under <b>Additional configuration</b>. For example, if you enter 3
+                    in this field, each data object will be labeled by 3 workers.</p>
+            </li></ol></div>
+        <p>When you create your labeling job by selecting <b>Create</b>, your
+            labeling tasks are sent to Mechanical Turk workers.</p>
+        <div class="procedure"><h6>To use Mechanical Turk when you create a labeling job (API):</h6><ol><li>
+                <p>Use the following to create a labeling job using the <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateLabelingJob.html">CreateLabelingJob</a></code> operation: <a href="sms-create-labeling-job-api.html">Create a Labeling Job (API)</a>. </p>
+            </li><li>
+                <p>Use the following for the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HumanTaskConfig.html#sagemaker-Type-HumanTaskConfig-WorkteamArn"><code class="code">WorkteamArn</code></a>. Replace
+                            <code class="replaceable"><code class="code">region</code></code> with the AWS Region you
+                    are using to create the labeling job.</p>
+                <p><code class="code">arn:aws:sagemaker:<code class="replaceable">region</code>:394669845002:workteam/public-crowd/default</code></p>
+            </li><li>
+                <p>Use <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HumanTaskConfig.html#sagemaker-Type-HumanTaskConfig-TaskTimeLimitInSeconds">TaskTimeLimitInSeconds</a></code> to specify the total amount of
+                    time workers have to complete a task.</p>
+            </li><li>
+                <p>Use <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HumanTaskConfig.html#sagemaker-Type-HumanTaskConfig-TaskAvailabilityLifetimeInSeconds">TaskAvailabilityLifetimeInSeconds</a></code> to specify the total
+                    amount of time a task remains available to workers. This is how long workers
+                    have to pick up a task before it fails.</p>
+            </li><li>
+                <p>Use <code class="code"><a href="sms-workforce-management-public.html" rel="noopener noreferrer" target="_blank">NumberOfHumanWorkersPerDataObject</a></code> to specify
+                    the number of workers per dataset object.</p>
+            </li><li>
+                <p>Use <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HumanTaskConfig.html#sagemaker-Type-HumanTaskConfig-PublicWorkforceTaskPrice">PublicWorkforceTaskPrice</a></code> to set the price per task. This
+                    is the amount of money a worker receives for completing a single task.</p>
+            </li><li>
+                <p>Use <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_LabelingJobInputConfig.html#sagemaker-Type-LabelingJobInputConfig-DataAttributes">DataAttributes</a></code> to specify that your input data is free
+                    of confidential information, personal information, or protected health
+                    information. </p>
+                <p>Ground Truth <em>requires</em> that your input data is free of personally
+                    identifiable information (PII) if you use the Mechanical Turk workforce. If you use Mechanical Turk
+                    and do not specify that your input data is free of PII using the
+                        <code class="code">FreeOfPersonallyIdentifiableInformation</code> flag, your labeling job
+                    will fail. </p>
+                <p>Use the <code class="code">FreeOfAdultContent</code> flag to declare that your input data
+                    is free of adult content. SageMaker may restrict the Mechanical Turk workers that can view your
+                    task if it contains adult content. </p>
+            </li></ol></div>
+        <p>You can see examples of how to use this API in the following notebooks, found on
+            GitHub: <a href="https://github.com/aws/amazon-sagemaker-examples/tree/master/ground_truth_labeling_jobs" rel="noopener noreferrer" target="_blank"><span>Ground Truth Jupyter Notebook Examples</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. You can access these notebooks under the
+            SageMaker <a href="howitworks-nbexamples.html">Example Notebooks</a> in a
+                <a href="nbi.html">notebook
+                instance</a>.</p>
+         
+            <h2 id="sms-workforce-management-public-gt">Use Mechanical Turk with Amazon A2I</h2>
+        <p>You can specify that you want to use Mechanical Turk with Amazon A2I when you create a human
+            review workflow, also referred to as a <em>flow
+                definition</em>, in the console, or with the <code class="code">CreateFlowDefinition</code>
+            API operation. When you use this human review workflow to configure human loops, you
+            must specify that your input data is free of PII.</p>
+        <div class="procedure"><h6>To use Mechanical Turk when you create a human review workflow (console):</h6><ol><li>
+                <p>Use the following to create a human review workflow in the Augmented AI section of
+                    the SageMaker console: <a href="create-human-review-console.html#a2i-create-human-review-console">Create a Human Review Workflow
+            (Console)</a>. </p>
+            </li><li>
+                <p>When you are selecting <b>Worker types</b> in the
+                        <b>Workers</b> section, select
+                    <b>Amazon Mechanical Turk</b>.</p>
+            </li><li>
+                <p>Select the <b>Price per task</b> using the dropdown list. This
+                    is the amount of money a worker receives for completing a single task.</p>
+            </li><li>
+                <p>(Optional) You can specify the <b>Number of workers per dataset
+                        object</b> under <b>Additional configuration</b>. For
+                    example, if you enter 3 in this field, each data object will be labeled by 3
+                    workers.</p>
+            </li><li>
+                <p>(Optional) Specify the total amount of time workers have to complete a task
+                    using <b>Task timeout</b>.</p>
+            </li><li>
+                <p>(Optional) Specify the total amount of time a task remains available to
+                    workers in <b>Task expiration</b>. This is how long workers have
+                    to pick up a task before it fails.</p>
+            </li><li>
+                <p>Once you have created your human review workflow, you can use it to configure
+                    a human loop by providing its Amazon Resource Name (ARN) in the parameter
+                        <code class="code">FlowDefinitionArn</code>. You configure a human loop using one of the
+                    API operations of a built-in task type, or the Amazon A2I runtime API operation,
+                    <code class="code">StartHumanLoop</code>. To learn more, see <a href="a2i-start-human-loop.html">Create and Start a Human Loop</a>.</p>
+                <p>When you configure your human loop, you must specify that your input data is
+                    free of personally identifiable information (PII) using the
+                        <code class="code">FreeOfPersonallyIdentifiableInformation</code> content classifier in
+                        <code class="code">DataAttributes</code>. If you use Mechanical Turk and do not specify that your
+                    input data is free of PII, your human review tasks will fail. </p>
+                <p>Use the <code class="code">FreeOfAdultContent</code> flag to declare that your input data
+                    is free of adult content. SageMaker may restrict the Mechanical Turk workers that can view your
+                    task if it contains adult content. </p>
+            </li></ol></div>
+        <div class="procedure"><h6>To use Mechanical Turk when you create a human review workflow (API):</h6><ol><li>
+                <p>Use the following to create a human review workflow using the
+                    <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateFlowDefinition.html">CreateFlowDefinition</a></code> operation: <a href="create-human-review-console.html#a2i-create-human-review-api">Create a Human Review Workflow (API)</a>.</p>
+            </li><li>
+                <p>Use the following for the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HumanTaskConfig.html#sagemaker-Type-HumanTaskConfig-WorkteamArn"><code class="code">WorkteamArn</code></a>. Replace
+                            <code class="replaceable"><code class="code">region</code></code> with the AWS Region you
+                    are using to create the labeling job.</p>
+                <p><code class="code">arn:aws:sagemaker:<code class="replaceable">region</code>:394669845002:workteam/public-crowd/default</code></p>
+            </li><li>
+                <p>Use <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HumanTaskConfig.html#sagemaker-Type-HumanTaskConfig-TaskTimeLimitInSeconds">TaskTimeLimitInSeconds</a></code> to specify the total amount of
+                    time workers have to complete a task.</p>
+            </li><li>
+                <p>Use <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HumanTaskConfig.html#sagemaker-Type-HumanTaskConfig-TaskAvailabilityLifetimeInSeconds">TaskAvailabilityLifetimeInSeconds</a></code> to specify the total
+                    amount of time a task remains available to workers. This is how long workers
+                    have to pick up a task before it fails.</p>
+            </li><li>
+                <p>Use <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HumanLoopConfig.html#sagemaker-Type-HumanLoopConfig-TaskCount">TaskCount</a></code> to specify the number of workers per dataset
+                    object. For example, if you specify 3 for this parameter, each data object will
+                    be labeled by 3 workers.</p>
+            </li><li>
+                <p>Use <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HumanTaskConfig.html#sagemaker-Type-HumanTaskConfig-PublicWorkforceTaskPrice">PublicWorkforceTaskPrice</a></code> to set the price per task. This
+                    is the amount of money a worker receives for completing a single task.</p>
+            </li><li>
+                <p>Once you have created your human review workflow, you can use it to configure
+                    a human loop by providing its Amazon Resource Name (ARN) in the parameter
+                        <code class="code">FlowDefinitionArn</code>. You configure a human loop using one of the
+                    API operations of a built-in task type, or the Amazon A2I runtime API operation,
+                        <code class="code">StartHumanLoop</code>. To learn more, see <a href="a2i-start-human-loop.html">Create and Start a Human Loop</a>.</p>
+                <p>When you configure your human loop, you must specify that your input data is
+                    free of personally identifiable information (PII) using the
+                        <code class="code">FreeOfPersonallyIdentifiableInformation</code> content classifier in
+                        <code class="code">DataAttributes</code>. If you use Mechanical Turk and do not specify that your
+                    input data is free of PII, your human review tasks will fail. </p>
+                <p>Use the <code class="code">FreeOfAdultContent</code> flag to declare that your input data
+                    is free of adult content. SageMaker may restrict the Mechanical Turk workers that can view your
+                    task if it contains adult content. </p>
+            </li></ol></div>
+        <p>You can see examples of how to use this API in the following notebooks, found on
+            GitHub: <a href="https://github.com/aws-samples/amazon-a2i-sample-jupyter-notebooks" rel="noopener noreferrer" target="_blank"><span>Amazon A2I Jupyter Notebook Examples</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+         
+            <h2 id="sms-workforce-management-public-a2i">When is Mechanical Turk Not Supported?</h2>
+        <p>This workforce is not supported under the following scenarios. In each scenario, you
+            must use a <a href="sms-workforce-private.html">private</a> or 
+            <a href="sms-workforce-management-vendor.html">vendor</a> workforce. </p>
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>This workforce is not supported for Ground Truth video frame labeling jobs and 3D
+                    point cloud labeling jobs.</p>
+            </li><li class="listitem">
+                <p>You cannot use this workforce if your input data contains personally
+                    identifiable information (PII).</p>
+            </li><li class="listitem">
+                <p>Mechanical Turk is not available in some of the AWS special regions. If applicable, refer
+                    to the documentation for your special region for more information. </p>
+            </li></ul></div>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./sms-workforce-management.html">Create and Manage Workforces</div><div id="next" class="next-link" accesskey="n" href="./sms-workforce-management-vendor.html">Managing Vendor Workforces</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-workforce-management-public.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-workforce-management-public.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

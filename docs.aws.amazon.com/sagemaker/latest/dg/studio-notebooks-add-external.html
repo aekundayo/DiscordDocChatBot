@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Install External Libraries and Kernels in Amazon SageMaker Studio - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="studio-notebooks-add-external" /><meta name="default_state" content="studio-notebooks-add-external" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="studio-notebooks-add-external.html" /><meta name="description" content="Amazon SageMaker Studio notebooks come with multiple images already installed. These images contain kernels and Python packages including scikit-learn, Pandas, NumPy, TensorFlow, PyTorch, and MXNet. You can also install your own images that contain your choice of packages and kernels. For more information on installing your own image, see" /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="studio-notebooks-add-external.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-notebooks-add-external.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-notebooks-add-external.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-notebooks-add-external.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-notebooks-add-external.html" hreflang="de" /><link rel="alternative" href="studio-notebooks-add-external.html" hreflang="en-us" /><link rel="alternative" href="studio-notebooks-add-external.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-notebooks-add-external.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-notebooks-add-external.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-notebooks-add-external.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-notebooks-add-external.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-notebooks-add-external.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-notebooks-add-external.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-notebooks-add-external.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-notebooks-add-external.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-notebooks-add-external.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-notebooks-add-external.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-notebooks-add-external.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-notebooks-add-external.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/studio-notebooks-add-external.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/studio-notebooks-add-external.html" hreflang="zh-tw" /><link rel="alternative" href="studio-notebooks-add-external.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Install External Libraries and Kernels in Amazon SageMaker Studio" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Install External Libraries and Kernels in Amazon SageMaker Studio - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-notebooks-add-external" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-add-external.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-add-external.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-add-external.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use machine learning environments offered by SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/machine-learning-environments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Studio",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Amazon SageMaker Studio Notebooks",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/notebooks.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Install External Libraries and Kernels in Amazon SageMaker Studio",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/notebooks.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-notebooks-add-external" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="studio-notebooks-add-external.html#nbi-add-external-tools">Package installation tools</a><a href="studio-notebooks-add-external.html#nbi-add-external-lcc">Install packages using lifecycle
+          configurations</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="studio-notebooks-add-external">Install External Libraries and Kernels in
+        Amazon SageMaker Studio</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon SageMaker Studio notebooks come with multiple images already installed. These images contain
+      kernels and Python packages including scikit-learn, Pandas, NumPy, TensorFlow, PyTorch, and
+      MXNet. You can also install your own images that contain your choice of packages and kernels.
+      For more information on installing your own image, see <a href="studio-byoi.html">Bring your own SageMaker image</a>.</p><p>The different Jupyter kernels in Amazon SageMaker Studio notebooks are separate conda environments.
+      For information about conda environments, see <a href="https://conda.io/docs/user-guide/tasks/manage-environments.html" rel="noopener noreferrer" target="_blank"><span>Managing
+        environments</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      <h2 id="nbi-add-external-tools">Package installation tools</h2>
+      <p>The method that you use to install Python packages from the terminal differs depending
+        on the image. Studio supports the following package installation tools:</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><span class="topcom">Notebooks</span> – The following commands are
+            supported. If one of the following does not work on your image, try the other
+            one.</p>
+          <div class="itemizedlist">
+             
+             
+          <ul class="itemizedlist"><li class="listitem">
+              <p><code class="code">%conda install</code></p>
+            </li><li class="listitem">
+              <p><code class="code">%pip install</code></p>
+            </li></ul></div>
+        </li><li class="listitem">
+          <p><span class="topcom">The Jupyter terminal</span> – You can install packages
+            using pip and conda directly. You can also use <code class="code">apt-get install</code> to install
+            system packages from the terminal.</p>
+        </li></ul></div>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>We do not recommend using <code class="code">pip install -u</code> or <code class="code">pip install
+            --user</code>, because those commands install packages on the user's Amazon EFS volume and
+          can potentially block JupyterServer app restarts. Instead, use a lifecycle configuration
+          to reinstall the required packages on app restarts as shown in <a href="studio-notebooks-add-external.html#nbi-add-external-lcc">Install packages using lifecycle
+          configurations</a>.</p></div></div>
+      <p>We recommend using <code class="code">%pip</code> and <code class="code">%conda</code> to install packages from
+        within a notebook because they correctly take into account the active environment or
+        interpreter being used. For more information, see <a href="https://github.com/ipython/ipython/pull/11524" rel="noopener noreferrer" target="_blank"><span>Add %pip and %conda magic
+          functions</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. You can also use the system command syntax (lines starting with !) to
+        install packages. For example, <code class="code">!pip install</code> and <code class="code">!conda install</code>. </p>
+
+       
+        <h3 id="nbi-add-external-tools-conda">Conda</h3>
+        <p>Conda is an open source package management system and environment management system
+          that can install packages and their dependencies. SageMaker supports using conda with either of
+          these two main channels: the default channel or the conda-forge channel. For more
+          information, see <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/channels.html" rel="noopener noreferrer" target="_blank"><span>Conda channels</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. The conda-forge channel is a community channel where
+          contributors can upload packages.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Installing packages from conda-forge can take up to 10 minutes. Timing relates to
+            how conda resolves the dependency graph.</p></div></div>
+        <p>All of the SageMaker provided environments are functional. User installed packages may not
+          function correctly.</p>
+        <p>Conda has two methods for activating environments: <code class="code">conda activate</code>, and
+            <code class="code">source activate</code>. For more information, see <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html" rel="noopener noreferrer" target="_blank"><span>Managing environment</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        <div class="itemizedlist">
+          <h6>Supported conda operations</h6>
+           
+           
+           
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><code class="code">conda install</code> of a package in a single environment</p>
+          </li><li class="listitem">
+            <p><code class="code">conda install</code> of a package in all environments</p>
+          </li><li class="listitem">
+            <p>Installing a package from the main conda repository</p>
+          </li><li class="listitem">
+            <p>Installing a package from conda-forge</p>
+          </li><li class="listitem">
+            <p>Changing the conda install location to use Amazon EBS</p>
+          </li><li class="listitem">
+            <p>Supporting both <code class="code">conda activate</code> and <code class="code">source
+              activate</code></p>
+          </li></ul></div>
+       
+
+       
+        <h3 id="nbi-add-external-tools-pip">Pip</h3>
+        <p>Pip is the tool for installing and managing Python packages. Pip searches for packages
+          on the Python Package Index (PyPI) by default. Unlike conda, pip doesn't have built in
+          environment support. Therfore, pip isn't as thorough as conda when it comes to packages
+          with native or system library dependencies. Pip can be used to install packages in conda
+          environments. You can use alternative package repositories with pip instead of the
+          PyPI.</p>
+        <div class="itemizedlist">
+          <h6>Supported pip operations</h6>
+           
+           
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>Using pip to install a package without an active conda environment</p>
+          </li><li class="listitem">
+            <p>Using pip to install a package in a conda environment</p>
+          </li><li class="listitem">
+            <p>Using pip to install a package in all conda environments</p>
+          </li><li class="listitem">
+            <p>Changing the pip install location to use Amazon EBS</p>
+          </li><li class="listitem">
+            <p>Using an alternative repository to install packages with pip</p>
+          </li></ul></div>
+       
+
+       
+        <h3 id="nbi-add-external-tools-misc">Unsupported</h3>
+        <p>SageMaker aims to support as many package installation operations as possible. However, if
+          the packages were installed by SageMaker and you use the following operations on these
+          packages, it might make your environment unstable:</p>
+        <div class="itemizedlist">
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>Uninstalling</p>
+          </li><li class="listitem">
+            <p>Downgrading</p>
+          </li><li class="listitem">
+            <p>Upgrading</p>
+          </li></ul></div>
+        <p>Due to potential issues with network conditions or configurations, or the availability
+          of conda or PyPi, packages may not install in a fixed or deterministic amount of
+          time.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Attempting to install a package in an environment with incompatible dependencies can
+            result in a failure. If issues occur, you can contact the library maintainer about
+            updating the package dependencies. When you modify the environment, such as removing or
+            updating existing packages, this may result in instability of that environment.</p></div></div>
+       
+
+     
+      <h2 id="nbi-add-external-lcc">Install packages using lifecycle
+          configurations</h2>
+      <p>Install custom images and kernels on the Studio instance's Amazon EBS volume so that they
+        persist when you stop and restart the notebook, and that any external libraries you install
+        are not updated by SageMaker. To do that, use a lifecycle configuration that includes both a
+        script that runs when you create the notebook (<code class="code">on-create)</code> and a script that
+        runs each time you restart the notebook (<code class="code">on-start</code>). For more information about
+        using lifecycle configurations with Studio, see <a href="studio-lcc.html">Use lifecycle configurations with Amazon SageMaker Studio</a>. For sample lifecycle configuration scripts, see <a href="https://github.com/aws-samples/sagemaker-studio-lifecycle-config-examples" rel="noopener noreferrer" target="_blank"><span>SageMaker
+          Studio Lifecycle Configuration Samples</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./notebooks-menu.html">Use the Toolbar</div><div id="next" class="next-link" accesskey="n" href="./notebooks-sharing.html">Share and Use a Notebook</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-add-external.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-add-external.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

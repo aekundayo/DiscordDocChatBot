@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Use Docker containers to build models - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="docker-containers" /><meta name="default_state" content="docker-containers" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="your-algorithms.html" /><meta name="description" content="Use Docker containers with SageMaker for build and runtime tasks, including running scripts, training algorithms, and deploying models." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="your-algorithms.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/docker-containers.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/docker-containers.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/docker-containers.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/docker-containers.html" hreflang="de" /><link rel="alternative" href="your-algorithms.html" hreflang="en-us" /><link rel="alternative" href="your-algorithms.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/docker-containers.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/docker-containers.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/docker-containers.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/docker-containers.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/docker-containers.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/docker-containers.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/docker-containers.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/docker-containers.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/docker-containers.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/docker-containers.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/docker-containers.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/docker-containers.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/docker-containers.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/docker-containers.html" hreflang="zh-tw" /><link rel="alternative" href="your-algorithms.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Use Docker containers to build models" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Use Docker containers to build models - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#docker-containers" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/docker-containers.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/docker-containers.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/docker-containers.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use Docker containers to build models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/docker-containers.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#docker-containers" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="your-algorithms.html#container-scenarios">Scenarios and Guidance</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="docker-containers">Use Docker containers to build models</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon SageMaker makes extensive use of <em>Docker containers</em> for build and
+        runtime tasks. SageMaker provides pre-built Docker images for its built-in algorithms and the
+        supported deep learning frameworks used for training and inference. Using containers, you
+        can train machine learning algorithms and deploy models quickly and reliably at any scale.
+        The topics in this section show how to deploy these containers for your own use cases. For
+        information about how to bring your own containers for use with Amazon SageMaker Studio, see <a href="studio-byoi.html">Bring your own SageMaker image</a>.</p><div class="highlights"><h6>Topics</h6><ul><li><a href="your-algorithms.html#container-scenarios">Scenarios for Running Scripts, Training
+                Algorithms, or Deploying Models with SageMaker </a></li><li><a href="docker-basics.html">Docker Container Basics</a></li><li><a href="docker-containers-prebuilt.html">Use Pre-built SageMaker Docker images</a></li><li><a href="docker-containers-adapt-your-own.html">Adapting your own Docker container to
+                work with SageMaker</a></li><li><a href="docker-containers-create.html">Create a container with your own algorithms
+                and models</a></li><li><a href="docker-containers-notebooks.html">Examples and More Information: Use Your Own
+            Algorithm or Model</a></li><li><a href="docker-containers-troubleshooting.html">Troubleshooting your Docker containers</a></li></ul></div>
+        <h2 id="container-scenarios">Scenarios for Running Scripts, Training
+                Algorithms, or Deploying Models with SageMaker </h2>
+        <p>Amazon SageMaker always uses Docker containers when running scripts, training algorithms, and
+            deploying models. Your level of engagement with containers depends on your use case. </p>
+         
+            <h3 id="container-scenarios-use-prebuilt">Use cases for using pre-built
+                    Docker containers with SageMaker</h3>
+            <p>Consider the following use cases when using containers with SageMaker:</p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><b>Pre-built SageMaker algorithm</b> – Use the
+                        image that comes with the built-in algorithm. See <a href="algos.html">Use Amazon SageMaker
+                            Built-in Algorithms or Pre-trained Models</a> for more
+                        information.</p>
+                </li><li class="listitem">
+                    <p><b>Custom model with pre-built SageMaker
+                            container</b> – If you train or deploy a custom model, but
+                        use a framework that has a pre-built SageMaker container including TensorFlow and
+                        PyTorch, choose one of the following options:</p>
+                    <div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>If you don't need a custom package, and the container already
+                                includes all required packages: Use the pre-built Docker image
+                                associated with your framework. For more information, see <a href="docker-containers-prebuilt.html">Use Pre-built SageMaker Docker images</a>.</p>
+                        </li><li class="listitem">
+                            <p>If you need a custom package installed into one of the pre-built
+                                containers: Confirm that the pre-built Docker image allows a
+                                requirements.txt file, or extend the pre-built container based on
+                                the following use cases.</p>
+                        </li></ul></div>
+                </li></ul></div>
+         
+         
+            <h3 id="container-scenarios-extend-prebuilt">Use cases for extending a pre-built
+                    Docker container</h3>
+            <p>The following are use cases for extending a pre-built Docker container:</p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><b>You can't import the dependencies</b>
+                        – Extend the pre-built Docker image associated with your framework.
+                        See <a href="prebuilt-containers-extend.html">Extend a Pre-built
+            Container</a> for more
+                        information.</p>
+                </li><li class="listitem">
+                    <p><b>You can't import the dependencies in the pre-built
+                            container and the pre-built container supports
+                            requirements.txt</b> – Add all the required dependencies
+                        in requirements.txt. The following frameworks support using
+                        requirements.txt.</p>
+                    <div class="itemizedlist">
+                         
+                         
+                         
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p><a href="https://sagemaker.readthedocs.io/en/v2.18.0/frameworks/tensorflow/using_tf.html" rel="noopener noreferrer" target="_blank"><span>TensorFlow</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+                        </li><li class="listitem">
+                            <p><a href="https://sagemaker.readthedocs.io/en/v2.18.0/frameworks/chainer/using_chainer.html?highlight=requirements.txt" rel="noopener noreferrer" target="_blank"><span>Chainer</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+                        </li><li class="listitem">
+                            <p><a href="https://sagemaker.readthedocs.io/en/stable/frameworks/sklearn/using_sklearn.html?highlight=requirements.txt" rel="noopener noreferrer" target="_blank"><span>Sci-kit learn</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+                        </li><li class="listitem">
+                            <p><a href="https://sagemaker.readthedocs.io/en/v2.18.0/frameworks/pytorch/using_pytorch.html?highlight=requirements.txt" rel="noopener noreferrer" target="_blank"><span>PyTorch</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+                        </li><li class="listitem">
+                            <p><a href="https://sagemaker.readthedocs.io/en/v2.18.0/frameworks/mxnet/using_mxnet.html?highlight=requirements.txt" rel="noopener noreferrer" target="_blank"><span>Apache MXNet</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+                        </li></ul></div>
+                </li></ul></div>
+         
+         
+            <h3 id="container-scenarios-byoc">Use case for building your own
+                    container</h3>
+            <p>If you build or train a custom model and require custom framework that does not
+                have a pre-built image, build a custom container.</p>
+            <p>The following decision tree illustrates the information in the previous three
+                lists: <b>Use cases for using pre-built Docker containers with
+                    SageMaker</b>; <b>Use cases for extending a pre-built
+                    Docker container</b>; <b>Use case for building your
+                    own container</b>.</p>
+            <div class="mediaobject">
+                 
+                    <img src="../../../images/sagemaker/latest/dg/images/your-algorithm-containers-flowchart-diagram.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                    Decision tree for choosing to build a custom container, extend a&#xA;                        container, or use a pre-built container.&#xA;                " style="max-width:100%" />
+                 
+                 
+            </div>
+            <p>As a customer use case example, to train and deploy a TensorFlow model, refer to
+                the previous sections of <b>Use cases</b> to decide which
+                container that you need. The following are considerations that you can make to
+                choose your container:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>A TensorFlow model is a custom model.</p>
+                </li><li class="listitem">
+                    <p>Because a TensorFlow model is going to be built in the TensorFlow
+                        framework, use the TensorFlow pre-built framework container to train and
+                        host the model.</p>
+                </li><li class="listitem">
+                    <p>If you require custom packages in either your <a href="https://sagemaker.readthedocs.io/en/stable/frameworks/tensorflow/using_tf.html#train-a-model-with-tensorflow" rel="noopener noreferrer" target="_blank"><span> entrypoint</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> script or <a href="https://sagemaker.readthedocs.io/en/stable/frameworks/tensorflow/deploying_tensorflow_serving.html#how-to-implement-the-pre-and-or-post-processing-handler-s" rel="noopener noreferrer" target="_blank"><span>inference script, either extend the pre-built container or use a
+                            requirements.txt file to install dependencies at runtime.</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+                </li></ul></div>
+         
+        <p>After you determine the type of container that you need, the following information
+            provides details about the previously listed options.</p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+            
+        <ul class="itemizedlist"><li class="listitem">
+                <p><b>Use a built-in SageMaker algorithm or framework</b>.
+                    For most use cases, you can use the built-in algorithms and frameworks without
+                    worrying about containers. You can train and deploy these algorithms from the
+                    SageMaker console, the AWS Command Line Interface (AWS CLI), a Python notebook, or the
+                    <a href="https://sagemaker.readthedocs.io" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. You can do that by specifying the algorithm or framework
+                    version when creating your Estimator. The available built-in algorithms are
+                    itemized and described in the <a href="algos.html">Use Amazon SageMaker Built-in Algorithms or Pre-trained Models</a>
+                    topic. For more information about the available frameworks, see <a href="frameworks.html">ML Frameworks and Languages</a>. For an example of
+                    how to train and deploy a built-in algorithm using a Jupyter notebook running in
+                    a SageMaker notebook instance, see the <a href="gs.html">Get started</a> topic.
+                </p>
+            </li><li class="listitem">
+                <p><b>Use pre-built SageMaker container images</b>.
+                    Alternatively, you can use the built-in algorithms and frameworks using Docker
+                    containers. SageMaker provides containers for its built-in algorithms and pre-built
+                    Docker images for some of the most common machine learning frameworks, such as
+                    Apache MXNet, TensorFlow, PyTorch, and Chainer. For a full list of the available
+                    SageMaker Images, see <a href="https://github.com/aws/deep-learning-containers/blob/master/available_images.md" rel="noopener noreferrer" target="_blank"><span>Available Deep Learning Containers Images</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. It also supports machine
+                    learning libraries such as scikit-learn and SparkML. If you use the
+                    <a href="https://sagemaker.readthedocs.io" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, you can deploy the containers by passing the full
+                    container URI to their respective SageMaker SDK <code class="code">Estimator</code> class. For the
+                    full list of deep learning frameworks that are currently supported by SageMaker, see
+                        <a href="pre-built-containers-frameworks-deep-learning.html">Prebuilt SageMaker Docker Images
+            for Deep Learning</a>. For
+                    information about the scikit-learn and SparkML pre-built container images, see
+                        <a href="pre-built-docker-containers-scikit-learn-spark.html">Prebuilt Amazon SageMaker Docker
+            Images for Scikit-learn and Spark ML</a>. For more
+                    information about using frameworks with the <a href="https://sagemaker.readthedocs.io" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, see their
+                    respective topics in <a href="frameworks.html">Machine Learning Frameworks and Languages</a>.</p>
+                
+            </li><li class="listitem">
+                <p><b>Extend a pre-built SageMaker container image</b>. If
+                    you would like to extend a pre-built SageMaker algorithm or model Docker image, you
+                    can modify the SageMaker image to satisfy your needs. For an example, see <a href="https://github.com/aws/amazon-sagemaker-examples-community/blob/215215eb25b40eadaf126d055dbb718a245d7603/bring-your-own-container/pytorch_extending_our_containers/pytorch_extending_our_containers.ipynb" rel="noopener noreferrer" target="_blank"><span>Extending our PyTorch containers</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p>
+                
+            </li><li class="listitem">
+                <p><b>Adapt an existing container image</b>: If you
+                    would like to adapt a pre-existing container image to work with SageMaker, you must
+                    modify the Docker container to enable either the SageMaker Training or Inference
+                    toolkit. For an example that shows how to build your own containers to train and
+                    host an algorithm, see <a href="https://github.com/aws/amazon-sagemaker-examples/blob/main/advanced_functionality/scikit_bring_your_own/scikit_bring_your_own.ipynb" rel="noopener noreferrer" target="_blank"><span>Bring Your Own R Algorithm</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            </li></ul></div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./model-dashboard-faqs.html">Model Dashboard FAQ</div><div id="next" class="next-link" accesskey="n" href="./docker-basics.html">Docker Container Basics</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/docker-containers.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/docker-containers.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

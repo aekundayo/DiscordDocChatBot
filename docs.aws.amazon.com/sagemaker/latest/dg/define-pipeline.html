@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Define a Pipeline - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="define-pipeline" /><meta name="default_state" content="define-pipeline" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="define-pipeline.html" /><meta name="description" content="To orchestrate your workflows with Amazon SageMaker Model Building Pipelines, you need to generate a directed acyclic graph (DAG) in the form of a JSON pipeline definition. The following is a tutorial for defining a SageMaker Pipeline." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="define-pipeline.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/define-pipeline.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/define-pipeline.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/define-pipeline.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/define-pipeline.html" hreflang="de" /><link rel="alternative" href="define-pipeline.html" hreflang="en-us" /><link rel="alternative" href="define-pipeline.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/define-pipeline.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/define-pipeline.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/define-pipeline.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/define-pipeline.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/define-pipeline.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/define-pipeline.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/define-pipeline.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/define-pipeline.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/define-pipeline.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/define-pipeline.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/define-pipeline.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/define-pipeline.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/define-pipeline.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/define-pipeline.html" hreflang="zh-tw" /><link rel="alternative" href="define-pipeline.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Define a Pipeline" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Define a Pipeline - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#define-pipeline" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/define-pipeline.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/define-pipeline.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/define-pipeline.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Implement MLOps",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/mlops.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "SageMaker Workflows",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/workflows.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Amazon SageMaker Model Building Pipelines",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Create and Manage SageMaker Pipelines",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-build.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Define a Pipeline",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-build.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#define-pipeline" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="define-pipeline.html#define-pipeline-prereq">Prerequisites</a><a href="define-pipeline.html#define-pipeline-create">Create a Pipeline</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="define-pipeline">Define a Pipeline</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p> To orchestrate your workflows with Amazon SageMaker Model Building Pipelines, you need to generate a directed acyclic graph
+    (DAG) in the form of a JSON pipeline definition. The following image is a representation of the
+    pipeline DAG that you create in this tutorial:</p><div class="mediaobject">
+     
+      <img src="../../../images/sagemaker/latest/dg/images/pipeline-full.png" class="aws-docs-img-whiteBg aws-docs-img-padding" />
+     
+  </div><p> You can generate your JSON pipeline definition using the SageMaker Python SDK. The following
+    tutorial shows how to generate a pipeline definition for a pipeline that solves a regression
+    problem to determine the age of an abalone based on its physical measurements. For a Jupyter
+    notebook that includes the content in this tutorial that you can run, see
+    <a href="https://sagemaker-examples.readthedocs.io/en/latest/sagemaker-pipelines/tabular/abalone_build_train_deploy/sagemaker-pipelines-preprocess-train-evaluate-batch-transform.html" rel="noopener noreferrer" target="_blank"><span>Orchestrating
+      Jobs with Amazon SageMaker Model Building Pipelines</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="define-pipeline.html#define-pipeline-prereq">Prerequisites</a></li><li><a href="define-pipeline.html#define-pipeline-create">Create a Pipeline</a></li></ul></div><h2 id="define-pipeline-prereq">Prerequisites</h2>
+
+<p> To run the following tutorial you must do the following: </p>
+<div class="itemizedlist">
+   
+   
+   
+<ul class="itemizedlist"><li class="listitem">
+    
+    <p>Set up your notebook instance as outlined in <a href="howitworks-create-ws.html">Create a
+            notebook instance</a>. This gives your role permissions to read and write to Amazon S3,
+          and create training, batch transform, and processing jobs in SageMaker. </p>
+  </li><li class="listitem">
+    
+    <p>Grant your notebook permissions to get and pass its own role as shown in <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/roles-managingrole-editing-console.html#roles-modify_permissions-policy">Modifying a role permissions policy</a>. Add the following JSON snippet to attach
+          this policy to your role. Replace <code class="code">&lt;your-role-arn&gt;</code> with the ARN used to
+          create your notebook instance. </p>
+    
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "iam:GetRole",
+                "iam:PassRole"
+            ],
+            "Resource": "<code class="replaceable">&lt;your-role-arn&gt;</code>"
+        }
+    ]
+}</code></pre>
+  </li><li class="listitem">
+    
+    <p> Trust the SageMaker service principal by following the steps in <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/roles-managingrole-editing-cli.html#roles-managingrole_edit-trust-policy-cli">Modifying a role trust policy</a>. Add the following statement fragment to the
+          trust relationship of your role: </p>
+    
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": <span>{</span>
+        "Service": "sagemaker.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }</code></pre>
+  </li></ul></div>
+
+   
+    <h3 id="define-pipeline-prereq-setup">Set Up Your Environment</h3>
+      <p>Create a new SageMaker session using the following code block. This returns the role ARN for
+        the session. This role ARN should be the execution role ARN that you set up as a
+        prerequisite. </p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import boto3
+import sagemaker
+import sagemaker.session
+
+
+region = boto3.Session().region_name
+sagemaker_session = sagemaker.session.Session()
+role = sagemaker.get_execution_role()
+default_bucket = sagemaker_session.default_bucket()
+model_package_group_name = f"AbaloneModelPackageGroupName"</code></pre>
+   
+ 
+    <h2 id="define-pipeline-create">Create a Pipeline</h2>
+    
+
+<p>Run the following steps from your SageMaker notebook instance to create a pipeline including steps
+      for preprocessing, training, evaluation, conditional evaluation, and model registration. </p>
+
+     
+      <h3 id="define-pipeline-data-download">Step 1: Download the Dataset</h3>
+      <p>This notebook uses the UCI Machine Learning Abalone Dataset.  The dataset contains the
+        following features: </p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+         
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><code class="code">length</code> – The longest shell measurement of the abalone.</p>
+        </li><li class="listitem">
+          <p><code class="code">diameter</code> – The diameter of the abalone perpendicular to its
+            length.</p>
+        </li><li class="listitem">
+          <p><code class="code">height</code> – The height of the abalone with meat in the
+            shell.</p>
+        </li><li class="listitem">
+          <p><code class="code">whole_weight</code> – The weight of the whole abalone.</p>
+        </li><li class="listitem">
+          <p><code class="code">shucked_weight</code> – The weight of the meat removed from the
+            abalone.</p>
+        </li><li class="listitem">
+          <p><code class="code">viscera_weight</code> – The weight of the abalone viscera after
+            bleeding.</p>
+        </li><li class="listitem">
+          <p><code class="code">shell_weight</code> – The weight of the abalone shell after meat
+            removal and drying.</p>
+        </li><li class="listitem">
+          <p><code class="code">sex</code> – The sex of the abalone. One of 'M', 'F', or 'I', where 'I'
+            is an infant abalone.</p>
+        </li><li class="listitem">
+          <p><code class="code">rings</code> – The number of rings in the abalone shell.</p>
+        </li></ul></div>
+      <p>The number of rings in the abalone shell is a good approximation for its age using the
+        formula <code class="code">age=rings + 1.5</code>. However, obtaining this number is a time-consuming task.
+        You must cut the shell through the cone, stain the section, and count the number of rings
+        through a microscope. However, the other physical measurements are easier to determine. This
+        notebook uses the dataset to build a predictive model of the variable rings using the other
+        physical measurements.</p>
+      <div class="procedure"><h6>To download the dataset</h6><ol><li>
+          <p>Download the dataset into your account's default Amazon S3 bucket.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">!mkdir -p data
+local_path = "data/abalone-dataset.csv"
+
+s3 = boto3.resource("s3")
+s3.Bucket(f"sagemaker-servicecatalog-seedcode-<span>{</span>region}").download_file(
+    "dataset/abalone-dataset.csv",
+    local_path
+)
+
+base_uri = f"s3://<span>{</span>default_bucket}/abalone"
+input_data_uri = sagemaker.s3.S3Uploader.upload(
+    local_path=local_path, 
+    desired_s3_uri=base_uri,
+)
+print(input_data_uri)</code></pre>
+        </li><li>
+          <p>Download a second dataset for batch transformation after your model is
+            created.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">local_path = "data/abalone-dataset-batch.csv"
+
+s3 = boto3.resource("s3")
+s3.Bucket(f"sagemaker-servicecatalog-seedcode-<span>{</span>region}").download_file(
+    "dataset/abalone-dataset-batch",
+    local_path
+)
+
+base_uri = f"s3://<span>{</span>default_bucket}/abalone"
+batch_data_uri = sagemaker.s3.S3Uploader.upload(
+    local_path=local_path, 
+    desired_s3_uri=base_uri,
+)
+print(batch_data_uri)</code></pre>
+        </li></ol></div>
+      
+      
+     
+     
+      <h3 id="define-pipeline-parameters">Step 2: Define Pipeline Parameters</h3>
+  
+
+<p> This code block defines the following parameters for your pipeline: </p>
+
+<div class="itemizedlist">
+   
+   
+   
+   
+<ul class="itemizedlist"><li class="listitem">
+    <p>
+            <code class="code">processing_instance_count</code> – The instance count of the processing
+            job. </p>
+  </li><li class="listitem">
+    
+    <p>
+            <code class="code">input_data</code> – The Amazon S3 location of the input data. </p>
+  </li><li class="listitem">
+    
+    <p>
+            <code class="code">batch_data</code> – The Amazon S3 location of the input data for batch
+            transformation. </p>
+  </li><li class="listitem">
+    
+    <p>
+            <code class="code">model_approval_status</code> – The approval status to register the trained
+      model with for CI/CD. For more information, see <a href="sagemaker-projects.html">Automate MLOps with SageMaker Projects</a>.</p>
+  </li></ul></div>
+
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from sagemaker.workflow.parameters import (
+    ParameterInteger,
+    ParameterString,
+)
+
+processing_instance_count = ParameterInteger(
+    name="ProcessingInstanceCount",
+    default_value=1
+)
+model_approval_status = ParameterString(
+    name="ModelApprovalStatus",
+    default_value="PendingManualApproval"
+)
+input_data = ParameterString(
+    name="InputData",
+    default_value=input_data_uri,
+)
+batch_data = ParameterString(
+    name="BatchData",
+    default_value=batch_data_uri,
+)</code></pre>
+     
+     
+      <h3 id="define-pipeline-processing">Step 3: Define a Processing Step for Feature
+          Engineering</h3>
+<p>This section shows how to create a processing step to prepare the data from the dataset for
+        training.</p>
+<div class="procedure"><h6>To create a processing step</h6><ol><li><p> Create a directory for the processing script.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">!mkdir -p abalone</code></pre> 
+    </li><li>
+    <p>Create a file in the <code class="code">/abalone</code> directory named <code class="code">preprocessing.py</code>
+            with the following content. This preprocessing script is passed in to the processing
+            step for execution on the input data. The training step then uses the preprocessed
+            training features and labels to train a model, and the evaluation step uses the trained
+            model and preprocessed test features and labels to evaluate the model. The script
+              uses <code class="code">scikit-learn</code> to do the following:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem"><p> Fill in missing <code class="code">sex</code> categorical data and encode it so it's suitable for
+                training. </p></li><li class="listitem">
+        
+        <p> Scale and normalize all numerical fields except for <code class="code">rings</code> and
+                  <code class="code">sex</code>. </p>
+      </li><li class="listitem">
+        
+        <p> Split the data into training, test, and validation datasets. </p>
+      </li></ul></div>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">%%writefile abalone/preprocessing.py
+import argparse
+import os
+import requests
+import tempfile
+import numpy as np
+import pandas as pd
+
+
+from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+
+
+# Because this is a headerless CSV file, specify the column names here.
+feature_columns_names = [
+    "sex",
+    "length",
+    "diameter",
+    "height",
+    "whole_weight",
+    "shucked_weight",
+    "viscera_weight",
+    "shell_weight",
+]
+label_column = "rings"
+
+feature_columns_dtype = <span>{</span>
+    "sex": str,
+    "length": np.float64,
+    "diameter": np.float64,
+    "height": np.float64,
+    "whole_weight": np.float64,
+    "shucked_weight": np.float64,
+    "viscera_weight": np.float64,
+    "shell_weight": np.float64
+}
+label_column_dtype = <span>{</span>"rings": np.float64}
+
+
+def merge_two_dicts(x, y):
+    z = x.copy()
+    z.update(y)
+    return z
+
+
+if __name__ == "__main__":
+    base_dir = "/opt/ml/processing"
+
+    df = pd.read_csv(
+        f"<span>{</span>base_dir}/input/abalone-dataset.csv",
+        header=None, 
+        names=feature_columns_names + [label_column],
+        dtype=merge_two_dicts(feature_columns_dtype, label_column_dtype)
+    )
+    numeric_features = list(feature_columns_names)
+    numeric_features.remove("sex")
+    numeric_transformer = Pipeline(
+        steps=[
+            ("imputer", SimpleImputer(strategy="median")),
+            ("scaler", StandardScaler())
+        ]
+    )
+
+    categorical_features = ["sex"]
+    categorical_transformer = Pipeline(
+        steps=[
+            ("imputer", SimpleImputer(strategy="constant", fill_value="missing")),
+            ("onehot", OneHotEncoder(handle_unknown="ignore"))
+        ]
+    )
+
+    preprocess = ColumnTransformer(
+        transformers=[
+            ("num", numeric_transformer, numeric_features),
+            ("cat", categorical_transformer, categorical_features)
+        ]
+    )
+    
+    y = df.pop("rings")
+    X_pre = preprocess.fit_transform(df)
+    y_pre = y.to_numpy().reshape(len(y), 1)
+    
+    X = np.concatenate((y_pre, X_pre), axis=1)
+    
+    np.random.shuffle(X)
+    train, validation, test = np.split(X, [int(.7*len(X)), int(.85*len(X))])
+
+    
+    pd.DataFrame(train).to_csv(f"<span>{</span>base_dir}/train/train.csv", header=False, index=False)
+    pd.DataFrame(validation).to_csv(f"<span>{</span>base_dir}/validation/validation.csv", header=False, index=False)
+    pd.DataFrame(test).to_csv(f"<span>{</span>base_dir}/test/test.csv", header=False, index=False)</code></pre>
+  </li><li>
+    <p> Create an instance of an <code class="code">SKLearnProcessor</code> to pass in to the processing step. </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from sagemaker.sklearn.processing import SKLearnProcessor
+
+
+framework_version = "0.23-1"
+
+sklearn_processor = SKLearnProcessor(
+    framework_version=framework_version,
+    instance_type="ml.m5.xlarge",
+    instance_count=processing_instance_count,
+    base_job_name="sklearn-abalone-process",
+    role=role,
+)</code></pre>
+    </li><li>
+    <p>Create a processing step. This step takes in the <code class="code">SKLearnProcessor</code>, the input
+            and output channels, and the <code class="code">preprocessing.py</code> script that you created. This
+            is very similar to a processor instance's <code class="code">run</code> method in the SageMaker Python
+            SDK. The <code class="code">input_data</code> parameter passed into <code class="code">ProcessingStep</code> is
+            the input data of the step itself. This input data is used by the processor instance
+            when it runs. </p>
+    <p> Note the  <code class="code">"train</code>, <code class="code">"validation</code>, and
+              <code class="code">"test"</code> named channels specified in the output configuration for
+            the processing job. Step <code class="code">Properties</code> such as these can be used in subsequent
+            steps and resolve to their runtime values at execution. </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from sagemaker.processing import ProcessingInput, ProcessingOutput
+from sagemaker.workflow.steps import ProcessingStep
+    
+
+step_process = ProcessingStep(
+    name="AbaloneProcess",
+    processor=sklearn_processor,
+    inputs=[
+      ProcessingInput(source=input_data, destination="/opt/ml/processing/input"),  
+    ],
+    outputs=[
+        ProcessingOutput(output_name="train", source="/opt/ml/processing/train"),
+        ProcessingOutput(output_name="validation", source="/opt/ml/processing/validation"),
+        ProcessingOutput(output_name="test", source="/opt/ml/processing/test")
+    ],
+    code="abalone/preprocessing.py",
+)</code></pre>
+  </li></ol></div>
+
+
+     
+     
+      <h3 id="define-pipeline-training">Step 4: Define a Training step</h3>
+<p>This section shows how to use the SageMaker <a href="xgboost.html">XGBoost
+          Algorithm</a> to train a model on the training data output from
+        the processing steps. </p>
+
+<div class="procedure"><h6>To define a training step</h6><ol><li>
+    
+    <p> Specify the model path where you want to save the models from training. </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">model_path = f"s3://<span>{</span>default_bucket}/AbaloneTrain"</code></pre>
+  </li><li>
+    
+    <p>Configure an estimator for the XGBoost algorithm and the input dataset. The
+            training instance type is passed into the estimator. A typical training
+            script loads data from the input channels, configures training with hyperparameters,
+            trains a model, and saves a model to <code class="code">model_dir</code> so that it can be hosted
+            later. SageMaker uploads the model to Amazon S3 in the form of a <code class="code">model.tar.gz</code> at the
+            end of the training job. </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from sagemaker.estimator import Estimator
+
+
+image_uri = sagemaker.image_uris.retrieve(
+    framework="xgboost",
+    region=region,
+    version="1.0-1",
+    py_version="py3",
+    instance_type="ml.m5.xlarge"
+)
+xgb_train = Estimator(
+    image_uri=image_uri,
+    instance_type="ml.m5.xlarge",
+    instance_count=1,
+    output_path=model_path,
+    role=role,
+)
+xgb_train.set_hyperparameters(
+    objective="reg:linear",
+    num_round=50,
+    max_depth=5,
+    eta=0.2,
+    gamma=4,
+    min_child_weight=6,
+    subsample=0.7,
+    silent=0
+)</code></pre>
+  </li><li>
+    
+    <p>Create a <code class="code">TrainingStep</code> using the estimator instance and properties of
+              the <code class="code">ProcessingStep</code>. In particular, pass in the <code class="code">S3Uri</code> of the
+              <code class="code">"train"</code> and <code class="code">"validation"</code> output channel
+            to the <code class="code">TrainingStep</code>.  </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from sagemaker.inputs import TrainingInput
+from sagemaker.workflow.steps import TrainingStep
+
+
+step_train = TrainingStep(
+    name="AbaloneTrain",
+    estimator=xgb_train,
+    inputs=<span>{</span>
+        "train": TrainingInput(
+            s3_data=step_process.properties.ProcessingOutputConfig.Outputs[
+                "train"
+            ].S3Output.S3Uri,
+            content_type="text/csv"
+        ),
+        "validation": TrainingInput(
+            s3_data=step_process.properties.ProcessingOutputConfig.Outputs[
+                "validation"
+            ].S3Output.S3Uri,
+            content_type="text/csv"
+        )
+    },
+)</code></pre>
+  </li></ol></div>
+     
+
+     
+      <h3 id="define-pipeline-processing">Step 5: Define a Processing Step for Model
+          Evaluation</h3>
+      <p>This section shows how to create a processing step to evaluate the accuracy of the
+        model. The result of this model evaluation is used in the condition step to determine which
+        execute path to take.</p>
+<div class="procedure"><h6>To define a processing step for model evaluation</h6><ol><li>
+    
+    <p>Create a file in the <code class="code">/abalone</code> directory named <code class="code">evaluation.py</code>.
+            This script is used in a processing step to perform model evaluation. It takes a trained
+            model and the test dataset as input, then produces a JSON file containing classification
+            evaluation metrics.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">%%writefile abalone/evaluation.py
+import json
+import pathlib
+import pickle
+import tarfile
+import joblib
+import numpy as np
+import pandas as pd
+import xgboost
+
+
+from sklearn.metrics import mean_squared_error
+
+
+if __name__ == "__main__":
+    model_path = f"/opt/ml/processing/model/model.tar.gz"
+    with tarfile.open(model_path) as tar:
+        tar.extractall(path=".")
+    
+    model = pickle.load(open("xgboost-model", "rb"))
+
+    test_path = "/opt/ml/processing/test/test.csv"
+    df = pd.read_csv(test_path, header=None)
+    
+    y_test = df.iloc[:, 0].to_numpy()
+    df.drop(df.columns[0], axis=1, inplace=True)
+    
+    X_test = xgboost.DMatrix(df.values)
+    
+    predictions = model.predict(X_test)
+
+    mse = mean_squared_error(y_test, predictions)
+    std = np.std(y_test - predictions)
+    report_dict = <span>{</span>
+        "regression_metrics": <span>{</span>
+            "mse": <span>{</span>
+                "value": mse,
+                "standard_deviation": std
+            },
+        },
+    }
+
+    output_dir = "/opt/ml/processing/evaluation"
+    pathlib.Path(output_dir).mkdir(parents=True, exist_ok=True)
+    
+    evaluation_path = f"<span>{</span>output_dir}/evaluation.json"
+    with open(evaluation_path, "w") as f:
+        f.write(json.dumps(report_dict))</code></pre>
+  </li><li>
+    
+    <p> Create an instance of a <code class="code">ScriptProcessor</code> that is used to create a
+              <code class="code">ProcessingStep</code>. </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from sagemaker.processing import ScriptProcessor
+
+
+script_eval = ScriptProcessor(
+    image_uri=image_uri,
+    command=["python3"],
+    instance_type="ml.m5.xlarge",
+    instance_count=1,
+    base_job_name="script-abalone-eval",
+    role=role,
+)</code></pre>
+  </li><li>
+    
+    <p> Create a <code class="code">ProcessingStep</code> using the processor instance, the input and output
+            channels, and the  <code class="code">evaluation.py</code> script. In particular, pass in the
+              <code class="code">S3ModelArtifacts</code> property from the <code class="code">step_train</code> training step,
+            as well as the <code class="code">S3Uri</code> of the <code class="code">"test"</code> output channel of
+            the <code class="code">step_process</code> processing step. This is very similar to a processor
+              instance's <code class="code">run</code> method in the SageMaker Python SDK.  </p>
+    
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from sagemaker.workflow.properties import PropertyFile
+
+
+evaluation_report = PropertyFile(
+    name="EvaluationReport",
+    output_name="evaluation",
+    path="evaluation.json"
+)
+step_eval = ProcessingStep(
+    name="AbaloneEval",
+    processor=script_eval,
+    inputs=[
+        ProcessingInput(
+            source=step_train.properties.ModelArtifacts.S3ModelArtifacts,
+            destination="/opt/ml/processing/model"
+        ),
+        ProcessingInput(
+            source=step_process.properties.ProcessingOutputConfig.Outputs[
+                "test"
+            ].S3Output.S3Uri,
+            destination="/opt/ml/processing/test"
+        )
+    ],
+    outputs=[
+        ProcessingOutput(output_name="evaluation", source="/opt/ml/processing/evaluation"),
+    ],
+    code="abalone/evaluation.py",
+    property_files=[evaluation_report],
+)</code></pre>
+  </li></ol></div>
+
+     
+     
+      <h3 id="define-pipeline-create-model">Step 6: Define a CreateModelStep for Batch
+          Transformation</h3>
+      <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>We recommend using <a href="build-and-manage-steps.html#step-type-model">Model Step</a> to create
+          models as of v2.90.0 of the SageMaker Python SDK. <code class="code">CreateModelStep</code> will continue to
+          work in previous versions of the SageMaker Python SDK, but is no longer actively
+          supported.</p></div></div>
+      <p>This section shows how to create a SageMaker model from the output of the training step. This
+        model is used for batch transformation on a new dataset. This step is passed into the
+        condition step and only executes if the condition step evaluates to
+        <code class="code">true</code>.</p>
+      
+      <div class="procedure"><h6>To define a CreateModelStep for batch transformation</h6><ol><li>
+          
+          <p> Create a SageMaker model. Pass in the <code class="code">S3ModelArtifacts</code> property from the
+              <code class="code">step_train</code> training step.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from sagemaker.model import Model
+
+
+model = Model(
+    image_uri=image_uri,
+    model_data=step_train.properties.ModelArtifacts.S3ModelArtifacts,
+    sagemaker_session=sagemaker_session,
+    role=role,
+)</code></pre>
+        </li><li>
+          <p>Define the model input for your SageMaker model.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from sagemaker.inputs import CreateModelInput
+
+
+inputs = CreateModelInput(
+    instance_type="ml.m5.large",
+    accelerator_type="ml.eia1.medium",
+)</code></pre>
+        </li><li>
+          
+          <p>Create your <code class="code">CreateModelStep</code> using the <code class="code">CreateModelInput</code> and
+            SageMaker model instance you defined.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from sagemaker.workflow.steps import CreateModelStep
+
+
+step_create_model = CreateModelStep(
+    name="AbaloneCreateModel",
+    model=model,
+    inputs=inputs,
+)</code></pre>
+        </li></ol></div>
+      
+     
+     
+      <h3 id="define-pipeline-transform">Step 7: Define a TransformStep to Perform Batch
+          Transformation</h3>
+      <p>This section shows how to create a <code class="code">TransformStep</code> to perform batch
+        transformation on a dataset after the model is trained. This step is passed into the
+        condition step and only executes if the condition step evaluates to
+        <code class="code">true</code>.</p>
+      <div class="procedure"><h6>To define a TransformStep to perform batch transformation</h6><ol><li>
+          
+          <p>Create a transformer instance with the appropriate compute instance type, instance
+            count, and desired output Amazon S3 bucket URI. Pass in the <code class="code">ModelName</code> property
+            from the <code class="code">step_create_model</code>
+            <code class="code">CreateModel</code> step. </p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from sagemaker.transformer import Transformer
+
+
+transformer = Transformer(
+    model_name=step_create_model.properties.ModelName,
+    instance_type="ml.m5.xlarge",
+    instance_count=1,
+    output_path=f"s3://<span>{</span>default_bucket}/AbaloneTransform"
+)</code></pre>
+        </li><li>
+          
+          <p>Create a <code class="code">TransformStep</code> using the transformer instance you defined and
+            the <code class="code">batch_data</code> pipeline parameter.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from sagemaker.inputs import TransformInput
+from sagemaker.workflow.steps import TransformStep
+
+
+step_transform = TransformStep(
+    name="AbaloneTransform",
+    transformer=transformer,
+    inputs=TransformInput(data=batch_data)
+)</code></pre>
+        </li></ol></div>
+      
+     
+     
+      <h3 id="define-pipeline-register">Step 8: Define a RegisterModel Step to Create a
+          Model Package</h3>
+<div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>We recommend using <a href="build-and-manage-steps.html#step-type-model">Model Step</a> to
+        register models as of v2.90.0 of the SageMaker Python SDK. <code class="code">RegisterModel</code> will
+        continue to work in previous versions of the SageMaker Python SDK, but is no longer actively
+        supported.</p></div></div>
+<p>This section shows how to construct an instance of <code class="code">RegisterModel</code>. The result of
+        executing <code class="code">RegisterModel</code> in a pipeline is a model package. A model package is a
+        reusable model artifacts abstraction that packages all ingredients necessary for inference.
+        It consists of an inference specification that defines the inference image to use along with
+        an optional model weights location. A model package group is a collection of model packages.
+        You can use a <code class="code">ModelPackageGroup</code> for SageMaker Pipelines to add a new version and model
+        package to the group for every pipeline execution. For more information about model
+        registry, see <a href="model-registry.html">Register and Deploy Models with Model Registry</a>.</p>
+<p>This step is passed into the condition step and only executes if the condition step evaluates
+        to <code class="code">true</code>.</p>
+<div class="procedure"><h6>To define a RegisterModel step to create a model package</h6><ul><li>
+    
+    <p> Construct a <code class="code">RegisterModel</code> step using the estimator instance you used for the
+            training step . Pass in the <code class="code">S3ModelArtifacts</code> property from the
+              <code class="code">step_train</code> training step and specify a <code class="code">ModelPackageGroup</code>.
+            SageMaker Pipelines creates this <code class="code">ModelPackageGroup</code> for you.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from sagemaker.model_metrics import MetricsSource, ModelMetrics 
+from sagemaker.workflow.step_collections import RegisterModel
+
+
+model_metrics = ModelMetrics(
+    model_statistics=MetricsSource(
+        s3_uri="<code class="replaceable"><span>{</span>}/evaluation.json</code>".format(
+            step_eval.arguments["ProcessingOutputConfig"]["Outputs"][0]["S3Output"]["S3Uri"]
+        ),
+        content_type="application/json"
+    )
+)
+step_register = RegisterModel(
+    name="<code class="replaceable">AbaloneRegisterModel</code>",
+    estimator=xgb_train,
+    model_data=step_train.properties.ModelArtifacts.S3ModelArtifacts,
+    content_types=["text/csv"],
+    response_types=["text/csv"],
+    inference_instances=["<code class="replaceable">ml.t2.medium", "ml.m5.xlarge</code>"],
+    transform_instances=["<code class="replaceable">ml.m5.xlarge</code>"],
+    model_package_group_name=model_package_group_name,
+    approval_status=model_approval_status,
+    model_metrics=model_metrics
+)</code></pre>
+  </li></ul></div>
+
+     
+     
+      <h3 id="define-pipeline-condition">Step 9: Define a Condition Step to Verify Model
+          Accuracy</h3>
+
+<p>A <code class="code">ConditionStep</code> allows SageMaker Pipelines to support conditional execution in your pipeline
+        DAG based on the condition of step properties. In this case, you only want to register a
+        model package if the accuracy of that model, as determined by the model evaluation step,
+        exceeds the required value. If the accuracy exceeds the required value, the pipeline also
+        creates a SageMaker Model and runs batch transformation on a dataset. This section shows how to
+        define the Condition step.</p>
+<div class="procedure"><h6>To define a condition step to verify model accuracy</h6><ol><li>
+    
+    <p> Define a <code class="code">ConditionLessThanOrEqualTo</code> condition using the accuracy value found
+            in the output of the model evaluation processing step, <code class="code">step_eval</code>. Get this
+            output using the property file you indexed in the processing step and the respective
+            JSONPath of the mean squared error value, <code class="code">"mse"</code>.</p>
+    
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from sagemaker.workflow.conditions import ConditionLessThanOrEqualTo
+from sagemaker.workflow.condition_step import ConditionStep
+from sagemaker.workflow.functions import JsonGet
+
+
+cond_lte = ConditionLessThanOrEqualTo(
+    left=JsonGet(
+        step_name=step_eval.name,
+        property_file=evaluation_report,
+        json_path="regression_metrics.mse.value"
+    ),
+    right=6.0
+)</code></pre>
+  </li><li>
+    
+    <p> Construct a <code class="code">ConditionStep</code>. Pass the <code class="code">ConditionEquals</code> condition
+            in, then set the model package registration and batch transformation steps as the next
+            steps if the condition passes. </p>
+    
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">step_cond = ConditionStep(
+    name="AbaloneMSECond",
+    conditions=[cond_lte],
+    if_steps=[step_register, step_create_model, step_transform],
+    else_steps=[], 
+)</code></pre>
+  </li></ol></div>
+     
+     
+      <h3 id="define-pipeline-pipeline">Step 10: Create a pipeline</h3>
+<p>Now that you’ve created all of the steps, combine them into a pipeline.</p>
+<div class="procedure"><h6>To create a pipeline</h6><ol><li>
+    
+    <p> Define the following for your pipeline: <code class="code">name</code>, <code class="code">parameters</code>, and
+              <code class="code">steps</code>.  Names must be unique within an <code class="code">(account, region)</code>
+            pair.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>A step can only appear once in either the pipeline's step list or the if/else step lists of
+              the condition step. It cannot appear in both. </p></div></div>
+    
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from sagemaker.workflow.pipeline import Pipeline
+
+
+pipeline_name = f"AbalonePipeline"
+pipeline = Pipeline(
+    name=pipeline_name,
+    parameters=[
+        processing_instance_count,
+        model_approval_status,
+        input_data,
+        batch_data,
+    ],
+    steps=[step_process, step_train, step_eval, step_cond],
+)</code></pre>
+  </li><li>
+    
+    <p> (Optional) Examine the JSON pipeline definition to ensure that it's well-formed.</p>
+    
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import json
+
+json.loads(pipeline.definition())</code></pre>
+  </li></ol></div>
+
+
+<p> This pipeline definition is ready to submit to SageMaker. In the next tutorial, you submit this
+        pipeline to SageMaker and start an execution. </p>
+     
+  <p>
+    <strong>Next step:</strong>
+    <a href="run-pipeline.html">Run a pipeline</a>
+  </p><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./pipelines-build.html">Create and Manage Pipelines</div><div id="next" class="next-link" accesskey="n" href="./run-pipeline.html">Run a pipeline</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/define-pipeline.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/define-pipeline.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

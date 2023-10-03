@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Log Amazon SageMaker API Calls with AWS CloudTrail - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="logging-using-cloudtrail" /><meta name="default_state" content="logging-using-cloudtrail" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="logging-using-cloudtrail.html" /><meta name="description" content="Learn about integrating Amazon SageMaker with AWS CloudTrail." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="logging-using-cloudtrail.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/logging-using-cloudtrail.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/logging-using-cloudtrail.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/logging-using-cloudtrail.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/logging-using-cloudtrail.html" hreflang="de" /><link rel="alternative" href="logging-using-cloudtrail.html" hreflang="en-us" /><link rel="alternative" href="logging-using-cloudtrail.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/logging-using-cloudtrail.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/logging-using-cloudtrail.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/logging-using-cloudtrail.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/logging-using-cloudtrail.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/logging-using-cloudtrail.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/logging-using-cloudtrail.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/logging-using-cloudtrail.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/logging-using-cloudtrail.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/logging-using-cloudtrail.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/logging-using-cloudtrail.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/logging-using-cloudtrail.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/logging-using-cloudtrail.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/logging-using-cloudtrail.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/logging-using-cloudtrail.html" hreflang="zh-tw" /><link rel="alternative" href="logging-using-cloudtrail.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Log Amazon SageMaker API Calls with AWS CloudTrail" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Log Amazon SageMaker API Calls with AWS CloudTrail - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#logging-using-cloudtrail" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/logging-using-cloudtrail.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/logging-using-cloudtrail.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/logging-using-cloudtrail.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Monitor AWS resources provisioned while using Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/monitoring-overview.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Log Amazon SageMaker API Calls with AWS CloudTrail",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/monitoring-overview.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#logging-using-cloudtrail" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="logging-using-cloudtrail.html#sagemaker-info-in-cloudtrail">SageMaker Information in CloudTrail</a><a href="logging-using-cloudtrail.html#automatic-tuning-secondary">Operations Performed by Automatic Model
+          Tuning</a><a href="logging-using-cloudtrail.html#understanding-sagemaker-entries">Understanding SageMaker Log File
+          Entries</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="logging-using-cloudtrail">Log Amazon SageMaker API Calls with AWS CloudTrail</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon SageMaker is integrated with AWS CloudTrail, a service that provides a record of actions taken by
+      a user, role, or an AWS service in SageMaker. CloudTrail captures all API calls for SageMaker, with the
+      exception of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html"> InvokeEndpoint</a>
+      and <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpointAsync.html">
+        InvokeEndpointAsync</a>, as events. The calls captured include calls from the SageMaker
+      console and code calls to the SageMaker API operations. If you create a trail, you can enable
+      continuous delivery of CloudTrail events to an Amazon S3 bucket, including events for SageMaker. If you don't
+      configure a trail, you can still view the most recent events in the CloudTrail console in
+        <b>Event history</b>. Using the information collected by CloudTrail, you can
+      determine the request that was made to SageMaker, the IP address from which the request was made,
+      who made the request, when it was made, and additional details. </p><p>To learn more about CloudTrail, see the <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/">AWS CloudTrail User Guide</a>.</p><p>By default, log data is stored in CloudWatch Logs indefinitely. However, you can configure how long
+      to store log data in a log group. For information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html#SettingLogRetention">Change Log Data Retention in CloudWatch Logs</a> in the <em>Amazon CloudWatch Logs User
+        Guide</em>.</p>
+      <h2 id="sagemaker-info-in-cloudtrail">SageMaker Information in CloudTrail</h2>
+
+      <p>CloudTrail is enabled on your AWS account when you create the account. When activity occurs
+        in Amazon SageMaker, that activity is recorded in a CloudTrail event along with other AWS service
+        events in <b>Event history</b>. You can view, search, and download recent
+        events in your AWS account. For more information, see <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/view-cloudtrail-events.html">Viewing Events with CloudTrail Event
+          History</a>. </p>
+
+      <p>For an ongoing record of events in your AWS account, including events for
+        Amazon SageMaker, create a trail. A <em>trail</em> enables CloudTrail to deliver log
+        files to an Amazon S3 bucket. By default, when you create a trail in the console, the trail
+        applies to all AWS Regions. The trail logs events from all Regions in the AWS partition
+        and delivers the log files to the Amazon S3 bucket that you specify. Additionally, you can
+        configure other AWS services to further analyze and act upon the event data collected in
+        CloudTrail logs. For more information, see the following: </p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-and-update-a-trail.html">Overview for
+              Creating a Trail</a></p>
+        </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-aws-service-specific-topics.html#cloudtrail-aws-service-specific-topics-integrations">CloudTrail Supported Services and Integrations</a></p>
+        </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/getting_notifications_top_level.html">Configuring Amazon
+              SNS Notifications for CloudTrail</a></p>
+        </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/receive-cloudtrail-log-files-from-multiple-regions.html">Receiving CloudTrail Log Files from Multiple Regions</a> and <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-receive-logs-from-multiple-accounts.html">Receiving CloudTrail
+              Log Files from Multiple Accounts</a></p>
+        </li></ul></div>
+
+      <p>All SageMaker actions, with the exception of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html">
+          InvokeEndpoint</a> and <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpointAsync.html">
+          InvokeEndpointAsync</a>, are logged by CloudTrail and are documented in the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Operations.html"><code class="code">Operations</code></a>. For example, calls to the <code class="code">CreateTrainingJob</code>,
+          <code class="code">CreateEndpoint</code> and <code class="code">CreateNotebookInstance</code> actions generate
+        entries in the CloudTrail log files. </p>
+      <p>Every event or log entry contains information about who generated the request. The
+        identity information helps you determine the following: </p>
+      <div class="itemizedlist">
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>Whether the request was made with root or IAM user credentials.</p>
+        </li><li class="listitem">
+          <p>Whether the request was made with temporary security credentials for a role or
+            federated user.</p>
+        </li><li class="listitem">
+          <p>Whether the request was made by another AWS service.</p>
+        </li></ul></div>
+      <p>For more information, see the <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html">CloudTrail userIdentity
+          Element</a>.</p>
+     
+      <h2 id="automatic-tuning-secondary">Operations Performed by Automatic Model
+          Tuning</h2>
+      <p>SageMaker supports logging non-API service events to your CloudTrail log files for automatic model
+        tuning jobs. These events are related to your tuning jobs but, are not the direct result of
+        a customer request to the public AWS API. For example, when you create a hyperparameter
+        tuning job by calling <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateHyperParameterTuningJob.html"><code class="code">CreateHyperParameterTuningJob</code></a>, SageMaker creates training jobs to evaluate
+        various combinations of hyperparameters to find the best result. Similarly, when you call
+          <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_StopHyperParameterTuningJob.html"><code class="code">StopHyperParameterTuningJob</code></a> to stop a hyperparameter tuning job, SageMaker
+        might stop any of the associated running training jobs. Non-API events for your tuning jobs
+        are logged to CloudTrail to help you improve governance, compliance, and operational and risk
+        auditing of your AWS account.</p>
+      <p>Log entries that result from non-API service events have an <code class="code">eventType</code> of
+          <code class="code">AwsServiceEvent</code> instead of <code class="code">AwsApiCall</code>.</p>
+     
+      <h2 id="understanding-sagemaker-entries">Understanding SageMaker Log File
+          Entries</h2>
+      <p>A trail is a configuration that enables delivery of events as log files to an S3 bucket
+        that you specify. CloudTrail log files contain one or more log entries. An event represents a
+        single request from any source and includes information about the requested action, the date
+        and time of the action, request parameters, and so on. CloudTrail log files are not an ordered
+        stack trace of the public API calls, so they do not appear in any specific order. </p>
+      <p>The following examples a log entry for the <code class="code">CreateEndpoint</code> action, which
+        creates an endpoint to deploy a trained model.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "eventVersion":"1.05",
+    "userIdentity": <span>{</span>
+        "type":"IAMUser",
+        "principalId":"AIXDAYQEXAMPLEUMLYNGL",
+        "arn":"arn:aws:iam::123456789012:user/intern",
+        "accountId":"123456789012",
+        "accessKeyId":"ASXIAGXEXAMPLEQULKNXV",
+        "userName":"intern"
+    },
+    "eventTime":"2018-01-02T13:39:06Z",
+    "eventSource":"sagemaker.amazonaws.com",
+    "eventName":"CreateEndpoint",
+    "awsRegion":"us-west-2",
+    "sourceIPAddress":"127.0.0.1",
+    "userAgent":"USER_AGENT",
+    "requestParameters": <span>{</span>
+        "endpointName":"ExampleEndpoint",
+        "endpointConfigName":"ExampleEndpointConfig"
+    },
+    "responseElements": <span>{</span>
+        "endpointArn":"arn:aws:sagemaker:us-west-2:123456789012:endpoint/exampleendpoint"
+    },
+    "requestID":"6b1b42b9-EXAMPLE",
+    "eventID":"a6f85b21-EXAMPLE",
+    "eventType":"AwsApiCall",
+    "recipientAccountId":"444455556666"
+}</code></pre>
+      <p>The following example is a log entry for the <code class="code">CreateModel</code> action, which
+        creates one or more containers to host a previously trained model.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "eventVersion":"1.05",
+    "userIdentity": <span>{</span>
+        "type":"IAMUser",
+        "principalId":"AIXDAYQEXAMPLEUMLYNGL",
+        "arn":"arn:aws:iam::123456789012:user/intern",
+        "accountId":"123456789012",
+        "accessKeyId":"ASXIAGXEXAMPLEQULKNXV",
+        "userName":"intern"
+    },
+    "eventTime":"2018-01-02T15:23:46Z",
+    "eventSource":"sagemaker.amazonaws.com",
+    "eventName":"CreateModel",
+    "awsRegion":"us-west-2",
+    "sourceIPAddress":"127.0.0.1",
+    "userAgent":"USER_AGENT",
+    "requestParameters": <span>{</span>
+        "modelName":"ExampleModel",
+        "primaryContainer": <span>{</span>
+            "image":"174872318107.dkr.ecr.us-west-2.amazonaws.com/kmeans:latest"
+        },
+        "executionRoleArn":"arn:aws:iam::123456789012:role/EXAMPLEARN"
+    },
+    "responseElements": <span>{</span>
+        "modelArn":"arn:aws:sagemaker:us-west-2:123456789012:model/barkinghappy2018-01-02t15-23-32-275z-ivrdog"
+    },
+    "requestID":"417b8dab-EXAMPLE",
+    "eventID":"0f2b3e81-EXAMPLE",
+    "eventType":"AwsApiCall",
+    "recipientAccountId":"444455556666"
+}</code></pre>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./logging-cloudwatch.html">Logging with CloudWatch</div><div id="next" class="next-link" accesskey="n" href="./monitor-user-access.html">Monitoring user resource access from Amazon SageMaker Studio</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/logging-using-cloudtrail.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/logging-using-cloudtrail.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

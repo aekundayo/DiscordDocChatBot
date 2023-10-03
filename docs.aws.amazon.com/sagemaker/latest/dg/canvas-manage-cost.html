@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Manage billing and cost in SageMaker Canvas - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="canvas-manage-cost" /><meta name="default_state" content="canvas-manage-cost" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="canvas-manage-cost.html" /><meta name="description" content="Manage billing and costs for your SageMaker Canvas apps and users." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="canvas-manage-cost.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/canvas-manage-cost.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/canvas-manage-cost.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/canvas-manage-cost.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/canvas-manage-cost.html" hreflang="de" /><link rel="alternative" href="canvas-manage-cost.html" hreflang="en-us" /><link rel="alternative" href="canvas-manage-cost.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/canvas-manage-cost.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/canvas-manage-cost.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/canvas-manage-cost.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/canvas-manage-cost.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/canvas-manage-cost.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/canvas-manage-cost.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/canvas-manage-cost.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/canvas-manage-cost.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/canvas-manage-cost.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/canvas-manage-cost.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/canvas-manage-cost.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/canvas-manage-cost.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/canvas-manage-cost.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/canvas-manage-cost.html" hreflang="zh-tw" /><link rel="alternative" href="canvas-manage-cost.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Manage billing and cost in SageMaker Canvas" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Manage billing and cost in SageMaker Canvas - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#canvas-manage-cost" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-manage-cost.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-manage-cost.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-manage-cost.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,Canvas,billing,cost,tags,budget" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use machine learning environments offered by SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/machine-learning-environments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Canvas",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Manage billing and cost in SageMaker Canvas",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#canvas-manage-cost" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="canvas-manage-cost">Manage billing and cost in SageMaker Canvas</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>To track the costs associated with your SageMaker Canvas application, you can use the AWS Billing and Cost Management service.
+  Billing and Cost Management provides tools to help you gather information related to your cost and usage, analyze your
+  cost drivers and usage trends, and take action to budget your spending. For more information, see
+   <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-what-is.html">What is
+   AWS Billing and Cost Management?</a></p><p>Billing in SageMaker Canvas consists of the following components:</p><div class="itemizedlist">
+   
+   
+ <ul class="itemizedlist"><li class="listitem"><p>Workspace instance charges – You are charged for the number of hours that you are
+    logged in to or using SageMaker Canvas.</p></li><li class="listitem">
+   <p>AWS service charges – You are charged for building and making predictions with custom models,
+   or for making predictions with Ready-to-use models:</p>
+   <div class="itemizedlist">
+     
+     
+   <ul class="itemizedlist"><li class="listitem"><p>Training charges – You are charged for the resources used to build a custom model.</p></li><li class="listitem"><p>Prediction charges – You are charged for the resources used to generate predictions,
+      depending on the type of custom model that you built or the type of Ready-to-use model you
+      used.</p></li></ul></div>
+  </li></ul></div><p>The <a href="canvas-ready-to-use-models.html">Ready-to-use models</a> in Canvas leverage other AWS services to
+  generate predictions. When you use a Ready-to-use model, you are charged by the respective service, and their pricing conditions apply:</p><div class="itemizedlist">
+   
+   
+   
+ <ul class="itemizedlist"><li class="listitem"><p>For sentiment analysis, entities extraction, language detection, and personal information
+    detection, you’re charged with <a href="http://aws.amazon.com/comprehend/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon Comprehend
+     pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></li><li class="listitem"><p>For object detection in images and text detection in images, you’re charged with <a href="http://aws.amazon.com/rekognition/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon Rekognition pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></li><li class="listitem"><p>For expense analysis, identity document analysis, and document analysis, you’re charged with
+     <a href="http://aws.amazon.com/textract/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon Textract pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></li></ul></div><p>For more information, see <a href="http://aws.amazon.com/sagemaker/canvas/pricing/" rel="noopener noreferrer" target="_blank"><span>SageMaker Canvas pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><p>To help you track your costs in Billing and Cost Management, you can assign custom tags to your SageMaker Canvas app and users. You can track the costs your apps incur,
+  and by tagging individual user profiles, you can track costs based on the user profile. For more information about tags, see
+  <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html">Using Cost Allocation Tags</a>.</p><p>You can add tags to your SageMaker Canvas app and users by doing the following:</p><div class="itemizedlist">
+   
+   
+ <ul class="itemizedlist"><li class="listitem"><p>If you are setting up your Amazon SageMaker Domain and SageMaker Canvas for the first time, follow the
+   <a href="canvas-getting-started.html">Getting Started</a> instructions
+   and add tags when creating your Domain or users. You can add tags either through the <b>General settings</b> in
+   the Domain console setup, or through the APIs (<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateDomain.html">CreateDomain</a>
+   or <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateUserProfile.html">CreateUserProfile</a>). SageMaker adds the tags
+   specified in your Domain or UserProfile to any SageMaker Canvas apps or users you create after you create the Domain.</p></li><li class="listitem"><p>If you want to add tags to apps in an existing Domain, you must add tags to either the
+    Domain or the UserProfile. You can adds tags through either the console or the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AddTags.html">AddTags</a> API.
+    If you add tags through the console, then you must delete and relaunch your SageMaker Canvas app in order
+    for the tags to propagate to the app. If you use the API, the tags are added directly to the app. For
+    more information about deleting and relaunching a SageMaker Canvas app, see <a href="canvas-manage-apps.html">Manage apps</a>.</p></li></ul></div><p>After you add tags to your Domain, it might take up to 24 hours for the tags to appear in
+  the AWS Billing and Cost Management console for activation. After they appear in the console, it takes another 24 hours
+  for the tags to activate.</p><p>On the <b>Cost explorer</b> page, you can group and filter your costs by tags
+  and usage types to separate your Workspace instance (Session-Hrs) charges from your Training
+  charges. The names of the usage types are as follows:</p><div class="itemizedlist">
+   
+   
+ <ul class="itemizedlist"><li class="listitem"><p>Workspace instance (Session-Hrs) charges: <code class="code">REGION-Canvas:Session-Hrs (Hrs)</code></p></li><li class="listitem">
+    <p>Training charges:</p>
+    <div class="itemizedlist">
+      
+      
+    <ul class="itemizedlist"><li class="listitem"><p><code class="code">REGION-Canvas:CreateModelRequest-Tier0 (CreateModelRequest)</code></p></li><li class="listitem"><p><code class="code">REGION-Canvas:MillionCells-Tier1 (MillionCells)</code></p></li></ul></div>
+  </li></ul></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./canvas-limits.html">Limitations and troubleshooting</div><div id="next" class="next-link" accesskey="n" href="./geospatial.html">SageMaker geospatial capabilities</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-manage-cost.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-manage-cost.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

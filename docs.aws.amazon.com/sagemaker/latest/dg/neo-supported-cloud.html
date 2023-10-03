@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Supported Instance Types and Frameworks - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="neo-supported-cloud" /><meta name="default_state" content="neo-supported-cloud" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="neo-supported-cloud.html" /><meta name="description" content="Amazon SageMaker Neo supports popular deep learning frameworks for both compilation and deployment. You can deploy your model to cloud instances, AWS Inferentia instance types, or Amazon Elastic Inference accelerators." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="neo-supported-cloud.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/neo-supported-cloud.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/neo-supported-cloud.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/neo-supported-cloud.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/neo-supported-cloud.html" hreflang="de" /><link rel="alternative" href="neo-supported-cloud.html" hreflang="en-us" /><link rel="alternative" href="neo-supported-cloud.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/neo-supported-cloud.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/neo-supported-cloud.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/neo-supported-cloud.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/neo-supported-cloud.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/neo-supported-cloud.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/neo-supported-cloud.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/neo-supported-cloud.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/neo-supported-cloud.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/neo-supported-cloud.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/neo-supported-cloud.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/neo-supported-cloud.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/neo-supported-cloud.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/neo-supported-cloud.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/neo-supported-cloud.html" hreflang="zh-tw" /><link rel="alternative" href="neo-supported-cloud.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Supported Instance Types and Frameworks" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Supported Instance Types and Frameworks - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#neo-supported-cloud" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/neo-supported-cloud.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/neo-supported-cloud.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/neo-supported-cloud.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,inference,deploy model,endpoint,prediction,ML application,serverless machine learning,multi model deployment,inference pipelines,ML model" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploy models for inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Optimize model performance using Neo",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/neo.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Cloud Instances",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/neo-cloud-instances.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Supported Instance Types and Frameworks",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/neo-cloud-instances.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#neo-supported-cloud" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="neo-supported-cloud.html#neo-supported-cloud-instances">Cloud Instances</a><a href="neo-supported-cloud.html#neo-supported-cloud-instances-types">Instance Types</a><a href="neo-supported-cloud.html#neo-supported-inferentia">AWS Inferentia</a><a href="neo-supported-cloud.html#neo-supported-ei">Amazon Elastic Inference</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="neo-supported-cloud">Supported Instance Types and Frameworks</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon SageMaker Neo supports popular deep learning frameworks for both compilation and
+        deployment. You can deploy your model to cloud instances, AWS Inferentia instance types, 
+        or Amazon Elastic Inference accelerators.</p><p>The following describes frameworks SageMaker Neo supports and the target cloud 
+        instances you can compile and deploy to. For information on how to deploy 
+        your compiled model to a cloud or Inferentia instance,
+        see <a href="neo-deployment-hosting-services.html">Deploy a Model with Cloud Instances</a>.
+        For information on how to deploy your compiled model with Elastic Inference 
+        accelerators, see <a href="ei-endpoints.html">Use EI on Amazon SageMaker Hosted Endpoints</a>.</p>
+        <h2 id="neo-supported-cloud-instances">Cloud Instances</h2>
+        <p>SageMaker Neo supports the following deep learning frameworks for CPU and GPU cloud
+            instances: </p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac25c55c15c13b7b5"><thead>
+                    <tr>
+                        <th>Framework</th>
+                        <th>Framework Version</th>
+                        <th>Model Version</th>
+                        <th>Models</th>
+                        <th>Model Formats (packaged in *.tar.gz)</th>
+                        <th>Toolkits</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1">MXNet</td>
+                        <td tabindex="-1">1.8.0</td>
+                        <td tabindex="-1">Supports 1.8.0 or earlier</td>
+                        <td tabindex="-1">Image Classification, Object Detection, Semantic Segmentation, Pose Estimation, Activity Recognition</td>
+                        <td tabindex="-1">One symbol file (.json) and one parameter file (.params)</td>
+                        <td tabindex="-1">GluonCV v0.8.0</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">ONNX</td>
+                        <td tabindex="-1">1.7.0</td>
+                        <td tabindex="-1">Supports 1.7.0 or earlier</td>
+                        <td tabindex="-1">Image Classification, SVM</td>
+                        <td tabindex="-1">One model file (.onnx)</td>
+                        <td tabindex="-1"></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">Keras</td>
+                        <td tabindex="-1">2.2.4</td>
+                        <td tabindex="-1">Supports 2.2.4 or earlier</td>
+                        <td tabindex="-1">Image Classification</td>
+                        <td tabindex="-1">One model definition file (.h5)</td>
+                        <td tabindex="-1"></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">PyTorch</td>
+                        <td tabindex="-1">1.4, 1.5, 1.6, 1.7, 1.8, 1.12, 1.13, or 2.0</td>
+                        <td tabindex="-1">Supports 1.4, 1.5, 1.6, 1.7, 1.8, 1.12, 1.13, and 2.0</td>
+                        <td tabindex="-1">
+                            <p>Image Classification</p>
+                            <p>Versions 1.13 and 2.0 support Object Detection, Vision Transformer, and HuggingFace</p>
+                        </td>
+                        <td tabindex="-1">One model definition file (.pt or .pth) with input dtype of
+                            float32</td>
+                        <td tabindex="-1"></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">TensorFlow</td>
+                        <td tabindex="-1">1.15.3 or 2.9</td>
+                        <td tabindex="-1">Supports 1.15.3 and 2.9</td>
+                        <td tabindex="-1">Image Classification</td>
+                        <td tabindex="-1"><p>For saved models, one .pb or one .pbtxt file and a variables
+                            directory that contains variables</p>
+                            <p>For frozen models, only one .pb or
+                                .pbtxt file</p></td>
+                        <td tabindex="-1"></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">XGBoost</td>
+                        <td tabindex="-1">1.3.3</td>
+                        <td tabindex="-1">Supports 1.3.3 or earlier</td>
+                        <td tabindex="-1">Decision Trees</td>
+                        <td tabindex="-1">One XGBoost model file (.model) where the number of nodes in a tree
+                            is less than 2^31</td>
+                        <td tabindex="-1"></td>
+                    </tr>
+                </table></div></div>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>“Model Version” is the version of the framework used to train and export the
+                model. </p></div></div>
+     
+        <h2 id="neo-supported-cloud-instances-types">Instance Types</h2>
+        <p> You can deploy your SageMaker compiled model to one of the cloud instances listed below: </p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac25c55c15c13b9b5"><thead>
+                    <tr>
+                        <th>Instance</th>
+                        <th>Compute Type</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><p><code class="code">ml_c4</code></p></td>
+                        <td tabindex="-1"><p>Standard</p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><p><code class="code">ml_c5</code></p></td>
+                        <td tabindex="-1"><p>Standard</p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><p><code class="code">ml_m4</code></p></td>
+                        <td tabindex="-1"><p>Standard</p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><p><code class="code">ml_m5</code></p></td>
+                        <td tabindex="-1"><p>Standard</p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><p><code class="code">ml_p2</code></p></td>
+                        <td tabindex="-1"><p>Accelerated computing</p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><p><code class="code">ml_p3</code></p></td>
+                        <td tabindex="-1"><p>Accelerated computing</p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><p><code class="code">ml_g4dn</code></p></td>
+                        <td tabindex="-1"><p>Accelerated computing</p></td>
+                    </tr>
+                </table></div></div>
+        <p>
+            For information on the available vCPU, memory, and price per hour 
+            for each instance type, see 
+            <a href="https://aws.amazon.com/sagemaker/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon 
+                SageMaker Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+        </p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When compiling for <code class="code">ml_*</code> instances using PyTorch framework, use <b>Compiler options</b> field in <b>Output Configuration</b> to provide the
+            correct data type (<code class="code">dtype</code>) of the model’s input.</p><p>The default is set to <code class="code">"float32"</code>.</p></div></div>
+     
+        <h2 id="neo-supported-inferentia">AWS Inferentia</h2>
+        <p> SageMaker Neo supports the following deep learning frameworks for Inf1: </p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac25c55c15c13c11b5"><thead>
+                    <tr>
+                        <th>Framework</th>
+                        <th>Framework Version</th>
+                        <th>Model Version</th>
+                        <th>Models</th>
+                        <th>Model Formats (packaged in *.tar.gz)</th>
+                        <th>Toolkits</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1">MXNet</td>
+                        <td tabindex="-1">1.5 or 1.8 </td>
+                        <td tabindex="-1">Supports 1.8, 1.5 and earlier</td>
+                        <td tabindex="-1">Image Classification, Object Detection, Semantic Segmentation, Pose Estimation, Activity Recognition</td>
+                        <td tabindex="-1">One symbol file (.json) and one parameter file (.params)</td>
+                        <td tabindex="-1">GluonCV v0.8.0</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">PyTorch</td>
+                        <td tabindex="-1">1.7, 1.8 or 1.9</td>
+                        <td tabindex="-1">Supports 1.9 and earlier</td>
+                        <td tabindex="-1">Image Classification</td>
+                        <td tabindex="-1">One model definition file (.pt or .pth) with input dtype of
+                            float32</td>
+                        <td tabindex="-1"></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">TensorFlow</td>
+                        <td tabindex="-1">1.15 or 2.5</td>
+                        <td tabindex="-1">Supports 2.5, 1.15 and earlier</td>
+                        <td tabindex="-1">Image Classification</td>
+                        <td tabindex="-1"><p>For saved models, one .pb or one .pbtxt file and a variables
+                            directory that contains variables</p>
+                            <p>For frozen models, only one .pb or
+                                .pbtxt file</p></td>
+                        <td tabindex="-1"></td>
+                    </tr>
+                </table></div></div>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>“Model Version” is the version of the framework used to train and export the
+                model.</p></div></div>
+        <p>You can deploy your SageMaker Neo-compiled model to AWS Inferentia-based Amazon EC2 Inf1
+            instances. AWS Inferentia is Amazon's first custom silicon chip designed to accelerate
+            deep learning. Currently, you can use the <code class="code">ml_inf1</code> instance to deploy your
+            compiled models.</p>
+             
+                <h3 id="neo-supported-inferentia-trainium">AWS Inferentia2 and AWS Trainium</h3>
+                <p>Currently, you can deploy your SageMaker Neo-compiled model to AWS Inferentia2-based
+                    Amazon EC2 Inf2 instances (in US East (Ohio) Region), and to AWS Trainium-based Amazon EC2 Trn1
+                    instances (in US East (N. Virginia) Region). For more information about supported models
+                    on these instances, see <a href="https://awsdocs-neuron.readthedocs-hosted.com/en/latest/general/arch/model-architecture-fit.html" rel="noopener noreferrer" target="_blank"><span>
+                    Model Architecture Fit Guidelines</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the AWS Neuron documentation, and the examples in the
+                    <a href="https://github.com/aws-neuron/aws-neuron-sagemaker-samples" rel="noopener noreferrer" target="_blank"><span>Neuron Github repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+             
+     
+        <h2 id="neo-supported-ei">Amazon Elastic Inference</h2>
+        <p>SageMaker Neo supports the following deep learning frameworks for Elastic Inference:</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac25c55c15c13c13b5"><thead>
+                    <tr>
+                        <th>Framework</th>
+                        <th>Framework Version</th>
+                        <th>Model Version</th>
+                        <th>Models</th>
+                        <th>Model Formats (packaged in *.tar.gz)</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1">TensorFlow</td>
+                        <td tabindex="-1">2.3.2</td>
+                        <td tabindex="-1">Supports 2.3</td>
+                        <td tabindex="-1">Image Classification, Object Detection, Semantic Segmentation, Pose Estimation, Activity Recognition</td>
+                        <td tabindex="-1"><p>For saved models, one .pb or one .pbtxt file and a variables directory that contains variables.</p>
+                            <p>For frozen models, only one .pb or .pbtxt file.</p></td>
+                    </tr>
+                </table></div></div>
+        <p>You can deploy your SageMaker Neo-compiled model to an Elastic Inference Accelerator. For more information, see <a href="ei-endpoints.html">Use EI on Amazon SageMaker Hosted Endpoints</a>.</p>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./neo-cloud-instances.html">Cloud Instances</div><div id="next" class="next-link" accesskey="n" href="./neo-deployment-hosting-services.html">Deploy a Model</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/neo-supported-cloud.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/neo-supported-cloud.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

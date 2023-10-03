@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configure the default parameters of an Autopilot experiment (for administrators) - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="autopilot-set-default-parameters-create-experiment" /><meta name="default_state" content="autopilot-set-default-parameters-create-experiment" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="autopilot-set-default-parameters-create-experiment.html" /><meta name="description" content="Learn how to configure the default parameters of an Autopilot experiment." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="autopilot-set-default-parameters-create-experiment.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" hreflang="de" /><link rel="alternative" href="autopilot-set-default-parameters-create-experiment.html" hreflang="en-us" /><link rel="alternative" href="autopilot-set-default-parameters-create-experiment.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" hreflang="zh-tw" /><link rel="alternative" href="autopilot-set-default-parameters-create-experiment.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Configure the default parameters of an Autopilot experiment (for administrators)" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Configure the default parameters of an Autopilot experiment (for administrators) - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#autopilot-set-default-parameters-create-experiment" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,Autopilot,automatic machine learning,Auto ML,Autopilot experiment for tabular data" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use automated ML, no-code, or low-code",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/use-auto-ml.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "SageMaker Autopilot",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Create an Amazon SageMaker Autopilot experiment for tabular data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Create an Autopilot experiment using Studio",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-ui.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Configure the default parameters of an Autopilot experiment (for administrators)",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-ui.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#autopilot-set-default-parameters-create-experiment" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="autopilot-set-default-parameters-create-experiment.html#autopilot-list-default-parameters-create-experiment">Supported default parameters</a><a href="autopilot-set-default-parameters-create-experiment.html#autopilot-set-default-parameters-create-experiment-howto">Set default parameters</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="autopilot-set-default-parameters-create-experiment">Configure the default
+          parameters of an Autopilot experiment (for administrators)</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Autopilot supports setting default values to simplify the configuration of Amazon SageMaker Autopilot when you
+        create an Autopilot experiment using the Studio UI. Administrators can use Studio <a href="studio-lcc.html">lifecycle configurations</a> (LCC) to set infrastructure,
+        networking, and security values in configuration files and pre-populate the <a href="autopilot-automate-model-development-create-experiment-ui.html#advanced-settings">advanced settings</a> of <code class="code">AutoML</code> jobs.</p><p>By doing so, they can fully control network connectivity and access permissions for the
+        resources associated with Amazon SageMaker Studio, including SageMaker instances, data sources, output
+        data, and other related services. Specifically, administrators can configure a desired
+        network architecture, such as Amazon VPC, subnets, and security groups, for a Studio
+        Domain or individual user profiles. Data scientists can focus on data science specific
+        parameters when creating their Autopilot experiments using the Studio UI. Furthermore,
+        administrators can manage the encryption of data on the instance in which Autopilot experiments
+        run by setting default encryption keys.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This feature is currently not available in the Asia Pacific (Hong Kong) and Middle
+          East (Bahrain) opt-in Regions.</p></div></div><p>In the following sections, you can find the full list of parameters supporting the
+        setting of defaults when creating an Autopilot experiment using the Studio UI, and learn
+        how to set those default values.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="autopilot-set-default-parameters-create-experiment.html#autopilot-list-default-parameters-create-experiment">List of default
+            parameters supported</a></li><li><a href="autopilot-set-default-parameters-create-experiment.html#autopilot-set-default-parameters-create-experiment-howto">Set default
+            Autopilot experiment parameters</a></li></ul></div>
+        <h2 id="autopilot-list-default-parameters-create-experiment">List of default
+            parameters supported</h2>
+        <p>The following parameters support setting default values with a configuration file for
+          creating an Autopilot experiment using the Studio UI. Once set, the values automatically
+          fill in their corresponding field in the Autopilot' <b>Create Experiment</b>
+          tab in the Studio UI. See <a href="autopilot-automate-model-development-create-experiment-ui.html#advanced-settings">Advanced settings
+            (optional)</a> for a full description of each field.</p>
+
+        <div class="itemizedlist">
+           
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><b>Security:</b> Amazon VPC, subnets, and security
+              groups.</p>
+          </li><li class="listitem">
+            <p><b>Access:</b> AWS IAM role ARNs.</p>
+          </li><li class="listitem">
+            <p><b>Encryption:</b> AWS KMS key IDs.</p>
+          </li><li class="listitem">
+            <p><b>Tags:</b> Key-value pairs used to label and organize
+              SageMaker resources.</p>
+          </li></ul></div>
+       
+        <h2 id="autopilot-set-default-parameters-create-experiment-howto">Set default
+            Autopilot experiment parameters</h2>
+        <p>Administrators can set default values in a configuration file, then manually place the
+          file in a recommended location within the Studio environment of specific users, or
+          they can pass the file to a lifecycle configuration script (LCC) to automate the
+          customization of the Studio environment for a given Domain or user profile.</p>
+        <div class="itemizedlist">
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>To set up the configuration file, start by <span id="create-configuration-file" xreflabel="Set the default parameters in a           configuration file"></span>filling in its default parameters.</p>
+            <p>To configure any or all default values listed in <a href="autopilot-set-default-parameters-create-experiment.html#autopilot-list-default-parameters-create-experiment">List of default
+            parameters supported</a>,
+              administrators can create a configuration file named <code class="code">config.yaml</code>, the
+              structure of which should adhere to this <a href="https://sagemaker.readthedocs.io/en/stable/overview.html#configuration-file-structure" rel="noopener noreferrer" target="_blank"><span>sample configuration file</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. The following snippet shows a sample
+              configuration file with all the supported <code class="code">AutoML</code> parameters. For more
+              information on the format of this file, refer to the <a href="https://github.com/aws/sagemaker-python-sdk/blob/master/src/sagemaker/config/config_schema.py" rel="noopener noreferrer" target="_blank"><span>full schema</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="YAML ">SchemaVersion: '1.0'
+SageMaker:
+  AutoMLJob:
+    # https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html
+    AutoMLJobConfig:
+      SecurityConfig:
+        EnableInterContainerTrafficEncryption: true
+        VolumeKmsKeyId: '<code class="replaceable">kms-key-id</code>'
+        VpcConfig:
+          SecurityGroupIds:
+            - '<code class="replaceable">security-group-id-1</code>'
+            - '<code class="replaceable">security-group-id-2</code>'
+          Subnets:
+            - '<code class="replaceable">subnet-1</code>'
+            - '<code class="replaceable">subnet-2</code>'
+    OutputDataConfig:
+      KmsKeyId: '<code class="replaceable">kms-key-id</code>'
+    RoleArn: '<code class="replaceable">arn:aws:iam::111222333444:role/Admin</code>'
+    Tags:
+    - Key: '<code class="replaceable">tag_key</code>'
+      Value: '<code class="replaceable">tag_value</code>'</code></pre>
+          </li><li class="listitem">
+            <p>Then, place the configuration file in the recommended location by either <a href="autopilot-set-default-parameters-create-experiment.html#autopilot-intelligent-defaults-manual-setup">manually copying the
+                file</a> to its recommended paths or using a <a href="autopilot-set-default-parameters-create-experiment.html#autopilot-intelligent-defaults-lcc-setup">lifecycle configuration</a>
+              (LCC).</p>
+            <p>The configuration file needs to be present in at least one of the following
+              locations in the user's Studio environment. By default, SageMaker searches for a
+              configuration file in two locations:</p>
+            <div class="itemizedlist">
+               
+               
+            <ul class="itemizedlist"><li class="listitem">
+                <p>First, in <code class="code">/etc/xdg/sagemaker/config.yaml</code>. We refer to this file
+                  as the <em>administrator configuration file</em>.</p>
+              </li><li class="listitem">
+                <p>Then, in <code class="code">/root/.config/sagemaker/config.yaml</code>. We refer to this
+                  file as the <em>user configuration file</em>.</p>
+              </li></ul></div>
+
+            <p>Using the <em>administrator</em> configuration file,
+              administrators can define a set of default values. Optionally, they can use the
+                <em>user</em> configuration file to override values set in
+              the <em>administrator</em> configuration file, or set
+              additional default parameter values.</p>
+
+            <p><span id="autopilot-intelligent-defaults-script" xreflabel="Intelligent defaults script"></span>The following snippet shows a sample script
+              which writes the default parameters configuration file to the <em>administrator</em> location in the user's Studio environment. You can
+              replace <code class="code">/etc/xdg/sagemaker</code> with <code class="code">/root/.config/sagemaker</code> to
+              write the file to the <em>user</em> location.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="YAML ">## Sample script with AutoML intelligent defaults
+#!/bin/bash
+
+sudo mkdir -p /etc/xdg/sagemaker
+
+echo "SchemaVersion: '1.0'
+CustomParameters:
+  AnyStringKey: 'AnyStringValue'
+SageMaker:
+  AutoMLJob:
+    # https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html
+    AutoMLJobConfig:
+      SecurityConfig:
+        EnableInterContainerTrafficEncryption: true
+        VolumeKmsKeyId: '<code class="replaceable">kms-key-id</code>'
+        VpcConfig:
+          SecurityGroupIds:
+            - '<code class="replaceable">security-group-id-1</code>'
+            - '<code class="replaceable">security-group-id-2</code>'
+          Subnets:
+            - '<code class="replaceable">subnet-1</code>'
+            - '<code class="replaceable">subnet-2</code>'
+    OutputDataConfig:
+      KmsKeyId: '<code class="replaceable">kms-key-id</code>'
+    RoleArn: '<code class="replaceable">arn:aws:iam::111222333444:role/Admin</code>'
+    Tags:
+    - Key: '<code class="replaceable">tag_key</code>'
+      Value: '<code class="replaceable">tag_value</code>'
+" | sudo tee /etc/xdg/sagemaker/config.yaml</code></pre>
+
+            <div class="itemizedlist">
+               
+               
+            <ul class="itemizedlist"><li class="listitem">
+                <p><span id="autopilot-intelligent-defaults-manual-setup" xreflabel="Copy the file manually"></span><b>Copy the files
+                    manually</b> – To copy the configuration files manually, run the
+                    <a href="autopilot-set-default-parameters-create-experiment.html#autopilot-intelligent-defaults-manual-setup">script</a>
+                  created in the previous step from a Studio terminal. In this case, the user
+                  profile that executed the script can create Autopilot experiments with the default
+                  values applicable only to them.</p>
+              </li><li class="listitem">
+                <p><span id="autopilot-intelligent-defaults-lcc-setup" xreflabel="Create a SageMaker Lifecycle Configuration"></span>
+                  <b>Create a SageMaker lifecycle configuration</b> –
+                  Alternatively, you can use a <a href="studio-lcc.html">lifecycle configuration</a> (LCC)
+                  to automate the customization of your Studio environment. LCC are shell
+                  scripts triggered by Amazon SageMaker Studio lifecycle events such as starting a Studio
+                  application. This customization includes installing custom packages, configuring
+                  notebook extensions, pre-loading datasets, setting up source code repositories,
+                  or, in our case, pre-populating default parameters. Administrators can attach the
+                  LCC to a Studio Domain to automate the configuration of default values for
+                  each user profile within that Domain.</p>
+                <p>The following sections detail how to create a lifecycle configuration so users
+                  can load Autopilot default parameters automatically when launching Studio. You
+                  can choose to create an LCC using the SageMaker Console or the AWS CLI.</p>
+                <awsdocs-tabs><dl style="display: none">
+                  <dt>Create a LCC from the SageMaker Console</dt><dd tab-id="create-a-lcc-from-the-sagemaker-console">
+                      <p>Use the following steps to create an LCC containing your default
+                        parameters, attach the LCC to a Domain or a user profile, then launch a
+                        Studio application pre-populated with the default parameters set by the
+                        LCC using the SageMaker Console.</p>
+                      <div class="itemizedlist">
+                         
+                         
+                         
+                      <ul class="itemizedlist"><li class="listitem">
+                          <p><b>To create a lifecycle configuration that runs
+                              the <a href="autopilot-set-default-parameters-create-experiment.html#autopilot-intelligent-defaults-script">script</a> containing your default values using the SageMaker
+                              Console</b></p>
+                          <div class="itemizedlist">
+                             
+                             
+                             
+                             
+                             
+                             
+                          <ul class="itemizedlist"><li class="listitem">
+                              <p>Open the SageMaker console at <a href="https://console.aws.amazon.com/sagemaker/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/sagemaker/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                            </li><li class="listitem">
+                              <p>On the left side, under the SageMaker dashboard, choose
+                                  <b>Lifecycle configurations</b>.</p>
+                            </li><li class="listitem">
+                              <p>From the <b>Lifecycle configurations</b> page, on
+                                the <b>Domain</b> tab, choose <b>Create
+                                  configuration</b>.</p>
+                            </li><li class="listitem">
+                              <p>For <b>Name</b>, type a name using alphanumeric
+                                characters and "-", but no spaces. The name can have a maximum of 63
+                                characters.</p>
+                            </li><li class="listitem">
+                              <p>Paste your <a href="autopilot-set-default-parameters-create-experiment.html#autopilot-intelligent-defaults-script">script</a> in the <b>Scripts</b> section.</p>
+                            </li><li class="listitem">
+                              <p>Choose <b>Submit</b> to create the lifecycle
+                                configuration.</p>
+                            </li></ul></div>
+                        </li><li class="listitem">
+                          <p>
+                            <b>To attach the lifecycle configuration to a
+                              Studio Domain or a user profile</b></p>
+                          <p>Follow the steps in <a href="studio-lcc-create-console.html#studio-lcc-create-console-step2">Attach the lifecycle configuration to Studio Domain or user
+                              profile </a> to attach your LCC to a Studio Domain or a
+                            specific user profile.</p>
+                        </li><li class="listitem">
+                          <p>
+                            <b>To launch your Studio application with the
+                              lifecycle configuration</b></p>
+                          <p>Once the LCC is attached to a Domain or a user profile, impacted
+                            users can start a Studio application from the AWS Console to pick
+                            up the defaults set by the LCC automatically. This auto-populates the
+                            Studio UI when creating an Autopilot experiment.</p>
+                        </li></ul></div>
+                    </dd>
+                  <dt>Create a LCC from the AWS CLI</dt><dd tab-id="create-a-lcc-from-the-aws-cli">
+
+                      <p>Use the following snippets to launch a Studio application that runs
+                        your <a href="autopilot-set-default-parameters-create-experiment.html#autopilot-intelligent-defaults-manual-setup">script</a> using the AWS CLI. Note that <code class="code">lifecycle_config.sh</code>
+                        is the name given to your script in this example.</p>
+                      <p>Before getting started:</p>
+                      <div class="itemizedlist">
+                         
+                         
+                      <ul class="itemizedlist"><li class="listitem">
+                          <p>Ensure that you have updated and configured AWS CLI by completing the
+                            prerequisites described in <a href="studio-lcc-create-cli.html">Create a
+                              lifecycle configuration from the AWS CLI</a>.</p>
+                        </li><li class="listitem">
+                          <p>Install <a href="https://www.openssl.org/source/" rel="noopener noreferrer" target="_blank"><span>OpenSSL</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+                            documentation. The AWS CLI command uses the open-source library <em>OpenSSL</em> to encode your script in Base64
+                            format. This requirement prevents errors that occur from spacing and
+                            line break encoding.</p>
+                        </li></ul></div>
+                      <p>You can now follow these three steps:</p>
+                      <div class="itemizedlist">
+                         
+                         
+                         
+                      <ul class="itemizedlist"><li class="listitem">
+                          <p>
+                            <b>Create a new lifecycle configuration referencing
+                              the configuration script
+                            <code class="code">lifecycle_config.sh</code></b></p>
+
+                          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="YAML ">LCC_CONTENT=`openssl base64 -A -in <code class="replaceable">lifecycle_config.sh</code>`
+
+## Create a new lifecycle config 
+aws sagemaker create-studio-lifecycle-config --region <code class="replaceable">region</code> \
+--studio-lifecycle-config-name <code class="replaceable">lcc-name</code> \
+--studio-lifecycle-config-content $LCC_CONTENT \
+--studio-lifecycle-config-app-type default</code></pre>
+                          <p>Note the ARN of the newly created lifecycle configuration that is
+                            returned. This ARN is required to attach the lifecycle configuration to
+                            your application.</p>
+                        </li><li class="listitem">
+                          <p>
+                            <b>Attach the lifecycle configuration to your
+                                <code class="code">JupyterServerApp</code></b></p>
+                          <p>The following example shows how to create a new user profile with a
+                            lifecycle configuration attached. To update an existing user profile,
+                            use the AWS CLI <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/sagemaker/update-user-profile.html" rel="noopener noreferrer" target="_blank"><span>update-user-profile</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command. To create or update a
+                            Domain, see <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/sagemaker/create-domain.html" rel="noopener noreferrer" target="_blank"><span>create-domain</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/sagemaker/update-domain.html" rel="noopener noreferrer" target="_blank"><span>update-domain</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. Add the lifecycle configuration ARN from the
+                            previous step to the settings of the
+                              <code class="code">JupyterServerAppSettings</code> application type. You can add
+                            multiple lifecycle configurations at the same time by using a list of
+                            lifecycle configurations.</p>
+                          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="YAML "># Create a new UserProfile
+aws sagemaker create-user-profile --domain-id <code class="replaceable">domain-id</code> \
+--user-profile-name <code class="replaceable">user-profile-name</code> \
+--region <code class="replaceable">region</code> \
+--user-settings '<span>{</span>
+"JupyterServerAppSettings": <span>{</span>
+  "LifecycleConfigArns":
+    ["<code class="replaceable">lifecycle-configuration-arn</code>"]
+  }
+}'</code></pre>
+                          <p>Once the LCC is attached to a Domain or a user profile, impacted
+                            users can shut down and update their existing Studio application by
+                            following the steps in <a href="studio-tasks-update-studio.html">Shut down
+                              and Update Amazon SageMaker Studio</a>, or start a new Studio
+                            application from the AWS Console to pick up the defaults set by the
+                            LCC automatically. This auto-populates the Studio UI when creating
+                            an Autopilot experiment. Alternatively, they can launch a new Studio
+                            application using the AWS CLI as follows.</p>
+                        </li><li class="listitem">
+                          <p>
+                            <b>Launch your Studio application with the
+                              lifecycle configuration using the AWS CLI</b></p>
+
+                          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="YAML "># Create a Jupyter Server application
+aws sagemaker create-app --domain-id <code class="replaceable">domain-id</code> \
+--user-profile-name <code class="replaceable">user-profile-name</code> \
+--region <code class="replaceable">region</code> \
+--app-type JupyterServer \
+--resource-spec LifecycleConfigArn=<code class="replaceable">lifecycle-configuration-arn</code> \
+--app-name default</code></pre>
+                          <p>For more information on creating a lifecycle configuration using the
+                            AWS CLI, see <a href="studio-lcc-create-cli.html">Create a
+                              Lifecycle Configuration from the AWS CLI</a>.</p>
+                        </li></ul></div>
+                    </dd>
+                </dl></awsdocs-tabs>
+              </li></ul></div>
+          </li></ul></div>
+      <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./autopilot-automate-model-development-create-experiment-ui.html">Create an Autopilot experiment using Studio</div><div id="next" class="next-link" accesskey="n" href="./autopilot-automate-model-development-create-experiment-api.html">Create an Autopilot Experiment Programmatically</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-set-default-parameters-create-experiment.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

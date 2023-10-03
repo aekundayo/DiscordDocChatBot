@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>AWS managed policies for Amazon SageMaker Canvas - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="security-iam-awsmanpol-canvas" /><meta name="default_state" content="security-iam-awsmanpol-canvas" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="security-iam-awsmanpol-canvas.html" /><meta name="description" content="Learn about AWS managed policies for SageMaker Canvas and recent changes to those policies." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="security-iam-awsmanpol-canvas.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" hreflang="de" /><link rel="alternative" href="security-iam-awsmanpol-canvas.html" hreflang="en-us" /><link rel="alternative" href="security-iam-awsmanpol-canvas.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" hreflang="zh-tw" /><link rel="alternative" href="security-iam-awsmanpol-canvas.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="AWS managed policies for Amazon SageMaker Canvas" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>AWS managed policies for Amazon SageMaker Canvas - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#security-iam-awsmanpol-canvas" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,amazon, managed policy,permission,users, groups, roles,sagemaker,AmazonSageMakerFullAccess, full access,AmazonSageMakerReadOnly, read only" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Configure security in Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/security.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Identity and Access Management for Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/security-iam.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "AWS Managed Policies for Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/security-iam-awsmanpol.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "AWS managed policies for Amazon SageMaker Canvas",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/security-iam-awsmanpol.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#security-iam-awsmanpol-canvas" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="security-iam-awsmanpol-canvas.html#security-iam-awsmanpol-AmazonSageMakerCanvasFullAccess">AmazonSageMakerCanvasFullAccess</a><a href="security-iam-awsmanpol-canvas.html#security-iam-awsmanpol-AmazonSageMakerCanvasForecastAccess">AmazonSageMakerCanvasForecastAccess</a><a href="security-iam-awsmanpol-canvas.html#security-iam-awsmanpol-AmazonSageMakerCanvasAIServicesAccess">AmazonSageMakerCanvasAIServicesAccess</a><a href="security-iam-awsmanpol-canvas.html#security-iam-awsmanpol-canvas-updates">SageMaker Canvas policy updates</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="security-iam-awsmanpol-canvas">AWS managed policies for Amazon SageMaker Canvas</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>These AWS managed policies add permissions required to use Amazon SageMaker Canvas. The policies are
+        available in your AWS account and are used by execution roles created from the SageMaker
+        console.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="security-iam-awsmanpol-canvas.html#security-iam-awsmanpol-AmazonSageMakerCanvasFullAccess">AWS managed
+                policy: AmazonSageMakerCanvasFullAccess</a></li><li><a href="security-iam-awsmanpol-canvas.html#security-iam-awsmanpol-AmazonSageMakerCanvasForecastAccess">AWS
+                managed policy: AmazonSageMakerCanvasForecastAccess</a></li><li><a href="security-iam-awsmanpol-canvas.html#security-iam-awsmanpol-AmazonSageMakerCanvasAIServicesAccess">AWS
+                managed policy: AmazonSageMakerCanvasAIServicesAccess</a></li><li><a href="security-iam-awsmanpol-canvas.html#security-iam-awsmanpol-canvas-updates">Amazon SageMaker updates to Amazon SageMaker Canvas
+                managed policies</a></li></ul></div>
+        <h2 id="security-iam-awsmanpol-AmazonSageMakerCanvasFullAccess">AWS managed
+                policy: AmazonSageMakerCanvasFullAccess</h2>
+        <p>This policy grants permissions that allow full access to Amazon SageMaker Canvas through the
+            AWS Management Console and SDK. The policy also provides select access to related services [for
+            example, Amazon Simple Storage Service (Amazon S3), AWS Identity and Access Management (IAM), Amazon Virtual Private Cloud (Amazon VPC), Amazon Elastic Container Registry (Amazon ECR),
+            Amazon CloudWatch Logs, Amazon Redshift, AWS Secrets Manager, Amazon SageMaker Autopilot, SageMaker Model Registry, and Amazon Forecast].</p>
+        <p>This policy is intended to help customers experiment and get started with all the
+            capabilities of SageMaker Canvas. For more fine-grained control, we suggest customers build their
+            own scoped down versions as they move to production workloads. For more information, see
+            <a href="http://aws.amazon.com/blogs/security/iam-policy-types-how-and-when-to-use-them/" rel="noopener noreferrer" target="_blank"><span>IAM
+                policy types: How and when to use them</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+
+        <p><b>Permissions details</b></p>
+        <p>This AWS managed policy includes the following permissions.</p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><code class="code">sagemaker</code> – Allows principals to create and host SageMaker
+                    models on resources whose ARN contains "Canvas", "canvas", or
+                    "model-compilation-". Additionally, users can register their SageMaker Canvas model to SageMaker
+                    Model Registry in the same AWS account.</p>
+            </li><li class="listitem">
+                <p><code class="code">ec2</code> – Allows principals to create Amazon VPC endpoints.</p>
+            </li><li class="listitem">
+                <p><code class="code">ecr</code> – Allows principals to get information about a
+                    container image.</p>
+            </li><li class="listitem">
+                <p><code class="code">glue</code> – Allows principals to retrieve the tables in the
+                    catalog.</p>
+            </li><li class="listitem">
+                <p><code class="code">iam</code> – Allows principals to pass an IAM role to Amazon SageMaker
+                    and Amazon Forecast.</p>
+            </li><li class="listitem">
+                <p><code class="code">logs</code> – Allows principals to publish logs from training
+                    jobs and endpoints.</p>
+            </li><li class="listitem">
+                <p><code class="code">s3</code> – Allows principals to add and retrieve objects from
+                    Amazon S3 buckets. These objects are limited to those whose name includes
+                    "SageMaker", "Sagemaker", or "sagemaker".</p>
+            </li><li class="listitem">
+                <p><code class="code">secretsmanager</code> – Allows principals to store customer
+                    credentials to connect to a Snowflake database using Secrets Manager.</p>
+            </li><li class="listitem">
+                <p><code class="code">redshift</code> – Allows principals to get credentials for a
+                    "sagemaker_access*" dbuser on any Amazon Redshift cluster if that user exists.</p>
+            </li><li class="listitem">
+                <p><code class="code">redshift-data</code> – Allows principals to run queries on
+                    Amazon Redshift using the Amazon Redshift Data API. This only provides access to the Redshift Data APIs themselves
+                    and does not directly provide access to your Amazon Redshift clusters. For more
+                    information, see
+                    <a href="https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html">Using the Amazon Redshift Data API</a>.</p>
+            </li><li class="listitem">
+                <p><code class="code">forecast</code> – Allows principals to use Amazon Forecast.</p>
+            </li><li class="listitem">
+                <p><code class="code">application-autoscaling</code> – Allows principals to
+                    automatically scale a SageMaker inference endpoint.</p>
+            </li><li class="listitem">
+                <p><code class="code">rds</code> – Allows principals to return information about
+                     provisioned Amazon RDS instances.</p>
+            </li></ul></div>
+
+        <div class="minimized-block" data-minimized="true"><div class="minimized-content" data-minimized-height="1000">
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                 "sagemaker:DescribeDomain",
+                 "sagemaker:DescribeUserProfile",
+                 "sagemaker:ListTags",
+                 "sagemaker:ListModelPackages",
+                 "sagemaker:ListModelPackageGroups"
+            ],
+            "Resource": "*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreateModelPackageGroup",
+                "sagemaker:CreateModelPackage",
+                "sagemaker:DescribeModelPackageGroup",
+                "sagemaker:DescribeModelPackage"
+            ],
+            "Resource": [
+                "arn:aws:sagemaker:*:*:model-package/*",
+                "arn:aws:sagemaker:*:*:model-package-group/*"
+            ]
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreateCompilationJob",
+                "sagemaker:CreateEndpoint",
+                "sagemaker:CreateEndpointConfig",
+                "sagemaker:CreateModel",
+                "sagemaker:CreateProcessingJob",
+                "sagemaker:CreateAutoMLJob",
+                "sagemaker:CreateAutoMLJobV2"
+                "sagemaker:DeleteEndpoint",
+                "sagemaker:DescribeCompilationJob",
+                "sagemaker:DescribeEndpoint",
+                "sagemaker:DescribeEndpointConfig",
+                "sagemaker:DescribeModel",
+                "sagemaker:DescribeProcessingJob",
+                "sagemaker:DescribeAutoMLJob",
+                "sagemaker:DescribeAutoMLJobV2",
+                "sagemaker:ListCandidatesForAutoMLJob",
+                "sagemaker:AddTags",
+                "sagemaker:DeleteApp"
+            ],
+            "Resource": [
+                "arn:aws:sagemaker:*:*:*Canvas*",
+                "arn:aws:sagemaker:*:*:*canvas*",
+                "arn:aws:sagemaker:*:*:*model-compilation-*"
+            ]
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "ec2:CreateVpcEndpoint",
+                "ec2:DescribeSecurityGroups",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeVpcs",
+                "ec2:DescribeVpcEndpoints",
+                "ec2:DescribeVpcEndpointServices"
+            ],
+            "Resource": "*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "ecr:BatchGetImage",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:GetAuthorizationToken"
+            ],
+            "Resource": "*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "iam:GetRole"
+            ],
+            "Resource": "arn:aws:iam::*:role/*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "iam:PassRole"
+            ],
+            "Resource": "arn:aws:iam::*:role/*",
+            "Condition": <span>{</span>
+                "StringEquals": <span>{</span>
+                    "iam:PassedToService": "sagemaker.amazonaws.com"
+                }
+            }
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:*:*:log-group:/aws/sagemaker/*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:DeleteObject",
+                "s3:CreateBucket",
+                "s3:GetBucketCors",
+                "s3:GetBucketLocation"
+            ],
+            "Resource": [
+                "arn:aws:s3:::*SageMaker*",
+                "arn:aws:s3:::*Sagemaker*",
+                "arn:aws:s3:::*sagemaker*"
+            ]
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket",
+                "s3:ListAllMyBuckets"
+            ],
+            "Resource": "*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "glue:SearchTables",
+            ],
+            "Resource": [
+                "arn:aws:glue:*:*:table/*/*",
+                "arn:aws:glue:*:*:database/*",
+                "arn:aws:glue:*:*:catalog"
+            ]
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:DescribeSecret",
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:CreateSecret",
+                "secretsmanager:PutResourcePolicy"
+            ],
+            "Resource": [
+                "arn:aws:secretsmanager:*:*:secret:AmazonSageMaker-*"
+            ]
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:DescribeSecret",
+                "secretsmanager:GetSecretValue"
+            ],
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "StringEquals": <span>{</span>
+                    "secretsmanager:ResourceTag/SageMaker": "true"
+                }
+            }
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "redshift-data:ExecuteStatement",
+                "redshift-data:DescribeStatement",
+                "redshift-data:CancelStatement",
+                "redshift-data:GetStatementResult",
+                "redshift-data:ListSchemas",
+                "redshift-data:ListTables",
+                "redshift-data:DescribeTable"
+            ],
+            "Resource": "*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "redshift:GetClusterCredentials"
+            ],
+            "Resource": [
+                "arn:aws:redshift:*:*:dbuser:*/sagemaker_access*",
+                "arn:aws:redshift:*:*:dbname:*"
+            ]
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "forecast:CreateExplainabilityExport",
+                "forecast:CreateExplainability",
+                "forecast:CreateForecastEndpoint",
+                "forecast:CreateAutoPredictor",
+                "forecast:CreateDatasetImportJob",
+                "forecast:CreateDatasetGroup",
+                "forecast:CreateDataset",
+                "forecast:CreateForecast",
+                "forecast:CreateForecastExportJob",
+                "forecast:CreatePredictorBacktestExportJob",
+                "forecast:CreatePredictor",
+                "forecast:DescribeExplainabilityExport",
+                "forecast:DescribeExplainability",
+                "forecast:DescribeAutoPredictor",
+                "forecast:DescribeForecastEndpoint",
+                "forecast:DescribeDatasetImportJob",
+                "forecast:DescribeDataset",
+                "forecast:DescribeForecast",
+                "forecast:DescribeForecastExportJob",
+                "forecast:DescribePredictorBacktestExportJob",
+                "forecast:GetAccuracyMetrics",
+                "forecast:InvokeForecastEndpoint",
+                "forecast:GetRecentForecastContext",
+                "forecast:DescribePredictor",
+                "forecast:TagResource",
+                "forecast:DeleteResourceTree"
+            ],
+            "Resource": [
+                "arn:aws:forecast:*:*:*Canvas*"
+            ]
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": "rds:DescribeDBInstances",
+            "Resource": [
+                "*"
+            ]
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "iam:PassRole"
+            ],
+            "Resource": "arn:aws:iam::*:role/*",
+            "Condition": <span>{</span>
+                "StringEquals": <span>{</span>
+                    "iam:PassedToService": "forecast.amazonaws.com"
+                }
+            }
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "application-autoscaling:PutScalingPolicy",
+                "application-autoscaling:RegisterScalableTarget"
+            ],
+            "Resource": "arn:aws:application-autoscaling:*:*:scalable-target/*",
+            "Condition": <span>{</span>
+                "StringEquals": <span>{</span>
+                    "application-autoscaling:service-namespace": "sagemaker",
+                    "application-autoscaling:scalable-dimension": "sagemaker:variant:DesiredInstanceCount"
+                }
+            }
+        }
+    ]
+}</code></pre>
+        <div class="minimized-fader"></div></div><div class="show-more-btn"><a href="security-iam-awsmanpol-canvas.html#"><awsui-icon class="show-more-text" variant="link" name="caret-right-filled"></awsui-icon><span class="show-more-text">Show more</span><awsui-icon class="show-less-text" variant="link" name="caret-up-filled"></awsui-icon><span class="show-less-text">Show less</span></a></div></div>
+     
+        <h2 id="security-iam-awsmanpol-AmazonSageMakerCanvasForecastAccess">AWS
+                managed policy: AmazonSageMakerCanvasForecastAccess</h2>
+        <p>This policy grants permissions commonly needed to use SageMaker Canvas with Amazon Forecast.</p>
+
+        <p><b>Permissions details</b></p>
+        <p>This AWS managed policy includes the following permissions.</p>
+        <div class="itemizedlist">
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><code class="code">s3</code> – Allows principals to add and retrieve objects from
+                    Amazon S3 buckets. These objects are limited to those whose case-insensitive name
+                    starts with "sagemaker-".</p>
+            </li></ul></div>
+
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::sagemaker-*/Canvas",
+                "arn:aws:s3:::sagemaker-*/canvas"
+            ]
+        }
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::sagemaker-*"
+            ]
+        }
+    ]
+}</code></pre>
+     
+        <h2 id="security-iam-awsmanpol-AmazonSageMakerCanvasAIServicesAccess">AWS
+                managed policy: AmazonSageMakerCanvasAIServicesAccess</h2>
+        <p>This policy grants permissions for Amazon SageMaker Canvas to use Amazon Textract, Amazon Rekognition, and
+            Amazon Comprehend.</p>
+
+        <p><b>Permissions details</b></p>
+        <p>This AWS managed policy includes the following permissions.</p>
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><code class="code">textract</code> – Allows principals to use Amazon Textract to detect
+                    documents, expenses, and identities within an image.</p>
+            </li><li class="listitem">
+                <p><code class="code">rekognition</code> – Allows principals to use Amazon Rekognition to detect
+                    labels and text within an image.</p>
+            </li><li class="listitem">
+                <p><code class="code">comprehend</code> – Allows principals to use Amazon Comprehend to detect
+                    sentiment and dominant language, and named and personally identifiable
+                    information (PII) entities within a text document.</p>
+            </li></ul></div>
+
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "textract:AnalyzeDocument",
+                "textract:AnalyzeExpense",
+                "textract:AnalyzeID",
+                "textract:StartDocumentAnalysis",
+                "textract:StartExpenseAnalysis",
+                "textract:GetDocumentAnalysis",
+                "textract:GetExpenseAnalysis"
+            ],
+            "Resource": "*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "rekognition:DetectLabels",
+                "rekognition:DetectText"
+            ],
+            "Resource": "*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "comprehend:BatchDetectDominantLanguage",
+                "comprehend:BatchDetectEntities",
+                "comprehend:BatchDetectSentiment",
+                "comprehend:DetectPiiEntities",
+                "comprehend:DetectEntities",
+                "comprehend:DetectSentiment",
+                "comprehend:DetectDominantLanguage",
+            ],
+            "Resource": "*"
+        }
+    ]
+}</code></pre>
+     
+        <h2 id="security-iam-awsmanpol-canvas-updates">Amazon SageMaker updates to Amazon SageMaker Canvas
+                managed policies</h2>
+        <p>View details about updates to AWS managed policies for SageMaker Canvas since this service
+            began tracking these changes.</p>
+        
+        <div class="table-container"><div class="table-contents"><table id="w714aac39c17c34c30c13b7"><thead>
+                    <tr>
+                        <th>Policy</th>
+                        <th>Version</th>
+                        <th>Change</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1">
+                            <p><a href="security-iam-awsmanpol-canvas.html#security-iam-awsmanpol-AmazonSageMakerCanvasFullAccess">AmazonSageMakerCanvasFullAccess</a>
+                                - Update to an existing policy</p>
+                        </td>
+                        <td tabindex="-1"><p>6</p></td>
+                        <td tabindex="-1">
+                            <p>Add <code class="code">rds:DescribeDBInstances</code> permission.</p>
+                        </td>
+                        <td tabindex="-1">August 29, 2023</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><p>AmazonSageMakerCanvasFullAccess - Update to an existing
+                                policy</p></td>
+                        <td tabindex="-1"><p>5</p></td>
+                        <td tabindex="-1">
+                            <p>Add <code class="code">application-autoscaling:PutScalingPolicy</code> and
+                                <code class="code">application-autoscaling:RegisterScalableTarget</code> permissions.</p>
+                        </td>
+                        <td tabindex="-1">July 24, 2023</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><p>AmazonSageMakerCanvasFullAccess - Update to an existing
+                                policy</p></td>
+                        <td tabindex="-1"><p>4</p></td>
+                        <td tabindex="-1">
+                            <p>Add <code class="code">sagemaker:CreateModelPackage</code>,
+                                    <code class="code">sagemaker:CreateModelPackageGroup</code>,
+                                    <code class="code">sagemaker:DescribeModelPackage</code>,
+                                    <code class="code">sagemaker:DescribeModelPackageGroup</code>,
+                                    <code class="code">sagemaker:ListModelPackages</code>, and
+                                    <code class="code">sagemaker:ListModelPackageGroups</code>
+                                permissions.</p>
+                        </td>
+                        <td tabindex="-1">May 4, 2023</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>AmazonSageMakerCanvasFullAccess - Update to an existing
+                                policy</p>
+                        </td>
+                        <td tabindex="-1"><p>3</p></td>
+                        <td tabindex="-1">
+                            <p>Add <code class="code">sagemaker:CreateAutoMLJobV2</code>,
+                                    <code class="code">sagemaker:DescribeAutoMLJobV2</code>, and
+                                    <code class="code">glue:SearchTables</code> permissions.</p>
+                        </td>
+                        <td tabindex="-1">March 24, 2023</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p><a href="security-iam-awsmanpol-canvas.html#security-iam-awsmanpol-AmazonSageMakerCanvasAIServicesAccess">AmazonSageMakerCanvasAIServicesAccess</a>
+                                - New policy</p>
+                        </td>
+                        <td tabindex="-1"><p>1</p></td>
+                        <td tabindex="-1">
+                            <p>Initial policy</p>
+                        </td>
+                        <td tabindex="-1">March 23, 2023</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><p>AmazonSageMakerCanvasFullAccess - Update to an existing
+                                policy</p></td>
+                        <td tabindex="-1"><p>2</p></td>
+                        <td tabindex="-1">
+                            <p>Add <code class="code">forecast:DeleteResourceTree</code> permission.</p>
+                        </td>
+                        <td tabindex="-1">December 6, 2022</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><p>AmazonSageMakerCanvasFullAccess - New policy</p></td>
+                        <td tabindex="-1"><p>1</p></td>
+                        <td tabindex="-1">
+                            <p>Initial policy</p>
+                        </td>
+                        <td tabindex="-1">September 8, 2022</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p><a href="security-iam-awsmanpol-canvas.html#security-iam-awsmanpol-AmazonSageMakerCanvasForecastAccess">AmazonSageMakerCanvasForecastAccess</a>
+                                - New policy</p>
+                        </td>
+                        <td tabindex="-1"><p>1</p></td>
+                        <td tabindex="-1">
+                            <p>Initial policy</p>
+                        </td>
+                        <td tabindex="-1">August 24, 2022</td>
+                    </tr>
+                </table></div></div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./security-iam-awsmanpol.html">AWS Managed Policies for SageMaker</div><div id="next" class="next-link" accesskey="n" href="./security-iam-awsmanpol-feature-store.html">SageMaker Feature Store</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

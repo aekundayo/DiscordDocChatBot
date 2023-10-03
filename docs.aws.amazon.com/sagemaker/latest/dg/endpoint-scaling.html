@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Update or delete endpoints that use automatic scaling - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="endpoint-scaling" /><meta name="default_state" content="endpoint-scaling" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="endpoint-scaling.html" /><meta name="description" content="Learn how to update or delete endpoints with Application Auto Scaling." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="endpoint-scaling.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/endpoint-scaling.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/endpoint-scaling.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/endpoint-scaling.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/endpoint-scaling.html" hreflang="de" /><link rel="alternative" href="endpoint-scaling.html" hreflang="en-us" /><link rel="alternative" href="endpoint-scaling.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/endpoint-scaling.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/endpoint-scaling.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/endpoint-scaling.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/endpoint-scaling.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/endpoint-scaling.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/endpoint-scaling.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/endpoint-scaling.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/endpoint-scaling.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/endpoint-scaling.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/endpoint-scaling.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/endpoint-scaling.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/endpoint-scaling.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/endpoint-scaling.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/endpoint-scaling.html" hreflang="zh-tw" /><link rel="alternative" href="endpoint-scaling.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Update or delete endpoints that use automatic scaling" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Update or delete endpoints that use automatic scaling - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#endpoint-scaling" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/endpoint-scaling.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/endpoint-scaling.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/endpoint-scaling.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,inference,deploy model,endpoint,prediction,ML application,serverless machine learning,multi model deployment,inference pipelines,ML model,auto scale,update auto scaled endpoint,delete auto scaled endpoint,deregister auto scaled endpoint" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploy models for inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Real-time inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Automatically Scale Amazon SageMaker Models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/endpoint-auto-scaling.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Update or delete endpoints that use automatic scaling",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/endpoint-auto-scaling.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#endpoint-scaling" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="endpoint-scaling.html#endpoint-scaling-update">Update endpoints that use automatic
+                    scaling</a><a href="endpoint-scaling.html#endpoint-delete-with-scaling">Delete endpoints configured for
+                    automatic scaling</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="endpoint-scaling">Update or delete endpoints that use automatic
+                scaling</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="endpoint-scaling.html#endpoint-scaling-update">Update endpoints that use automatic
+                    scaling</a></li><li><a href="endpoint-scaling.html#endpoint-delete-with-scaling">Delete endpoints configured for
+                    automatic scaling</a></li></ul></div>
+            <h2 id="endpoint-scaling-update">Update endpoints that use automatic
+                    scaling</h2>
+            <p>When you update an endpoint, Application Auto Scaling checks to see whether any of the models on
+                that endpoint are targets for automatic scaling. If the update would change the
+                instance type for any model that is a target for automatic scaling, the update
+                fails. </p>
+            <p>In the AWS Management Console, you see a warning that you must deregister the model from
+                automatic scaling before you can update it. If you are trying to update the endpoint
+                by calling the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpoint.html"><code class="code">UpdateEndpoint</code></a> API, the call fails. Before you update the
+                endpoint, delete any scaling policies configured for it by calling the <a href="https://docs.aws.amazon.com/autoscaling/application/APIReference/API_DeleteScalingPolicy.html">DeleteScalingPolicy</a> Application Auto Scaling API action, then call <a href="https://docs.aws.amazon.com/autoscaling/application/APIReference/API_DeregisterScalableTarget.html">DeregisterScalableTarget</a> to deregister the variant as a scalable
+                target. After you update the endpoint, you can register the variant as a scalable
+                target and attach an automatic scaling policy to the updated variant.</p>
+            <p>There is one exception. If you change the model for a variant that is configured
+                for automatic scaling, Amazon SageMaker automatic scaling allows the update. This is because
+                changing the model doesn't typically affect performance enough to change automatic
+                scaling behavior. If you do update a model for a variant configured for automatic
+                scaling, ensure that the change to the model doesn't significantly affect
+                performance and automatic scaling behavior.</p>
+            <p>When you update SageMaker endpoints that have automatic scaling applied, complete the
+                following steps:</p>
+            <div class="procedure"><h6>To update an endpoint that has automatic scaling applied</h6><ol><li>
+                    <p>Deregister the endpoint as a scalable target by calling <a href="https://docs.aws.amazon.com/autoscaling/application/APIReference/API_DeregisterScalableTarget.html">DeregisterScalableTarget</a>.</p>
+                </li><li>
+                    <p>Because automatic scaling is blocked while the update operation is in
+                        progress (or if you turned off automatic scaling in the previous step), you
+                        might want to take the additional precaution of increasing the number of
+                        instances for your endpoint during the update. To do this, update the
+                        instance counts for the production variants hosted at the endpoint by
+                        calling <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpointWeightsAndCapacities.html"><code class="code">UpdateEndpointWeightsAndCapacities</code></a>.</p>
+                </li><li>
+                    <p>Call <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html"><code class="code">DescribeEndpoint</code></a> repeatedly until the value of the
+                            <code class="code">EndpointStatus</code> field of the response is
+                            <code class="code">InService</code>.</p>
+                </li><li>
+                    <p>Call <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpointConfig.html"><code class="code">DescribeEndpointConfig</code></a> to get the values of the
+                        current endpoint config.</p>
+                </li><li>
+                    <p>Create a new endpoint config by calling <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpointConfig.html"><code class="code">CreateEndpointConfig</code></a>. For the production variants
+                        where you want to keep the existing instance count or weight, use the same
+                        variant name from the response from the call to <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpointConfig.html"><code class="code">DescribeEndpointConfig</code></a> in the previous step. For
+                        all other values, use the values that you got as the response when you
+                        called <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpointConfig.html"><code class="code">DescribeEndpointConfig</code></a> in the previous step.</p>
+                </li><li>
+                    <p>Update the endpoint by calling <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpoint.html"><code class="code">UpdateEndpoint</code></a>. Specify the endpoint config you
+                        created in the previous step as the <code class="code">EndpointConfig</code> field. If
+                        you want to retain the variant properties like instance count or weight, set
+                        the value of the <code class="code">RetainAllVariantProperties</code> parameter to
+                            <code class="code">True</code>. This specifies that production variants with the same
+                        name will are updated with the most recent <code class="code">DesiredInstanceCount</code>
+                        from the response from the call to <code class="code">DescribeEndpoint</code>, regardless
+                        of the values of the <code class="code">InitialInstanceCount</code> field in the new
+                            <code class="code">EndpointConfig</code>.</p>
+                </li><li>
+                    <p>(Optional) Re-activating automatic scaling by calling <a href="https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html">RegisterScalableTarget</a>.</p>
+                </li></ol></div>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Steps 1 and 7 are required only if you are updating an endpoint with the
+                    following changes:</p><div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>Changing the instance type for a production variant that has automatic
+                            scaling configured</p>
+                    </li><li class="listitem">
+                        <p>Removing a production variant that has automatic scaling
+                            configured.</p>
+                    </li></ul></div></div></div>
+         
+            <h2 id="endpoint-delete-with-scaling">Delete endpoints configured for
+                    automatic scaling</h2>
+            <p>If you delete an endpoint, Application Auto Scaling checks to see whether any of the models on
+                that endpoint are targets for automatic scaling. If any are and you
+                have
+                permission to deregister the model, Application Auto Scaling deregisters those
+                models as scalable targets without notifying you. If you use a custom permission
+                policy that doesn't provide permission for the <a href="https://docs.aws.amazon.com/autoscaling/application/APIReference/API_DeleteScalingPolicy.html">DeleteScalingPolicy</a> and <a href="https://docs.aws.amazon.com/autoscaling/application/APIReference/API_DeregisterScalableTarget.html">DeregisterScalableTarget</a> actions, you must delete automatic scaling
+                policies and deregister scalable targets and before deleting the endpoint.</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>As an IAM user, you might not have sufficient permission to delete an
+                    endpoint if another user configured automatic scaling for a variant on
+                    that endpoint.</p></div></div>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./endpoint-scaling-query-history.html">Query Endpoint Auto scaling
+                History</div><div id="next" class="next-link" accesskey="n" href="./endpoint-scaling-loadtest.html">Load testing</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/endpoint-scaling.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/endpoint-scaling.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

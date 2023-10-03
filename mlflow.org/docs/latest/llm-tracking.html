@@ -1,0 +1,324 @@
+
+  
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MLflow LLM Tracking &mdash; MLflow 2.7.1 documentation</title>
+  
+   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="canonical" href="llm-tracking.html">
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    
+
+    
+
+  
+    
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer',"GTM-N6WMTTJ");</script>
+        <!-- End Google Tag Manager -->
+    
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="MLflow 2.7.1 documentation" href="index.html"/>
+        <link rel="next" title="MLflow Projects" href="https://mlflow.org/projects.html"/>
+        <link rel="prev" title="MLflow Tracking" href="https://mlflow.org/tracking.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+<script type="text/javascript" src="_static/jquery.js"></script>
+<script type="text/javascript" src="_static/underscore.js"></script>
+<script type="text/javascript" src="_static/doctools.js"></script>
+<script type="text/javascript" src="_static/languagesections.js"></script>
+
+<body class="wy-body-for-nav" role="document">
+  
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N6WMTTJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+  
+
+  
+  <nav class="wy-nav-top header" role="navigation" aria-label="top navigation">
+    <ul>
+  <li class="menu-toggle">
+    <i data-toggle="wy-nav-top" class="wy-nav-top-menu-button db-icon db-icon-menu pull-left"></i>
+    <a href="index.html" class="wy-nav-top-logo"
+      ><img src="_static/MLflow-logo-final-black.png" alt="MLflow"
+    /></a>
+    <span class="version">2.7.1</span>
+  </li>
+</ul>
+  </nav>
+  <page>
+    
+
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side relative">
+      <div class="wy-side-scroll">
+  <div class="wy-side-nav-search">
+    
+
+    
+
+    
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+
+    
+  </div>
+
+  <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+    
+      <a href="index.html" class="main-navigation-home"><img src="_static/icons/nav-home.svg"> MLflow</a>
+    
+
+    
+      
+
+      
+        <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="what-is-mlflow.html">What is MLflow?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart: Install MLflow, instrument code &amp; view results in minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart_mlops.html">Quickstart: Compare runs, choose a model, and deploy it to a REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials-and-examples/index.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tracking.html">MLflow Tracking</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="llm-tracking.html#">MLflow LLM Tracking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="llm-tracking.html#concepts">Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="llm-tracking.html#how-llm-tracking-information-recorded">How LLM Tracking Information Recorded</a></li>
+<li class="toctree-l2"><a class="reference internal" href="llm-tracking.html#where-llm-tracking-information-are-recorded">Where LLM Tracking Information Are Recorded</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="projects.html">MLflow Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">MLflow Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model-registry.html">MLflow Model Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes.html">MLflow Recipes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gateway/index.html">MLflow AI Gateway (Experimental)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="llms/prompt-engineering.html">Prompt Engineering UI (Experimental)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">MLflow Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth/index.html">MLflow Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command-Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search-runs.html">Search Runs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search-experiments.html">Search Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_api/index.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="R-api.html">R API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="java_api/index.html">Java API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest-api.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Official MLflow Docker Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community-model-flavors.html">Community Model Flavors</a></li>
+</ul>
+
+      
+    
+  </div>
+
+  <div role="contentinfo">
+    
+
+    <p>
+      <a id='feedbacklink' href="https://github.com/mlflow/mlflow/blob/master/CONTRIBUTING.md" target="_blank">Contribute</a>
+    </p>
+  </div>
+</div>
+    </nav>
+
+    <main class="wy-grid-for-nav">
+      <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+        <div class="wy-nav-content">
+          <div class="rst-content">
+            
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Documentation</a> <span class="db-icon db-icon-chevron-right"></span></li>
+    
+    
+      <li>MLflow LLM Tracking</li>
+    
+    
+    <!-- <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/mlflow/mlflow/blob/master/docs/source/llm-tracking.rst" class="fa fa-github"> Edit on GitHub</a>
+    </li> -->
+    
+  </ul>
+</div>
+            <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <div itemprop="articleBody">
+                
+  <div class="section" id="mlflow-llm-tracking">
+<span id="llm-tracking"></span><h1>MLflow LLM Tracking<a class="headerlink" href="llm-tracking.html#mlflow-llm-tracking" title="Permalink to this headline"> </a></h1>
+<p>The Mlflow LLM Tracking component consists of two elements for logging and viewing the behavior of LLM’s.
+Firstly it is a set of APIs that allow for logging inputs, outputs, and prompts submitted and returned
+from LLM’s. Accompanying these APIs is a UI components that provides a simplified means of viewing the
+results of experimental submissions (prompts and inputs) and the results (LLM outputs).</p>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="llm-tracking.html#concepts" id="id2">Concepts</a></p></li>
+<li><p><a class="reference internal" href="llm-tracking.html#how-llm-tracking-information-recorded" id="id3">How LLM Tracking Information Recorded</a></p></li>
+<li><p><a class="reference internal" href="llm-tracking.html#where-llm-tracking-information-are-recorded" id="id4">Where LLM Tracking Information Are Recorded</a></p></li>
+</ul>
+</div>
+<div class="section" id="concepts">
+<span id="llm-tracking-concepts"></span><h2><a class="toc-backref" href="llm-tracking.html#id2">Concepts</a><a class="headerlink" href="llm-tracking.html#concepts" title="Permalink to this headline"> </a></h2>
+<p>MLflow LLM Tracking is organized around the concept of <em>runs</em>, which are executions of some piece of
+data science code. Each run records the following information:</p>
+<dl class="simple">
+<dt>Parameters</dt><dd><p>Key-value input parameters of your choice. Both keys and values are strings. These could be LLM
+parameters like top_k, temperature, etc.</p>
+</dd>
+<dt>Metrics</dt><dd><p>Key-value metrics, where the value is numeric. Each metric can be updated throughout the
+course of the run (for example, to track how your model’s loss function is converging), and
+MLflow records and lets you visualize the metric’s full history.</p>
+</dd>
+<dt>Predictions</dt><dd><p>For offline evaluation, you can log predictions returned from your model by passing in the
+prompts and inputs, as well as the returned outputs from the model.
+These predictions are logged in <code class="docutils literal notranslate"><span class="pre">csv</span></code> format as an MLflow artifact.</p>
+</dd>
+<dt>Artifacts</dt><dd><p>Output files in any format. For example, you can record images (e.g., PNGs), models
+(e.g., a pickled <code class="docutils literal notranslate"><span class="pre">openai</span></code> model), and data files (e.g., a
+<a class="reference external" href="https://parquet.apache.org/">Parquet</a> file) as artifacts.</p>
+</dd>
+</dl>
+<p>You can optionally organize runs into <em>experiments</em>, which group and compare together runs for a
+specific task. You can create an experiment using the <code class="docutils literal notranslate"><span class="pre">mlflow</span> <span class="pre">experiments</span></code> CLI, with
+<a class="reference internal" href="python_api/mlflow.html#mlflow.create_experiment" title="mlflow.create_experiment"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.create_experiment()</span></code></a>, or using the corresponding REST parameters. To interact
+with  experiments, the MLflow API and UI let you create and search for experiments.</p>
+<p>Once your runs have been recorded, you can query them and compare predictions using the <a class="reference internal" href="tracking.html#tracking-ui"><span class="std std-ref">Tracking UI</span></a>.</p>
+</div>
+<div class="section" id="how-llm-tracking-information-recorded">
+<span id="how-llm-predictions-recorded"></span><h2><a class="toc-backref" href="llm-tracking.html#id3">How LLM Tracking Information Recorded</a><a class="headerlink" href="llm-tracking.html#how-llm-tracking-information-recorded" title="Permalink to this headline"> </a></h2>
+<p>Parameters: <a class="reference internal" href="python_api/mlflow.html#mlflow.log_param" title="mlflow.log_param"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.log_param()</span></code></a> logs a single key-value param in the currently active run. The key and
+value are both strings. Use <a class="reference internal" href="python_api/mlflow.html#mlflow.log_params" title="mlflow.log_params"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.log_params()</span></code></a> to log multiple params at once.</p>
+<p>Metrics: <a class="reference internal" href="python_api/mlflow.html#mlflow.log_metric" title="mlflow.log_metric"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.log_metric()</span></code></a> logs a single key-value metric. The value must always be a number.
+MLflow remembers the history of values for each metric. Use <a class="reference internal" href="python_api/mlflow.html#mlflow.log_metrics" title="mlflow.log_metrics"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.log_metrics()</span></code></a> to log
+multiple metrics at once.</p>
+<p>Predictions: <a class="reference internal" href="python_api/mlflow.llm.html#mlflow.llm.log_predictions" title="mlflow.llm.log_predictions"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.llm.log_predictions()</span></code></a> logs inputs, outputs and prompts. Inputs and prompts could either
+be a list of strings or list of dict whereas the output would be a list of strings.</p>
+<p>Artifacts: <a class="reference internal" href="python_api/mlflow.html#mlflow.log_artifact" title="mlflow.log_artifact"><code class="xref py py-func docutils literal notranslate"><span class="pre">mlflow.log_artifact()</span></code></a> logs a local file or directory as an artifact, optionally taking an
+<code class="docutils literal notranslate"><span class="pre">artifact_path</span></code> to place it in within the run’s artifact URI. Run artifacts can be organized into
+directories, enabling nested storage in multiple different paradigms for logging of inputs and predictions.</p>
+</div>
+<div class="section" id="where-llm-tracking-information-are-recorded">
+<span id="id1"></span><h2><a class="toc-backref" href="llm-tracking.html#id4">Where LLM Tracking Information Are Recorded</a><a class="headerlink" href="llm-tracking.html#where-llm-tracking-information-are-recorded" title="Permalink to this headline"> </a></h2>
+<p>All the tracking information is recorded as part of a MLflow Experiment run.</p>
+</div>
+</div>
+
+
+              </div>
+            </div>
+            <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tracking.html" class="btn btn-neutral" title="MLflow Tracking" accesskey="p"><span class="db-icon db-icon-chevron-left"></span> Previous</a>
+      
+      
+        <a href="projects.html" class="btn btn-neutral" title="MLflow Projects" accesskey="n">Next <span class="db-icon db-icon-chevron-right"></span></a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+      <p class="copyright">
+          &copy; MLflow Project, a Series of LF Projects, LLC. All rights reserved.
+      </p>
+
+  </div> 
+
+</footer>
+          </div>
+        </div>
+      </section>
+    </main>
+  </page>
+
+  
+
+
+  
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:'./',
+      VERSION:'2.7.1',
+      COLLAPSE_INDEX:false,
+      FILE_SUFFIX:'.html',
+      LINK_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  
+
+  <script type="text/javascript" src="_static/js/clipboard.min.js"></script>
+  <script type="text/javascript" src="_static/js/jquery.waypoints.min.js"></script>
+
+  
+  
+  
+  <script type="text/javascript">var CLIPPY_SVG_PATH = "_static/clippy.svg";</script>
+  <script type="text/javascript" src="_static/js/custom.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.StickyNav.enable();
+    });
+
+  </script>
+   
+</body>
+</html>

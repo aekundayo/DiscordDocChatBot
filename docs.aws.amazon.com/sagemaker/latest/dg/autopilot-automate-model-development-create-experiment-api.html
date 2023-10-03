@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Create an Autopilot experiment programmatically - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="autopilot-automate-model-development-create-experiment-api" /><meta name="default_state" content="autopilot-automate-model-development-create-experiment-api" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="autopilot-automate-model-development-create-experiment-api.html" /><meta name="description" content="Create an Autopilot experiment using the API Reference to analyze data and train model candidates." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="autopilot-automate-model-development-create-experiment-api.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" hreflang="de" /><link rel="alternative" href="autopilot-automate-model-development-create-experiment-api.html" hreflang="en-us" /><link rel="alternative" href="autopilot-automate-model-development-create-experiment-api.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" hreflang="zh-tw" /><link rel="alternative" href="autopilot-automate-model-development-create-experiment-api.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Create an Autopilot experiment programmatically" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Create an Autopilot experiment programmatically - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#autopilot-automate-model-development-create-experiment-api" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,Autopilot,automatic machine learning,Auto ML,Autopilot experiment for tabular data,validation datasets,training datasets,data sources" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use automated ML, no-code, or low-code",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/use-auto-ml.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "SageMaker Autopilot",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Create an Amazon SageMaker Autopilot experiment for tabular data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Create an Autopilot experiment programmatically",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#autopilot-automate-model-development-create-experiment-api" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="autopilot-automate-model-development-create-experiment-api.html#autopilot-create-experiment-api-required-params">Required
+          parameters</a><a href="autopilot-automate-model-development-create-experiment-api.html#autopilot-create-experiment-api-optional-params">Optional
+          parameters</a><a href="autopilot-automate-model-development-create-experiment-api.html#autopilot-create-experiment-api-migrate-v1-v2">Migrate a CreateAutoMLJob to
+          CreateAutoMLJobV2</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="autopilot-automate-model-development-create-experiment-api">Create an Autopilot
+        experiment programmatically</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can create an Autopilot experiment for tabular data programmatically by calling the
+        <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html"><code class="code">CreateAutoMLJobV2</code></a> API action in any language supported by Autopilot or
+      the AWS CLI.</p><p>For information on how this API action translates into a function in the language of your
+      choice, see the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html#API_CreateAutoMLJobV2_SeeAlso"> See Also</a> section of <code class="code">CreateAutoMLJobV2</code> and choose an SDK. As an example, for Python users, see the full request syntax of <code class="code"><a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker.html#SageMaker.Client.create_auto_ml_job_v2" rel="noopener noreferrer" target="_blank"><span>create_auto_ml_job_v2</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> in AWS SDK for Python (Boto3).</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html">CreateAutoMLJobV2</a>
+        and <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeAutoMLJobV2.html">DescribeAutoMLJobV2</a> are new versions of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html">CreateAutoMLJob</a> and
+          <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeAutoMLJob.html">DescribeAutoMLJob</a> which offer backward compatibility.</p><p>We recommend using the <code class="code">CreateAutoMLJobV2</code>. <code class="code">CreateAutoMLJobV2</code> can
+        manage tabular problem types identical to those of its previous version
+          <code class="code">CreateAutoMLJob</code>, as well as non-tabular problem types such as image or text
+        classification, or time-series forecasting.</p></div></div><p>The following is a collection of mandatory and optional input request parameters for the
+        <code class="code">CreateAutoMLJobV2</code> API action. You can find the alternative information for the
+      previous version of this action, <code class="code">CreateAutoMLJob</code>. However, we recommend using
+        <code class="code">CreateAutoMLJobV2</code>. </p><p>Find guidelines on how to migrate a <code class="code">CreateAutoMLJob</code> to
+        <code class="code">CreateAutoMLJobV2</code> in <a href="autopilot-automate-model-development-create-experiment-api.html#autopilot-create-experiment-api-migrate-v1-v2">Migrate a CreateAutoMLJob to
+          CreateAutoMLJobV2</a>.</p>
+      <h2 id="autopilot-create-experiment-api-required-params">Required
+          parameters</h2>
+
+      <awsdocs-tabs><dl style="display: none">
+        <dt>CreateAutoMLJobV2</dt><dd tab-id="createautomljobv2">
+            <p>When calling <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html">CreateAutoMLJobV2</a></code> to create an Autopilot experiment for tabular data,
+              you must provide the following values:</p>
+
+            <div class="itemizedlist">
+               
+               
+               
+               
+               
+            <ul class="itemizedlist"><li class="listitem">
+                <p>An <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html#API_CreateAutoMLJobV2_RequestSyntax">AutoMLJobName</a></code> to specify the name of your job.</p>
+              </li><li class="listitem">
+                <p>At least one <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLJobChannel.html">AutoMLJobChannel</a></code> in <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html#sagemaker-CreateAutoMLJobV2-request-AutoMLJobInputDataConfig">AutoMLJobInputDataConfig</a></code> to specify your data source.</p>
+              </li><li class="listitem">
+                <p>Both an <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html#sagemaker-CreateAutoMLJobV2-request-AutoMLJobObjective">AutoMLJobObjective</a></code> metric and your chosen type of supervised
+                  learning problem (binary classification, multiclass classification, regression) in
+                    <code class="code">AutoMLProblemTypeConfig</code>, or none at all. For tabular data, you must
+                  choose <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TabularJobConfig.html">TabularJobConfig</a></code> as the type of <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html#sagemaker-CreateAutoMLJobV2-request-AutoMLProblemTypeConfig">AutoMLProblemTypeConfig</a></code>. You set the supervised learning
+                  problem in the <code class="code">ProblemType</code> attribute of
+                  <code class="code">TabularJobConfig</code>.</p>
+              </li><li class="listitem">
+                <p>An <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLOutputDataConfig.html">OutputDataConfig</a></code> to specify the Amazon S3 output path to store the
+                  artifacts of your AutoML job.</p>
+              </li><li class="listitem">
+                <p>A <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html#sagemaker-CreateAutoMLJob-request-RoleArn">RoleArn</a></code> to specify the ARN of the role used to access your
+                  data.</p>
+              </li></ul></div>
+          </dd>
+        <dt>CreateAutoMLJob</dt><dd tab-id="createautomljob">
+            <p>When calling <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html">CreateAutoMLJob</a></code> to create an AutoML experiment, you must provide
+              the following four values:</p>
+
+            <div class="itemizedlist">
+               
+               
+               
+               
+            <ul class="itemizedlist"><li class="listitem">
+                <p>An <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html#sagemaker-CreateAutoMLJob-request-AutoMLJobName">AutoMLJobName</a></code> to specify the name of your job.</p>
+              </li><li class="listitem">
+                <p>At least one <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLChannel.html">AutoMLChannel</a></code> in <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html#sagemaker-CreateAutoMLJob-request-InputDataConfig">InputDataConfig</a></code> to specify your data source.</p>
+              </li><li class="listitem">
+                <p>An <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLOutputDataConfig.html">OutputDataConfig</a></code> to specify the Amazon S3 output path to store the
+                  artifacts of your AutoML job.</p>
+              </li><li class="listitem">
+                <p>A <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html#sagemaker-CreateAutoMLJob-request-RoleArn">RoleArn</a></code> to specify the ARN of the role used to access your
+                  data.</p>
+              </li></ul></div>
+          </dd>
+      </dl></awsdocs-tabs>
+
+      <p>All other parameters are optional.</p>
+     
+      <h2 id="autopilot-create-experiment-api-optional-params">Optional
+          parameters</h2>
+
+      <p>The following sections provide details of some optional parameters that you can pass to
+        your <code class="code">CreateAutoMLJobV2</code> API action when using tabular data. You can find the
+        alternative information for the previous version of this action,
+          <code class="code">CreateAutoMLJob</code>. However, we recommend using
+        <code class="code">CreateAutoMLJobV2</code>.</p>
+
+      <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="How to set the training mode of an AutoML&#xA;              job" id="autopilot-set-training-mode" expanded="false"><p>For tabular data, the set of algorithms run on your data to train your model
+            candidates is dependent on your modeling strategy (<code class="code">ENSEMBLING</code> or
+              <code class="code">HYPERPARAMETER_TUNING</code>). The following details how to set this training
+            mode.</p><p>If you keep blank (or <code class="code">null</code>), the <code class="code">Mode</code> is inferred based on
+            the size of your dataset.</p><p>For information on Autopilot's <em>stacked ensembles</em> and
+              <em>hyperparameters optimization</em> training methods, see
+              <a href="autopilot-model-support-validation.html">Training modes and algorithm
+        support</a></p><awsdocs-tabs><dl style="display: none">
+            <dt>CreateAutoMLJobV2</dt><dd tab-id="createautomljobv2">
+                <p>For tabular data, you must choose <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TabularJobConfig.html">TabularJobConfig</a></code> as the type of <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html#sagemaker-CreateAutoMLJobV2-request-AutoMLProblemTypeConfig">AutoMLProblemTypeConfig</a></code>.</p>
+                <p>You can set the <a href="autopilot-model-support-validation.html">training
+                    method</a> of an AutoML job V2 with the <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TabularJobConfig.html">TabularJobConfig.Mode</a></code> parameter.</p>
+              </dd>
+            <dt>CreateAutoMLJob</dt><dd tab-id="createautomljob">
+                <p>You can set the <a href="autopilot-model-support-validation.html">training
+                    method</a> of an AutoML job with the <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLJobConfig.html#sagemaker-Type-AutoMLJobConfig-Mode">AutoMLJobConfig.Mode</a></code> parameter.</p>
+              </dd>
+          </dl></awsdocs-tabs></awsui-expandable-section><awsui-expandable-section variant="container" header="How to select features and algorithms for&#xA;              training an AutoML job" id="autopilot-feature-selection" expanded="false">
+            <h4 id="autopilot-automl-job-feature-selection-api">Features selection</h4>
+
+            <p>Autopilot provides automatic data-preprocessing steps including feature selection and
+              feature extraction. However, you can manually provide the features to be used in
+              training with the <code class="code">FeatureSpecificatioS3Uri</code> attribute.</p>
+            <p>Selected features should be contained within a JSON file in the following
+              format:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span> "FeatureAttributeNames":["col1", "col2", ...] }</code></pre>
+            <p>The values listed in <code class="code">["col1", "col2", ...]</code> are case sensitive. They
+              should be a list of strings containing unique values that are subsets of the column
+              names in the input data.</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The list of columns provided as features cannot include the target
+                column.</p></div></div>
+
+            <awsdocs-tabs><dl style="display: none">
+              <dt>CreateAutoMLJobV2</dt><dd tab-id="createautomljobv2">
+                  <p>For tabular data, you must choose <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TabularJobConfig.html">TabularJobConfig</a></code> as the type of <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html#sagemaker-CreateAutoMLJobV2-request-AutoMLProblemTypeConfig">AutoMLProblemTypeConfig</a></code>.</p>
+                  <p>You can set the URL to your selected features with the <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TabularJobConfig.html">TabularJobConfig.FeatureSpecificatioS3Uri</a></code> parameter.</p>
+                </dd>
+              <dt>CreateAutoMLJob</dt><dd tab-id="createautomljob">
+                  <p>You can set the <code class="code">FeatureSpecificatioS3Uri</code> attribute of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLCandidateGenerationConfig.html">AutoMLCandidateGenerationConfig</a> within the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html">CreateAutoMLJob</a> API with the following format:</p>
+                  <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html#sagemaker-CreateAutoMLJob-request-AutoMLJobConfig">AutoMLJobConfig</a>": <span>{</span>
+        "<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLJobConfig.html#sagemaker-Type-AutoMLJobConfig-CandidateGenerationConfig">CandidateGenerationConfig</a>": <span>{</span>
+            "<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLCandidateGenerationConfig.html#sagemaker-Type-AutoMLCandidateGenerationConfig-FeatureSpecificationS3Uri">FeatureSpecificationS3Uri</a>":"string"
+            },
+       }
+  }</code></pre>
+
+                </dd>
+            </dl></awsdocs-tabs>
+           
+            <h4 id="autopilot-automl-job-algorithms-selection-api">Algorithms selection</h4>
+            <p>By default, your Autopilot job runs a pre-defined list of algorithms on your dataset
+              to train model candidates. The list of algorithms depends on the training mode
+                (<code class="code">ENSEMBLING</code> or <code class="code">HYPERPARAMETER_TUNING</code>) used by the
+              job.</p>
+            <p>You can provide a subset of the default selection of algorithms.</p>
+
+            <awsdocs-tabs><dl style="display: none">
+              <dt>CreateAutoMLJobV2</dt><dd tab-id="createautomljobv2">
+                  <p>For tabular data, you must choose <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TabularJobConfig.html">TabularJobConfig</a></code> as the type of <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html#sagemaker-CreateAutoMLJobV2-request-AutoMLProblemTypeConfig">AutoMLProblemTypeConfig</a></code>.</p>
+                  <p>You can specify an array of selected <code class="code">AutoMLAlgorithms</code> in the
+                      <code class="code">AlgorithmsConfig</code> attribute of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CandidateGenerationConfig.html">CandidateGenerationConfig</a>.</p>
+                  <p>The following is an example of an <code class="code">AlgorithmsConfig</code> attribute
+                    listing exactly three algorithms ("xgboost", "fastai", "catboost") in its
+                      <code class="code">AutoMLAlgorithms</code> field for the ensembling training mode.</p>
+                  <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+   "<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html#sagemaker-CreateAutoMLJobV2-request-AutoMLProblemTypeConfig">AutoMLProblemTypeConfig</a>": <span>{</span>
+        "<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TabularJobConfig.html">TabularJobConfig</a>": <span>{</span>
+          "<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TabularJobConfig.html">Mode</a>": "ENSEMBLING",
+          "<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CandidateGenerationConfig.html">CandidateGenerationConfig</a>": <span>{</span>
+            "<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CandidateGenerationConfig.html#sagemaker-Type-CandidateGenerationConfig-AlgorithmsConfig">AlgorithmsConfig</a>":[
+               <span>{</span>"<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLAlgorithmConfig.html">AutoMLAlgorithms</a>":["xgboost", "fastai", "catboost"]}
+            ]
+         },
+       },
+     },
+  }</code></pre>
+                </dd>
+              <dt>CreateAutoMLJob</dt><dd tab-id="createautomljob">
+                  <p>You can specify an array of selected <code class="code">AutoMLAlgorithms</code> in the
+                      <code class="code">AlgorithmsConfig</code> attribute of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLCandidateGenerationConfig.html">AutoMLCandidateGenerationConfig</a>.</p>
+                  <p>The following is an example of an <code class="code">AlgorithmsConfig</code> attribute
+                    listing exactly three algorithms ("xgboost", "fastai", "catboost") in its
+                      <code class="code">AutoMLAlgorithms</code> field for the ensembling training mode.</p>
+                  <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+   "<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html#sagemaker-CreateAutoMLJob-request-AutoMLJobConfig">AutoMLJobConfig</a>": <span>{</span>
+        "<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLJobConfig.html#sagemaker-Type-AutoMLJobConfig-CandidateGenerationConfig">CandidateGenerationConfig</a>": <span>{</span>
+            "<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLCandidateGenerationConfig.html#sagemaker-Type-AutoMLCandidateGenerationConfig-AlgorithmsConfig">AlgorithmsConfig</a>":[
+               <span>{</span>"<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLAlgorithmConfig.html#sagemaker-Type-AutoMLAlgorithmConfig-AutoMLAlgorithms">AutoMLAlgorithms</a>":["xgboost", "fastai", "catboost"]}
+            ]
+         },
+     "Mode": "ENSEMBLING" 
+  }</code></pre>
+                </dd>
+            </dl></awsdocs-tabs>
+
+            <p>For the list of available algorithms per training <code class="code">Mode</code>, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLAlgorithmConfig.html#sagemaker-Type-AutoMLAlgorithmConfig-AutoMLAlgorithms"><code class="code">AutoMLAlgorithms</code></a>. For details on each algorithm, see <a href="autopilot-model-support-validation.html">Training modes and algorithm
+        support</a>.</p>
+          </awsui-expandable-section><awsui-expandable-section variant="container" header="How to specify the&#xA;              training and validation datasets of an AutoML job" id="autopilot-data-sources-training-or-validation" expanded="false"><p>You can provide your own validation dataset and custom data split ratio, or let
+            Autopilot split the dataset automatically.</p><awsdocs-tabs><dl style="display: none">
+            <dt>CreateAutoMLJobV2</dt><dd tab-id="createautomljobv2">
+                <p>Each <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLJobChannel.html"><code class="code">AutoMLJobChannel</code></a> object (see the required parameter
+                    <a href="https://docs.aws.amazon.com/sagemaker-api/src/AWSSageMakerAPIDoc/build/server-root/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html#sagemaker-CreateAutoMLJobV2-request-AutoMLJobInputDataConfig">AutoMLJobInputDataConfig</a>) has a <code class="code">ChannelType</code>, which can be
+                  set to either <code class="code">training</code> or <code class="code">validation</code> values that specify
+                  how the data is to be used when building a machine learning model. At least one
+                  data source must be provided and a maximum of two data sources is allowed: one for
+                  training data and one for validation data.</p>
+                <div class="itemizedlist">
+                  <p>How you split the data into training and validation datasets depends on
+                    whether you have one or two data sources.</p>
+                   
+                   
+                <ul class="itemizedlist"><li class="listitem">
+                    <p>If you only have <b>one data source</b>, the
+                        <code class="code">ChannelType</code> is set to <code class="code">training</code> by default and must
+                      have this value.</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p>If the <code class="code">ValidationFraction</code> value in <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLDataSplitConfig.html"><code class="code">AutoMLDataSplitConfig</code></a> is not set, 0.2 (20%) of
+                          the data from this source is used for validation by default. </p>
+                      </li><li class="listitem">
+                        <p>If the <code class="code">ValidationFraction</code> is set to a value between 0 and
+                          1, the dataset is split based on the value specified, where the value
+                          specifies the fraction of the dataset used for validation.</p>
+                      </li></ul></div>
+                  </li><li class="listitem">
+                    <p>If you have <b>two data sources</b>, the
+                        <code class="code">ChannelType</code> of one of the <code class="code">AutoMLJobChannel</code> objects
+                      must be set to <code class="code">training</code>, the default value. The
+                        <code class="code">ChannelType</code> of the other data source must be set to
+                        <code class="code">validation</code>. The two data sources must have the same format,
+                      either CSV or Parquet, and the same schema. You must not set the value for the
+                        <code class="code">ValidationFraction</code> in this case because all of the data from
+                      each source is used for either training or validation. Setting this value
+                      causes an error.</p>
+                  </li></ul></div>
+              </dd>
+            <dt>CreateAutoMLJob</dt><dd tab-id="createautomljob">
+                <p>Each <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLChannel.html"><code class="code">AutoMLChannel</code></a> object (see the required parameter <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html#sagemaker-CreateAutoMLJob-request-InputDataConfig">InputDataConfig</a>) has a <code class="code">ChannelType</code>, which can be set to
+                  either <code class="code">training</code> or <code class="code">validation</code> values that specify how
+                  the data is to be used when building a machine learning model. At least one data
+                  source must be provided and a maximum of two data sources is allowed: one for
+                  training data and one for validation data.</p>
+                <div class="itemizedlist">
+                  <p>How you split the data into training and validation datasets depends on
+                    whether you have one or two data sources.</p>
+                   
+                   
+                <ul class="itemizedlist"><li class="listitem">
+                    <p>If you only have <b>one data source</b>, the
+                        <code class="code">ChannelType</code> is set to <code class="code">training</code> by default and must
+                      have this value.</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p>If the <code class="code">ValidationFraction</code> value in <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLDataSplitConfig.html"><code class="code">AutoMLDataSplitConfig</code></a> is not set, 0.2 (20%) of
+                          the data from this source is used for validation by default. </p>
+                      </li><li class="listitem">
+                        <p>If the <code class="code">ValidationFraction</code> is set to a value between 0 and
+                          1, the dataset is split based on the value specified, where the value
+                          specifies the fraction of the dataset used for validation.</p>
+                      </li></ul></div>
+                  </li><li class="listitem">
+                    <p>If you have <b>two data sources</b>, the
+                        <code class="code">ChannelType</code> of one of the <code class="code">AutoMLChannel</code> objects
+                      must be set to <code class="code">training</code>, the default value. The
+                        <code class="code">ChannelType</code> of the other data source must be set to
+                        <code class="code">validation</code>. The two data sources must have the same format,
+                      either CSV or Parquet, and the same schema. You must not set the value for the
+                        <code class="code">ValidationFraction</code> in this case because all of the data from
+                      each source is used for either training or validation. Setting this value
+                      causes an error.</p>
+                  </li></ul></div>
+              </dd>
+          </dl></awsdocs-tabs><p>For information on split and cross-validation in Autopilot see <a href="autopilot-metrics-validation.html#autopilot-cross-validation">Cross-validation in Autopilot</a>.</p></awsui-expandable-section><awsui-expandable-section variant="container" header="How to set the problem type of an&#xA;              AutoML job" id="autopilot-set-problem-type-api" expanded="false"><awsdocs-tabs><dl style="display: none">
+            <dt>CreateAutoMLJobV2</dt><dd tab-id="createautomljobv2">
+                <p>For tabular data, you must choose <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TabularJobConfig.html">TabularJobConfig</a></code> as the type of <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html#sagemaker-CreateAutoMLJobV2-request-AutoMLProblemTypeConfig">AutoMLProblemTypeConfig</a></code>.</p>
+                <p> You can further specify the type of supervised learning problem (binary
+                  classification, multiclass classification, regression) available for the model
+                  candidates of your AutoML job V2 with the <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TabularJobConfig.html">TabularJobConfig.ProblemType</a></code> parameter.</p>
+              </dd>
+            <dt>CreateAutoMLJob</dt><dd tab-id="createautomljob">
+                <p>You can set the <a href="autopilot-datasets-problem-types.html#autopilot-problem-types">type of problem</a> on an AutoML job with the <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html#sagemaker-CreateAutoMLJob-request-ProblemType">CreateAutoPilot.ProblemType</a></code> parameter. This limits the kind of
+                  preprocessing and algorithms that Autopilot tries. After the job is finished, if you
+                  had set the <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html#sagemaker-CreateAutoMLJob-request-ProblemType">CreateAutoPilot.ProblemType</a></code>, then the <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ResolvedAttributes.html">ResolvedAttribute.ProblemType</a></code> matches the
+                    <code class="code">ProblemType</code> you set. If you keep it blank (or <code class="code">null</code>),
+                  the <code class="code">ProblemType</code> is inferred on your behalf. </p>
+              </dd>
+          </dl></awsdocs-tabs><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>In some cases, Autopilot is unable to infer the <code class="code">ProblemType</code> with high
+              enough confidence, in which case you must provide the value for the job to
+              succeed.</p></div></div></awsui-expandable-section><awsui-expandable-section variant="container" header="How to add sample weights to an&#xA;              AutoML job" id="autopilot-add-sample-weights-api" expanded="false"><p>You can add a sample weights column to your tabular dataset and then pass it to your
+            AutoML job to request dataset rows to be weighted during training and evaluation.</p><p>Support for sample weights is available in <a href="autopilot-model-support-validation.html#autopilot-training-mode">ensembling mode</a> only. Your weights should be numeric and non-negative. Data
+            points with invalid or no weight value are excluded. For more information on the
+            available objective metrics, see <a href="autopilot-metrics-validation.html#autopilot-weighted-metrics">Autopilot weighted metrics</a>.</p><awsdocs-tabs><dl style="display: none">
+            <dt>CreateAutoMLJobV2</dt><dd tab-id="createautomljobv2">
+                <p>For tabular data, you must choose <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TabularJobConfig.html">TabularJobConfig</a></code> as the type of <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html#sagemaker-CreateAutoMLJobV2-request-AutoMLProblemTypeConfig">AutoMLProblemTypeConfig</a></code>.</p>
+                <p>To set sample weights when creating an experiment (see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html">CreateAutoMLJobV2</a>), you can pass the name of your sample weights column
+                  in the <code class="code">SampleWeightAttributeName</code> attribute of the
+                    <code class="code">TabularJobConfig</code> object. This ensures that your objective metric
+                  uses the weights for the training, evaluation, and selection of model
+                  candidates.</p>
+              </dd>
+            <dt>CreateAutoMLJob</dt><dd tab-id="createautomljob">
+                <p>To set sample weights when creating an experiment (see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html">CreateAutoMLJob</a>), you can pass the name of your sample weights column
+                  in the <code class="code">SampleWeightAttributeName</code> attribute of the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLChannel.html">AutoMLChannel</a> object. This ensures that your objective metric uses the
+                  weights for the training, evaluation, and selection of model candidates.</p>
+              </dd>
+          </dl></awsdocs-tabs></awsui-expandable-section></div>
+     
+      <h2 id="autopilot-create-experiment-api-migrate-v1-v2">Migrate a CreateAutoMLJob to
+          CreateAutoMLJobV2</h2>
+      <p>We recommend users of <code class="code">CreateAutoMLJob</code> to migrate to
+          <code class="code">CreateAutoMLJobV2</code>.</p>
+      <p>This section explains the differences in the input parameters between <a href="https://docs.aws.amazon.com/sagemaker-api/src/AWSSageMakerAPIDoc/build/server-root/sagemaker/latest/APIReference/API_CreateAutoMLJob.html#API_CreateAutoMLJob_RequestSyntax">CreateAutoMLJob</a> and <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html#API_CreateAutoMLJobV2_RequestSyntax">CreateAutoMLJobV2</a> by highlighting the changes in the position, name, or structure
+        of the objects and attributes of the input request between the two versions.</p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><strong>Request attributes that did not change between
+              versions.</strong></p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+   "AutoMLJobName": "string",
+   "AutoMLJobObjective": <span>{</span> 
+      "MetricName": "string"
+   },
+   "ModelDeployConfig": <span>{</span> 
+      "AutoGenerateEndpointName": boolean,
+      "EndpointName": "string"
+   },
+   "OutputDataConfig": <span>{</span> 
+      "KmsKeyId": "string",
+      "S3OutputPath": "string"
+   },
+   "RoleArn": "string",
+   "Tags": [ 
+      <span>{</span> 
+         "Key": "string",
+         "Value": "string"
+      }
+   ]
+}</code></pre>
+        </li><li class="listitem">
+          <p><strong>Request attributes that changed position and structure
+              between versions.</strong></p>
+          <p>The following attributes changed position: <code class="code">DataSplitConfig</code>,
+              <code class="code">Security Config</code>, <code class="code">CompletionCriteria</code>, <code class="code">Mode</code>,
+              <code class="code">FeatureSpecificationS3Uri</code>, <code class="code">SampleWeightAttributeName</code>,
+              <code class="code">TargetAttributeName</code>.</p>
+          <awsdocs-tabs><dl style="display: none">
+            <dt>CreateAutoMLJob</dt><dd tab-id="createautomljob">
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span> 
+    "AutoMLJobConfig": <span>{</span> 
+        "Mode": "string",
+        "CompletionCriteria": <span>{</span> 
+            "MaxAutoMLJobRuntimeInSeconds": number,
+            "MaxCandidates": number,
+            "MaxRuntimePerTrainingJobInSeconds": number
+        },
+        "DataSplitConfig": <span>{</span> 
+            "ValidationFraction": number
+        },
+        "SecurityConfig": <span>{</span> 
+            "EnableInterContainerTrafficEncryption": boolean,
+            "VolumeKmsKeyId": "string",
+            "VpcConfig": <span>{</span> 
+            "SecurityGroupIds": [ "string" ],
+            "Subnets": [ "string" ]
+            }
+        },
+        "CandidateGenerationConfig": <span>{</span> 
+            "FeatureSpecificationS3Uri": "string"
+        }
+    },
+    "GenerateCandidateDefinitionsOnly": boolean,
+    "ProblemType": "string"
+}</code></pre>
+              </dd>
+            <dt>CreateAutoMLJobV2</dt><dd tab-id="createautomljobv2">
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>       
+    "AutoMLProblemTypeConfig": <span>{</span>
+        "TabularJobConfig": <span>{</span>
+            "Mode": "string",
+            "ProblemType": "string",
+            "GenerateCandidateDefinitionsOnly": boolean,
+            "CompletionCriteria": <span>{</span> 
+                "MaxAutoMLJobRuntimeInSeconds": number,
+                "MaxCandidates": number,
+                "MaxRuntimePerTrainingJobInSeconds": number
+            },
+            "FeatureSpecificationS3Uri": "string",
+            "SampleWeightAttributeName": "string",
+            "TargetAttributeName": "string"
+        }
+    },
+    "DataSplitConfig": <span>{</span> 
+        "ValidationFraction": number
+    },
+    "SecurityConfig": <span>{</span> 
+        "EnableInterContainerTrafficEncryption": boolean,
+        "VolumeKmsKeyId": "string",
+        "VpcConfig": <span>{</span> 
+            "SecurityGroupIds": [ "string" ],
+            "Subnets": [ "string" ]
+        }
+    }
+}</code></pre>
+              </dd>
+          </dl></awsdocs-tabs>
+        </li><li class="listitem">
+          <p><strong>The following attributes changed position and structure
+              between versions.</strong></p>
+          <p>The following JSON illustrates how <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLJobConfig.html#sagemaker-Type-AutoMLJobConfig-CandidateGenerationConfig">AutoMLJobConfig.CandidateGenerationConfig</a> of type <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLCandidateGenerationConfig.html">AutoMLCandidateGenerationConfig</a> moved to <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html#API_CreateAutoMLJobV2_RequestSyntax">AutoMLProblemTypeConfig.TabularJobConfig.CandidateGenerationConfig</a> of type
+              <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CandidateGenerationConfig.html">CandidateGenerationConfig</a> in V2.</p>
+          <awsdocs-tabs><dl style="display: none">
+            <dt>CreateAutoMLJob</dt><dd tab-id="createautomljob">
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+   "AutoMLJobConfig": <span>{</span> 
+      "CandidateGenerationConfig": <span>{</span> 
+         "AlgorithmsConfig": [ 
+            <span>{</span> 
+               "AutoMLAlgorithms": [ "string" ]
+            }
+         ],
+         "FeatureSpecificationS3Uri": "string"
+      }
+}</code></pre>
+              </dd>
+            <dt>CreateAutoMLJobV2</dt><dd tab-id="createautomljobv2">
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+    "AutoMLProblemTypeConfig": <span>{</span>
+        "TabularJobConfig": <span>{</span>
+            "CandidateGenerationConfig": <span>{</span> 
+                "AlgorithmsConfig": [ 
+                    <span>{</span> 
+                    "AutoMLAlgorithms": [ "string" ]
+                    }
+                ],
+            },
+        }
+    },
+}</code></pre>
+              </dd>
+          </dl></awsdocs-tabs>
+        </li><li class="listitem">
+          <p><strong>Request attributes that changed name and
+              structure.</strong></p>
+          <p>The following JSON illustrates how <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html#sagemaker-CreateAutoMLJob-request-InputDataConfig">InputDataConfig</a> (An array of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLChannel.html">AutoMLChannel</a>)
+            changed to <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html#sagemaker-CreateAutoMLJobV2-request-AutoMLJobInputDataConfig">AutoMLJobInputDataConfig</a> (An array of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLJobChannel.html">AutoMLJobChannel</a>) in V2. Note that the attributes
+              <code class="code">SampleWeightAttributeName</code> and <code class="code">TargetAttributeName</code> move out
+            of <code class="code">InputDataConfig</code> and into <code class="code">AutoMLProblemTypeConfig</code>.</p>
+
+
+          <awsdocs-tabs><dl style="display: none">
+            <dt>CreateAutoMLJob</dt><dd tab-id="createautomljob">
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>    
+    "InputDataConfig": [ 
+        <span>{</span> 
+            "ChannelType": "string",
+            "CompressionType": "string",
+            "ContentType": "string",
+            "DataSource": <span>{</span> 
+                "S3DataSource": <span>{</span> 
+                    "S3DataType": "string",
+                    "S3Uri": "string"
+                }
+            },
+            "SampleWeightAttributeName": "string",
+            "TargetAttributeName": "string"
+        }
+    ]
+}</code></pre>
+              </dd>
+            <dt>CreateAutoMLJobV2</dt><dd tab-id="createautomljobv2">
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>    
+    "AutoMLJobInputDataConfig": [ 
+        <span>{</span> 
+            "ChannelType": "string",
+            "CompressionType": "string",
+            "ContentType": "string",
+            "DataSource": <span>{</span> 
+                "S3DataSource": <span>{</span> 
+                    "S3DataType": "string",
+                    "S3Uri": "string"
+                }
+            }
+        }
+    ]
+}</code></pre>
+              </dd>
+          </dl></awsdocs-tabs>
+        </li></ul></div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./autopilot-set-default-parameters-create-experiment.html">Configure the default parameters of an Autopilot experiment (for
+          administrators)</div><div id="next" class="next-link" accesskey="n" href="./autopilot-datasets-problem-types.html">Datasets Format and Problem Types</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

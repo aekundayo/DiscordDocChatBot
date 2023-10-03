@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Troubleshoot SageMaker Clarify Processing Jobs - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="clarify-processing-job-run-troubleshooting" /><meta name="default_state" content="clarify-processing-job-run-troubleshooting" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="clarify-processing-job-run-troubleshooting.html" /><meta name="description" content="Common troubleshooting scenarios." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="clarify-processing-job-run-troubleshooting.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" hreflang="de" /><link rel="alternative" href="clarify-processing-job-run-troubleshooting.html" hreflang="en-us" /><link rel="alternative" href="clarify-processing-job-run-troubleshooting.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" hreflang="zh-tw" /><link rel="alternative" href="clarify-processing-job-run-troubleshooting.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Troubleshoot SageMaker Clarify Processing Jobs" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Troubleshoot SageMaker Clarify Processing Jobs - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#clarify-processing-job-run-troubleshooting" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,explainability,bias,troubleshooting" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Detect bias and understand explanations",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/model-explainability.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Use Amazon SageMaker Clarify Bias Detection and Model Explainability",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-configure-processing-jobs.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Troubleshoot SageMaker Clarify Processing Jobs",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-configure-processing-jobs.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#clarify-processing-job-run-troubleshooting" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="clarify-processing-job-run-troubleshooting.html#clarify-troubleshooting-job-fails">Processing job fails to
+                finish</a><a href="clarify-processing-job-run-troubleshooting.html#clarify-troubleshooting-job-long">Processing job is taking too long to
+                run</a><a href="clarify-processing-job-run-troubleshooting.html#clarify-troubleshooting-no-results-and-warning">Processing job finishes
+                without results and you get a CloudWatch warning message</a><a href="clarify-processing-job-run-troubleshooting.html#clarify-troubleshooting-invalid-analysis-configuration">Error message
+                for invalid analysis configuration</a><a href="clarify-processing-job-run-troubleshooting.html#clarify-troubleshooting-bias-metric-computation-fails">Bias metric
+                computation fails for several or all metrics</a><a href="clarify-processing-job-run-troubleshooting.html#clarify-troubleshooting-mismatch-analysis-config-and-data-model">Mismatch between analysis config and dataset/model input/output</a><a href="clarify-processing-job-run-troubleshooting.html#clarify-troubleshooting-500-internal-server-error">Model returns 500
+                Internal Server Error or container falls back to per-record predictions due to model
+                error</a><a href="clarify-processing-job-run-troubleshooting.html#clarify-troubleshooting-execution-role-invalid">Execution role is
+                invalid</a><a href="clarify-processing-job-run-troubleshooting.html#clarify-troubleshooting-TBD">Failed to download data</a><a href="clarify-processing-job-run-troubleshooting.html#clarify-troubleshooting-TBD">Could not connect to SageMaker</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="clarify-processing-job-run-troubleshooting">Troubleshoot SageMaker Clarify Processing
+            Jobs</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p> If you encounter failures with SageMaker Clarify processing jobs, consult the following scenarios to
+        help identify the issue.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The failure reason and exit message are intended to contain descriptive messages and
+            exceptions, if encountered, during the run. A common reason for errors is that
+            parameters are either missing or not valid. If you encounter unclear, confusing, or
+            misleading messages or are unable to find a solution, submit feedback.</p></div></div><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="clarify-processing-job-run-troubleshooting.html#clarify-troubleshooting-job-fails">Processing job fails to
+                finish</a></li><li><a href="clarify-processing-job-run-troubleshooting.html#clarify-troubleshooting-job-long">Processing job is taking too long to
+                run</a></li><li><a href="clarify-processing-job-run-troubleshooting.html#clarify-troubleshooting-no-results-and-warning">Processing job finishes
+                without results and you get a CloudWatch warning message</a></li><li><a href="clarify-processing-job-run-troubleshooting.html#clarify-troubleshooting-invalid-analysis-configuration">Error message
+                for invalid analysis configuration</a></li><li><a href="clarify-processing-job-run-troubleshooting.html#clarify-troubleshooting-bias-metric-computation-fails">Bias metric
+                computation fails for several or all metrics</a></li><li><a href="clarify-processing-job-run-troubleshooting.html#clarify-troubleshooting-mismatch-analysis-config-and-data-model">Mismatch between analysis config and dataset/model input/output</a></li><li><a href="clarify-processing-job-run-troubleshooting.html#clarify-troubleshooting-500-internal-server-error">Model returns 500
+                Internal Server Error or container falls back to per-record predictions due to model
+                error</a></li><li><a href="clarify-processing-job-run-troubleshooting.html#clarify-troubleshooting-execution-role-invalid">Execution role is
+                invalid</a></li><li><a href="clarify-processing-job-run-troubleshooting.html#clarify-troubleshooting-TBD">Failed to download data</a></li><li><a href="clarify-processing-job-run-troubleshooting.html#clarify-troubleshooting-TBD">Could not connect to SageMaker</a></li></ul></div>
+        <h2 id="clarify-troubleshooting-job-fails">Processing job fails to
+                finish</h2>
+        <p>If the processing job fails to finish, you can try the following:</p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Inspect the job logs directly in the notebook where you ran the job in. The
+                    job logs are located in the output of the notebook cell where you initiated the
+                    run.</p>
+            </li><li class="listitem">
+                <p>Inspect the job logs in CloudWatch.</p>
+            </li><li class="listitem">
+                <p>Add the following line in your notebook to describe the last processing job
+                    and look for the failure reason and exit message:</p>
+                <div class="itemizedlist">
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="code">clarify_processor.jobs[-1].describe()</code></p>
+                    </li></ul></div>
+            </li><li class="listitem">
+                <p>Run the following AWS CLI; command to describe the processing job and look for
+                    the failure reason and exit message:</p>
+                <div class="itemizedlist">
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="code">aws sagemaker describe-processing-job —processing-job-name
+                                &lt;processing-job-id&gt;</code></p>
+                    </li></ul></div>
+            </li></ul></div>
+     
+        <h2 id="clarify-troubleshooting-job-long">Processing job is taking too long to
+                run</h2>
+        <p>If your processing job is taking too long to run, use the following ways to find the
+            root cause.</p>
+        <p>Check to see if your resource configuration is sufficient to handle your computing
+            load. To speed up your job, try the following:</p>
+        <div class="itemizedlist">
+             
+             
+                        
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Use a larger instance type. SageMaker Clarify queries the model repeatedly, and a larger
+                    instance can significantly reduce your computation time. For a list of available
+                    instances, their memory sizes, bandwidth, and other performance details, see
+                        <a href="http://aws.amazon.com/sagemaker/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker
+                    Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            </li><li class="listitem">
+                <p>Add more instances. SageMaker Clarify can use multiple instances to explain multiple input
+                    data points in parallel. To enable parallel computing, set your
+                        <code class="code">instance_count</code> to more than <code class="code">1</code> when you call
+                        <code class="code">SageMakerClarifyProcessor</code>. For more information, see <a href="clarify-processing-job-run.html#clarify-processing-job-run-spark">How to run parallel SageMaker Clarify processing
+                jobs</a>. If you increase your
+                    instance count, monitor the performance of your endpoint to check that it can
+                    deploy the increased load. For more information, see <a href="model-monitor-data-capture-endpoint.html">Capture data from real-time
+                    endpoint</a>. </p>
+            </li><li class="listitem">
+                <p>If you're computing SHapley Additive exPlanations
+                        (SHAP) values, reduce the <code class="code">num_samples</code> parameter
+                    in your analysis configuration file. The number of samples directly affects the
+                    following:</p>
+                <div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>The size of the synthetic datasets that are sent to your
+                            endpoint</p>
+                    </li><li class="listitem">
+                        <p>Job runtime</p>
+                    </li></ul></div>
+                <p>Reducing the number of samples can also lead to reduced accuracy in estimating
+                        SHAP values. For more information, see <a href="clarify-processing-job-configure-analysis.html">Configure the Analysis</a>.</p>
+            </li></ul></div>
+     
+        <h2 id="clarify-troubleshooting-no-results-and-warning">Processing job finishes
+                without results and you get a CloudWatch warning message</h2>
+        <p>If the processing job finishes but no results are found, the CloudWatch logs produce a
+            warning message that says <strong class="errortext"><code>Signal 15 received, cleaning up.</code></strong>This
+            warning indicates that the job was stopped either because a customer request called the
+                <code class="code">StopProcessingJob</code> API, or that the job ran out of the allotted time for
+            its completion. In the latter case, check the maximum runtime in the job configuration
+                (<code class="code">max_runtime_in_seconds</code>) and increase it as needed.</p>
+     
+        <h2 id="clarify-troubleshooting-invalid-analysis-configuration">Error message
+                for invalid analysis configuration</h2>
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p> If you get the error message <strong class="errortext"><code>Unable to load analysis configuration
+                        as JSON.</code></strong>, this means that the analysis configuration input file
+                    for the processing job does not contain a valid JSON object. Check the validity
+                    of the JSON object using a JSON linter.</p>
+            </li><li class="listitem">
+                <p>If you get the error message <strong class="errortext"><code>Analysis configuration schema validation
+                        error.</code></strong>, this means that the analysis configuration input file for
+                    the processing job contains unknown fields or invalid types for some field
+                    values. Review the configuration parameters in the file and cross-check them
+                    with the parameters listed in the analysis configuration file. For more
+                    information, see <a href="clarify-processing-job-configure-analysis.html">Configure the Analysis</a>.</p>
+            </li></ul></div>
+     
+        <h2 id="clarify-troubleshooting-bias-metric-computation-fails">Bias metric
+                computation fails for several or all metrics</h2>
+        <p>If your receive one of the following error messages <strong class="errortext"><code>No Label values are present
+                in the predicted Label Column, Positive Predicted Index Series contains all False
+                values.</code></strong> or <strong class="errortext"><code>Predicted Label Column series data type is not the same as
+                Label Column series.</code></strong>, try the following:</p>
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Check that the correct dataset is being used.</p>
+            </li><li class="listitem">
+                <p>Check whether the dataset size is too small; whether, for example, it contains
+                    only a few rows. This may cause the model outputs to have the same value or the
+                    data type is inferred incorrectly.</p>
+            </li><li class="listitem">
+                <p>Check if the label or facet is treated as continuous or categorical. SageMaker Clarify
+                    uses heuristics to determine the <a href="https://github.com/aws/amazon-sagemaker-clarify/blob/master/src/smclarify/bias/metrics/common.py#L114)" rel="noopener noreferrer" target="_blank"><span><code class="code">DataType</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. For post-training bias metrics, the data
+                    type returned by the model may not match what is in the dataset or SageMaker Clarify may not
+                    be able to transform it correctly. </p>
+                <div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>In the bias report, you should see a single value for categorical
+                            columns or an interval for continuous columns.</p>
+                    </li><li class="listitem">
+                        <p>For example, if a column has values 0.0 and 1.0 as floats, it will be
+                            treated as continuous even if there are too few unique values.</p>
+                    </li></ul></div>
+            </li></ul></div>
+     
+        <h2 id="clarify-troubleshooting-mismatch-analysis-config-and-data-model">Mismatch between analysis config and dataset/model input/output</h2>
+        <div class="itemizedlist">
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Check that the baseline format in the analysis config is the same as dataset
+                    format.</p>
+            </li><li class="listitem">
+                <p>If your receive the error message <strong class="errortext"><code>Could not convert string to
+                        float.</code></strong>, check that the format is correctly specified. It could also
+                    indicate that the model predictions have a different format than the label
+                    column or it could indicate that the configuration for the label or
+                    probabilities is incorrect.</p>
+            </li><li class="listitem">
+                <p>If your receive the error message <strong class="errortext"><code>Unable to locate the facet.</code></strong>
+                    or <strong class="errortext"><code>Headers must contain label.</code></strong> or <strong class="errortext"><code>Headers in config do not
+                        match with the number of columns in the dataset.</code></strong> or <strong class="errortext"><code>Feature
+                        names not found.</code></strong>, check that the headers match the columns.</p>
+            </li><li class="listitem">
+                <p>If your receive the error message <strong class="errortext"><code>Data must contain features.</code></strong>,
+                    check the content template for JSON Lines and compare it with the dataset sample
+                    if available.</p>
+            </li></ul></div>
+     
+        <h2 id="clarify-troubleshooting-500-internal-server-error">Model returns 500
+                Internal Server Error or container falls back to per-record predictions due to model
+                error</h2>
+        <p>If you receive the error message <strong class="errortext"><code>Fallback to per-record prediction because of
+                model error.</code></strong>, this could indicate that model cannot handle the batch size,
+            or be throttled, or just does not accept the input passed by the container due to
+            serialization problems. You should review the CloudWatch logs for the SageMaker endpoint and
+            look for error messages or tracebacks. For model throttling cases, it may help to use a
+            different instance type or increasing the number of instances for the endpoint.</p>
+     
+        <h2 id="clarify-troubleshooting-execution-role-invalid">Execution role is
+                invalid</h2>
+        <p>This indicates that the role provided is incorrect or missing required permissions.
+            Check the role and its permissions that were used to configure the processing job and
+            verify the permission and trust policy for the role.</p>
+     
+        <h2 id="clarify-troubleshooting-TBD">Failed to download data</h2>
+        <p>This indicates that job inputs could not be downloaded for the job to start. Check the
+            bucket name and permissions for the dataset and the configuration inputs.</p>
+     
+        <h2 id="clarify-troubleshooting-TBD">Could not connect to SageMaker</h2>
+        <p>This indicates that the job could not reach SageMaker service endpoints. Check the network
+            configuration settings for the processing job and verify virtual private cloud (VPC)
+            configuration.</p>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./clarify-processing-job-analysis-results.html">Get Analysis Results</div><div id="next" class="next-link" accesskey="n" href="./clarify-post-training-bias-model-explainability-sample-notebooks.html">Sample Notebooks</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-processing-job-run-troubleshooting.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

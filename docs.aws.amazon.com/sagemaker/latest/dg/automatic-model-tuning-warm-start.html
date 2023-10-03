@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Run a Warm Start Hyperparameter Tuning Job - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="automatic-model-tuning-warm-start" /><meta name="default_state" content="automatic-model-tuning-warm-start" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="automatic-model-tuning-warm-start.html" /><meta name="description" content="Use warm start to start a Amazon SageMaker hyperparameter tuning job that uses information learned from a previous hyperparameter tuning job." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="automatic-model-tuning-warm-start.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" hreflang="de" /><link rel="alternative" href="automatic-model-tuning-warm-start.html" hreflang="en-us" /><link rel="alternative" href="automatic-model-tuning-warm-start.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" hreflang="zh-tw" /><link rel="alternative" href="automatic-model-tuning-warm-start.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Run a Warm Start Hyperparameter Tuning Job" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Run a Warm Start Hyperparameter Tuning Job - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#automatic-model-tuning-warm-start" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/automatic-model-tuning-warm-start.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,automatic model tuning,hyperparameter optimization,warm start" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Perform Automatic Model Tuning with SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Run a Warm Start Hyperparameter Tuning Job",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#automatic-model-tuning-warm-start" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="automatic-model-tuning-warm-start.html#tuning-warm-start-types">Types of Warm Start Tuning Jobs</a><a href="automatic-model-tuning-warm-start.html#warm-start-tuning-restrictions">Warm Start Tuning Restrictions</a><a href="automatic-model-tuning-warm-start.html#warm-start-tuning-sample-notebooks">Sample Notebook</a><a href="automatic-model-tuning-warm-start.html#warm-start-tuning-example">Create a Warm Start Tuning Job</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="automatic-model-tuning-warm-start">Run a Warm Start Hyperparameter Tuning
+        Job</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Use warm start to start a hyperparameter tuning job using one or more previous tuning jobs
+      as a starting point. The results of previous tuning jobs are used to inform which combinations
+      of hyperparameters to search over in the new tuning job. Hyperparameter tuning uses either
+      Bayesian or random search to choose combinations of hyperparameter values from ranges that you
+      specify. For more information, see <a href="automatic-model-tuning-how-it-works.html">How Hyperparameter Tuning Works</a>. Using information from previous
+      hyperparameter tuning jobs can help increase the performance of the new hyperparameter tuning
+      job by making the search for the best combination of hyperparameters more efficient.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Warm start tuning jobs typically take longer to start than standard hyperparameter
+        tuning jobs, because the results from the parent jobs have to be loaded before the job can
+        start. The increased time depends on the total number of training jobs launched by the
+        parent jobs.</p></div></div><p>Reasons to consider warm start include the following:</p><div class="itemizedlist">
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>To gradually increase the number of training jobs over several tuning jobs based on
+          results after each iteration.</p>
+      </li><li class="listitem">
+        <p>To tune a model using new data that you received.</p>
+      </li><li class="listitem">
+        <p>To change hyperparameter ranges that you used in a previous tuning job, change static
+          hyperparameters to tunable, or change tunable hyperparameters to static values.</p>
+      </li><li class="listitem">
+        <p>You stopped a previous hyperparameter job early or it stopped unexpectedly.</p>
+      </li></ul></div><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="automatic-model-tuning-warm-start.html#tuning-warm-start-types">Types of Warm Start Tuning Jobs</a></li><li><a href="automatic-model-tuning-warm-start.html#warm-start-tuning-restrictions">Warm Start Tuning Restrictions</a></li><li><a href="automatic-model-tuning-warm-start.html#warm-start-tuning-sample-notebooks">Warm Start Tuning Sample
+          Notebook</a></li><li><a href="automatic-model-tuning-warm-start.html#warm-start-tuning-example">Create a Warm Start Tuning Job</a></li></ul></div>
+      <h2 id="tuning-warm-start-types">Types of Warm Start Tuning Jobs</h2>
+      <p>There are two different types of warm start tuning jobs:</p>
+      <div class="variablelist">
+         
+         
+      <dl>
+          <dt><span class="term"><code class="code">IDENTICAL_DATA_AND_ALGORITHM</code></span></dt>
+          <dd>
+            <p>The new hyperparameter tuning job uses the same input data and training image as
+              the parent tuning jobs. You can change the hyperparameter ranges to search and the
+              maximum number of training jobs that the hyperparameter tuning job launches. You can
+              also change hyperparameters from tunable to static, and from static to tunable, but
+              the total number of static plus tunable hyperparameters must remain the same as it is
+              in all parent jobs. You cannot use a new version of the training algorithm, unless the
+              changes in the new version do not affect the algorithm itself. For example, changes
+              that improve logging or adding support for a different data format are allowed.</p>
+            <p>Use identical data and algorithm when you use the same training data as you used
+              in a previous hyperparameter tuning job, but you want to increase the total number of
+              training jobs or change ranges or values of hyperparameters.</p>
+            <p>When you run an warm start tuning job of type
+                <code class="code">IDENTICAL_DATA_AND_ALGORITHM</code>, there is an additional field in the
+              response to <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeHyperParameterTuningJob.html"><code class="code">DescribeHyperParameterTuningJob</code></a> named
+                <code class="code">OverallBestTrainingJob</code>. The value of this field is the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TrainingJobSummary.html">TrainingJobSummary</a> for the training job with the best objective metric
+              value of all training jobs launched by this tuning job and all parent jobs specified
+              for the warm start tuning job.</p>
+          </dd>
+         
+          <dt><span class="term"><code class="code">TRANSFER_LEARNING</code></span></dt>
+          <dd>
+            <p>The new hyperparameter tuning job can include input data, hyperparameter ranges,
+              maximum number of concurrent training jobs, and maximum number of training jobs that
+              are different than those of its parent hyperparameter tuning jobs. You can also change
+              hyperparameters from tunable to static, and from static to tunable, but the total
+              number of static plus tunable hyperparameters must remain the same as it is in all
+              parent jobs. The training algorithm image can also be a different version from the
+              version used in the parent hyperparameter tuning job. When you use transfer learning,
+              changes in the dataset or the algorithm that significantly affect the value of the
+              objective metric might reduce the usefulness of using warm start tuning.</p>
+          </dd>
+        </dl></div>
+     
+      <h2 id="warm-start-tuning-restrictions">Warm Start Tuning Restrictions</h2>
+      <p>The following restrictions apply to all warm start tuning jobs:</p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>A tuning job can have a maximum of 5 parent jobs, and all parent jobs must be in a
+            terminal state (<code class="code">Completed</code>, <code class="code">Stopped</code>, or <code class="code">Failed</code>)
+            before you start the new tuning job.</p>
+        </li><li class="listitem">
+          <p>The objective metric used in the new tuning job must be the same as the objective
+            metric used in the parent jobs.</p>
+        </li><li class="listitem">
+          <p>The total number of static plus tunable hyperparameters must remain the same between
+            parent jobs and the new tuning job. Because of this, if you think you might want to use
+            a hyperparameter as tunable in a future warm start tuning job, you should add it as a
+            static hyperparameter when you create a tuning job.</p>
+        </li><li class="listitem">
+          <p>The type of each hyperparameter (continuous, integer, categorical) must not change
+            between parent jobs and the new tuning job.</p>
+        </li><li class="listitem">
+          <p>The number of total changes from tunable hyperparameters in the parent jobs to
+            static hyperparameters in the new tuning job, plus the number of changes in the values
+            of static hyperparameters cannot be more than 10. For example, if the parent job has a
+            tunable categorical hyperparameter with the possible values <code class="code">red</code> and
+              <code class="code">blue</code>, you change that hyperparameter to static in the new tuning job,
+            that counts as 2 changes against the allowed total of 10. If the same hyperparameter had
+            a static value of <code class="code">red</code> in the parent job, and you change the static value to
+              <code class="code">blue</code> in the new tuning job, it also counts as 2 changes.</p>
+        </li><li class="listitem">
+          <p>Warm start tuning is not recursive. For example, if you create
+              <code class="code">MyTuningJob3</code> as a warm start tuning job with <code class="code">MyTuningJob2</code> as
+            a parent job, and <code class="code">MyTuningJob2</code> is itself an warm start tuning job with a
+            parent job <code class="code">MyTuningJob1</code>, the information that was learned when running
+              <code class="code">MyTuningJob1</code> is not used for <code class="code">MyTuningJob3</code>. If you want to
+            use the information from <code class="code">MyTuningJob1</code>, you must explicitly add it as a
+            parent for <code class="code">MyTuningJob3</code>.</p>
+        </li><li class="listitem">
+          <p>The training jobs launched by every parent job in a warm start tuning job count
+            against the 500 maximum training jobs for a tuning job.</p>
+        </li><li class="listitem">
+          <p>Hyperparameter tuning jobs created before October 1, 2018 cannot be used as parent
+            jobs for warm start tuning jobs.</p>
+        </li></ul></div>
+     
+      <h2 id="warm-start-tuning-sample-notebooks">Warm Start Tuning Sample
+          Notebook</h2>
+      <p>For a sample notebook that shows how to use warm start tuning, see <a href="https://github.com/awslabs/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/image_classification_warmstart/hpo_image_classification_warmstart.ipynb" rel="noopener noreferrer" target="_blank"><span>https://github.com/awslabs/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/image_classification_warmstart/hpo_image_classification_warmstart.ipynb</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+        For instructions how to create and access Jupyter notebook instances that you can use to run
+        the example in SageMaker, see <a href="howitworks-nbexamples.html">Example Notebooks</a>. Once you have created a notebook instance and
+        opened it, select the <b>SageMaker Examples</b> tab to see a list of
+        all the SageMaker samples. The warm start tuning example notebook is located in the <b>Hyperparameter tuning</b> section, and is named
+          <code class="code">hpo_image_classification_warmstart.ipynb</code>. To open a notebook, click on its
+          <b>Use</b> tab and select <b>Create
+          copy</b>.</p>
+     
+      <h2 id="warm-start-tuning-example">Create a Warm Start Tuning Job</h2>
+      <p>You can use either the low-level AWS SDK for Python (Boto 3) or the high-level SageMaker
+        Python SDK to create a warm start tuning job.</p>
+      <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="automatic-model-tuning-warm-start.html#warm-start-tuning-example-boto">Create a Warm Start Tuning Job (
+            Low-level SageMaker API for Python (Boto 3))</a></li><li><a href="automatic-model-tuning-warm-start.html#warm-start-tuning-example-sdk">Create a Warm Start Tuning Job (SageMaker
+            Python SDK)</a></li></ul></div>
+       
+        <h3 id="warm-start-tuning-example-boto">Create a Warm Start Tuning Job (
+            Low-level SageMaker API for Python (Boto 3))</h3>
+        <p>To use warm start tuning, you specify the values of a <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HyperParameterTuningJobWarmStartConfig.html"><code class="code">HyperParameterTuningJobWarmStartConfig</code></a> object, and pass that as the
+            <code class="code">WarmStartConfig</code> field in a call to <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateHyperParameterTuningJob.html"><code class="code">CreateHyperParameterTuningJob</code></a>.</p>
+        <p>The following code shows how to create a <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HyperParameterTuningJobWarmStartConfig.html"><code class="code">HyperParameterTuningJobWarmStartConfig</code></a> object and pass it to <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateHyperParameterTuningJob.html"><code class="code">CreateHyperParameterTuningJob</code></a> job by using the low-level SageMaker API
+          for Python (Boto 3).</p>
+        <p>Create the <code class="code">HyperParameterTuningJobWarmStartConfig</code> object:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">warm_start_config = <span>{</span>
+          "ParentHyperParameterTuningJobs" : [
+          <span>{</span>"HyperParameterTuningJobName" : 'MyParentTuningJob'}
+          ],
+          "WarmStartType" : "IdenticalDataAndAlgorithm"
+}</code></pre>
+        <p>Create the warm start tuning job:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">smclient = boto3.Session().client('sagemaker')
+smclient.create_hyper_parameter_tuning_job(HyperParameterTuningJobName = 'MyWarmStartTuningJob',
+   HyperParameterTuningJobConfig = tuning_job_config, # See notebook for tuning configuration
+   TrainingJobDefinition = training_job_definition, # See notebook for job definition
+   WarmStartConfig = warm_start_config)</code></pre>
+       
+       
+        <h3 id="warm-start-tuning-example-sdk">Create a Warm Start Tuning Job (SageMaker
+            Python SDK)</h3>
+        <p>To use the <a href="https://sagemaker.readthedocs.io" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to run a warm start tuning job, you:</p>
+        <div class="itemizedlist">
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>Specify the parent jobs and the warm start type by using a
+                <code class="code">WarmStartConfig</code> object.</p>
+          </li><li class="listitem">
+            <p>Pass the <code class="code">WarmStartConfig</code> object as the value of the
+                <code class="code">warm_start_config</code> argument of a <a href="https://sagemaker.readthedocs.io/en/stable/tuner.html" rel="noopener noreferrer" target="_blank"><span>HyperparameterTuner</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> object.</p>
+          </li><li class="listitem">
+            <p>Call the <code class="code">fit</code> method of the <code class="code">HyperparameterTuner</code>
+              object.</p>
+          </li></ul></div>
+        <p>For more information about using the <a href="https://sagemaker.readthedocs.io" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> for hyperparameter tuning,
+          see <a href="https://github.com/aws/sagemaker-python-sdk#sagemaker-automatic-model-tuning" rel="noopener noreferrer" target="_blank"><span>https://github.com/aws/sagemaker-python-sdk#sagemaker-automatic-model-tuning</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        <p>This example uses an estimator that uses the <a href="image-classification.html">Image Classification - MXNet</a> algorithm for training. The following code sets
+          the hyperparameter ranges that the warm start tuning job searches within to find the best
+          combination of values. For information about setting hyperparameter ranges, see <a href="automatic-model-tuning-define-ranges.html">Define Hyperparameter Ranges</a>.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">hyperparameter_ranges = <span>{</span>'learning_rate': ContinuousParameter(0.0, 0.1),
+                         'momentum': ContinuousParameter(0.0, 0.99)}</code></pre>
+        <p>The following code configures the warm start tuning job by creating a
+            <code class="code">WarmStartConfig</code> object.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from sagemaker.tuner import WarmStartConfig,WarmStartTypes
+
+parent_tuning_job_name = "MyParentTuningJob"
+warm_start_config = WarmStartConfig(warm_start_type=WarmStartTypes.IDENTICAL_DATA_AND_ALGORITHM, parents=<span>{</span>parent_tuning_job_name})</code></pre>
+        <p>Now set the values for static hyperparameters, which are hyperparameters that keep the
+          same value for every training job that the warm start tuning job launches. In the
+          following code, <code class="code">imageclassification</code> is an estimator that was created
+          previously.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">imageclassification.set_hyperparameters(num_layers=18,
+                                        image_shape='3,224,224',
+                                        num_classes=257,
+                                        num_training_samples=15420,
+                                        mini_batch_size=128,
+                                        epochs=30,
+                                        optimizer='sgd',
+                                        top_k='2',
+                                        precision_dtype='float32',
+                                        augmentation_type='crop')</code></pre>
+        <p>Now create the <code class="code">HyperparameterTuner</code> object and pass the
+            <code class="code">WarmStartConfig</code> object that you previously created as the
+            <code class="code">warm_start_config</code> argument.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">tuner_warm_start = HyperparameterTuner(imageclassification,
+                            'validation:accuracy',
+                            hyperparameter_ranges,
+                            objective_type='Maximize',
+                            max_jobs=10,
+                            max_parallel_jobs=2,
+                            base_tuning_job_name='warmstart',
+                            warm_start_config=warm_start_config)</code></pre>
+        <p>Finally, call the <code class="code">fit</code> method of the <code class="code">HyperparameterTuner</code>
+          object to launch the warm start tuning job.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">tuner_warm_start.fit(
+        <span>{</span>'train': s3_input_train, 'validation': s3_input_validation},
+        include_cls_metadata=False)</code></pre>
+       
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./automatic-model-tuning-early-stopping.html">Stop Training Jobs Early</div><div id="next" class="next-link" accesskey="n" href="./automatic-model-tuning-limits.html">Resource Limits for Automatic Model
+        Tuning</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/automatic-model-tuning-warm-start.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/automatic-model-tuning-warm-start.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

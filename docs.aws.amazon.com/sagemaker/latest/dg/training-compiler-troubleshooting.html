@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>SageMaker Training Compiler Troubleshooting - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="training-compiler-troubleshooting" /><meta name="default_state" content="training-compiler-troubleshooting" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="training-compiler-troubleshooting.html" /><meta name="description" content="List to try to troubleshoot your training job." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="training-compiler-troubleshooting.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/training-compiler-troubleshooting.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/training-compiler-troubleshooting.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/training-compiler-troubleshooting.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/training-compiler-troubleshooting.html" hreflang="de" /><link rel="alternative" href="training-compiler-troubleshooting.html" hreflang="en-us" /><link rel="alternative" href="training-compiler-troubleshooting.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/training-compiler-troubleshooting.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/training-compiler-troubleshooting.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/training-compiler-troubleshooting.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/training-compiler-troubleshooting.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/training-compiler-troubleshooting.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/training-compiler-troubleshooting.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/training-compiler-troubleshooting.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/training-compiler-troubleshooting.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/training-compiler-troubleshooting.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/training-compiler-troubleshooting.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/training-compiler-troubleshooting.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/training-compiler-troubleshooting.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/training-compiler-troubleshooting.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/training-compiler-troubleshooting.html" hreflang="zh-tw" /><link rel="alternative" href="training-compiler-troubleshooting.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="SageMaker Training Compiler Troubleshooting" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>SageMaker Training Compiler Troubleshooting - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#training-compiler-troubleshooting" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-troubleshooting.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-troubleshooting.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-troubleshooting.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,amazon sagemaker training compiler, sagemaker training compiler, sm training compiler,compile deep learning model, compile transformer model, compile tensorflow model, compile pytorch model, compile nlp model,amazon sagemaker training compiler, sagemaker training compiler, sm training compiler,troubleshoot, troubleshooting, troubleshoot error" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Training Compiler",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/training-compiler.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "SageMaker Training Compiler Troubleshooting",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/training-compiler.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#training-compiler-troubleshooting" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="training-compiler-troubleshooting.html#training-compiler-troubleshooting-convergence-issue">Training job
+                    is not converging as expected when compared to the native framework training
+                    job</a><a href="training-compiler-troubleshooting.html#training-compiler-troubleshooting-missing-xla-config">Training job
+                    fails due to missing PyTorcl/XLA configuration</a><a href="training-compiler-troubleshooting.html#training-compiler-troubleshooting-no-improved-training-time">SageMaker Training Compiler doesn't reduce the total training time</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="training-compiler-troubleshooting">SageMaker Training Compiler Troubleshooting</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>If you run into an error, you can use the following list to try to troubleshoot your
+            training job. If you need further support, reach out to the SageMaker team through <a href="https://console.aws.amazon.com/support/" rel="noopener noreferrer" target="_blank"><span>AWS Support</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> or <a href="https://forums.aws.amazon.com/forum.jspa?forumID=285" rel="noopener noreferrer" target="_blank"><span>AWS Developer Forums
+                for Amazon SageMaker</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            <h2 id="training-compiler-troubleshooting-convergence-issue">Training job
+                    is not converging as expected when compared to the native framework training
+                    job</h2>
+            <p>Convergence issues range from “the model is not learning when SageMaker Training Compiler is turned
+                on” to “the model is learning but slower than the native framework”. In this
+                troubleshooting guide, we assume your convergence is fine without SageMaker Training Compiler (in the
+                native framework) and consider this the baseline.</p>
+            <p>When faced with such convergence issues, the first step is to identify if the
+                issue is limited to distributed training or stems from single-GPU training.
+                Distributed training with SageMaker Training Compiler is an extension of single-GPU
+                training with additional steps.</p>
+            <div class="orderedlist">
+                 
+                 
+                 
+            <ol><li>
+                    <p>Set up a cluster with multiple instances or GPUs.</p>
+                </li><li>
+                    <p>Distribute input data to all workers.</p>
+                </li><li>
+                    <p>Synchronize the model updates from all workers.</p>
+                </li></ol></div>
+            <p>Therefore, any convergence issue in single-GPU training propagates to distributed
+                training with multiple workers.</p>
+            <div class="mediaobject">
+                 
+                    <img src="../../../images/sagemaker/latest/dg/images/training-compiler-troubleshooting-convergence-flow.jpg" class="aws-docs-img-whiteBg aws-docs-img-padding" />
+                 
+                <div class="caption">A flow chart to troubleshoot convergence issues in training jobs when using
+                    SageMaker Training Compiler. Descriptions are in the following sections.</div>
+            </div>
+             
+                <h3 id="training-compiler-troubleshooting-convergence-issue-single-gpu">Convergence issues occurring in single-GPU training</h3>
+                <p>If your convergence issue stems from single-GPU training, this is likely due
+                    to improper settings for hyperparameters or the <code class="code">torch_xla</code>
+                    APIs.</p>
+                <p><b>Check the hyperparameters</b></p>
+                <p>Training with SageMaker Training Compiler leads to change in the memory footprint of a model. The
+                    compiler intelligently arbitrates between re-use and re-compute leading to a
+                    corresponding increase or decrease in memory consumption. To leverage this, it
+                    is essential to re-tune the batch size and associated hyperparameters when
+                    migrating a training job to SageMaker Training Compiler. However, incorrect hyperparameter settings
+                    often cause oscillation in training loss and possibly a slower convergence as a
+                    result. In rare cases, aggressive hyperparameters might result in the model not
+                    learning (the training loss metric doesn’t decrease or returns
+                    <code class="code">NaN</code>). To identify if the convergence issue is due to the
+                    hyperparameters, do a side-by-side test of two training jobs with and without
+                    SageMaker Training Compiler while keeping all the hyperparameters the same.</p>
+                <p><b>Check if the <code class="code">torch_xla</code> APIs are properly
+                        set up for single-GPU training</b></p>
+                <p>If the convergence issue persists with the baseline hyperparameters, you need
+                    to check if there’s any improper usage of the <code class="code">torch_xla</code> APIs,
+                    specifically the ones for updating the model. Fundamentally,
+                        <code class="code">torch_xla</code> continues to accumulate instructions (deferring
+                    execution) in the form of graph until it is explicitly instructed to run the
+                    accumulated graph. The <code class="code">torch_xla.core.xla_model.mark_step()</code>
+                    function facilitates the execution of the accumulated graph. The graph execution
+                    should be synchronized using this function <em><b>after each model update</b></em> and <em><b>before printing and logging any
+                            variables</b></em>. If it lacks the synchronization step,
+                    the model might use stale values from memory during prints, logs, and the
+                    subsequent forward passes, instead of using the most recent values that have to
+                    be synchronized after every iteration and model update.</p>
+                <p>It can be more complicated when using SageMaker Training Compiler with gradient scaling (possibly
+                    from the use of AMP) or gradient clipping techniques. The appropriate order of
+                    gradient computation with AMP is as follows.</p>
+                <div class="orderedlist">
+                     
+                     
+                     
+                     
+                <ol><li>
+                        <p>Gradient computation with scaling</p>
+                    </li><li>
+                        <p>Gradient un-scaling, gradient clipping, and then scaling</p>
+                    </li><li>
+                        <p>Model update</p>
+                    </li><li>
+                        <p>Synchronizing the graph execution with <code class="code">mark_step()</code></p>
+                    </li></ol></div>
+                <p>To find the right APIs for the operations mentioned in the list, see the guide
+                    for <a href="training-compiler-pytorch-models.html">migrating
+                        your training script to SageMaker Training Compiler</a>.</p>
+                <p><b>Consider using Automatic Model Tuning</b></p>
+                <p>If the convergence issue arises when re-tuning the batch size and associated
+                    hyperparameters such as the learning rate while using SageMaker Training Compiler, consider using <a href="automatic-model-tuning.html">Automatic Model Tuning</a> to tune your hyperparameters. You can refer
+                    to the <a href="https://github.com/aws/amazon-sagemaker-examples/blob/main/sagemaker-training-compiler/tensorflow/single_gpu_single_node/hyper-parameter-tuning.ipynb" rel="noopener noreferrer" target="_blank"><span>example notebook on tuning hyperparameters with SageMaker Training Compiler</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p>
+             
+             
+                <h3 id="training-compiler-troubleshooting-convergence-issue-distributed-training">Convergence issues occurring in distributed training</h3>
+                <p>If your convergence issue persists in distributed training, this is likely due
+                    to improper settings for weight initialization or the <code class="code">torch_xla</code>
+                    APIs. </p>
+                <p><b>Check weight initialization across the
+                        workers</b></p>
+                <p>If the convergence issue arises when running a distributed training job with
+                    multiple workers, ensure there is a uniform deterministic behavior across all
+                    workers by setting a constant seed where applicable. Beware of techniques such
+                    as weight initialization, which involves randomization. Each worker might end up
+                    training a different model in the absence of a constant seed.</p>
+                <p><b>Check if the <code class="code">torch_xla</code> APIs are properly
+                        set up for distributed training</b></p>
+                <p>If the issue still persists, this is likely due to improper use of the
+                        <code class="code">torch_xla</code> APIs for distributed training. Make sure that you add
+                    the following in your estimator to set up a cluster for distributed training
+                    with SageMaker Training Compiler.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">distribution=<span>{</span>'torchxla': <span>{</span>'enabled': True}}</code></pre>
+                <p>This should be accompanied by a function <code class="code">_mp_fn(index)</code> in your
+                    training script, which is invoked once per worker. Without the
+                        <code class="code">mp_fn(index)</code> function, you might end up letting each of the
+                    workers train the model independently without sharing model updates. </p>
+                <p>Next, make sure that you use the
+                        <code class="code">torch_xla.distributed.parallel_loader.MpDeviceLoader</code> API along
+                    with the distributed data sampler, as guided in the documentation about <a href="training-compiler-pytorch-models.html">migrating
+                        your training script to SageMaker Training Compiler</a>, as in the following example.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">torch.utils.data.distributed.DistributedSampler()</code></pre>
+                <p> This ensures that the input data is properly distributed across all workers. </p>
+                <p>Finally, to synchronize model updates from all workers, use
+                        <code class="code">torch_xla.core.xla_model._fetch_gradients</code> to gather gradients
+                    from all workers and <code class="code">torch_xla.core.xla_model.all_reduce</code> to combine
+                    all the gathered gradients into a single update. </p>
+                <p>It can be more complicated when using SageMaker Training Compiler with gradient scaling (possibly
+                    from use of AMP) or gradient clipping techniques. The appropriate order of
+                    gradient computation with AMP is as follows.</p>
+                <div class="orderedlist">
+                     
+                     
+                     
+                     
+                     
+                <ol><li>
+                        <p>Gradient computation with scaling</p>
+                    </li><li>
+                        <p>Gradient synchronization across all workers</p>
+                    </li><li>
+                        <p>Gradient un-scaling, gradient clipping, and then gradient
+                            scaling</p>
+                    </li><li>
+                        <p>Model update</p>
+                    </li><li>
+                        <p>Synchronizing the graph execution with <code class="code">mark_step()</code></p>
+                    </li></ol></div>
+                <p>Note that this checklist has an additional item for synchronizing all workers,
+                    compared to the checklist for single-GPU training.</p>
+             
+            
+         
+            <h2 id="training-compiler-troubleshooting-missing-xla-config">Training job
+                    fails due to missing PyTorcl/XLA configuration</h2>
+            <p>If a training job fails with the <code class="code">Missing XLA configuration</code> error
+                message, it might be due to a misconfiguration in the number of GPUs per instance
+                that you use.</p>
+            <p>XLA requires additional environment variables to compile the training job. The
+                most common missing environment variable is <code class="code">GPU_NUM_DEVICES</code>. For the
+                compiler to work properly, you must set this environment variable equal to the
+                number of GPUs per instance.</p>
+            <p>There are three approaches to set the <code class="code">GPU_NUM_DEVICES</code> environment
+                variable:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><b>Approach 1</b> – Use the
+                            <code class="code">environment</code> argument of the SageMaker estimator class. For
+                        example, if you use an <code class="code">ml.p3.8xlarge</code> instance that has four
+                        GPUs, do the following:</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py "># Using the SageMaker Python SDK's HuggingFace estimator
+
+hf_estimator=HuggingFace(
+    ...
+    instance_type="<code class="replaceable">ml.p3.8xlarge</code>",
+    hyperparameters=<span>{</span>...},
+    environment=<span>{</span>
+        ...
+        <b>"GPU_NUM_DEVICES": "<code class="replaceable">4</code>"</b> # corresponds to number of GPUs on the specified instance
+    },
+)</code></pre>
+                </li><li class="listitem">
+                    <p><b>Approach 2</b> – Use the
+                            <code class="code">hyperparameters</code> argument of the SageMaker estimator class and
+                        parse it in your training script.</p>
+                    <div class="orderedlist">
+                         
+                         
+                    <ol><li>
+                            <p>To specify the number of GPUs, add a key-value pair to the
+                                    <code class="code">hyperparameters</code> argument.</p>
+                            <p>For example, if you use an <code class="code">ml.p3.8xlarge</code> instance
+                                that has four GPUs, do the following:</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py "># Using the SageMaker Python SDK's HuggingFace estimator
+
+hf_estimator=HuggingFace(
+    ...
+    entry_point = "<code class="replaceable">train.py</code>"
+    instance_type= "<code class="replaceable">ml.p3.8xlarge</code>",
+    hyperparameters = <span>{</span>
+        ...
+        <b>"n_gpus": <code class="replaceable">4</code></b> # corresponds to number of GPUs on specified instance
+    }
+)
+hf_estimator.fit()</code></pre>
+                        </li><li>
+                            <p>In your training script, parse the <code class="code">n_gpus</code>
+                                hyperparameter and specify it as an input for the
+                                    <code class="code">GPU_NUM_DEVICES</code> environment variable.</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py "># train.py
+import os, argparse
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    ...
+    # Data, model, and output directories
+    parser.add_argument("--output_data_dir", type=str, default=os.environ["SM_OUTPUT_DATA_DIR"])
+    parser.add_argument("--model_dir", type=str, default=os.environ["SM_MODEL_DIR"])
+    parser.add_argument("--training_dir", type=str, default=os.environ["SM_CHANNEL_TRAIN"])
+    parser.add_argument("--test_dir", type=str, default=os.environ["SM_CHANNEL_TEST"])
+    <b>parser.add_argument("--n_gpus", type=str, default=os.environ["SM_NUM_GPUS"])</b>
+
+    args, _ = parser.parse_known_args()
+
+    <b>os.environ["GPU_NUM_DEVICES"] = args.n_gpus</b></code></pre>
+                        </li></ol></div>
+                </li><li class="listitem">
+                    <p><b>Approach 3</b> – Hard-code the
+                            <code class="code">GPU_NUM_DEVICES</code> environment variable in your training
+                        script. For example, add the following to your script if you use an instance
+                        that has four GPUs.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py "># train.py
+
+import os
+os.environ["GPU_NUM_DEVICES"] = <code class="replaceable">4</code></code></pre>
+                </li></ul></div>
+            <div class="awsdocs-note awsdocs-tip"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Tip</h6></div><div class="awsdocs-note-text"><p>To find the number of GPU devices on machine learning instances that you want
+                    to use, see <a href="https://aws.amazon.com/ec2/instance-types/#Accelerated_Computing" rel="noopener noreferrer" target="_blank"><span>Accelerated Computing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the <em>Amazon EC2 Instance Types
+                        page</em>. </p></div></div>
+         
+            <h2 id="training-compiler-troubleshooting-no-improved-training-time">SageMaker Training Compiler doesn't reduce the total training time</h2>
+            <p>If the total training time does not decrease with SageMaker Training Compiler, we highly recommend you
+                to go over the <a href="training-compiler-tips-pitfalls.html">SageMaker Training Compiler Best Practices and
+                Considerations</a> page to check your training
+                configuration, padding strategy for the input tensor shape, and hyperparameters. </p>
+
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./training-compiler-faq.html">Training Compiler FAQ</div><div id="next" class="next-link" accesskey="n" href="./training-compiler-release-notes.html">Release Notes</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-troubleshooting.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-troubleshooting.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

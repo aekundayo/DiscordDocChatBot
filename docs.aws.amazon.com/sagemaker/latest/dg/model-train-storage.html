@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Use Amazon SageMaker Training Storage Paths for Training Datasets, Checkpoints, Model Artifacts, and Outputs - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="model-train-storage" /><meta name="default_state" content="model-train-storage" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="model-train-storage.html" /><meta name="description" content="Learn about how the SageMaker training platform manages storage paths for training datasets, checkpoints, outputs, and model artifacts." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="model-train-storage.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/model-train-storage.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/model-train-storage.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/model-train-storage.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/model-train-storage.html" hreflang="de" /><link rel="alternative" href="model-train-storage.html" hreflang="en-us" /><link rel="alternative" href="model-train-storage.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/model-train-storage.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/model-train-storage.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/model-train-storage.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/model-train-storage.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/model-train-storage.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/model-train-storage.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/model-train-storage.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/model-train-storage.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/model-train-storage.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/model-train-storage.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/model-train-storage.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/model-train-storage.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/model-train-storage.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/model-train-storage.html" hreflang="zh-tw" /><link rel="alternative" href="model-train-storage.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Use Amazon SageMaker Training Storage Paths for Training Datasets, Checkpoints, Model Artifacts, and Outputs" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Use Amazon SageMaker Training Storage Paths for Training Datasets, Checkpoints, Model Artifacts, and Outputs - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#model-train-storage" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-train-storage.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-train-storage.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-train-storage.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Use Amazon SageMaker Training Storage Paths for Training Datasets, Checkpoints, Model Artifacts, and Outputs",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#model-train-storage" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="model-train-storage.html#model-train-storage-overview">Overview</a><a href="model-train-storage.html#model-train-storage-uncompressed">Uncompressed model output</a><a href="model-train-storage.html#model-train-storage-tips-considerations">Tips and Considerations for Setting
+        Up Storage Paths</a><a href="model-train-storage.html#model-train-storage-env-var-summary">SageMaker Environment Variables and Default
+        Paths for Training Storage Locations</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="model-train-storage">Use Amazon SageMaker Training Storage Paths for Training Datasets,
+      Checkpoints, Model Artifacts, and Outputs</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>This page provides a high-level summary of how the SageMaker training platform manages storage
+    paths for training datasets, model artifacts, checkpoints, and outputs between AWS cloud
+    storage and training jobs in SageMaker. Throughout this guide, you learn to identify the default
+    paths set by the SageMaker platform and how the data channels can be streamlined with your data
+    sources in Amazon Simple Storage Service (Amazon S3), FSx for Lustre, and Amazon EFS. For more information about various data
+    channel input modes and storage options, see <a href="model-access-training-data.html">Access Training Data</a>.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="model-train-storage.html#model-train-storage-overview">Overview</a></li><li><a href="model-train-storage.html#model-train-storage-uncompressed">Uncompressed model output</a></li><li><a href="model-train-storage.html#model-train-storage-tips-considerations">Tips and Considerations for Setting
+        Up Storage Paths</a></li><li><a href="model-train-storage.html#model-train-storage-env-var-summary">SageMaker Environment Variables and Default
+        Paths for Training Storage Locations</a></li></ul></div>
+    <h2 id="model-train-storage-overview">Overview</h2>
+    <p>The following diagram shows the simplest example of how SageMaker manages input and output
+      paths when you run a training job using the SageMaker Python SDK <a href="https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html#sagemaker.estimator.Estimator" rel="noopener noreferrer" target="_blank"><span>Estimator</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> class and its <a href="https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html#sagemaker.estimator.Estimator.fit" rel="noopener noreferrer" target="_blank"><span>fit</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> method. It's based on using file mode as the data access strategy and
+      Amazon S3 as the data source for the training input channels.</p>
+    <div class="mediaobject">
+       
+        <img src="../../../images/sagemaker/latest/dg/images/sagemaker-training-storage.png" class="aws-docs-img-whiteBg aws-docs-img-padding" />
+       
+      <div class="caption">This figure shows an overview of how SageMaker pairs storage paths between an
+        Amazon S3 bucket as the data source and the SageMaker training instance based on how the
+        paths are specified in a SageMaker estimator class. More information about the paths, how they
+        read from or write to the paths, and purposes of the paths are described in the following
+        section <a href="model-train-storage.html#model-train-storage-env-var-summary">SageMaker Environment Variables and Default
+        Paths for Training Storage Locations</a>.</div>
+    </div>
+    <p>You can use <code class="code">OutputDataConfig</code> in the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html">CreateTrainingJob</a> API
+      to find where your S3 bucket is located. Use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ModelArtifacts.html">ModelArtifacts</a> API to
+      find the S3 location that contains your model artifacts. See the <a href="https://github.com/aws/amazon-sagemaker-examples/blob/main/sagemaker-pipelines/tabular/abalone_build_train_deploy/sagemaker-pipelines-preprocess-train-evaluate-batch-transform.ipynb" rel="noopener noreferrer" target="_blank"><span>abalone_build_train_deploy</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> notebook for an example of output paths and how they are
+      used in API calls.</p>
+    <p>For more information and examples of how SageMaker manages data source, input modes, and local
+      paths in SageMaker training instances, see <a href="model-access-training-data.html">Access Training
+      Data</a>.</p>
+   
+    <h2 id="model-train-storage-uncompressed">Uncompressed model output</h2>
+    <p>SageMaker stores your model in <code class="code">/opt/ml/model</code> and your data in
+        <code class="code">/opt/ml/output/data</code>. After the model and data are written to those locations,
+      they're uploaded to your Amazon S3 bucket as compressed files by default. </p>
+    <p>You can save time on large data file compression by uploading model and data outputs to
+      your S3 bucket as uncompressed files. To do this, create a training job in uncompressed upload
+      mode by using either the AWS Command Line Interface (AWS CLI) or the SageMaker Python SDK. </p>
+    <p>The following code example shows how to create a training job in uncompressed upload mode
+      when using the AWS CLI. To enable uncompressed upload mode, set <code class="code">CompressionType</code>
+      field in the <code class="code">OutputDataConfig</code> API to <code class="userinput">NONE</code>.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+   "TrainingJobName": "<code class="replaceable">uncompressed_model_upload</code>",
+   ...
+   "OutputDataConfig": <span>{</span> 
+      "S3OutputPath": "s3://<code class="replaceable">DOC-EXAMPLE-BUCKET</code><code class="replaceable">/uncompressed_upload/output</code>",
+      "CompressionType": "NONE"
+   },
+   ...
+}</code></pre>
+    <p>The following code example shows you how to create a training job in uncompressed upload
+      mode using the SageMaker Python SDK.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import sagemaker
+from sagemaker.estimator import Estimator
+
+estimator = Estimator(
+    image_uri="<code class="replaceable">your-own-image-uri</code>",
+    role=sagemaker.get_execution_role(), 
+    sagemaker_session=sagemaker.Session(),
+    instance_count=1,
+    instance_type='<code class="replaceable">ml.c4.xlarge</code>',
+    disable_output_compression=True
+)</code></pre>
+   
+    <h2 id="model-train-storage-tips-considerations">Tips and Considerations for Setting
+        Up Storage Paths</h2>
+    <p>Consider the following items when setting up storage paths for training jobs in
+      SageMaker.</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>If you want to store training artifacts for distributed training in the
+            <code class="code">/opt/ml/output/data</code> directory, you must properly append subdirectories or
+          use unique file names for the artifacts through your model definition or training script.
+          If the subdirectories and file names are not properly configured, all of the distributed
+          training workers might write outputs to the same file name in the same output path in
+          Amazon S3.</p>
+      </li><li class="listitem">
+        <p>If you use a custom training container, make sure you install the <a href="https://github.com/aws/sagemaker-training-toolkit" rel="noopener noreferrer" target="_blank"><span>SageMaker Training Toolkit</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+          that helps set up the environment for SageMaker training jobs. Otherwise, you must specify the
+          environment variables explicitly in your Dockerfile. For more information, see <a href="docker-containers-create.html">Create a
+            container with your own algorithms and models</a>.</p>
+      </li><li class="listitem">
+        <p>When using an ML instance with <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html#nvme-ssd-volumes">NVMe SSD
+            volumes</a>, SageMaker doesn't provision Amazon EBS gp2 storage. Available storage is fixed to
+          the NVMe-type instance's storage capacity. SageMaker configures storage paths for training
+          datasets, checkpoints, model artifacts, and outputs to use the entire capacity of the
+          instance storage. For example, ML instance families with the NVMe-type instance storage
+          include <code class="code">ml.p4d</code>, <code class="code">ml.g4dn</code>, and <code class="code">ml.g5</code>. When using an
+          ML instance with the EBS-only storage option and without instance storage, you must define
+          the size of EBS volume through the <code class="code">volume_size</code> parameter in the SageMaker
+          estimator class (or <code class="code">VolumeSizeInGB</code> if you are using the
+            <code class="code">ResourceConfig</code> API). For example, ML instance families that use EBS volumes
+          include <code class="code">ml.c5</code> and <code class="code">ml.p2</code>. To look up instance types and their
+          instance storage types and volumes, see <a href="http://aws.amazon.com/ec2/instance-types/" rel="noopener noreferrer" target="_blank"><span>Amazon EC2 Instance Types</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      </li><li class="listitem">
+        <p>The default paths for SageMaker training jobs are mounted to Amazon EBS volumes or NVMe SSD
+          volumes of the ML instance. When you adapt your training script to SageMaker, make sure that
+          you use the default paths listed in the previous topic about <a href="model-train-storage.html#model-train-storage-env-var-summary">SageMaker Environment Variables and Default
+        Paths for Training Storage Locations</a>. We recommend that you use the
+            <code class="code">/tmp</code> directory as a scratch space for temporarily storing any large objects
+          during training. This means that you must not use directories that are mounted to small
+          disk space allocated for system, such as <code class="code">/user</code> and <code class="code">/home</code>, to
+          avoid out-of-space errors.</p>
+      </li></ul></div>
+    <p>To learn more, see the AWS machine learning blog <a href="http://aws.amazon.com/blogs/machine-learning/choose-the-best-data-source-for-your-amazon-sagemaker-training-job/" rel="noopener noreferrer" target="_blank"><span>Choose the best data source for your Amazon SageMaker training job</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> that further discusses
+      case studies and performance benchmarks of data sources and input modes.</p>
+   
+    <h2 id="model-train-storage-env-var-summary">SageMaker Environment Variables and Default
+        Paths for Training Storage Locations</h2>
+    <p>The following table summarizes input and output paths for training datasets, checkpoints,
+      model artifacts, and outputs, managed by the SageMaker training platform.</p>
+    <div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac23c42c13b5"><thead>
+          <tr>
+            <th>Local path in SageMaker training instance</th>
+            <th>SageMaker environment variable</th>
+            <th>Purpose</th>
+            <th>Read from S3 during start</th>
+            <th>Read from S3 during Spot-restart</th>
+            <th>Writes to S3 during training</th>
+            <th>Writes to S3 when job is terminated</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">/opt/ml/input/data/<code class="replaceable">channel_name</code></code><sup>1</sup>
+              </p>
+            </td>
+            <td tabindex="-1">
+              <p>SM_CHANNEL_<code class="replaceable">CHANNEL_NAME</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Reading training data from the input channels specified through the SageMaker Python
+                SDK <a href="https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html#sagemaker.estimator.Estimator" rel="noopener noreferrer" target="_blank"><span>Estimator</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> class or the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html">CreateTrainingJob</a> API operation. For more information about how to
+                specify it in your training script using the SageMaker Python SDK, see <a href="https://sagemaker.readthedocs.io/en/stable/overview.html?highlight=VPC#prepare-a-training-script" rel="noopener noreferrer" target="_blank"><span>Prepare a Training script</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            </td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">No</td>
+            <td tabindex="-1">No</td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">/opt/ml/output/data</code><sup>2</sup></p>
+            </td>
+            <td tabindex="-1">SM_OUTPUT_DIR</td>
+            <td tabindex="-1">
+              <p>Saving outputs such as loss, accuracy, intermediate layers, weights, gradients,
+                bias, and TensorBoard-compatible outputs. You can also save any arbitrary output
+                you’d like using this path. Note that this is a different path from the one for
+                storing the final model artifact <code class="code">/opt/ml/model/</code>.</p>
+            </td>
+            <td tabindex="-1">No</td>
+            <td tabindex="-1">No</td>
+            <td tabindex="-1">No</td>
+            <td tabindex="-1">Yes</td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">/opt/ml/model</code><sup>3</sup></p>
+            </td>
+            <td tabindex="-1">SM_MODEL_DIR</td>
+            <td tabindex="-1">
+              <p>Storing the final model artifact. This is also the path from where the model
+                artifact is deployed for <a href="realtime-endpoints.html">Real-time inference</a> in
+                SageMaker Hosting.</p>
+            </td>
+            <td tabindex="-1">No</td>
+            <td tabindex="-1">No</td>
+            <td tabindex="-1">No</td>
+            <td tabindex="-1">Yes</td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">/opt/ml/checkpoints</code><sup>4</sup></p>
+            </td>
+            <td tabindex="-1">-</td>
+            <td tabindex="-1">
+              <p>Saving model checkpoints (the state of model) to resume training from a certain
+                point, and recover from unexpected or <a href="model-managed-spot-training.html">Managed Spot
+                  Training</a> interruptions.</p>
+            </td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">No</td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">/opt/ml/code</code></p>
+            </td>
+            <td tabindex="-1">SAGEMAKER_SUBMIT_DIRECTORY</td>
+            <td tabindex="-1">
+              <p>Copying training scripts, additional libraries, and dependencies.</p>
+            </td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">Yes</td>
+            <td tabindex="-1">No</td>
+            <td tabindex="-1">No</td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">/tmp</code></p>
+            </td>
+            <td tabindex="-1">-</td>
+            <td tabindex="-1">
+              <p>Reading or writing to <code class="code">/tmp</code> as a scratch space.</p>
+            </td>
+            <td tabindex="-1">No</td>
+            <td tabindex="-1">No</td>
+            <td tabindex="-1">No</td>
+            <td tabindex="-1">No</td>
+          </tr>
+        </table></div></div>
+    <p><sup>1</sup>
+      <code class="code">channel_name</code> is the place to specify user-defined channel names for training data
+      inputs. Each training job can contain several data input channels. You can specify up to 20
+      training input channels per training job. Note that the data downloading time from the data
+      channels is counted to the billable time. For more information about data input paths, see
+        <a href="your-algorithms-training-algo-running-container.html">How Amazon SageMaker
+        Provides Training Information</a>. Also, there are three types of data input modes that
+      SageMaker supports: file, FastFile, and pipe mode. To learn more about the data input modes for
+      training in SageMaker, see <a href="model-access-training-data.html">Access Training
+      Data</a>.</p>
+    <p><sup>2</sup> SageMaker compresses and writes training artifacts to TAR files
+        (<code class="code">tar.gz</code>). Compression and uploading time is counted to the billable time. For
+      more information, see <a href="your-algorithms-training-algo-output.html">How Amazon SageMaker Processes
+        Training Output</a>.</p>
+    <p><sup>3</sup> SageMaker compresses and writes the final model artifact to a TAR
+      file (<code class="code">tar.gz</code>). Compression and uploading time is counted to the billable time.
+      For more information, see <a href="your-algorithms-training-algo-output.html">How Amazon SageMaker Processes
+        Training Output</a>.</p>
+    <p><sup>4</sup> Sync with Amazon S3 during training. Write as is
+      without compressing to TAR files. For more information, see <a href="model-checkpoints.html">Use Checkpoints in Amazon SageMaker</a>.</p>
+
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./training-metrics.html">Monitor and Analyze Using CloudWatch
+            Metrics</div><div id="next" class="next-link" accesskey="n" href="./augmented-manifest.html">Use Augmented Manifest Files</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-train-storage.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-train-storage.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

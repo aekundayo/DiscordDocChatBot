@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configure Amazon EMR templates in AWS Service Catalog (for administrators) - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="studio-notebooks-set-up-emr-templates" /><meta name="default_state" content="studio-notebooks-set-up-emr-templates" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="studio-notebooks-set-up-emr-templates.html" /><meta name="description" content="Learn how administrators can configure AWS Service Catalog products so data scientists can discover AWS CloudFormation templates and self-provision Amazon EMR clusters from Studio." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="studio-notebooks-set-up-emr-templates.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" hreflang="de" /><link rel="alternative" href="studio-notebooks-set-up-emr-templates.html" hreflang="en-us" /><link rel="alternative" href="studio-notebooks-set-up-emr-templates.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" hreflang="zh-tw" /><link rel="alternative" href="studio-notebooks-set-up-emr-templates.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Configure Amazon EMR templates in AWS Service Catalog (for administrators)" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Configure Amazon EMR templates in AWS Service Catalog (for administrators) - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-notebooks-set-up-emr-templates" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,SageMaker Amazon EMR,SageMaker AWS Glue,SageMaker Spark,SageMaker Hive,SageMaker Presto" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Prepare data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-prep.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Scale data preparation using Apache Spark, Hive, or Presto on Amazon EMR or AWS Glue from Amazon SageMaker Studio notebooks",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-emr-spark-glue.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Prepare data using Amazon EMR",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-emr-cluster.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Create an Amazon EMR cluster from Studio notebooks",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-create-emr-cluster.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Configure Amazon EMR templates in AWS Service Catalog (for administrators)",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-create-emr-cluster.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-notebooks-set-up-emr-templates" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="studio-notebooks-set-up-emr-templates">Configure Amazon EMR templates in
+                    AWS Service Catalog (for administrators)</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>This section provides details about how administrators can configure an <a href="https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html">AWS Service Catalog</a> product so users can independently self-provision Amazon EMR
+                clusters from Amazon SageMaker Studio notebooks. Additionally, administrators can configure
+                the Amazon EMR cluster templates in a way so end-users can customize various aspects of
+                the cluster to suit their specific requirements. For example, the administrator can
+                define a list of permissible instance types from which users can choose when
+                creating cluster.</p><p>This topic assumes that you are familiar with the creation of <a href="https://docs.aws.amazon.com/servicecatalog/latest/adminguide/getstarted-portfolio.html">portfolios and
+                    products in AWS Service Catalog</a> as well as <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-gs.html">Amazon EMR</a>, and <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html">AWS CloudFormation</a>.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can refer to the AWS CloudFormation templates in <a href="https://github.com/aws-samples/sagemaker-studio-emr/tree/main/cloudformation/getting_started" rel="noopener noreferrer" target="_blank"><span>aws-samples/sagemaker-studio-emr</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> GitHub repository as examples of
+                    CloudFormation stacks to deploy IAM roles, Amazon VPCs, a sandbox Studio
+                    Domain, a user profile, as well as a CloudFormation template to launch an Amazon EMR
+                    cluster. Several options are available depending on your authentication method
+                    between Studio and the Amazon EMR cluster. In these examples, a parent CloudFormation
+                    template passes the SageMaker VPC ID, security group, and subnet ID
+                    parameters to the CloudFormation template of an Amazon EMR cluster. </p><p>You can access various examples of CloudFormation Amazon EMR templates in the nested
+                    repository <a href="https://github.com/aws-samples/sagemaker-studio-emr/tree/main/cloudformation/emr_servicecatalog_templates" rel="noopener noreferrer" target="_blank"><span>sagemaker-studio-emr/cloudformation/emr_servicecatalog_templates</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+                    and further choose from a single account deployment to cross accounts.</p><p>For more information about the authentication methods available when
+                    connecting to an Amazon EMR cluster, see <a href="studio-notebooks-emr-cluster-connect.html">Use Amazon EMR clusters from
+                Studio notebooks</a>.</p></div></div><p>To simplify the creation of Amazon EMR clusters, administrators can register the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html">CloudFormation template of an Amazon EMR cluster</a> as a product in the portfolio
+                of the AWS Service Catalog. Then they associate the Service Catalog portfolio with the Studio
+                execution role to ensure the availability of the template in Studio.
+                Furthermore, to make sure that data scientists can discover those templates,
+                provision Amazon EMR clusters, and connect to Amazon EMR clusters from their Studio
+                notebooks, administrators need to set the proper access permissions.</p><p>The following list provides the additional settings that administrators need to
+                apply to a baseline CloudFormation stack to enable Studio to access the Service Catalog
+                products and provision Amazon EMR clusters. Those settings must be applied at multiple
+                levels:</p><div class="itemizedlist">
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>In the Service Catalog portfolio</p>
+                </li><li class="listitem">
+                    <p>In the Service Catalog product</p>
+                </li><li class="listitem">
+                    <p>In the CloudFormation Amazon EMR template declared as the Service Catalog product</p>
+                </li></ul></div><p>Finally, administrators must assign the required permissions to both the
+                Studio execution role accessing the clusters and the account where Amazon EMR is
+                deployed, based on whether Studio and Amazon EMR are in the same or different AWS
+                accounts.</p><div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Pre-requisites: <strong>Networking and authentication
+                            requirements</strong></p>
+                    <p>As a prerequisite, ensure that you have reviewed the networking and
+                        security requirements in <a href="studio-notebooks-emr-networking.html">Configure networking (for
+                administrators)</a> and that you have
+                        created a baseline CloudFormation stack supporting the authentication method of
+                        your choice. You can find examples of CloudFormation templates in <a href="https://github.com/aws-samples/sagemaker-studio-emr/tree/main/cloudformation/getting_started" rel="noopener noreferrer" target="_blank"><span>aws-samples/sagemaker-studio-emr</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                </li><li class="listitem">
+                    <p><strong>In your Service Catalog portfolio:</strong></p>
+                    <p>Add the following section to your portfolio CloudFormation template (see the
+                        example in YAML format) to associate your portfolio with the Studio
+                        execution role accessing your cluster.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="YAML ">SageMakerStudioEMRProductPortfolioPrincipalAssociation:
+    Type: AWS::ServiceCatalog::PortfolioPrincipalAssociation
+    Properties:
+      PrincipalARN: <code class="replaceable">SageMakerExecutionRole.Arn</code>
+      PortfolioId: <code class="replaceable">SageMakerStudioEMRProductPortfolio ID</code>
+      PrincipalType: IAM</code></pre>
+                </li><li class="listitem">
+                    <p><strong>In your Service Catalog product:</strong></p>
+                    <p>Add the following tag key <code class="code">"sagemaker:studio-visibility:emr"</code>
+                        and set to the value <code class="code">"true"</code> (here in YAML) to the Service Catalog product
+                        referencing the Amazon EMR template resource. This ensures the visibility of the
+                        template in Studio .</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="YAML ">SMStudioEMRNoAuthProduct:
+    Type: AWS::ServiceCatalog::CloudFormationProduct
+    Properties:
+      Owner: AWS
+      Name: SageMaker Studio Domain No Auth EMR
+      ProvisioningArtifactParameters:
+        - Name: SageMaker Studio Domain No Auth EMR
+          Description: Provisions a SageMaker domain and No Auth EMR Cluster
+          Info:
+            LoadTemplateFromURL: <code class="replaceable">Link to your CloudFormation template. For example, https://aws-ml-blog.s3.amazonaws.com/artifacts/astra-m4-sagemaker/end-to-end/CFN-EMR-NoStudioNoAuthTemplate-v3.yaml</code>
+      Tags:
+        - Key: "sagemaker:studio-visibility:emr"
+          Value: "true"</code></pre>
+                </li><li class="listitem">
+                    <p><strong>In the CloudFormation template of the Amazon EMR
+                            cluster</strong> within your Service Catalog product:</p>
+                    <p>Add the following mandatory stack parameters as a placeholder. This
+                        section is populated with the Studio project name and identifier used by
+                        the user when provisioning a cluster from Studio.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="YAML ">SageMakerProjectName:
+Type: String
+Description: Name of the project
+
+SageMakerProjectId:
+Type: String
+Description: Service generated Id of the project.</code></pre>
+                    <p>Administrators can specify <code class="code">Default</code> and
+                            <code class="code">AllowedValues</code> to include choices in the parameters section
+                        of a template, letting users input or select custom values when creating a
+                        cluster. The following example illustrates additional input parameters that
+                        administrators can set when creating an Amazon EMR template.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON ">"Parameters": <span>{</span>
+    "EmrClusterName": <span>{</span>
+      "Type": "String",
+      "Description": "EMR cluster Name."
+    },
+    "MasterInstanceType": <span>{</span>
+      "Type": "String",
+      "Description": "Instance type of the EMR master node.",
+      "Default": "m5.xlarge",
+      "AllowedValues": [
+        "m5.xlarge",
+        "m5.2xlarge",
+        "m5.4xlarge"
+      ]
+    },
+    "CoreInstanceType": <span>{</span>
+      "Type": "String",
+      "Description": "Instance type of the EMR core nodes.",
+      "Default": "m5.xlarge",
+      "AllowedValues": [
+        "m5.xlarge",
+        "m5.2xlarge",
+        "m5.4xlarge",
+        "m3.medium",
+        "m3.large",
+        "m3.xlarge",
+        "m3.2xlarge"
+      ]
+    },
+    "CoreInstanceCount": <span>{</span>
+      "Type": "String",
+      "Description": "Number of core instances in the EMR cluster.",
+      "Default": "2",
+      "AllowedValues": [
+        "2",
+        "5",
+        "10"
+      ]
+    },
+    "EmrReleaseVersion": <span>{</span>
+      "Type": "String",
+      "Description": "The release version of EMR to launch.",
+      "Default": "emr-5.33.1",
+      "AllowedValues": [
+        "emr-5.33.1",
+        "emr-6.4.0"
+      ]
+    }
+  }</code></pre>
+                </li><li class="listitem">
+                    <p>Last, attach the required IAM policies to enable the visibility of
+                        CloudFormation Amazon EMR templates and the self-provisioning of Amazon EMR clusters from
+                        the Studio notebooks. The role to which you must add those policies
+                        depends on whether Studio and Amazon EMR are deployed in the same account
+                        (single account) or in different accounts (cross accounts).</p>
+                    <div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>If your Amazon EMR cluster is deployed in the same AWS account as the
+                                Studio account, refer to the <em>Single
+                                    Account</em> tab.</p>
+                        </li><li class="listitem">
+                            <p>If your Amazon EMR cluster is deployed in a different AWS account
+                                than the Studio account, refer to the <em>Cross Accounts</em> tab.</p>
+                        </li></ul></div>
+                    <p>For more information on cross-account access using roles, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies-cross-account-resource-access.html">Cross account resource access in IAM</a> or <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic-cross-account.html">Cross-account policy evaluation logic</a>.</p>
+                    <awsdocs-tabs><dl style="display: none">
+                        <dt>Single account</dt><dd tab-id="single-account">
+                                <p>Attach the following permissions to the Studio execution
+                                    role accessing your cluster.</p>
+                                <p>The following list provides a breakdown of the permissions
+                                    required.</p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p><code class="code">AllowEMRTemplateDiscovery</code> allows the
+                                            discoverability for Amazon EMR templates.</p>
+                                    </li><li class="listitem">
+                                        <p><code class="code">AllowSagemakerProjectManagement</code> enables
+                                            the creation of <a href="sagemaker-projects.html">SageMaker projects</a>. In Studio, access to the
+                                            AWS Service Catalog is granted through Projects.</p>
+                                    </li><li class="listitem">
+                                        <p><code class="code">AllowClusterDetailsDiscovery</code> and
+                                                <code class="code">AllowClusterDiscovery</code> allow the
+                                            discovery and connection to Amazon EMR clusters.</p>
+                                    </li><li class="listitem">
+                                        <p><code class="code">AllowPresignedUrl</code> allows the creation of
+                                            pre-signed URLs to access Spark UI.</p>
+                                    </li></ul></div>
+                                <p>The following is a comprehensive JSON that includes these
+                                    permissions.</p>
+                                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "AllowPresignedUrl",
+            "Effect": "Allow",
+            "Action": [
+                "elasticmapreduce:DescribeCluster",
+                "elasticmapreduce:ListInstanceGroups",
+                "elasticmapreduce:CreatePersistentAppUI",
+                "elasticmapreduce:DescribePersistentAppUI",
+                "elasticmapreduce:GetPersistentAppUIPresignedURL",
+                "elasticmapreduce:GetOnClusterAppUIPresignedURL"
+            ],
+            "Resource": [
+                "arn:aws:elasticmapreduce:<code class="replaceable">studio-region</code>:<code class="replaceable">studio-account</code>:cluster/*"
+            ]
+        },
+        <span>{</span>
+            "Sid": "AllowClusterDetailsDiscovery",
+            "Effect": "Allow",
+            "Action": [
+                "elasticmapreduce:DescribeCluster",
+                "elasticmapreduce:ListInstances",
+                "elasticmapreduce:ListInstanceGroups",
+                "elasticmapreduce:DescribeSecurityConfiguration"
+            ],
+            "Resource": [
+                "arn:aws:elasticmapreduce:<code class="replaceable">studio-region</code>:<code class="replaceable">studio-account</code>:cluster/*"
+            ]
+        },
+        <span>{</span>
+            "Sid": "AllowClusterDiscovery",
+            "Effect": "Allow",
+            "Action": [
+                "elasticmapreduce:ListClusters"
+            ],
+            "Resource": "*"
+        },
+        <span>{</span>
+            "Sid": "AllowEMRTemplateDiscovery",
+            "Effect": "Allow",
+            "Action": [
+              "servicecatalog:SearchProducts"
+            ],
+            "Resource": "*"
+        },
+        <span>{</span>
+            "Sid": "AllowSagemakerProjectManagement",
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreateProject",
+                "sagemaker:DeleteProject"
+            ],
+            "Resource": "arn:aws:sagemaker:<code class="replaceable">studio-region</code>:<code class="replaceable">studio-account</code>:project/*"
+        },
+    ]
+}</code></pre>
+                            </dd>
+                        <dt>Cross accounts</dt><dd tab-id="cross-accounts">
+                                <p>If your Amazon EMR clusters and Studio are deployed in separate
+                                    AWS accounts, you configure the permissions in multiple
+                                    steps.</p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p>On the <em>trusting
+                                                account</em> (the account in which Amazon EMR is
+                                            deployed ), create a custom IAM role (referred to as
+                                                <code class="code">ASSUMABLE-ROLE</code> in this page) with the
+                                            following permissions and trust relationship.</p>
+                                        <p>For information about creating a role on an AWS
+                                            account, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html">Creating an IAM role (console)</a>.</p>
+                                        <div class="orderedlist">
+                                             
+                                             
+                                        <ol><li>
+                                                <p>Add an IAM policy defining the following
+                                                  permissions.</p>
+                                                <div class="itemizedlist">
+                                                   
+                                                   
+                                                <ul class="itemizedlist"><li class="listitem">
+                                                  <p><code class="code">AllowClusterDetailsDiscovery</code>
+                                                  and <code class="code">AllowClusterDiscovery</code> to allow
+                                                  the discovery and connection to Amazon EMR
+                                                  clusters.</p>
+                                                  </li><li class="listitem">
+                                                  <p><code class="code">AllowPresignedUrl</code> to allow the
+                                                  creation of pre-signed URLs to access Spark
+                                                  UI.</p>
+                                                  </li></ul></div>
+                                                <p>The following is a comprehensive JSON that
+                                                  includes these permissions.</p>
+                                                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "AllowPresignedUrl",
+            "Effect": "Allow",
+            "Action": [
+                "elasticmapreduce:DescribeCluster",
+                "elasticmapreduce:ListInstanceGroups",
+                "elasticmapreduce:CreatePersistentAppUI",
+                "elasticmapreduce:DescribePersistentAppUI",
+                "elasticmapreduce:GetPersistentAppUIPresignedURL",
+                "elasticmapreduce:GetOnClusterAppUIPresignedURL"
+            ],
+            "Resource": [
+                "arn:aws:elasticmapreduce:<code class="replaceable">emr-region</code>:<code class="replaceable">emr-account</code>:cluster/*"
+            ]
+        },
+        <span>{</span>
+            "Sid": "AllowClusterDetailsDiscovery",
+            "Effect": "Allow",
+            "Action": [
+               "elasticmapreduce:DescribeCluster",
+               "elasticmapreduce:ListInstances",
+               "elasticmapreduce:ListInstanceGroups",
+               "elasticmapreduce:DescribeSecurityConfiguration"
+            ],
+            "Resource": [
+                "arn:aws:elasticmapreduce:<code class="replaceable">emr-region</code>:<code class="replaceable">emr-account</code>:cluster/*"
+            ]
+        },
+        <span>{</span>
+            "Sid": "AllowClusterDiscovery",
+            "Effect": "Allow",
+            "Action": [
+                "elasticmapreduce:ListClusters"
+            ],
+            "Resource": "*"
+        }
+    ]
+}</code></pre>
+                                            </li><li>
+                                                <p>To grant the <em>trusted
+                                                  account</em> (the account in which
+                                                  Studio is deployed) the permission to assume a
+                                                  role in the <em>trusting
+                                                  account</em>, include the following trust
+                                                  relationship. </p>
+                                                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Effect": "Allow",
+      "Principal": <span>{</span>
+        "AWS": "arn:aws:iam::<code class="replaceable">studio-account</code>:root"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}</code></pre>
+                                            </li></ol></div>
+                                    </li><li class="listitem">
+                                        <p>On the <em>trusted
+                                                account</em> (the account in which Studio
+                                            is deployed), add the following permissions and trust
+                                            relationship to the Studio execution role.</p>
+                                        <div class="orderedlist">
+                                             
+                                             
+
+                                        <ol><li>
+                                                <p>Add an IAM policy defining the following
+                                                  permissions.</p>
+                                                <div class="itemizedlist">
+                                                   
+                                                   
+                                                <ul class="itemizedlist"><li class="listitem">
+                                                  <p><code class="code">AllowSagemakerProjectManagement</code>
+                                                  to allow the creation of <a href="sagemaker-projects.html">SageMaker projects</a>. In Studio, access to
+                                                  the AWS Service Catalog is granted through Projects.</p>
+                                                  </li><li class="listitem">
+                                                  <p>
+                                                  <code class="code">AllowEMRTemplateDiscovery</code> to allow
+                                                  the discoverability of Amazon EMR templates.</p>
+                                                  </li></ul></div>
+                                                <p>The following is a comprehensive JSON that
+                                                  includes these permissions.</p>
+                                                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [        
+  <span>{</span>
+            "Sid": "AllowSagemakerProjectManagement",
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreateProject",
+                "sagemaker:DeleteProject"
+            ],
+            "Resource": "arn:aws:sagemaker:::project/*"
+   },
+   <span>{</span>
+            "Sid": "AllowEMRTemplateDiscovery",
+            "Effect": "Allow",
+            "Action": [
+              "servicecatalog:SearchProducts"
+            ],
+            "Resource": "*"
+   }
+    ]
+}</code></pre>
+                                            </li><li>
+                                                <p>To grant the Studio execution role the
+                                                  permission to assume the
+                                                  <code class="code">ASSUMABLE-ROLE</code> in the <em>trusting account</em>, include
+                                                  the following trust relationship.</p>
+                                                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+  <span>{</span> 
+            "Sid": "AllowRoleAssumptionForCrossAccountDiscovery", 
+            "Effect": "Allow", 
+            "Action": "sts:AssumeRole", 
+            "Resource":  ["arn:aws:iam::<code class="replaceable">emr-account</code>:role/<code class="replaceable">ASSUMABLE-ROLE</code>" ]
+  }]
+  }</code></pre>
+                                            </li></ol></div>
+                                    </li><li class="listitem">
+                                        <p>Last, see <a href="studio-notebooks-emr-cross-accounts-permissions.html">Additional
+                Configuration for cross accounts use cases (for administrators)</a> to learn how to provide the ARN of the
+                                                <code class="code">ASSUMABLE-ROLE</code> to the Studio
+                                            execution role. The ARN is loaded by the Studio
+                                            Jupyter server at launch. The Studio execution role
+                                            assumes that cross-account role to discover and connect
+                                            to Amazon EMR clusters in the <em>trusting account</em>.</p>
+                                    </li></ul></div>
+                            </dd>
+                    </dl></awsdocs-tabs>
+                </li></ul></div><p>Once the CloudFormation templates are available in Amazon SageMaker Studio, data scientists can
+                use them to self-provision Amazon EMR clusters. Each of the <code class="code">"Parameters"</code>
+                specified in the template becomes an input box in the cluster creation form of
+                Studio, with the corresponding <code class="code">"AllowedValues"</code> appearing in a
+                dropdown menu.</p><p>The following illustration shows the dynamic form assembled from a CloudFormation
+                Amazon EMR template to create an Amazon EMR cluster in SageMaker Studio.</p><div class="mediaobject">
+                 
+                    <img src="../../../images/sagemaker/latest/dg/images/studio/emr/studio-notebooks-emr-cluster-creation.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                    Illustration of a dynamic form assembled from a CloudFormation Amazon EMR&#xA;                        template to create an Amazon EMR cluster in SageMaker Studio.&#xA;                " />
+                 
+                 
+            </div><p>Visit <a href="studio-notebooks-launch-emr-cluster-from-template.html">Launch an Amazon EMR
+                    cluster from Studio</a> to learn
+                about how to launch a cluster from Studio using those Amazon EMR templates.</p><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./studio-notebooks-create-emr-cluster.html">Create an Amazon EMR cluster from
+                Studio notebooks</div><div id="next" class="next-link" accesskey="n" href="./studio-notebooks-launch-emr-cluster-from-template.html">Launch an Amazon EMR
+                    cluster from Studio</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-set-up-emr-templates.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Demo Template: Labeling Intents with crowd-classifier - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="sms-custom-templates-step2-demo2" /><meta name="default_state" content="sms-custom-templates-step2-demo2" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="sms-custom-templates-step2-demo2.html" /><meta name="description" content="If you choose a custom template, you'll reach the Custom labeling task panel . There you can select from multiple starter templates that represent some of the more common tasks. The templates provide a starting point to work from in building your customized labeling task's template." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="sms-custom-templates-step2-demo2.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" hreflang="de" /><link rel="alternative" href="sms-custom-templates-step2-demo2.html" hreflang="en-us" /><link rel="alternative" href="sms-custom-templates-step2-demo2.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" hreflang="zh-tw" /><link rel="alternative" href="sms-custom-templates-step2-demo2.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Demo Template: Labeling Intents with crowd-classifier" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Demo Template: Labeling Intents with crowd-classifier - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#sms-custom-templates-step2-demo2" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Label data with a human-in-the-loop",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-label.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Use Amazon SageMaker Ground Truth to Label Data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Creating Custom Labeling Workflows",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms-custom-templates.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Demo Template: Labeling Intents with crowd-classifier",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms-custom-templates.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#sms-custom-templates-step2-demo2" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="sms-custom-templates-step2-demo2.html#sms-custom-templates-step2-demo2-base-template">Starter Intent Detection custom template</a><a href="sms-custom-templates-step2-demo2.html#sms-custom-templates-step2-demo2-your-template">Your Intent Detection custom template</a><a href="sms-custom-templates-step2-demo2.html#sms-custom-templates-step2-demo2-pre-lambda">Your pre-annotation Lambda function</a><a href="sms-custom-templates-step2-demo2.html#sms-custom-templates-step2-demo2-post-lambda">Your post-annotation Lambda function</a><a href="sms-custom-templates-step2-demo2.html#sms-custom-templates-step2-demo2-job-output">Your labeling job output</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="sms-custom-templates-step2-demo2">Demo Template: Labeling Intents with <code class="code">crowd-classifier</code></h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>If you choose a custom template, you'll reach the <b>Custom labeling task
+                panel</b>. There you can select from multiple starter templates that
+            represent some of the more common tasks. The templates provide a starting point to work
+            from in building your customized labeling task's template.</p><p>In this demonstration, you work with the <b>Intent Detection</b>
+            template, which uses the <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-crowd-classifier.html">crowd-classifier</a></code> element, and the
+            AWS Lambda functions needed for processing your data before and after the task.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="sms-custom-templates-step2-demo2.html#sms-custom-templates-step2-demo2-base-template">Starter Intent Detection custom template</a></li><li><a href="sms-custom-templates-step2-demo2.html#sms-custom-templates-step2-demo2-your-template">Your Intent Detection custom template</a></li><li><a href="sms-custom-templates-step2-demo2.html#sms-custom-templates-step2-demo2-pre-lambda">Your pre-annotation Lambda function</a></li><li><a href="sms-custom-templates-step2-demo2.html#sms-custom-templates-step2-demo2-post-lambda">Your post-annotation Lambda function</a></li><li><a href="sms-custom-templates-step2-demo2.html#sms-custom-templates-step2-demo2-job-output">Your labeling job output</a></li></ul></div>
+                <h2 id="sms-custom-templates-step2-demo2-base-template">Starter Intent Detection custom template</h2>
+
+                <p>This is the intent detection template that is provided as a starting point.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="html ">&lt;script src="https://assets.crowd.aws/crowd-html-elements.js"&gt;&lt;/script&gt;
+
+&lt;crowd-form&gt;
+  &lt;crowd-classifier
+    name="intent"
+    categories="<span>{</span><span>{</span> task.input.labels | to_json | escape }}"
+    header="Pick the most relevant intention expressed by the below text"
+  &gt;
+    &lt;classification-target&gt;
+      <span>{</span><span>{</span> task.input.utterance }}
+    &lt;/classification-target&gt;
+    
+    &lt;full-instructions header="Intent Detection Instructions"&gt;
+        &lt;p&gt;Select the most relevant intention expressed by the text.&lt;/p&gt;
+        &lt;div&gt;
+           &lt;p&gt;&lt;strong&gt;Example: &lt;/strong&gt;I would like to return a pair of shoes&lt;/p&gt;
+           &lt;p&gt;&lt;strong&gt;Intent: &lt;/strong&gt;Return&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/full-instructions&gt;
+
+    &lt;short-instructions&gt;
+      Pick the most relevant intention expressed by the text
+    &lt;/short-instructions&gt;
+  &lt;/crowd-classifier&gt;
+&lt;/crowd-form&gt;</code></pre>
+
+                
+                
+                <p>The custom templates use the <a href="https://shopify.github.io/liquid/" rel="noopener noreferrer" target="_blank"><span>Liquid template language</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, and each of the items between double curly braces is a variable. The pre-annotation AWS Lambda function should provide an object named <code class="code">taskInput</code> and that object's properties can be accessed as <code class="code"><span>{</span><span>{</span> task.input.&lt;property name&gt; }}</code> in your template.</p>
+             
+                <h2 id="sms-custom-templates-step2-demo2-your-template">Your Intent Detection custom template</h2>
+                
+            
+            <p>In the starter template, there are two variables: the <code class="code">task.input.labels</code> property in the <code class="code">crowd-classifier</code> element opening tag and the <code class="code">task.input.utterance</code> in the <code class="code">classification-target</code> region's content.</p>
+            <p>Unless you need to offer different sets of labels with different utterances, avoiding a variable and just using text will save processing time and creates less possibility of error. The template used in this demonstration will remove that variable, but variables and filters like <code class="code">to_json</code> are explained in more detail in the <a href="sms-custom-templates-step2-demo2.html" rel="noopener noreferrer" target="_blank"><code class="code">crowd-bounding-box</code> demonstration</a> article.</p>
+             
+                <h3 id="sms-custom-templates-step2-demo2-instructions">Styling Your Elements</h3>
+                <p>Two parts of these custom elements that sometimes get overlooked are the <code class="code">&lt;full-instructions&gt;</code> and <code class="code">&lt;short-instructions&gt;</code> regions. Good instructions generate good results.</p>
+                <p>In the elements that include these regions, the <code class="code">&lt;short-instructions&gt;</code> appear automatically in the "Instructions" pane on the left of the worker's screen. The <code class="code">&lt;full-instructions&gt;</code> are linked from the "View full instructions" link near the top of that pane. Clicking the link opens a modal pane with more detailed instructions.</p>
+                <p>You can not only use HTML, CSS, and JavaScript in these sections, you are encouraged to if you believe you can provide a strong set of instructions and examples that will help workers complete your tasks with better speed and accuracy. </p>
+                <div class="example"><h6>Example Try out a sample with JSFiddle</h6><div class="example-contents"><p><a href="https://jsfiddle.net/MTGT_Fiddle_Manager/bjc0y1vd/35/" rel="noopener noreferrer" target="_blank"><span><span class="inlinemediaobject">
+                        
+                           <img src="../../../images/sagemaker/latest/dg/images/kitten3x480.gif" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" />
+                         
+                    </span></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p><p>
+                        Try out an <a href="https://jsfiddle.net/MTGT_Fiddle_Manager/bjc0y1vd/35/" rel="noopener noreferrer" target="_blank"><span>example <code class="code">&lt;crowd-classifier&gt;</code> task</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. The example is rendered by JSFiddle, therefore all the template variables are replaced with hard-coded values. Click the "View full instructions" link to see a set of examples with extended CSS styling. You can fork the project to experiment with your own changes to the CSS, adding sample images, or adding extended JavaScript functionality.</p></div></div>
+             
+            <div class="example"><h6>Example : Final Customized Intent Detection Template</h6><div class="example-contents"><p>This uses the <a href="https://jsfiddle.net/MTGT_Fiddle_Manager/bjc0y1vd/35/" rel="noopener noreferrer" target="_blank"><span>example <code class="code">&lt;crowd-classifier&gt;</code> task</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, but with a variable for the <code class="code">&lt;classification-target&gt;</code>. If you are trying to keep a consistent CSS design among a series of different labeling jobs, you can include an external stylesheet using a <code class="code">&lt;link rel...&gt;</code> element the same way you'd do in any other HTML document.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="html ">&lt;script src="https://assets.crowd.aws/crowd-html-elements.js"&gt;&lt;/script&gt;
+
+&lt;crowd-form&gt;
+  &lt;crowd-classifier
+    name="intent"
+    categories="['buy', 'eat', 'watch', 'browse', 'leave']"
+    header="Pick the most relevant intent expressed by the text below"
+  &gt;
+    &lt;classification-target&gt;
+      <span>{</span><span>{</span> task.input.source }}
+    &lt;/classification-target&gt;
+    
+    &lt;full-instructions header="Emotion Classification Instructions"&gt;
+      &lt;p&gt;In the statements and questions provided in this exercise, what category of action is the speaker interested in doing?&lt;/p&gt;
+          &lt;table&gt;
+            &lt;tr&gt;
+              &lt;th&gt;Example Utterance&lt;/th&gt;
+              &lt;th&gt;Good Choice&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;When is the Seahawks game on?&lt;/td&gt;
+              &lt;td&gt;
+                eat&lt;br&gt;
+                &lt;greenbg&gt;watch&lt;/greenbg&gt;
+                &lt;botchoice&gt;browse&lt;/botchoice&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;th&gt;Example Utterance&lt;/th&gt;
+              &lt;th&gt;Bad Choice&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;When is the Seahawks game on?&lt;/td&gt;
+              &lt;td&gt;
+                buy&lt;br&gt;
+                &lt;greenbg&gt;eat&lt;/greenbg&gt;
+                &lt;botchoice&gt;watch&lt;/botchoice&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+          &lt;/table&gt;
+    &lt;/full-instructions&gt;
+
+    &lt;short-instructions&gt;
+      What is the speaker expressing they would like to do next?
+    &lt;/short-instructions&gt;  
+  &lt;/crowd-classifier&gt;
+&lt;/crowd-form&gt;
+&lt;style&gt;
+  greenbg <span>{</span>
+    background: #feee23;
+    display: block;
+  }
+
+  table <span>{</span>
+    *border-collapse: collapse; /* IE7 and lower */
+    border-spacing: 0; 
+  }
+
+  th, tfoot, .fakehead <span>{</span>
+    background-color: #8888ee;
+    color: #f3f3f3;
+    font-weight: 700;
+  }
+
+  th, td, tfoot <span>{</span>
+      border: 1px solid blue;
+  }
+
+  th:first-child <span>{</span>
+    border-radius: 6px 0 0 0;
+  }
+
+  th:last-child <span>{</span>
+    border-radius: 0 6px 0 0;
+  }
+
+  th:only-child<span>{</span>
+    border-radius: 6px 6px 0 0;
+  }
+
+  tfoot:first-child <span>{</span>
+    border-radius: 0 0 6px 0;
+  }
+
+  tfoot:last-child <span>{</span>
+    border-radius: 0 0 0 6px;
+  }
+
+  tfoot:only-child<span>{</span>
+    border-radius: 6px 6px;
+  }
+
+  td <span>{</span>
+    padding-left: 15px ;
+    padding-right: 15px ;
+  }
+
+  botchoice <span>{</span>
+    display: block;
+    height: 17px;
+    width: 490px;
+    overflow: hidden;
+    position: relative;
+    background: #fff;
+    padding-bottom: 20px;
+  }
+
+  botchoice:after <span>{</span>
+    position: absolute;
+    bottom: 0;
+    left: 0;  
+    height: 100%;
+    width: 100%;
+    content: "";
+    background: linear-gradient(to top,
+       rgba(255,255,255, 1) 55%, 
+       rgba(255,255,255, 0) 100%
+    );
+    pointer-events: none; /* so the text is still selectable */
+  }
+&lt;/style&gt;</code></pre></div></div>
+            
+            <div class="example"><h6>Example : Your manifest file</h6><div class="example-contents"><p>If you are preparing your manifest file manually for a text-classification
+                    task like this, have your data formatted in the following manner.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>"source": "Roses are red"}
+<span>{</span>"source": "Violets are Blue"}
+<span>{</span>"source": "Ground Truth is the best"}
+<span>{</span>"source": "And so are you"}</code></pre></div></div>
+            
+            <p>This differs from the manifest file used for the "<a href="sms-custom-templates-step2-demo1.html">Demo Template: Annotation of Images with crowd-bounding-box</a>" demonstration in that <code class="code">source-ref</code> was used as the property name instead of <code class="code">source</code>. The use of <code class="code">source-ref</code> designates S3 URIs for images or other files that must be converted to HTTP. Otherwise, <code class="code">source</code> should be used like it is with the text strings above.</p>
+             
+                <h2 id="sms-custom-templates-step2-demo2-pre-lambda">Your pre-annotation Lambda function</h2>
+                
+                <p>As part of the job set-up, provide the ARN of an AWS Lambda that can be called
+                to process your manifest entries and pass them to the template engine. </p>
+                <p>This Lambda function is required to have one of the following four strings as part of the function name: <code class="code">SageMaker</code>, <code class="code">Sagemaker</code>, <code class="code">sagemaker</code>, or <code class="code">LabelingFunction</code>.</p>
+                <p>This applies to both your pre-annotation and post-annotation Lambdas.</p> 
+                
+                <p>When you're using the console, if you have Lambdas that are owned by your account, a drop-down list of functions meeting the naming requirements will be provided to choose one.</p>
+                
+                <p>In this very basic sample, where you have only one variable, it's primarily a pass-through function. Here's a sample pre-labeling Lambda using Python 3.7.</p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import json
+
+def lambda_handler(event, context):
+    return <span>{</span>
+        "taskInput":  event['dataObject']
+    }</code></pre>
+                <p>The <code class="code">dataObject</code> property of the <code class="code">event</code> contains the properties from a data object in your manifest.</p>
+                <p>In this demonstration, which is a simple pass through, you just pass that
+                straight through as the <code class="code">taskInput</code> value. If you add properties with
+                those values to the <code class="code">event['dataObject']</code> object, they will be available
+                to your HTML template as Liquid variables with the format <code class="code"><span>{</span><span>{</span>
+                        task.input.<code class="replaceable">&lt;property name&gt;</code>
+                }}</code>.</p>
+             
+                <h2 id="sms-custom-templates-step2-demo2-post-lambda">Your post-annotation Lambda function</h2>
+            
+                <p>As part of the job set up, provide the ARN of an Lambda function that can be
+                called to process the form data when a worker completes a task. This can be as
+                simple or complex as you want. If you want to do answer-consolidation and scoring as
+                data comes in, you can apply the scoring or consolidation algorithms of your choice.
+                If you want to store the raw data for offline processing, that is an option.</p>
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Set permissions for your post-annotation Lambda function</h6></div><div class="awsdocs-note-text"><p>The annotation data will be in a file designated by the <code class="code">s3Uri</code>
+                    string in the <code class="code">payload</code> object. To process the annotations as they
+                    come in, even for a simple pass through function, you need to assign
+                        <code class="code">S3ReadOnly</code> access to your Lambda so it can read the annotation
+                    files.</p><p>In the Console page for creating your Lambda, scroll to the <b>Execution role</b> panel. Select <b>Create a new role from one or more templates</b>. Give the role a name. From the <b>Policy templates</b> drop-down, choose <b>Amazon S3 object read-only permissions</b>. Save the Lambda and the role will be saved and selected.</p></div></div>
+                
+                <p>The following sample is for Python 3.7.</p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import json
+import boto3
+from urllib.parse import urlparse
+
+def lambda_handler(event, context):
+    consolidated_labels = []
+
+    parsed_url = urlparse(event['payload']['s3Uri']);
+    s3 = boto3.client('s3')
+    textFile = s3.get_object(Bucket = parsed_url.netloc, Key = parsed_url.path[1:])
+    filecont = textFile['Body'].read()
+    annotations = json.loads(filecont);
+    
+    for dataset in annotations:
+        for annotation in dataset['annotations']:
+            new_annotation = json.loads(annotation['annotationData']['content'])
+            label = <span>{</span>
+                'datasetObjectId': dataset['datasetObjectId'],
+                'consolidatedAnnotation' : <span>{</span>
+                'content': <span>{</span>
+                    event['labelAttributeName']: <span>{</span>
+                        'workerId': annotation['workerId'],
+                        'result': new_annotation,
+                        'labeledContent': dataset['dataObject']
+                        }
+                    }
+                }
+            }
+            consolidated_labels.append(label)
+
+    return consolidated_labels</code></pre>
+             
+                <h2 id="sms-custom-templates-step2-demo2-job-output">Your labeling job output</h2>
+            
+            <p>The post-annotation Lambda will often receive batches of task results in the event object. That batch will be the <code class="code">payload</code> object the Lambda should iterate through.</p>
+            
+            <p>You'll find the output of the job in a folder named after your labeling job in the target S3 bucket you specified. It will be in a subfolder named <code class="code">manifests</code>.</p>
+            <p>For an intent detection task, the output in the output manifest will look a bit
+                like the demo below. The example has been cleaned up and spaced out to be easier for
+                humans to read. The actual output will be more compressed for machine
+                reading.</p>
+            <div class="example"><h6>Example : JSON in your output manifest</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">[
+  <span>{</span>
+    "datasetObjectId":"&lt;Number representing item's place in the manifest&gt;",
+     "consolidatedAnnotation":
+     <span>{</span>
+       "content":
+       <span>{</span>
+         "&lt;name of labeling job&gt;":
+         <span>{</span>     
+           "workerId":"private.us-east-1.<code class="replaceable">XXXXXXXXXXXXXXXXXXXXXX</code>",
+           "result":
+           <span>{</span>
+             "intent":
+             <span>{</span>
+                 "label":"&lt;label chosen by worker&gt;"
+             }
+           },
+           "labeledContent":
+           <span>{</span>
+             "content":"&lt;text content that was labeled&gt;"
+           }
+         }
+       }
+     }
+   },
+  "datasetObjectId":"&lt;Number representing item's place in the manifest&gt;",
+     "consolidatedAnnotation":
+     <span>{</span>
+       "content":
+       <span>{</span>
+         "&lt;name of labeling job&gt;":
+         <span>{</span>     
+           "workerId":"private.us-east-1.6UDLPKQZHYWJQSCA4MBJBB7FWE",
+           "result":
+           <span>{</span>
+             "intent":
+             <span>{</span>
+                 "label": "&lt;label chosen by worker&gt;"
+             }
+           },
+           "labeledContent":
+           <span>{</span>
+             "content": "&lt;text content that was labeled&gt;"
+           }
+         }
+       }
+     }
+   },
+     ...
+     ...
+     ...
+]</code></pre></div></div>
+                <p>This should help you create and use your own custom template.</p>
+            <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./sms-custom-templates-step2-demo1.html">Demo: Image Annotation with crowd-bounding-box</div><div id="next" class="next-link" accesskey="n" href="./sms-custom-templates-step4.html">Custom Workflows via the API</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-custom-templates-step2-demo2.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

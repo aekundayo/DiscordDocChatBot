@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Run TensorFlow Training Jobs with SageMaker Training Compiler - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="training-compiler-enable-tensorflow" /><meta name="default_state" content="training-compiler-enable-tensorflow" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="training-compiler-enable-tensorflow.html" /><meta name="description" content="Use SageMaker Python SDK or API to enable SageMaker Training Compiler." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="training-compiler-enable-tensorflow.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" hreflang="de" /><link rel="alternative" href="training-compiler-enable-tensorflow.html" hreflang="en-us" /><link rel="alternative" href="training-compiler-enable-tensorflow.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" hreflang="zh-tw" /><link rel="alternative" href="training-compiler-enable-tensorflow.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Run TensorFlow Training Jobs with SageMaker Training Compiler" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Run TensorFlow Training Jobs with SageMaker Training Compiler - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#training-compiler-enable-tensorflow" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-enable-tensorflow.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,amazon sagemaker training compiler, sagemaker training compiler, sm training compiler,compile deep learning model, compile transformer model, compile tensorflow model, compile pytorch model, compile nlp model,amazon sagemaker training compiler, sagemaker training compiler, sm training compiler,enable training compiler, construct sagemaker estimator, sagemaker python sdk,compiler_config, compiler, config,compile deep learning model, compile transformer model, compile tensorflow model, compile pytorch model, compile nlp model,enable training compiler, construct sagemaker estimator, sagemaker python sdk" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Training Compiler",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/training-compiler.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Enable SageMaker Training Compiler",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/training-compiler-enable.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Run TensorFlow Training Jobs with SageMaker Training Compiler",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/training-compiler-enable.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#training-compiler-enable-tensorflow" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="training-compiler-enable-tensorflow.html#training-compiler-enable-tensorflow-pysdk">Learn how to activate SageMaker Training Compiler using the SageMaker Python SDK.</a><a href="training-compiler-enable-tensorflow.html#training-compiler-enable-tensorflow-sdk-extend-container">Using the SageMaker Python SDK and Extending SageMaker Framework Deep Learning
+                Containers</a><a href="training-compiler-enable-tensorflow.html#training-compiler-enable-tensorflow-api">Learn how to activate SageMaker Training Compiler using the SageMaker CreateTrainingJob
+                API Operation.</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="training-compiler-enable-tensorflow">Run TensorFlow Training Jobs with SageMaker Training Compiler</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can use any of the SageMaker interfaces to run a training job with SageMaker Training Compiler: Amazon SageMaker Studio,
+        Amazon SageMaker notebook instances, AWS SDK for Python (Boto3), and AWS Command Line Interface.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="training-compiler-enable-tensorflow.html#training-compiler-enable-tensorflow-pysdk">Using the SageMaker Python SDK</a></li><li><a href="training-compiler-enable-tensorflow.html#training-compiler-enable-tensorflow-sdk-extend-container">Using the SageMaker Python
+                SDK and Extending SageMaker Framework Deep Learning Containers</a></li><li><a href="training-compiler-enable-tensorflow.html#training-compiler-enable-tensorflow-api">Enable SageMaker Training Compiler Using the SageMaker
+                    CreateTrainingJob API Operation</a></li></ul></div>
+        <h2 id="training-compiler-enable-tensorflow-pysdk">Using the SageMaker Python SDK</h2>
+        <p>To turn on SageMaker Training Compiler, add the <code class="code">compiler_config</code> parameter to the SageMaker
+            TensorFlow or Hugging Face estimator. Import the <code class="code">TrainingCompilerConfig</code>
+            class and pass an instance of it to the <code class="code">compiler_config</code> parameter. The
+            following code examples show the structure of the SageMaker estimator classes with SageMaker Training Compiler
+            turned on.</p>
+        <div class="awsdocs-note awsdocs-tip"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Tip</h6></div><div class="awsdocs-note-text"><p>To get started with prebuilt models provided by the TensorFlow and Transformers
+                libraries, try using the batch sizes provided in the reference table at <a href="training-compiler-support.html#training-compiler-tested-models">Tested Models</a>.</p></div></div>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>SageMaker Training Compiler for TensorFlow is available through the SageMaker <a href="https://sagemaker.readthedocs.io/en/stable/frameworks/tensorflow/sagemaker.tensorflow.html#tensorflow-estimator" rel="noopener noreferrer" target="_blank"><span>TensorFlow</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and <a href="https://sagemaker.readthedocs.io/en/stable/frameworks/huggingface/sagemaker.huggingface.html#hugging-face-estimator" rel="noopener noreferrer" target="_blank"><span>Hugging Face</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> framework estimators.</p></div></div>
+        <p>For information that fits your use case, see one of the following options.</p>
+        <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="For single GPU&#xA;                        training" id="training-compiler-estimator-tensorflow-single" expanded="false"><awsdocs-tabs><dl style="display: none">
+                    <dt>TensorFlow</dt><dd tab-id="tensorflow">
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.tensorflow import TensorFlow, TrainingCompilerConfig
+
+# the original max batch size that can fit into GPU memory without compiler
+batch_size_native=<code class="replaceable">12</code>
+learning_rate_native=float('<code class="replaceable">5e-5</code>')
+
+# an updated max batch size that can fit into GPU memory with compiler
+batch_size=<code class="replaceable">64</code>    
+
+# update the global learning rate
+learning_rate=learning_rate_native/batch_size_native*batch_size
+
+hyperparameters=<span>{</span>
+    "n_gpus": 1,
+    "batch_size": batch_size,
+    "learning_rate": learning_rate
+}
+
+tensorflow_estimator=TensorFlow(
+    entry_point='<code class="replaceable">train.py</code>',
+    instance_count=1,
+    instance_type='<code class="replaceable">ml.p3.2xlarge</code>',
+    framework_version='<code class="replaceable">2.9.1</code>',
+    hyperparameters=hyperparameters,
+    compiler_config=TrainingCompilerConfig(),
+    disable_profiler=True,
+    debugger_hook_config=False
+)
+
+tensorflow_estimator.fit()</code></pre>
+                            <p>To prepare your training script, see the following pages.</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p><a href="training-compiler-tensorflow-models.html#training-compiler-tensorflow-models-keras-single-gpu">For single GPU training</a> of a model constructed using TensorFlow Keras
+                                            (<code class="code">tf.keras.*</code>).</p>
+                                </li><li class="listitem">
+                                    <p><a href="training-compiler-tensorflow-models.html#training-compiler-tensorflow-models-no-keras-single-gpu">For single GPU training</a> of a model constructed using TensorFlow modules
+                                            (<code class="code">tf.*</code> excluding the TensorFlow Keras
+                                        modules).</p>
+                                </li></ul></div>
+                        </dd>
+                    <dt>Hugging Face Estimator with TensorFlow</dt><dd tab-id="hugging-face-estimator-with-tensorflow">
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.huggingface import HuggingFace, TrainingCompilerConfig
+
+# the original max batch size that can fit into GPU memory without compiler
+batch_size_native=<code class="replaceable">12</code>
+learning_rate_native=float('<code class="replaceable">5e-5</code>')
+
+# an updated max batch size that can fit into GPU memory with compiler
+batch_size=<code class="replaceable">64</code>
+
+# update the global learning rate
+learning_rate=learning_rate_native/batch_size_native*batch_size
+
+hyperparameters=<span>{</span>
+    "n_gpus": 1,
+    "batch_size": batch_size,
+    "learning_rate": learning_rate
+}
+
+tensorflow_huggingface_estimator=HuggingFace(
+    entry_point='<code class="replaceable">train.py</code>',
+    instance_count=1,
+    instance_type='<code class="replaceable">ml.p3.2xlarge</code>',
+    transformers_version='<code class="userinput">4.21.1</code>',
+    tensorflow_version='<code class="userinput">2.6.3</code>',
+    hyperparameters=hyperparameters,
+    compiler_config=TrainingCompilerConfig(),
+    disable_profiler=True,
+    debugger_hook_config=False
+)
+
+tensorflow_huggingface_estimator.fit()</code></pre>
+                            <p>To prepare your training script, see the following pages.</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p><a href="training-compiler-tensorflow-models.html#training-compiler-tensorflow-models-transformers-keras-single-gpu">For single GPU training</a> of a TensorFlow Keras model with Hugging Face
+                                        Transformers</p>
+                                </li><li class="listitem">
+                                    <p><a href="training-compiler-tensorflow-models.html#training-compiler-tensorflow-models-transformers-no-keras-single-gpu">For single GPU training</a> of a TensorFlow model with Hugging Face Transformers</p>
+                                </li></ul></div>
+                        </dd>
+                </dl></awsdocs-tabs></awsui-expandable-section><awsui-expandable-section variant="container" header="For distributed&#xA;                        training" id="training-compiler-estimator-tensorflow-distributed" expanded="false"><awsdocs-tabs><dl style="display: none">
+                    <dt>Hugging Face Estimator with TensorFlow</dt><dd tab-id="hugging-face-estimator-with-tensorflow">
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.huggingface import HuggingFace, TrainingCompilerConfig
+
+# choose an instance type, specify the number of instances you want to use,
+# and set the num_gpus variable the number of GPUs per instance.
+instance_count=<code class="replaceable">1</code>
+instance_type='<code class="replaceable">ml.p3.8xlarge</code>'
+num_gpus=<code class="replaceable">4</code>
+
+# the original max batch size that can fit to GPU memory without compiler
+batch_size_native=<code class="replaceable">16</code>
+learning_rate_native=float('<code class="replaceable">5e-5</code>')
+
+# an updated max batch size that can fit to GPU memory with compiler
+batch_size=<code class="replaceable">26</code>
+
+# update learning rate
+learning_rate=learning_rate_native/batch_size_native*batch_size*num_gpus*instance_count
+
+hyperparameters=<span>{</span>
+    "n_gpus": num_gpus,
+    "batch_size": batch_size,
+    "learning_rate": learning_rate
+}
+
+tensorflow_huggingface_estimator=HuggingFace(
+    entry_point='<code class="replaceable">train.py</code>',
+    instance_count=instance_count,
+    instance_type=instance_type,
+    transformers_version='<code class="userinput">4.21.1</code>',
+    tensorflow_version='<code class="userinput">2.6.3</code>',
+    hyperparameters=hyperparameters,
+    compiler_config=TrainingCompilerConfig(),
+    disable_profiler=True,
+    debugger_hook_config=False
+)
+
+tensorflow_huggingface_estimator.fit()</code></pre>
+                            <div class="awsdocs-note awsdocs-tip"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Tip</h6></div><div class="awsdocs-note-text"><p>To prepare your training script, see the following
+                                    pages.</p><div class="itemizedlist">
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p><a href="training-compiler-tensorflow-models.html#training-compiler-tensorflow-models-transformers-keras-distributed">For distributed training</a> of a TensorFlow Keras model with Hugging Face
+                                            Transformers</p>
+                                    </li><li class="listitem">
+                                        <p><a href="training-compiler-tensorflow-models.html#training-compiler-tensorflow-models-transformers-no-keras-distributed">For distributed training</a> of a TensorFlow model with Hugging Face
+                                            Transformers</p>
+                                    </li></ul></div></div></div>
+                        </dd>
+                </dl></awsdocs-tabs></awsui-expandable-section></div>
+        <p>The following list is the minimal set of parameters required to run a SageMaker training
+            job with the compiler.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When using the SageMaker Hugging Face estimator, you must specify the
+                    <code class="code">transformers_version</code>, <code class="code">tensorflow_version</code>,
+                    <code class="code">hyperparameters</code>, and <code class="code">compiler_config</code> parameters to
+                enable SageMaker Training Compiler. You cannot use <code class="code">image_uri</code> to manually specify the
+                Training Compiler integrated Deep Learning Containers that are listed at <a href="training-compiler-support.html#training-compiler-supported-frameworks">Supported
+                    Frameworks</a>.</p></div></div>
+        <div class="itemizedlist">
+             
+             
+             
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><code class="code">entry_point</code> (str) – Required. Specify the file name of
+                    your training script.</p>
+            </li><li class="listitem">
+                <p><code class="code">instance_count</code> (int) – Required. Specify the number of
+                    instances.</p>
+            </li><li class="listitem">
+                <p><code class="code">instance_type</code> (str) – Required. Specify the instance
+                    type.</p>
+            </li><li class="listitem">
+                <p><code class="code">transformers_version</code> (str) – Required only when using the
+                    SageMaker Hugging Face estimator. Specify the Hugging Face Transformers library
+                    version supported by SageMaker Training Compiler. To find available versions, see <a href="training-compiler-support.html#training-compiler-supported-frameworks">Supported
+                    Frameworks</a>.</p>
+            </li><li class="listitem">
+                <p><code class="code">framework_version</code> or <code class="code">tensorflow_version</code> (str)
+                    – Required. Specify the TensorFlow version supported by SageMaker Training Compiler. To find
+                    available versions, see <a href="training-compiler-support.html#training-compiler-supported-frameworks">Supported
+                    Frameworks</a>.</p>
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When using the SageMaker TensorFlow estimator, you must specify
+                            <code class="code">framework_version</code>.</p><p>When using the SageMaker Hugging Face estimator, you must specify both
+                            <code class="code">transformers_version</code> and
+                        <code class="code">tensorflow_version</code>.</p></div></div>
+            </li><li class="listitem">
+                <p><code class="code">hyperparameters</code> (dict) – Optional. Specify hyperparameters
+                    for the training job, such as <code class="code">n_gpus</code>, <code class="code">batch_size</code>, and
+                        <code class="code">learning_rate</code>. When you enable SageMaker Training Compiler, try larger batch sizes
+                    and adjust the learning rate accordingly. To find case studies of using the
+                    compiler and adjusted batch sizes to improve training speed, see <a href="training-compiler-support.html#training-compiler-tested-models">Tested Models</a> and <a href="training-compiler-examples-and-blogs.html">SageMaker Training Compiler Example Notebooks and
+                Blogs</a>.</p>
+            </li><li class="listitem">
+                <p><code class="code">compiler_config</code> (TrainingCompilerConfig object) –
+                    Required. Include this parameter to turn on SageMaker Training Compiler. The following are
+                    parameters for the <code class="code">TrainingCompilerConfig</code> class.</p>
+                <div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="code">enabled</code> (bool) – Optional. Specify
+                                <code class="code">True</code> or <code class="code">False</code> to turn on or turn off
+                            SageMaker Training Compiler. The default value is <code class="code">True</code>.</p>
+                    </li><li class="listitem">
+                        <p><code class="code">debug</code> (bool) – Optional. To receive more detailed
+                            training logs from your compiler-accelerated training jobs, change it to
+                                <code class="code">True</code>. However, the additional logging might add
+                            overhead and slow down the compiled training job. The default value is
+                                <code class="code">False</code>.</p>
+                    </li></ul></div>
+            </li></ul></div>
+        <div class="awsdocs-note awsdocs-warning"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Warning</h6></div><div class="awsdocs-note-text"><p>If you turn on SageMaker Debugger, it might impact the performance of SageMaker Training Compiler. We
+                recommend that you turn off Debugger when running SageMaker Training Compiler to make sure there's no
+                impact on performance. For more information, see <a href="training-compiler-tips-pitfalls.html#training-compiler-tips-pitfalls-considerations">Considerations</a>. To turn the Debugger
+                functionalities off, add the following two arguments to the estimator:</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">disable_profiler=True,
+debugger_hook_config=False</code></pre></div></div>
+        <p>If the training job with the compiler is launched successfully, you receive the
+            following logs during the job initialization phase: </p>
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>With <code class="code">TrainingCompilerConfig(debug=False)</code></p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="txt ">Found configuration for Training Compiler
+Configuring SM Training Compiler...</code></pre>
+            </li><li class="listitem">
+                <p>With <code class="code">TrainingCompilerConfig(debug=True)</code></p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="txt ">Found configuration for Training Compiler
+Configuring SM Training Compiler...
+Training Compiler set to debug mode</code></pre>
+            </li></ul></div>
+     
+        <h2 id="training-compiler-enable-tensorflow-sdk-extend-container">Using the SageMaker Python
+                SDK and Extending SageMaker Framework Deep Learning Containers</h2>
+        <p>AWS Deep Learning Containers (DLC) for TensorFlow use adapted versions of TensorFlow
+            that include changes on top of the open-source TensorFlow framework. The <a href="https://github.com/aws/deep-learning-containers/blob/master/available_images.md#sagemaker-framework-containers-sm-support-only" rel="noopener noreferrer" target="_blank"><span>SageMaker Framework Deep Learning Containers</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> are optimized for the underlying
+            AWS infrastructure and Amazon SageMaker. With the advantage of using the DLCs, SageMaker Training Compiler
+            integration adds more performance improvements over the native TensorFlow. Furthermore,
+            you can create a custom training container by extending the DLC image.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This Docker customization feature is currently available only for
+                TensorFlow.</p></div></div>
+        <p>To extend and customize the SageMaker TensorFlow DLCs for your use-case, use the following
+            instructions.</p>
+         
+            <h3 id="training-compiler-enable-tensorflow-sdk-extend-container-create-dockerfile">Create a Dockerfile</h3>
+            <p>Use the following Dockerfile template to extend the SageMaker TensorFlow DLC. You must
+                use the SageMaker TensorFlow DLC image as the base image of your Docker container. To
+                find the SageMaker TensorFlow DLC image URIs, see <a href="training-compiler-support.html#training-compiler-supported-frameworks">Supported Frameworks</a>.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="docker "># SageMaker TensorFlow Deep Learning Container image
+FROM 763104351884.dkr.ecr.<code class="replaceable">&lt;aws-region&gt;</code>.amazonaws.com/tensorflow-training:<code class="replaceable">&lt;image-tag&gt;</code>
+
+ENV PATH="/opt/ml/code:$<span>{</span>PATH}"
+
+# This environment variable is used by the SageMaker container 
+# to determine user code directory.
+ENV SAGEMAKER_SUBMIT_DIRECTORY /opt/ml/code
+
+# Add more code lines to customize for your use-case
+...</code></pre>
+            <p>For more information, see <a href="adapt-training-container.html#byoc-training-step2">Step
+                    2: Create and upload the Dockerfile and Python training scripts</a>.</p>
+            <p>Consider the following pitfalls when extending SageMaker Framework DLCs:</p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Do not explicitly uninstall or change the version of TensorFlow packages
+                        in SageMaker containers. Doing so causes the AWS optimized TensorFlow packages
+                        to be overwritten by open-source TensorFlow packages, which might result in
+                        performance degradation.</p>
+                </li><li class="listitem">
+                    <p>Watch out for packages that have a particular TensorFlow version or flavor
+                        as a dependency. These packages might implicitly uninstall the AWS
+                        optimized TensorFlow and install open-source TensorFlow packages.</p>
+                </li></ul></div>
+            <p>For example, there’s a known issue that the <a href="https://github.com/tensorflow/models" rel="noopener noreferrer" target="_blank"><span>tensorflow/models</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and <a href="https://github.com/tensorflow/text" rel="noopener noreferrer" target="_blank"><span>tensorflow/text</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> libraries
+                always attempt to <a href="https://github.com/tensorflow/models/issues/9267" rel="noopener noreferrer" target="_blank"><span>reinstall open source TensorFlow</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. If you need to install these
+                libraries to choose a specific version for your use case, we recommend that you look
+                into the SageMaker TensorFlow DLC Dockerfiles for v2.9 or later. The paths to the
+                Dockerfiles are typically in the following format:
+                    <code class="code">tensorflow/training/docker/&lt;tensorflow-version&gt;/py3/&lt;cuda-version&gt;/Dockerfile.gpu</code>.
+                In the Dockerfiles, you should find the code lines to reinstall AWS managed
+                TensorFlow binary (specified to the <code class="code">TF_URL</code> environment variable) and
+                other dependencies in order. The reinstallation section should look like the
+                following example:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="docker "># tf-models does not respect existing installations of TensorFlow 
+# and always installs open source TensorFlow
+
+RUN pip3 install --no-cache-dir -U \
+    tf-models-official==<code class="replaceable">x.y.z</code>
+
+RUN pip3 uninstall -y tensorflow tensorflow-gpu \
+  ; pip3 install --no-cache-dir -U \
+    $<span>{</span>TF_URL} \
+    tensorflow-io==<code class="replaceable">x.y.z</code> \
+    tensorflow-datasets==<code class="replaceable">x.y.z</code></code></pre>
+         
+         
+            <h3 id="training-compiler-enable-tensorflow-sdk-extend-container-build-and-push">Build
+                    and push to ECR</h3>
+            <p>To build and push your Docker container to Amazon ECR, follow the instructions in the
+                following links:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><a href="adapt-training-container.html#byoc-training-step3">Step 3: Build the container</a></p>
+                </li><li class="listitem">
+                    <p><a href="adapt-training-container.html#byoc-training-step4">Step 4: Test the container</a></p>
+                </li><li class="listitem">
+                    <p><a href="adapt-training-container.html#byoc-training-step5">Step 5: Push the container to Amazon ECR</a></p>
+                </li></ul></div>
+         
+         
+            <h3 id="training-compiler-enable-tensorflow-sdk-extend-container-run-job">Run using
+                    the SageMaker Python SDK Estimator</h3>
+            <p>Use the SageMaker TensorFlow framework estimator as usual. You must specify
+                    <code class="code">image_uri</code> to use the new container you hosted in Amazon ECR.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import sagemaker, boto3
+from sagemaker import get_execution_role
+from sagemaker.tensorflow import TensorFlow, TrainingCompilerConfig
+
+account_id = boto3.client('sts').get_caller_identity().get('Account')
+ecr_repository = <code class="replaceable">'tf-custom-container-test'</code>
+tag = <code class="replaceable">':latest'</code>
+
+region = boto3.session.Session().region_name
+
+uri_suffix = 'amazonaws.com'
+
+byoc_image_uri = '<span>{</span>}.dkr.ecr.<span>{</span>}.<span>{</span>}/<span>{</span>}'.format(
+    account_id, region, uri_suffix, ecr_repository + tag
+)
+
+byoc_image_uri
+# This should return something like
+# 111122223333.dkr.ecr.us-east-2.amazonaws.com/tf-custom-container-test:latest
+
+estimator = TensorFlow(
+    image_uri=image_uri,
+    role=get_execution_role(),
+    base_job_name='<code class="replaceable">tf-custom-container-test-job</code>',
+    instance_count=1,
+    instance_type='<code class="replaceable">ml.p3.8xlarge</code>'
+    compiler_config=TrainingCompilerConfig(),
+    disable_profiler=True,
+    debugger_hook_config=False
+)
+
+# Start training
+estimator.fit()</code></pre>
+         
+     
+        <h2 id="training-compiler-enable-tensorflow-api">Enable SageMaker Training Compiler Using the SageMaker
+                    <code class="code">CreateTrainingJob</code> API Operation</h2>
+        <p>SageMaker Training Compiler configuration options must be specified through the
+                <code class="code">AlgorithmSpecification</code> and <code class="code">HyperParameters</code> field in the
+            request syntax for the <a href="http://amazonaws.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html" rel="noopener noreferrer" target="_blank"><span><code class="code">CreateTrainingJob</code> API operation</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json ">"AlgorithmSpecification": <span>{</span>
+    "TrainingImage": "<code class="replaceable">&lt;sagemaker-training-compiler-enabled-dlc-image&gt;</code>"
+},
+
+"HyperParameters": <span>{</span>
+    "sagemaker_training_compiler_enabled": "true",
+    "sagemaker_training_compiler_debug_mode": "false"
+}</code></pre>
+        <p>To find a complete list of deep learning container image URIs that have SageMaker Training Compiler
+            implemented, see <a href="training-compiler-support.html#training-compiler-supported-frameworks">Supported
+                    Frameworks</a>.</p>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./training-compiler-enable-pytorch.html">Run PyTorch Training Jobs with Training Compiler</div><div id="next" class="next-link" accesskey="n" href="./training-compiler-examples-and-blogs.html">Example Notebooks and Blogs</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-enable-tensorflow.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-enable-tensorflow.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

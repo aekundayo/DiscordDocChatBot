@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Step 3: Download, Explore, and Transform a Dataset - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="ex1-preprocess-data" /><meta name="default_state" content="ex1-preprocess-data" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="ex1-preprocess-data.html" /><meta name="description" content="In this step, you load the Adult Census dataset to your notebook instance using the SHAP (SHapley Additive exPlanations) Library, review the dataset, transform it, and upload it to Amazon S3. SHAP is a game theoretic approach to explain the output of any machine learning model. For more information about SHAP, see" /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="ex1-preprocess-data.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/ex1-preprocess-data.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/ex1-preprocess-data.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/ex1-preprocess-data.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/ex1-preprocess-data.html" hreflang="de" /><link rel="alternative" href="ex1-preprocess-data.html" hreflang="en-us" /><link rel="alternative" href="ex1-preprocess-data.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/ex1-preprocess-data.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/ex1-preprocess-data.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/ex1-preprocess-data.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/ex1-preprocess-data.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/ex1-preprocess-data.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/ex1-preprocess-data.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/ex1-preprocess-data.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/ex1-preprocess-data.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/ex1-preprocess-data.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/ex1-preprocess-data.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/ex1-preprocess-data.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/ex1-preprocess-data.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/ex1-preprocess-data.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/ex1-preprocess-data.html" hreflang="zh-tw" /><link rel="alternative" href="ex1-preprocess-data.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Step 3: Download, Explore, and Transform a Dataset" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Step 3: Download, Explore, and Transform a Dataset - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#ex1-preprocess-data" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/ex1-preprocess-data.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/ex1-preprocess-data.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/ex1-preprocess-data.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use machine learning environments offered by SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/machine-learning-environments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Notebook Instances",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/nbi.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Notebook Instances to build models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/gs-console.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Step 3: Download, Explore, and Transform a Dataset",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/gs-console.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#ex1-preprocess-data" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="ex1-preprocess-data.html#ex1-preprocess-data-pull-data">Load Adult Census Dataset Using
+                SHAP</a><a href="ex1-preprocess-data.html#ex1-preprocess-data-inspect">Overview the Dataset</a><a href="ex1-preprocess-data.html#ex1-preprocess-data-transform">Split the Dataset into Train,
+                Validation, and Test Datasets</a><a href="ex1-preprocess-data.html#ex1-preprocess-data-transform-2">Convert the Train and Validation
+                Datasets to CSV Files</a><a href="ex1-preprocess-data.html#ex1-preprocess-data-transform-4">Upload the Datasets to Amazon S3</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="ex1-preprocess-data">Step 3: Download, Explore, and Transform a
+            Dataset</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>In this step, you load the <a href="https://archive.ics.uci.edu/ml/datasets/adult" rel="noopener noreferrer" target="_blank"><span>Adult Census dataset</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to your notebook instance using the SHAP (SHapley Additive
+        exPlanations) Library, review the dataset, transform it, and upload it to Amazon S3. SHAP is a
+        game theoretic approach to explain the output of any machine learning model. For more
+        information about SHAP, see <a href="https://shap.readthedocs.io/en/latest/" rel="noopener noreferrer" target="_blank"><span>Welcome to the SHAP documentation</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><p>To run the following example, paste the sample code into a cell in your notebook instance.</p>
+        <h2 id="ex1-preprocess-data-pull-data">Load Adult Census Dataset Using
+                SHAP</h2>
+        <p>Using the SHAP library, import the Adult Census dataset as shown following:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import shap
+X, y = shap.datasets.adult()
+X_display, y_display = shap.datasets.adult(display=True)
+feature_names = list(X.columns)
+feature_names</code></pre>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If the current Jupyter kernel does not have the SHAP library, install it by running the
+                following <code class="code">conda</code> command:</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">%conda install -c conda-forge shap</code></pre><p>If you're using JupyterLab, you must manually refresh the kernel after the
+                installation and updates have completed. Run the following IPython script to shut
+                down the kernel (the kernel will restart automatically):</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">import IPython
+IPython.Application.instance().kernel.do_shutdown(True)</code></pre></div></div>
+        <p>The <code class="code">feature_names</code> list object should return the following list of
+            features: </p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">['Age',
+ 'Workclass',
+ 'Education-Num',
+ 'Marital Status',
+ 'Occupation',
+ 'Relationship',
+ 'Race',
+ 'Sex',
+ 'Capital Gain',
+ 'Capital Loss',
+ 'Hours per week',
+ 'Country']</code></pre>
+        <div class="awsdocs-note awsdocs-tip"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Tip</h6></div><div class="awsdocs-note-text"><p>If you're starting with unlabeled data, you can use Amazon SageMaker Ground Truth to create a data
+                labeling workflow in minutes. To learn more, see <a href="data-label.html">Label Data</a>. </p></div></div>
+     
+        <h2 id="ex1-preprocess-data-inspect">Overview the Dataset</h2>
+        <p>Run the following script to display the statistical overview of the dataset and
+            histograms of the numeric features.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">display(X.describe())
+hist = X.hist(bins=30, sharey=True, figsize=(20, 10))</code></pre>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/get-started-ni/gs-ni-prepare-data-1.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                Overview of the Adult Census dataset.&#xA;            " style="max-width:100%" />
+             
+             
+        </div>
+        <div class="awsdocs-note awsdocs-tip"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Tip</h6></div><div class="awsdocs-note-text"><p>If you want to use a dataset that needs to be cleaned and transformed, you can
+                simplify and streamline data preprocessing and feature engineering using Amazon SageMaker Data Wrangler.
+                To learn more, see <a href="data-wrangler.html">Prepare ML Data with
+                    Amazon SageMaker Data Wrangler</a>.</p></div></div>
+     
+        <h2 id="ex1-preprocess-data-transform">Split the Dataset into Train,
+                Validation, and Test Datasets</h2>
+        <p>Using Sklearn, split the dataset into a training set and a test set. The training set
+            is used to train the model, while the test set is used to evaluate the performance of
+            the final trained model. The dataset is randomly sorted with the fixed random seed: 80
+            percent of the dataset for training set and 20 percent of it for a test set.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
+X_train_display = X_display.loc[X_train.index]</code></pre>
+        <p>Split the training set to separate out a validation set. The validation set is used to
+            evaluate the performance of the trained model while tuning the model's hyperparameters.
+            75 percent of the training set becomes the final training set, and the rest is the
+            validation set.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.25, random_state=1)
+X_train_display = X_display.loc[X_train.index]
+X_val_display = X_display.loc[X_val.index]</code></pre>
+        <p>Using the pandas package, explicitly align each dataset by concatenating the numeric
+            features with the true labels.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import pandas as pd
+train = pd.concat([pd.Series(y_train, index=X_train.index,
+                             name='Income&gt;50K', dtype=int), X_train], axis=1)
+validation = pd.concat([pd.Series(y_val, index=X_val.index,
+                            name='Income&gt;50K', dtype=int), X_val], axis=1)
+test = pd.concat([pd.Series(y_test, index=X_test.index,
+                            name='Income&gt;50K', dtype=int), X_test], axis=1)</code></pre>
+        <p>Check if the dataset is split and structured as expected:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">train</code></pre>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/get-started-ni/gs-ni-prepare-data-2-train.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                The training dataset.&#xA;            " style="max-width:100%" />
+             
+             
+        </div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">validation</code></pre>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/get-started-ni/gs-ni-prepare-data-2-validation.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                The validation dataset.&#xA;            " style="max-width:100%" />
+             
+             
+        </div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">test</code></pre>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/get-started-ni/gs-ni-prepare-data-2-test.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                The test dataset.&#xA;            " style="max-width:100%" />
+             
+             
+        </div>
+     
+        <h2 id="ex1-preprocess-data-transform-2">Convert the Train and Validation
+                Datasets to CSV Files</h2>
+        <p>Convert the <code class="code">train</code> and <code class="code">validation</code> dataframe objects to CSV
+            files to match the input file format for the XGBoost algorithm.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py "># Use 'csv' format to store the data
+# The first column is expected to be the output column
+train.to_csv('train.csv', index=False, header=False)
+validation.to_csv('validation.csv', index=False, header=False)</code></pre>
+     
+        <h2 id="ex1-preprocess-data-transform-4">Upload the Datasets to Amazon S3</h2>
+        <p>Using the SageMaker and Boto3, upload the training and validation datasets to the default
+            Amazon S3 bucket. The datasets in the S3 bucket will be used by a compute-optimized SageMaker
+            instance on Amazon EC2 for training. </p>
+        <p>The following code sets up the default S3 bucket URI for your current SageMaker session,
+            creates a new <code class="code">demo-sagemaker-xgboost-adult-income-prediction</code> folder, and
+            uploads the training and validation datasets to the <code class="code">data</code> subfolder.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import sagemaker, boto3, os
+bucket = sagemaker.Session().default_bucket()
+prefix = "demo-sagemaker-xgboost-adult-income-prediction"
+
+boto3.Session().resource('s3').Bucket(bucket).Object(
+    os.path.join(prefix, 'data/train.csv')).upload_file('train.csv')
+boto3.Session().resource('s3').Bucket(bucket).Object(
+    os.path.join(prefix, 'data/validation.csv')).upload_file('validation.csv')</code></pre>
+        <p>Run the following AWS CLI to check if the CSV files are
+            successfully uploaded to the S3 bucket.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">! aws s3 ls <span>{</span>bucket}/<span>{</span>prefix}/data --recursive</code></pre>
+        <p>This should return the following output:</p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/get-started-ni/gs-ni-prepare-data-3.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                Output of the CLI command to check the datasets in the S3 bucket.&#xA;            " style="max-width:100%" />
+             
+             
+        </div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./ex1-prepare.html">Step 2: Create a Jupyter Notebook</div><div id="next" class="next-link" accesskey="n" href="./ex1-train-model.html">Step 4: Train a Model</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/ex1-preprocess-data.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/ex1-preprocess-data.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

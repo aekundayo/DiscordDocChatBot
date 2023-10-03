@@ -1,0 +1,1937 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Output Data - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="sms-data-output" /><meta name="default_state" content="sms-data-output" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="sms-data-output.html" /><meta name="description" content="The output from a labeling job is placed in the Amazon S3 location that you specified in the console or in the call to the CreateLabelingJob operation. Output data appears in this location when the workers have submitted one or more tasks, or when tasks expire. Note that it may take a few minutes for output data to appear in Amazon S3 after the worker submits the task or the task expires." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="sms-data-output.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/sms-data-output.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/sms-data-output.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/sms-data-output.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/sms-data-output.html" hreflang="de" /><link rel="alternative" href="sms-data-output.html" hreflang="en-us" /><link rel="alternative" href="sms-data-output.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/sms-data-output.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/sms-data-output.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/sms-data-output.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/sms-data-output.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/sms-data-output.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/sms-data-output.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sms-data-output.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sms-data-output.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/sms-data-output.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/sms-data-output.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/sms-data-output.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/sms-data-output.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/sms-data-output.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/sms-data-output.html" hreflang="zh-tw" /><link rel="alternative" href="sms-data-output.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Output Data" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Output Data - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#sms-data-output" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-data-output.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-data-output.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-data-output.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Label data with a human-in-the-loop",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-label.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Use Amazon SageMaker Ground Truth to Label Data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Input and Output Data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms-data.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Output Data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms-data.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#sms-data-output" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="sms-data-output.html#sms-output-directories">Output Directories</a><a href="sms-data-output.html#sms-output-confidence">Confidence Score</a><a href="sms-data-output.html#sms-worker-id-private">Worker Metadata</a><a href="sms-data-output.html#sms-output-metadata">Output Metadata</a><a href="sms-data-output.html#sms-output-class">Classification Job Output</a><a href="sms-data-output.html#sms-output-multi-label-classification">Multi-label Classification Job
+                    Output</a><a href="sms-data-output.html#sms-output-box">Bounding Box Job Output</a><a href="sms-data-output.html#sms-output-data-ner">Named Entity Recognition</a><a href="sms-data-output.html#sms-output-bounding-box-verification">Label Verification Job Output</a><a href="sms-data-output.html#sms-output-segmentation">Semantic Segmentation Job Output</a><a href="sms-data-output.html#sms-output-video-object-detection">Video Frame Object Detection Output</a><a href="sms-data-output.html#sms-output-video-object-tracking">Video Frame Object Tracking Output</a><a href="sms-data-output.html#sms-output-point-cloud-segmentation">3D Point Cloud Semantic Segmentation
+                    Output</a><a href="sms-data-output.html#sms-output-point-cloud-object-detection">3D Point Cloud Object Detection
+                    Output</a><a href="sms-data-output.html#sms-output-point-cloud-object-tracking">3D Point Cloud Object Tracking
+                    Output</a><a href="sms-data-output.html#sms-output-3d-2d-point-cloud-object-tracking">3D-2D Object Tracking
+                Point Cloud Object Tracking
+                Output</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="sms-data-output">Output Data</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>The output from a labeling job is placed in the Amazon S3 location that you specified in
+            the console or in the call to the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateLabelingJob.html">CreateLabelingJob</a> operation. Output data appears in this location when the
+            workers have submitted one or more tasks, or when tasks expire. Note that it may take a
+            few minutes for output data to appear in Amazon S3 after the worker submits the task or the
+            task expires.</p><p>Each line in the output data file is identical to the manifest file with the addition
+            of an attribute and value for the label assigned to the input object. The attribute name
+            for the value is defined in the console or in the call to the
+                <code class="code">CreateLabelingJob</code> operation. You can't use <code class="code">-metadata</code> in
+            the label attribute name. If you are running an image semantic segmentation, 3D point
+            cloud semantic segmentation, or 3D point cloud object tracking job, the label attribute
+            must end with <code class="code">-ref</code>. For any other type of job, the attribute name can't end
+            with <code class="code">-ref</code>.</p><p>The output of the labeling job is the value of the key-value pair with the label. The
+            label and the value overwrites any existing JSON data in the input file with the new
+            value. </p><p>For example, the following is the output from an image classification labeling job
+            where the input data files were stored in an Amazon S3
+                    <code class="code"><code class="replaceable">AWSDOC-EXAMPLE-BUCKET</code></code> and the label
+            attribute name was defined as <code class="replaceable"><code class="code">sport</code></code>. In this
+            example the JSON object is formatted for readability, in the actual output file the JSON
+            object is on a single line. For more information about the data format, see <a href="http://jsonlines.org/" rel="noopener noreferrer" target="_blank"><span>JSON Lines</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "source-ref": "<code class="replaceable">s3://AWSDOC-EXAMPLE-BUCKET/image_example.png</code>",
+    "<code class="replaceable">sport</code>":<code class="replaceable">0</code>,
+    "<code class="replaceable">sport</code>-metadata":
+    <span>{</span>
+        "class-name": "<code class="replaceable">football</code>",
+        "confidence": <code class="replaceable">0.00</code>,
+        "type":"groundtruth/image-classification",
+        "job-name": "<code class="replaceable">identify-sport</code>",
+        "human-annotated": "<code class="replaceable">yes</code>",
+        "creation-date": "<code class="replaceable">2018-10-18T22:18:13.527256</code>"
+    }
+}</code></pre><p>The value of the label can be any valid JSON. In this case the label's value is the
+            index of the class in the classification list. Other job types, such as bounding box,
+            have more complex values.</p><p>Any key-value pair in the input manifest file other than the label attribute is
+            unchanged in the output file. You can use this to pass data to your application.</p><p>The output from a labeling job can be used as the input to another labeling job. You
+            can use this when you are chaining together labeling jobs. For example, you can send one
+            labeling job to determine the sport that is being played. Then you send another using
+            the same data to determine if the sport is being played indoors or outdoors. By using
+            the output data from the first job as the manifest for the second job, you can
+            consolidate the results of the two jobs into one output file for easier processing by
+            your applications. </p><p>The output data file is written to the output location periodically while the job is
+            in progress. These intermediate files contain one line for each line in the manifest
+            file. If an object is labeled, the label is included. If the object hasn't been labeled,
+            it is written to the intermediate output file identically to the manifest file.</p>
+            <h2 id="sms-output-directories">Output Directories</h2>
+            <p>Ground Truth creates several directories in your Amazon S3 output path. These directories
+                contain the results of your labeling job and other artifacts of the job. The
+                top-level directory for a labeling job is given the same name as your labeling job;
+                the output directories are placed beneath it. For example, if you named your
+                labeling job <code class="userinput">find-people</code>, your output would be in the
+                following directories:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">s3://<code class="replaceable">AWSDOC-EXAMPLE-BUCKET</code>/find-people/activelearning
+s3://<code class="replaceable">AWSDOC-EXAMPLE-BUCKET</code>/find-people/annotations
+s3://<code class="replaceable">AWSDOC-EXAMPLE-BUCKET</code>/find-people/inference
+s3://<code class="replaceable">AWSDOC-EXAMPLE-BUCKET</code>/find-people/manifests
+s3://<code class="replaceable">AWSDOC-EXAMPLE-BUCKET</code>/find-people/training
+            </code></pre>
+            <p>Each directory contains the following output:</p>
+             
+                <h3 id="sms-output-activelearning">Active Learning Directory</h3>
+                <p>The <code class="code">activelearning</code> directory is only present when you are using
+                    automated data labeling. It contains the input and output validation set for
+                    automated data labeling, and the input and output folder for automatically
+                    labeled data.</p>
+             
+             
+                <h3 id="sms-directories-annotations">Annotations Directory</h3>
+                <p>The <code class="code">annotations</code> directory contains all of the annotations made by
+                    the workforce. These are the responses from individual workers that have not
+                    been consolidated into a single label for the data object. </p>
+                <p>There are three subdirectories in the <code class="code">annotations</code> directory. </p>
+                <div class="itemizedlist">
+                     
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>The first, <code class="code">worker-response</code>, contains the responses from
+                            individual workers. This contains a subdirectory for each iteration,
+                            which in turn contains a subdirectory for each data object in that
+                            iteration. The worker response data for each data object is stored in a timestamped JSON file that contains the answers submitted by each worker for that data object, and if you use a private workforce, metadata about those workers.
+                            To learn more about this metadata, see <a href="sms-data-output.html#sms-worker-id-private">Worker Metadata</a>.</p>
+                    </li><li class="listitem">
+                        <p>The second, <code class="code">consolidated-annotation</code>, contains information
+                            required to consolidate the annotations in the current batch into labels
+                            for your data objects.</p>
+                    </li><li class="listitem">
+                        <p>The third, <code class="code">intermediate</code>, contains the output manifest for
+                            the current batch with any completed labels. This file is updated as the
+                            label for each data object is completed.</p>
+                    </li></ul></div>
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>We recommend that you do not use files that are not mentioned in the documentation.</p></div></div>
+             
+             
+                <h3 id="sms-directories-inference">Inference Directory</h3>
+                <p>The <code class="code">inference</code> directory is only present when you are using
+                    automated data labeling. This directory contains the input and output files for
+                    the SageMaker batch transform used while labeling data objects.</p>
+             
+             
+                <h3 id="sms-directories-manifest">Manifest Directory</h3>
+                <p>The <code class="code">manifest</code> directory contains the output manifest from your
+                    labeling job. There is one subdirectory in the manifest directory,
+                        <code class="code">output</code>. The <code class="code">output</code> directory contains the output
+                    manifest file for your labeling job. The file is named
+                        <code class="code">output.manifest</code>.</p>
+             
+             
+                <h3 id="sms-directories-training">Training Directory</h3>
+                <p>The <code class="code">training</code> directory is only present when you are using
+                    automated data labeling. This directory contains the input and output files used
+                    to train the automated data labeling model.</p>
+             
+         
+            <h2 id="sms-output-confidence">Confidence Score</h2>
+            <p>When you have more than one worker annotate a single task, your label results from
+                annotation consolidation. Ground Truth calculates a confidence score for each label. A
+                    <em>confidence score</em> is a number between 0 and 1 that indicates
+                how confident Ground Truth is in the label. You can use the confidence score to compare
+                labeled data objects to each other, and to identify the least or most confident
+                labels.</p>
+            <p>You should not interpret the value of a confidence score as an absolute value, or
+                compare confidence scores across labeling jobs. For example, if all of the
+                confidence scores are between 0.98 and 0.998, you should only compare the data
+                objects with each other and not rely on the high confidence scores. </p>
+            <p>You should not compare the confidence scores of human-labeled data objects and
+                auto-labeled data objects. The confidence scores for humans are calculated using the
+                annotation consolidation function for the task, while the confidence scores for
+                automated labeling are calculated using a model that incorporates object features.
+                The two models generally have different scales and average confidence.</p>
+            <p>For a bounding box labeling job, Ground Truth calculates a confidence score per box. You
+                can compare confidence scores within one image or across images for the same
+                labeling type (human or auto). You can't compare confidence scores across labeling
+                jobs.</p>
+            <p>If a single worker annotates a task
+                    (<code class="code">NumberOfHumanWorkersPerDataObject</code> is set to <code class="code">1</code> or in
+                the console, you enter 1 for <b>Number of workers per dataset
+                    object</b>), the confidence score is set to <code class="code">0.00</code>. </p>
+         
+            <h2 id="sms-worker-id-private">Worker Metadata</h2>
+            <p>Ground Truth provides information that you can use to track individual workers in task
+                output data. The following data is located in the directories under the
+                    <code class="code">worker-response</code> located in the <a href="sms-data-output.html#sms-directories-annotations">Annotations Directory</a>:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>The <code class="code">acceptanceTime</code> is the time that the worker accepted the
+                        task. The format of this date and time stamp is
+                            <code class="code">YYYY-MM-DDTHH:MM:SS.mmmZ</code> for the year (<code class="code">YYYY</code>),
+                        month (<code class="code">MM</code>), day (<code class="code">DD</code>), hour (<code class="code">HH</code>),
+                        minute (<code class="code">MM</code>), second (<code class="code">SS</code>) and millisecond
+                            (<code class="code">mmm</code>). The date and time are separated by a <b>T</b>. </p>
+                </li><li class="listitem">
+                    <p>The <code class="code">submissionTime</code> is the time that the worker submitted
+                        their annotations using the <b>Submit</b> button. The format
+                        of this date and time stamp is <code class="code">YYYY-MM-DDTHH:MM:SS.mmmZ</code> for the
+                        year (<code class="code">YYYY</code>), month (<code class="code">MM</code>), day (<code class="code">DD</code>),
+                        hour (<code class="code">HH</code>), minute (<code class="code">MM</code>), second (<code class="code">SS</code>)
+                        and millisecond (<code class="code">mmm</code>). The date and time are separated by a
+                            <b>T</b>. </p>
+                </li><li class="listitem">
+                    <p><code class="code">timeSpentInSeconds</code> reports the total time, in seconds, that a
+                        worker actively worked on that task. This metric does not include time when
+                        a worker paused or took a break.</p>
+                </li><li class="listitem">
+                    <p>The <code class="code">workerId</code> is unique to each worker. </p>
+                </li><li class="listitem">
+                    <p>If you use a <a href="sms-workforce-private.html">private
+                            workforce</a>, in <code class="code">workerMetadata</code>, you see the
+                        following.</p>
+                    <div class="itemizedlist">
+                         
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>The <code class="code">identityProviderType</code> is the service used to manage
+                                the private workforce. </p>
+                        </li><li class="listitem">
+                            <p>The <code class="code">issuer</code> is the Cognito user pool or OIDC Identity
+                                Provider (IdP) issuer associated with the work team assigned to this
+                                human review task.</p>
+                        </li><li class="listitem">
+                            <p>A unique <code class="code">sub</code> identifier refers to the worker. If you
+                                create a workforce using Amazon Cognito, you can retrieve details about this
+                                worker (such as the name or user name) using this ID using Amazon Cognito. To
+                                learn how, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#manage-user-accounts-searching-user-attributes">Managing and Searching for User Accounts</a> in
+                                <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/">Amazon Cognito Developer Guide</a>.</p>
+                        </li></ul></div>
+                </li></ul></div>
+            <p>The following is an example of the output you may see if you use Amazon Cognito to create a
+                private workforce. This is identified in the
+                <code class="code">identityProviderType</code>.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">"submissionTime": "2020-12-28T18:59:58.321Z",
+"acceptanceTime": "2020-12-28T18:59:15.191Z", 
+"timeSpentInSeconds": 40.543,
+"workerId": "a12b3cdefg4h5i67",
+"workerMetadata": <span>{</span>
+    "identityData": <span>{</span>
+        "identityProviderType": "Cognito",
+        "issuer": "https://cognito-idp.aws-region.amazonaws.com/aws-region_123456789",
+        "sub": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+    }
+}</code></pre>
+            <p> The following is an example of the <code class="code">workerMetadata</code> you may see if you
+                use your own OIDC IdP to create a private workforce:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">"workerMetadata": <span>{</span>
+        "identityData": <span>{</span>
+            "identityProviderType": "Oidc",
+            "issuer": "https://example-oidc-ipd.com/adfs",
+            "sub": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+        }
+}</code></pre>
+            <p>To learn more about using private workforces, see <a href="sms-workforce-private.html">Use a Private Workforce</a>.</p>
+         
+            <h2 id="sms-output-metadata">Output Metadata</h2>
+            <p>The output from each job contains metadata about the label assigned to data
+                objects. These elements are the same for all jobs with minor variations. The
+                following example shows the metadata elements:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">    "confidence": <code class="replaceable">0.00</code>,
+    "type": "<code class="replaceable">groundtruth/image-classification</code>",
+    "job-name": "<code class="replaceable">identify-animal-species</code>",
+    "human-annotated": "<code class="replaceable">yes</code>",
+    "creation-date": "<code class="replaceable">2020-10-18T22:18:13.527256</code>"
+</code></pre>
+            <p>The elements have the following meaning:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><code class="code">confidence</code> – The confidence that Ground Truth has that the
+                        label is correct. For more information, see <a href="sms-data-output.html#sms-output-confidence">Confidence Score</a>.</p>
+                </li><li class="listitem">
+                    <p><code class="code">type</code> – The type of classification job. For job types,
+                        see <a href="sms-task-types.html">Built-in Task Types</a>. </p>
+                </li><li class="listitem">
+                    <p><code class="code">job-name</code> – The name assigned to the job when it was
+                        created.</p>
+                </li><li class="listitem">
+                    <p><code class="code">human-annotated</code> – Whether the data object was labeled
+                        by a human or by automated data labeling. For more information, see <a href="sms-automated-labeling.html">Automate Data Labeling</a>.</p>
+                </li><li class="listitem">
+                    <p><code class="code">creation-date</code> – The date and time that the label was
+                        created.</p>
+                </li></ul></div>
+         
+            <h2 id="sms-output-class">Classification Job Output</h2>
+            <p>The following are sample outputs (output manifest files) from an image
+                classification job and a text classification job. They include the label that Ground Truth
+                assigned to the data object, the value for the label, and metadata that describes
+                the label.</p>
+            <p>In addition to the standard metadata elements, the metadata for a classification
+                job includes the text value of the label's class. For more information, see <a href="image-classification.html">Image Classification - MXNet</a>.</p>
+            <p>The red, italicized text in the examples below depends on labeling job
+                specifications and output data. </p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "source-ref":"<code class="replaceable">s3://AWSDOC-EXAMPLE-BUCKET/example_image.jpg</code>",
+    "<code class="replaceable">species</code>":"<code class="replaceable">0</code>",
+    "<code class="replaceable">species</code>-metadata":
+    <span>{</span>
+        "class-name": "<code class="replaceable">dog</code>",
+        "confidence": <code class="replaceable">0.00</code>,
+        "type": "groundtruth/image-classification",
+        "job-name": "<code class="replaceable">identify-animal-species</code>",
+        "human-annotated": "<code class="replaceable">yes</code>",
+        "creation-date": "<code class="replaceable">2018-10-18T22:18:13.527256</code>"
+    }
+}</code></pre>
+
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "source":"<code class="replaceable">The food was delicious</code>",
+    "<code class="replaceable">mood</code>":"<code class="replaceable">1</code>",
+    "<code class="replaceable">mood</code>-metadata":
+    <span>{</span>
+        "class-name": "<code class="replaceable">positive</code>",
+        "confidence": <code class="replaceable">0.8</code>,
+        "type": "groundtruth/text-classification",
+        "job-name": "<code class="replaceable">label-sentiment</code>",
+        "human-annotated": "<code class="replaceable">yes</code>",
+        "creation-date": "<code class="replaceable">2020-10-18T22:18:13.527256</code>"
+    }
+}</code></pre>
+         
+            <h2 id="sms-output-multi-label-classification">Multi-label Classification Job
+                    Output</h2>
+            
+        <p>The following are example output manifest files from a multi-label image
+            classification job and a multi-label text classification job. They include the labels
+            that Ground Truth assigned to the data object (for example, the image or piece of text) and
+            metadata that describes the labels the worker saw when completing the labeling task. </p><p>The label attribute name parameter (for example,
+                <code class="code">image-label-attribute-name</code>) contains an array of all of the labels
+            selected by at least one of the workers who completed this task. This array contains
+            integer keys (for example, <code class="code">[1,0,8]</code>) that correspond to the labels found in
+                <code class="code">class-map</code>. In the multi-label image classification example,
+                <code class="code">bicycle</code>, <code class="code">person</code>, and <code class="code">clothing</code> were selected
+            by at least one of the workers who completed the labeling task for the image,
+                <code class="code">exampleimage.jpg</code>.</p><p>The <code class="code">confidence-map</code> shows the confidence score that Ground Truth assigned to each
+            label selected by a worker. To learn more about Ground Truth confidence scores, see <a href="sms-data-output.html#sms-output-confidence">Confidence Score</a>.</p><p>The red, italicized text in the examples below depends on labeling job specifications
+            and output data. </p><p>The following is an example of a multi-label image classification output manifest
+            file. </p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "source-ref": "<code class="replaceable">s3://AWSDOC-EXAMPLE-BUCKET/example_image.jpg</code>",
+    "<code class="replaceable">image-label-attribute-name</code>":[<code class="replaceable">1,0,8</code>],
+    "<code class="replaceable">image-label-attribute-name</code>-metadata":
+       <span>{</span>
+        "job-name":"<code class="replaceable">labeling-job/image-label-attribute-name</code>",
+        "class-map":
+            <span>{</span>
+                "<code class="replaceable">1</code>":"<code class="replaceable">bicycle</code>","<code class="replaceable">0</code>":"<code class="replaceable">person</code>","<code class="replaceable">8</code>":"<code class="replaceable">clothing</code>"
+            },
+        "human-annotated":"<code class="replaceable">yes</code>",
+        "creation-date":"<code class="replaceable">2020-02-27T21:36:25.000201</code>",
+        "confidence-map":
+            <span>{</span>
+                "<code class="replaceable">1</code>":<code class="replaceable">0.95</code>,"<code class="replaceable">0</code>":<code class="replaceable">0.77</code>,"<code class="replaceable">8</code>":<code class="replaceable">0.2</code>
+            },
+        "type":"groundtruth/image-classification-multilabel"
+        }
+}</code></pre><p>The following is an example of a multi-label text classification output manifest file.
+            In this example, <code class="code">approving</code>, <code class="code">sad</code> and <code class="code">critical</code> were
+            selected by at least one of the workers who completed the labeling task for the object
+                <code class="code">exampletext.txt</code> found in <code class="code">AWSDOC-EXAMPLE-BUCKET</code>.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "source-ref": "<code class="replaceable">AWSDOC-EXAMPLE-BUCKET/text_file.txt</code>",
+    "<code class="replaceable">text-label-attribute-name</code>":[<code class="replaceable">1</code>,<code class="replaceable">0</code>,<code class="replaceable">4</code>],
+    "<code class="replaceable">text-label-attribute-name</code>-metadata":
+       <span>{</span>
+        "job-name":"labeling-job/<code class="replaceable">text-label-attribute-name</code>",
+        "class-map":
+            <span>{</span>
+                "<code class="replaceable">1</code>":"<code class="replaceable">approving</code>","<code class="replaceable">0</code>":"<code class="replaceable">sad</code>","<code class="replaceable">4</code>":"<code class="replaceable">critical</code>"
+            },
+        "human-annotated":"<code class="replaceable">yes</code>",
+        "creation-date":"<code class="replaceable">2020-02-20T21:36:25.000201</code>",
+        "confidence-map":
+            <span>{</span>
+                "<code class="replaceable">1</code>":<code class="replaceable">0.95</code>,"<code class="replaceable">0</code>":<code class="replaceable">0.77</code>,"<code class="replaceable">4</code>":<code class="replaceable">0.2</code>
+            },
+        "type":"groundtruth/text-classification-multilabel"
+        }
+}</code></pre>
+            <h2 id="sms-output-box">Bounding Box Job Output</h2>
+            <p>The following is sample output (output manifest file) from a bounding box job. For
+                this task, three bounding boxes are returned. The label value contains information
+                about the size of the image, and the location of the bounding boxes.</p>
+            <p>The <code class="code">class_id</code> element is the index of the box's class in the list of
+                available classes for the task. The <code class="code">class-map</code> metadata element contains
+                the text of the class.</p>
+            <p>The metadata has a separate confidence score for each bounding box. The metadata
+                also includes the <code class="code">class-map</code> element that maps the <code class="code">class_id</code>
+                to the text value of the class. For more information, see <a href="object-detection.html">Object Detection - MXNet</a>.</p>
+            <p>The red, italicized text in the examples below depends on labeling job
+                specifications and output data. </p>
+
+
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "source-ref": "<code class="replaceable">s3://AWSDOC-EXAMPLE-BUCKET/example_image.png</code>",
+    "<code class="replaceable">bounding-box-attribute-name</code>":
+    <span>{</span>
+        "image_size": [<span>{</span> "width": <code class="replaceable">500</code>, "height": <code class="replaceable">400</code>, "depth":<code class="replaceable">3</code>}],
+        "annotations":
+        [
+            <span>{</span>"class_id": <code class="replaceable">0</code>, "left": <code class="replaceable">111</code>, "top": <code class="replaceable">134</code>,
+                    "width": <code class="replaceable">61</code>, "height": <code class="replaceable">128</code>},
+            <span>{</span>"class_id": <code class="replaceable">5</code>, "left": <code class="replaceable">161</code>, "top": <code class="replaceable">250</code>,
+                     "width": <code class="replaceable">30</code>, "height": <code class="replaceable">30</code>},
+            <span>{</span>"class_id": <code class="replaceable">5</code>, "left": <code class="replaceable">20</code>, "top": <code class="replaceable">20</code>,
+                     "width": <code class="replaceable">30</code>, "height": <code class="replaceable">30</code>}
+        ]
+    },
+    "<code class="replaceable">bounding-box-attribute-name</code>-metadata":
+    <span>{</span>
+        "objects":
+        [
+            <span>{</span>"confidence": <code class="replaceable">0.8</code>},
+            <span>{</span>"confidence": <code class="replaceable">0.9</code>},
+            <span>{</span>"confidence": <code class="replaceable">0.9</code>}
+        ],
+        "class-map":
+        <span>{</span>
+            "<code class="replaceable">0</code>": "<code class="replaceable">dog</code>",
+            "<code class="replaceable">5</code>": "<code class="replaceable">bone</code>"
+        },
+        "type": "groundtruth/object-detection",
+        "human-annotated": "<code class="replaceable">yes</code>",
+        "creation-date": "<code class="replaceable">2018-10-18T22:18:13.527256</code>",
+        "job-name": "<code class="replaceable">identify-dogs-and-toys</code>"
+    }
+ }
+</code></pre>
+<p>The output of a bounding box adjustment job looks like the following JSON. Note that the
+                original JSON is kept intact and two new jobs are listed, each with “adjust-”
+                prepended to the original attribute’s name. </p>
+
+
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "source-ref": "<code class="replaceable">S3 bucket location</code>",
+    "<code class="replaceable">bounding-box-attribute-name</code>":
+    <span>{</span>
+        "image_size": [<span>{</span> "width": <code class="replaceable">500</code>, "height": <code class="replaceable">400</code>, "depth":<code class="replaceable">3</code>}],
+        "annotations":
+        [
+            <span>{</span>"class_id": <code class="replaceable">0</code>, "left": <code class="replaceable">111</code>, "top": <code class="replaceable">134</code>,
+                    "width": <code class="replaceable">61</code>, "height": <code class="replaceable">128</code>},
+            <span>{</span>"class_id": 5, "left": 161, "top": 250,
+                     "width": <code class="replaceable">30</code>, "height": <code class="replaceable">30</code>},
+            <span>{</span>"class_id": <code class="replaceable">5</code>, "left": <code class="replaceable">20</code>, "top": <code class="replaceable">20</code>,
+                     "width": <code class="replaceable">30</code>, "height": <code class="replaceable">30</code>}
+        ]
+    },
+    "<code class="replaceable">bounding-box-attribute-name</code>-metadata":
+    <span>{</span>
+        "objects":
+        [
+            <span>{</span>"confidence": <code class="replaceable">0.8</code>},
+            <span>{</span>"confidence": <code class="replaceable">0.9</code>},
+            <span>{</span>"confidence": <code class="replaceable">0.9</code>}
+        ],
+        "class-map":
+        <span>{</span>
+            "<code class="replaceable">0</code>": "<code class="replaceable">dog</code>",
+            "<code class="replaceable">5</code>": "<code class="replaceable">bone</code>"
+        },
+        "type": "groundtruth/object-detection",
+        "human-annotated": "<code class="replaceable">yes</code>",
+        "creation-date": "<code class="replaceable">2018-10-18T22:18:13.527256</code>",
+        "job-name": "<code class="replaceable">identify-dogs-and-toys</code>"
+    },
+    "<code class="replaceable">adjusted-bounding-box</code>":
+    <span>{</span>
+        "image_size": [<span>{</span> "width": <code class="replaceable">500</code>, "height": <code class="replaceable">400</code>, "depth":<code class="replaceable">3</code>}],
+        "annotations":
+        [
+            <span>{</span>"class_id": <code class="replaceable">0</code>, "left": <code class="replaceable">110</code>, "top": <code class="replaceable">135</code>,
+                    "width": <code class="replaceable">61</code>, "height": <code class="replaceable">128</code>},
+            <span>{</span>"class_id": <code class="replaceable">5</code>, "left": <code class="replaceable">161</code>, "top": <code class="replaceable">250</code>,
+                     "width": <code class="replaceable">30</code>, "height": <code class="replaceable">30</code>},
+            <span>{</span>"class_id": <code class="replaceable">5</code>, "left": <code class="replaceable">10</code>, "top": <code class="replaceable">10</code>,
+                     "width": <code class="replaceable">30</code>, "height": <code class="replaceable">30</code>}
+        ]
+    },
+    "<code class="replaceable">adjusted-bounding-box</code>-metadata":
+    <span>{</span>
+        "objects":
+        [
+            <span>{</span>"confidence": <code class="replaceable">0.8</code>},
+            <span>{</span>"confidence": <code class="replaceable">0.9</code>},
+            <span>{</span>"confidence": <code class="replaceable">0.9</code>}
+        ],
+        "class-map":
+        <span>{</span>
+            "<code class="replaceable">0</code>": "<code class="replaceable">dog</code>",
+            "<code class="replaceable">5</code>": "<code class="replaceable">bone</code>"
+        },
+        "type": "groundtruth/object-detection",
+        "human-annotated": "<code class="replaceable">yes</code>",
+        "creation-date": "<code class="replaceable">2018-11-20T22:18:13.527256</code>",
+        "job-name": "<code class="replaceable">adjust-bounding-boxes-on-dogs-and-toys</code>",
+        "adjustment-status": "<code class="replaceable">adjusted</code>"
+    }
+}
+</code></pre>
+            <p>In this output, the job's <code class="code">type</code> doesn't change, but an
+                    <code class="code">adjustment-status</code> field is added. This field has the value of
+                    <code class="code">adjusted</code> or <code class="code">unadjusted</code>. If multiple workers have
+                reviewed the object and at least one adjusted the label, the status is
+                    <code class="code">adjusted</code>.</p>
+         
+            <h2 id="sms-output-data-ner">Named Entity Recognition</h2>
+            <p>The following is an example output manifest file from a named entity recognition
+                (NER) labeling task. For this task, seven <code class="code">entities</code> are returned.</p>
+            <p>In the output manifest, the JSON object, <code class="code">annotations</code>, includes a list
+                of the <code class="code">labels</code> (label categories) that you provided.</p>
+            <p>Worker responses are in a list named <code class="code">entities</code>. Each entity in this
+                list is a JSON object that contains a <code class="code">label</code> value that matches one in
+                the <code class="code">labels</code> list, an integer <code class="code">startOffset</code> value for labeled
+                span's starting Unicode offset, and an integer <code class="code">endOffset</code> value for the
+                ending Unicode offset.</p>
+            <p>The metadata has a separate confidence score for each entity. If a single worker
+                labeled each data object, the confidence value for each entity will be zero.</p>
+            <p>The red, italicized text in the examples below depends on labeling job inputs and
+                worker responses.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "source": "<code class="replaceable">Amazon SageMaker is a cloud machine-learning platform that was launched in November 2017. SageMaker enables developers to create, train, and deploy machine-learning (ML) models in the cloud. SageMaker also enables developers to deploy ML models on embedded systems and edge-devices</code>",
+    "<code class="replaceable">ner-labeling-job-attribute-name</code>": <span>{</span>
+        "annotations": <span>{</span>
+            "labels": [
+                <span>{</span>
+                    "label": "<code class="replaceable">Date</code>",
+                    "shortDisplayName": "<code class="replaceable">dt</code>"
+                },
+                <span>{</span>
+                    "label": "<code class="replaceable">Verb</code>",
+                    "shortDisplayName": "<code class="replaceable">vb</code>"
+                },
+                <span>{</span>
+                    "label": "<code class="replaceable">Thing</code>",
+                    "shortDisplayName": "<code class="replaceable">tng</code>"
+                },
+                <span>{</span>
+                    "label": "<code class="replaceable">People</code>",
+                    "shortDisplayName": "<code class="replaceable">ppl</code>"
+                }
+            ],
+            "entities": [
+                <span>{</span>
+                    "label": "<code class="replaceable">Thing</code>",
+                    "startOffset": <code class="replaceable">22</code>,
+                    "endOffset": <code class="replaceable">53</code>
+                },
+                <span>{</span>
+                    "label": "<code class="replaceable">Thing</code>",
+                    "startOffset": <code class="replaceable">269</code>,
+                    "endOffset": <code class="replaceable">281</code>
+                },
+                <span>{</span>
+                    "label": "<code class="replaceable">Verb</code>",
+                    "startOffset": <code class="replaceable">63</code>,
+                    "endOffset": <code class="replaceable">71</code>
+                },
+                <span>{</span>
+                    "label": "<code class="replaceable">Verb</code>",
+                    "startOffset": <code class="replaceable">228</code>,
+                    "endOffset": <code class="replaceable">234</code>
+                },
+                <span>{</span>
+                    "label": "<code class="replaceable">Date</code>",
+                    "startOffset": <code class="replaceable">75</code>,
+                    "endOffset": <code class="replaceable">88</code>
+                },
+                <span>{</span>
+                    "label": "<code class="replaceable">People</code>",
+                    "startOffset": <code class="replaceable">108</code>,
+                    "endOffset": <code class="replaceable">118</code>
+                },
+                <span>{</span>
+                    "label": "<code class="replaceable">People</code>",
+                    "startOffset": <code class="replaceable">214</code>,
+                    "endOffset": <code class="replaceable">224</code>
+                }
+            ]
+        }
+    },
+    "<code class="replaceable">ner-labeling-job-attribute-name</code>-metadata": <span>{</span>
+        "job-name": "labeling-job/<code class="replaceable">example-ner-labeling-job</code>",
+        "type": "groundtruth/text-span",
+        "creation-date": "<code class="replaceable">2020-10-29T00:40:39.398470</code>",
+        "human-annotated": "yes",
+        "entities": [
+            <span>{</span>
+                "confidence": <code class="replaceable">0</code>
+            },
+            <span>{</span>
+                "confidence": <code class="replaceable">0</code>
+            },
+            <span>{</span>
+                "confidence": <code class="replaceable">0</code>
+            },
+            <span>{</span>
+                "confidence": <code class="replaceable">0</code>
+            },
+            <span>{</span>
+                "confidence": <code class="replaceable">0</code>
+            },
+            <span>{</span>
+                "confidence": <code class="replaceable">0</code>
+            },
+            <span>{</span>
+                "confidence": <code class="replaceable">0</code>
+            }
+        ]
+    }
+}</code></pre>
+         
+            <h2 id="sms-output-bounding-box-verification">Label Verification Job Output</h2>
+        <p>The output (output manifest file) of a bounding box verification job looks different
+                than the output of a bounding box annotation job. That's because the workers have a
+                different type of task. They're not labeling objects, but evaluating the accuracy of
+                prior labeling, making a judgment, and then providing that judgment and perhaps some
+                comments.</p>
+        <p>If human workers are verifying or adjusting prior bounding box labels, the output of a
+                verification job would look like the following JSON. The red, italicized text in the
+                examples below depends on labeling job specifications and output data. </p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "source-ref":"<code class="replaceable">s3://AWSDOC-EXAMPLE-BUCKET/image_example.png</code>",
+    "<code class="replaceable">bounding-box-attribute-name</code>":
+    <span>{</span>
+        "image_size": [<span>{</span> "width": <code class="replaceable">500</code>, "height": <code class="replaceable">400</code>, "depth":<code class="replaceable">3</code>}],
+        "annotations":
+        [
+            <span>{</span>"class_id": <code class="replaceable">0</code>, "left": <code class="replaceable">111</code>, "top": <code class="replaceable">134</code>,
+                    "width": <code class="replaceable">61</code>, "height": <code class="replaceable">128</code>},
+            <span>{</span>"class_id": <code class="replaceable">5</code>, "left": <code class="replaceable">161</code>, "top": <code class="replaceable">250</code>,
+                     "width": <code class="replaceable">30</code>, "height": <code class="replaceable">30</code>},
+            <span>{</span>"class_id": <code class="replaceable">5</code>, "left": <code class="replaceable">20</code>, "top": <code class="replaceable">20</code>,
+                     "width": <code class="replaceable">30</code>, "height": <code class="replaceable">30</code>}
+        ]
+    },
+    "<code class="replaceable">bounding-box-attribute-name</code>-metadata":
+    <span>{</span>
+        "objects":
+        [
+            <span>{</span>"confidence": <code class="replaceable">0.8</code>},
+            <span>{</span>"confidence": <code class="replaceable">0.9</code>},
+            <span>{</span>"confidence": <code class="replaceable">0.9</code>}
+        ],
+        "class-map":
+        <span>{</span>
+            "<code class="replaceable">0</code>": "<code class="replaceable">dog</code>",
+            "<code class="replaceable">5</code>": "<code class="replaceable">bone</code>"
+        },
+        "type": "groundtruth/object-detection",
+        "human-annotated": "<code class="replaceable">yes</code>",
+        "creation-date": "<code class="replaceable">2018-10-18T22:18:13.527256</code>",
+        "job-name": "<code class="replaceable">identify-dogs-and-toys</code>"
+    },
+    "<code class="replaceable">verify-bounding-box-attribute-name</code>":"<code class="replaceable">1</code>",
+    "<code class="replaceable">verify-bounding-box-attribute-name</code>-metadata":
+    <span>{</span>
+        "class-name": "<code class="replaceable">bad</code>",
+        "confidence": <code class="replaceable">0.93</code>,
+        "type": "groundtruth/label-verification",
+        "job-name": "<code class="replaceable">verify-bounding-boxes</code>",
+        "human-annotated": "<code class="replaceable">yes</code>",
+        "creation-date": "<code class="replaceable">2018-11-20T22:18:13.527256</code>",
+        "worker-feedback": [
+            <span>{</span>"comment": "<code class="replaceable">The bounding box on the bird is too wide on the right side.</code>"},
+            <span>{</span>"comment": "<code class="replaceable">The bird on the upper right is not labeled.</code>"}
+        ]
+    }
+}
+</code></pre>
+
+        <p>Although the <code class="code">type</code> on the original bounding box output was
+                    <code class="code">groundtruth/object-detection</code>, the new <code class="code">type</code> is
+                    <code class="code">groundtruth/label-verification</code>. Also note that the
+                    <code class="code">worker-feedback</code> array provides worker comments. If the worker
+                doesn't provide comments, the empty fields are excluded during consolidation.</p>
+     
+            <h2 id="sms-output-segmentation">Semantic Segmentation Job Output</h2>
+            <p>The following is the output manifest file from a semantic segmentation labeling
+                job. The value of the label for this job is a reference to a PNG file in an Amazon S3
+                bucket.</p>
+            <p>In addition to the standard elements, the metadata for the label includes a color
+                map that defines which color is used to label the image, the class name associated
+                with the color, and the confidence score for each color. For more information, see
+                    <a href="semantic-segmentation.html">Semantic Segmentation Algorithm</a>.</p>
+            <p>The red, italicized text in the examples below depends on labeling job
+                specifications and output data. </p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "source-ref": "<code class="replaceable">s3://AWSDOC-EXAMPLE-BUCKET/example_city_image.png</code>",
+    "<code class="replaceable">city-streets</code>-ref": "<code class="replaceable">S3 bucket location</code>",
+    "<code class="replaceable">city-streets</code>-ref-metadata": <span>{</span>
+      "internal-color-map": <span>{</span>
+        "0": <span>{</span>
+           "class-name": "BACKGROUND",
+           "confidence": <code class="replaceable">0.9</code>,
+           "hex-color": "#ffffff"
+        },
+        "1": <span>{</span>
+           "class-name": "<code class="replaceable">buildings</code>",
+           "confidence": <code class="replaceable">0.9</code>,
+           "hex-color": "<code class="replaceable">#2acf59</code>"
+        },
+        "2":  <span>{</span>
+           "class-name": "<code class="replaceable">road</code>",
+           "confidence": <code class="replaceable">0.9</code>,
+           "hex-color": "<code class="replaceable">#f28333</code>"
+       }
+     },
+     "type": "groundtruth/semantic-segmentation",
+     "human-annotated": "<code class="replaceable">yes</code>",
+     "creation-date": "<code class="replaceable">2018-10-18T22:18:13.527256</code>",
+     "job-name": "<code class="replaceable">label-city-streets</code>",
+     },
+     "<code class="replaceable">verify-city-streets</code>-ref":"<code class="replaceable">1</code>",
+     "<code class="replaceable">verify-city-streets</code>-ref-metadata":
+     <span>{</span>
+        "class-name": "<code class="replaceable">bad</code>",
+        "confidence": <code class="replaceable">0.93</code>,
+        "type": "groundtruth/label-verification",
+        "job-name": "verify-<code class="replaceable">city-streets</code>",
+        "human-annotated": "<code class="replaceable">yes</code>",
+        "creation-date": "<code class="replaceable">2018-11-20T22:18:13.527256</code>",
+        "worker-feedback": [
+            <span>{</span>"comment": "<code class="replaceable">The mask on the leftmost building is assigned the wrong side of the road.</code>"},
+            <span>{</span>"comment": "<code class="replaceable">The curb of the road is not labeled but the instructions say otherwise.</code>"}
+        ]
+     }
+}
+</code></pre>
+            <p>Confidence is scored on a per-image basis. Confidence scores are the same across
+                all classes within an image. </p>
+            <p>The output of a semantic segmentation adjustment job looks similar to the
+                following JSON.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "source-ref": "<code class="replaceable">s3://AWSDOC-EXAMPLE-BUCKET/example_city_image.png</code>",
+    "<code class="replaceable">city-streets</code>-ref": "<code class="replaceable">S3 bucket location</code>",
+    "<code class="replaceable">city-streets</code>-ref-metadata": <span>{</span>
+      "internal-color-map": <span>{</span>
+        "0": <span>{</span>
+           "class-name": "BACKGROUND",
+           "confidence": <code class="replaceable">0.9</code>,
+           "hex-color": "#ffffff"
+        },
+        "1": <span>{</span>
+           "class-name": "<code class="replaceable">buildings</code>",
+           "confidence": <code class="replaceable">0.9</code>,
+           "hex-color": "<code class="replaceable">#2acf59</code>"
+        },
+        "2":  <span>{</span>
+           "class-name": "<code class="replaceable">road</code>",
+           "confidence": <code class="replaceable">0.9</code>,
+           "hex-color": "<code class="replaceable">#f28333</code>"
+       }
+     },
+     "type": "groundtruth/semantic-segmentation",
+     "human-annotated": "<code class="replaceable">yes</code>",
+     "creation-date": "<code class="replaceable">2018-10-18T22:18:13.527256</code>",
+     "job-name": "<code class="replaceable">label-city-streets</code>",
+     },
+     "<code class="replaceable">adjusted-city-streets</code>-ref": "<code class="replaceable">s3://AWSDOC-EXAMPLE-BUCKET/example_city_image.png</code>",
+     "<code class="replaceable">adjusted-city-streets</code>-ref-metadata": <span>{</span>
+      "internal-color-map": <span>{</span>
+        "0": <span>{</span>
+           "class-name": "BACKGROUND",
+           "confidence": <code class="replaceable">0.9</code>,
+           "hex-color": "#ffffff"
+        },
+        "1": <span>{</span>
+           "class-name": "<code class="replaceable">buildings</code>",
+           "confidence": <code class="replaceable">0.9</code>,
+           "hex-color": "<code class="replaceable">#2acf59</code>"
+        },
+        "2":  <span>{</span>
+           "class-name": "<code class="replaceable">road</code>",
+           "confidence": <code class="replaceable">0.9</code>,
+           "hex-color": "<code class="replaceable">#f28333</code>"
+       }
+     },
+     "type": "groundtruth/semantic-segmentation",
+     "human-annotated": "<code class="replaceable">yes</code>",
+     "creation-date": "<code class="replaceable">2018-11-20T22:18:13.527256</code>",
+     "job-name": "<code class="replaceable">adjust-label-city-streets</code>",
+     }
+}
+</code></pre>
+            
+         
+        <h2 id="sms-output-video-object-detection">Video Frame Object Detection Output</h2>
+            <p>The following is the output manifest file from a video frame object detection
+                labeling job. The <code class="replaceable">red, italicized text</code> in the examples
+                below depends on labeling job specifications and output data.</p>
+            <p>In addition to the standard elements, the metadata includes a class map that lists
+                each class that has at least one label in the sequence. The metadata also includes
+                    <code class="code">job-name</code> which is the name you assigned to the labeling job. For
+                adjustment tasks, If one or more bounding boxes were modified, there is an
+                    <code class="code">adjustment-status</code> parameter in the metadata for audit workflows
+                that is set to <code class="code">adjusted</code>. </p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">
+<span>{</span>
+    "source-ref": "s3://<code class="replaceable">DOC-EXAMPLE-BUCKET</code>/<code class="replaceable">example-path</code>/<code class="replaceable">input-manifest.json</code>",
+    "<code class="replaceable">CarObjectDetection</code>-ref": "s3://<code class="replaceable">AWSDOC-EXAMPLE-BUCKET</code>/output/<code class="replaceable">labeling-job-name</code>/annotations/consolidated-annotation/output/0/SeqLabel.json",
+    "<code class="replaceable">CarObjectDetection</code>-ref-metadata": <span>{</span>
+        "class-map": <span>{</span>
+            "<code class="replaceable">0</code>": "<code class="replaceable">car</code>",
+            "<code class="replaceable">1</code>": "<code class="replaceable">bus</code>"
+        },
+        "job-name": "labeling-job/<code class="replaceable">labeling-job-name</code>",
+        "human-annotated": "yes",
+        "creation-date": "<code class="replaceable">2021-09-29T05:50:35.566000</code>",
+        "type": "groundtruth/video-object-detection"
+        }
+}</code></pre>
+            <p>Ground Truth creates one output sequence file for each sequence of video frames that was
+                labeled. Each output sequence file contains the following: </p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>All annotations for all frames in a sequence in the
+                            <code class="code">detection-annotations</code> list of JSON objects. </p>
+                </li><li class="listitem">
+                    <p>For each frame that was annotated by a worker, the frame file name
+                            (<code class="code">frame</code>), number (<code class="code">frame-no</code>), a list of JSON
+                        objects containing annotations (<code class="code">annotations</code>), and if
+                        applicable, <code class="code">frame-attributes</code>. The name of this list is defined
+                        by the task type you use: <code class="code">polylines</code>, <code class="code">polygons</code>,
+                            <code class="code">keypoints</code>, and for bounding boxes,
+                        <code class="code">annotations</code>.</p>
+                    <p> </p>
+                    <p>Each JSON object contains information about a single annotation and
+                        associated label. The following table outlines the parameters you'll see for
+                        each video frame task type. </p>
+                    <div class="table-container"><div class="table-contents"><table id="w714aac15b9c39c21c57c11b3b7"><thead>
+                                <tr>
+                                    <th>Task Type</th>
+                                    <th>Parameters</th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td tabindex="-1">
+                                        <p>Bounding Box</p>
+                                    </td>
+                                    <td tabindex="-1">
+                                        <p>Box dimensions: <code class="code">height</code> and
+                                            <code class="code">width</code>
+                                        </p>
+                                        <p>Box top, left corner pixel location: <code class="code">top</code>
+                                            and <code class="code">left</code></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">
+                                        <p>Keypoint</p>
+                                    </td>
+                                    <td tabindex="-1">Keypoint vertices: <code class="code"><span>{</span> "x": int, "y": int
+                                        }</code></td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">
+                                        <p>Polygon</p>
+                                    </td>
+                                    <td tabindex="-1"><p>A list of polygon vertices:
+                                            <code class="code">vertices</code></p>Polygon vertices: <code class="code"><span>{</span>
+                                            "x": int, "y": int }</code><p>A polygon is a closed
+                                            shape and so the first point will also represent the
+                                            last point. </p></td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">
+                                        <p>Polyline</p>
+                                    </td>
+                                    <td tabindex="-1"><p>A list of polyline vertices:
+                                        <code class="code">vertices</code></p>Polyline vertices: <code class="code"><span>{</span>
+                                            "x": int, "y": int }</code></td>
+                                </tr>
+                            </table></div></div>
+                    <p>In addition to task type specific values, you will see the following in
+                        each JSON object:</p>
+                    <div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>Values of any <code class="code">label-category-attributes</code> that were
+                                specified for that label. </p>
+                        </li><li class="listitem">
+                            <p>The <code class="code">class-id</code> of the box. Use the
+                                    <code class="code">class-map</code> in the output manifest file to see which
+                                label category this ID maps to. </p>
+                        </li></ul></div>
+                </li></ul></div>
+            <p>The following is an example of a <code class="code">SeqLabel.json</code> file from a bounding
+                box video frame object detection labeling job. This file will be located under
+                        <code class="code">s3://<code class="replaceable">your-output-bucket</code>/<code class="replaceable">output-prefix</code>/annotations/consolidated-annotation/output/<code class="replaceable">annotation-number</code>/</code></p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "detection-annotations": [
+        <span>{</span>
+            "annotations": [
+                <span>{</span>
+                    "height": <code class="replaceable">41</code>,
+                    "width": <code class="replaceable">53</code>,
+                    "top": <code class="replaceable">152</code>,
+                    "left": <code class="replaceable">339</code>,
+                    "class-id": "<code class="replaceable">1</code>",
+                    "label-category-attributes": <span>{</span>
+                        "<code class="replaceable">occluded</code>": "<code class="replaceable">no</code>",
+                        "<code class="replaceable">size</code>": "<code class="replaceable">medium</code>"
+                    }
+                },
+                <span>{</span>
+                    "height": <code class="replaceable">24</code>,
+                    "width": <code class="replaceable">37</code>,
+                    "top": <code class="replaceable">148</code>,
+                    "left": <code class="replaceable">183</code>,
+                    "class-id": "<code class="replaceable">0</code>",
+                    "label-category-attributes": <span>{</span>
+                        "<code class="replaceable">occluded</code>": "<code class="replaceable">no</code>",
+                    }
+                }
+            ],
+            "frame-no": <code class="replaceable">0</code>,
+            "frame": "frame_0000.jpeg", 
+            "frame-attributes": <span>{</span><code class="replaceable">name</code>: <code class="replaceable">value</code>, <code class="replaceable">name</code>: <code class="replaceable">value</code>}
+        },
+        <span>{</span>
+            "annotations": [
+                <span>{</span>
+                    "height": <code class="replaceable">41</code>,
+                    "width": <code class="replaceable">53</code>,
+                    "top": <code class="replaceable">152</code>,
+                    "left": <code class="replaceable">341</code>,
+                    "class-id": "<code class="replaceable">0</code>",
+                    "label-category-attributes": <span>{</span>}
+                },
+                <span>{</span>
+                    "height": <code class="replaceable">24</code>,
+                    "width": <code class="replaceable">37</code>,
+                    "top": <code class="replaceable">141</code>,
+                    "left": <code class="replaceable">177</code>,
+                    "class-id": "<code class="replaceable">0</code>",
+                    "label-category-attributes": <span>{</span>
+                        "<code class="replaceable">occluded</code>": "<code class="replaceable">no</code>",
+                    }
+                }
+            ],
+            "frame-no": <code class="replaceable">1</code>,
+            "frame": "<code class="replaceable">frame_0001.jpeg</code>",
+            "frame-attributes": <span>{</span><code class="replaceable">name</code>: <code class="replaceable">value</code>, <code class="replaceable">name</code>: <code class="replaceable">value</code>}
+        }
+    ]
+}</code></pre>
+     
+            <h2 id="sms-output-video-object-tracking">Video Frame Object Tracking Output</h2>
+            <p>The following is the output manifest file from a video frame object tracking
+                labeling job. The <code class="replaceable">red, italicized text</code> in the examples
+                below depends on labeling job specifications and output data.</p>
+            <p>In addition to the standard elements, the metadata includes a class map that lists
+                each class that has at least one label in the sequence of frames. The metadata also
+                includes <code class="code">job-name</code> which is the name you assigned to the labeling job.
+                For adjustment tasks, If one or more bounding boxes were modified, there is an
+                    <code class="code">adjustment-status</code> parameter in the metadata for audit workflows
+                that is set to <code class="code">adjusted</code>. </p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "source-ref": "s3://<code class="replaceable">DOC-EXAMPLE-BUCKET</code>/<code class="replaceable">example-path</code>/<code class="replaceable">input-manifest.json</code>",
+    "<code class="replaceable">CarObjectTracking</code>-ref": "s3://<code class="replaceable">AWSDOC-EXAMPLE-BUCKET</code>/output/<code class="replaceable">labeling-job-name</code>/annotations/consolidated-annotation/output/0/SeqLabel.json",
+    "<code class="replaceable">CarObjectTracking</code>-ref-metadata": <span>{</span>
+        "class-map": <span>{</span>
+            "<code class="replaceable">0</code>": "<code class="replaceable">car</code>",
+            "<code class="replaceable">1</code>": "<code class="replaceable">bus</code>"
+        },
+        "job-name": "labeling-job/<code class="replaceable">labeling-job-name</code>",
+        "human-annotated": "yes",
+        "creation-date": "<code class="replaceable">2021-09-29T05:50:35.566000</code>",
+        "type": "groundtruth/video-object-tracking"
+        }
+ }</code></pre>
+            <p>Ground Truth creates one output sequence file for each sequence of video frames that was
+                labeled. Each output sequence file contains the following: </p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>All annotations for all frames in a sequence in the
+                            <code class="code">tracking-annotations</code> list of JSON objects. </p>
+                </li><li class="listitem">
+                    <p>For each frame that was annotated by a worker, the frame
+                            (<code class="code">frame</code>), number (<code class="code">frame-no</code>), a list of JSON
+                        objects containing annotations (<code class="code">annotations</code>), and if
+                        applicable, frame attributes (<code class="code">frame-attributes</code>). The name of
+                        this list is defined by the task type you use: <code class="code">polylines</code>,
+                            <code class="code">polygons</code>, <code class="code">keypoints</code>, and for bounding boxes,
+                            <code class="code">annotations</code>.</p>
+                    <p>Each JSON object contains information about a single annotation and
+                        associated label. The following table outlines the parameters you'll see for
+                        each video frame task type. </p>
+                    <div class="table-container"><div class="table-contents"><table id="w714aac15b9c39c21c59c11b3b5"><thead>
+                                <tr>
+                                    <th>Task Type</th>
+                                    <th>Parameters</th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td tabindex="-1">
+                                        <p>Bounding Box</p>
+                                    </td>
+                                    <td tabindex="-1">
+                                        <p>Box dimensions: <code class="code">height</code> and
+                                                <code class="code">width</code>
+                                        </p>
+                                        <p>Box top, left corner pixel location: <code class="code">top</code>
+                                            and <code class="code">left</code></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">
+                                        <p>Keypoint</p>
+                                    </td>
+                                    <td tabindex="-1">Keypoint vertices: <code class="code"><span>{</span> "x": int, "y": int
+                                        }</code></td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">
+                                        <p>Polygon</p>
+                                    </td>
+                                    <td tabindex="-1"><p>A list of polygon vertices:
+                                            <code class="code">vertices</code></p>Polygon vertices: <code class="code"><span>{</span>
+                                            "x": int, "y": int }</code>
+                                        <p>A polygon is a closed shape and so the first point
+                                            will also represent the last point. </p></td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">
+                                        <p>Polyline</p>
+                                    </td>
+                                    <td tabindex="-1"><p>A list of polyline vertices:
+                                            <code class="code">vertices</code></p>Polyline vertices: <code class="code"><span>{</span>
+                                            "x": int, "y": int }</code></td>
+                                </tr>
+                            </table></div></div>
+                    <p>In addition to task type specific values, you will see the following in
+                        each JSON object: </p>
+                    <div class="itemizedlist">
+                         
+                         
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>Values of any <code class="code">label-category-attributes</code> that were
+                                specified for that label. </p>
+                        </li><li class="listitem">
+                            <p>The <code class="code">class-id</code> of the box. Use the
+                                    <code class="code">class-map</code> in the output manifest file to see which
+                                label category this ID maps to. </p>
+                        </li><li class="listitem">
+                            <p>An <code class="code">object-id</code> which identifies an instance of a label.
+                                This ID will be the same across frames if a worker identified the
+                                same instance of an object in multiple frames. For example, if a car
+                                appeared in multiple frames, all bounding boxes uses to identify
+                                that car would have the same <code class="code">object-id</code>.</p>
+                        </li><li class="listitem">
+                            <p>The <code class="code">object-name</code> which is the instance ID of that
+                                annotation. </p>
+                        </li></ul></div>
+                </li></ul></div>
+            <p>The following is an example of a <code class="code">SeqLabel.json</code> file from a bounding
+                box video frame object tracking labeling job. This file will be located under
+                        <code class="code">s3://<code class="replaceable">your-output-bucket</code>/<code class="replaceable">output-prefix</code>/annotations/consolidated-annotation/output/<code class="replaceable">annotation-number</code>/</code></p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "tracking-annotations": [
+        <span>{</span>
+            "annotations": [
+                <span>{</span>
+                    "height": <code class="replaceable">36</code>,
+                    "width": <code class="replaceable">46</code>,
+                    "top": <code class="replaceable">178</code>,
+                    "left": <code class="replaceable">315</code>,
+                    "class-id": "<code class="replaceable">0</code>",
+                    "label-category-attributes": <span>{</span>
+                        "<code class="replaceable">occluded</code>": "<code class="replaceable">no</code>"
+                    },
+                    "object-id": "<code class="replaceable">480dc450-c0ca-11ea-961f-a9b1c5c97972</code>",
+                    "object-name": "<code class="replaceable">car:1</code>"
+                }
+            ],
+            "frame-no": <code class="replaceable">0</code>,
+            "frame": "<code class="replaceable">frame_0001.jpeg</code>",
+            "frame-attributes": <span>{</span>}
+        },
+        <span>{</span>
+            "annotations": [
+                <span>{</span>
+                    "height": <code class="replaceable">30</code>,
+                    "width": <code class="replaceable">47</code>,
+                    "top": <code class="replaceable">163</code>,
+                    "left": <code class="replaceable">344</code>,
+                    "class-id": "<code class="replaceable">1</code>",
+                    "label-category-attributes": <span>{</span>
+                        "<code class="replaceable">occluded</code>": "<code class="replaceable">no</code>",
+                        "<code class="replaceable">size</code>": "<code class="replaceable">medium</code>"
+                    },
+                    "object-id": "<code class="replaceable">98f2b0b0-c0ca-11ea-961f-a9b1c5c97972</code>",
+                    "object-name": "<code class="replaceable">bus:1</code>"
+                },
+                <span>{</span>
+                    "height": <code class="replaceable">28</code>,
+                    "width": <code class="replaceable">33</code>,
+                    "top": <code class="replaceable">150</code>,
+                    "left": <code class="replaceable">192</code>,
+                    "class-id": "<code class="replaceable">0</code>",
+                    "label-category-attributes": <span>{</span>
+                        "<code class="replaceable">occluded</code>": "<code class="replaceable">partially</code>"
+                    },
+                    "object-id": "<code class="replaceable">480dc450-c0ca-11ea-961f-a9b1c5c97972</code>",
+                    "object-name": "<code class="replaceable">car:1</code>"
+                }
+            ],
+            "frame-no": <code class="replaceable">1</code>,
+            "frame": "<code class="replaceable">frame_0002.jpeg</code>",
+            "frame-attributes": <span>{</span><code class="replaceable">name</code>: <code class="replaceable">value</code>, <code class="replaceable">name</code>: <code class="replaceable">value</code>}
+        }
+    ]
+}</code></pre>
+         
+        <h2 id="sms-output-point-cloud-segmentation">3D Point Cloud Semantic Segmentation
+                    Output</h2>
+            <p>The following is the output manifest file from a 3D point cloud semantic
+                segmentation labeling job. </p>
+            <p>In addition to the standard elements, the metadata for the label includes a color
+                map that defines which color is used to label the image, the class name associated
+                with the color, and the confidence score for each color. Additionally, there is an
+                    <code class="code">adjustment-status</code> parameter in the metadata for audit workflows
+                that is set to <code class="code">adjusted</code> if the color mask is modified. If you added one
+                or more <code class="code">frameAttributes</code> to your label category configuration file,
+                worker responses for frame attributes are in the JSON object,
+                    <code class="code">dataset-object-attributes</code>.</p>
+            <p>The <code class="code"><code class="replaceable">your-label-attribute</code>-ref</code> parameter
+                contains the location of a compressed file with a .zlib extension. When you
+                uncompress this file, it contains an array. Each index in the array corresponds to
+                the index of an annotated point in the input point cloud. The value of the array at
+                a given index gives the class of the point at the same index in the point cloud,
+                based on the semantic color map found in the <code class="code">color-map</code> parameter of the
+                    <code class="code">metadata</code>.</p>
+            <p>You can use Python code similar to the following to decompress a .zlib
+                file:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import zlib
+from array import array
+
+# read the label file
+compressed_binary_file = open(<code class="replaceable">zlib_file_path/file.zlib</code>, 'rb').read()
+
+# uncompress the label file
+binary_content = zlib.decompress(compressed_binary_file)
+
+# load labels to an array
+my_int_array_data = array('B', binary_content);
+
+print(my_int_array_data)</code></pre>
+            <p>The code block above will produce an output similar to the following. Each element
+                of the printed array contains the class of a point at the that index in the point
+                cloud. For example, <code class="code">my_int_array_data[0] = 1</code> means
+                    <code class="code">point[0]</code> in the input point cloud has a class <code class="code">1</code>. In
+                the following output manifest file example, class <code class="code">0</code> corresponds with
+                    <code class="code">"Background"</code>, <code class="code">1</code> with <code class="code">Car</code>, and
+                    <code class="code">2</code> with <code class="code">Pedestrian</code>.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">&gt;&gt; array('B', [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2])</code></pre>
+            <p>The following is an example of a semantic segmentation 3D point cloud labeling job
+                output manifest file. The red, italicized text in the examples below depends on
+                labeling job specifications and output data. </p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+   "source-ref": "s3://<code class="replaceable">AWSDOC-EXAMPLE-BUCKET</code>/<code class="replaceable">examplefolder</code>/<code class="replaceable">frame1.bin</code>",
+   "source-ref-metadata":<span>{</span>
+      "format": "<code class="replaceable">binary/xyzi</code>",
+      "unix-timestamp": <code class="replaceable">1566861644.759115</code>,
+      "ego-vehicle-pose":<span>{</span><code class="replaceable">...</code>}, 
+      "prefix": "s3://<code class="replaceable">AWSDOC-EXAMPLE-BUCKET</code>/<code class="replaceable">lidar_singleframe_dataset</code>/<code class="replaceable">prefix</code>",
+      "images": [<span>{</span><code class="replaceable">...</code>}] 
+    },
+    "<code class="replaceable">lidar-ss-label-attribute</code>-ref": "s3://<code class="replaceable">your-output-bucket</code>/<code class="replaceable">labeling-job-name</code>/annotations/consolidated-annotation/output/<code class="replaceable">dataset-object-id</code>/<code class="replaceable">filename.zlib</code>",
+    "<code class="replaceable">lidar-ss-label-attribute</code>-ref-metadata": <span>{</span> 
+        'color-map': <span>{</span>
+            "0": <span>{</span>
+                "class-name": "<code class="replaceable">Background</code>",
+                "hex-color": "<code class="replaceable">#ffffff</code>",
+                "confidence": <code class="replaceable">0.00</code>
+            },
+            "1": <span>{</span>
+                "class-name": "<code class="replaceable">Car</code>",
+                "hex-color": "<code class="replaceable">#2ca02c</code>",
+                "confidence": <code class="replaceable">0.00</code>
+            },
+            "2": <span>{</span>
+                "class-name": "<code class="replaceable">Pedestrian</code>",
+                "hex-color": "<code class="replaceable">#1f77b4</code>",
+                "confidence": <code class="replaceable">0.00</code>
+            },
+            "3": <span>{</span>
+                "class-name": "<code class="replaceable">Tree</code>",
+                "hex-color": "<code class="replaceable">#ff7f0e</code>",
+                "confidence": <code class="replaceable">0.00</code>
+            }
+        },
+        'type': 'groundtruth/point_cloud_single_frame_semantic_segmentation', 
+        'human-annotated': 'yes',
+        'creation-date': '<code class="replaceable">2019-11-12T01:18:14.271944</code>',
+        'job-name': '<code class="replaceable">labeling-job-name</code>',
+        //only present for adjustment audit workflow
+        "adjustment-status": "<code class="replaceable">adjusted</code>", // "adjusted" means the label was adjusted
+        "dataset-object-attributes": <span>{</span><code class="replaceable">name</code>: <code class="replaceable">value</code>, <code class="replaceable">name</code>: <code class="replaceable">value</code>}
+    }
+}</code></pre>
+     
+        <h2 id="sms-output-point-cloud-object-detection">3D Point Cloud Object Detection
+                    Output</h2>
+            <p>The following is sample output from a 3D point cloud objected detection job. For
+                this task type, the data about 3D cuboids is returned in the
+                    <code class="code">3d-bounding-box</code> parameter, in a list named
+                <code class="code">annotations</code>. In this list, each 3D cuboid is described using the
+                following information. </p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Each class, or label category, that you specify in your input manifest is
+                        associated with a <code class="code">class-id</code>. Use the <code class="code">class-map</code> to
+                        identify the class associated with each class ID.</p>
+                </li><li class="listitem">
+                    <p>These classes are used to give each 3D cuboid an <code class="code">object-name</code>
+                        in the format <code class="code">&lt;class&gt;:&lt;integer&gt;</code> where
+                            <code class="code">integer</code> is a unique number to identify that cuboid in the
+                        frame. </p>
+                </li><li class="listitem">
+                    <p><code class="code">center-x</code>, <code class="code">center-y</code>, and <code class="code">center-z</code>
+                        are the coordinates of the center of the cuboid, in the same coordinate
+                        system as the 3D point cloud input data used in your labeling job.</p>
+                </li><li class="listitem">
+                    <p><code class="code">length</code>, <code class="code">width</code>, and <code class="code">height</code> describe
+                        the dimensions of the cuboid. </p>
+                </li><li class="listitem">
+                    <p><code class="code">yaw</code> is used to describe the orientation (heading) of the
+                        cuboid in radians.</p>
+                    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p><code class="code">yaw</code> is now in the right-handed Cartesian system. Since this feature was added on September 02, 2022 19:02:17 UTC, you can convert 
+                        the <code class="code">yaw</code> measurement in the output data prior to that using the following (all units are in radians):</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">old_yaw_in_output = pi - yaw</code></pre></div></div>
+                        
+                </li><li class="listitem">
+                    <p>In our definition, +x is to the right, +y is to the forward, and +z is up from the ground plane. The rotation order is x - y - z. The <code class="code">roll</code>, <code class="code">pitch</code> and <code class="code">yaw</code> are represented in the right-handed Cartesian system. 
+                        In 3D space, <code class="code">roll</code> is along the x-axis, <code class="code">pitch</code> is along the y-axis and <code class="code">yaw</code> is along the z-axis. All three are counterclockwise.</p>
+                </li><li class="listitem">
+                    <p>If you included label attributes in your input manifest file for a given
+                        class, a <code class="code">label-category-attributes</code> parameter is included for
+                        all cuboids for which workers selected label attributes. </p>
+                </li></ul></div>
+            <p>If one or more cuboids were modified, there is an <code class="code">adjustment-status</code>
+                parameter in the metadata for audit workflows that is set to <code class="code">adjusted</code>.
+                If you added one or more <code class="code">frameAttributes</code> to your label category
+                configuration file, worker responses for frame attributes are in the JSON object,
+                    <code class="code">dataset-object-attributes</code>.</p>
+            <p>The <code class="replaceable">red, italicized text</code> in the examples below depends
+                on labeling job specifications and output data. The ellipses
+                    (<code class="replaceable">...</code>) denote a continuation of that list, where
+                additional objects with the same format as the proceeding object can appear.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+   "source-ref": "<code class="replaceable">s3://AWSDOC-EXAMPLE-BUCKET/examplefolder/frame1.txt</code>",
+   "source-ref-metadata":<span>{</span>
+      "format": "<code class="replaceable">text/xyzi</code>",
+      "unix-timestamp": <code class="replaceable">1566861644.759115</code>, 
+      "prefix": "s3://<code class="replaceable">AWSDOC-EXAMPLE-BUCKET</code>/<code class="replaceable">lidar_singleframe_dataset</code>/<code class="replaceable">prefix</code>",
+      "ego-vehicle-pose": <span>{</span>
+            "heading": <span>{</span>
+                "qx": <code class="replaceable">-0.02111296123795955</code>,
+                "qy": <code class="replaceable">-0.006495469416730261</code>,
+                "qz": <code class="replaceable">-0.008024565904865688</code>,
+                "qw": <code class="replaceable">0.9997181192298087</code>
+            },
+            "position": <span>{</span>
+                "x": <code class="replaceable">-2.7161461413869947</code>,
+                "y": <code class="replaceable">116.25822288149078</code>,
+                "z": <code class="replaceable">1.8348751887989483</code>
+            }
+       },
+       "images": [
+            <span>{</span>
+                "fx": <code class="replaceable">847.7962624528487</code>,
+                "fy": <code class="replaceable">850.0340893791985</code>,
+                "cx": <code class="replaceable">576.2129134707038</code>,
+                "cy": <code class="replaceable">317.2423573573745</code>,
+                "k1": <code class="replaceable">0</code>,
+                "k2": <code class="replaceable">0</code>,
+                "k3": <code class="replaceable">0</code>,
+                "k4": <code class="replaceable">0</code>,
+                "p1": <code class="replaceable">0</code>,
+                "p2": <code class="replaceable">0</code>,
+                "skew": <code class="replaceable">0</code>,
+                "unix-timestamp": <code class="replaceable">1566861644.759115</code>,
+                "image-path": "<code class="replaceable">images/frame_0_camera_0.jpg</code>", 
+                "position": <span>{</span>
+                    "x": <code class="replaceable">-2.2722515189268138</code>,
+                    "y": <code class="replaceable">116.86003310568965</code>,
+                    "z": <code class="replaceable">1.454614668542299</code>
+                },
+                "heading": <span>{</span>
+                    "qx": <code class="replaceable">0.7594754093069037</code>,
+                    "qy": <code class="replaceable">0.02181790885672969</code>,
+                    "qz": <code class="replaceable">-0.02461725233103356</code>,
+                    "qw": <code class="replaceable">-0.6496916273040025</code>
+                },
+                "camera_model": "<code class="replaceable">pinhole</code>"
+            }
+        ]
+    },
+   "<code class="replaceable">3d-bounding-box</code>": 
+    <span>{</span>
+       "annotations": [
+            <span>{</span>
+                "label-category-attributes": <span>{</span>
+                    "<code class="replaceable">Occlusion</code>": "<code class="replaceable">Partial</code>",
+                    "<code class="replaceable">Type</code>": "<code class="replaceable">Sedan</code>"
+                },
+                "object-name": "<code class="replaceable">Car:1</code>",
+                "class-id": <code class="replaceable">0</code>,
+                "center-x": <code class="replaceable">-2.616382013657516</code>,
+                "center-y": <code class="replaceable">125.04149850484193</code>,
+                "center-z": <code class="replaceable">0.311272296465834</code>,
+                "length": <code class="replaceable">2.993000265181146</code>,
+                "width": <code class="replaceable">1.8355260519692056</code>,
+                "height": <code class="replaceable">1.3233490884304047</code>,
+                "roll": <code class="replaceable">0</code>,
+                "pitch": <code class="replaceable">0</code>,
+                "yaw": <code class="replaceable">1.6479308313703527</code>
+            },
+            <span>{</span>
+                "label-category-attributes": <span>{</span>
+                    "<code class="replaceable">Occlusion</code>": "<code class="replaceable">Partial</code>",
+                    "<code class="replaceable">Type</code>": "<code class="replaceable">Sedan</code>"
+                },
+                "object-name": "<code class="replaceable">Car:2</code>",
+                "class-id": <code class="replaceable">0</code>,
+                "center-x": <code class="replaceable">-5.188984560617168</code>,
+                "center-y": <code class="replaceable">99.7954483288783</code>,
+                "center-z": <code class="replaceable">0.2226435567445657</code>,
+                "length": <code class="replaceable">4</code>,
+                "width": <code class="replaceable">2</code>,
+                "height": <code class="replaceable">2</code>,
+                "roll": <code class="replaceable">0</code>,
+                "pitch": <code class="replaceable">0</code>,
+                "yaw": <code class="replaceable">1.6243170732068055</code>
+            }
+        ]
+    },
+    "<code class="replaceable">3d-bounding-box</code>-metadata":
+    <span>{</span>
+        "objects": [], 
+        "class_map": 
+        <span>{</span>
+            "<code class="replaceable">0</code>": "<code class="replaceable">Car</code>",
+        },
+        "type": "groundtruth/point_cloud_object_detection",
+        "human-annotated": "<code class="replaceable">yes</code>", 
+        "creation-date": "<code class="replaceable">2018-10-18T22:18:13.527256</code>",
+        "job-name": "<code class="replaceable">identify-3d-objects</code>",
+        "adjustment-status": "<code class="replaceable">adjusted</code>",
+        "dataset-object-attributes": <span>{</span><code class="replaceable">name</code>: <code class="replaceable">value</code>, <code class="replaceable">name</code>: <code class="replaceable">value</code>}
+    }
+}</code></pre>
+     
+        <h2 id="sms-output-point-cloud-object-tracking">3D Point Cloud Object Tracking
+                    Output</h2>
+            <p>The following is an example of an output manifest file from a 3D point cloud
+                object tracking labeling job. The <code class="replaceable">red, italicized text</code> in
+                the examples below depends on labeling job specifications and output data. The
+                ellipses (<code class="replaceable">...</code>) denote a continuation of that list, where
+                additional objects with the same format as the proceeding object can appear.</p>
+            <p>In addition to the standard elements, the metadata includes a class map that lists
+                each class that has at least one label in the sequence. If one or more cuboids were
+                modified, there is an <code class="code">adjustment-status</code> parameter in the metadata for
+                audit workflows that is set to <code class="code">adjusted</code>. </p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+   "source-ref": "<code class="replaceable">s3://AWSDOC-EXAMPLE-BUCKET/myfolder/seq1.json</code>",
+    "<code class="replaceable">lidar-label-attribute</code>-ref": "<code class="replaceable">s3://&lt;CustomerOutputLocation&gt;/&lt;labelingJobName&gt;/annotations/consolidated-annotation/output/&lt;datasetObjectId&gt;/SeqLabel.json</code>",
+    "<code class="replaceable">lidar-label-attribute</code>-ref-metadata": <span>{</span> 
+        "objects": 
+        [
+            <span>{</span>   
+                "frame-no": <code class="replaceable">300</code>,
+                "confidence": []
+            },
+            <span>{</span>
+                "frame-no": <code class="replaceable">301</code>,
+                "confidence": []
+            },
+            <code class="replaceable">...</code>
+        ],    
+        'class-map': <span>{</span>'<code class="replaceable">0</code>': '<code class="replaceable">Car</code>', '<code class="replaceable">1</code>': '<code class="replaceable">Person</code>'}, 
+        'type': 'groundtruth/point_cloud_object_tracking', 
+        'human-annotated': '<code class="replaceable">yes'</code>,
+        'creation-date': '<code class="replaceable">2019-11-12T01:18:14.271944</code>',
+        'job-name': '<code class="replaceable">identify-3d-objects</code>',
+        "adjustment-status": "<code class="replaceable">adjusted</code>" 
+    }
+}</code></pre>
+        <p>In the above example, the cuboid data for each frame in <code class="code">seq1.json</code> is in
+                    <code class="code">SeqLabel.json</code> in the Amazon S3 location,
+                        <code class="code">s3://<code class="replaceable">&lt;customerOutputLocation&gt;</code>/<code class="replaceable">&lt;labelingJobName&gt;</code>/annotations/consolidated-annotation/output/<code class="replaceable">&lt;datasetObjectId&gt;</code>/SeqLabel.json</code>.
+                The following is an example of this label sequence file.</p>
+            <p>For each frame in the sequence, you see the <code class="code">frame-number</code>,
+                    <code class="code">frame-name</code>, if applicable, <code class="code">frame-attributes</code>, and a
+                list of <code class="code">annotations</code>. This list contains 3D cubiods that were drawn for
+                that frame. Each annotation includes the following information: </p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>An <code class="code">object-name</code> in the format
+                            <code class="code">&lt;class&gt;:&lt;integer&gt;</code> where <code class="code">class</code> identifies
+                        the label category and <code class="code">integer</code> is a unique ID across the
+                        dataset.</p>
+                </li><li class="listitem">
+                    <p>When workers draw a cuboid, it is associated with a unique
+                            <code class="code">object-id</code> which is associated with all cuboids that
+                        identify the same object across multiple frames.</p>
+                </li><li class="listitem">
+                    <p>Each class, or label category, that you specified in your input manifest
+                        is associated with a <code class="code">class-id</code>. Use the <code class="code">class-map</code>
+                        to identify the class associated with each class ID.</p>
+                </li><li class="listitem">
+                    <p><code class="code">center-x</code>, <code class="code">center-y</code>, and <code class="code">center-z</code>
+                        are the coordinates of the center of the cuboid, in the same coordinate
+                        system as the 3D point cloud input data used in your labeling job.</p>
+                </li><li class="listitem">
+                    <p><code class="code">length</code>, <code class="code">width</code>, and <code class="code">height</code> describe
+                        the dimensions of the cuboid. </p>
+                </li><li class="listitem">
+                    <p><code class="code">yaw</code> is used to describe the orientation (heading) of the
+                        cuboid in radians.</p>
+                    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p><code class="code">yaw</code> is now in the right-handed Cartesian system. Since this feature was added on September 02, 2022 19:02:17 UTC, you can convert 
+                        the <code class="code">yaw</code> measurement in the output data prior to that using the following (all units are in radians):</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">old_yaw_in_output = pi - yaw</code></pre></div></div>
+                    
+                </li><li class="listitem">
+                    <p>In our definition, +x is to the right, +y is to the forward, and +z is up from the ground plane. The rotation order is x - y - z. The <code class="code">roll</code>, <code class="code">pitch</code> and <code class="code">yaw</code> are represented in the right-handed Cartesian system. 
+                        In 3D space, <code class="code">roll</code> is along the x-axis, <code class="code">pitch</code> is along the y-axis and <code class="code">yaw</code> is along the z-axis. All three are counterclockwise.</p>
+                </li><li class="listitem">
+                    <p>If you included label attributes in your input manifest file for a given
+                        class, a <code class="code">label-category-attributes</code> parameter is included for
+                        all cuboids for which workers selected label attributes. </p>
+                </li></ul></div>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "tracking-annotations": [
+        <span>{</span>
+            "frame-number": <code class="replaceable">0</code>,
+            "frame-name": "<code class="replaceable">0.txt.pcd</code>",
+            "frame-attributes": <span>{</span><code class="replaceable">name</code>: <code class="replaceable">value</code>, <code class="replaceable">name</code>: <code class="replaceable">value</code>},
+            "annotations": [
+                <span>{</span>
+                    "label-category-attributes": <span>{</span>},
+                    "object-name": "<code class="replaceable">Car:4</code>",
+                    "class-id": <code class="replaceable">0</code>,
+                    "center-x": <code class="replaceable">-2.2906369208300674</code>,
+                    "center-y": <code class="replaceable">103.73924823843463</code>,
+                    "center-z": <code class="replaceable">0.37634114027023313</code>,
+                    "length": <code class="replaceable">4</code>,
+                    "width": <code class="replaceable">2</code>,
+                    "height": <code class="replaceable">2</code>,
+                    "roll": <code class="replaceable">0</code>,
+                    "pitch": <code class="replaceable">0</code>,
+                    "yaw": <code class="replaceable">1.5827222214406014</code>,
+                    "object-id": "<code class="replaceable">ae5dc770-a782-11ea-b57d-67c51a0561a1</code>"
+                },
+                <span>{</span>
+                    "label-category-attributes": <span>{</span>
+                        "<code class="replaceable">Occlusion</code>": "<code class="replaceable">Partial</code>",
+                        "<code class="replaceable">Type</code>": "<code class="replaceable">Sedan</code>"
+                    },
+                    "object-name": "<code class="replaceable">Car:1</code>",
+                    "class-id": <code class="replaceable">0</code>,
+                    "center-x": <code class="replaceable">-2.6451293634707413</code>,
+                    "center-y": <code class="replaceable">124.9534455706848</code>,
+                    "center-z": <code class="replaceable">0.5020834081743839</code>,
+                    "length": <code class="replaceable">4</code>,
+                    "width": <code class="replaceable">2</code>,
+                    "height": <code class="replaceable">2.080488827301309</code>,
+                    "roll": <code class="replaceable">0</code>,
+                    "pitch": <code class="replaceable">0</code>,
+                    "yaw": <code class="replaceable">-1.5963335581398077</code>,
+                    "object-id": "<code class="replaceable">06efb020-a782-11ea-b57d-67c51a0561a1</code>"
+                },
+                <span>{</span>
+                    "label-category-attributes": <span>{</span>
+                        "<code class="replaceable">Occlusion</code>": "<code class="replaceable">Partial</code>",
+                        "<code class="replaceable">Type</code>": "<code class="replaceable">Sedan</code>"
+                    },
+                    "object-name": "<code class="replaceable">Car:2</code>",
+                    "class-id": <code class="replaceable">0</code>,
+                    "center-x": <code class="replaceable">-5.205611313118477</code>,
+                    "center-y": <code class="replaceable">99.91731932137061</code>,
+                    "center-z": <code class="replaceable">0.22917217081212138</code>,
+                    "length": <code class="replaceable">3.8747142207671956</code>,
+                    "width": <code class="replaceable">1.9999999999999918</code>,
+                    "height": <code class="replaceable">2</code>,
+                    "roll": <code class="replaceable">0</code>,
+                    "pitch": <code class="replaceable">0</code>,
+                    "yaw": <code class="replaceable">1.5672228760316775</code>,
+                    "object-id": "<code class="replaceable">26fad020-a782-11ea-b57d-67c51a0561a1</code>"
+                }
+            ]
+        },
+        <span>{</span>
+            "frame-number": <code class="replaceable">1</code>,
+            "frame-name": "<code class="replaceable">1.txt.pcd</code>",
+            "frame-attributes": <span>{</span>},
+            "annotations": [
+                <span>{</span>
+                    "label-category-attributes": <span>{</span>},
+                    "object-name": "<code class="replaceable">Car:4</code>",
+                    "class-id": <code class="replaceable">0</code>,
+                    "center-x": <code class="replaceable">-2.2906369208300674</code>,
+                    "center-y": <code class="replaceable">103.73924823843463</code>,
+                    "center-z": <code class="replaceable">0.37634114027023313</code>,
+                    "length": <code class="replaceable">4</code>,
+                    "width": <code class="replaceable">2</code>,
+                    "height": <code class="replaceable">2</code>,
+                    "roll": <code class="replaceable">0</code>,
+                    "pitch": <code class="replaceable">0</code>,
+                    "yaw": <code class="replaceable">1.5827222214406014</code>,
+                    "object-id": "<code class="replaceable">ae5dc770-a782-11ea-b57d-67c51a0561a1</code>"
+                },
+                <span>{</span>
+                    "label-category-attributes": <span>{</span>
+                        "<code class="replaceable">Occlusion</code>": "<code class="replaceable">Partial</code>",
+                        "<code class="replaceable">Type</code>": "<code class="replaceable">Sedan</code>"
+                    },
+                    "object-name": "<code class="replaceable">Car:1</code>",
+                    "class-id": <code class="replaceable">0</code>,
+                    "center-x": <code class="replaceable">-2.6451293634707413</code>,
+                    "center-y": <code class="replaceable">124.9534455706848</code>,
+                    "center-z": <code class="replaceable">0.5020834081743839</code>,
+                    "length": <code class="replaceable">4</code>,
+                    "width": <code class="replaceable">2</code>,
+                    "height": <code class="replaceable">2.080488827301309</code>,
+                    "roll": <code class="replaceable">0</code>,
+                    "pitch": <code class="replaceable">0</code>,
+                    "yaw": <code class="replaceable">-1.5963335581398077</code>,
+                    "object-id": "<code class="replaceable">06efb020-a782-11ea-b57d-67c51a0561a1</code>"
+                },
+                <span>{</span>
+                    "label-category-attributes": <span>{</span>
+                        "<code class="replaceable">Occlusion</code>": "<code class="replaceable">Partial</code>",
+                        "<code class="replaceable">Type</code>": "<code class="replaceable">Sedan</code>"
+                    },
+                    "object-name": "<code class="replaceable">Car:2</code>",
+                    "class-id": <code class="replaceable">0</code>,
+                    "center-x": <code class="replaceable">-5.221311072916759</code>,
+                    "center-y": <code class="replaceable">100.4639841045424</code>,
+                    "center-z": <code class="replaceable">0.22917217081212138</code>,
+                    "length": <code class="replaceable">3.8747142207671956</code>,
+                    "width": <code class="replaceable">1.9999999999999918</code>,
+                    "height": <code class="replaceable">2</code>,
+                    "roll": <code class="replaceable">0</code>,
+                    "pitch": <code class="replaceable">0</code>,
+                    "yaw": <code class="replaceable">1.5672228760316775</code>,
+                    "object-id": "<code class="replaceable">26fad020-a782-11ea-b57d-67c51a0561a1</code>"
+                }
+            ]
+        }       
+    ]
+}</code></pre>
+     
+            <h2 id="sms-output-3d-2d-point-cloud-object-tracking">3D-2D Object Tracking
+                Point Cloud Object Tracking
+                Output</h2>
+            <p>The following is an example of an output manifest file from a 3D point cloud
+                object tracking labeling job. The <code class="replaceable">red, italicized text</code> in
+                the examples below depends on labeling job specifications and output data. The
+                ellipses (<code class="replaceable">...</code>) denote a continuation of that list, where
+                additional objects with the same format as the proceeding object can appear.</p>
+            <p>In addition to the standard elements, the metadata includes a class map that lists
+                each class that has at least one label in the sequence. If one or more cuboids were
+                modified, there is an <code class="code">adjustment-status</code> parameter in the metadata for
+                audit workflows that is set to <code class="code">adjusted</code>. </p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+  "source-ref": "<code class="replaceable">s3://iad-groundtruth-lidar-test-bucket/artifacts/gt-point-cloud-demos/sequences/seq2.json</code>",
+  "source-ref-metadata": <span>{</span>
+    "json-paths": [
+      "number-of-frames",
+      "prefix",
+      "frames<span>{</span>frame-no, frame}"
+    ]
+  },
+  "<code class="replaceable">3D2D-linking</code>-ref": "<code class="replaceable">s3://iad-groundtruth-lidar-test-bucket/xyz/3D2D-linking/annotations/consolidated-annotation/output/0/SeqLabel.json</code>",
+  "<code class="replaceable">3D2D-linking</code>-ref-metadata": <span>{</span>
+    "objects": [
+      <span>{</span>
+        "frame-no": <code class="replaceable">0</code>,
+        "confidence": []
+      },
+      <span>{</span>
+        "frame-no": <code class="replaceable">1</code>,
+        "confidence": []
+      },
+      <span>{</span>
+        "frame-no": <code class="replaceable">2</code>,
+        "confidence": []
+      },
+      <span>{</span>
+        "frame-no": <code class="replaceable">3</code>,
+        "confidence": []
+      },
+      <span>{</span>
+        "frame-no": <code class="replaceable">4</code>,
+        "confidence": []
+      },
+      <span>{</span>
+        "frame-no": <code class="replaceable">5</code>,
+        "confidence": []
+      },
+      <span>{</span>
+        "frame-no": <code class="replaceable">6</code>,
+        "confidence": []
+      },
+      <span>{</span>
+        "frame-no": <code class="replaceable">7</code>,
+        "confidence": []
+      },
+      <span>{</span>
+        "frame-no": <code class="replaceable">8</code>,
+        "confidence": []
+      },
+      <span>{</span>
+        "frame-no": <code class="replaceable">9</code>,
+        "confidence": []
+      }
+    ],
+    "class-map": <span>{</span>
+      "<code class="replaceable">0</code>": "<code class="replaceable">Car</code>"
+    },
+    "type": "groundtruth/point_cloud_object_tracking",
+    "human-annotated": "<code class="replaceable">yes</code>",
+    "creation-date": "<code class="replaceable">2023-01-19T02:55:10.206508</code>",
+    "job-name": "<code class="replaceable">mcm-linking</code>"
+  },
+  "<code class="replaceable">3D2D-linking</code>-chain-ref": "<code class="replaceable">s3://iad-groundtruth-lidar-test-bucket/xyz/3D2D-linking-chain/annotations/consolidated-annotation/output/0/SeqLabel.json</code>",
+  "<code class="replaceable">3D2D-linking</code>-chain-ref-metadata": <span>{</span>
+    "objects": [
+      <span>{</span>
+        "frame-no": <code class="replaceable">0</code>,
+        "confidence": []
+      },
+      <span>{</span>
+        "frame-no": <code class="replaceable">1</code>,
+        "confidence": []
+      },
+      <span>{</span>
+        "frame-no": <code class="replaceable">2</code>,
+        "confidence": []
+      },
+      <span>{</span>
+        "frame-no": <code class="replaceable">3</code>,
+        "confidence": []
+      },
+      <span>{</span>
+        "frame-no": <code class="replaceable">4</code>,
+        "confidence": []
+      },
+      <span>{</span>
+        "frame-no": <code class="replaceable">5</code>,
+        "confidence": []
+      },
+      <span>{</span>
+        "frame-no": <code class="replaceable">6</code>,
+        "confidence": []
+      },
+      <span>{</span>
+        "frame-no": <code class="replaceable">7</code>,
+        "confidence": []
+      },
+      <span>{</span>
+        "frame-no": <code class="replaceable">8</code>,
+        "confidence": []
+      },
+      <span>{</span>
+        "frame-no": <code class="replaceable">9</code>,
+        "confidence": []
+      }
+    ],
+    "class-map": <span>{</span>
+      "<code class="replaceable">0</code>": "<code class="replaceable">Car</code>"
+    },
+    "type": "groundtruth/point_cloud_object_tracking",
+    "human-annotated": "<code class="replaceable">yes</code>",
+    "creation-date": "<code class="replaceable">2023-01-19T03:29:49.149935</code>",
+    "job-name": "<code class="replaceable">3d2d-linking-chain</code>"
+  }
+}</code></pre>
+            <p>In the above example, the cuboid data for each frame in <code class="code">seq2.json</code> is in
+                <code class="code">SeqLabel.json</code> in the Amazon S3 location,
+                <code class="code">s3://<code class="replaceable">&lt;customerOutputLocation&gt;</code>/<code class="replaceable">&lt;labelingJobName&gt;</code>/annotations/consolidated-annotation/output/<code class="replaceable">&lt;datasetObjectId&gt;</code>/SeqLabel.json</code>.
+                The following is an example of this label sequence file.</p>
+            <p>For each frame in the sequence, you see the <code class="code">frame-number</code>,
+                <code class="code">frame-name</code>, if applicable, <code class="code">frame-attributes</code>, and a
+                list of <code class="code">annotations</code>. This list contains 3D cubiods that were drawn for
+                that frame. Each annotation includes the following information: </p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>An <code class="code">object-name</code> in the format
+                        <code class="code">&lt;class&gt;:&lt;integer&gt;</code> where <code class="code">class</code> identifies
+                        the label category and <code class="code">integer</code> is a unique ID across the
+                        dataset.</p>
+                </li><li class="listitem">
+                    <p>When workers draw a cuboid, it is associated with a unique
+                        <code class="code">object-id</code> which is associated with all cuboids that
+                        identify the same object across multiple frames.</p>
+                </li><li class="listitem">
+                    <p>Each class, or label category, that you specified in your input manifest
+                        is associated with a <code class="code">class-id</code>. Use the <code class="code">class-map</code>
+                        to identify the class associated with each class ID.</p>
+                </li><li class="listitem">
+                    <p><code class="code">center-x</code>, <code class="code">center-y</code>, and <code class="code">center-z</code>
+                        are the coordinates of the center of the cuboid, in the same coordinate
+                        system as the 3D point cloud input data used in your labeling job.</p>
+                </li><li class="listitem">
+                    <p><code class="code">length</code>, <code class="code">width</code>, and <code class="code">height</code> describe
+                        the dimensions of the cuboid. </p>
+                </li><li class="listitem">
+                    <p><code class="code">yaw</code> is used to describe the orientation (heading) of the
+                        cuboid in radians.</p>
+                    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p><code class="code">yaw</code> is now in the right-handed Cartesian system. Since this feature was added on September 02, 2022 19:02:17 UTC, you can convert 
+                        the <code class="code">yaw</code> measurement in the output data prior to that using the following (all units are in radians):</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">old_yaw_in_output = pi - yaw</code></pre></div></div>
+                    
+                </li><li class="listitem">
+                    <p>In our definition, +x is to the right, +y is to the forward, and +z is up from the ground plane. The rotation order is x - y - z. The <code class="code">roll</code>, <code class="code">pitch</code> and <code class="code">yaw</code> are represented in the right-handed Cartesian system. 
+                        In 3D space, <code class="code">roll</code> is along the x-axis, <code class="code">pitch</code> is along the y-axis and <code class="code">yaw</code> is along the z-axis. All three are counterclockwise.</p>
+                </li><li class="listitem">
+                    <p>If you included label attributes in your input manifest file for a given
+                        class, a <code class="code">label-category-attributes</code> parameter is included for
+                        all cuboids for which workers selected label attributes. </p>
+                </li></ul></div>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+  "lidar": <span>{</span>
+    "tracking-annotations": [
+      <span>{</span>
+        "frame-number": <code class="replaceable">0</code>,
+        "frame-name": "<code class="replaceable">0.txt.pcd</code>",
+        "annotations": [
+          <span>{</span>
+            "label-category-attributes": <span>{</span>
+              "<code class="replaceable">Type</code>": "<code class="replaceable">Sedan</code>"
+            },
+            "object-name": "<code class="replaceable">Car:1</code>",
+            "class-id": <code class="replaceable">0</code>,
+            "center-x": <code class="replaceable">12.172361721602815</code>,
+            "center-y": <code class="replaceable">120.23067521992364</code>,
+            "center-z": <code class="replaceable">1.590525771183712</code>,
+            "length": <code class="replaceable">4</code>,
+            "width": <code class="replaceable">2</code>,
+            "height": <code class="replaceable">2</code>,
+            "roll": <code class="replaceable">0</code>,
+            "pitch": <code class="replaceable">0</code>,
+            "yaw": <code class="replaceable">0</code>,
+            "object-id": "<code class="replaceable">505b39e0-97a4-11ed-8903-dd5b8b903715</code>"
+          },
+          <span>{</span>
+            "label-category-attributes": <span>{</span>},
+            "object-name": "<code class="replaceable">Car:4</code>",
+            "class-id": <code class="replaceable">0</code>,
+            "center-x": <code class="replaceable">17.192725195301094</code>,
+            "center-y": <code class="replaceable">114.55705365827872</code>,
+            "center-z": <code class="replaceable">1.590525771183712</code>,
+            "length": <code class="replaceable">4</code>,
+            "width": <code class="replaceable">2</code>,
+            "height": <code class="replaceable">2</code>,
+            "roll": <code class="replaceable">0</code>,
+            "pitch": <code class="replaceable">0</code>,
+            "yaw": <code class="replaceable">0</code>,
+            "object-id": "<code class="replaceable">1afcb670-97a9-11ed-9a84-ff627d099e16</code>"
+          }
+        ],
+        "frame-attributes": <span>{</span>}
+      },
+      <span>{</span>
+        "frame-number": <code class="replaceable">1</code>,
+        "frame-name": "<code class="replaceable">1.txt.pcd</code>",
+        "annotations": [
+          <span>{</span>
+            "label-category-attributes": <span>{</span>
+              "<code class="replaceable">Type</code>": "<code class="replaceable">Sedan</code>"
+            },
+            "object-name": "<code class="replaceable">Car:1</code>",
+            "class-id": <code class="replaceable">0</code>,
+            "center-x": <code class="replaceable">-1.6841480600695489</code>,
+            "center-y": <code class="replaceable">126.20198882749516</code>,
+            "center-z": <code class="replaceable">1.590525771183712</code>,
+            "length": <code class="replaceable">4</code>,
+            "width": <code class="replaceable">2</code>,
+            "height": <code class="replaceable">2</code>,
+            "roll": <code class="replaceable">0</code>,
+            "pitch": <code class="replaceable">0</code>,
+            "yaw": <code class="replaceable">0</code>,
+            "object-id": "<code class="replaceable">505b39e0-97a4-11ed-8903-dd5b8b903715</code>"
+          },
+          <span>{</span>
+            "label-category-attributes": <span>{</span>},
+            "object-name": "<code class="replaceable">Car:4</code>",
+            "class-id": <code class="replaceable">0</code>,
+            "center-x": <code class="replaceable">17.192725195301094</code>,
+            "center-y": <code class="replaceable">114.55705365827872</code>,
+            "center-z": <code class="replaceable">1.590525771183712</code>,
+            "length": <code class="replaceable">4</code>,
+            "width": <code class="replaceable">2</code>,
+            "height": <code class="replaceable">2</code>,
+            "roll": <code class="replaceable">0</code>,
+            "pitch": <code class="replaceable">0</code>,
+            "yaw": <code class="replaceable">0</code>,
+            "object-id": "<code class="replaceable">1afcb670-97a9-11ed-9a84-ff627d099e16</code>"
+          }
+        ],
+        "frame-attributes": <span>{</span>}
+      },
+      <span>{</span>
+        "frame-number": <code class="replaceable">2</code>,
+        "frame-name": "<code class="replaceable">2.txt.pcd</code>",
+        "annotations": [
+          <span>{</span>
+            "label-category-attributes": <span>{</span>
+              "<code class="replaceable">Type</code>": "<code class="replaceable">Sedan</code>"
+            },
+            "object-name": "<code class="replaceable">Car:1</code>",
+            "class-id": <code class="replaceable">0</code>,
+            "center-x": <code class="replaceable">-1.6841480600695489</code>,
+            "center-y": <code class="replaceable">126.20198882749516</code>,
+            "center-z": <code class="replaceable">1.590525771183712</code>,
+            "length": <code class="replaceable">4</code>,
+            "width": <code class="replaceable">2</code>,
+            "height": <code class="replaceable">2</code>,
+            "roll": <code class="replaceable">0</code>,
+            "pitch": <code class="replaceable">0</code>,
+            "yaw": <code class="replaceable">0</code>,
+            "object-id": "<code class="replaceable">505b39e0-97a4-11ed-8903-dd5b8b903715</code>"
+          },
+          <span>{</span>
+            "label-category-attributes": <span>{</span>},
+            "object-name": "<code class="replaceable">Car:4</code>",
+            "class-id": <code class="replaceable">0</code>,
+            "center-x": <code class="replaceable">17.192725195301094</code>,
+            "center-y": <code class="replaceable">114.55705365827872</code>,
+            "center-z": <code class="replaceable">1.590525771183712</code>,
+            "length": <code class="replaceable">4</code>,
+            "width": <code class="replaceable">2</code>,
+            "height": <code class="replaceable">2</code>,
+            "roll": <code class="replaceable">0</code>,
+            "pitch": <code class="replaceable">0</code>,
+            "yaw": <code class="replaceable">0</code>,
+            "object-id": "<code class="replaceable">1afcb670-97a9-11ed-9a84-ff627d099e16</code>"
+          }
+        ],
+        "frame-attributes": <span>{</span>}
+      }
+    ]
+  },
+  "camera-0": <span>{</span>
+    "tracking-annotations": [
+      <span>{</span>
+        "frame-no": <code class="replaceable">0</code>,
+        "frame": "<code class="replaceable">0.txt.pcd</code>",
+        "annotations": [
+          <span>{</span>
+            "label-category-attributes": <span>{</span>
+              "<code class="replaceable">Occlusion</code>": "<code class="replaceable">Partial</code>"
+            },
+            "object-name": "<code class="replaceable">Car:2</code>",
+            "class-id": <code class="replaceable">0</code>,
+            "width": <code class="replaceable">223</code>,
+            "height": <code class="replaceable">164</code>,
+            "top": <code class="replaceable">225</code>,
+            "left": <code class="replaceable">486</code>,
+            "object-id": "<code class="replaceable">5229df60-97a4-11ed-8903-dd5b8b903715</code>"
+          }
+        ],
+        "frame-attributes": <span>{</span>}
+      },
+      <span>{</span>
+        "frame-no": <code class="replaceable">1</code>,
+        "frame": "<code class="replaceable">1.txt.pcd</code>",
+        "annotations": [
+          <span>{</span>
+            "label-category-attributes": <span>{</span>},
+            "object-name": "<code class="replaceable">Car:4</code>",
+            "class-id": <code class="replaceable">0</code>,
+            "width": <code class="replaceable">252</code>,
+            "height": <code class="replaceable">246</code>,
+            "top": <code class="replaceable">237</code>,
+            "left": <code class="replaceable">473</code>,
+            "object-id": "<code class="replaceable">1afcb670-97a9-11ed-9a84-ff627d099e16</code>"
+          }
+        ],
+        "frame-attributes": <span>{</span>}
+      }
+    ]
+  }
+}</code></pre>
+<p>The cuboid and bounding box for an object are linked through a common object-id.</p>            
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./sms-video-manual-data-setup.html">Manual Input Data Setup</div><div id="next" class="next-link" accesskey="n" href="./sms-data-labeling.html">Enhanced Data Labeling</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-data-output.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-data-output.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

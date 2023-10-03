@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Prepare data with advanced transformations - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="canvas-prepare-data" /><meta name="default_state" content="canvas-prepare-data" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="canvas-prepare-data.html" /><meta name="description" content="Prepare your data in Amazon SageMaker Canvas with advanced transformations before building your model." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="canvas-prepare-data.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/canvas-prepare-data.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/canvas-prepare-data.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/canvas-prepare-data.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/canvas-prepare-data.html" hreflang="de" /><link rel="alternative" href="canvas-prepare-data.html" hreflang="en-us" /><link rel="alternative" href="canvas-prepare-data.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/canvas-prepare-data.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/canvas-prepare-data.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/canvas-prepare-data.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/canvas-prepare-data.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/canvas-prepare-data.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/canvas-prepare-data.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/canvas-prepare-data.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/canvas-prepare-data.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/canvas-prepare-data.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/canvas-prepare-data.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/canvas-prepare-data.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/canvas-prepare-data.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/canvas-prepare-data.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/canvas-prepare-data.html" hreflang="zh-tw" /><link rel="alternative" href="canvas-prepare-data.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Prepare data with advanced transformations" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Prepare data with advanced transformations - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#canvas-prepare-data" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-prepare-data.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-prepare-data.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-prepare-data.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,Canvas,Prepare data,Transform" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use machine learning environments offered by SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/machine-learning-environments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Canvas",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use custom models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas-custom-models.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Build a custom model",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas-build-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Prepare data with advanced transformations",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas-build-model.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#canvas-prepare-data" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="canvas-prepare-data.html#canvas-prepare-data-drop">Drop columns</a><a href="canvas-prepare-data.html#canvas-prepare-data-filter">Filter rows</a><a href="canvas-prepare-data.html#canvas-prepare-data-custom-formula">Functions and operators</a><a href="canvas-prepare-data.html#canvas-prepare-data-manage">Manage rows</a><a href="canvas-prepare-data.html#canvas-prepare-data-rename">Rename columns</a><a href="canvas-prepare-data.html#canvas-prepare-data-manage-cols">Manage columns</a><a href="canvas-prepare-data.html#canvas-prepare-data-timeseries">Prepare time series data</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="canvas-prepare-data">Prepare data with advanced transformations</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can only use advanced transformations for models built on tabular datasets.
+    Multi-category text prediction models are also excluded.</p></div></div><p>Your machine learning dataset might require data preparation before you build your model.
+   You might want to clean your data due to various issues, which might include missing values or
+   outliers, and perform feature engineering to improve the accuracy of your model. Amazon SageMaker Canvas
+   provides ML data transforms with which you can clean, transform, and prepare your data for model
+   building. You can use these transforms on your datasets without any code. SageMaker Canvas adds the
+   transforms you use to the <b>Model recipe</b>, which is a record of the data
+   preparation done on your data before building the model. Any data transforms you use only modify
+   the input data for model building and do not modify your original data source.</p><p>The following transforms are available in SageMaker Canvas for you to prepare your data for
+   building.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The preview of your dataset shows the first 100 rows of the dataset. If your dataset has
+    more than 20,000 rows, Canvas takes a random sample of 20,000 rows and previews the first 100
+    rows from that sample. You can only search for and specify values from the previewed rows, and
+    the filter functionality only filters the previewed rows and not the entire dataset.</p></div></div>
+   <h2 id="canvas-prepare-data-drop">Drop columns</h2>
+   <p>You can exclude a column from your model build by dropping it in the
+     <b>Build</b> tab of the SageMaker Canvas application. Deselect the column you want to drop,
+    and it isn't included when building the model.</p>
+   <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you drop columns and then make <a href="canvas-make-predictions.html">batch
+      predictions</a> with your model, SageMaker Canvas adds the dropped columns back to the ouput dataset
+     available for you to download. However, SageMaker Canvas does not add the dropped columns back for time
+     series models.</p></div></div>
+   
+   <h2 id="canvas-prepare-data-filter">Filter rows</h2>
+   <p>The filter functionality filters the previewed rows (the first 100 rows of your dataset)
+    according to conditions that you specify. Filtering rows creates a temporary preview of the data
+    and does not impact the model building. You can filter to preview rows that have missing values,
+    contain outliers, or meet custom conditions in a column you choose.</p>
+    
+    <h3 id="canvas-prepare-data-filter-missing">Filter rows by missing values</h3>
+    <p>Missing values are a common occurrence in machine learning datasets. If you have rows with
+     null or empty values in certain columns, you might want to filter for and preview those
+     rows.</p>
+    <p>To filter missing values from your previewed data, do the following.</p>
+    <div class="procedure"><ol><li>
+      <p>In the <b>Build</b> tab of the SageMaker Canvas application, choose <b>Filter
+        by rows </b> (<span class="inlinemediaobject">
+         
+         <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/filter-icon.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;         Filter icon in the SageMaker Canvas application.&#xA;        " />
+         
+         
+       </span>).</p>
+     </li><li>
+      <p>Choose the <b>Column</b> you want to check for missing values.</p>
+     </li><li>
+      <p>For the <b>Operation</b>, choose <b>Is missing</b>.</p>
+     </li></ol></div>
+    <p>SageMaker Canvas filters for rows that contain missing values in the <b>Column</b> you
+     selected and provides a preview of the filtered rows.</p>
+    <div class="mediaobject">
+      
+      <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/canvas-filter-missing.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;      Screenshot of the filter by missing values operation in the SageMaker Canvas&#xA;       application.&#xA;     " style="max-width:80%" />
+      
+      
+    </div>
+    
+    
+    <h3 id="canvas-prepare-data-filter-outliers">Filter rows by outliers</h3>
+    <p>Outliers, or rare values in the distribution and range of your data, can negatively impact
+     model accuracy and lead to longer building times. SageMaker Canvas enables you to detect and filter rows
+     that contain outliers in numeric columns. You can choose to define outliers with either
+     standard deviations or a custom range.</p>
+    <p>To filter for outliers in your data, do the following.</p>
+    <div class="procedure"><ol><li>
+      <p>In the <b>Build</b> tab of the SageMaker Canvas application, choose <b>Filter
+        by rows </b> (<span class="inlinemediaobject">
+         
+         <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/filter-icon.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;         Filter icon in the SageMaker Canvas application.&#xA;        " />
+         
+         
+       </span>).</p>
+     </li><li>
+      <p>Choose the <b>Column</b> you want to check for outliers.</p>
+     </li><li>
+      <p>For the <b>Operation</b>, choose <b>Is outlier</b>.</p>
+     </li><li>
+      <p>Set the <b>Outlier range</b> to either <b>Standard
+        deviation</b> or <b>Custom range</b>.</p>
+     </li><li>
+      <p>If you choose <b>Standard deviation</b>, specify a <b>SD</b>
+       (standard deviation) value from 1–3. If you choose <b>Custom range</b>,
+       select either <b>Percentile</b> or <b>Number</b>, and then
+       specify the <b>Min</b> and <b>Max</b> values.</p>
+     </li></ol></div>
+    <p>The <b>Standard deviation</b> option detects and filters for outliers in
+     numeric columns using the mean and standard deviation. You specify the number of standard
+     deviations a value must vary from the mean to be considered an outlier. For example, if you
+     specify <code class="code">3</code> for <b>SD</b>, a value must fall more than 3 standard
+     deviations from the mean to be considered an outlier.</p>
+    <p>The <b>Custom range</b> option detects and filters for outliers in numeric
+     columns using minimum and maximum values. Use this method if you know your threshold values
+     that delimit outliers. You can set the <b>Type</b> of the range to either
+      <b>Percentile</b> or <b>Number</b>. If you choose
+      <b>Percentile</b>, the <b>Min</b> and <b>Max</b>
+     values should be the minimum and maximum of the percentile range (0-100) that you want to
+     allow. If you choose <b>Number</b>, the <b>Min</b> and
+      <b>Max</b> values should be the minimum and maximum numeric values that you want
+     to filter in the data.</p>
+    <div class="mediaobject">
+      
+      <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/canvas-filter-outlier.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;      Screenshot of the filter by outliers operation in the SageMaker Canvas application.&#xA;     " style="max-width:80%" />
+      
+      
+    </div>
+    
+    
+    <h3 id="canvas-prepare-data-filter-custom">Filter rows by custom values</h3>
+    <p>You can filter for rows with values that meet custom conditions. For example, you might
+     want to preview rows that have a price value greater than 100 before removing them. With this
+     functionality, you can filter rows that exceed the threshold you set and preview the filtered
+     data.</p>
+    <p>To use the custom filter functionality, do the following.</p>
+    <div class="procedure"><ol><li>
+      <p>In the <b>Build</b> tab of the SageMaker Canvas application, choose <b>Filter
+        by rows</b> (<span class="inlinemediaobject">
+         
+         <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/filter-icon.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;         Filter icon in the SageMaker Canvas application.&#xA;        " />
+         
+         
+       </span>).</p>
+     </li><li>
+      <p>Choose the <b>Column</b> you want to check.</p>
+     </li><li>
+      <p>Select the type of <b>Operation</b> you want to use, and then specify the
+       values for the selected condition.</p>
+     </li></ol></div>
+    <p>For the <b>Operation</b>, you can choose one of the following options. Note
+     that the available operations depend on the data type of the column you choose. For example,
+     you cannot create a <code class="code">is greater than</code> operation for a column containing text
+     values.</p>
+    <div class="table-container"><div class="table-contents"><table id="w714aac13c17c39c23c61c13b9c11"><thead>
+       <tr>
+        <th>Operation</th>
+        <th>Supported data type</th>
+        <th>Supported feature type</th>
+        <th>Function</th>
+       </tr>
+      </thead>
+       <tr>
+        <td tabindex="-1">
+         <p>Is equal to</p>
+        </td>
+        <td tabindex="-1">
+         <p>Numeric, Text</p>
+        </td>
+        <td tabindex="-1"><p>Binary, Categorical</p></td>
+        <td tabindex="-1">
+         <p>Filters rows where the value in <b>Column</b> equals the values you
+          specify.</p>
+        </td>
+       </tr>
+       <tr>
+        <td tabindex="-1">
+         <p>Is not equal to</p>
+        </td>
+        <td tabindex="-1">
+         <p>Numeric, Text</p>
+        </td>
+        <td tabindex="-1"><p>Binary, Categorical</p></td>
+        <td tabindex="-1">
+         <p>Filters rows where the value in <b>Column</b> doesn't equal the values
+          you specify.</p>
+        </td>
+       </tr>
+       <tr>
+        <td tabindex="-1">
+         <p>Is less than</p>
+        </td>
+        <td tabindex="-1">
+         <p>Numeric</p>
+        </td>
+        <td tabindex="-1"><p>N/A</p></td>
+        <td tabindex="-1">
+         <p>Filters rows where the value in <b>Column</b> is less than the value
+          you specify.</p>
+        </td>
+       </tr>
+       <tr>
+        <td tabindex="-1">
+         <p>Is less than or equal to</p>
+        </td>
+        <td tabindex="-1">
+         <p>Numeric</p>
+        </td>
+        <td tabindex="-1"><p>N/A</p></td>
+        <td tabindex="-1">
+         <p>Filters rows where the value in <b>Column</b> is less than or equal to
+          the value you specify.</p>
+        </td>
+       </tr>
+       <tr>
+        <td tabindex="-1">
+         <p>Is greater than</p>
+        </td>
+        <td tabindex="-1">
+         <p>Numeric</p>
+        </td>
+        <td tabindex="-1"><p>N/A</p></td>
+        <td tabindex="-1">
+         <p>Filters rows where the value in <b>Column</b> is greater than the value
+          you specify.</p>
+        </td>
+       </tr>
+       <tr>
+        <td tabindex="-1">
+         <p>Is greater than or equal to</p>
+        </td>
+        <td tabindex="-1">
+         <p>Numeric</p>
+        </td>
+        <td tabindex="-1"><p>N/A</p></td>
+        <td tabindex="-1">
+         <p>Filters rows where the value in <b>Column</b> is greater than or equal
+          to the value you specify.</p>
+        </td>
+       </tr>
+       <tr>
+        <td tabindex="-1">
+         <p>Is between</p>
+        </td>
+        <td tabindex="-1">
+         <p>Numeric</p>
+        </td>
+        <td tabindex="-1"><p>N/A</p></td>
+        <td tabindex="-1">
+         <p>Filters rows where the value in <b>Column</b> is between or equal to
+          two values you specify.</p>
+        </td>
+       </tr>
+       <tr>
+        <td tabindex="-1">
+         <p>Contains</p>
+        </td>
+        <td tabindex="-1">
+         <p>Text</p>
+        </td>
+        <td tabindex="-1"><p>Categorical</p></td>
+        <td tabindex="-1">
+         <p>Filters rows where the value in <b>Column</b> contains a values you
+          specify.</p>
+        </td>
+       </tr>
+       <tr>
+        <td tabindex="-1">
+         <p>Starts with</p>
+        </td>
+        <td tabindex="-1">
+         <p>Text</p>
+        </td>
+        <td tabindex="-1"><p>Categorical</p></td>
+        <td tabindex="-1">
+         <p>Filters rows where the value in <b>Column</b> begins with a value you
+          specify.</p>
+        </td>
+       </tr>
+       <tr>
+        <td tabindex="-1">
+         <p>Ends with</p>
+        </td>
+        <td tabindex="-1">
+         <p>Categorical</p>
+        </td>
+        <td tabindex="-1"><p>Categorical</p></td>
+        <td tabindex="-1">
+         <p>Filters rows where the value in <b>Column</b> ends with a value you
+          specify.</p>
+        </td>
+       </tr>
+      </table></div></div>
+    <p>After you set the filter operation, SageMaker Canvas updates the preview of the dataset to show you
+     the filtered data.</p>
+    <div class="mediaobject">
+      
+      <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/canvas-filter-custom.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;      Screenshot of the filter by custom values operation in the SageMaker Canvas application.&#xA;     " style="max-width:80%" />
+      
+      
+    </div>
+    
+   
+   <h2 id="canvas-prepare-data-custom-formula">Functions and operators</h2>
+   <p>You can use mathematical functions and operators to explore and distribute your data. You
+    can use the SageMaker Canvas supported functions or create your own formula with your existing data and
+    create a new column with the result of the formula. For example, you can add the corresponding
+    values of two columns and save the result to a new column.</p>
+   <p>You can nest statements to create more complex functions. The following are some examples
+    of nested functions that you might use.</p>
+   <div class="itemizedlist">
+     
+     
+   <ul class="itemizedlist"><li class="listitem">
+     <p>To calculate BMI, you could use the function <code class="code">weight / (height ^ 2)</code>.</p>
+    </li><li class="listitem">
+     <p>To classify ages, you could use the function <code class="code">Case(age &lt; 18, 'child', age &lt;
+       65, 'adult', 'senior')</code>.</p>
+    </li></ul></div>
+   <p>You can specify functions in the data preparation stage before you build your model. To use
+    a function, do the following.</p>
+   <div class="itemizedlist">
+     
+     
+     
+     
+     
+   <ul class="itemizedlist"><li class="listitem">
+     <p>In the <b>Build</b> tab of the SageMaker Canvas app, choose
+       <b>View all</b> and then choose <b>Custom formula</b>
+      to open the <b>Custom formula</b> panel.</p>
+    </li><li class="listitem">
+     <p>In the <b>Custom formula</b> panel, you can choose a
+       <b>Formula</b> to add to your <b>Model Recipe</b>. Each formula
+      is applied to all of the values in the columns you specify. For formulas that accept two or
+      more columns as arguments, use columns with matching data types; otherwise, you will get an
+      error or <code class="code">null</code> values in the new column. </p>
+    </li><li class="listitem">
+     <p>After you’ve specified a <b>Formula</b>, add a column name in the
+       <b>New Column Name</b> field. SageMaker Canvas uses this name for the new column that is
+      created.</p>
+    </li><li class="listitem"><p>(Optional) Choose <b>Preview</b> to preview your transform.</p></li><li class="listitem">
+     <p>To add the function to your <b>Model Recipe</b>, choose
+       <b>Add</b>.</p>
+    </li></ul></div>
+   <p>SageMaker Canvas saves the result of your function to a new column using the name you specified in
+     <b>New Column Name</b>. You can view or remove functions from the <b>Model
+     Recipe</b> panel.</p>
+   <p>SageMaker Canvas supports the following operators for functions. You can use either the text format or
+    the in-line format to specify your function.</p>
+   <div class="table-container"><div class="table-contents"><table id="w714aac13c17c39c23c61c15c17"><thead>
+      <tr>
+       <th>Operator</th>
+       <th>Description</th>
+       <th>Supported data types</th>
+       <th>Text format</th>
+       <th>In-line format</th>
+      </tr>
+     </thead>
+      <tr>
+       <td tabindex="-1">
+        <p>Add</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns the sum of the values</p>
+       </td>
+       <td tabindex="-1">
+        <p>Numeric</p>
+       </td>
+       <td tabindex="-1"><p>Add(sales1, sales2)</p></td>
+       <td tabindex="-1"><p>sales1 + sales2</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Subtract</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns the difference between the values</p>
+       </td>
+       <td tabindex="-1">
+        <p>Numeric</p>
+       </td>
+       <td tabindex="-1"><p>Subtract(sales1, sales2)</p></td>
+       <td tabindex="-1"><p>sales1 ‐ sales2</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Multiply</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns the product of the values</p>
+       </td>
+       <td tabindex="-1">
+        <p>Numeric</p>
+       </td>
+       <td tabindex="-1"><p>Multiply(sales1, sales2)</p></td>
+       <td tabindex="-1"><p>sales1 * sales2</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Divide</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns the quotient of the values</p>
+       </td>
+       <td tabindex="-1">
+        <p>Numeric</p>
+       </td>
+       <td tabindex="-1"><p>Divide(sales1, sales2)</p></td>
+       <td tabindex="-1"><p>sales1 / sales2</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Mod</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns the result of the modulo operator (the remainder after dividing the two
+         values)</p>
+       </td>
+       <td tabindex="-1">
+        <p>Numeric</p>
+       </td>
+       <td tabindex="-1"><p>Mod(sales1, sales2)</p></td>
+       <td tabindex="-1"><p>sales1 % sales2</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Abs</p>
+       </td>
+       <td tabindex="-1"><p>Returns the absolute value of the value</p></td>
+       <td tabindex="-1">
+        <p>Numeric</p>
+       </td>
+       <td tabindex="-1"><p>Abs(sales1)</p></td>
+       <td tabindex="-1"><p>N/A</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Negate</p>
+       </td>
+       <td tabindex="-1"><p>Returns the negative of the value</p></td>
+       <td tabindex="-1">
+        <p>Numeric</p>
+       </td>
+       <td tabindex="-1"><p>Negate(c1)</p></td>
+       <td tabindex="-1"><p>‐c1</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Exp</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns e (Euler's number) raised to the power of the value</p>
+       </td>
+       <td tabindex="-1">
+        <p>Numeric</p>
+       </td>
+       <td tabindex="-1"><p>Exp(sales1)</p></td>
+       <td tabindex="-1"><p>N/A</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Log</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns the logarithm (base 10) of the value</p>
+       </td>
+       <td tabindex="-1">
+        <p>Numeric</p>
+       </td>
+       <td tabindex="-1"><p>Log(sales1)</p></td>
+       <td tabindex="-1"><p>N/A</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Ln</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns the natural logarithm (base e) of the value</p>
+       </td>
+       <td tabindex="-1">
+        <p>Numeric</p>
+       </td>
+       <td tabindex="-1"><p>Ln(sales1)</p></td>
+       <td tabindex="-1"><p>N/A</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Pow</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns the value raised to a power</p>
+       </td>
+       <td tabindex="-1">
+        <p>Numeric</p>
+       </td>
+       <td tabindex="-1"><p>Pow(sales1, 2)</p></td>
+       <td tabindex="-1"><p>sales1 ^ 2</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>If</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns a true or false label based on a condition you specify</p>
+       </td>
+       <td tabindex="-1">
+        <p>Boolean, Numeric, Text</p>
+       </td>
+       <td tabindex="-1"><p>If(sales1&gt;7000, 'truelabel, 'falselabel')</p></td>
+       <td tabindex="-1"><p>N/A</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Or</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns a boolean value of whether one of the specified values/conditions is true or
+         not</p>
+       </td>
+       <td tabindex="-1">
+        <p>Boolean</p>
+       </td>
+       <td tabindex="-1"><p>Or(fullprice, discount)</p></td>
+       <td tabindex="-1"><p>fullprice || discount</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>And</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns a boolean value of whether two of the specified values/conditions are true or
+         not</p>
+       </td>
+       <td tabindex="-1">
+        <p>Boolean</p>
+       </td>
+       <td tabindex="-1"><p>And(sales1,sales2)</p></td>
+       <td tabindex="-1"><p>sales1 &amp;&amp; sales2</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Not</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns a boolean value that is the opposite of the specified value/conditions</p>
+       </td>
+       <td tabindex="-1">
+        <p>Boolean</p>
+       </td>
+       <td tabindex="-1"><p>Not(sales1)</p></td>
+       <td tabindex="-1"><p>!sales1</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Case</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns a boolean value based on conditional statements (returns c1 if cond1 is true,
+         returns c2 if cond2 is true, else returns c3)</p>
+       </td>
+       <td tabindex="-1">
+        <p>Boolean, Numeric, Text</p>
+       </td>
+       <td tabindex="-1"><p>Case(cond1, c1, cond2, c2, c3)</p></td>
+       <td tabindex="-1"><p>N/A</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Equal</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns a boolean value of whether two values are equal</p>
+       </td>
+       <td tabindex="-1">
+        <p>Boolean, Numeric, Text</p>
+       </td>
+       <td tabindex="-1"><p>N/A</p></td>
+       <td tabindex="-1"><p>c1 = c2</p><p>c1 == c2</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Not equal</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns a boolean value of whether two values are not equal</p>
+       </td>
+       <td tabindex="-1">
+        <p>Boolean, Numeric, Text</p>
+       </td>
+       <td tabindex="-1"><p>N/A</p></td>
+       <td tabindex="-1"><p>c1 != c2</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Less than</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns a boolean value of whether c1 is less than c2</p>
+       </td>
+       <td tabindex="-1">
+        <p>Boolean, Numeric, Text</p>
+       </td>
+       <td tabindex="-1"><p>N/A</p></td>
+       <td tabindex="-1"><p>c1 &lt; c2</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Greater than</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns a boolean value of whether c1 is greater than c2</p>
+       </td>
+       <td tabindex="-1">
+        <p>Boolean, Numeric, Text</p>
+       </td>
+       <td tabindex="-1"><p>N/A</p></td>
+       <td tabindex="-1"><p>c1 &gt; c2</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Less than or equal</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns a boolean value of whether c1 is less than or equal to c2</p>
+       </td>
+       <td tabindex="-1">
+        <p>Boolean, Numeric, Text</p>
+       </td>
+       <td tabindex="-1"><p>N/A</p></td>
+       <td tabindex="-1"><p>c1 &lt;= c2</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Greater than or equal</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns a boolean value of whether c1 is greater than or equal to c2</p>
+       </td>
+       <td tabindex="-1">
+        <p>Boolean, Numeric, Text</p>
+       </td>
+       <td tabindex="-1"><p>N/A</p></td>
+       <td tabindex="-1"><p>c1 &gt;= c2</p></td>
+      </tr>
+     </table></div></div>
+   <p>SageMaker Canvas also supports aggregate operators, which can perform operations such as calculating
+    the sum of all the values or finding the minimum value in a column. You can use aggregate
+    operators in combination with standard operators in your functions. For example, to calculate
+    the difference of values from the mean, you could use the function <code class="code">Abs(height –
+     avg(height))</code>. SageMaker Canvas supports the following aggregate operators.</p>
+   <div class="table-container"><div class="table-contents"><table id="w714aac13c17c39c23c61c15c21"><thead>
+      <tr>
+       <th>Aggregate operator</th>
+       <th>Description</th>
+       <th>Format</th>
+       <th>Example</th>
+      </tr>
+     </thead>
+      <tr>
+       <td tabindex="-1">
+        <p>sum</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns the sum of all the values in a column</p>
+       </td>
+       <td tabindex="-1"><p>sum</p></td>
+       <td tabindex="-1"><p>sum(c1)</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>minimum</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns the minimum value of a column</p>
+       </td>
+       <td tabindex="-1"><p>min</p></td>
+       <td tabindex="-1"><p>min(c2)</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>maximum</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns the maximum value of a column</p>
+       </td>
+       <td tabindex="-1"><p>max</p></td>
+       <td tabindex="-1"><p>max(c3)</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>average</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns the average value of a column</p>
+       </td>
+       <td tabindex="-1"><p>avg</p></td>
+       <td tabindex="-1"><p>avg(c4)</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>std</p>
+       </td>
+       <td tabindex="-1">Returns the sample standard deviation of a column</td>
+       <td tabindex="-1"><p>std</p></td>
+       <td tabindex="-1"><p>std(c1)</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>stddev</p>
+       </td>
+       <td tabindex="-1">Returns the standard deviation of the values in a column</td>
+       <td tabindex="-1"><p>stddev</p></td>
+       <td tabindex="-1"><p>stddev(c1)</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>variance</p>
+       </td>
+       <td tabindex="-1"><p>Returns the unbiased variance of the values in a column</p></td>
+       <td tabindex="-1"><p>variance</p></td>
+       <td tabindex="-1"><p>variance(c1)</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>approx_count_distinct</p>
+       </td>
+       <td tabindex="-1">Returns the approximate number of distinct items in a column</td>
+       <td tabindex="-1"><p>approx_count_distinct</p></td>
+       <td tabindex="-1"><p>approx_count_distinct(c1)</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>count</p>
+       </td>
+       <td tabindex="-1">Returns the number of items in a column</td>
+       <td tabindex="-1"><p>count</p></td>
+       <td tabindex="-1"><p>count(c1)</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>first</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns the first value of a column</p>
+       </td>
+       <td tabindex="-1"><p>first</p></td>
+       <td tabindex="-1"><p>first(c1)</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>last</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns the last value of a column</p>
+       </td>
+       <td tabindex="-1"><p>last</p></td>
+       <td tabindex="-1"><p>last(c1)</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>stddev_pop</p>
+       </td>
+       <td tabindex="-1">Returns the population standard deviation of a column</td>
+       <td tabindex="-1"><p>stddev_pop</p></td>
+       <td tabindex="-1"><p>stddev_pop(c1)</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>variance_pop</p>
+       </td>
+       <td tabindex="-1">
+        <p>Returns the population variance of the values in a column</p>
+       </td>
+       <td tabindex="-1"><p>variance_pop</p></td>
+       <td tabindex="-1"><p>variance_pop(c1)</p></td>
+      </tr>
+     </table></div></div>
+   
+   <h2 id="canvas-prepare-data-manage">Manage rows</h2>
+   <p>With the Manage rows transform, you can perform sort, random shuffle,
+    and remove rows of data from the dataset.</p>
+    
+    <h3 id="canvas-prepare-data-manage-sort">Sort rows</h3>
+    <p>To sort the rows in a dataset by a given column, do the following.</p>
+    <div class="orderedlist">
+      
+      
+      
+      
+    <ol><li>
+      <p>In the <b>Build</b> tab of the SageMaker Canvas application, choose <b>Manage
+        rows</b> and then choose <b>Sort rows</b>.</p>
+     </li><li>
+      <p>For <b>Sort Column</b>, choose the column you want to sort by.</p>
+     </li><li>
+      <p>For <b>Sort Order</b>, choose either <b>Ascending</b> or
+        <b>Descending</b>.</p>
+     </li><li>
+      <p>Choose <b>Add</b> to add the transform to the <b>Model
+        recipe</b>.</p>
+     </li></ol></div>
+    
+    
+    <h3 id="canvas-prepare-data-manage-shuffle">Shuffle rows</h3>
+    <p>To randomly shuffle the rows in a dataset, do the following.</p>
+    <div class="orderedlist">
+      
+      
+    <ol><li>
+      <p>In the <b>Build</b> tab of the SageMaker Canvas application, choose <b>Manage
+       rows</b> and then choose <b>Shuffle rows</b>.</p>
+     </li><li>
+      <p>Choose <b>Add</b> to add the transform to the <b>Model
+        recipe</b>.</p>
+     </li></ol></div>
+    
+    
+    <h3 id="canvas-prepare-data-manage-drop-duplicate">Drop duplicate rows</h3>
+    <p>To remove duplicate rows in a dataset, do the following.</p>
+    <div class="orderedlist">
+      
+      
+    <ol><li>
+      <p>In the <b>Build</b> tab of the SageMaker Canvas application, choose <b>Manage
+        rows</b> and then choose <b>Drop duplicate rows</b>.</p>
+     </li><li>
+      <p>Choose <b>Add</b> to add the transform to the <b>Model
+        recipe</b>.</p>
+     </li></ol></div>
+    
+    
+    <h3 id="canvas-prepare-data-remove-missing">Remove rows by missing values</h3>
+    <p>Missing values are a common occurrence in machine learning datasets and can impact model
+     accuracy. Use this transform if you want to drop rows with null or empty values in certain
+     columns.</p>
+    <p>To remove rows that contain missing values in a specified column, do the following.</p>
+    <div class="procedure"><ol><li>
+      <p>In the <b>Build</b> tab of the SageMaker Canvas application, choose <b>Manage
+       rows</b>.</p>
+     </li><li><p>Choose <b>Drop rows by missing values</b>.</p></li><li>
+      <p>Choose <b>Add</b> to add the transform to the <b>Model
+       recipe</b>.</p>
+     </li></ol></div>
+    <p>SageMaker Canvas drops rows that contain missing values in the <b>Column</b> you
+     selected. After removing the rows from the dataset, SageMaker Canvas adds the transform in the
+     <b>Model recipe</b> section. If you remove the transform from the
+     <b>Model recipe</b> section, the rows return to your dataset.</p>
+    <div class="mediaobject">
+      
+      <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/canvas-remove-missing.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;      Screenshot of the remove rows by missing values operation in the SageMaker Canvas&#xA;       application.&#xA;     " style="max-width:80%" />
+      
+      
+    </div>
+    
+    
+    <h3 id="canvas-prepare-data-remove-outliers">Remove rows by outliers</h3>
+    <p>Outliers, or rare values in the distribution and range of your data, can negatively impact
+     model accuracy and lead to longer building times. With SageMaker Canvas, you can detect and remove rows
+     that contain outliers in numeric columns. You can choose to define outliers with either
+     standard deviations or a custom range.</p>
+    <p>To remove outliers from your data, do the following.</p>
+    <div class="procedure"><ol><li>
+      <p>In the <b>Build</b> tab of the SageMaker Canvas application, choose <b>Manage
+       rows</b>.</p>
+     </li><li><p>Choose <b>Drop rows by outlier values</b>.</p></li><li>
+      <p>Choose the <b>Column</b> you want to check for outliers.</p>
+     </li><li>
+      <p>Set the <b>Operator</b> to <b>Standard
+       deviation</b>, <b>Custom numeric range</b>, or <b>Custom quantile range</b>.</p>
+     </li><li>
+      <p>If you choose <b>Standard deviation</b>, specify a <b>Standard deviations</b>
+       (standard deviation) value from 1–3. If you choose <b>Custom numeric range</b>
+       or <b>Custom quantile range</b>, specify the <b>Min</b> and <b>Max</b> values
+      (numbers for numeric ranges, or percentiles between 0–100% for quantile ranges).</p>
+     </li><li>
+      <p>Choose <b>Add</b> to add the transform to the <b>Model
+       recipe</b>.</p>
+     </li></ol></div>
+    <p>The <b>Standard deviation</b> option detects and removes outliers in numeric
+     columns using the mean and standard deviation. You specify the number of standard deviations a
+     value must vary from the mean to be considered an outlier. For example, if you specify
+     <code class="code">3</code> for <b>Standard deviations</b>, a value must fall more than 3 standard deviations
+     from the mean to be considered an outlier.</p>
+    <p>The <b>Custom numeric range</b> and <b>Custom quantile range</b>
+     options detect and remove outliers in numeric
+     columns using minimum and maximum values. Use this method if you know your threshold values
+     that delimit outliers. If you choose a numeric range, the <b>Min</b> and
+     <b>Max</b> values should be the minimum and maximum numeric values that you want
+     to allow in the data. If you choose a quantile range, the <b>Min</b> and <b>Max</b>
+     values should be the minimum and maximum of the percentile range (0–100) that you want
+     to allow.</p>
+    <p>After removing the rows from the dataset, SageMaker Canvas adds the transform in the <b>Model
+     recipe</b> section. If you remove the transform from the <b>Model
+      recipe</b> section, the rows return to your dataset.</p>
+    <div class="mediaobject">
+      
+      <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/canvas-remove-outlier.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;      Screenshot of the remove rows by outliers operation in the SageMaker Canvas application.&#xA;     " style="max-width:80%" />
+      
+      
+    </div>
+    
+    
+    <h3 id="canvas-prepare-data-remove-custom">Remove rows by custom values</h3>
+    <p>You can remove rows with values that meet custom conditions. For example, you might want
+     to exclude all of the rows with a price value greater than 100 when building your model. With
+     this transform, you can create a rule that removes all rows that exceed the threshold you
+     set.</p>
+    <p>To use the custom remove transform, do the following.</p>
+    <div class="procedure"><ol><li>
+      <p>In the <b>Build</b> tab of the SageMaker Canvas application, choose <b>Manage
+       rows</b>.</p>
+     </li><li><p>Choose <b>Drop rows by formula</b>.</p></li><li>
+      <p>Choose the <b>Column</b> you want to check.</p>
+     </li><li>
+      <p>Select the type of <b>Operation</b> you want to use, and then specify the
+       values for the selected condition.</p>
+     </li><li>
+      <p>Choose <b>Add</b> to add the transform to the <b>Model
+       recipe</b>.</p>
+     </li></ol></div>
+    <p>For the <b>Operation</b>, you can choose one of the following options. Note
+     that the available operations depend on the data type of the column you choose. For example,
+     you cannot create a <code class="code">is greater than</code> operation for a column containing text
+     values.</p>
+    <div class="table-container"><div class="table-contents"><table id="w714aac13c17c39c23c61c17c15c11"><thead>
+       <tr>
+        <th>Operation</th>
+        <th>Supported data type</th>
+        <th>Supported feature type</th>
+        <th>Function</th>
+       </tr>
+      </thead>
+       <tr>
+        <td tabindex="-1">
+         <p>Is equal to</p>
+        </td>
+        <td tabindex="-1">
+         <p>Numeric, Text</p>
+        </td>
+        <td tabindex="-1">
+         <p>Binary, Categorical</p>
+        </td>
+        <td tabindex="-1">
+         <p>Removes rows where the value in <b>Column</b> equals the values you
+          specify.</p>
+        </td>
+       </tr>
+       <tr>
+        <td tabindex="-1">
+         <p>Is not equal to</p>
+        </td>
+        <td tabindex="-1">
+         <p>Numeric, Text</p>
+        </td>
+        <td tabindex="-1">
+         <p>Binary, Categorical</p>
+        </td>
+        <td tabindex="-1">
+         <p>Removes rows where the value in <b>Column</b> doesn't equal the values
+          you specify.</p>
+        </td>
+       </tr>
+       <tr>
+        <td tabindex="-1">
+         <p>Is less than</p>
+        </td>
+        <td tabindex="-1">
+         <p>Numeric</p>
+        </td>
+        <td tabindex="-1"><p>N/A</p></td>
+        <td tabindex="-1">
+         <p>Removes rows where the value in <b>Column</b> is less than the value
+          you specify.</p>
+        </td>
+       </tr>
+       <tr>
+        <td tabindex="-1">
+         <p>Is less than or equal to</p>
+        </td>
+        <td tabindex="-1">
+         <p>Numeric</p>
+        </td>
+        <td tabindex="-1"><p>N/A</p></td>
+        <td tabindex="-1">
+         <p>Removes rows where the value in <b>Column</b> is less than or equal to
+          the value you specify.</p>
+        </td>
+       </tr>
+       <tr>
+        <td tabindex="-1">
+         <p>Is greater than</p>
+        </td>
+        <td tabindex="-1">
+         <p>Numeric</p>
+        </td>
+        <td tabindex="-1"><p>N/A</p></td>
+        <td tabindex="-1">
+         <p>Removes rows where the value in <b>Column</b> is greater than the value
+          you specify.</p>
+        </td>
+       </tr>
+       <tr>
+        <td tabindex="-1">
+         <p>Is greater than or equal to</p>
+        </td>
+        <td tabindex="-1"><p>Numeric</p></td>
+        <td tabindex="-1"><p>N/A</p></td>
+        <td tabindex="-1">
+         <p>Removes rows where the value in <b>Column</b> is greater than or equal
+          to the value you specify.</p>
+        </td>
+       </tr>
+       <tr>
+        <td tabindex="-1">
+         <p>Is between</p>
+        </td>
+        <td tabindex="-1"><p>Numeric</p></td>
+        <td tabindex="-1"><p>N/A</p></td>
+        <td tabindex="-1">
+         <p>Removes rows where the value in <b>Column</b> is between or equal to
+          two values you specify.</p>
+        </td>
+       </tr>
+       <tr>
+        <td tabindex="-1">
+         <p>Contains</p>
+        </td>
+        <td tabindex="-1">
+         <p>Text</p>
+        </td>
+        <td tabindex="-1"><p>Categorical</p></td>
+        <td tabindex="-1">
+         <p>Removes rows where the value in <b>Column</b> contains a values you
+          specify.</p>
+        </td>
+       </tr>
+       <tr>
+        <td tabindex="-1">
+         <p>Starts with</p>
+        </td>
+        <td tabindex="-1">
+         <p>Text</p>
+        </td>
+        <td tabindex="-1"><p>Categorical</p></td>
+        <td tabindex="-1">
+         <p>Removes rows where the value in <b>Column</b> begins with a value you
+          specify.</p>
+        </td>
+       </tr>
+       <tr>
+        <td tabindex="-1">
+         <p>Ends with</p>
+        </td>
+        <td tabindex="-1">
+         <p>Text</p>
+        </td>
+        <td tabindex="-1"><p>Categorical</p></td>
+        <td tabindex="-1">
+         <p>Removes rows where the value in <b>Column</b> ends with a value you
+          specify.</p>
+        </td>
+       </tr>
+      </table></div></div>
+    <p>After removing the rows from the dataset, SageMaker Canvas adds the transform in the <b>Model
+     recipe</b> section. If you remove the transform from the <b>Model
+      recipe</b> section, the rows return to your dataset.</p>
+    
+   <div class="mediaobject">
+     
+     <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/canvas-remove-custom.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;     Screenshot of the remove rows by custom values operation in the SageMaker Canvas&#xA;      application.&#xA;    " style="max-width:80%" />
+     
+     
+   </div>
+   
+   <h2 id="canvas-prepare-data-rename">Rename columns</h2>
+   <p>With the rename columns transform, you can rename columns in your data. When you rename a
+    column, SageMaker Canvas changes the column name in the model input.</p>
+   <p>You can rename a column in your dataset by double-clicking on the column name in the
+     <b>Build</b> tab of the SageMaker Canvas application and entering a new name. Pressing the
+     <b>Enter</b> key submits the change, and clicking anywhere outside
+    the input cancels the change. You can also rename a column by clicking the <b>More
+     options</b> icon (<span class="inlinemediaobject">
+      
+      <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/more-options-icon.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;      More options icon at the end of a row.&#xA;     " />
+      
+      
+    </span>), located at the end of the row in list view or at the end of the header
+    cell in grid view, and choosing <b>Rename</b>.</p>
+   <p>Your column name can’t be longer than 32 characters or have double underscores (__), and
+    you can’t rename a column to the same name as another column. You also can’t rename a dropped
+    column.</p>
+   <p>The following screenshot shows how to rename a column by double-clicking the column
+    name.</p>
+   <div class="mediaobject">
+     
+     <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/canvas-rename-column.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;     Screenshot of renaming a column with the double-click method in the SageMaker Canvas&#xA;      application.&#xA;    " style="max-width:80%" />
+     
+     
+   </div>
+   <p>When you rename a column, SageMaker Canvas adds the transform in the <b>Model recipe</b>
+    section. If you remove the transform from the <b>Model recipe</b> section, the
+    column reverts to its original name.</p>
+   
+   <h2 id="canvas-prepare-data-manage-cols">Manage columns</h2>
+   <p>With the following transforms, you can change the data type of columns and
+    replace missing values or outliers for specific columns. SageMaker Canvas uses the updated data types or
+    values when building your model but doesn’t change your original dataset. Note that if you've
+    dropped a column from your dataset using the <a href="canvas-prepare-data.html#canvas-prepare-data-drop">Drop columns</a> transform, you can't replace values in that
+    column.</p>
+    
+    <h3 id="canvas-prepare-data-replace-missing">Replace missing values</h3>
+    <p>Missing values are a common occurrence in machine learning datasets and can impact model
+     accuracy. You can choose to drop rows that have missing values, but your model is more accurate
+     if you choose to replace the missing values instead. With this transform, you can replace
+     missing values in numeric columns with the mean or median of the data in a column, or you can
+     also specify a custom value with which to replace missing values. For non-numeric columns, you
+     can replace missing values with the mode (most common value) of the column or a custom
+     value.</p>
+    <p>Use this transform if you want to replace the null or empty values in certain columns. To
+     replace missing values in a specified column, do the following. </p>
+    <div class="procedure"><ol><li>
+      <p>In the <b>Build</b> tab of the SageMaker Canvas application, choose
+        <b>Manage columns</b>.</p>
+     </li><li><p>Choose <b>Replace missing values</b>.</p></li><li>
+      <p>Choose the <b>Column</b> in which you want to replace missing
+       values.</p>
+     </li><li>
+      <p>Set <b>Mode</b> to <b>Manual</b> to replace missing values with values
+       that you specify. With the <b>Automatic (default)</b> setting, SageMaker Canvas
+       replaces missing values with imputed values that best fit your data. This imputation method is done automatically
+      for each model build, unless you specify the <b>Manual</b> mode.</p>
+     </li><li>
+      <p>Set the <b>Replace with</b> value:</p>
+      <div class="itemizedlist">
+        
+        
+      <ul class="itemizedlist"><li class="listitem">
+        <p>If your column is numeric, then select <b>Mean</b>,
+          <b>Median</b>, or <b>Custom</b>. <b>Mean</b>
+         replaces missing values with the mean for the column, and <b>Median</b>
+         replaces missing values with the median for the column. If you choose
+          <b>Custom</b>, then you must specify a custom value that you want to use to
+         replace missing values.</p>
+       </li><li class="listitem">
+        <p>If your column is non-numeric, then select <b>Mode</b> or
+          <b>Custom</b>. <b>Mode</b> replaces missing values with the
+         mode, or the most common value, for the column. For <b>Custom</b>, specify a
+         custom value. that you want to use to replace missing values.</p>
+       </li></ul></div>
+     </li><li>
+      <p>Choose <b>Add</b> to add the transform to the <b>Model
+        recipe</b>.</p>
+     </li></ol></div>
+    <p>After replacing the missing values in the dataset, SageMaker Canvas adds the transform in the
+      <b>Model recipe</b> section. If you remove the transform from the
+      <b>Model recipe</b> section, the missing values return to the dataset.</p>
+    <div class="mediaobject">
+      
+      <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/canvas-replace-missing.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;      Screenshot of the replace missing values operation in the SageMaker Canvas application.&#xA;     " style="max-width:80%" />
+      
+      
+    </div>
+    
+    
+    <h3 id="canvas-prepare-data-replace-outliers">Replace outliers</h3>
+    <p>Outliers, or rare values in the distribution and range of your data, can negatively impact
+     model accuracy and lead to longer building times. SageMaker Canvas enables you to detect outliers in
+     numeric columns and replace the outliers with values that lie within an accepted range in your
+     data. You can choose to define outliers with either standard deviations or a custom range, and
+     you can replace outliers with the minimum and maximum values in the accepted range.</p>
+    <p>To replace outliers in your data, do the following.</p>
+    <div class="procedure"><ol><li>
+      <p>In the <b>Build</b> tab of the SageMaker Canvas application, choose
+        <b>Manage columns</b>.</p>
+     </li><li><p>Choose <b>Replace outlier values</b>.</p></li><li>
+      <p>Choose the <b>Column</b> in which you want to replace outliers.</p>
+     </li><li>
+      <p>For <b>Define outliers</b>, choose <b>Standard
+        deviation</b>, <b>Custom numeric range</b>, or <b>Custom quantile range</b>.</p>
+     </li><li>
+      <p>If you choose <b>Standard deviation</b>, specify a <b>Standard deviations</b>
+       (standard deviation) value from 1–3. If you choose <b>Custom numeric range</b>
+       or <b>Custom quantile range</b>, specify the
+       <b>Min</b> and <b>Max</b> values (numbers for numeric ranges, or percentiles
+      between 0–100% for quantile ranges).</p>
+     </li><li>
+      <p>For <b>Replace with</b>, select <b>Min/max range</b>.</p>
+     </li><li>
+      <p>Choose <b>Add</b> to add the transform to the <b>Model
+        recipe</b>.</p>
+     </li></ol></div>
+    <p>The <b>Standard deviation</b> option detects outliers in numeric columns
+     using the mean and standard deviation. You specify the number of standard deviations a value
+     must vary from the mean to be considered an outlier. For example, if you specify 3 for
+      <b>Standard deviations</b>, a value must fall more than 3 standard deviations from the mean to be
+     considered an outlier. SageMaker Canvas replaces outliers with the minimum value or maximum value in the
+     accepted range. For example, if you configure the standard deviations to only include values
+     from 200–300, then SageMaker Canvas changes a value of 198 to 200 (the minimum).</p>
+    <p>The <b>Custom numeric range</b> and <b>Custom quantile range</b>
+     options detect outliers in numeric columns using
+     minimum and maximum values. Use this method if you know your threshold values that delimit
+     outliers. If you choose a numeric range, the <b>Min</b> and
+     <b>Max</b> values should be the minimum and maximum numeric values that you want
+     to allow. SageMaker Canvas replaces any values that fall outside of the minimum and maximum to the minimum
+     and maximum values. For example, if your range only allows values from 1–100, then SageMaker Canvas
+     changes a value of 102 to 100 (the maximum). If you choose a quantile range,
+     the <b>Min</b> and <b>Max</b>
+     values should be the minimum and maximum of the percentile range (0–100) that you want
+     to allow.</p>
+    <p>After replacing the values in the dataset, SageMaker Canvas adds the transform in the <b>Model
+      recipe</b> section. If you remove the transform from the <b>Model
+      recipe</b> section, the original values return to the dataset.</p>
+    <div class="mediaobject">
+      
+      <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/canvas-replace-outlier.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;      Screenshot of the replace outliers operation in the SageMaker Canvas application.&#xA;     " style="max-width:80%" />
+      
+      
+    </div>
+    
+   
+    
+    <h3 id="canvas-prepare-data-change-type">Change data type</h3>
+    <p>SageMaker Canvas provides you with the ability to change the <em>data
+     type</em> of your columns between numeric, text, and datetime, while also displaying the
+     associated <em>feature type</em> for that data type. A <em>data type</em> refers to the format of the data and how it is stored, while
+     the <em>feature type</em> refers to the characteristic of the data
+     used in machine learning algorithms, such as binary or categorical. This gives you the
+     flexibility to manually change the type of data in your columns based on the features. The
+     ability to choose the right data type ensures data integrity and accuracy prior to building
+     models. These data types are used when building models.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Currently, changing the feature type (for example, from binary to categorical) is not supported.</p></div></div>
+    <p>The following table lists all of the supported data types in Canvas.</p>
+    <div class="table-container"><div class="table-contents"><table id="w714aac13c17c39c23c61c21b9b9"><thead>
+       <tr>
+        <th>Data type</th>
+        <th>Description</th>
+        <th>Example</th>
+       </tr>
+      </thead>
+       <tr>
+        <td tabindex="-1"><p>Numeric</p></td>
+        <td tabindex="-1"><p>Numeric data represents numerical values</p></td>
+        <td tabindex="-1"><p>1, 2, 3</p><p>1.1, 1.2. 1.3</p></td>
+       </tr>
+       <tr>
+        <td tabindex="-1"><p>Text</p></td>
+        <td tabindex="-1"><p>Text data represents sequences of characters, like names or descriptions</p></td>
+        <td tabindex="-1"><p>A, B, C, D</p><p>apple, banana, orange</p><p>1A!, 2A!, 3A!</p></td>
+       </tr>
+       <tr>
+        <td tabindex="-1"><p>Datetime</p></td>
+        <td tabindex="-1"><p>Datetime data represents dates and times in timestamp format</p></td>
+        <td tabindex="-1"><p>2019-07-01 01:00:00, 2019-07-01 02:00:00, 2019-07-01 03:00:00</p></td>
+       </tr>
+      </table></div></div>
+    <p>The following table lists all of the supported feature types in Canvas.</p>
+    <div class="table-container"><div class="table-contents"><table id="w714aac13c17c39c23c61c21b9c13"><thead>
+       <tr>
+        <th>Feature type</th>
+        <th>Description</th>
+        <th>Example</th>
+       </tr>
+      </thead>
+       <tr>
+        <td tabindex="-1"><p>Binary</p></td>
+        <td tabindex="-1"><p>Binary features represent two possible values</p></td>
+        <td tabindex="-1"><p>0, 1, 0, 1, 0 (2 distinct values)</p><p>true, false, true (2 distinct values)</p></td>
+       </tr>
+       <tr>
+        <td tabindex="-1"><p>Categorical</p></td>
+        <td tabindex="-1"><p>Categorical features represent distinct categories or groups</p></td>
+        <td tabindex="-1"><p>apple, banana, orange, apple (3 distinct values)</p><p>A, B, C, D, E, A, D, C (5 distinct values)</p></td>
+       </tr>
+      </table></div></div>
+    <p>To modify data type of a column in a dataset, do the following.</p>
+    <div class="procedure"><ol><li>
+      <p>In the <b>Build</b> tab of the SageMaker Canvas application, go to the
+       <b>Column view</b> or <b>Grid view</b> and select the
+       <b>Data type</b> dropdown for the specific column.</p>
+     </li><li>
+      <p>In the <b>Data type</b> dropdown, choose the data type to convert
+       to. The following screenshot shows the dropdown menu.</p>
+      <div class="mediaobject">
+        
+        <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/canvas-prepare-data-change.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Screenshot of the data type conversion dropdown menu for a column, shown in the Build tab of building a model in Canvas.&#xA;       " style="max-width:100%" />
+        
+        
+      </div>
+     </li><li>
+      <p>For <b>Column</b>, choose or verify the column you want to change the data
+       type for.</p>
+     </li><li>
+      <p>For <b>New data type</b>, choose or verify the new data type you want to
+       convert to.</p>
+     </li><li>
+      <p>If the <b>New data type</b> is <code class="code">Datetime</code> or
+       <code class="code">Numeric</code>, choose one of the following options under <b>Handle invalid
+        values</b>:</p>
+      <ol><li><p><b>Replace with empty value</b> – Invalid values are substituted with an empty value</p></li><li><p><b>Delete rows</b> – Rows with an invalid value are removed from the dataset</p></li><li><p><b>Replace with custom value</b> – Invalid values are substituted with the <b>Custom Value</b> that you specify.</p></li></ol>
+     </li><li>
+      <p>Choose <b>Add</b> to add the transform to the <b>Model recipe</b>.</p>
+     </li></ol></div>
+    <p>The data type for your column should now be updated.</p>
+    
+   
+   <h2 id="canvas-prepare-data-timeseries">Prepare time series data</h2>
+   <p>Use the following functionalities to prepare your time series data for building
+   time series forecasting models.</p>
+
+   
+   <h3 id="canvas-prepare-data-resample">Resample time series data</h3>
+   <p>By resampling time-series data, you can establish regular intervals for the observations in
+    your time series dataset. This is particularly useful when working with time series data
+    containing irregularly spaced observations. For instance, you can use resampling to transform a
+    dataset with observations recorded every one hour, two hour and three hour intervals into a
+    regular one hour interval between observations. Forecasting algorithms require the observations
+    to be taken at regular intervals.</p>
+   <p>To resample time series data, do the following.</p>
+   <div class="procedure"><ol><li>
+     <p>In the <b>Build</b> tab of the SageMaker Canvas application, choose <b>Time
+        series</b>.</p>
+    </li><li>
+     <p>Choose <b>Resample</b>.</p>
+    </li><li>
+     <p>For <b>Timestamp column</b>, choose the column you want to apply the
+      transform to. You can only select columns of the <b>Datetime</b> type.</p>
+    </li><li>
+     <p>In the <b>Frequency settings</b> section, choose a
+       <b>Frequency</b> and <b>Rate</b>. <b>Frequency</b>
+      is the unit of frequency and <b>Rate</b> is the interval of the unit of
+      frequency to be applied to the column. For example, choosing <code class="code">Calendar Day</code> for
+       <b>Frequency value</b> and <code class="code">1</code> for <b>Rate</b> sets
+      the interval to increase every 1 calendar day, such as <code class="code">2023-03-26 00:00:00</code>,
+       <code class="code">2023-03-27 00:00:00</code>, <code class="code">2023-03-28 00:00:00</code>. See the table after this
+      procedure for a complete list of <b>Frequency value</b>. </p>
+    </li><li>
+     <p>Choose <b>Add</b> to add the transform to the <b>Model
+       recipe</b>.</p>
+    </li></ol></div>
+   <p>The following table lists all of the <b>Frequency</b> types you can select
+    when resampling time series data.</p>
+   <div class="table-container"><div class="table-contents"><table id="w714aac13c17c39c23c61c23b5c11"><thead>
+      <tr>
+       <th>Frequency</th>
+       <th>Description</th>
+       <th>Example values (assuming Rate is 1)</th>
+      </tr>
+     </thead>
+      <tr>
+       <td tabindex="-1">
+        <p>Business Day</p>
+       </td>
+       <td tabindex="-1">
+        <p>Resample observations in the datetime column to 5 business days of the week (Monday,
+         Tuesday, Wednesday, Thursday, Friday)</p>
+       </td>
+       <td tabindex="-1">
+        <p>2023-03-24 00:00:00</p>
+        <p>2023-03-27 00:00:00</p>
+        <p>2023-03-28 00:00:00</p>
+        <p>2023-03-29 00:00:00</p>
+        <p>2023-03-30 00:00:00</p>
+        <p>2023-03-31 00:00:00</p>
+        <p>2023-04-03 00:00:00</p>
+       </td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Calendar Day</p>
+       </td>
+       <td tabindex="-1">
+        <p>Resample observations in the datetime column to all 7 days of the week (Monday,
+         Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday)</p>
+       </td>
+       <td tabindex="-1">
+        <p>2023-03-26 00:00:00</p>
+        <p>2023-03-27 00:00:00</p>
+        <p>2023-03-28 00:00:00</p>
+        <p>2023-03-29 00:00:00</p>
+        <p>2023-03-30 00:00:00</p>
+        <p>2023-03-31 00:00:00</p>
+        <p>2023-04-01 00:00:00</p>
+       </td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Week</p>
+       </td>
+       <td tabindex="-1">
+        <p>Resample observations in the datetime column to the first day of each week</p>
+       </td>
+       <td tabindex="-1">
+        <p>2023-03-13 00:00:00</p>
+        <p>2023-03-20 00:00:00</p>
+        <p>2023-03-27 00:00:00</p>
+        <p>2023-04-03 00:00:00</p>
+       </td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Month</p>
+       </td>
+       <td tabindex="-1">
+        <p>Resample observations in the datetime column to the first day of each month</p>
+       </td>
+       <td tabindex="-1">
+        <p>2023-03-01 00:00:00</p>
+        <p>2023-04-01 00:00:00</p>
+        <p>2023-05-01 00:00:00</p>
+        <p>2023-06-01 00:00:00</p>
+       </td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Annual Quarter</p>
+       </td>
+       <td tabindex="-1">
+        <p>Resample observations in the datetime column to the last day of each quarter</p>
+       </td>
+       <td tabindex="-1">
+        <p>2023-03-31 00:00:00</p>
+        <p>2023-06-30 00:00:00</p>
+        <p>2023-09-30 00:00:00</p>
+        <p>2023-12-31 00:00:00</p>
+       </td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Year</p>
+       </td>
+       <td tabindex="-1">
+        <p>Resample observations in the datetime column to the last day of each year</p>
+       </td>
+       <td tabindex="-1">
+        <p>2022-12-31 0:00:00</p>
+        <p>2023-12-31 00:00:00</p>
+        <p>2024-12-31 00:00:00</p>
+       </td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Hour</p>
+       </td>
+       <td tabindex="-1">
+        <p>Resample observations in the datetime column to each hour of each day</p>
+       </td>
+       <td tabindex="-1">
+        <p>2023-03-24 00:00:00</p>
+        <p>2023-03-24 01:00:00</p>
+        <p>2023-03-24 02:00:00</p>
+        <p>2023-03-24 03:00:00</p>
+       </td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Minute</p>
+       </td>
+       <td tabindex="-1">
+        <p>Resample observations in the datetime column to each minute of each hour</p>
+       </td>
+       <td tabindex="-1">
+        <p>2023-03-24 00:00:00</p>
+        <p>2023-03-24 00:01:00</p>
+        <p>2023-03-24 00:02:00</p>
+        <p>2023-03-24 00:03:00</p>
+       </td>
+      </tr>
+      <tr>
+       <td tabindex="-1">
+        <p>Second</p>
+       </td>
+       <td tabindex="-1">
+        <p>Resample observations in the datetime column to each second of each minute</p>
+       </td>
+       <td tabindex="-1">
+        <p>2023-03-24 00:00:00</p>
+        <p>2023-03-24 00:00:01</p>
+        <p>2023-03-24 00:00:02</p>
+        <p>2023-03-24 00:00:03</p>
+       </td>
+      </tr>
+     </table></div></div>
+   <p>When applying the resampling transform, you can use the <b>Advanced</b>
+    option to specify how the resulting values of the rest of the columns (other than the timestamp
+    column) in your dataset are modified. This can be achieved by specifying the resampling
+    methodology, which can either be downsampling or upsampling for both numeric and non-numeric
+    columns.</p>
+   <p><em>Downsampling</em> increases the interval between observations
+    in the dataset. For example, if you downsample observations that are taken either every hour or
+    every two hours, each observation in your dataset is taken every two hours. The values of other
+    columns of the hourly observations are aggregated into a single value using a combination
+    method. The following tables show an example of downsampling time series data by using mean as
+    the combination method. The data is downsampled from every two hours to every hour.</p>
+   <p>The following table shows the hourly temperature readings over a day before
+    downsampling.</p>
+   <div class="table-container"><div class="table-contents"><table id="w714aac13c17c39c23c61c23b5c19"><thead>
+      <tr>
+       <th>Timestamp</th>
+       <th>Temperature (Celsius)</th>
+      </tr>
+     </thead>
+      <tr>
+       <td tabindex="-1"><p>12:00 pm</p></td>
+       <td tabindex="-1"><p>30</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1"><p>1:00 am</p></td>
+       <td tabindex="-1"><p>32</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1"><p>2:00 am</p></td>
+       <td tabindex="-1"><p>35</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1"><p>3:00 am</p></td>
+       <td tabindex="-1"><p>32</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1"><p>4:00 am</p></td>
+       <td tabindex="-1"><p>30</p></td>
+      </tr>
+     </table></div></div>
+   <p>The following table shows the temperature readings after downsampling to every two
+    hours.</p>
+   <div class="table-container"><div class="table-contents"><table id="w714aac13c17c39c23c61c23b5c23"><thead>
+      <tr>
+       <th>Timestamp</th>
+       <th>Temperature (Celsius)</th>
+      </tr>
+     </thead>
+      <tr>
+       <td tabindex="-1"><p>12:00 pm</p></td>
+       <td tabindex="-1"><p>30</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1"><p>2:00 am</p></td>
+       <td tabindex="-1"><p>33.5</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1"><p>2:00 am</p></td>
+       <td tabindex="-1"><p>35</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1"><p>4:00 am</p></td>
+       <td tabindex="-1"><p>32.5</p></td>
+      </tr>
+     </table></div></div>
+   <p>To downsample time series data, do the following:</p>
+   <div class="procedure"><ol><li>
+     <p>Expand the <b>Advanced </b> section under the
+      <b>Resample</b> transform.</p>
+    </li><li>
+     <p>Choose <b>Non-numeric combination</b> to specify the combination method for
+      non-numeric columns. See the table below for a complete list of combination methods.</p>
+    </li><li>
+     <p>Choose <b>Numeric combination</b> to specify the combination method for
+      numeric columns. See the table below for a complete list of combination methods.</p>
+    </li></ol></div>
+   <p>If you don’t specify combination methods, the default values are <code class="code">Most Common</code>
+    for <b>Non-numeric combination</b> and <code class="code">Mean</code> for <b>Numeric
+     combination</b>. The following table lists the methods for numeric and non-numeric
+    combination.</p>
+   <div class="table-container"><div class="table-contents"><table id="w714aac13c17c39c23c61c23b5c31"><thead>
+      <tr>
+       <th>Downsampling methodology</th>
+       <th>Combination method</th>
+       <th>Description</th>
+      </tr>
+     </thead>
+      <tr>
+       <td tabindex="-1"><p>Non-numeric combination</p></td>
+       <td tabindex="-1"><p>Most Common</p></td>
+       <td tabindex="-1"><p>Aggregate values in the non-numeric column by the most commonly ocurring
+         value</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1"><p>Non-numeric combination</p></td>
+       <td tabindex="-1"><p>Last</p></td>
+       <td tabindex="-1"><p>Aggregate values in the non-numeric column by the last value in the
+         column</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1"><p>Non-numeric combination</p></td>
+       <td tabindex="-1"><p>First</p></td>
+       <td tabindex="-1"><p>Aggregate values in the non-numeric column by the first value in the
+         column</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1"><p>Numeric combination</p></td>
+       <td tabindex="-1"><p>Mean</p></td>
+       <td tabindex="-1"><p>Aggregate values in the numeric column by the taking the mean of all the values
+         in the column</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1"><p>Numeric combination</p></td>
+       <td tabindex="-1"><p>Median</p></td>
+       <td tabindex="-1"><p>Aggregate values in the numeric column by the taking the median of all the
+         values in the column</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1"><p>Numeric combination</p></td>
+       <td tabindex="-1"><p>Min</p></td>
+       <td tabindex="-1"><p>Aggregate values in the numeric column by the taking the minimum of all the
+         values in the column</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1"><p>Numeric combination</p></td>
+       <td tabindex="-1"><p>Max</p></td>
+       <td tabindex="-1"><p>Aggregate values in the numeric column by the taking the maximum of all the
+         values in the column</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1"><p>Numeric combination</p></td>
+       <td tabindex="-1"><p>Sum</p></td>
+       <td tabindex="-1"><p>Aggregate values in the numeric column by adding all the values in the
+         column</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1"><p>Numeric combination</p></td>
+       <td tabindex="-1"><p>Quantile</p></td>
+       <td tabindex="-1"><p>Aggregate values in the numeric column by the taking the quantile of all the
+         values in the column</p></td>
+      </tr>
+     </table></div></div>
+   <p><em>Upsampling</em> reduces the interval between observations in
+    the dataset. For example, if you upsample observations that are taken every two hours into
+    hourly observations, the values of other columns of the hourly observations are interpolated
+    from the ones that have been taken every two hours.</p>
+   <p>To upsample time series data, do the following:</p>
+   <div class="procedure"><ol><li>
+     <p>Expand the <b>Advanced</b> section under the
+      <b>Resample</b> transform.</p>
+    </li><li>
+     <p>Choose <b>Non-numeric estimation</b> to specify the estimation method for
+      non-numeric columns. See the table after this procedure for a complete list of methods.</p>
+    </li><li>
+     <p>Choose <b>Numeric estimation</b> to specify the estimation method for
+      numeric columns. See the table below for a complete list of methods.</p>
+    </li><li>
+     <p>(Optional) Choose <b>ID Column</b> to specify the column that has the IDs
+      of the observations of the time series. Specify this option if your dataset has two time
+      series. If you have a column representing only one time series, don't specify a value for this
+      field. For example, you can have a dataset that has the columns <code class="code">id</code> and
+       <code class="code">purchase</code>. The <code class="code">id</code> column has the following values: <code class="code">[1, 2, 2,
+       1]</code>. The <code class="code">purchase</code> column has the following values <code class="code">[$2, $3, $4,
+       $1]</code>. Therefore, the dataset has two time series—one time series is: <code class="code">1:
+       [$2, $1]</code>, and the other time series is <code class="code">2: [$3, $4]</code>.</p>
+    </li></ol></div>
+   <p>If you don’t specify estimation methods, the default values are <code class="code">Forward Fill</code>
+    for <b>Non-numeric estimation</b> and <code class="code">Linear</code> for <b>Numeric
+     estimation</b>. The following table lists the methods for estimation.</p>
+   <div class="table-container"><div class="table-contents"><table id="w714aac13c17c39c23c61c23b5c41"><thead>
+      <tr>
+       <th>Upsampling methodology</th>
+       <th>Estimation method</th>
+       <th>Description</th>
+      </tr>
+     </thead>
+      <tr>
+       <td tabindex="-1"><p>Non-numeric estimation</p></td>
+       <td tabindex="-1"><p>Forward Fill</p></td>
+       <td tabindex="-1"><p>Interpolate values in the non-numeric column by taking the consecutive values
+         after all the values in the column</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1"><p>Non-numeric estimation</p></td>
+       <td tabindex="-1"><p>Backward Fill</p></td>
+       <td tabindex="-1"><p>Interpolate values in the non-numeric column by taking the consecutive values
+         before all the values in the column</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1"><p>Non-numeric estimation</p></td>
+       <td tabindex="-1"><p>Keep Missing</p></td>
+       <td tabindex="-1"><p>Interpolate values in the non-numeric column by showing empty
+        values</p></td>
+      </tr>
+      <tr>
+       <td tabindex="-1"><p>Numeric estimation</p></td>
+       <td tabindex="-1"><p>Linear, Time, Index, Zero, S-Linear, Nearest, Quadratic, Cubic, Barycentric,
+         Polynomial, Krogh, Piecewise Polynomial, Spline, P-chip, Akima, Cubic Spline, From
+         Derivatives</p></td>
+       <td tabindex="-1"><p>Interpolate values in the numeric column by using the specfied interpolator. For
+         information on interpolation methods, see <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.interpolate.html" rel="noopener noreferrer" target="_blank"><span>pandas.DataFrame.interpolate</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the pandas documentation.</p></td>
+      </tr>
+     </table></div></div>
+   <p>The following screenshot shows the <b>Advanced</b> settings with the fields
+     for downsampling and upsampling filled out.</p>
+   <div class="mediaobject">
+     
+     <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/canvas-prepare-data-resampling.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;     Screenshot of the Canvas application, with the time series resampling side panel&#xA;      showing the advanced options.&#xA;    " style="max-width:80%" />
+     
+     
+   </div>
+   
+   
+    
+    <h3 id="canvas-prepare-data-datetime">Use datetime extraction</h3>
+    <p>With the datetime extraction transform, you can extract values from a datetime column to a
+     separate column. For example, if you have a column containing dates of purchases, you can
+     extract the month value to a separate column and use the new column when building your model.
+     You can also extract multiple values to separate columns with a single transform.</p>
+    <p>Your datetime column must use a supported timestamp format. For a list of the formats that
+     SageMaker Canvas supports, see <a href="canvas-time-series.html">Time Series Forecasts in Amazon SageMaker Canvas</a>. If
+     your dataset does not use one of the supported formats, update your dataset to use a supported
+     timestamp format and re-import it to Amazon SageMaker Canvas before building your model.</p>
+    <p>To perform a datetime extraction, do the following.</p>
+    <div class="procedure"><ol><li>
+      <p>In the <b>Build</b> tab of the SageMaker Canvas application, on the transforms bar, choose
+       <b>View all</b>.</p>
+     </li><li><p>Choose <b>Extract features</b>.</p></li><li>
+      <p>Choose the <b>Timestamp column</b> from which you want to extract values.</p>
+     </li><li>
+      <p>For <b>Values</b>, select one or more values to extract from the column.
+       The values you can extract from a timestamp column are <b>Year</b>,
+        <b>Month</b>, <b>Day</b>, <b>Hour</b>,
+        <b>Week of year</b>, <b>Day of year</b>, and
+        <b>Quarter</b>.</p>
+     </li><li><p>(Optional) Choose <b>Preview</b> to preview the transform results.</p></li><li>
+      <p>Choose <b>Add</b> to add the transform to the <b>Model
+       recipe</b>.</p>
+     </li></ol></div>
+    <p>SageMaker Canvas creates a new column in the dataset for each of the values you extract. Except for
+     <b>Year</b> values, SageMaker Canvas uses a 0-based encoding for the extracted values. For
+     example, if you extract the <b>Month</b> value, January is extracted as 0, and
+     February is extracted as 1.</p>
+    <div class="mediaobject">
+      
+      <img src="../../../images/sagemaker/latest/dg/images/studio/canvas/canvas-datetime-extract.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;      Screenshot of the datetime extraction box in the SageMaker Canvas application.&#xA;     " style="max-width:80%" />
+      
+      
+    </div>
+    <p>You can see the transform listed in the <b>Model recipe</b> section. If you
+     remove the transform from the <b>Model recipe</b> section, the new columns are
+     removed from the dataset.</p>
+    
+   
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./canvas-explore-data-analytics.html">Explore your data using analytics</div><div id="next" class="next-link" accesskey="n" href="./canvas-evaluate-model.html">Evaluate Your Model's Performance in
+            Amazon SageMaker Canvas</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-prepare-data.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-prepare-data.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Neural Topic Model (NTM) Algorithm - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="ntm" /><meta name="default_state" content="ntm" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="ntm.html" /><meta name="description" content="Amazon SageMaker NTM is an unsupervised learning algorithm that is used to organize a corpus of documents into topics that contain word groupings based on their statistical distribution. Documents that contain frequent occurrences of words such as &#34;bike&#34;, &#34;car&#34;, &#34;train&#34;, &#34;mileage&#34;, and &#34;speed&#34; are likely to share a topic on &#34;transportation&#34; for example. Topic modeling can be used to classify or summarize documents based on the topics detected or to retrieve information or recommend content based on topic similarities. The topics from documents that NTM learns are characterized as a" /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="ntm.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/ntm.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/ntm.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/ntm.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/ntm.html" hreflang="de" /><link rel="alternative" href="ntm.html" hreflang="en-us" /><link rel="alternative" href="ntm.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/ntm.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/ntm.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/ntm.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/ntm.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/ntm.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/ntm.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/ntm.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/ntm.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/ntm.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/ntm.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/ntm.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/ntm.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/ntm.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/ntm.html" hreflang="zh-tw" /><link rel="alternative" href="ntm.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Neural Topic Model (NTM) Algorithm" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Neural Topic Model (NTM) Algorithm - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#ntm" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/ntm.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/ntm.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/ntm.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Choose an Algorithm",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-choose.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Amazon SageMaker Built-in Algorithms or Pre-trained Models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Built-in SageMaker Algorithms for Text Data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-text.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Neural Topic Model (NTM) Algorithm",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-text.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#ntm" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="ntm.html#NTM-inputoutput">Input/Output Interface for the NTM Algorithm</a><a href="ntm.html#NTM-instances">EC2 Instance Recommendation for the NTM
+                Algorithm</a><a href="ntm.html#NTM-sample-notebooks">Sample Notebooks</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="ntm">Neural Topic Model (NTM) Algorithm</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon SageMaker NTM is an unsupervised learning algorithm that is used to organize a corpus of
+        documents into <em>topics</em> that contain word groupings based on their
+        statistical distribution. Documents that contain frequent occurrences of words such as
+        "bike", "car", "train", "mileage", and "speed" are likely to share a topic on
+        "transportation" for example. Topic modeling can be used to classify or summarize documents
+        based on the topics detected or to retrieve information or recommend content based on topic
+        similarities. The topics from documents that NTM learns are characterized as a
+            <em>latent representation</em> because the topics are inferred from the
+        observed word distributions in the corpus. The semantics of topics are usually inferred by
+        examining the top ranking words they contain. Because the method is unsupervised, only the
+        number of topics, not the topics themselves, are prespecified. In addition, the topics are
+        not guaranteed to align with how a human might naturally categorize documents.</p><p>Topic modeling provides a way to visualize the contents of a large document corpus in
+        terms of the learned topics. Documents relevant to each topic might be indexed or searched
+        for based on their soft topic labels. The latent representations of documents might also be
+        used to find similar documents in the topic space. You can also use the latent
+        representations of documents that the topic model learns for input to another supervised
+        algorithm such as a document classifier. Because the latent representations of documents are
+        expected to capture the semantics of the underlying documents, algorithms based in part on
+        these representations are expected to perform better than those based on lexical features
+        alone.</p><p>Although you can use both the Amazon SageMaker NTM and LDA algorithms for topic modeling, they are
+        distinct algorithms and can be expected to produce different results on the same input
+        data.</p><p>For more information on the mathematics behind NTM, see <a href="https://arxiv.org/pdf/1511.06038.pdf" rel="noopener noreferrer" target="_blank"><span>Neural Variational Inference for Text
+            Processing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><div class="highlights"><h6>Topics</h6><ul><li><a href="ntm.html#NTM-inputoutput">Input/Output Interface for the NTM Algorithm</a></li><li><a href="ntm.html#NTM-instances">EC2 Instance Recommendation for the NTM
+                Algorithm</a></li><li><a href="ntm.html#NTM-sample-notebooks">NTM Sample Notebooks</a></li><li><a href="ntm_hyperparameters.html">NTM Hyperparameters</a></li><li><a href="ntm-tuning.html">Tune an NTM Model</a></li><li><a href="ntm-in-formats.html">NTM Response Formats</a></li></ul></div>
+        <h2 id="NTM-inputoutput">Input/Output Interface for the NTM Algorithm</h2>
+        <p>Amazon SageMaker Neural Topic Model supports four data channels: train, validation, test, and
+            auxiliary. The validation, test, and auxiliary data channels are optional. If you
+            specify any of these optional channels, set the value of the
+                <code class="code">S3DataDistributionType</code> parameter for them to
+                <code class="code">FullyReplicated</code>. If you provide validation data, the loss on this data
+            is logged at every epoch, and the model stops training as soon as it detects that the
+            validation loss is not improving. If you don't provide validation data, the algorithm
+            stops early based on the training data, but this can be less efficient. If you provide
+            test data, the algorithm reports the test loss from the final model. </p>
+        <p>The train, validation, and test data channels for NTM support both
+                <code class="code">recordIO-wrapped-protobuf</code> (dense and sparse) and <code class="code">CSV</code> file
+            formats. For <code class="code">CSV</code> format, each row must be represented densely with zero
+            counts for words not present in the corresponding document, and have dimension equal to:
+            (number of records) *
+            (vocabulary
+            size). You can use either File mode or Pipe mode to train models on
+            data that is formatted as <code class="code">recordIO-wrapped-protobuf</code> or as <code class="code">CSV</code>.
+            The auxiliary channel is used to supply a text file that contains vocabulary. By
+            supplying the vocabulary file, users are able to see the top words for each of the
+            topics printed in the log instead of their integer IDs. Having the vocabulary file also
+            allows NTM to compute the Word Embedding Topic Coherence (WETC) scores, a new metric
+            displayed in the log that captures similarity among the top words in each topic
+            effectively. The <code class="code">ContentType</code> for the auxiliary channel is
+                <code class="code">text/plain</code>, with each line containing a single word, in the order
+            corresponding to the integer IDs provided in the data. The vocabulary file must be named
+                <code>vocab.txt</code> and currently only UTF-8 encoding is supported. </p>
+        <p>For inference, <code class="code">text/csv</code>, <code class="code">application/json</code>,
+                <code class="code">application/jsonlines</code>, and <code class="code">application/x-recordio-protobuf</code>
+            content types are supported. Sparse data can also be passed for
+                <code class="code">application/json</code> and <code class="code">application/x-recordio-protobuf</code>. NTM
+            inference returns <code class="code">application/json</code> or
+                <code class="code">application/x-recordio-protobuf</code>
+            <em>predictions</em>, which include the <code class="code">topic_weights</code> vector
+            for each observation.</p>
+        <p>See the <a href="https://aws.amazon.com/blogs/machine-learning/amazon-sagemaker-neural-topic-model-now-supports-auxiliary-vocabulary-channel-new-topic-evaluation-metrics-and-training-subsampling/" rel="noopener noreferrer" target="_blank"><span>blog post</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and the companion <a href="https://sagemaker-examples.readthedocs.io/en/latest/scientific_details_of_algorithms/ntm_topic_modeling/ntm_wikitext.html" rel="noopener noreferrer" target="_blank"><span>notebook</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> for more details on using the auxiliary channel and the WETC
+            scores. For more information on how to compute the WETC score, see <a href="https://arxiv.org/pdf/1809.02687.pdf" rel="noopener noreferrer" target="_blank"><span>Coherence-Aware Neural Topic
+                Modeling</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. We used the pairwise WETC described in this paper for the Amazon SageMaker
+            Neural Topic Model.</p>
+        <p>For more information on input and output file formats, see <a href="ntm-in-formats.html">NTM Response Formats</a> for inference and the
+                <a href="ntm.html#NTM-sample-notebooks">NTM Sample Notebooks</a>.</p>
+     
+        <h2 id="NTM-instances">EC2 Instance Recommendation for the NTM
+                Algorithm</h2>
+
+        <p>NTM training supports both GPU and CPU instance types. We recommend GPU instances, but
+            for certain workloads, CPU instances may result in lower training costs. CPU instances
+            should be sufficient for inference. NTM training supports P2, P3, G4dn, and G5 GPU instance families for training and inference.</p>
+     
+        <h2 id="NTM-sample-notebooks">NTM Sample Notebooks</h2>
+
+        <p>For a sample notebook that uses the SageMaker NTM algorithm to uncover topics in documents
+            from a synthetic data source where the topic distributions are known, see the <a href="https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_amazon_algorithms/ntm_synthetic/ntm_synthetic.html" rel="noopener noreferrer" target="_blank"><span>Introduction to Basic Functionality of NTM</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. For instructions how to create
+            and access Jupyter notebook instances that you can use to run the example in SageMaker, see
+                <a href="nbi.html">Amazon SageMaker Notebook Instances</a>. Once you have created a notebook instance
+            and opened it, select the <b>SageMaker Examples</b> tab to see
+            a list of all the SageMaker samples. The topic modeling example notebooks using the NTM
+            algorithms are located in the <b>Introduction to Amazon
+                algorithms</b> section. To open a notebook, click on its <b>Use</b> tab and select <b>Create
+                copy</b>.</p>
+
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./lda-tuning.html">Model Tuning</div><div id="next" class="next-link" accesskey="n" href="./ntm_hyperparameters.html">Hyperparameters</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/ntm.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/ntm.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

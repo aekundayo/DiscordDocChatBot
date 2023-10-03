@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Retry Policy for Pipeline Steps - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="pipelines-retry-policy" /><meta name="default_state" content="pipelines-retry-policy" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="pipelines-retry-policy.html" /><meta name="description" content="This is a retry policy to help retry SageMaker Pipelines steps after an error occurs." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="pipelines-retry-policy.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/pipelines-retry-policy.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/pipelines-retry-policy.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/pipelines-retry-policy.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/pipelines-retry-policy.html" hreflang="de" /><link rel="alternative" href="pipelines-retry-policy.html" hreflang="en-us" /><link rel="alternative" href="pipelines-retry-policy.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/pipelines-retry-policy.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/pipelines-retry-policy.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/pipelines-retry-policy.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/pipelines-retry-policy.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/pipelines-retry-policy.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/pipelines-retry-policy.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/pipelines-retry-policy.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/pipelines-retry-policy.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/pipelines-retry-policy.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/pipelines-retry-policy.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/pipelines-retry-policy.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/pipelines-retry-policy.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/pipelines-retry-policy.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/pipelines-retry-policy.html" hreflang="zh-tw" /><link rel="alternative" href="pipelines-retry-policy.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Retry Policy for Pipeline Steps" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Retry Policy for Pipeline Steps - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#pipelines-retry-policy" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/pipelines-retry-policy.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/pipelines-retry-policy.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/pipelines-retry-policy.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Implement MLOps",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/mlops.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "SageMaker Workflows",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/workflows.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Amazon SageMaker Model Building Pipelines",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "SageMaker Pipelines Overview",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-sdk.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Retry Policy for Pipeline Steps",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-sdk.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#pipelines-retry-policy" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="pipelines-retry-policy.html#pipelines-retry-policy-supported-exceptions">Supported exception types for
+        the retry policy</a><a href="pipelines-retry-policy.html#pipelines-retry-policy-json-schema">The JSON schema for the retry
+        policy</a><a href="pipelines-retry-policy.html#pipelines-configuring-retry-policy">Retry policy
+        example</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="pipelines-retry-policy">Retry Policy for Pipeline Steps</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Retry policies help you automatically retry your SageMaker Pipelines steps after an error occurs. Any
+    pipeline step can encounter exceptions, and exceptions happen for various reasons. In some
+    cases, a retry can resolve these issues. With a retry policy for pipeline steps, you can choose
+    whether to retry a particular pipeline step or not.</p><p>The retry policy only supports the following pipeline steps:</p><div class="itemizedlist">
+     
+     
+     
+     
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><a href="build-and-manage-steps.html#step-type-processing">Processing Step</a>
+      </p>
+    </li><li class="listitem">
+      <p><a href="build-and-manage-steps.html#step-type-training">Training Step</a>
+      </p>
+    </li><li class="listitem">
+      <p><a href="build-and-manage-steps.html#step-type-tuning">Tuning Step</a>
+      </p>
+    </li><li class="listitem">
+      <p><a href="build-and-manage-steps.html#step-type-automl">AutoML Step</a>
+      </p>
+    </li><li class="listitem">
+      <p><a href="build-and-manage-steps.html#step-type-create-model">CreateModel Step</a>
+      </p>
+    </li><li class="listitem">
+      <p><a href="build-and-manage-steps.html#step-type-register-model">RegisterModel Step</a>
+      </p>
+    </li><li class="listitem">
+      <p><a href="build-and-manage-steps.html#step-type-transform">Transform Step</a>
+      </p>
+    </li></ul></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Jobs running inside both the tuning and AutoML steps conduct retries internally and will
+      not retry the <code class="code">SageMaker.JOB_INTERNAL_ERROR</code> exception type, even if a retry policy
+      is configured. You can program your own <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_RetryStrategy.html"> Retry Strategy</a> using the
+      SageMaker API.</p></div></div><p></p>
+    <h2 id="pipelines-retry-policy-supported-exceptions">Supported exception types for
+        the retry policy</h2>
+    <p>The retry policy for pipeline steps supports the following exception types:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><code class="code">Step.SERVICE_FAULT</code>: These exceptions occur when an internal server error
+          or transient error happens when calling downstream services. SageMaker Pipelines retries on this type of
+          error automatically. With a retry policy, you can override the default retry operation for
+          this exception type.</p>
+      </li><li class="listitem">
+        <p><code class="code">Step.THROTTLING</code>: Throttling exceptions can occur while calling the
+          downstream services. SageMaker Pipelines retries on this type of error automatically. With a retry
+          policy, you can override the default retry operation for this exception type.</p>
+      </li><li class="listitem">
+        <p><code class="code">SageMaker.JOB_INTERNAL_ERROR</code>: These exceptions occur when the SageMaker job
+          returns <code class="code">InternalServerError</code>. In this case, starting a new job may fix a
+          transient issue.</p>
+      </li><li class="listitem">
+        <p><code class="code">SageMaker.CAPACITY_ERROR</code>: The SageMaker job may encounter Amazon EC2
+            <code class="code">InsufficientCapacityErrors</code>, which leads to the SageMaker job’s failure. You can
+          retry by starting a new SageMaker job to avoid the issue. </p>
+      </li><li class="listitem">
+        <p><code class="code">SageMaker.RESOURCE_LIMIT</code>: You can exceeed the resource limit quota when
+          running a SageMaker job. You can wait and retry running the SageMaker job after a short period and
+          see if resources are released.</p>
+      </li></ul></div>
+   
+    <h2 id="pipelines-retry-policy-json-schema">The JSON schema for the retry
+        policy</h2>
+    <p>The retry policy for Pipelines has the following JSON schema:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json ">"RetryPolicy": <span>{</span>
+   "ExceptionType": [String]
+   "IntervalSeconds": Integer
+   "BackoffRate": Double
+   "MaxAttempts": Integer
+   "ExpireAfterMin": Integer
+}</code></pre>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><code class="code">ExceptionType</code>: This field requires the following exception types in a
+          string array format.</p>
+        <div class="itemizedlist">
+           
+           
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><code class="code">Step.SERVICE_FAULT</code></p>
+          </li><li class="listitem">
+            <p><code class="code">Step.THROTTLING</code></p>
+          </li><li class="listitem">
+            <p><code class="code">SageMaker.JOB_INTERNAL_ERROR</code></p>
+          </li><li class="listitem">
+            <p><code class="code">SageMaker.CAPACITY_ERROR</code></p>
+          </li><li class="listitem">
+            <p><code class="code">SageMaker.RESOURCE_LIMIT</code></p>
+          </li></ul></div>
+      </li><li class="listitem">
+        <p><code class="code">IntervalSeconds</code> (optional): The number of seconds before the first retry
+          attempt (1 by default). <code class="code">IntervalSeconds</code> has a maximum value of 43200 seconds
+          (12 hours).</p>
+      </li><li class="listitem">
+        <p><code class="code">BackoffRate</code> (optional): The multiplier by which the retry interval
+          increases during each attempt (2.0 by default).</p>
+      </li><li class="listitem">
+        <p><code class="code">MaxAttempts</code> (optional): A positive integer that represents the maximum
+          number of retry attempts (5 by default). If the error recurs more times than
+            <code class="code">MaxAttempts</code> specifies, retries cease and normal error handling resumes. A
+          value of 0 specifies that errors are never retried. <code class="code">MaxAttempts</code> has a maximum
+          value of 20.</p>
+      </li><li class="listitem">
+        <p><code class="code">ExpireAfterMin</code> (optional): A positive integer that represents the maximum
+          timespan of retry. If the error recurs after <code class="code">ExpireAfterMin</code> minutes counting
+          from the step gets executed, retries cease and normal error handling resumes. A value of 0
+          specifies that errors are never retried. <code class="code">ExpireAfterMin </code> has a maximum value
+          of 14,400 minutes (10 days).</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Only one of <code class="code">MaxAttempts</code> or <code class="code">ExpireAfterMin</code> can be given,
+            but not both; if both are <em>not</em> specified, <code class="code">MaxAttempts</code>
+            becomes the default. If both properties are identified within one policy, then the retry
+            policy generates a validation error.</p></div></div>
+      </li></ul></div>
+   
+    <h2 id="pipelines-configuring-retry-policy">Configuring a retry policy</h2>
+
+    <p>The following is an example of a training step with a retry policy.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+    "Steps": [
+        <span>{</span>
+            "Name": "<code class="replaceable">MyTrainingStep</code>",
+            "Type": "Training",
+            "RetryPolicies": [
+                <span>{</span>
+                    "ExceptionType": [
+                        "<code class="replaceable">SageMaker.JOB_INTERNAL_ERROR</code>",
+                        "<code class="replaceable">SageMaker.CAPACITY_ERROR</code>"
+                    ],
+                    "IntervalSeconds": <code class="replaceable">1</code>,
+                    "BackoffRate": <code class="replaceable">2</code>,
+                    "MaxAttempts": <code class="replaceable">5</code>
+                }
+            ]
+        }
+    ]
+}</code></pre>
+    <p></p>
+    <p>The following is an example of how to build a <code class="code">TrainingStep</code> in SDK for Python (Boto3) with
+      a retry policy.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="Python ">from sagemaker.workflow.retry import (
+    StepRetryPolicy, 
+    StepExceptionTypeEnum,
+    SageMakerJobExceptionTypeEnum,
+    SageMakerJobStepRetryPolicy
+)
+
+step_train = TrainingStep(
+    name="<code class="replaceable">MyTrainingStep</code>",
+    xxx,
+    retry_policies=[
+        // override the default 
+        StepRetryPolicy(
+            exception_types=[
+                <code class="replaceable">StepExceptionTypeEnum.SERVICE_FAULT</code>, 
+                <code class="replaceable">StepExceptionTypeEnum.THROTTLING</code>
+            ],
+            expire_after_mins=<code class="replaceable">5</code>,
+            interval_seconds=<code class="replaceable">10</code>,
+            backoff_rate=<code class="replaceable">2.0</code> 
+        ),
+        // retry when resource limit quota gets exceeded
+        SageMakerJobStepRetryPolicy(
+            exception_types=[<code class="replaceable">SageMakerJobExceptionTypeEnum.RESOURCE_LIMIT</code>],
+            expire_after_mins=<code class="replaceable">120</code>,
+            interval_seconds=<code class="replaceable">60</code>,
+            backoff_rate=<code class="replaceable">2.0</code>
+        ),
+        // retry when job failed due to transient error or EC2 ICE.
+        SageMakerJobStepRetryPolicy(
+            failure_reason_types=[
+                <code class="replaceable">SageMakerJobExceptionTypeEnum.INTERNAL_ERROR</code>,
+                <code class="replaceable">SageMakerJobExceptionTypeEnum.CAPACITY_ERROR</code>,
+            ],
+            max_attempts=<code class="replaceable">10</code>,
+            interval_seconds=<code class="replaceable">30</code>,
+            backoff_rate=<code class="replaceable">2.0</code>
+        )
+    ]
+)</code></pre>
+    <p>For more information on configuring retry behavior for certain step types, see
+          <em><a href="https://sagemaker.readthedocs.io/en/stable/amazon_sagemaker_model_building_pipeline.html#retry-policy" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Model Building Pipelines - Retry Policy</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></em> in the Amazon SageMaker Python SDK
+      documentation.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./pipelines-caching.html">Caching Pipeline Steps</div><div id="next" class="next-link" accesskey="n" href="./pipelines-selective-ex.html">Selective Execution</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/pipelines-retry-policy.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/pipelines-retry-policy.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

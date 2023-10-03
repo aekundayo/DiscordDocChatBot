@@ -1,0 +1,2084 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configure the Analysis - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="clarify-processing-job-configure-analysis" /><meta name="default_state" content="clarify-processing-job-configure-analysis" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="clarify-processing-job-configure-analysis.html" /><meta name="description" content="Learn how to specify the inputs to configure the analysis for explainability and bias." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="clarify-processing-job-configure-analysis.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" hreflang="de" /><link rel="alternative" href="clarify-processing-job-configure-analysis.html" hreflang="en-us" /><link rel="alternative" href="clarify-processing-job-configure-analysis.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" hreflang="zh-tw" /><link rel="alternative" href="clarify-processing-job-configure-analysis.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Configure the Analysis" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Configure the Analysis - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#clarify-processing-job-configure-analysis" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,explainability,bias,configure container,Configure SageMaker Clarify Processing Job,analysis configuration,analyze data explainability bias" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Detect bias and understand explanations",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/model-explainability.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Use Amazon SageMaker Clarify Bias Detection and Model Explainability",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-configure-processing-jobs.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Configure a SageMaker Clarify Processing Job",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-processing-job-configure-parameters.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Configure the Analysis",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-processing-job-configure-parameters.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#clarify-processing-job-configure-analysis" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="clarify-processing-job-configure-analysis.html#clarify-processing-job-configure-schema">Schema for the analysis
+                configuration file</a><a href="clarify-processing-job-configure-analysis.html#clarify-processing-job-configure-analysis-examples">Example analysis
+                configuration files</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="clarify-processing-job-configure-analysis">Configure the Analysis</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>To analyze your data and models for explainability and bias using SageMaker Clarify, you must
+        configure a <a href="clarify-processing-job-configure-parameters.html">SageMaker Clarify
+            processing job</a>. Part of the configuration for this processing job includes the
+        configuration of an analysis file. The analysis file specifies the parameters for bias
+        analysis and explainability.</p><p>This guide describes the schema and parameters for this analysis configuration file. This
+        guide also includes examples of analysis configuration files for computing bias metrics for
+        a tabular dataset, and generating explanations for natural language processing (NLP) and
+        computer vision (CV) problems.</p><p>You can create the analysis configuration file or use the <a href="https://sagemaker.readthedocs.io/" rel="noopener noreferrer" target="_blank"><span>SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to generate one for you
+        with the <a href="https://sagemaker.readthedocs.io/en/stable/api/training/processing.html#sagemaker.clarify.SageMakerClarifyProcessor" rel="noopener noreferrer" target="_blank"><span>SageMaker ClarifyProcessor</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> API. Viewing the file contents can be helpful for understanding
+        the underlying configuration used by the SageMaker Clarify job.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="clarify-processing-job-configure-analysis.html#clarify-processing-job-configure-schema">Schema for the analysis
+                configuration file</a></li><li><a href="clarify-processing-job-configure-analysis.html#clarify-processing-job-configure-analysis-examples">Example analysis
+                configuration files</a></li></ul></div>
+        <h2 id="clarify-processing-job-configure-schema">Schema for the analysis
+                configuration file</h2>
+        <p>The following section describes the schema for the analysis configuration file
+            including requirements and descriptions of parameters.</p>
+         
+            <h3 id="clarify-processing-job-configure-schema-requirements">Requirements
+                    for the analysis configuration file</h3>
+            <p> The SageMaker Clarify processing job expects the analysis configuration file to be structured
+                with the following requirements:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>The processing input name must be <code class="code">analysis_config.</code></p>
+                </li><li class="listitem">
+                    <p>The analysis configuration file is in JSON format, and encoded in
+                        UTF-8.</p>
+                </li><li class="listitem">
+                    <p>The analysis configuration file is an Amazon S3 object.</p>
+                </li></ul></div>
+            <p>You can specify additional parameters in the analysis configuration file. The
+                following section provides various options to tailor the SageMaker Clarify processing job for
+                your use case and desired types of analysis.</p>
+         
+        <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="Parameters for analysis configuration files" id="clarify-processing-job-configure-analysis-parameters" expanded="false"><p>In the analysis configuration file, you can specify the following
+                    parameters.</p><div class="itemizedlist">
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p><span class="topcom">version</span> – (Optional) The version
+                            string of the analysis configuration file schema. If a version is not
+                            provided, SageMaker Clarify uses the latest supported version. Currently, the only
+                            supported version is <code class="code">1.0</code>.</p>
+                    </li><li class="listitem">
+                        <p><span class="topcom">dataset_type</span> – The format of the
+                            dataset. The input dataset format can be any of the following
+                            values:</p>
+                        <div class="itemizedlist">
+                             
+                             
+                             
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p><code class="code">text/csv</code> for CSV</p>
+                            </li><li class="listitem">
+                                <p><code class="code">application/jsonlines</code> for <a href="cdf-inference.html#cm-jsonlines">SageMaker JSON Lines dense format</a></p>
+                            </li><li class="listitem">
+                                <p><code class="code">application/json</code> for JSON</p>
+                            </li><li class="listitem">
+                                <p><code class="code">application/x-parquet</code> for Apache Parquet</p>
+                            </li><li class="listitem">
+                                <p><code class="code">application/x-image</code> to activate explainability
+                                    for computer vision problems</p>
+                            </li></ul></div>
+                    </li><li class="listitem">
+                        <p><span class="topcom">dataset_uri</span> – (Optional) The
+                            uniform resource identifier (URI) of the main dataset. If you provide a
+                            S3 URI prefix, the SageMaker Clarify processing job recursively collects all S3
+                            files located under the prefix. You can provide either a S3 URI prefix
+                            or a S3 URI to an image manifest file for computer vision problems. If
+                                <code class="code">dataset_uri</code> is provided, it takes precedence over the
+                            dataset processing job input. For any format type except image, the
+                            SageMaker Clarify processing job loads the input dataset into a tabular data frame,
+                            as a <b>tabular dataset</b>. This format
+                            allows SageMaker to easily manipulate and analyze the input dataset.</p>
+                    </li><li class="listitem">
+                        <p><span class="topcom">headers</span> – (Optional) An array of
+                            strings containing the column names of a tabular dataset. If a value for
+                                <code class="code">headers</code> is not provided, then the SageMaker Clarify processing job
+                            reads the headers from the dataset. If the dataset doesn’t have headers,
+                            then the SageMaker Clarify processing job will automatically generate placeholder
+                            names based on zero-based column index. As an example, placeholder names
+                            for the first and second columns will be
+                            <code class="userinput">column_0</code>, <code class="userinput">column_1</code>.</p>
+                        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>By convention, if dataset_type is
+                                    <code class="code">application/jsonlines</code> or
+                                    <code class="code">application/json</code> then <code class="code">headers</code> should
+                                contain the following names in order: feature names, label name (if
+                                    <code class="code">label</code> is specified), and predicted label name (if
+                                    <code class="code">predicted_label</code> is specified). An example for
+                                    <code class="code">headers</code> for an <code class="code">application/jsonlines</code>
+                                dataset type if <code class="code">label</code> is specified is:
+                                    <code class="code">["feature1","feature2","feature3","target_label"]</code>.</p></div></div>
+                    </li><li class="listitem">
+                        <p><span class="topcom">label</span> – (Optional) A string or a
+                            zero-based integer index. If provided, <code class="code">label</code> is used to
+                            locate the ground truth label, also known as an observed label or target
+                            attribute in a tabular dataset. The ground truth label is used to
+                            compute bias metrics. The value for <code class="code">label</code> is specified
+                            depending on the value of the <code class="code">dataset_type</code> parameter as
+                            follows.</p>
+                        <div class="itemizedlist">
+                             
+                             
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p>If <code class="code">dataset_type</code> is
+                                        <code class="userinput">text/csv</code>, <code class="code">label</code> can be
+                                    specified as either of the following:</p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p>A valid column name</p>
+                                    </li><li class="listitem">
+                                        <p>An index that lies within the range of dataset
+                                            columns</p>
+                                    </li></ul></div>
+                            </li><li class="listitem">
+                                <p>If <code class="code">dataset_type</code> is
+                                        <code class="userinput">application/parquet</code>,
+                                        <code class="code">label</code> must be a valid column name.</p>
+                            </li><li class="listitem">
+                                <p>If <code class="code">dataset_type</code> is
+                                        <code class="userinput">application/jsonlines</code>,
+                                        <code class="code">label</code> must be a <a href="https://jmespath.org/" rel="noopener noreferrer" target="_blank"><span>JMESPath</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> expression
+                                    written to extract the ground truth label from the dataset. By
+                                    convention, if <code class="code">headers</code> is specified, then it should
+                                    contain the label name.</p>
+                            </li><li class="listitem">
+                                <p>If <code class="code">dataset_type</code> is
+                                        <code class="userinput">application/json</code>, <code class="code">label</code>
+                                    must be a <a href="https://jmespath.org/" rel="noopener noreferrer" target="_blank"><span>JMESPath</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+                                    expression written to extract the ground truth label for each
+                                    record in the dataset. This JMESPath expression must produce a
+                                    list of labels where the i<sup>th</sup> label
+                                    correlates to the i<sup>th</sup> record.</p>
+                            </li></ul></div>
+                    </li><li class="listitem">
+                        <p><span class="topcom">predicted_label</span> – (Optional) A
+                            string or a zero-based integer index. If provided,
+                                <code class="code">predicted_label</code> is used to locate the column containing
+                            the predicted label in a tabular dataset. The predicted label is used to
+                            compute post-training <b>bias metrics</b>. The
+                            parameter <code class="code">predicted_label</code> is optional if the dataset
+                            doesn’t include predicted label. If predicted labels are required for
+                            computation, then the SageMaker Clarify processing job will get predictions from the
+                            model.</p>
+                        <p>The value for <code class="code">predicted_label</code> is specified depending on
+                            the value of the <code class="code">dataset_type</code> as follows:</p>
+                        <div class="itemizedlist">
+                             
+                             
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p>If <code class="code">dataset_type</code> is
+                                        <code class="userinput">text/csv</code>,
+                                        <code class="code">predicted_label</code> can be specified as either of
+                                    the following:</p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p>A valid column name. If
+                                                <code class="code">predicted_label_dataset_uri</code> is
+                                            specified, but <code class="code">predicted_label</code> is not
+                                            provided, the default predicted label name is
+                                            "predicted_label". </p>
+                                    </li><li class="listitem">
+                                        <p>An index that lies within the range of dataset
+                                            columns. If <code class="code">predicted_label_dataset_uri</code> is
+                                            specified, then the index is used to locate the
+                                            predicted label column in the predicted label
+                                            dataset.</p>
+                                    </li></ul></div>
+                            </li><li class="listitem">
+                                <p>If dataset_type is
+                                        <code class="userinput">application/x-parquet</code>,
+                                        <code class="code">predicted_label</code> must be a valid column
+                                    name.</p>
+                            </li><li class="listitem">
+                                <p>If dataset_type is
+                                        <code class="userinput">application/jsonlines</code>,
+                                        <code class="code">predicted_label</code> must be a valid <a href="https://jmespath.org/" rel="noopener noreferrer" target="_blank"><span>JMESPath</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> expression
+                                    written to extract the predicted label from the dataset. By
+                                    convention, if <code class="code">headers</code> is specified, then it should
+                                    contain the predicted label name. </p>
+                            </li><li class="listitem">
+                                <p>If <code class="code">dataset_type</code> is
+                                        <code class="userinput">application/json</code>,
+                                        <code class="code">predicted_label</code> must be a <a href="https://jmespath.org/" rel="noopener noreferrer" target="_blank"><span>JMESPath</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> expression
+                                    written to extract the predicted label for each record in the
+                                    dataset. The JMESPath expression should produce a list of
+                                    predicted labels where the i<sup>th</sup>
+                                    predicted label is for the i<sup>th</sup>
+                                    record.</p>
+                            </li></ul></div>
+                    </li><li class="listitem">
+                        <p><span class="topcom">features</span> – Required if
+                            dataset_type is <code class="code">application/jsonlines</code> or
+                                <code class="code">application/json</code>. A JMESPath string expression written
+                            to locate the features in the input dataset. For
+                                <code class="code">application/jsonlines</code>, a JMESPath expression will be
+                            applied to each line to extract the features for that record. For
+                                <code class="code">application/json</code>, a JMESPath expression will be applied
+                            to the whole input dataset. The JMESPath expression should extract a
+                            list of lists, or a 2D array/matrix of features where the
+                                i<sup>th</sup> row contains the features that
+                            correlate to the i<sup>th</sup> record. For a
+                                <code class="code">dataset_type</code> of <code class="code">text/csv</code> or
+                                <code class="code">application/x-parquet</code>, all columns except for the
+                            ground truth label and predicted label columns are automatically
+                            assigned to be features.</p>
+                    </li><li class="listitem">
+                        <p><span class="topcom">predicted_label_dataset_uri</span> –
+                            Only applicable when dataset_type is <code class="code">text/csv</code>. The S3 URI
+                            for a dataset containing predicted labels used to compute post-training
+                                <b>bias metrics</b>. The SageMaker Clarify processing
+                            job will load the predictions from the provided URI instead of getting
+                            predictions from the model. In this case, <code class="code">predicted_label</code>
+                            is required to locate the predicted label column in the predicted label
+                            dataset. If the predicted label dataset or the main dataset is split
+                            across multiple files, an identifier column must be specified by
+                                <code class="code">joinsource_name_or_index</code> to join the two datasets.
+                        </p>
+                    </li><li class="listitem">
+                        <p><span class="topcom">predicted_label_headers</span> – Only
+                            applicable when <code class="code">predicted_label_dataset_uri</code> is specified.
+                            An array of strings containing the column names of the predicted label
+                            dataset. Besides the predicted label header,
+                                <code class="code">predicted_label_headers</code> can also contain the header of
+                            the identifier column to join the predicted label dataset and the main
+                            dataset. For more information, see the following description for the
+                            parameter <code class="code">joinsource_name_or_index</code>.</p>
+                    </li><li class="listitem">
+                        <p><span class="topcom">joinsource_name_or_index</span> – The
+                            name or zero-based index of the column in tabular datasets to be used as
+                            a identifier column while performing an inner join. This column is only
+                            used as an identifier. It isn't used for any other computations like
+                            bias analysis or feature attribution analysis. A value for
+                                <code class="code">joinsource_name_or_index</code> is needed in the following
+                            cases:</p>
+                        <div class="itemizedlist">
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p>There are multiple input datasets, and any one is split across
+                                    multiple files.</p>
+                            </li><li class="listitem">
+                                <p>Distributed processing is activated by setting the SageMaker Clarify
+                                    processing job <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ProcessingClusterConfig.html#sagemaker-Type-ProcessingClusterConfig-InstanceCount">InstanceCount</a> to a value greater than
+                                        <code class="code">1</code>.</p>
+                            </li></ul></div>
+                    </li><li class="listitem">
+                        <p><span class="topcom">excluded_columns</span> – (Optional) An
+                            array of names or zero-based indices of columns to be excluded from
+                            being sent to the model as input for predictions. Ground truth label and
+                            predicted label are automatically excluded already.</p>
+                    </li><li class="listitem">
+                        <p><span class="topcom">probability_threshold</span> –
+                            (Optional) A floating point number above which, a label or object is
+                            selected. The default value is <code class="code">0.5</code>. The SageMaker Clarify processing
+                            job uses <code class="code">probability_threshold</code> in the following
+                            cases:</p>
+                        <div class="itemizedlist">
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p>In post-training bias analysis,
+                                        <code class="code">probability_threshold</code> converts a numeric model
+                                    prediction (probability value or score) to a binary label, if
+                                    the model is a binary classifier. A score greater than the
+                                    threshold is converted to <code class="code">1</code>. Whereas, a score less
+                                    than or equal to the threshold is converted to
+                                    <code class="code">0</code>.</p>
+                            </li><li class="listitem">
+                                <p>In computer vision explainability problems, if model_type is
+                                        <code class="userinput">OBJECT_DETECTION</code><code class="code">,
+                                        probability_threshold</code> filters out objects detected
+                                    with confidence scores lower than the threshold value.</p>
+                            </li></ul></div>
+                    </li><li class="listitem">
+                        <p><span class="topcom">label_values_or_threshold</span> –
+                            Required for bias analysis. An array of label values or a threshold
+                            number, which indicate positive outcome for ground truth and predicted
+                            labels for bias metrics. For more information, see positive label values
+                            in <a href="clarify-detect-data-bias.html#clarify-bias-and-fairness-terms">Amazon SageMaker Clarify Terms for Bias and Fairness</a>. If the label is
+                            numeric, the threshold is applied as the lower bound to select the
+                            positive outcome. To set <code class="code">label_values_or_threshold</code> for
+                            different problem types, refer to the following examples:</p>
+                        <div class="itemizedlist">
+                             
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p>For a binary classification problem, the label has two
+                                    possible values, <code class="code">0</code> and <code class="code">1</code>. If label
+                                    value <code class="code">1</code> is favorable to a demographic group
+                                    observed in a sample, then
+                                        <code class="code">label_values_or_threshold</code> should be set to
+                                        <code class="code">[1]</code>.</p>
+                            </li><li class="listitem">
+                                <p>For a multiclass classification problem, the label has three
+                                    possible values, <code class="userinput">bird</code>,
+                                        <code class="userinput">cat</code>, and <code class="userinput">dog</code>.
+                                    If the latter two define a demographic group that bias favors,
+                                    then <code class="code">label_values_or_threshold</code> should be set to
+                                        <code class="code">["cat","dog"]</code>.</p>
+                            </li><li class="listitem">
+                                <p>For a regression problem, the label value is continuous,
+                                    ranging from <code class="code">0</code> to <code class="code">1</code>. If a value
+                                    greater than <code class="code">0.5</code> should designate a sample as
+                                    having a positive result, then
+                                        <code class="code">label_values_or_threshold</code> should be set to
+                                        <code class="code">0.5</code>.</p>
+                            </li></ul></div>
+                    </li><li class="listitem">
+                        <p><span class="topcom">facet</span> – Required for bias
+                            analysis. An array of facet objects, which are composed of sensitive
+                            attributes against which bias is measured. You can use facets to
+                            understand the bias characteristics of your dataset and model even if
+                            your model is trained without using sensitive attributes. For more
+                            information, see <b>Facet</b> in <a href="clarify-detect-data-bias.html#clarify-bias-and-fairness-terms">Amazon SageMaker Clarify Terms for Bias and Fairness</a>. Each facet object
+                            includes the following fields:</p>
+                        <div class="itemizedlist">
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p><span class="topcom">name_or_index</span> – The name
+                                    or zero-based index of the sensitive attribute column in a
+                                    tabular dataset. If <code class="code">facet_dataset_uri</code> is specified,
+                                    then the index refers to the facet dataset instead of the main
+                                    dataset.</p>
+                            </li><li class="listitem">
+                                <p><span class="topcom">value_or_threshold</span> –
+                                    Required if <code class="code">facet</code> is numeric and
+                                        <code class="code">label_values_or_threshold</code> is applied as the
+                                    lower bound to select the sensitive group). An array of facet
+                                    values or a threshold number, that indicates the sensitive
+                                    demographic group that bias favors. If facet data type is
+                                    categorical and <code class="code">value_or_threshold</code> is not provided,
+                                    bias metrics are computed as one group for every unique value
+                                    (rather than all values). To set <code class="code">value_or_threshold</code>
+                                    for different <code class="code">facet</code> data types, refer to the
+                                    following examples:</p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p>For a binary facet data type, the feature has two
+                                            possible values, <code class="code">0</code> and <code class="code">1</code>. If
+                                            you want to compute the bias metrics for each value,
+                                            then <code class="code">value_or_threshold</code> can be either
+                                            omitted or set to an empty array.</p>
+                                    </li><li class="listitem">
+                                        <p>For a categorical facet data type, the feature has
+                                            three possible values <code class="userinput">bird</code>,
+                                                <code class="userinput">cat</code>, and
+                                                <code class="userinput">dog</code>. If the first two define
+                                            a demographic group that bias favors, then
+                                                <code class="code">value_or_threshold</code> should be set to
+                                                <code class="code">["bird", "cat"]</code>. In this example, the
+                                            dataset samples are split into two demographic groups.
+                                            The facet in the advantaged group has value
+                                                <code class="userinput">bird</code> or
+                                                <code class="userinput">cat</code>, while the facet in the
+                                            disadvantaged group has value
+                                            <code class="userinput">dog</code>.</p>
+                                    </li><li class="listitem">
+                                        <p>For a numeric facet data type, the feature value is
+                                            continuous, ranging from <code class="code">0</code> to
+                                                <code class="code">1</code>. As an example, if a value greater
+                                            than <code class="code">0.5</code> should designate a sample as
+                                            favored, then <code class="code">value_or_threshold</code> should be
+                                            set to <code class="code">0.5</code>. In this example, the dataset
+                                            samples are split into two demographic groups. The facet
+                                            in the advantaged group has value greater than
+                                                <code class="code">0.5</code>, while the facet in the
+                                            disadvantaged group has value less than or equal to
+                                                <code class="code">0.5</code>.</p>
+                                    </li></ul></div>
+                            </li></ul></div>
+                    </li><li class="listitem">
+                        <p><span class="topcom">group_variable</span> – The name or
+                            zero-based index of the column that indicates the subgroup to be used
+                            for the bias metric <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-data-bias-metric-cddl.html">Conditional Demographic Disparity</a> (CDD) or <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-cddpl.html">Conditional Demographic Disparity in Predicted Labels</a>
+                            (CDDPL).</p>
+                    </li><li class="listitem">
+                        <p><span class="topcom">facet_dataset_uri</span> – Only
+                            applicable when dataset_type is <code class="code">text/csv</code>. The S3 URI for a
+                            dataset containing sensitive attributes for bias analysis. You can use
+                            facets to understand the bias characteristics of your dataset and model
+                            even if your model is trained without using sensitive attributes.</p>
+                        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If the facet dataset or the main dataset is split across multiple
+                                files, an identifier column must be specified by
+                                    <code class="code">joinsource_name_or_index</code> to join the two datasets.
+                                You must use the parameter <code class="code">facet</code> to identify each facet
+                                in the facet dataset.</p></div></div>
+                    </li><li class="listitem">
+                        <p><span class="topcom">facet_headers</span> – (Only applicable
+                            when <code class="code">facet_dataset_uri</code> is specified) An array of strings
+                            containing column names for the facet dataset, and optionally, the
+                            identifier column header to join the facet dataset and the main dataset,
+                            see <code class="code">joinsource_name_or_index</code>.</p>
+                    </li><li class="listitem">
+                        <p><span class="topcom">methods</span> – An object containing
+                            one or more analysis methods and their parameters. If any method is
+                            omitted, it is neither used for analysis nor reported.</p>
+                        <div class="itemizedlist">
+                             
+                             
+                             
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p><span class="topcom">pre_training_bias</span> –
+                                    Include this method if you want to compute pre-training bias
+                                    metrics. The detailed description of the metrics can be found on
+                                        <a href="clarify-measure-data-bias.html">Measure Pre-training Bias</a>. The object has the
+                                    following parameters:</p>
+                                <div class="itemizedlist">
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p><span class="topcom">methods</span> – An
+                                            array that contains any of the pre-training bias metrics
+                                            from the following list that you want to compute. Set
+                                                <code class="code">methods</code> to <code class="userinput">all</code>
+                                            to compute all pre-training bias metrics. As an example,
+                                            the array <code class="code">["CI", "DPL"]</code> will compute
+                                                <b>Class Imbalance</b> and
+                                                <b>Difference in Proportions of
+                                                Labels</b>.</p>
+                                        <div class="itemizedlist">
+                                             
+                                             
+                                             
+                                             
+                                             
+                                             
+                                             
+                                             
+                                        <ul class="itemizedlist"><li class="listitem">
+                                                <p><code class="code">CI</code> for <a href="clarify-bias-metric-class-imbalance.html">Class Imbalance</a></p>
+                                            </li><li class="listitem">
+                                                <p><code class="code">DPL</code> for <a href="clarify-data-bias-metric-true-label-imbalance.html">Difference in Proportions of
+                                                  Labels</a></p>
+                                            </li><li class="listitem">
+                                                <p><code class="code">KL</code> for <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-data-bias-metric-kl-divergence.html">Kullback-Leibler Divergence</a></p>
+                                            </li><li class="listitem">
+                                                <p><code class="code">JS</code> for <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-data-bias-metric-jensen-shannon-divergence.html">Jensen-Shannon Divergence</a></p>
+                                            </li><li class="listitem">
+                                                <p><code class="code">LP</code> for <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-data-bias-metric-lp-norm.html">Lp-norm</a></p>
+                                            </li><li class="listitem">
+                                                <p><code class="code">TVD</code> for <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-data-bias-metric-total-variation-distance.html">Total Variation Distance</a></p>
+                                            </li><li class="listitem">
+                                                <p><code class="code">KS</code> for <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-data-bias-metric-kolmogorov-smirnov.html">Kolmogorov-Smirnov</a></p>
+                                            </li><li class="listitem">
+                                                <p><code class="code">CDDL</code> for <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-data-bias-metric-cddl.html">Conditional Demographic Disparity</a></p>
+                                            </li></ul></div>
+                                    </li></ul></div>
+                            </li><li class="listitem">
+                                <p><span class="topcom">post_training_bias</span> –
+                                    Include this method if you want to compute post-training bias
+                                    metrics. The detailed description of the metrics can be found on
+                                        <a href="clarify-measure-post-training-bias.html">Measure Post-training Bias</a>. The
+                                        <code class="code">post_training_bias</code> object has the following
+                                    parameters.</p>
+                                <div class="itemizedlist">
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p><span class="topcom">methods</span> – An
+                                            array that contains any of the post-training bias
+                                            metrics from the following list that you want to
+                                            compute. Set <code class="code">methods</code> to
+                                                <code class="userinput">all</code> to compute all
+                                            post-training bias metrics. As an example, the array
+                                                <code class="code">["DPPL", "DI"]</code> computes the <b>Difference in Positive Proportions in
+                                                Predicted Labels</b> and <b>Disparate Impact</b>. The
+                                            available methods are as follows.</p>
+                                        <div class="itemizedlist">
+                                             
+                                             
+                                             
+                                             
+                                             
+                                             
+                                             
+                                             
+                                             
+                                             
+                                             
+                                             
+                                             
+                                        <ul class="itemizedlist"><li class="listitem">
+                                                <p><code class="code">DPPL</code> for <a href="clarify-post-training-bias-metric-dppl.html">Difference in Positive Proportions in Predicted
+                                                  Labels</a></p>
+                                            </li><li class="listitem">
+                                                <p><code class="code">DI</code>for <a href="clarify-post-training-bias-metric-di.html">Disparate Impact</a></p>
+                                            </li><li class="listitem">
+                                                <p><code class="code">DCA</code> for <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-dcacc.html">Difference in Conditional
+                                                  Acceptance</a></p>
+                                            </li><li class="listitem">
+                                                <p><code class="code">DCR</code> for <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-dcr.html">Difference in Conditional
+                                                  Rejection</a></p>
+                                            </li><li class="listitem">
+                                                <p><code class="code">SD</code> for <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-sd.html">Specificity difference</a></p>
+                                            </li><li class="listitem">
+                                                <p><code class="code">RD</code> for <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-rd.html">Recall Difference</a></p>
+                                            </li><li class="listitem">
+                                                <p><code class="code">DAR</code> for <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-dar.html">Difference in Acceptance Rates</a></p>
+                                            </li><li class="listitem">
+                                                <p><code class="code">DRR</code> for <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-drr.html">Difference in Rejection Rates</a></p>
+                                            </li><li class="listitem">
+                                                <p><code class="code">AD</code> for <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-ad.html">Accuracy Difference</a></p>
+                                            </li><li class="listitem">
+                                                <p><code class="code">TE</code> for <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-te.html">Treatment Equality</a></p>
+                                            </li><li class="listitem">
+                                                <p><code class="code">CDDPL</code> for <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-cddpl.html">Conditional Demographic Disparity in Predicted
+                                                  Labels</a></p>
+                                            </li><li class="listitem">
+                                                <p><code class="code">FT</code> for <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-ft.html">Counterfactual Fliptest</a></p>
+                                            </li><li class="listitem">
+                                                <p><code class="code">GE</code> for <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-ge.html">Generalized entropy</a></p>
+                                            </li></ul></div>
+                                    </li></ul></div>
+                            </li><li class="listitem">
+                                <p><span class="topcom">shap</span> – Include this
+                                    method if you want to compute SHAP values. The SageMaker Clarify processing
+                                    job supports the Kernel SHAP algorithm. The <code class="code">shap</code>
+                                    object has the following parameters.</p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                     
+                                     
+                                     
+                                     
+                                     
+                                     
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p><span class="topcom">baseline</span> –
+                                            (Optional) The <a href="clarify-feature-attribute-shap-baselines.html">SHAP baseline</a> dataset, also known as the
+                                            background dataset. Additional requirements for the
+                                            baseline dataset in a tabular dataset or computer vision
+                                            problem are as follows.</p>
+                                        <div class="itemizedlist">
+                                             
+                                             
+                                        <ul class="itemizedlist"><li class="listitem">
+                                                <p>For a <b>tabular</b>
+                                                  dataset, <code class="code">baseline</code> can be either the
+                                                  in-place baseline data or the S3 URI of a baseline
+                                                  file. If <code class="code">baseline</code> is not provided,
+                                                  the SageMaker Clarify processing job computes a baseline by
+                                                  clustering the input dataset. The following are
+                                                  required of the baseline:</p>
+                                                <div class="itemizedlist">
+                                                   
+                                                   
+                                                   
+                                                   
+                                                <ul class="itemizedlist"><li class="listitem">
+                                                  <p>The format must be the same as the dataset
+                                                  format specified by
+                                                  <code class="code">dataset_type</code>.</p>
+                                                  </li><li class="listitem">
+                                                  <p>The baseline can only contain features that
+                                                  the model can accept as input.</p>
+                                                  </li><li class="listitem">
+                                                  <p>The baseline dataset can have one or more
+                                                  instances. The number of baseline instances
+                                                  directly affects the synthetic dataset size and
+                                                  job runtime.</p>
+                                                  </li><li class="listitem">
+                                                  <p>If <code class="code">text_config</code> is specified,
+                                                  then the baseline value of a text column is a
+                                                  string used to replace the unit of text specified
+                                                  by <code class="code">granularity</code>. For example, one
+                                                  common placeholder is "[MASK]", which is used to
+                                                  represent a missing or unknown word or piece of
+                                                  text. </p>
+                                                  </li></ul></div>
+                                                <p>The following examples show how to set
+                                                  in-place baseline data for different
+                                                  <code class="code">dataset_type</code> parameters:</p>
+                                                <div class="itemizedlist">
+                                                   
+                                                   
+                                                   
+                                                <ul class="itemizedlist"><li class="listitem">
+                                                  <p>If <code class="code">dataset_type</code> is either
+                                                  <code class="code">text/csv</code> or
+                                                  <code class="code">application/x-parquet</code>, the model
+                                                  accepts four numeric features, and the baseline
+                                                  has two instances. In this example, if one record
+                                                  has all zero feature values and the other record
+                                                  has all one feature values, then baseline should
+                                                  be set to <code class="code">[[0,0,0,0],[1,1,1,1]]</code>,
+                                                  without any header.</p>
+                                                  </li><li class="listitem">
+                                                  <p>If <code class="code">dataset_type</code> is
+                                                  <code class="code">application/jsonlines</code>, and
+                                                  <code class="code">features</code> is the key to a list of four
+                                                  numeric feature values. In addition, in this
+                                                  example, if the baseline has one record of all
+                                                  zero values, then <code class="code">baseline</code> should be
+                                                  <code class="code">[<span>{</span>"features":[0,0,0,0]}]</code>.</p>
+                                                  </li><li class="listitem">
+                                                  <p>If <code class="code">dataset_type</code> is
+                                                  <code class="code">application/json</code>, the
+                                                  <code class="code">baseline</code> dataset should have the same
+                                                  structure and format as the input dataset.</p>
+                                                  </li></ul></div>
+                                            </li><li class="listitem">
+                                                <p>For <b>computer
+                                                  vision</b> problems, <code class="code">baseline</code>
+                                                  can be the S3 URI of an image that is used to mask
+                                                  out features (segments) from the input image. The
+                                                  SageMaker Clarify processing job loads the mask image and
+                                                  resizes it to the same resolution as the input
+                                                  image. If baseline is not provided, the SageMaker Clarify
+                                                  processing job generates a mask image of <a href="https://en.wikipedia.org/wiki/White_noise" rel="noopener noreferrer" target="_blank"><span>white noise</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> at the same resolution as the
+                                                  input image.</p>
+                                            </li></ul></div>
+                                    </li><li class="listitem">
+                                        <p><span class="topcom">features_to_explain</span>
+                                            – (Optional) An array of strings or zero-based
+                                            indices of feature columns to compute SHAP values for.
+                                            If <code class="code">features_to_explain</code> is not provided,
+                                            SHAP values are computed for all feature columns. These
+                                            feature columns cannot include the label column or
+                                            predicted label column. The
+                                                <code class="code">features_to_explain</code> parameter is only
+                                            supported for tabular datasets with numeric and
+                                            categorical columns.</p>
+                                    </li><li class="listitem">
+                                        <p><span class="topcom">num_clusters</span> –
+                                            (Optional) The number of clusters that the dataset is
+                                            divided into to compute the baseline dataset. Each
+                                            cluster is used to compute one baseline instance. If
+                                                <code class="code">baseline</code> is not specified, the SageMaker Clarify
+                                            processing job attempts to compute the baseline dataset
+                                            by dividing the tabular dataset into an optimal number
+                                            of clusters between <code class="code">1</code> and <code class="code">12</code>.
+                                            The number of baseline instances directly affects the
+                                            runtime of SHAP analysis.</p>
+                                    </li><li class="listitem">
+                                        <p><span class="topcom">num_samples</span> –
+                                            (Optional) The number of samples to be used in the
+                                            Kernel SHAP algorithm. If <code class="code">num_samples</code> is
+                                            not provided, the SageMaker Clarify processing job chooses the
+                                            number for you. The number of samples directly affects
+                                            both the synthetic dataset size and job runtime.</p>
+                                    </li><li class="listitem">
+                                        <p><span class="topcom">seed</span> –(Optional)
+                                            An integer used to initialize the pseudo random number
+                                            generator in the SHAP explainer to generate consistent
+                                            SHAP values for the same job. If seed is not specified,
+                                            then each time that the same job runs, the model may
+                                            output slightly different SHAP values. </p>
+                                    </li><li class="listitem">
+                                        <p><span class="topcom">use_logit</span> –
+                                            (Optional) A Boolean value that indicates that you want
+                                            the logit function to be applied to the model
+                                            predictions. Defaults to <code class="code">false</code>. If
+                                                <code class="code">use_logit</code> is <code class="code">true</code>, then
+                                            the SHAP values are calculated using the logistic
+                                            regression coefficients, which can be interpreted as
+                                            log-odds ratios.</p>
+                                    </li><li class="listitem">
+                                        <p><span class="topcom">save_local_shap_values</span>
+                                            – (Optional) A Boolean value that indicates that
+                                            you want the local SHAP values of each record in the
+                                            dataset to be included in the analysis result. Defaults
+                                            to <code class="code">false</code>.</p>
+                                        <p>If the main dataset is split across multiple files or
+                                            distributed processing is activated, also specify an
+                                            identifier column using the parameter
+                                                <code class="code">joinsource_name_or_index</code>. The
+                                            identifier column and the local SHAP values are saved in
+                                            the analysis result. This way, you can map each record
+                                            to its local SHAP values.</p>
+                                    </li><li class="listitem">
+                                        <p><span class="topcom">agg_method</span> –
+                                            (Optional) The method used to aggregate the local SHAP
+                                            values (the SHAP values for each instance) of all
+                                            instances to the global SHAP values (the SHAP values for
+                                            the entire dataset). Defaults to <code class="code">mean_abs</code>.
+                                            The following methods can be used to aggregate SHAP
+                                            values.</p>
+                                        <div class="itemizedlist">
+                                             
+                                             
+                                             
+                                        <ul class="itemizedlist"><li class="listitem">
+                                                <p><span class="topcom">mean_abs</span>
+                                                  – The mean of absolute local SHAP values of
+                                                  all instances.</p>
+                                            </li><li class="listitem">
+                                                <p><span class="topcom">mean_sq</span>
+                                                  – The mean of squared local SHAP values of
+                                                  all instances.</p>
+                                            </li><li class="listitem">
+                                                <p><span class="topcom">median</span> –
+                                                  The median of local SHAP values of all
+                                                  instances.</p>
+                                            </li></ul></div>
+                                    </li><li class="listitem">
+                                        <p><span class="topcom">text_config</span> –
+                                            Required for <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-model-explainability-nlp.html">natural language processing explainability</a>.
+                                            Include this configuration if you want to treat text
+                                            columns as text and explanations should be provided for
+                                            individual units of text.</p>
+                                        <div class="itemizedlist">
+                                             
+                                             
+                                             
+                                             
+                                        <ul class="itemizedlist"><li class="listitem">
+                                                <p><span class="topcom">granularity</span>
+                                                  – The unit of granularity for the analysis
+                                                  of text columns. Valid values are
+                                                  <code class="code">token</code>, <code class="code">sentence</code>, or
+                                                  <code class="code">paragraph</code>. <b>Each
+                                                  unit of text is considered a feature</b>,
+                                                  and local SHAP values are computed for each
+                                                  unit.</p>
+                                            </li><li class="listitem">
+                                                <p><span class="topcom">language</span>
+                                                  – The language of the text columns. Valid
+                                                  values are <code class="userinput">chinese</code>,
+                                                  <code class="userinput">danish</code>,
+                                                  <code class="userinput">dutch</code>,
+                                                  <code class="userinput">english</code>,
+                                                  <code class="userinput">french</code>,
+                                                  <code class="userinput">german</code>,
+                                                  <code class="userinput">greek</code>,
+                                                  <code class="userinput">italian</code>,
+                                                  <code class="userinput">japanese</code>,
+                                                  <code class="userinput">lithuanian</code>,
+                                                  <code class="userinput">multi-language</code>,
+                                                  <code class="userinput">norwegian bokmål</code>,
+                                                  <code class="userinput">polish</code>,
+                                                  <code class="userinput">portuguese</code>,
+                                                  <code class="userinput">romanian</code>,
+                                                  <code class="userinput">russian</code>,
+                                                  <code class="userinput">spanish</code>,
+                                                  <code class="userinput">afrikaans</code>,
+                                                  <code class="userinput">albanian</code>,
+                                                  <code class="userinput">arabic</code>,
+                                                  <code class="userinput">armenian</code>,
+                                                  <code class="userinput">basque</code>,
+                                                  <code class="userinput">bengali</code>,
+                                                  <code class="userinput">bulgarian</code>,
+                                                  <code class="userinput">catalan</code>,
+                                                  <code class="userinput">croatian</code>,
+                                                  <code class="userinput">czech</code>,
+                                                  <code class="userinput">estonian</code>,
+                                                  <code class="userinput">finnish</code>,
+                                                  <code class="userinput">gujarati</code>,
+                                                  <code class="userinput">hebrew</code>,
+                                                  <code class="userinput">hindi</code>,
+                                                  <code class="userinput">hungarian</code>,
+                                                  <code class="userinput">icelandic</code>,
+                                                  <code class="userinput">indonesian</code>,
+                                                  <code class="userinput">irish</code>,
+                                                  <code class="userinput">kannada</code>,
+                                                  <code class="userinput">kyrgyz</code>,
+                                                  <code class="userinput">latvian</code>,
+                                                  <code class="userinput">ligurian</code>,
+                                                  <code class="userinput">luxembourgish</code>,
+                                                  <code class="userinput">macedonian</code>,
+                                                  <code class="userinput">malayalam</code>,
+                                                  <code class="userinput">marathi</code>,
+                                                  <code class="userinput">nepali</code>,
+                                                  <code class="userinput">persian</code>,
+                                                  <code class="userinput">sanskrit</code>,
+                                                  <code class="userinput">serbian</code>,
+                                                  <code class="userinput">setswana</code>,
+                                                  <code class="userinput">sinhala</code>,
+                                                  <code class="userinput">slovak</code>,
+                                                  <code class="userinput">slovenian</code>,
+                                                  <code class="userinput">swedish</code>,
+                                                  <code class="userinput">tagalog</code>,
+                                                  <code class="userinput">tamil</code>,
+                                                  <code class="userinput">tatar</code>,
+                                                  <code class="userinput">telugu</code>,
+                                                  <code class="userinput">thai</code>,
+                                                  <code class="userinput">turkish</code>,
+                                                  <code class="userinput">ukrainian</code>,
+                                                  <code class="userinput">urdu</code>,
+                                                  <code class="userinput">vietnamese</code>,
+                                                  <code class="userinput">yoruba</code>. Enter
+                                                  <code class="code">multi-language</code> for a mix of multiple
+                                                  languages.</p>
+                                            </li><li class="listitem">
+                                                <p><span class="topcom">max_top_tokens</span>
+                                                  – (Optional) The maximum number of top
+                                                  tokens, based on global SHAP values. Defaults to
+                                                  <code class="code">50</code>. It is possible for a token to
+                                                  appear multiple times in the dataset. The SageMaker Clarify
+                                                  processing job aggregates the SHAP values of each
+                                                  token, and then selects the top tokens based on
+                                                  their global SHAP values. The global SHAP values
+                                                  of the selected top tokens are included in the
+                                                  <code class="code">global_top_shap_text</code> section of the
+                                                  analysis.json file.</p>
+                                            </li><li class="listitem">
+                                                <p>The local SHAP value of aggregation.</p>
+                                            </li></ul></div>
+                                    </li><li class="listitem">
+                                        <p><span class="topcom">image_config</span> –
+                                            Required for computer vision explainability. Include
+                                            this configuration if you have an input dataset
+                                            consisting of images and you want to analyze them for
+                                            explainability in a computer vision problem.</p>
+                                        <div class="itemizedlist">
+                                             
+                                             
+                                             
+                                             
+                                             
+                                             
+                                        <ul class="itemizedlist"><li class="listitem">
+                                                <p><span class="topcom">model_type</span>
+                                                  – The type of the model. Valid values
+                                                  include:</p>
+                                                <div class="itemizedlist">
+                                                   
+                                                   
+                                                <ul class="itemizedlist"><li class="listitem">
+                                                  <p><code class="code">IMAGE_CLASSIFICATION</code> for an
+                                                  image classification model.</p>
+                                                  </li><li class="listitem">
+                                                  <p><code class="code">OBJECT_DETECTION</code> for an object
+                                                  detection model.</p>
+                                                  </li></ul></div>
+                                            </li><li class="listitem">
+                                                <p><span class="topcom">max_objects</span>
+                                                  – Applicable only when model_type is
+                                                  <code class="userinput">OBJECT_DETECTION</code>.The max
+                                                  number of objects, ordered by confidence score,
+                                                  detected by the computer vision model. Any objects
+                                                  ranked lower than the top max_objects by
+                                                  confidence score are filtered out. Defaults to
+                                                  <code class="code">3</code>.</p>
+                                            </li><li class="listitem">
+                                                <p><span class="topcom">context</span>
+                                                  – Applicable only when model_type is
+                                                  <code class="userinput">OBJECT_DETECTION</code>. It
+                                                  indicates if the area around the bounding box of
+                                                  the detected object is masked by the baseline
+                                                  image or not. Valid values are <code class="code">0</code> to
+                                                  mask everything, or <code class="code">1</code> to mask
+                                                  nothing. Defaults to 1.</p>
+                                            </li><li class="listitem">
+                                                <p><span class="topcom">iou_threshold</span>
+                                                  – Applicable only when
+                                                  <code class="code">model_type</code> is
+                                                  <code class="userinput">OBJECT_DETECTION</code>.The
+                                                  minimum intersection over union (IOU) metric for
+                                                  evaluating predictions against the original
+                                                  detection. A high IOU metric corresponds to a
+                                                  large overlap between the predicted and ground
+                                                  truth detection box. Defaults to
+                                                  <code class="code">0.5</code>.</p>
+                                            </li><li class="listitem">
+                                                <p><span class="topcom">num_segments</span>
+                                                  – (Optional) An integer that determines the
+                                                  approximate number of segments to be labeled in
+                                                  the input image. Each segment of the image is
+                                                  considered a feature, and local SHAP values are
+                                                  computed for each segment. Defaults to
+                                                  <code class="code">20</code>.</p>
+                                            </li><li class="listitem">
+                                                <p><span class="topcom">segment_compactness</span> – (Optional)
+                                                  An integer that determines the shape and size of
+                                                  the image segments generated by the <a href="https://scikit-image.org/docs/dev/api/skimage.segmentation.html#skimage.segmentation.slic" rel="noopener noreferrer" target="_blank"><span>scikit-image slic</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> method. Defaults to
+                                                  <code class="code">5</code>.</p>
+                                            </li></ul></div>
+                                    </li></ul></div>
+                            </li><li class="listitem">
+                                <p><span class="topcom">pdp</span> – Include this
+                                    method to compute <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-partial-dependence-plots.html">partial dependence plots</a> (PDPs).</p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p><span class="topcom">features</span> –
+                                            Mandatory if the <code class="code">shap</code> method is not
+                                            requested. An array of feature names or indices to
+                                            compute and plot PDP plots.</p>
+                                    </li><li class="listitem">
+                                        <p><span class="topcom">top_k_features</span> –
+                                            (Optional) Specifies the number of top features used to
+                                            generate PDP plots. If <code class="code">features</code> is not
+                                            provided, but the <code class="code">shap</code> method is requested,
+                                            then the SageMaker Clarify processing job chooses the top features
+                                            based on their SHAP attributions. Defaults to
+                                                <code class="code">10</code>.</p>
+                                    </li><li class="listitem">
+                                        <p><span class="topcom">grid_resolution</span>
+                                            – The number of buckets to divide the range of
+                                            numeric values into. This specifies the granularity of
+                                            the grid for the PDP plots.</p>
+                                    </li></ul></div>
+                            </li><li class="listitem">
+                                <p><span class="topcom">report</span> – (Optional) Use
+                                    this object to customize the analysis report. There are three
+                                    copies of the same report as part of the analysis result:
+                                    Jupyter Notebook report, HTML report, and PDF report. The object
+                                    has the following parameters:</p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p><span class="topcom">name</span> – File name
+                                            of the report files. For example, if <code class="code">name</code>
+                                            is <code class="userinput">MyReport</code>, then the report
+                                            files are <code class="code">MyReport.ipynb</code>,
+                                                <code class="code">MyReport.html</code>, and
+                                                <code class="code">MyReport.pdf</code>. Defaults to
+                                                <code class="code">report</code>.</p>
+                                    </li><li class="listitem">
+                                        <p><span class="topcom">title</span> –
+                                            (Optional) Title string for the report. Defaults to
+                                                <code class="userinput">SageMaker Analysis Report</code>.</p>
+                                    </li></ul></div>
+                            </li></ul></div>
+                    </li><li class="listitem">
+                        <p><span class="topcom">predictor</span> – Required if the
+                            analysis requires predictions from the model. For example, when the
+                                <code class="code">shap</code>, <code class="code">pdp</code>, or
+                                <code class="code">post_training_bias</code> method is requested, but predicted
+                            labels are not provided as part of the input dataset. The following are
+                            parameters to be used in conjunction with <code class="code">predictor</code>:</p>
+                        <div class="itemizedlist">
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p><span class="topcom">model_name</span> – The name of
+                                    your SageMaker model created by the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html">CreateModel</a> API. If you specify
+                                        <code class="code">model_name</code> instead of endpoint_name, the SageMaker Clarify
+                                    processing job creates an ephemeral endpoint with the model
+                                    name, known as a <b>shadow
+                                        endpoint</b>, and gets predictions from the endpoint.
+                                    The job deletes the shadow endpoint after the computations are
+                                    completed. If the model is <a href="multi-model-endpoints.html">multi-model</a> then the <code class="code">target_model</code>
+                                    parameter must be specified.</p>
+                            </li><li class="listitem">
+                                <p><span class="topcom">endpoint_name_prefix</span> –
+                                    (Optional) A custom name prefix for the shadow endpoint.
+                                    Applicable if you provide <code class="code">model_name</code> instead of
+                                        <code class="code">endpoint_name</code>. For example, provide
+                                        <code class="code">endpoint_name_prefix</code> if you want to restrict
+                                    access to the endpoint by endpoint name. The prefix must match
+                                    the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html#sagemaker-CreateEndpoint-request-EndpointName">EndpointName</a> pattern, and its maximum length is
+                                        <code class="code">23</code>. Defaults to <code class="code">sm-clarify</code>.</p>
+                            </li><li class="listitem">
+                                <p><span class="topcom">initial_instance_count</span> –
+                                    Specifies the number of instances for the shadow endpoint.
+                                    Required if you provide model_name instead of endpoint_name. The
+                                    value for <code class="code">initial_instance_count</code> can be different
+                                    from the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ProcessingClusterConfig.html#sagemaker-Type-ProcessingClusterConfig-InstanceCount">InstanceCount</a> of the job, but we recommend a 1:1
+                                    ratio.</p>
+                            </li><li class="listitem">
+                                <p><span class="topcom">instance_type</span> –
+                                    Specifies the instance type for the shadow endpoint. Required if
+                                    you provide <code class="code">model_name</code> instead of
+                                        <code class="code">endpoint_name</code>. As an example,
+                                        <code class="code">instance_type</code> can be set to "ml.m5.large". In
+                                    some cases, the value specified for <code class="code">instance_type</code>
+                                    can help reduce model inference time. For example, to run
+                                    efficiently, natural language processing models and computer
+                                    vision models typically require a graphics processing unit (GPU)
+                                    instance type.</p>
+                            </li><li class="listitem">
+                                <p><span class="topcom">accelerator_type</span> –
+                                    (Optional) Specifies <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ProductionVariant.html#sagemaker-Type-ProductionVariant-AcceleratorType">the type of Elastic Inference (EI) accelerator</a> to
+                                    attach to the shadow endpoint. Applicable if you provide
+                                        <code class="code">model_name</code> instead of
+                                        <code class="code">endpoint_name</code> for
+                                    <code class="code">accelerator_type</code>. An example value for
+                                        <code class="code">accelerator_type</code> is
+                                        <code class="userinput">ml.eia2.large</code>. Defaults to not use an
+                                    accelerator.</p>
+                            </li><li class="listitem">
+                                <p><span class="topcom">endpoint_name</span> – The name
+                                    of your SageMaker endpoint created by the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html">CreateEndpoint</a> API. If provided,
+                                        <code class="code">endpoint_name</code> takes precedence over the
+                                        <code class="code">model_name</code> parameter. Using an existing
+                                    endpoint reduces the shadow endpoint bootstrap time, but it can
+                                    also cause a significant increase in load for that endpoint.
+                                    Additionally, some analysis methods (such as <code class="code">shap</code>
+                                    and <code class="code">pdp</code>) generate synthetic datasets that are sent
+                                    to the endpoint. This can cause the endpoint's metrics or
+                                    captured data to be contaminated by synthetic data, which may
+                                    not accurately reflect real-world usage. For these reasons, it's
+                                    generally not recommended to use an existing production endpoint
+                                    for SageMaker Clarify analysis.</p>
+                            </li><li class="listitem">
+                                <p><span class="topcom">target_model</span> – The
+                                    string value that is passed on to the TargetModel parameter of
+                                    the SageMaker <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html#RequestSyntax">InvokeEndpoint</a> API. Required if your model
+                                    (specified by the model_name parameter) or endpoint (specified
+                                    by the endpoint_name parameter) is <a href="multi-model-endpoints.html">multi-model</a>.</p>
+                            </li><li class="listitem">
+                                <p><span class="topcom">custom_attributes</span> –
+                                    (Optional) A string that allows you to provide additional
+                                    information about a request for an inference that is submitted
+                                    to the endpoint. The string value is passed to the
+                                        <code class="code">CustomAttributes</code> parameter of the SageMaker <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html#RequestSyntax">InvokeEndpoint</a> API.</p>
+                            </li><li class="listitem">
+                                <p><span class="topcom">content_type</span> –
+                                    content_type – The model input format to be used for getting
+                                    predictions from the endpoint. If provided, it is passed to the
+                                        <code class="code">ContentType</code> parameter of the SageMaker <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html#RequestSyntax">InvokeEndpoint</a> API. </p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p>For computer vision explainability, the valid values
+                                            are <code class="userinput">image/jpeg</code>,
+                                                <code class="userinput">image/png</code> or
+                                                <code class="userinput">application/x-npy</code>. If
+                                                <code class="code">content_type</code> is not provided, the
+                                            default value is
+                                            <code class="userinput">image/jpeg</code>.</p>
+                                    </li><li class="listitem">
+                                        <p>For other types of explainability, the valid values
+                                            are <code class="userinput">text/csv</code>,
+                                                <code class="code">application/jsonlines,</code> and
+                                                <code class="userinput">application/json</code>. A value for
+                                                <code class="code">content_type</code> is required if the
+                                                <code class="code">dataset_type</code> is
+                                            "application/x-parquet". Otherwise
+                                                <code class="code">content_type</code> defaults to the value of
+                                            the <code class="code">dataset_type</code> parameter.</p>
+                                    </li></ul></div>
+                            </li><li class="listitem">
+                                <p><span class="topcom">accept_type</span> – The model
+                                    output format to be used for getting predictions from the
+                                    endpoint. The value for <code class="code">accept_type</code> is passed to
+                                    the <code class="code">Accept</code> parameter of the SageMaker <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html#RequestSyntax">InvokeEndpoint</a> API.</p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p>For computer vision explainability, if
+                                                <code class="code">model_type</code> is "OBJECT_DETECTION" then
+                                                <code class="code">accept_type</code> defaults to
+                                                <code class="userinput">application/json</code>.</p>
+                                    </li><li class="listitem">
+                                        <p>For other types of explainability, the valid values
+                                            are <code class="userinput">text/csv</code>,
+                                                <code class="userinput">application/jsonlines</code>, and
+                                                <code class="userinput">application/json</code>. If a value
+                                            for <code class="code">accept_type</code> is not provided,
+                                                <code class="code">accept_type</code> defaults to the value of
+                                            the <code class="code">content_type</code> parameter.</p>
+                                    </li></ul></div>
+                            </li><li class="listitem">
+                                <p><span class="topcom">content_template</span> – A
+                                    template string used to construct the model input from dataset
+                                    records. The parameter <code class="code">content_template</code> is only
+                                    used and required if the value of the <code class="code">content_type</code>
+                                    parameter is either <code class="code">application/jsonlines</code> or
+                                        <code class="code">application/json</code>. </p>
+                                <p>When the <code class="code">content_type</code> parameter is
+                                        <code class="code">application/jsonlines</code>, the template should have
+                                    only one placeholder, <code class="code">$features</code>, which is replaced
+                                    by a features list at runtime. For example, if the template is
+                                        <code class="code">"<span>{</span>\"myfeatures\":$features}"</code>, and if a record
+                                    has three numeric feature values: <code class="code">1</code>, <code class="code">2</code>
+                                    and <code class="code">3</code>, then the record will be sent to the model as
+                                    JSON Line <code class="code"><span>{</span>"myfeatures":[1,2,3]}</code>. </p>
+                                <p>When the <code class="code">content_type</code> is
+                                        <code class="code">application/json</code>, the template can have either
+                                    placeholder <code class="code">$record</code> or <code class="code">records</code>. If the
+                                    placeholder is <code class="code">record</code>, a single record is replaced
+                                    with a record that has the template in
+                                        <code class="code">record_template</code> applied to it. In this case,
+                                    only a single record will be sent to the model at a time. If the
+                                    placeholder is <code class="code">$records</code>, the records are replaced
+                                    by a list of records, each with a template supplied by
+                                        <code class="code">record_template</code>.</p>
+                            </li><li class="listitem">
+                                <p><span class="topcom">record_template</span> – A
+                                    template string to be used to construct each record of the model
+                                    input from dataset instances. It is only used and required when
+                                        <code class="code">content_type</code> is <code class="code">application/json</code>.
+                                    The template string may contain one of the following:</p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p>A placeholder <code class="code">$features</code> parameter that is
+                                            substituted by an array of feature values. An additional
+                                            optional placeholder can substitute feature column
+                                            header names in <code class="code">$feature_names</code>. This
+                                            optional placeholder will be substituted by an array of
+                                            feature names.</p>
+                                    </li><li class="listitem">
+                                        <p>Exactly one placeholder <code class="code">$features_kvp</code>
+                                            that is substituted by the key-value pairs, feature name
+                                            and feature value.</p>
+                                    </li><li class="listitem">
+                                        <p>A feature in the <code class="code">headers</code> configuration.
+                                            As an example, a feature name <code class="code">A</code>, notated by
+                                            the placeholder syntax <code class="code">"$<span>{</span>A}"</code> will be
+                                            substituted by the feature value for
+                                            <code class="code">A</code>.</p>
+                                    </li></ul></div>
+                                <p>The value for <code class="code">record_template</code> is used with
+                                        <code class="code">content_template</code> to construct the model input.
+                                    A configuration example showing how to construct a model input
+                                    using a content and record template follows.</p>
+                                <p>In the following code example, the headers and features are
+                                    defined as follows.</p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p><code class="code">`headers`:["A", "B"]</code></p>
+                                    </li><li class="listitem">
+                                        <p><code class="code">`features`:[[0,1], [3,4]]</code></p>
+                                    </li></ul></div>
+                                <p>The example model input is as follows.</p>
+                                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "instances": [[0, 1], [3, 4]],
+    "feature_names": ["A", "B"]
+}</code></pre>
+                                <p>The example <code class="code">content_template</code> and
+                                        <code class="code">record_template</code> parameter values to construct
+                                    the previous example model input follows.</p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p><code class="code">content_template: "<span>{</span>\"instances\": $records,
+                                                \"feature_names\": $feature_names}"</code></p>
+                                    </li><li class="listitem">
+                                        <p><code class="code">record_template: "$features"</code></p>
+                                    </li></ul></div>
+                                <p> In the following code example, the headers and features are
+                                    defined as follows.</p>
+                                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">[
+    <span>{</span> "A": 0, "B": 1 },
+    <span>{</span> "A": 3, "B": 4 },
+]</code></pre>
+                                <p>The example<code class="code"> content_template</code> and
+                                        <code class="code">record_template</code> parameter values to construct
+                                    the previous example model input follows. </p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p><code class="code">content_template: "$records"</code></p>
+                                    </li><li class="listitem">
+                                        <p><code class="code">record_template: "$features_kvp"</code></p>
+                                    </li></ul></div>
+                                <p>An alternate code example to construct the previous example
+                                    model input follows.</p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p><code class="code">content_template: "$records"</code></p>
+                                    </li><li class="listitem">
+                                        <p><code class="code">record_template: "<span>{</span>\"A\": \"$<span>{</span>A}\", \"B\":
+                                                \"$<span>{</span>B}\"}"</code></p>
+                                    </li></ul></div>
+                                <p> In the following code example, the headers and features are
+                                    defined as follows.</p>
+                                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span> "A": 0, "B": 1 }</code></pre>
+                                <p>The example content_template and record_template parameters
+                                    values to construct above: the previous example model input
+                                    follows.</p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p><code class="code">content_template: "$record"</code></p>
+                                    </li><li class="listitem">
+                                        <p><code class="code">record_template: "$features_kvp"</code></p>
+                                    </li></ul></div>
+                            </li><li class="listitem">
+                                <p><span class="topcom">label</span> – A zero-based
+                                    integer index or JMESPath expression string used to extract
+                                    predicted labels from the model output for bias analysis. If the
+                                    model is multiclass and the <code class="code">label</code> parameter
+                                    extracts all of the predicted labels from the model output, then
+                                    the following apply.</p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p>The <code class="code">probability</code> parameter is required to
+                                            get the corresponding probabilities (or scores) from the
+                                            model output.</p>
+                                    </li><li class="listitem">
+                                        <p>The predicted label of the highest score is
+                                            chosen.</p>
+                                    </li></ul></div>
+                                <p>The value for <code class="code">label</code> depends on the value of the
+                                    accept_type parameter as follows.</p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p>If <code class="code">accept_type</code> is
+                                                <code class="userinput">text/csv</code>, then
+                                                <code class="code">label</code> is the index of any predicted
+                                            labels in the model output.</p>
+                                    </li><li class="listitem">
+                                        <p>If <code class="code">accept_type</code> is
+                                                <code class="userinput">application/jsonlines</code> or
+                                                <code class="userinput">application/json</code>, then
+                                                <code class="code">label</code> is a JMESPath expression that's
+                                            applied to the model output to get the predicted
+                                            labels.</p>
+                                    </li></ul></div>
+                            </li><li class="listitem">
+                                <p><span class="topcom">label_headers</span> – An array
+                                    of values that the label can take in the dataset. If bias
+                                    analysis is requested, then the <code class="code">probability</code>
+                                    parameter is also required to get the corresponding probability
+                                    values (scores) from model output, and the predicted label of
+                                    the highest score is chosen. If explainability analysis is
+                                    requested, the label headers are used to beautify the analysis
+                                    report. A value for <code class="code">label_headers</code> is required for
+                                    computer vision explainability. For example, for a multiclass
+                                    classification problem, if the label has three possible values,
+                                        <code class="userinput">bird</code>, <code class="userinput">cat</code>, and
+                                        <code class="userinput">dog</code>, then <code class="code">label_headers</code>
+                                    should be set to <code class="code">["bird","cat","dog"]</code>.</p>
+                            </li><li class="listitem">
+                                <p><span class="topcom">probability</span> – (Optional)
+                                    A zero-based integer index or a JMESPath expression string used
+                                    to extract probabilities (scores) for explainability analysis,
+                                    or to choose the predicted label for bias analysis. The value of
+                                        <code class="code">probability</code> depends on the value of the
+                                        <code class="code">accept_type</code> parameter as follows.</p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p>If <code class="code">accept_type</code> is
+                                                <code class="userinput">text/csv</code>,
+                                                <code class="code">probability</code> is the index of the
+                                            probabilities (scores) in the model output. If
+                                                <code class="code">probability</code> is not provided, the entire
+                                            model output is taken as the probabilities
+                                            (scores).</p>
+                                    </li><li class="listitem">
+                                        <p>If <code class="code">accept_type</code> is JSON data (either
+                                                <code class="userinput">application/jsonlines</code> or
+                                                <code class="userinput">application/json</code>),
+                                                <code class="code">probability</code> should be a JMESPath
+                                            expression that is used to extract the probabilities
+                                            (scores) from the model output.</p>
+                                    </li></ul></div>
+                            </li></ul></div>
+                    </li></ul></div></awsui-expandable-section></div>
+     
+        <h2 id="clarify-processing-job-configure-analysis-examples">Example analysis
+                configuration files</h2>
+        <p>The following sections contain example analysis configuration files for data in CSV
+            format, JSON Lines format, and for both natural language processing (NLP) and computer
+            vision explainability.</p>
+        <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="Analysis configuration&#xA;                        for a CSV dataset" id="clarify-analysis-configure-csv-example" expanded="false"><p>The following examples show how to configure bias and explainability analysis
+                    for a tabular dataset in CSV format. In these examples, the incoming dataset has
+                    four feature columns, and one binary label column, <code class="code">Target</code>. The
+                    contents of the dataset are as follows. A label value of <code class="code">1</code>
+                    indicates a positive outcome. The dataset is provided to the SageMaker Clarify job by the
+                        <code class="code">dataset</code> processing input.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">"Target","Age","Gender","Income","Occupation"
+0,25,0,2850,2
+1,36,0,6585,0
+1,22,1,1759,1
+0,48,0,3446,1
+...</code></pre><p>The following sections show how to compute pre-training and post-training bias
+                    metrics, SHAP values, and partial dependence plots (PDPs) showing feature
+                    importance for a dataset in CSV format. </p>
+                    <h4 id="clarify-analysis-configure-csv-example-metrics">Compute all
+                            of the pre-training bias metrics</h4>
+                    <p>This example configuration shows how to measure if the previous sample
+                        dataset is favorably biased towards samples with a
+                            <code class="userinput">Gender</code> value of <code class="code">0</code>. The following
+                        analysis configuration instructs the SageMaker Clarify processing job to compute all the
+                        pre-training bias metrics for the dataset.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "dataset_type": "text/csv",
+    "label": "Target",
+    "label_values_or_threshold": [1],
+    "facet": [
+        <span>{</span>
+            "name_or_index": "Gender",
+            "value_or_threshold": [0]
+        }
+    ],
+    "methods": <span>{</span>
+        "pre_training_bias": <span>{</span>
+            "methods": "all"
+        }
+    }
+}
+
+Com
+</code></pre>
+                 
+                    <h4 id="clarify-analysis-configure-csv-example-postmetrics">Compute
+                            all of the post-training bias metrics</h4>
+                    <p>You can compute pre-training bias metrics prior to training. However, you
+                        must have a trained model to compute post-training bias metrics. The
+                        following example output is from a binary classification model that outputs
+                        data in CSV format. In this example output, each row contains two columns.
+                        The first column contains the predicted label, and the second column
+                        contains the probability value for that label. </p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">0,0.028986845165491
+1,0.825382471084594
+...</code></pre>
+                    <p>The following configuration example instructs the SageMaker Clarify processing job to
+                        compute all possible bias metrics using the dataset and the predictions from
+                        the model output. In the example, the model is deployed to a SageMaker endpoint
+                            <code class="code">your_endpoint</code>.</p>
+                    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>In the following example code, the parameter <code class="code">content_type</code>
+                            and <code class="code">accept_type</code> are not set. Therefore, they automatically
+                            use the value of the parameter dataset_type, which is
+                                <code class="code">text/csv</code>.</p></div></div>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "dataset_type": "<code class="replaceable">text/csv</code>",
+    "label": "<code class="replaceable">Target</code>",
+    "label_values_or_threshold": <code class="replaceable">[1]</code>,
+    "facet": [
+        <span>{</span>
+            "name_or_index": "<code class="replaceable">Gender</code>",
+            "value_or_threshold": <code class="replaceable">[0]</code>
+        }
+    ],
+    "methods": <span>{</span>
+        "pre_training_bias": <span>{</span>
+            "methods": "<code class="replaceable">all</code>"
+        },
+        "post_training_bias": <span>{</span>
+            "methods": "<code class="replaceable">all</code>"
+        }
+    },
+    "predictor": <span>{</span>
+        "endpoint_name": "<code class="replaceable">your_endpoint</code>",
+        "label": <code class="replaceable">0</code>
+    }
+}</code></pre>
+                 
+                    <h4 id="clarify-analysis-configure-csv-example-shap">Compute the
+                            SHAP values </h4>
+                    <p>The following example analysis configuration instructs the job to compute
+                        the SHAP values designating the <code class="code">Target</code> column as labels and all
+                        other columns as features.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "dataset_type": "<code class="replaceable">text/csv</code>",
+    "label": "<code class="replaceable">Target</code>",
+    "methods": <span>{</span>
+        "shap": <span>{</span>
+            "num_clusters": <code class="replaceable">1</code>
+        }
+    },
+    "predictor": <span>{</span>
+        "endpoint_name": "<code class="replaceable">your_endpoint</code>",
+        "probability": <code class="replaceable">1</code>
+    }
+}</code></pre>
+                    <p>In this example, the SHAP <code class="code">baseline</code> parameter is omitted and
+                        the value of the <code class="code">num_clusters</code> parameter is <code class="code">1</code>. This
+                        instructs the SageMaker Clarify processor to compute one SHAP baseline sample. In this
+                        example, probability is set to <code class="code">1</code>. This instructs the SageMaker Clarify
+                        processing job to extract the probability score from the second column of
+                        the model output (using zero-based indexing).</p>
+                 
+                    <h4 id="clarify-analysis-configure-csv-example-pdp">Compute partial
+                            dependence plots (PDPs) </h4>
+                    <p>The following example shows how to view the importance of the
+                            <code class="code">Income</code> feature on the analysis report using PDPs. The
+                        report parameter instructs the SageMaker Clarify processing job to generate a report.
+                        After the job completes, the generated report is saved as report.pdf to the
+                            <code class="code">analysis_result</code> location. The <code class="code">grid_resolution</code>
+                        parameter divides the range of the feature values into <code class="code">10</code>
+                        buckets. Together, the parameters specified in the following example
+                        instruct the SageMaker Clarify processing job to generate a report containing a PDP
+                        graph for <code class="code">Income</code> with <code class="code">10</code> segments on the x-axis.
+                        The y-axis will show the marginal impact of <code class="code">Income</code> on the
+                        predictions.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "dataset_type": "text/csv",
+    "label": "Target",
+    "methods": <span>{</span>
+        "pdp": <span>{</span>
+            "features": ["<code class="replaceable">Income</code>"],
+            "grid_resolution": <code class="replaceable">10</code>
+        },
+        "report": <span>{</span>
+            "name": "<code class="replaceable">report</code>"
+        }
+    },
+    "predictor": <span>{</span>
+        "endpoint_name": "<code class="replaceable">your_endpoint</code>",
+        "probability": <code class="replaceable">1</code>
+    },
+}</code></pre>
+                 
+                    <h4 id="clarify-analysis-configure-csv-example-fi">Compute both
+                            bias metrics and feature importance</h4>
+                    <p> You can combine all the methods from the previous configuration examples
+                        into a single analysis configuration file and compute them all by a single
+                        job. The following example shows an analysis configuration with all steps
+                        combined. </p>
+                    <p>In this example, the <code class="code">probability</code> parameter is set to
+                            <code class="code">1</code> to indicate that probabilities are contained in the
+                        second column (using zero-based indexing). However, because bias analysis
+                        needs a predicted label, the <code class="code">probability_threshold</code> parameter is
+                        set to <code class="code">0.5</code> to convert the probability score into a binary
+                        label. In this example, the <code class="code">top_k_features</code> parameter of the
+                        partials dependence plots <code class="code">pdp</code> method is set to <code class="code">2</code>.
+                        This instructs the SageMaker Clarify processing job to compute partials dependence plots
+                        (PDPs) for the top <code class="code">2</code> features with the largest global SHAP
+                        values. </p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "dataset_type": "text/csv",
+    "label": "<code class="replaceable">Target</code>",
+    "probability_threshold": <code class="replaceable">0.5</code>,
+    "label_values_or_threshold": [<code class="replaceable">1</code>],
+    "facet": [
+        <span>{</span>
+            "name_or_index": "<code class="replaceable">Gender</code>",
+            "value_or_threshold": [<code class="replaceable">0</code>]
+        }
+    ],
+    "methods": <span>{</span>
+        "pre_training_bias": <span>{</span>
+            "methods": "<code class="replaceable">all</code>"
+        },
+        "post_training_bias": <span>{</span>
+            "methods": "<code class="replaceable">all</code>"
+        },
+        "shap": <span>{</span>
+            "num_clusters": <code class="replaceable">1</code>
+        },
+        "pdp": <span>{</span>
+            "top_k_features": <code class="replaceable">2</code>,
+            "grid_resolution": <code class="replaceable">10</code>
+        },
+        "report": <span>{</span>
+            "name": "<code class="replaceable">report</code>"
+        }
+    },
+    "predictor": <span>{</span>
+        "endpoint_name": "<code class="replaceable">your_endpoint</code>",
+        "probability": <code class="replaceable">1</code>
+    }
+}</code></pre>
+                    <p>Instead of deploying the model to an endpoint, you can provide the name of
+                        your SageMaker model to the SageMaker Clarify processing job using the
+                            <code class="code">model_name</code> parameter. The following example shows how to
+                        specify a model named <code class="userinput">your_model</code>. The SageMaker Clarify
+                        processing job will create a shadow endpoint using the configuration.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+     ...
+    "predictor": <span>{</span>
+        "model_name": "<code class="replaceable">your_model</code>",
+        "initial_instance_count": <code class="replaceable">1</code>,
+        "instance_type": "<code class="replaceable">ml.m5.large</code>",
+        "probability": <code class="replaceable">1</code>
+    }
+}</code></pre>
+                </awsui-expandable-section><awsui-expandable-section variant="container" header="Analysis&#xA;                        configuration for a JSON Lines dataset" id="clarify-analysis-configure-JSONLines-example" expanded="false"><p>The following examples show how to configure bias analysis and explainability
+                    analysis for a tabular dataset in JSON Lines format. In these examples, the
+                    incoming dataset has the same data as the previous section but they are in the
+                        <a href="cdf-inference.html#cm-jsonlines">SageMaker JSON Lines
+                        dense format</a>. Each line is a valid JSON object. The key "Features"
+                    points to an array of feature values, and the key "Label" points to the ground
+                    truth label. The dataset is provided to the SageMaker Clarify job by the "dataset"
+                    processing input.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>"Features":[25,0,2850,2],"Label":0}
+<span>{</span>"Features":[36,0,6585,0],"Label":1}
+<span>{</span>"Features":[22,1,1759,1],"Label":1}
+<span>{</span>"Features":[48,0,3446,1],"Label":0}
+...</code></pre><p>The following sections show how to compute pre-training and post-training bias
+                    metrics, SHAP values, and partial dependence plots (PDPs) showing feature
+                    importance for a dataset in JSON Lines format.</p>
+                    <h4 id="clarify-analysis-configure-JSONLines-pretraining">Compute
+                            pre-training bias metrics</h4>
+                    <p>Specify the label, features, format, and methods to measure pre-training
+                        bias metrics for a <code class="code">Gender</code> value of <code class="code">0</code>. In the
+                        following example, the <code class="code">headers</code> parameter provides the feature
+                        names first. The label name is provided last. By convention, the last header
+                        is the label header. </p>
+                    <p>The <code class="code">features</code> parameter is set to the JMESPath expression
+                        "Features" so that the SageMaker Clarify processing job can extract the array of
+                        features from each record. The <code class="code">label</code> parameter is set to
+                        JMESPath expression "Label" so that the SageMaker Clarify processing job can extract the
+                        ground truth label from each record. Use a facet name to specify the
+                        sensitive attribute, as follows.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "dataset_type": "<code class="replaceable">application/jsonlines</code>",
+    "headers": [<code class="replaceable">"Age","Gender","Income","Occupation","Target"</code>],
+    "label": "<code class="replaceable">Label</code>",
+    "features": "<code class="replaceable">Features</code>",
+    "label_values_or_threshold": [<code class="replaceable">1</code>],
+    "facet": [
+        <span>{</span>
+            "name_or_index": "<code class="replaceable">Gender</code>",
+            "value_or_threshold": [<code class="replaceable">0</code>]
+        }
+    ],
+    "methods": <span>{</span>
+        "pre_training_bias": <span>{</span>
+            "methods": "<code class="replaceable">all</code>"
+        }
+    }
+}</code></pre>
+                 
+                    <h4 id="clarify-analysis-configure-JSONLines-bias">Compute all the
+                            bias metrics</h4>
+                    <p>You must have a trained model to compute post-training bias metrics. The
+                        following example is from a binary classification model that outputs JSON
+                        Lines data in the example's format. Each row of the model output is a valid
+                        JSON object. The key <code class="code">predicted_label</code> points to the predicted
+                        label, and the key <code class="code">probability</code> points to the probability
+                        value.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>"predicted_label":0,"probability":0.028986845165491}
+<span>{</span>"predicted_label":1,"probability":0.825382471084594}
+...</code></pre>
+                    <p>You can deploy the model to a SageMaker endpoint named
+                            <code class="code">your_endpoint</code>. The following example analysis configuration
+                        instructs the SageMaker Clarify processing job to compute all possible bias metrics for
+                        both the dataset and the model. In this example, the parameter
+                            <code class="code">content_type</code> and <code class="code">accept_type</code> are not set.
+                        Therefore, they are automatically set to use the value of the parameter
+                        dataset_type, which is <code class="code">application/jsonlines</code>. The SageMaker Clarify
+                        processing job uses the <code class="code">content_template</code> parameter to compose
+                        the model input, by replacing the <code class="code">$features</code> placeholder by an
+                        array of features.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "dataset_type": "<code class="replaceable">application/jsonlines</code>",
+    "headers": [<code class="replaceable">"Age","Gender","Income","Occupation","Target"</code>],
+    "label": "<code class="replaceable">Label</code>",
+    "features": "<code class="replaceable">Features</code>",
+    "label_values_or_threshold": [<code class="replaceable">1</code>],
+    "facet": [
+        <span>{</span>
+            "name_or_index": "<code class="replaceable">Gender</code>",
+            "value_or_threshold": [<code class="replaceable">0</code>]
+        }
+    ],
+    "methods": <span>{</span>
+        "pre_training_bias": <span>{</span>
+            "methods": "<code class="replaceable">all</code>"
+        },
+        "post_training_bias": <span>{</span>
+            "methods": "<code class="replaceable">all</code>"
+        }
+    },
+    "predictor": <span>{</span>
+        "endpoint_name": "<code class="replaceable">your_endpoint</code>",
+        "content_template": "<span>{</span><code class="replaceable">\"Features\":$features</code>}",
+        "label": "<code class="replaceable">predicted_label</code>"
+    }
+}</code></pre>
+                 
+                    <h4 id="clarify-analysis-configure-JSONLines-shap">Compute the SHAP
+                            values</h4>
+                    <p>Because SHAP analysis doesn’t need a ground truth label, the
+                            <code class="code">label</code> parameter is omitted. In this example, the
+                            <code class="code">headers</code> parameter is also omitted. Therefore, the SageMaker Clarify
+                        processing job must generate placeholders using generic names like
+                            <code class="code">column_0</code> or <code class="code">column_1</code> for feature headers, and
+                            <code class="code">label0</code> for a label header. You can specify values for
+                            <code class="code">headers</code> and for a <code class="code">label</code> to improve the
+                        readability of the analysis result. Because the probability parameter is set
+                        to JMESPath expression <code class="code">probability</code>, the probability value will
+                        be extracted from the model output. The following is an example to calculate
+                        SHAP values.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "dataset_type": "<code class="replaceable">application/jsonlines</code>",
+    "features": "<code class="replaceable">Features</code>",
+    "methods": <span>{</span>
+        "shap": <span>{</span>
+            "<code class="replaceable">num_clusters</code>": 1
+        }
+    },
+    "predictor": <span>{</span>
+        "endpoint_name": "<code class="replaceable">your_endpoint</code>",
+        "content_template": "<code class="replaceable"><span>{</span>\"Features\":$features}</code>",
+        "probability": "<code class="replaceable">probability</code>"
+    }
+}</code></pre>
+                 
+                    <h4 id="clarify-analysis-configure-JSONLines-pdp">Compute partials
+                            dependence plots (PDPs)</h4>
+                    <p>The following example shows how to view the importance of "Income" on PDP.
+                        In this example, the feature headers are not provided. Therefore, the
+                            <code class="code">features</code> parameter of the <code class="code">pdp</code> method must use
+                        zero-based index to refer to location of the feature column. The
+                            <code class="code">grid_resolution</code> parameter divides the range of the feature
+                        values into <code class="code">10</code> buckets. Together, the parameters in the example
+                        instruct the SageMaker Clarify processing job to generate a report containing a PDP
+                        graph for <code class="code">Income</code> with <code class="code">10</code> segments on the x-axis.
+                        The y-axis will show the marginal impact of <code class="code">Income</code> on the
+                        predictions.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "dataset_type": "<code class="replaceable">application/jsonlines</code>",
+    "features": "<code class="replaceable">Features</code>",
+    "methods": <span>{</span>
+        "pdp": <span>{</span>
+            "features": [<code class="replaceable">2</code>],
+            "grid_resolution": <code class="replaceable">10</code>
+        },
+        "report": <span>{</span>
+            "name": "<code class="replaceable">report</code>"
+        }
+    },
+    "predictor": <span>{</span>
+        "endpoint_name": "<code class="replaceable">your_endpoint</code>",
+        "content_template": "<code class="replaceable"><span>{</span>\"Features\":$features}</code>",
+        "probability": "<code class="replaceable">probability</code>"
+    }
+}</code></pre>
+                 
+                    <h4 id="clarify-analysis-configure-JSONLines-fi-metrics">Compute
+                            both bias metrics and feature importance</h4>
+                    <p>You can combine all previous methods into a single analysis configuration
+                        file and compute them all by a single job. The following example shows an
+                        analysis configuration with all steps combined. In this example, the
+                            <code class="code">probability</code> parameter is set. But because bias analysis
+                        needs a predicted label, the <code class="code">probability_threshold</code> parameter is
+                        set to <code class="code">0.5</code> to convert the probability score into a binary
+                        label. In this example, the <code class="code">top_k_features</code> parameter of the
+                            <code class="code">pdp</code> method is set to <code class="code">2</code>. This instructs the
+                        SageMaker Clarify processing job to compute PDPs for the top <code class="code">2</code> features
+                        with the largest global SHAP values.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "dataset_type": "<code class="replaceable">application/jsonlines</code>",
+    "headers": [<code class="replaceable">"Age","Gender","Income","Occupation","Target"</code>],
+    "label": "<code class="replaceable">Label</code>",
+    "features": "<code class="replaceable">Features</code>",
+    "probability_threshold": <code class="replaceable">0.5</code>,
+    "label_values_or_threshold": [<code class="replaceable">1</code>],
+    "facet": [
+        <span>{</span>
+            "name_or_index": "<code class="replaceable">Gender</code>",
+            "value_or_threshold": [<code class="replaceable">0</code>]
+        }
+    ],
+    "methods": <span>{</span>
+        "pre_training_bias": <span>{</span>
+            "methods": "<code class="replaceable">all</code>"
+        },
+        "post_training_bias": <span>{</span>
+            "methods": "<code class="replaceable">all</code>"
+        },
+        "shap": <span>{</span>
+            "num_clusters": <code class="replaceable">1</code>
+        },
+        "pdp": <span>{</span>
+            "top_k_features": <code class="replaceable">2</code>,
+            "grid_resolution": <code class="replaceable">10</code>
+        },
+        "report": <span>{</span>
+            "name": "<code class="replaceable">report</code>"
+        }
+    },
+    "predictor": <span>{</span>
+        "endpoint_name": "<code class="replaceable">your_endpoint</code>",
+        "content_template": "<code class="replaceable"><span>{</span>\"Features\":$features}</code>",
+        "probability": "<code class="replaceable">probability</code>"
+    }
+}</code></pre>
+                </awsui-expandable-section><awsui-expandable-section variant="container" header="Analysis configuration&#xA;                        for a JSON dataset" id="clarify-analysis-configure-JSON-example" expanded="false"><p>The following examples show how to configure bias and explainability analysis
+                    for a tabular dataset in JSON format. In these examples, the incoming dataset
+                    has the same data as the previous section but they are in the<a href="cdf-inference.html#cm-json">
+                        SageMaker JSON dense format</a>. </p><p>The whole input request is valid JSON where the outer structure is a list and
+                    each element is the data for a record. Within each record, the key
+                        <code class="code">Features</code> points to an array of feature values, and the key
+                        <code class="code">Label</code> points to the ground truth label. The dataset is provided
+                    to the SageMaker Clarify job by the <code class="code">dataset</code> processing input.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">[
+    <span>{</span>"Features":[25,0,2850,2],"Label":0},
+    <span>{</span>"Features":[36,0,6585,0],"Label":1},
+    <span>{</span>"Features":[22,1,1759,1],"Label":1},
+    <span>{</span>"Features":[48,0,3446,1],"Label":0},
+    ...
+]</code></pre><p>The following sections show how to compute pre-training and post-training bias
+                    metrics, SHAP values, and partial dependence plots (PDPs) that show feature
+                    importance for a dataset in JSON Lines format.</p>
+                    <h4 id="clarify-analysis-configure-JSON-example-pretraining">Compute pre-training bias metrics</h4>
+                    <p>Specify the label, features, format, and methods to measure pre-training
+                        bias metrics for a <code class="code">Gender</code> value of <code class="code">0</code>. In the
+                        following example, the <code class="code">headers</code> parameter provides the feature
+                        names first. The label name is provided last. For JSON datasets, the last
+                        header is the label header.</p>
+                    <p>The <code class="code">features</code> parameter is set to the JMESPath expression that
+                        extracts a 2D array or matrix. Each row in this matrix must contain the list
+                        of <code class="code">Features</code> for each record. The <code class="code">label</code> parameter
+                        is set to JMESPath expression that extracts a list of ground truth labels.
+                        Each element in this list must contain the label for a record. </p>
+                    <p>Use a facet name to specify the sensitive attribute, as follows.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "dataset_type": "application/json",
+    "headers": ["Age","Gender","Income","Occupation","Target"],
+    "label": "[*].Label",
+    "features": "[*].Features",
+    "label_values_or_threshold": [1],
+    "facet": [
+        <span>{</span>
+            "name_or_index": "Gender",
+            "value_or_threshold": [0]
+        }
+    ],
+    "methods": <span>{</span>
+        "pre_training_bias": <span>{</span>
+            "methods": "all"
+        }
+    }
+}</code></pre>
+                 
+                    <h4 id="clarify-analysis-configure-JSON-example-bias">Compute all
+                            the bias metrics</h4>
+                    <p>You must have a trained model to compute post-training bias metrics. The
+                        following code example is from a binary classification model that outputs
+                        JSON data in the example's format. In the example, each element under
+                            <code class="code">predictions</code> is the prediction output for a record. The
+                        example code contains the key <code class="code">predicted_label</code>, that points to
+                        the predicted label, and the key <code class="code">probability</code> points to the
+                        probability value.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "predictions": [
+        <span>{</span>"predicted_label":0,"probability":0.028986845165491},
+        <span>{</span>"predicted_label":1,"probability":0.825382471084594},
+        ...
+    ]
+}</code></pre>
+                    <p>You can deploy the model to a SageMaker endpoint named
+                            <code class="code">your_endpoint</code>. </p>
+                    <p>In the following example, the parameter <code class="code">content_type</code> and
+                            <code class="code">accept_type</code> are not set. Therefore,
+                            <code class="code">content_type</code> and <code class="code">accept_type</code> are automatically
+                        set to use the value of the parameter <code class="code">dataset_type</code>, which is
+                            <code class="code">application/json</code>. The SageMaker Clarify processing job then uses the
+                            <code class="code">content_template</code> parameter to compose the model input. </p>
+                    <p>In the following example, the model input is composed by replacing the
+                            <code class="code">$records</code> placeholder by an array of records. Then, the
+                            <code class="code">record_template</code> parameter composes each record’s JSON
+                        structure and replaces the <code class="code">$features</code> placeholder with each
+                        record’s array of features.</p>
+                    <p>The following example analysis configuration instructs the SageMaker Clarify
+                        processing job to compute all possible bias metrics for both the dataset and
+                        the model.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "dataset_type": "application/json",
+    "headers": ["Age","Gender","Income","Occupation","Target"],
+    "label": "[*].Label",
+    "features": "[*].Features",
+    "label_values_or_threshold": [1],
+    "facet": [
+        <span>{</span>
+            "name_or_index": "Gender",
+            "value_or_threshold": [0]
+        }
+    ],
+    "methods": <span>{</span>
+        "pre_training_bias": <span>{</span>
+            "methods": "all"
+        },
+        "post_training_bias": <span>{</span>
+            "methods": "all"
+        }
+    },
+    "predictor": <span>{</span>
+        "endpoint_name": "your_endpoint",
+        "content_template": "$records",
+        "record_template": "<span>{</span>\"Features\":$features}",
+        "label": "predictions[*].predicted_label"
+    }
+}</code></pre>
+                 
+                    <h4 id="clarify-analysis-configure-JSON-example-shap">Compute the
+                            SHAP values</h4>
+                    <p>You don’t need to specify a label for SHAP analysis. In the following
+                        example, the <code class="code">headers</code> parameter is not specified. Therefore, the
+                        SageMaker Clarify processing job will generate placeholders using generic names like
+                            <code class="code">column_0</code> or <code class="code">column_1</code> for feature headers, and
+                            <code class="code">label0</code> for a label header. You can specify values for
+                            <code class="code">headers</code> and for a <code class="code">label</code> to improve the
+                        readability of the analysis result. </p>
+                    <p>In the following configuration example, the probability parameter is set
+                        to a JMESPath expression that extracts the probabilities from each
+                        prediction for each record. The following is an example to calculate SHAP
+                        values.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "dataset_type": "application/json",
+    "features": "[*].Features",
+    "methods": <span>{</span>
+        "shap": <span>{</span>
+            "num_clusters": 1
+        }
+    },
+    "predictor": <span>{</span>
+        "endpoint_name": "your_endpoint",
+        "content_template": "$records",
+        "record_template": "<span>{</span>\"Features\":$features}",
+        "probability": "predictions[*].probability"
+    }
+}</code></pre>
+                 
+                    <h4 id="clarify-analysis-configure-JSON-example-pdp">Compute
+                            partial dependence plots (PDPs)</h4>
+                    <p>The following example shows you how to view a feature importance in PDPs.
+                        In the example, the feature headers are not provided. Therefore, the
+                            <code class="code">features</code> parameter of the <code class="code">pdp</code> method must use
+                        zero-based index to refer to location of the feature column. The
+                            <code class="code">grid_resolution</code> parameter divides the range of the feature
+                        values into <code class="code">10</code> buckets. </p>
+                    <p>Together, the parameters in the following example instruct the SageMaker Clarify
+                        processing job to generate a report containing a PDP graph for
+                            <code class="code">Income</code> with <code class="code">10</code> segments on the x-axis. The
+                        y-axis shows the marginal impact of <code class="code">Income</code> on the
+                        predictions.</p>
+                    <p>The following configuration example shows how to view the importance of
+                            <code class="code">Income</code> on PDPs.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "dataset_type": "application/json",
+    "features": "[*].Features",
+    "methods": <span>{</span>
+        "pdp": <span>{</span>
+            "features": [2],
+            "grid_resolution": 10
+        },
+        "report": <span>{</span>
+            "name": "report"
+        }
+    },
+    "predictor": <span>{</span>
+        "endpoint_name": "your_endpoint",
+        "content_template": "$records",
+        "record_template": "<span>{</span>\"Features\":$features}",
+        "probability": "predictions[*].probability"
+    }
+}</code></pre>
+                 
+                    <h4 id="clarify-analysis-configure-JSON-example-bias-fi">Compute
+                            both bias metrics and feature importance</h4>
+                    <p>You can combine all previous configuration methods into a single analysis
+                        configuration file and compute them all with a single job. The following
+                        example shows an analysis configuration with all steps combined. </p>
+                    <p>In this example, the <code class="code">probability</code> parameter is set. Because
+                        bias analysis needs a predicted label, the
+                            <code class="code">probability_threshold</code> parameter is set to <code class="code">0.5</code>,
+                        which is used to convert the probability score into a binary label. In this
+                        example, the <code class="code">top_k_features</code> parameter of the <code class="code">pdp</code>
+                        method is set to <code class="code">2</code>. This instructs the SageMaker Clarify processing job to
+                        compute PDPs for the top <code class="code">2</code> features with the largest global
+                        SHAP values.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "dataset_type": "application/json",
+    "headers": ["Age","Gender","Income","Occupation","Target"],
+    "label": "[*].Label",
+    "features": "[*].Features",
+    "probability_threshold": 0.5,
+    "label_values_or_threshold": [1],
+    "facet": [
+        <span>{</span>
+            "name_or_index": "Gender",
+            "value_or_threshold": [0]
+        }
+    ],
+    "methods": <span>{</span>
+        "pre_training_bias": <span>{</span>
+            "methods": "all"
+        },
+        "post_training_bias": <span>{</span>
+            "methods": "all"
+        },
+        "shap": <span>{</span>
+            "num_clusters": 1
+        },
+        "pdp": <span>{</span>
+            "top_k_features": 2,
+            "grid_resolution": 10
+        },
+        "report": <span>{</span>
+            "name": "report"
+        }
+    },
+    "predictor": <span>{</span>
+        "endpoint_name": "your_endpoint",
+        "content_template": "$records",
+        "record_template": "<span>{</span>\"Features\":$features}",
+        "probability": "predictions[*].probability"
+    }
+}</code></pre>
+                </awsui-expandable-section><awsui-expandable-section variant="container" header="Analysis configuration&#xA;                        for natural language processing explainability" id="clarify-analysis-configure-nlp-example" expanded="false"><p>The following example shows an analysis configuration file for computing
+                    feature importance for natural language processing (NLP). In this example, the
+                    incoming dataset is a tabular dataset in CSV format, with one binary label
+                    column and two feature columns, as follows. The dataset is provided to the SageMaker Clarify
+                    job by the <code class="code">dataset</code> processing input parameter.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">0,2,"They taste gross"
+1,3,"Flavor needs work"
+1,5,"Taste is awful"
+0,1,"The worst"
+...</code></pre><p>In this example, a binary classification model was trained on the previous
+                    dataset. The model accepts CSV data, and it outputs a single score between
+                        <code class="code">0</code> and <code class="code">1</code>, as follows.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">0.491656005382537
+0.569582343101501
+...</code></pre><p>The model is used to create a SageMaker model named “your_model". The following
+                    analysis configuration shows how to run a token-wise explainability analysis
+                    using the model and dataset. The <code class="code">text_config</code> parameter activates
+                    the NLP explainability analysis. The <code class="code">granularity</code> parameter
+                    indicates that the analysis should parse tokens. </p><p>In English, each token is a word. The following example also shows how to
+                    provide an in-place SHAP "baseline" instance using an average "Rating" of 4. A
+                    special mask token "[MASK]" is used to replace a token (word) in "Comments".
+                    This example also uses a GPU endpoint instance type to speed up
+                    inferencing.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "dataset_type": "<code class="replaceable">text/csv</code>",
+    "headers": [<code class="replaceable">"Target","Rating","Comments"</code>]
+    "label": "<code class="replaceable">Target</code>",
+    "methods": <span>{</span>
+        "shap": <span>{</span>
+            "text_config": <span>{</span>
+                "granularity": "<code class="replaceable">token</code>",
+                "language": "<code class="replaceable">english</code>"
+            }
+            "baseline": [[<code class="replaceable">4,"[MASK]"</code>]],
+        }
+    },
+    "predictor": <span>{</span>
+        "model_name": "<code class="replaceable">your_nlp_model</code>",
+        "initial_instance_count": <code class="replaceable">1</code>,
+        "instance_type": "<code class="replaceable">ml.g4dn.xlarge</code>"
+    }
+}</code></pre></awsui-expandable-section><awsui-expandable-section variant="container" header="Analysis&#xA;                        configuration for computer vision explainability" id="clarify-analysis-configure-computer-vision-example" expanded="false"><p>The following example shows an analysis configuration file computing feature
+                    importance for computer vision. In this example, the input dataset consists of
+                    JPEG images. The dataset is provided to the SageMaker Clarify job by the
+                        <code class="code">dataset</code> processing input parameter. The example shows how to
+                    configure an explainability analysis using a <a href="image-classification.html">SageMaker image
+                        classification model</a>. In the example, a model named
+                        <code class="code">your_cv_ic_model</code>, has been trained to classify the animals on
+                    the input JPEG images.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "dataset_type": "<code class="replaceable">application/x-image</code>",
+    "methods": <span>{</span>
+        "shap": <span>{</span>
+             "image_config": <span>{</span>
+                "model_type": "<code class="replaceable">IMAGE_CLASSIFICATION</code>",
+                 "num_segments": <code class="replaceable">20</code>,
+                "segment_compactness": <code class="replaceable">10</code>
+             }
+        },
+        "report": <span>{</span>
+            "name": "<code class="replaceable">report</code>"
+        }
+    },
+    "predictor": <span>{</span>
+        "model_name": "<code class="replaceable">your_cv_ic_model</code>",
+        "initial_instance_count": <code class="replaceable">1</code>,
+        "instance_type": "<code class="replaceable">ml.p2.xlarge</code>",
+        "label_headers": [<code class="replaceable">"bird","cat","dog"</code>]
+    }
+}</code></pre><p>In this example, a <a href="object-detection.html">SageMaker object detection
+                        model</a>, <code class="code">your_cv_od_model</code> is trained on the same JPEG
+                    images to identify the animals on them. The following example shows how to
+                    configure an explainability analysis for the object detection model.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "dataset_type": "<code class="replaceable">application/x-image</code>",
+    "probability_threshold": <code class="replaceable">0.5</code>,
+    "methods": <span>{</span>
+        "<code class="replaceable">shap</code>": <span>{</span>
+             "image_config": <span>{</span>
+                "model_type": "<code class="replaceable">OBJECT_DETECTION</code>",
+                 "max_objects": <code class="replaceable">3</code>,
+                "context": <code class="replaceable">1.0</code>,
+                "iou_threshold": <code class="replaceable">0.5</code>,
+                 "num_segments": <code class="replaceable">20</code>,
+                "segment_compactness": <code class="replaceable">10</code>
+             }
+        },
+        "report": <span>{</span>
+            "name": "<code class="replaceable">report</code>"
+        }
+    },
+    "predictor": <span>{</span>
+        "model_name": "<code class="replaceable">your_cv_od_model</code>",
+        "initial_instance_count": <code class="replaceable">1</code>,
+        "instance_type": "<code class="replaceable">ml.p2.xlarge</code>",
+        "label_headers": [<code class="replaceable">"bird","cat","dog"</code>]
+    }
+}</code></pre></awsui-expandable-section></div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./clarify-processing-job-configure-container.html">Get Started: SageMaker Clarify Containers</div><div id="next" class="next-link" accesskey="n" href="./clarify-processing-job-data-format.html">Data Format Compatibility Guide</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-processing-job-configure-analysis.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Use Batch Transform - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="batch-transform" /><meta name="default_state" content="batch-transform" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="batch-transform.html" /><meta name="description" content="Use a batch transform job to get inferences for an entire dataset, when you don't need a persistent endpoint, or to preprocess your datasets to remove noise or bias." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="batch-transform.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/batch-transform.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/batch-transform.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/batch-transform.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/batch-transform.html" hreflang="de" /><link rel="alternative" href="batch-transform.html" hreflang="en-us" /><link rel="alternative" href="batch-transform.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/batch-transform.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/batch-transform.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/batch-transform.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/batch-transform.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/batch-transform.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/batch-transform.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/batch-transform.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/batch-transform.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/batch-transform.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/batch-transform.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/batch-transform.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/batch-transform.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/batch-transform.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/batch-transform.html" hreflang="zh-tw" /><link rel="alternative" href="batch-transform.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Use Batch Transform" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Use Batch Transform - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#batch-transform" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/batch-transform.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/batch-transform.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/batch-transform.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,inference,deploy model,endpoint,prediction,ML application,serverless machine learning,multi model deployment,inference pipelines,ML model" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploy models for inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Use Batch Transform",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#batch-transform" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="batch-transform.html#batch-transform-large-datasets">Use
+        Batch Transform to Get Inferences from Large Datasets</a><a href="batch-transform.html#batch-transform-reduce-time">Speed up a Batch Transform Job</a><a href="batch-transform.html#batch-transform-test-variants">Use Batch Transform to Test Production
+                Variants</a><a href="batch-transform.html#batch-transform-notebooks">Sample Notebooks</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="batch-transform">Use Batch Transform</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Use batch transform when you need to do the following: </p><div class="itemizedlist">
+         
+         
+         
+  
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p>Preprocess datasets to remove noise or bias that interferes with training or
+                inference from your dataset.</p>
+        </li><li class="listitem">
+            <p>Get inferences from large datasets.</p>
+        </li><li class="listitem">
+            <p>Run inference when you don't need a persistent endpoint.</p>
+        </li><li class="listitem">
+            <p>Associate input records with inferences to assist the interpretation of
+                results.</p>
+        </li></ul></div><p>To filter input data before performing inferences or to associate input records with
+        inferences about those records, see <a href="batch-transform-data-processing.html">Associate
+                Prediction
+                Results with Input Records</a>. For example, you can filter input
+        data to provide context for creating and interpreting reports about the output data.</p><div class="highlights"><h6>Topics</h6><ul><li><a href="batch-transform.html#batch-transform-large-datasets">Use
+        Batch Transform to Get Inferences from Large Datasets</a></li><li><a href="batch-transform.html#batch-transform-reduce-time">Speed up a Batch Transform Job</a></li><li><a href="batch-transform.html#batch-transform-test-variants">Use Batch Transform to Test Production
+                Variants</a></li><li><a href="batch-transform.html#batch-transform-notebooks">Batch Transform Sample Notebooks</a></li><li><a href="batch-transform-data-processing.html">Associate
+                Prediction
+                Results with Input Records</a></li><li><a href="batch-transform-storage.html">Storage in Batch Transform</a></li><li><a href="batch-transform-errors.html">Troubleshooting</a></li></ul></div>
+    <h2 id="batch-transform-large-datasets">Use
+        Batch Transform to Get Inferences from Large Datasets</h2>
+    <p>Batch transform automatically manages the processing of large datasets
+            within
+            the limits of specified parameters. For example, suppose that you
+            have a dataset file,
+            <code class="code">input1.csv</code>,
+            stored in an S3 bucket. The content of the input file might look like
+            the following example.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">Record1-Attribute1, Record1-Attribute2, Record1-Attribute3, ..., Record1-AttributeM
+Record2-Attribute1, Record2-Attribute2, Record2-Attribute3, ..., Record2-AttributeM
+Record3-Attribute1, Record3-Attribute2, Record3-Attribute3, ..., Record3-AttributeM
+...
+RecordN-Attribute1, RecordN-Attribute2, RecordN-Attribute3, ..., RecordN-AttributeM            </code></pre>
+    <p>When a batch transform job starts, SageMaker initializes compute instances and distributes the
+            inference or preprocessing workload between them. Batch Transform partitions the Amazon S3
+            objects in the input by key and maps Amazon S3 objects to instances. When you have multiple
+            files, one instance might process <code class="code">input1.csv</code>, and another instance might
+            process the file named <code class="code">input2.csv</code>. If you have one input file but
+            initialize multiple compute instances, only one instance processes the input file and
+            the rest of the instances are idle.</p>
+    <p>You can also split input files into mini-batches. For example, you might create a
+            mini-batch from <code class="code">input1.csv</code> by including only two of the records.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">
+Record3-Attribute1, Record3-Attribute2, Record3-Attribute3, ..., Record3-AttributeM
+Record4-Attribute1, Record4-Attribute2, Record4-Attribute3, ..., Record4-AttributeM
+            </code></pre>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>SageMaker processes each input file separately. It doesn't combine mini-batches from different input
+          files to comply with the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html#SageMaker-CreateTransformJob-request-MaxPayloadInMB               "><code class="code">MaxPayloadInMB
+              </code></a> limit.</p></div></div>
+    <p>To
+            split input files into mini-batches when you create a batch transform job, set the
+                <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TransformInput.html#SageMaker-Type-TransformInput-SplitType             "><code class="code">SplitType</code></a> parameter value to <code class="code">Line</code>. If
+                <code class="code">SplitType</code> is set to <code class="code">None</code> or if an input file can't be
+            split into mini-batches, SageMaker uses the entire input file in a single
+            request. Note that Batch Transform doesn't support CSV-formatted
+            input that contains embedded newline characters. You can control the size of the
+            mini-batches by using the <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html#sagemaker-CreateTransformJob-request-BatchStrategy">BatchStrategy</a></code> and <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html#sagemaker-CreateTransformJob-request-MaxPayloadInMB">MaxPayloadInMB</a></code> parameters. <code class="code">MaxPayloadInMB</code> must not
+            be greater than 100 MB. If you specify the optional <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html#sagemaker-CreateTransformJob-request-MaxConcurrentTransforms">MaxConcurrentTransforms</a></code> parameter, then the value of
+                <code class="code">(MaxConcurrentTransforms * MaxPayloadInMB)</code> must also not exceed 100
+            MB.</p>
+    <p>If the batch transform job successfully processes all of the records in an input file, it creates an
+      output file with the same name and the <code class="code">.out</code> file extension. For multiple input files, such
+      as <code class="code">input1.csv</code> and <code class="code">input2.csv</code>, the output files are named
+        <code class="code">input1.csv.out</code> and <code class="code">input2.csv.out</code>. The batch transform job stores the output
+      files in the specified location in Amazon S3, such as <code class="code">s3://awsexamplebucket/output/</code>. </p>
+    <p>The predictions in an output file are listed in the same order as the corresponding records in the
+      input file. The output file <code>input1.csv.out</code>, based on the input file shown earlier,
+      would look like the following.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">Inference1-Attribute1, Inference1-Attribute2, Inference1-Attribute3, ..., Inference1-AttributeM
+Inference2-Attribute1, Inference2-Attribute2, Inference2-Attribute3, ..., Inference2-AttributeM
+Inference3-Attribute1, Inference3-Attribute2, Inference3-Attribute3, ..., Inference3-AttributeM
+...
+InferenceN-Attribute1, InferenceN-Attribute2, InferenceN-Attribute3, ..., InferenceN-AttributeM            </code></pre>
+    <p>If you set <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TransformInput.html#SageMaker-Type-TransformInput-SplitType             "><code class="code">SplitType</code></a> to <code class="code">Line</code>, you can
+            set
+            the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TransformOutput.html#SageMaker-Type-TransformOutput-AssembleWith             "><code class="code">AssembleWith</code></a> parameter to <code class="code">Line</code> to concatenate the
+            output records with a line delimiter. This does not change the number of output files.
+            The number of output files is equal to the number of input files, and using
+                <code class="code">AssembleWith</code> does not merge files. If you don't specify the
+                <code class="code">AssembleWith</code> parameter, by default the output records are concatenated
+            in a binary format.</p>
+    <p>When the input data is very large and is transmitted using HTTP chunked encoding, to stream the data
+        to the algorithm, set <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html#SageMaker-CreateTransformJob-request-MaxPayloadInMB"><code class="code">MaxPayloadInMB</code></a> to <code class="code">0</code>. Amazon SageMaker built-in algorithms don't support this
+      feature.</p>
+        <p>For information about using the API to create a batch transform job, see the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html"><code class="code">CreateTransformJob</code></a> API. For more information
+            about the correlation between batch transform input and output objects, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_OutputDataConfig.html"><code class="code">OutputDataConfig</code></a>. For an
+      example of how to use batch transform, see <a href="ex1-model-deployment.html#ex1-batch-transform">(Optional) Make Prediction with Batch
+                Transform</a>.</p>
+    
+   
+        <h2 id="batch-transform-reduce-time">Speed up a Batch Transform Job</h2>
+
+        <p>If
+            you are using the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html"><code class="code">CreateTransformJob</code></a> API, you can reduce the time it takes to
+            complete batch transform jobs by using optimal values for parameters
+            such
+            as <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html#SageMaker-CreateTransformJob-request-MaxPayloadInMB"><code class="code">MaxPayloadInMB</code></a>, <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html#SageMaker-CreateTransformJob-request-MaxConcurrentTransforms"><code class="code">MaxConcurrentTransforms</code></a>, or <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html#SageMaker-CreateTransformJob-request-BatchStrategy"><code class="code">BatchStrategy</code></a>. The ideal value for
+                <code class="code">MaxConcurrentTransforms</code> is equal to the number of compute workers in
+            the batch transform job. If you are using the SageMaker console, you can specify these
+            optimal parameter values in the <b>Additional configuration</b> section of
+            the <b>Batch transform job configuration</b> page. SageMaker automatically
+            finds the optimal parameter settings for built-in algorithms. For custom algorithms,
+            provide these values through an <a href="your-algorithms-batch-code.html#your-algorithms-batch-code-how-containe-serves-requests">execution-parameters</a> endpoint.</p>
+        
+     
+        <h2 id="batch-transform-test-variants">Use Batch Transform to Test Production
+                Variants</h2>
+        <p>To test different models or various hyperparameter settings, create a separate
+            transform job for each new model variant and use a validation dataset. For each
+            transform job, specify a unique model name and location in Amazon S3 for the output file. To
+            analyze the results, use <a href="inference-pipeline-logs-metrics.html">Inference Pipeline Logs and
+                Metrics</a>.</p>
+     
+        <h2 id="batch-transform-notebooks">Batch Transform Sample Notebooks</h2>
+
+        <p>For a sample notebook that uses batch transform with a principal component analysis
+            (PCA) model to reduce data in a user-item review matrix, followed by the application of
+            a density-based spatial clustering of applications with noise (DBSCAN) algorithm to
+            cluster movies, see <a href="https://sagemaker-examples.readthedocs.io/en/latest/sagemaker_batch_transform/introduction_to_batch_transform/batch_transform_pca_dbscan_movie_clusters.html" rel="noopener noreferrer" target="_blank"><span>Batch Transform with PCA and DBSCAN Movie Clusters</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. For instructions on
+            creating and accessing Jupyter notebook instances that you can use to run the example in
+            SageMaker, see <a href="nbi.html">Amazon SageMaker Notebook Instances</a>. After creating and opening a
+            notebook instance, choose the <b>SageMaker Examples</b> tab to
+            see a list of all the SageMaker examples. The topic modeling example notebooks that use the
+            NTM
+            algorithms are located in the <b>Advanced
+                functionality</b> section. To open a notebook, choose its <b>Use</b> tab, then choose <b>Create
+                copy</b>.</p>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./async-inference-troubleshooting.html">Troubleshooting</div><div id="next" class="next-link" accesskey="n" href="./batch-transform-data-processing.html">Associate Prediction Results with Input</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/batch-transform.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/batch-transform.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

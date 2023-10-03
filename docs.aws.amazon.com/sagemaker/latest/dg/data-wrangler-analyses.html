@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Analyze and Visualize - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="data-wrangler-analyses" /><meta name="default_state" content="data-wrangler-analyses" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="data-wrangler-analyses.html" /><meta name="description" content="Use Data Wrangler to create visualizations and analyses for your data." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="data-wrangler-analyses.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/data-wrangler-analyses.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/data-wrangler-analyses.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/data-wrangler-analyses.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/data-wrangler-analyses.html" hreflang="de" /><link rel="alternative" href="data-wrangler-analyses.html" hreflang="en-us" /><link rel="alternative" href="data-wrangler-analyses.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/data-wrangler-analyses.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/data-wrangler-analyses.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/data-wrangler-analyses.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/data-wrangler-analyses.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/data-wrangler-analyses.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/data-wrangler-analyses.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/data-wrangler-analyses.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/data-wrangler-analyses.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/data-wrangler-analyses.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/data-wrangler-analyses.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/data-wrangler-analyses.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/data-wrangler-analyses.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/data-wrangler-analyses.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/data-wrangler-analyses.html" hreflang="zh-tw" /><link rel="alternative" href="data-wrangler-analyses.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Analyze and Visualize" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Analyze and Visualize - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#data-wrangler-analyses" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/data-wrangler-analyses.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/data-wrangler-analyses.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/data-wrangler-analyses.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Prepare data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-prep.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Prepare ML Data with Amazon SageMaker Data Wrangler",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-wrangler.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Analyze and Visualize",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-wrangler.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#data-wrangler-analyses" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="data-wrangler-analyses.html#data-wrangler-visualize-histogram">Histogram</a><a href="data-wrangler-analyses.html#data-wrangler-visualize-scatter-plot">Scatter Plot</a><a href="data-wrangler-analyses.html#data-wrangler-table-summary">Table Summary</a><a href="data-wrangler-analyses.html#data-wrangler-quick-model">Quick Model</a><a href="data-wrangler-analyses.html#data-wrangler-analysis-target-leakage">Target Leakage</a><a href="data-wrangler-analyses.html#data-wrangler-multicollinearity">Multicollinearity</a><a href="data-wrangler-analyses.html#data-wrangler-time-series-anomaly-detection">Detect Anomalies In Time
+                Series Data</a><a href="data-wrangler-analyses.html#data-wrangler-seasonal-trend-decomposition">Seasonal Trend Decomposition In
+                Time Series Data</a><a href="data-wrangler-analyses.html#data-wrangler-bias-report">Bias Report</a><a href="data-wrangler-analyses.html#data-wrangler-visualize-custom">Create Custom Visualizations</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="data-wrangler-analyses">Analyze and Visualize</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon SageMaker Data Wrangler includes built-in analyses that help you generate visualizations and data
+        analyses in a few clicks. You can also create custom analyses using your own code. </p><p>You add an analysis to a dataframe by selecting a step in your data flow, and then
+        choosing <b>Add analysis</b>. To access an analysis you've created, select the
+        step that contains the analysis, and select the analysis. </p><p>All analyses are generated using 100,000 rows of your dataset. </p><p>You can add the following analysis to a dataframe:</p><div class="itemizedlist">
+         
+         
+         
+         
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p>Data visualizations, including histograms and scatter plots. </p>
+        </li><li class="listitem">
+            <p>A quick summary of your dataset, including number of entries, minimum and maximum
+                values (for numeric data), and most and least frequent categories (for categorical
+                data).</p>
+        </li><li class="listitem">
+            <p>A quick model of the dataset, which can be used to generate an importance score
+                for each feature. </p>
+        </li><li class="listitem">
+            <p>A target leakage report, which you can use to determine if one or more features
+                are strongly correlated with your target feature.</p>
+        </li><li class="listitem">
+            <p>A custom visualization using your own code. </p>
+        </li></ul></div><p>Use the following sections to learn more about these options. </p>
+        <h2 id="data-wrangler-visualize-histogram">Histogram</h2>
+        <p>Use histograms to see the counts of feature values for a specific feature. You can
+            inspect the relationships between features using the <b>Color by</b>
+            option. For example, the following histogram charts the distribution of user ratings of
+            the best-selling books on Amazon from 2009–2019, colored by genre. </p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/histogram.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+             
+        </div>
+        <p>You can use the <b>Facet by</b> feature to create histograms of one
+            column, for each value in another column. For example, the following diagram shows
+            histograms of user reviews of best-selling books on Amazon if faceted by year. </p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/review_by_year.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+             
+        </div>
+
+
+     
+        <h2 id="data-wrangler-visualize-scatter-plot">Scatter Plot</h2>
+        <p>Use the <b>Scatter Plot</b> feature to inspect the relationship between
+            features. To create a scatter plot, select a feature to plot on the <b>X
+                axis</b> and the <b>Y axis</b>. Both of these columns must be
+            numeric typed columns. </p>
+        <p>You can color scatter plots by an additional column. For example, the following
+            example shows a scatter plot comparing the number of reviews against user ratings of
+            top-selling books on Amazon between 2009 and 2019. The scatter plot is colored by book
+            genre. </p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/scatter-plot.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+             
+        </div>
+        <p>Additionally, you can facet scatter plots by features. For example, the following
+            image shows an example of the same review versus user rating scatter plot, faceted by
+            year. </p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/scatter-plot-facet.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+             
+        </div>
+     
+        <h2 id="data-wrangler-table-summary">Table Summary</h2>
+        <p>Use the <b>Table Summary</b> analysis to quickly summarize your
+            data.</p>
+        <p>For columns with numerical data, including log and float data, a table summary reports
+            the number of entries (count), minimum (min), maximum (max), mean, and standard
+            deviation (stddev) for each column.</p>
+        <p>For columns with non-numerical data, including columns with string, Boolean, or
+            date/time data, a table summary reports the number of entries (count), least frequent
+            value (min), and most frequent value (max). </p>
+     
+        <h2 id="data-wrangler-quick-model">Quick Model</h2>
+        <p>Use the <b>Quick Model</b> visualization to quickly evaluate your data
+            and produce importance scores for each feature. A <a href="http://spark.apache.org/docs/2.1.0/api/python/pyspark.ml.html#pyspark.ml.classification.DecisionTreeClassificationModel.featureImportances" rel="noopener noreferrer" target="_blank"><span>feature importance score</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> score indicates how useful a feature is at
+            predicting a target label. The feature importance score is between [0, 1] and a higher
+            number indicates that the feature is more important to the whole dataset. On the top of
+            the quick model chart, there is a model score. A classification problem shows an F1
+            score. A regression problem has a mean squared error (MSE) score.</p>
+        <p>When you create a quick model chart, you select a dataset you want evaluated, and a
+            target label against which you want feature importance to be compared. Data Wrangler does the
+            following:</p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Infers the data types for the target label and each feature in the dataset
+                    selected. </p>
+            </li><li class="listitem">
+                <p>Determines the problem type. Based on the number of distinct values in the
+                    label column, Data Wrangler determines if this is a regression or classification problem
+                    type. Data Wrangler sets a categorical threshold to 100. If there are more than 100
+                    distinct values in the label column, Data Wrangler classifies it as a regression problem;
+                    otherwise, it is classified as a classification problem. </p>
+            </li><li class="listitem">
+                <p>Pre-processes features and label data for training. The algorithm used
+                    requires encoding features to vector type and encoding labels to double type.
+                </p>
+            </li><li class="listitem">
+                <p>Trains a random forest algorithm with 70% of data. Spark’s <a href="https://spark.apache.org/docs/latest/ml-classification-regression.html#random-forest-regression" rel="noopener noreferrer" target="_blank"><span>RandomForestRegressor</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> is used to train a model for regression
+                    problems. The <a href="https://spark.apache.org/docs/latest/ml-classification-regression.html#random-forest-classifier" rel="noopener noreferrer" target="_blank"><span>RandomForestClassifier</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> is used to train a model for classification
+                    problems.</p>
+            </li><li class="listitem">
+                <p>Evaluates a random forest model with the remaining 30% of data. Data Wrangler evaluates
+                    classification models using an F1 score and evaluates regression models using an
+                    MSE score.</p>
+            </li><li class="listitem">
+                <p>Calculates feature importance for each feature using the Gini importance
+                    method. </p>
+            </li></ul></div>
+        <p>The following image shows the user interface for the quick model feature. </p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/quick-model.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+             
+        </div>
+     
+        <h2 id="data-wrangler-analysis-target-leakage">Target Leakage</h2>
+        <p>Target leakage occurs when there is data in a machine learning training dataset that
+            is strongly correlated with the target label, but is not available in real-world data.
+            For example, you may have a column in your dataset that serves as a proxy for the column
+            you want to predict with your model. </p>
+        <p>When you use the <b>Target Leakage</b> analysis, you specify the
+            following:</p>
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><b>Target</b>: This is the feature about which you want your ML
+                    model to be able to make predictions.</p>
+            </li><li class="listitem">
+                <p><b>Problem type</b>: This is the ML problem type on which you
+                    are working. Problem type can either be <b>classification</b> or
+                        <b>regression</b>. </p>
+            </li><li class="listitem">
+                <p> (Optional) <b>Max features</b>: This is the maximum number of
+                    features to present in the visualization, which shows features ranked by their
+                    risk of being target leakage.</p>
+            </li></ul></div>
+        <p>For classification, the target leakage analysis uses the area under the receiver
+            operating characteristic, or AUC - ROC curve for each column, up to <b>Max
+                features</b>. For regression, it uses a coefficient of determination, or R2
+            metric.</p>
+        <p>The AUC - ROC curve provides a predictive metric, computed individually for each
+            column using cross-validation, on a sample of up to around 1000 rows. A score of 1
+            indicates perfect predictive abilities, which often indicates target leakage. A score of
+            0.5 or lower indicates that the information on the column could not provide, on its own,
+            any useful information towards predicting the target. Although it can happen that a
+            column is uninformative on its own but is useful in predicting the target when used in
+            tandem with other features, a low score could indicate the feature is redundant.</p>
+        <p>For example, the following image shows a target leakage report for a diabetes
+            classification problem, that is, predicting if a person has diabetes or not. An AUC -
+            ROC curve is used to calculate the predictive ability of five features, and all are
+            determined to be safe from target leakage.</p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/target-leakage.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+             
+        </div>
+     
+        <h2 id="data-wrangler-multicollinearity">Multicollinearity</h2>
+        <p>Multicollinearity is a circumstance where two or more predictor variables are related
+            to each other. The predictor variables are the features in your dataset that you're
+            using to predict a target variable. When you have multicollinearity, the predictor
+            variables are not only predictive of the target variable, but also predictive of each
+            other.</p>
+        <p>You can use the <b>Variance Inflation Factor (VIF)</b>,
+                <b>Principal Component Analysis (PCA)</b>, or <b>Lasso feature
+                selection</b> as measures for the multicollinearity in your data. For more
+            information, see the following.</p>
+        <awsdocs-tabs><dl style="display: none">
+            <dt>Variance Inflation Factor (VIF)</dt><dd tab-id="variance-inflation-factor-(vif)">
+                    <p>The Variance Inflation Factor (VIF) is a measure of collinearity among
+                        variable pairs. Data Wrangler returns a VIF score as a measure of how closely the
+                        variables are related to each other. A VIF score is a positive number that
+                        is greater than or equal to 1.</p>
+                    <p>A score of 1 means that the variable is uncorrelated with the other
+                        variables. Scores greater than 1 indicate higher correlation.</p>
+                    <p>Theoretically, you can have a VIF score with a value of infinity. Data Wrangler
+                        clips high scores to 50. If you have a VIF score greater than 50, Data Wrangler sets
+                        the score to 50.</p>
+
+                    <p>You can use the following guidelines to interpret your VIF scores:</p>
+                    <div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>A VIF score less than or equal to 5 indicates that the variables
+                                are moderately correlated with the other variables.</p>
+                        </li><li class="listitem">
+                            <p>A VIF score greater than or equal to 5 indicates that the
+                                variables are highly correlated with the other variables.</p>
+                        </li></ul></div>
+
+                </dd>
+
+            <dt>Principle Component Analysis (PCA)</dt><dd tab-id="principle-component-analysis-(pca)">
+                    <p>Principal Component Analysis (PCA) measures the variance of the data along
+                        different directions in the feature space. The feature space consists of all
+                        the predictor variables that you use to predict the target variable in your
+                        dataset.</p>
+
+                    <p>For example, if you're trying to predict who survived on the <em>RMS
+                            Titanic</em> after it hit an iceberg, your feature space can
+                        include the passengers' age, gender, and the fare that they paid.</p>
+
+                    <p>From the feature space, PCA generates an ordered list of variances. These
+                        variances are also known as singular values. The values in the list of
+                        variances are greater than or equal to 0. We can use them to determine how
+                        much multicollinearity there is in our data.</p>
+
+                    <p>When the numbers are roughly uniform, the data has very few instances of
+                        multicollinearity. When there is a lot of variability among the values, we
+                        have many instances of multicollinearity. Before it performs PCA, Data Wrangler
+                        normalizes each feature to have a mean of 0 and a standard deviation of
+                        1.</p>
+                    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>PCA in this circumstance can also be referred to as Singular Value
+                            Decomposition (SVD).</p></div></div>
+
+
+
+                </dd>
+            <dt>Lasso feature selection</dt><dd tab-id="lasso-feature-selection">
+
+                    <p>Lasso feature selection uses the L1 regularization technique to only
+                        include the most predictive features in your dataset.</p>
+                    <p>For both classification and regression, the regularization technique
+                        generates a coefficient for each feature. The absolute value of the
+                        coefficient provides an importance score for the feature. A higher
+                        importance score indicates that it is more predictive of the target
+                        variable. A common feature selection method is to use all the features that
+                        have a non-zero lasso coefficient.</p>
+
+
+                </dd>
+
+
+        </dl></awsdocs-tabs>
+
+
+
+     
+        <h2 id="data-wrangler-time-series-anomaly-detection">Detect Anomalies In Time
+                Series Data</h2>
+        <p>You can use the anomaly detection visualization to see outliers in your time series
+            data. To understand what determines an anomaly, you need to understand that we decompose
+            the time series into a predicted term and an error term. We treat the seasonality and
+            trend of the time series as the predicted term. We treat the residuals as the error
+            term.</p>
+        <p>For the error term, you specify a threshold as the number of standard of deviations
+            the residual can be away from the mean for it to be considered an anomaly. For example,
+            you can specify a threshold as being 3 standard deviations. Any residual greater than 3
+            standard deviations away from the mean is an anomaly.</p>
+        <p>You can use the following procedure to perform an <b>Anomaly
+                detection</b> analysis.</p>
+
+    <div class="procedure"><ol><li>
+            <p>Open your Data Wrangler data flow.</p>
+        </li><li>
+            <p>In your data flow, under <b>Data types</b>, choose the
+                    <b>+</b>, and select <b>Add analysis</b>.</p>
+        </li><li>
+            <p>For <b>Analysis type</b>, choose <b>Time
+                Series</b>.</p>
+        </li><li>
+            <p>For <b>Visualization</b>, choose <b>Anomaly
+                    detection</b>.</p>
+        </li><li>
+            <p>For <b>Anomaly threshold</b>, choose the threshold that a value is
+                considered an anomaly.</p>
+        </li><li>
+            <p>Choose <b>Preview</b> to generate a preview of the analysis.</p>
+        </li><li>
+            <p>Choose <b>Add</b> to add the transform to the Data Wrangler data flow.</p>
+        </li></ol></div>
+        <h2 id="data-wrangler-seasonal-trend-decomposition">Seasonal Trend Decomposition In
+                Time Series Data</h2>
+        <p>You can determine whether there's seasonality in your time series data by using the
+            Seasonal Trend Decomposition visualization. We use the STL (Seasonal Trend decomposition
+            using LOESS) method to perform the decomposition. We decompose the time series into its
+            seasonal, trend, and residual components. The trend reflects the long term progression
+            of the series. The seasonal component is a signal that recurs in a time period. After
+            removing the trend and the seasonal components from the time series, you have the
+            residual.</p>
+        <p>You can use the following procedure to perform a <b>Seasonal-Trend
+                decomposition</b> analysis.</p>
+        <div class="procedure"><ol><li>
+                <p>Open your Data Wrangler data flow.</p>
+            </li><li>
+                <p>In your data flow, under <b>Data types</b>, choose the
+                        <b>+</b>, and select <b>Add analysis</b>.</p>
+            </li><li>
+                <p>For <b>Analysis type</b>, choose <b>Time
+                        Series</b>.</p>
+            </li><li>
+                <p>For <b>Visualization</b>, choose <b>Seasonal-Trend
+                        decomposition</b>.</p>
+            </li><li>
+                <p>For <b>Anomaly threshold</b>, choose the threshold that a value
+                    is considered an anomaly.</p>
+            </li><li>
+                <p>Choose <b>Preview</b> to generate a preview of the
+                    analysis.</p>
+            </li><li>
+                <p>Choose <b>Add</b> to add the transform to the Data Wrangler data
+                    flow.</p>
+            </li></ol></div>
+     
+        <h2 id="data-wrangler-bias-report">Bias Report</h2>
+        <p>You can use the bias report in Data Wrangler to uncover potential biases in your data. To
+            generate a bias report, you must specify the target column, or
+                <b>Label</b>, that you want to predict and a
+                <b>Facet</b>, or the column that you want to inspect for
+            biases.</p>
+        <p><b>Label</b>: The feature about which you want a model to
+            make predictions. For example, if you are predicting customer conversion, you may select
+            a column containing data on whether or not a customer has placed an order. You must also
+            specify whether this feature is a label or a threshold. If you specify a label, you must
+            specify what a <em>positive outcome</em> looks like in your
+            data. In the customer conversion example, a positive outcome may be a 1 in the orders
+            column, representing the positive outcome of a customer placing an order within the last
+            three months. If you specify a threshold, you must specify a lower bound defining a
+            positive outcome. For example, if your customer orders columns contains the number of
+            orders placed in the last year, you may want to specify 1.</p>
+        <p><b>Facet</b>: The column that you want to inspect for
+            biases. For example, if you are trying to predict customer conversion, your facet may be
+            the age of the customer. You may choose this facet because you believe that your data is
+            biased toward a certain age group. You must identify whether the facet is measured as a
+            value or threshold. For example, if you wanted to inspect one or more specific ages, you
+            select <b>Value</b> and specify those ages. If you want to look at an age
+            group, you select <b>Threshold</b> and specify the threshold of ages you
+            want to inspect.</p>
+        <p>After you select your feature and label, you select the types of bias metrics you want
+            to calculate.</p>
+
+        <p>To learn more, see <a href="data-bias-reports.html">Generate reports for bias in
+                pre-training data</a>. </p>
+     
+        <h2 id="data-wrangler-visualize-custom">Create Custom Visualizations</h2>
+        <p>You can add an analysis to your Data Wrangler flow to create a custom visualization. Your
+            dataset, with all the transformations you've applied, is available as a <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html" rel="noopener noreferrer" target="_blank"><span>Pandas DataFrame</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. Data Wrangler uses the <code class="code">df</code> variable to store the
+            dataframe. You access the dataframe by calling the variable.</p>
+        <p>You must provide the output variable, <code class="code">chart</code>, to store an <a href="https://altair-viz.github.io/" rel="noopener noreferrer" target="_blank"><span>Altair</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> output chart. For example, you
+            can use the following code block to create a custom histogram using the Titanic
+            dataset.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">import altair as alt
+df = df.iloc[:30]
+df = df.rename(columns=<span>{</span>"Age": "value"})
+df = df.assign(count=df.groupby('value').value.transform('count'))
+df = df[["value", "count"]]
+base = alt.Chart(df)
+bar = base.mark_bar().encode(x=alt.X('value', bin=True, axis=None), y=alt.Y('count'))
+rule = base.mark_rule(color='red').encode(
+    x='mean(value):Q',
+    size=alt.value(5))
+chart = bar + rule</code></pre>
+        <div class="procedure"><h6>To create a custom visualization:</h6><ol><li>
+                <p>Next to the node containing the transformation that you'd like to visualize,
+                    choose the <b>+</b>.</p>
+            </li><li>
+                <p>Choose <b>Add analysis</b>.</p>
+            </li><li>
+                <p>For <b>Analysis type</b>, choose <b>Custom
+                        Visualization</b>.</p>
+            </li><li>
+                <p>For <b>Analysis name</b>, specify a name.</p>
+            </li><li>
+                <p>Enter your code in the code box. </p>
+            </li><li>
+                <p>Choose <b>Preview</b> to preview your visualization.</p>
+            </li><li>
+                <p>Choose <b>Save</b> to add your visualization.</p>
+            </li></ol></div>
+
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/custom-visualization.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+             
+        </div>
+
+        <p>If you don’t know how to use the Altair visualization package in Python, you can use
+            custom code snippets to help you get started.</p>
+
+        <p>Data Wrangler has a searchable collection of visualization snippets. To use a visualization
+            snippet, choose <b>Search example snippets</b> and specify a query in the
+            search bar.</p>
+
+        <p>The following example uses the <b>Binned scatterplot</b> code snippet.
+            It plots a histogram for 2 dimensions.</p>
+
+        <p>The snippets have comments to help you understand the changes that you need to make to
+            the code. You usually need to specify the column names of your dataset in the
+            code.</p>
+
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">
+import altair as alt
+
+# Specify the number of top rows for plotting
+rows_number = 1000
+df = df.head(rows_number)  
+# You can also choose bottom rows or randomly sampled rows
+# df = df.tail(rows_number)
+# df = df.sample(rows_number)
+
+
+chart = (
+    alt.Chart(df)
+    .mark_circle()
+    .encode(
+        # Specify the column names for binning and number of bins for X and Y axis
+        x=alt.X("col1:Q", bin=alt.Bin(maxbins=20)),
+        y=alt.Y("col2:Q", bin=alt.Bin(maxbins=20)),
+        size="count()",
+    )
+)
+
+# :Q specifies that label column has quantitative type.
+# For more details on Altair typing refer to
+# https://altair-viz.github.io/user_guide/encoding.html#encoding-data-types
+        </code></pre>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./data-wrangler-transform.html">Transform Data</div><div id="next" class="next-link" accesskey="n" href="./data-wrangler-parameterize.html">Reusing Data Flows for Different Datasets</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/data-wrangler-analyses.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/data-wrangler-analyses.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

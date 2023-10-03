@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Use a multi-container endpoint with direct invocation - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="multi-container-direct" /><meta name="default_state" content="multi-container-direct" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="multi-container-direct.html" /><meta name="description" content="SageMaker multi-container endpoints enable customers to deploy multiple containers to deploy different models on a SageMaker endpoint. You can host up to 15 different inference containers on a single endpoint. By using direct invocation, you can send a request to a specific inference container hosted on a multi-container endpoint." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="multi-container-direct.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/multi-container-direct.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/multi-container-direct.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/multi-container-direct.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/multi-container-direct.html" hreflang="de" /><link rel="alternative" href="multi-container-direct.html" hreflang="en-us" /><link rel="alternative" href="multi-container-direct.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/multi-container-direct.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/multi-container-direct.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/multi-container-direct.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/multi-container-direct.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/multi-container-direct.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/multi-container-direct.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/multi-container-direct.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/multi-container-direct.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/multi-container-direct.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/multi-container-direct.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/multi-container-direct.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/multi-container-direct.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/multi-container-direct.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/multi-container-direct.html" hreflang="zh-tw" /><link rel="alternative" href="multi-container-direct.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Use a multi-container endpoint with direct invocation" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Use a multi-container endpoint with direct invocation - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#multi-container-direct" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/multi-container-direct.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/multi-container-direct.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/multi-container-direct.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,inference,deploy model,endpoint,prediction,ML application,serverless machine learning,multi model deployment,inference pipelines,ML model" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploy models for inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Real-time inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Hosting options",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints-options.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Host multiple models which use different containers behind one endpoint",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/multi-container-endpoints.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Use a multi-container endpoint with direct invocation",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/multi-container-endpoints.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#multi-container-direct" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="multi-container-direct.html#multi-container-allowlist">Allowlist</a><a href="multi-container-direct.html#multi-container-invoke">Invoke a multi-container endpoint with direct
+                invocation</a><a href="multi-container-direct.html#multi-container-security">Security with multi-container endpoints with direct
+                invocation</a><a href="multi-container-direct.html#multi-container-metrics">Metrics for multi-container endpoints with
+                direct invocation</a><a href="multi-container-direct.html#multi-container-auto-scaling">Autoscale multi-container
+                endpoints</a><a href="multi-container-direct.html#multi-container-troubleshooting">Troubleshoot multi-container
+                endpoints</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="multi-container-direct">Use a multi-container endpoint with direct
+                invocation</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>SageMaker multi-container endpoints enable customers to deploy multiple containers to deploy
+            different models on a SageMaker endpoint. You can host up to 15
+            different inference containers on a single endpoint. By using direct invocation, you can
+            send a request to a specific inference container hosted on a multi-container endpoint.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="multi-container-direct.html#multi-container-allowlist">Allowlist</a></li><li><a href="multi-container-direct.html#multi-container-invoke">Invoke a multi-container endpoint with direct
+                invocation</a></li><li><a href="multi-container-direct.html#multi-container-security">Security with multi-container endpoints with direct
+                invocation</a></li><li><a href="multi-container-direct.html#multi-container-metrics">Metrics for multi-container endpoints with
+                direct invocation</a></li><li><a href="multi-container-direct.html#multi-container-auto-scaling">Autoscale multi-container
+                endpoints</a></li><li><a href="multi-container-direct.html#multi-container-troubleshooting">Troubleshoot multi-container
+                endpoints</a></li></ul></div>
+            <h2 id="multi-container-allowlist">Allowlist</h2>
+            <p>To use multi-container direct invocation with GPU-based instances, you have to
+                contact customer support and get your account allowlisted. To open a support case,
+                see the <a href="https://console.aws.amazon.com/support/home#/" rel="noopener noreferrer" target="_blank"><span>AWS Support Center</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+         
+        <h2 id="multi-container-invoke">Invoke a multi-container endpoint with direct
+                invocation</h2>
+        <p> To invoke a multi-container endpoint with direct invocation, call <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker-runtime.html#SageMakerRuntime.Client.invoke_endpoint" rel="noopener noreferrer" target="_blank"><span>invoke_endpoint</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> as you would invoke any other endpoint, and specify which
+            container you want to invoke by using the <code class="code">TargetContainerHostname</code>
+            parameter.</p>
+        <p> </p>
+        <p> The following example directly invokes the <code class="code">secondContainer</code> of a
+            multi-container endpoint to get a prediction.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import boto3
+runtime_sm_client = boto3.Session().client('sagemaker-runtime')
+
+response = runtime_sm_client.invoke_endpoint(
+   EndpointName ='my-endpoint',
+   ContentType = 'text/csv',
+   TargetContainerHostname='secondContainer', 
+   Body = body)
+</code></pre>
+        <p> For each direct invocation request to a multi-container endpoint, only the container
+            with the <code class="code">TargetContainerHostname</code> processes the invocation request. You will
+            get validation errors if you do any of the following:</p>
+
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Specify a <code class="code">TargetContainerHostname</code> that does not exist in the
+                    endpoint</p>
+            </li><li class="listitem">
+                <p>Do not specify a value for <code class="code">TargetContainerHostname</code> in a request
+                    to an endpoint configured for direct invocation</p>
+            </li><li class="listitem">
+                <p>Specify a value for <code class="code">TargetContainerHostname</code> in a request to an
+                    endpoint that is not configured for direct invocation.</p>
+            </li></ul></div>
+     
+        <h2 id="multi-container-security">Security with multi-container endpoints with direct
+                invocation</h2>
+        <p> For multi-container endpoints with direct invocation, there are multiple containers
+            hosted in a single instance by sharing memory and a storage volume. It's your
+            responsibility to use secure containers, maintain the correct mapping of requests to
+            target containers, and provide users with the correct access to target containers. SageMaker
+            uses IAM roles to provide IAM identity-based policies that you use to specify
+            whether access to a resource is allowed or denied to that role, and under what
+            conditions. For information about IAM roles, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM roles</a> in the
+                <em>AWS Identity and Access Management User Guide</em>. For information about identity-based
+            policies, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html">Identity-based
+                policies and resource-based policies</a>.</p>
+        <p>By default, an IAM principal with <code class="code">InvokeEndpoint</code> permissions on a
+            multi-container endpoint with direct invocation can invoke any container inside the
+            endpoint with the endpoint name that you specify when you call
+                <code class="code">invoke_endpoint</code>. If you need to restrict <code class="code">invoke_endpoint</code>
+            access to a limited set of containers inside a multi-container endpoint, use the
+                <code class="code">sagemaker:TargetContainerHostname</code> IAM condition key. The following
+            policies show how to limit calls to specific containers within an endpoint.</p>
+    <p>The following policy allows <code class="code">invoke_endpoint</code> requests only when the value of
+        the <code class="code">TargetContainerHostname</code> field matches one of the specified regular
+        expressions.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Action": [
+                "sagemaker:InvokeEndpoint"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:sagemaker:<code class="replaceable">region</code>:<code class="replaceable">account-id</code>:endpoint/<code class="replaceable">endpoint_name</code>",
+            "Condition": <span>{</span>
+                "StringLike": <span>{</span>
+                    "sagemaker:TargetContainerHostname": ["customIps*", "common*"]
+                }
+            }
+        }
+    ]
+}</code></pre><p>The following policy denies <code class="code">invoke_endpoint</code> requests when the value of the
+            <code class="code">TargetContainerHostname</code> field matches one of the specified regular
+        expressions in the <code class="code">Deny</code> statement.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Action": [
+                "sagemaker:InvokeEndpoint"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:sagemaker:<code class="replaceable">region</code>:<code class="replaceable">account-id</code>:endpoint/<code class="replaceable">endpoint_name</code>",
+            "Condition": <span>{</span>
+                "StringLike": <span>{</span>
+                    "sagemaker:TargetContainerHostname": ["*"]
+                }
+            }
+        },
+        <span>{</span>
+            "Action": [
+                "sagemaker:InvokeEndpoint"
+            ],
+            "Effect": "Deny",
+            "Resource": "arn:aws:sagemaker:<code class="replaceable">region</code>:<code class="replaceable">account-id</code>:endpoint/<code class="replaceable">endpoint_name</code>",
+            "Condition": <span>{</span>
+                "StringLike": <span>{</span>
+                    "sagemaker:TargetContainerHostname": ["special*"]
+                }
+            }
+        }
+    ]
+}</code></pre><p> For information about SageMaker condition keys, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonsagemaker.html#amazonsagemaker-policy-keys">Condition Keys for SageMaker</a> in the <em>AWS Identity and Access Management User
+        Guide</em>.</p>
+        <h2 id="multi-container-metrics">Metrics for multi-container endpoints with
+                direct invocation</h2>
+        <p>In addition to the endpoint metrics that are listed in <a href="monitoring-cloudwatch.html">Monitor Amazon SageMaker with Amazon CloudWatch</a>, SageMaker also
+            provides per-container metrics.</p>
+
+
+        <p>Per-container metrics for multi-container endpoints with direct invocation are located
+            in CloudWatch and categorized into two namespaces: <code class="code">AWS/SageMaker</code> and
+                <code class="code">aws/sagemaker/Endpoints</code>. The <code class="code">AWS/SageMaker</code> namespace
+            includes invocation-related metrics, and the <code class="code">aws/sagemaker/Endpoints</code>
+            namespace includes memory and CPU utilization metrics.</p>
+
+        <p>The following table lists the per-container metrics for multi-container endpoints with
+            direct invocation. All the metrics use the [<code class="code">EndpointName, VariantName,
+                ContainerName</code>] dimension, which filters metrics at a specific endpoint, for a
+            specific variant and corresponding to a specific container. These metrics share the same
+            metric names as in those for inference pipelines, but at a per-container level
+                [<code class="code">EndpointName, VariantName, ContainerName</code>].</p>
+        <p> </p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac25c33b7c13c19c23c11">
+                    <tr>
+                        <td tabindex="-1"> Metric Name </td>
+                        <td tabindex="-1"> Description </td>
+                        <td tabindex="-1"> Dimension </td>
+                        <td tabindex="-1"> NameSpace </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <code class="code">Invocations</code>
+                        </td>
+                        <td tabindex="-1"> The number of <code class="code">InvokeEndpoint</code> requests sent to a
+                            container inside an endpoint. To get the total number of requests sent
+                            to that container, use the <code class="code">Sum</code> statistic. Units: None Valid
+                            statistics: <code class="code">Sum</code>, <code class="code">Sample Count</code></td>
+                        <td tabindex="-1">
+                            <code class="code">EndpointName</code>, <code class="code">VariantName</code>,
+                                <code class="code">ContainerName</code>
+                        </td>
+                        <td tabindex="-1"><code class="code">AWS/SageMaker</code></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <code class="code">Invocation4XX Errors</code>
+                        </td>
+                        <td tabindex="-1"> The number of <code class="code">InvokeEndpoint</code> requests that the model
+                            returned a <code class="code">4xx</code> HTTP response code for on a specific
+                            container. For each <code class="code">4xx</code> response, SageMaker sends a
+                                <code class="code">1</code>. Units: None Valid statistics: <code class="code">Average</code>,
+                                <code class="code">Sum</code>
+                        </td>
+                        <td tabindex="-1">
+                            <code class="code">EndpointName</code>, <code class="code">VariantName</code>,
+                                <code class="code">ContainerName</code>
+                        </td>
+                        <td tabindex="-1"><code class="code">AWS/SageMaker</code></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <code class="code">Invocation5XX Errors</code>
+                        </td>
+                        <td tabindex="-1"> The number of <code class="code">InvokeEndpoint</code> requests that the model
+                            returned a <code class="code">5xx</code> HTTP response code for on a specific
+                            container. For each <code class="code">5xx</code> response, SageMaker sends a
+                                <code class="code">1</code>. Units: None Valid statistics: <code class="code">Average</code>,
+                                <code class="code">Sum</code>
+                        </td>
+                        <td tabindex="-1">
+                            <code class="code">EndpointName</code>, <code class="code">VariantName</code>,
+                                <code class="code">ContainerName</code>
+                        </td>
+                        <td tabindex="-1"><code class="code">AWS/SageMaker</code></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <code class="code">ContainerLatency</code>
+                        </td>
+                        <td tabindex="-1"> The time it took for the target container to respond as viewed from
+                            SageMaker. <code class="code">ContainerLatency</code> includes the time it took to send
+                            the request, to fetch the response from the model's container, and to
+                            complete inference in the container. Units: Microseconds Valid
+                            statistics: <code class="code">Average</code>, <code class="code">Sum</code>, <code class="code">Min</code>,
+                                <code class="code">Max</code>, <code class="code">Sample Count</code></td>
+                        <td tabindex="-1">
+                            <code class="code">EndpointName</code>, <code class="code">VariantName</code>,
+                                <code class="code">ContainerName</code>
+                        </td>
+                        <td tabindex="-1"><code class="code">AWS/SageMaker</code></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <code class="code">OverheadLatency</code>
+                        </td>
+                        <td tabindex="-1"> The time added to the time taken to respond to a client request by
+                            SageMaker for overhead. <code class="code">OverheadLatency</code> is measured from the
+                            time that SageMaker receives the request until it returns a response to the
+                            client, minus the<code class="code">ModelLatency</code>. Overhead latency can vary
+                            depending on request and response payload sizes, request frequency, and
+                            authentication or authorization of the request, among other factors.
+                            Units: Microseconds Valid statistics: <code class="code">Average</code>,
+                                <code class="code">Sum</code>, <code class="code">Min</code>, <code class="code">Max</code>, `Sample Count
+                            ` </td>
+                        <td tabindex="-1">
+                            <code class="code">EndpointName</code>, <code class="code">VariantName</code>,
+                                <code class="code">ContainerName</code>
+                        </td>
+                        <td tabindex="-1"><code class="code">AWS/SageMaker</code></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <code class="code">CPUUtilization</code>
+                        </td>
+                        <td tabindex="-1">The percentage of CPU units that are used by each container running
+                            on an instance. The value ranges from 0% to 100%, and is multiplied by
+                            the number of CPUs. For example, if there are four CPUs,
+                                <code class="code">CPUUtilization</code> can range from 0% to 400%. For endpoints
+                            with direct invocation, the number of CPUUtilization metrics equals the
+                            number of containers in that endpoint. Units: Percent </td>
+                        <td tabindex="-1">
+                            <code class="code">EndpointName</code>, <code class="code">VariantName</code>,
+                                <code class="code">ContainerName</code>
+                        </td>
+                        <td tabindex="-1"><code class="code">aws/sagemaker/Endpoints</code></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <code class="code">MemoryUtilizaton</code>
+                        </td>
+                        <td tabindex="-1"> The percentage of memory that is used by each container running on
+                            an instance. This value ranges from 0% to 100%. Similar as
+                            CPUUtilization, in endpoints with direct invocation, the number of
+                            MemoryUtilization metrics equals the number of containers in that
+                            endpoint. Units: Percent </td>
+                        <td tabindex="-1">
+                            <code class="code">EndpointName</code>, <code class="code">VariantName</code>,
+                                <code class="code">ContainerName</code>
+                        </td>
+                        <td tabindex="-1"><code class="code">aws/sagemaker/Endpoints</code></td>
+                    </tr>
+                </table></div></div>
+        <p>All the metrics in the previous table are specific to multi-container endpoints with
+            direct invocation. Besides these special per-container metrics, there are also metrics
+            at the variant level with dimension <code class="code">[EndpointName, VariantName]</code> for all the
+            metrics in the table expect <code class="code">ContainerLatency</code>.</p>
+     
+        <h2 id="multi-container-auto-scaling">Autoscale multi-container
+                endpoints</h2>
+        <p>If you want to configure automatic scaling for a multi-container endpoint using the
+                    <code class="code">InvocationsPerInstance</code> metric, we recommend that the model in each
+                container exhibits similar CPU utilization and latency on each inference request.
+                This is recommended because if traffic to the multi-container endpoint shifts from a
+                low CPU utilization model to a high CPU utilization model, but the overall call
+                volume remains the same, the endpoint does not scale out and there may not be enough
+                instances to handle all the requests to the high CPU utilization model. For
+                information about automatically scaling endpoints, see <a href="endpoint-auto-scaling.html">Automatically Scale Amazon SageMaker Models</a>.</p>
+     
+        <h2 id="multi-container-troubleshooting">Troubleshoot multi-container
+                endpoints</h2>
+        <p>The following sections can help you troubleshoot errors with multi-container
+            endpoints.</p>
+         
+            <h3 id="multi-container-ping-errors">Ping Health Check Errors</h3>
+            <p> With multiple containers, endpoint memory and CPU are under higher pressure
+                during endpoint creation. Specifically, the <code class="code">MemoryUtilization</code> and
+                    <code class="code">CPUUtilization</code> metrics are higher than for single-container
+                endpoints, because utilization pressure is proportional to the number of containers.
+                Because of this, we recommend that you choose instance types with enough memory and
+                CPU to ensure that there is enough memory on the instance to have all the models
+                loaded (the same guidance applies to deploying an inference pipeline). Otherwise,
+                your endpoint creation might fail with an error such as <code class="code">XXX did not pass the
+                    ping health check</code>.</p>
+         
+         
+            <h3 id="multi-container-missing-accept">Missing accept-bind-to-port=true
+                    Docker label</h3>
+            <p>The containers in a multi-container endpoints listen on the port specified in the
+                    <code class="code">SAGEMAKER_BIND_TO_PORT</code> environment variable instead of port 8080.
+                When a container runs in a multi-container endpoint, SageMaker automatically provides
+                this environment variable to the container. If this environment variable isn't
+                present, containers default to using port 8080. To indicate that your container
+                complies with this requirement, use the following command to add a label to your
+                Dockerfile: </p>
+
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">
+LABEL com.amazonaws.sagemaker.capabilities.accept-bind-to-port=true
+</code></pre>
+            <p> Otherwise, You will see an error message such as <code class="code">Your Ecr Image XXX does
+                    not contain required
+                    com.amazonaws.sagemaker.capabilities.accept-bind-to-port=true Docker
+                    label(s).</code></p>
+
+            <p> If your container needs to listen on a second port, choose a port in the range
+                specified by the <code class="code">SAGEMAKER_SAFE_PORT_RANGE</code> environment variable.
+                Specify the value as an inclusive range in the format
+                    <code class="replaceable">XXXX</code>-<code class="replaceable">YYYY</code>, where XXXX and
+                YYYY are multi-digit integers. SageMaker provides this value automatically when you run
+                the container in a multi-container endpoint. </p>
+         
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./multi-container-endpoints.html">Host multiple models which use different containers behind one endpoint</div><div id="next" class="next-link" accesskey="n" href="./inference-pipelines.html">Host models along with pre-processing logic as serial inference pipeline behind one endpoint</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/multi-container-direct.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/multi-container-direct.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

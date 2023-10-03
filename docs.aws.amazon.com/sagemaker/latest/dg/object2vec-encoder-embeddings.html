@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Encoder Embeddings for Object2Vec - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="object2vec-encoder-embeddings" /><meta name="default_state" content="object2vec-encoder-embeddings" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="object2vec-encoder-embeddings.html" /><meta name="description" content="An embedding is a mapping from discrete objects, such as words, to vectors of real numbers. Content-type: application/json; infer_max_seqlens=&lt;FWD-LENGTH&gt;,&lt;BCK-LENGTH&gt; Content-type: application/json" /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="object2vec-encoder-embeddings.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/object2vec-encoder-embeddings.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/object2vec-encoder-embeddings.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/object2vec-encoder-embeddings.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/object2vec-encoder-embeddings.html" hreflang="de" /><link rel="alternative" href="object2vec-encoder-embeddings.html" hreflang="en-us" /><link rel="alternative" href="object2vec-encoder-embeddings.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/object2vec-encoder-embeddings.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/object2vec-encoder-embeddings.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/object2vec-encoder-embeddings.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/object2vec-encoder-embeddings.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/object2vec-encoder-embeddings.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/object2vec-encoder-embeddings.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/object2vec-encoder-embeddings.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/object2vec-encoder-embeddings.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/object2vec-encoder-embeddings.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/object2vec-encoder-embeddings.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/object2vec-encoder-embeddings.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/object2vec-encoder-embeddings.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/object2vec-encoder-embeddings.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/object2vec-encoder-embeddings.html" hreflang="zh-tw" /><link rel="alternative" href="object2vec-encoder-embeddings.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Encoder Embeddings for Object2Vec" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Encoder Embeddings for Object2Vec - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#object2vec-encoder-embeddings" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/object2vec-encoder-embeddings.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/object2vec-encoder-embeddings.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/object2vec-encoder-embeddings.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Choose an Algorithm",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-choose.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Amazon SageMaker Built-in Algorithms or Pre-trained Models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Built-in SageMaker Algorithms for Text Data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-text.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Object2Vec Algorithm",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/object2vec.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 9,
+        "name" : "Encoder Embeddings for Object2Vec",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/object2vec.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#object2vec-encoder-embeddings" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="object2vec-encoder-embeddings.html#object2vec-inference-gpu-optimize-encoder-embeddings">GPU
+                    optimization: Encoder Embeddings</a><a href="object2vec-encoder-embeddings.html#object2vec-in-encoder-embeddings-data">Input: Encoder
+                    Embeddings</a><a href="object2vec-encoder-embeddings.html#object2vec-out-encoder-embeddings-data">Output: Encoder
+                    Embeddings</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="object2vec-encoder-embeddings"> Encoder Embeddings for Object2Vec </h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div>
+            <h2 id="object2vec-inference-gpu-optimize-encoder-embeddings">GPU
+                    optimization: Encoder Embeddings</h2>
+            <p>An embedding is a mapping from discrete objects, such as words, to vectors of real numbers.</p>
+            <p>Due to GPU memory scarcity, the <code class="code">INFERENCE_PREFERRED_MODE</code> environment
+                variable can be specified to optimize on whether the <a href="object2vec-inference-formats.html"> Data Formats for Object2Vec
+                Inference</a> or the encoder embedding inference
+                network is loaded into GPU. If the majority of your inference is for encoder
+                embeddings, specify <code class="code">INFERENCE_PREFERRED_MODE=embedding</code>. The following
+                is a Batch Transform example of using 4 instances of p3.2xlarge that optimizes for
+                encoder embedding inference:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">transformer = o2v.transformer(instance_count=4,
+                              instance_type="ml.p2.xlarge",
+                              max_concurrent_transforms=2,
+                              max_payload=1,  # 1MB
+                              strategy='MultiRecord',
+                              env=<span>{</span>'INFERENCE_PREFERRED_MODE': 'embedding'},  # only useful with GPU
+                              output_path=output_s3_path)</code></pre>
+         
+            <h2 id="object2vec-in-encoder-embeddings-data">Input: Encoder
+                    Embeddings</h2>
+
+            <p>Content-type: application/json;
+                infer_max_seqlens=&lt;FWD-LENGTH&gt;,&lt;BCK-LENGTH&gt;</p>
+            <p>Where &lt;FWD-LENGTH&gt; and &lt;BCK-LENGTH&gt; are integers in the range [1,5000] and
+                define the maximum sequence lengths for the forward and backward encoder.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+  "instances" : [
+    <span>{</span>"in0": [6, 17, 606, 19, 53, 67, 52, 12, 5, 10, 15, 10178, 7, 33, 652, 80, 15, 69, 821, 4]},
+    <span>{</span>"in0": [22, 1016, 32, 13, 25, 11, 5, 64, 573, 45, 5, 80, 15, 67, 21, 7, 9, 107, 4]},
+    <span>{</span>"in0": [774, 14, 21, 206]}
+  ]
+}</code></pre>
+            <p>Content-type: application/jsonlines;
+                infer_max_seqlens=&lt;FWD-LENGTH&gt;,&lt;BCK-LENGTH&gt;</p>
+            <p>Where &lt;FWD-LENGTH&gt; and &lt;BCK-LENGTH&gt; are integers in the range [1,5000] and
+                define the maximum sequence lengths for the forward and backward encoder.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>"in0": [6, 17, 606, 19, 53, 67, 52, 12, 5, 10, 15, 10178, 7, 33, 652, 80, 15, 69, 821, 4]}
+<span>{</span>"in0": [22, 1016, 32, 13, 25, 11, 5, 64, 573, 45, 5, 80, 15, 67, 21, 7, 9, 107, 4]}
+<span>{</span>"in0": [774, 14, 21, 206]}</code></pre>
+            <p>In both of these formats, you specify only one input type: <code class="code">“in0”</code> or
+                    <code class="code">“in1.”</code> The inference service then invokes the corresponding encoder
+                and outputs the embeddings for each of the instances. </p>
+         
+            <h2 id="object2vec-out-encoder-embeddings-data">Output: Encoder
+                    Embeddings</h2>
+            <p>Content-type:
+                application/json</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+  "predictions": [
+    <span>{</span>"embeddings":[0.057368703186511,0.030703511089086,0.099890425801277,0.063688032329082,0.026327300816774,0.003637571120634,0.021305780857801,0.004316598642617,0.0,0.003397724591195,0.0,0.000378780066967,0.0,0.0,0.0,0.007419463712722]},
+    <span>{</span>"embeddings":[0.150190666317939,0.05145975202322,0.098204270005226,0.064249359071254,0.056249320507049,0.01513972133398,0.047553978860378,0.0,0.0,0.011533712036907,0.011472506448626,0.010696629062294,0.0,0.0,0.0,0.008508535102009]}
+  ]
+}</code></pre>
+            <p>Content-type:
+                application/jsonlines</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>"embeddings":[0.057368703186511,0.030703511089086,0.099890425801277,0.063688032329082,0.026327300816774,0.003637571120634,0.021305780857801,0.004316598642617,0.0,0.003397724591195,0.0,0.000378780066967,0.0,0.0,0.0,0.007419463712722]}
+<span>{</span>"embeddings":[0.150190666317939,0.05145975202322,0.098204270005226,0.064249359071254,0.056249320507049,0.01513972133398,0.047553978860378,0.0,0.0,0.011533712036907,0.011472506448626,0.010696629062294,0.0,0.0,0.0,0.008508535102009]}</code></pre>
+            <p>The vector length of the embeddings output by the inference service is equal to
+                the value of one of the following hyperparameters that you specify at training time:
+                    <code class="code">enc0_token_embedding_dim</code>, <code class="code">enc1_token_embedding_dim</code>, or
+                    <code class="code">enc_dim</code>.</p>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./object2vec-inference-formats.html">Inference Formats: Scoring</div><div id="next" class="next-link" accesskey="n" href="./seq-2-seq.html">Sequence to Sequence (seq2seq)</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/object2vec-encoder-embeddings.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/object2vec-encoder-embeddings.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

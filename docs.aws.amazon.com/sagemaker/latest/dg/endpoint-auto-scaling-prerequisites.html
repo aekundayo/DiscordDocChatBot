@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Prerequisites - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="endpoint-auto-scaling-prerequisites" /><meta name="default_state" content="endpoint-auto-scaling-prerequisites" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="endpoint-auto-scaling-prerequisites.html" /><meta name="description" content="You must have already deployed a Amazon SageMakermodel, an auto scaling policy, target metric and the appropriate permissions prior to activating auto scaling." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="endpoint-auto-scaling-prerequisites.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" hreflang="de" /><link rel="alternative" href="endpoint-auto-scaling-prerequisites.html" hreflang="en-us" /><link rel="alternative" href="endpoint-auto-scaling-prerequisites.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" hreflang="zh-tw" /><link rel="alternative" href="endpoint-auto-scaling-prerequisites.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Prerequisites" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Prerequisites - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#endpoint-auto-scaling-prerequisites" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,inference,deploy model,endpoint,prediction,ML application,serverless machine learning,multi model deployment,inference pipelines,ML model,auto scale,prerequisites,permissions,auto scaling policy" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploy models for inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Real-time inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Automatically Scale Amazon SageMaker Models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/endpoint-auto-scaling.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Prerequisites",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/endpoint-auto-scaling.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#endpoint-auto-scaling-prerequisites" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="endpoint-auto-scaling-prerequisites.html#endpoint-auto-scaling-policy">Auto scaling policy overview</a><a href="endpoint-auto-scaling-prerequisites.html#endpoint-auto-scaling-target-metric">Target metric for auto
+                    scaling</a><a href="endpoint-auto-scaling-prerequisites.html#endpoint-auto-scaling-target-capacity">Minimum
+                    and maximum capacity</a><a href="endpoint-auto-scaling-prerequisites.html#endpoint-auto-scaling-target-cooldown">Cooldown period</a><a href="endpoint-auto-scaling-prerequisites.html#endpoint-auto-scaling-permissions">Permissions</a><a href="endpoint-auto-scaling-prerequisites.html#endpoint-auto-scaling-slr">Service-linked role</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="endpoint-auto-scaling-prerequisites">Prerequisites</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Before you can use auto scaling, must have already created a Amazon SageMaker model
+            deployment. Deployed models are referred to as a <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ProductionVariant.html">production
+                variant</a>. This includes information about the model and the resources used to
+            host it. </p><p>For more information about deploying a model endpoint, see <a href="ex1-model-deployment.html#ex1-deploy-model">Deploy the Model to SageMaker Hosting Services</a>.</p><p>To activate auto scaling for a model, you can use the console, the AWS CLI, or the
+            Application Auto Scaling API. It is recommended to try to <a href="endpoint-auto-scaling-add-console.html">Configure model auto scaling with
+                the console</a> to get familiar with the
+            requirements and to test your first auto scaling configuration. When using the AWS CLI or
+            Application Auto Scaling the flow is to register the model, define the scaling policy, then apply it.
+            The following overview provides further details on the prerequisites and components used
+            with Application Auto Scaling.</p>
+            <h2 id="endpoint-auto-scaling-policy">Auto scaling policy overview</h2>
+            <p>To use automatic scaling, you define and apply a scaling policy that uses Amazon CloudWatch
+                metrics and target values that you assign. Automatic scaling uses the policy to
+                increase or decrease the number of instances in response to actual workloads.</p>
+            <p>You can use the AWS Management Console to apply a scaling policy based on a predefined metric.
+                A <em>predefined metric</em> is defined in an enumeration
+                so that you can specify it by name in code or use it in the AWS Management Console.
+                Alternatively, you can use either the AWS Command Line Interface (AWS CLI) or the Application Auto Scaling API to
+                apply a scaling policy based on a predefined or custom metric. </p>
+            <p>There are two types of supported scaling policies: target-tracking scaling and
+                step scaling. It is recommended to use target-tracking scaling policies for your
+                auto scaling configuration. You configure the <em>target-tracking scaling policy</em> by specifying a predefined or custom
+                metric and a target value for the metric. For more information about using Application Auto Scaling
+                target-tracking scaling policies, see <a href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html"> Target Tracking Scaling Policies</a>.</p>
+            <p>You can use step scaling when you require an advanced configuration, such as
+                specifying how many instances to deploy under what conditions. Otherwise, using
+                target-tracking scaling is preferred as it will be fully automated. For more
+                information about using Application Auto Scaling step scaling policies, see <a href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html"> Step Scaling Policies</a>.</p>
+            <p>A scaling policy has the following components:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>A target metric—The Amazon CloudWatch metric that SageMaker automatic scaling
+                        uses to determine when and how much to scale.</p>
+                </li><li class="listitem">
+                    <p>Minimum and maximum capacity—The minimum and maximum number of
+                        instances to use for scaling.</p>
+                </li><li class="listitem">
+                    <p>A cool down period—The amount of time, in seconds, after
+                        a
+                        scale-in or scale-out activity completes before another
+                        scale-out activity can start.</p>
+                </li><li class="listitem">
+                    <p>Required permissions—Permissions that are required to perform
+                        automatic scaling actions.</p>
+                </li><li class="listitem">
+                    <p>A service-linked role—An AWS Identity and Access Management (IAM) role that is linked to a
+                        specific AWS service. A service-linked role includes all of the
+                        permissions that the service requires to call other AWS services on your
+                        behalf. SageMaker automatic scaling automatically generates this role,
+                            <code class="code">AWSServiceRoleForApplicationAutoScaling_SageMakerEndpoint</code>,
+                        for you.</p>
+                </li></ul></div>
+         
+            <h2 id="endpoint-auto-scaling-target-metric">Target metric for auto
+                    scaling</h2>
+            <p>Amazon CloudWatch alarms trigger the scaling policy, which calculate how to adjust scaling
+                based on the metric and target value that you set. The scaling policy adds or
+                removes endpoint instances as required to keep the metric at, or close to, the
+                specified target value. In addition, a scaling policy also adjusts to fluctuations
+                in the metric when a workload changes. The scaling policy minimizes rapid
+                fluctuations in the number of available instances for your model.</p>
+            <p>For example, a scaling policy that uses the predefined
+                    <code class="code">InvocationsPerInstance</code> metric with a target value of 70 can keep
+                    <code class="code">InvocationsPerInstance</code> at, or close to 70.</p>
+         
+            <h2 id="endpoint-auto-scaling-target-capacity">Minimum
+                    and maximum capacity</h2>
+            <p>You may specify the maximum number of endpoint instances for the model. The
+                maximum value must be equal to or greater than the value specified for the minimum
+                number of endpoint instances. SageMaker automatic scaling does not enforce a limit for
+                this value.</p>
+            <p>You must also specify the minimum number of instances for the model. This value
+                must be at least 1, and equal to or less than the value specified for the maximum
+                number of endpoint instances.</p>
+            <p>To determine the minimum and maximum number of instances that you need for typical
+                traffic, test your auto scaling configuration with the expected rate of traffic to
+                your model.</p>
+
+            <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>Scaling-in occurs when there is no traffic: if a variant’s traffic becomes
+                    zero, SageMaker automatically scales in to the minimum number of instances specified.
+                    In this case, SageMaker emits metrics with a value of zero. Minimum instance count is
+                    required to be 1 or higher.</p></div></div>
+         
+            <h2 id="endpoint-auto-scaling-target-cooldown">Cooldown period</h2>
+            <p>Tune the responsiveness of your scaling policy by adding a cooldown period. A
+                    <em>cooldown period</em> controls when your model is
+                scaled-in (by reducing instances) or scaled-out (by increasing instances). It does
+                this by blocking subsequent scale-in or scale-out requests until the period expires.
+                This slows the deletion of instances for scale-in requests, and the creation of
+                instances for scale-out requests. A cooldown period helps to ensure that the scaling
+                policy doesn't launch or terminate additional instances before the previous scaling
+                activity takes effect. After automatic scaling dynamically scales using a scaling
+                policy, it waits for the cooldown period to complete before resuming scaling
+                activities.</p>
+            <p>You configure the cooldown period in your automatic scaling policy. You can
+                specify the following cooldown periods:</p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>A scale-in activity reduces the number of instances. A scale-in cooldown
+                        period specifies the amount of time, in seconds, after a scale-in activity
+                        completes before another scale-in activity can start. </p>
+                </li><li class="listitem">
+                    <p>A scale-out activity increases the number of instances. A scale-out
+                        cooldown period specifies the amount of time, in seconds, after a scale-out
+                        activity completes before another scale-out activity can start. </p>
+                </li></ul></div>
+            <p>If you don't specify a scale-in or a scale-out cooldown period automatic scaling
+                use the default, which is 300 seconds for each.</p>
+            <p></p>
+            <p>If instances are being added or removed too quickly when you test your automatic
+                scaling configuration, consider increasing this value. You can see this behavior if
+                the traffic to your model has a lot of spikes, or if you have
+                multiple
+                automatic scaling policies defined for a variant.</p>
+            <p>If instances are not being added quickly enough to address increased traffic,
+                consider decreasing this value.</p>
+         
+            <h2 id="endpoint-auto-scaling-permissions">Permissions</h2>
+            <p>The <code class="code">SagemakerFullAccessPolicy</code> IAM policy has all of the IAM
+                permissions required to perform auto scaling. For more information about SageMaker IAM
+                permissions, see <a href="sagemaker-roles.html">SageMaker Roles</a>.</p>
+            <p>If you are
+                using
+                a custom permission policy, you must include the
+                following
+                permissions:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+  "Effect": "Allow",
+  "Action": [
+    "sagemaker:DescribeEndpoint",
+    "sagemaker:DescribeEndpointConfig",
+    "sagemaker:UpdateEndpointWeightsAndCapacities"
+  ],
+  "Resource": "*"
+}
+                <span>{</span>
+    "Action": [
+        "application-autoscaling:*"
+    ],
+    "Effect": "Allow",
+    "Resource": "*"
+}
+
+<span>{</span>
+  "Action": "iam:CreateServiceLinkedRole",
+  "Effect": "Allow",
+  "Resource":
+  "arn:aws:iam::*:role/aws-service-role/sagemaker.application-autoscaling.amazonaws.com/AWSServiceRoleForApplicationAutoScaling_SageMakerEndpoint",
+  "Condition": <span>{</span>
+    "StringLike": <span>{</span> "iam:AWSServiceName": "sagemaker.application-autoscaling.amazonaws.com"	}
+  }
+}
+
+<span>{</span>
+  "Effect": "Allow",
+  "Action": [
+    "cloudwatch:PutMetricAlarm",
+    "cloudwatch:DescribeAlarms",
+    "cloudwatch:DeleteAlarms"
+  ],
+  "Resource": "*"
+}</code></pre>
+         
+            <h2 id="endpoint-auto-scaling-slr">Service-linked role</h2>
+            <p>Auto scaling uses the
+                    <code class="code">AWSServiceRoleForApplicationAutoScaling_SageMakerEndpoint</code>
+                service-linked role; it created for you automatically. A service-linked role is a
+                unique type of IAM role that is linked directly to an AWS service. Service-linked
+                roles are predefined by the service and include all of the permissions that the
+                service requires to call other AWS services on your behalf. For more information,
+                see <a href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-service-linked-roles.html">Service-Linked Roles</a>.</p>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./endpoint-auto-scaling.html">Automatically scale models</div><div id="next" class="next-link" accesskey="n" href="./endpoint-auto-scaling-add-console.html">Configure model auto scaling with
+                the console</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/endpoint-auto-scaling-prerequisites.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

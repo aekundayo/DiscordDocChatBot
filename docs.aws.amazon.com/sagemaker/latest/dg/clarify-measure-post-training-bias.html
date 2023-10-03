@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Measure Post-training Data and Model Bias - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="clarify-measure-post-training-bias" /><meta name="default_state" content="clarify-measure-post-training-bias" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="clarify-measure-post-training-bias.html" /><meta name="description" content="Post-training data and model bias metrics compute different measures of fairness." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="clarify-measure-post-training-bias.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/clarify-measure-post-training-bias.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/clarify-measure-post-training-bias.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/clarify-measure-post-training-bias.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/clarify-measure-post-training-bias.html" hreflang="de" /><link rel="alternative" href="clarify-measure-post-training-bias.html" hreflang="en-us" /><link rel="alternative" href="clarify-measure-post-training-bias.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/clarify-measure-post-training-bias.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/clarify-measure-post-training-bias.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/clarify-measure-post-training-bias.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/clarify-measure-post-training-bias.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/clarify-measure-post-training-bias.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/clarify-measure-post-training-bias.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/clarify-measure-post-training-bias.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/clarify-measure-post-training-bias.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/clarify-measure-post-training-bias.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/clarify-measure-post-training-bias.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/clarify-measure-post-training-bias.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/clarify-measure-post-training-bias.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/clarify-measure-post-training-bias.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/clarify-measure-post-training-bias.html" hreflang="zh-tw" /><link rel="alternative" href="clarify-measure-post-training-bias.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Measure Post-training Data and Model Bias" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Measure Post-training Data and Model Bias - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#clarify-measure-post-training-bias" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-measure-post-training-bias.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-measure-post-training-bias.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-measure-post-training-bias.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,explainability,bias,post-training bias analysis,post-training data model bias" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Detect bias and understand explanations",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/model-explainability.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Use Amazon SageMaker Clarify Bias Detection and Model Explainability",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-configure-processing-jobs.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Detect Post-training Data and Model Bias with Amazon SageMaker Clarify",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-detect-post-training-bias.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Measure Post-training Data and Model Bias",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-detect-post-training-bias.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#clarify-measure-post-training-bias" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="clarify-measure-post-training-bias">Measure Post-training Data and
+                Model Bias</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon SageMaker Clarify provides eleven post-training data and model bias metrics to help quantify
+            various conceptions of fairness. These concepts cannot all be satisfied simultaneously
+            and the selection depends on specifics of the cases involving potential bias being
+            analyzed. Most of these metrics are a combination of the numbers taken from the binary
+            classification confusion matrices for the different demographic groups. Because fairness
+            and bias can be defined by a wide range of metrics, human judgment is required to
+            understand and choose which metrics are relevant to the individual use case, and
+            customers should consult with appropriate stakeholders to determine the appropriate
+            measure of fairness for their application.</p><p>We use the following notation to discuss the bias metrics. The conceptual model
+            described here is for binary classification, where events are labeled as having only two
+            possible outcomes in their sample space, referred to as positive (with value 1) and
+            negative (with value 0). This framework is usually extensible to multicategory
+            classification in a straightforward way or to cases involving continuous valued outcomes
+            when needed. In the binary classification case, positive and negative labels are
+            assigned to outcomes recorded in a raw dataset for a favored facet <em>a</em> and for a disfavored facet <em>d</em>. These labels y are referred to as <em>observed
+                labels</em> to distinguish them from the <em>predicted labels</em>
+            y' that are assigned by a machine learning model during the training or inferences
+            stages of the ML lifecycle. These labels are used to define probability distributions
+                P<sub>a</sub>(y) and P<sub>d</sub>(y) for their respective
+            facet outcomes. </p><div class="itemizedlist">
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>labels: </p>
+                <div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>y represents the n observed labels for event outcomes in a training
+                            dataset.</p>
+                    </li><li class="listitem">
+                        <p>y' represents the predicted labels for the n observed labels in the
+                            dataset by a trained model.</p>
+                    </li></ul></div>
+            </li><li class="listitem">
+                <p>outcomes:</p>
+                <div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>A positive outcome (with value 1) for a sample, such as an application
+                            acceptance.</p>
+                        <div class="itemizedlist">
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p>n<sup>(1)</sup> is the number of observed
+                                    labels for positive outcomes (acceptances).</p>
+                            </li><li class="listitem">
+                                <p>n'<sup>(1)</sup> is the number of predicted
+                                    labels for positive outcomes (acceptances).</p>
+                            </li></ul></div>
+                    </li><li class="listitem">
+                        <p>A negative outcome (with value 0) for a sample, such as an application
+                            rejection.</p>
+                        <div class="itemizedlist">
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p>n<sup>(0)</sup> is the number of observed
+                                    labels for negative outcomes (rejections).</p>
+                            </li><li class="listitem">
+                                <p>n'<sup>(0)</sup> is the number of predicted
+                                    labels for negative outcomes (rejections).</p>
+                            </li></ul></div>
+                    </li></ul></div>
+            </li><li class="listitem">
+                <p>facet values:</p>
+                <div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>facet <em>a</em> – The feature value
+                            that defines a demographic that bias favors.</p>
+                        <div class="itemizedlist">
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p>n<sub>a</sub> is the number of observed labels for
+                                    the favored facet value: n<sub>a</sub> =
+                                        n<sub>a</sub><sup>(1)</sup> +
+                                        n<sub>a</sub><sup>(0)</sup> the
+                                    sum of the positive and negative observed labels for the value
+                                    facet <em>a</em>.</p>
+                            </li><li class="listitem">
+                                <p>n'<sub>a</sub> is the number of predicted labels
+                                    for the favored facet value: n'<sub>a</sub> =
+                                        n'<sub>a</sub><sup>(1)</sup> +
+                                        n'<sub>a</sub><sup>(0)</sup> the
+                                    sum of the positive and negative predicted outcome labels for
+                                    the facet value <em>a</em>. Note that
+                                        n'<sub>a</sub> =
+                                    n<sub>a</sub>.</p>
+                            </li></ul></div>
+                    </li><li class="listitem">
+                        <p>facet <em>d</em> – The feature value
+                            that defines a demographic that bias disfavors.</p>
+                        <div class="itemizedlist">
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p>n<sub>d</sub> is the number of observed labels for
+                                    the disfavored facet value: n<sub>d</sub> =
+                                        n<sub>d</sub><sup>(1)</sup> +
+                                        n<sub>d</sub><sup>(0)</sup> the
+                                    sum of the positive and negative observed labels for the facet
+                                    value <em>d</em>. </p>
+                            </li><li class="listitem">
+                                <p>n'<sub>d</sub> is the number of predicted labels
+                                    for the disfavored facet value: n'<sub>d</sub> =
+                                        n'<sub>d</sub><sup>(1)</sup> +
+                                        n'<sub>d</sub><sup>(0)</sup> the
+                                    sum of the positive and negative predicted labels for the facet
+                                    value <em>d</em>. Note that
+                                        n'<sub>d</sub> =
+                                    n<sub>d</sub>.</p>
+                            </li></ul></div>
+                    </li></ul></div>
+            </li><li class="listitem">
+                <p>probability distributions for outcomes of the labeled facet data
+                    outcomes:</p>
+                <div class="itemizedlist">
+                     
+                     
+                    
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>P<sub>a</sub>(y) is the probability distribution of the
+                            observed labels for facet <em>a</em>. For
+                            binary labeled data, this distribution is given by the ratio of the
+                            number of samples in facet <em>a</em> labeled
+                            with positive outcomes to the total number,
+                                P<sub>a</sub>(y<sup>1</sup>) =
+                                n<sub>a</sub><sup>(1)</sup>/
+                                n<sub>a</sub>, and the ratio of the number of samples
+                            with negative outcomes to the total number,
+                                P<sub>a</sub>(y<sup>0</sup>) =
+                                n<sub>a</sub><sup>(0)</sup>/
+                                n<sub>a</sub>. </p>
+                    </li><li class="listitem">
+                        <p>P<sub>d</sub>(y) is the probability distribution of the
+                            observed labels for facet <em>d</em>. For
+                            binary labeled data, this distribution is given by the number of samples
+                            in facet <em>d</em> labeled with positive
+                            outcomes to the total number,
+                                P<sub>d</sub>(y<sup>1</sup>) =
+                                n<sub>d</sub><sup>(1)</sup>/
+                                n<sub>d</sub>, and the ratio of the number of samples
+                            with negative outcomes to the total number,
+                                P<sub>d</sub>(y<sup>0</sup>) =
+                                n<sub>d</sub><sup>(0)</sup>/
+                                n<sub>d</sub>. </p>
+                    </li></ul></div>
+            </li></ul></div><p>The following table contains a cheat sheet for quick guidance and links to the
+            post-training bias metrics.</p><div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac31c12c23c11c11"><thead><tr><th class="table-header" colspan="100"><div class="title">Post-training bias metrics</div></th></tr>
+                    <tr>
+                        <th>Post-training bias metric</th>
+                        <th>Description</th>
+                        <th>Example question</th>
+                        <th>Interpreting metric values</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><a href="clarify-post-training-bias-metric-dppl.html">Difference in Positive
+                    Proportions in Predicted Labels (DPPL)</a></td>
+                        <td tabindex="-1">Measures the difference in the proportion of positive predictions
+                            between the favored facet <em>a</em> and the
+                            disfavored facet <em>d</em>.</td>
+                        <td tabindex="-1">
+                            <p>Has there been an imbalance across demographic groups in the
+                                predicted positive outcomes that might indicate bias?</p>
+                        </td>
+                        <td tabindex="-1">
+                            <p>Range for normalized binary &amp; multicategory facet labels:
+                                    <code class="code">[-1,+1]</code></p>
+                            <p>Range for continuous labels: (-∞, +∞)</p>
+                            <p>Interpretation:</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p>Positive values indicate that the favored facet <em>a</em> has a higher proportion of
+                                        predicted positive outcomes.</p>
+                                </li><li class="listitem">
+                                    <p>Values near zero indicate a more equal proportion of
+                                        predicted positive outcomes between facets.</p>
+                                </li><li class="listitem">
+                                    <p>Negative values indicate the disfavored facet <em>d</em> has a higher proportion of
+                                        predicted positive outcomes.</p>
+                                </li></ul></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="clarify-post-training-bias-metric-di.html">Disparate Impact (DI)</a></td>
+                        <td tabindex="-1">Measures the ratio of proportions of the predicted labels for the
+                            favored facet <em>a</em> and the disfavored
+                            facet <em>d</em>.</td>
+                        <td tabindex="-1">Has there been an imbalance across demographic groups in the
+                            predicted positive outcomes that might indicate bias?</td>
+                        <td tabindex="-1">
+                            <p>Range for normalized binary, multicategory facet, and continuous
+                                labels: [0,∞)</p>
+                            <p>Interpretation:</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p>Values less than 1 indicate the favored facet <em>a</em> has a higher proportion of
+                                        predicted positive outcomes.</p>
+                                </li><li class="listitem">
+                                    <p>A value of 1 indicates that we have demographic parity.
+                                    </p>
+                                </li><li class="listitem">
+                                    <p>Values greater than 1 indicate the disfavored facet
+                                            <em>d</em> has a higher
+                                        proportion of predicted positive outcomes.</p>
+                                </li></ul></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-cddpl.html">Conditional Demographic
+                    Disparity in Predicted Labels (CDDPL)</a>
+                        </td>
+                        <td tabindex="-1">Measures the disparity of predicted labels between the facets as a
+                            whole, but also by subgroups.</td>
+                        <td tabindex="-1">Do some demographic groups have a larger proportion of rejections for
+                            loan application outcomes than their proportion of acceptances?</td>
+                        <td tabindex="-1">
+                            <p>The range of CDDPL values for binary, multicategory, and
+                                continuous outcomes: <code class="code">[-1, +1]</code></p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p>Positive values indicate outcomes where facet <em>d</em> is rejected more than
+                                        accepted. </p>
+                                </li><li class="listitem">
+                                    <p>Near zero indicates no demographic disparity on
+                                        average.</p>
+                                </li><li class="listitem">
+                                    <p>Negative values indicate outcomes where facet <em>a</em> is rejected more than
+                                        accepted.</p>
+                                </li></ul></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-ft.html">Counterfactual Fliptest
+                    (FT)</a>
+                        </td>
+                        <td tabindex="-1">Examines each member of facet <em>d</em>
+                            and assesses whether similar members of facet <em>a</em> have different model predictions.</td>
+                        <td tabindex="-1">Is one group of a specific-age demographic matched closely on all
+                            features with a different age group, yet paid more on average?</td>
+                        <td tabindex="-1">The range for binary and multicategory facet labels is <code class="code">[-1,
+                                +1]</code>. <div class="itemizedlist">
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p>Positive values occur when the number of unfavorable
+                                        counterfactual fliptest decisions for the disfavored facet
+                                            <em>d</em> exceeds the
+                                        favorable ones. </p>
+                                </li><li class="listitem">
+                                    <p>Values near zero occur when the number of unfavorable and
+                                        favorable counterfactual fliptest decisions balance
+                                        out.</p>
+                                </li><li class="listitem">
+                                    <p>Negative values occur when the number of unfavorable
+                                        counterfactual fliptest decisions for the disfavored facet
+                                            <em>d</em> is less than the
+                                        favorable ones.</p>
+                                </li></ul></div></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-ad.html">Accuracy Difference
+                    (AD)</a>
+                        </td>
+                        <td tabindex="-1">Measures the difference between the prediction accuracy for the
+                            favored and disfavored facets. </td>
+                        <td tabindex="-1">Does the model predict labels as accurately for applications across
+                            all demographic groups?</td>
+                        <td tabindex="-1">The range for binary and multicategory facet labels is <code class="code">[-1,
+                                +1]</code>.<div class="itemizedlist">
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p>Positive values indicate that facet <em>d</em> suffers more from some
+                                        combination of false positives (Type I errors) or false
+                                        negatives (Type II errors). This means there is a potential
+                                        bias against the disfavored facet <em>d</em>.</p>
+                                </li><li class="listitem">
+                                    <p>Values near zero occur when the prediction accuracy for
+                                        facet <em>a</em> is similar to
+                                        that for facet <em>d</em>.</p>
+                                </li><li class="listitem">
+                                    <p>Negative values indicate that facet <em>a</em> suffers more from some
+                                        combination of false positives (Type I errors) or false
+                                        negatives (Type II errors). This means the is a bias against
+                                        the favored facet <em>a</em>.</p>
+                                </li></ul></div></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-rd.html">Recall Difference
+                    (RD)</a>
+                        </td>
+                        <td tabindex="-1">Compares the recall of the model for the favored and disfavored
+                            facets. </td>
+                        <td tabindex="-1">Is there an age-based bias in lending due to a model having higher
+                            recall for one age group as compared to another?</td>
+                        <td tabindex="-1">
+                            <p>Range for binary and multicategory classification: <code class="code">[-1,
+                                    +1]</code>.</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p>Positive values suggest that the model finds more of the
+                                        true positives for facet <em>a</em> and is biased against the disfavored facet
+                                            <em>d</em>.</p>
+                                </li><li class="listitem">
+                                    <p>Values near zero suggest that the model finds about the
+                                        same number of true positives in both facets and is not
+                                        biased.</p>
+                                </li><li class="listitem">
+                                    <p>Negative values suggest that the model finds more of the
+                                        true positives for facet <em>d</em> and is biased against the favored facet
+                                            <em>a</em>.</p>
+                                </li></ul></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-dcacc.html">Difference in Conditional
+                    Acceptance (DCAcc)</a>
+                        </td>
+                        <td tabindex="-1">Compares the observed labels to the labels predicted by a model.
+                            Assesses whether this is the same across facets for predicted positive
+                            outcomes (acceptances). </td>
+                        <td tabindex="-1">When comparing one age group to another, are loans accepted more
+                            frequently, or less often than predicted (based on
+                            qualifications)?</td>
+                        <td tabindex="-1">
+                            <p>The range for binary, multicategory facet, and continuous labels:
+                                (-∞, +∞).</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p>Positive values indicate a possible bias against the
+                                        qualified applicants from the disfavored facet <em>d</em>.</p>
+                                </li><li class="listitem">
+                                    <p>Values near zero indicate that qualified applicants from
+                                        both facets are being accepted in a similar way.</p>
+                                </li><li class="listitem">
+                                    <p>Negative values indicate a possible bias against the
+                                        qualified applicants from the favored facet <em>a</em>.</p>
+                                </li></ul></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-dar.html">Difference in Acceptance
+                    Rates (DAR)</a>
+                        </td>
+                        <td tabindex="-1">Measures the difference in the ratios of the observed positive
+                            outcomes (TP) to the predicted positives (TP + FP) between the favored
+                            and disfavored facets.</td>
+                        <td tabindex="-1">Does the model have equal precision when predicting loan acceptances
+                            for qualified applicants across all age groups?</td>
+                        <td tabindex="-1">The range for binary, multicategory facet, and continuous labels is
+                                <code class="code">[-1, +1]</code>.<div class="itemizedlist">
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p>Positive values indicate a possible bias against facet
+                                            <em>d</em> caused by the
+                                        occurrence of relatively more false positives in the
+                                        disfavored facet <em>d</em>.</p>
+                                </li><li class="listitem">
+                                    <p>Values near zero indicate the observed labels for positive
+                                        outcomes (acceptances) are being predicted with equal
+                                        precision for both facets by the model.</p>
+                                </li><li class="listitem">
+                                    <p>Negative values indicate a possible bias against facet
+                                            <em>a</em> caused by the
+                                        occurrence of relatively more false positives in the favored
+                                        facet <em>a</em>.</p>
+                                </li></ul></div></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-sd.html">Specificity difference
+                    (SD)</a>
+                        </td>
+                        <td tabindex="-1">Compares the specificity of the model between favored and disfavored
+                            facets. </td>
+                        <td tabindex="-1">Is there an age-based bias in lending because the model predicts a
+                            higher specificity for one age group as compared to another?</td>
+                        <td tabindex="-1">
+                            <p>Range for binary and multicategory classification: <code class="code">[-1,
+                                    +1]</code>.</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p>Positive values suggest that the model finds less false
+                                        positives for facet <em>d</em> and
+                                        is biased against the disfavored facet <em>d</em>.</p>
+                                </li><li class="listitem">
+                                    <p>Values near zero suggest that the model finds a similar
+                                        number of false positives in both facets and is not
+                                        biased.</p>
+                                </li><li class="listitem">
+                                    <p>Negative values suggest that the model finds less false
+                                        positives for facet <em>a</em> and
+                                        is biased against the favored facet <em>a</em>.</p>
+                                </li></ul></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-dcr.html">Difference in Conditional
+                    Rejection (DCR)</a>
+                        </td>
+                        <td tabindex="-1">Compares the observed labels to the labels predicted by a model and
+                            assesses whether this is the same across facets for negative outcomes
+                            (rejections).</td>
+                        <td tabindex="-1">Are there more or less rejections for loan applications than
+                            predicted for one age group as compared to another based on
+                            qualifications?</td>
+                        <td tabindex="-1">The range for binary, multicategory facet, and continuous labels:
+                            (-∞, +∞).<div class="itemizedlist">
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p>Positive values indicate a possible bias against the
+                                        qualified applicants from the disfavored facet <em>d</em>.</p>
+                                </li><li class="listitem">
+                                    <p>Values near zero indicate that qualified applicants from
+                                        both facets are being rejected in a similar way.</p>
+                                </li><li class="listitem">
+                                    <p>Negative values indicate a possible bias against the
+                                        qualified applicants from the favored facet <em>a</em>.</p>
+                                </li></ul></div></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-drr.html">Difference in Rejection
+                    Rates (DRR)</a>
+                        </td>
+                        <td tabindex="-1">Measures the difference in the ratios of the observed negative
+                            outcomes (TN) to the predicted negatives (TN + FN) between the
+                            disfavored and favored facets.</td>
+                        <td tabindex="-1">Does the model have equal precision when predicting loan rejections
+                            for unqualified applicants across all age groups?</td>
+                        <td tabindex="-1">The range for binary, multicategory facet, and continuous labels is
+                                <code class="code">[-1, +1]</code>.<div class="itemizedlist">
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p>Positive values indicate a possible bias caused by the
+                                        occurrence of relatively more false negatives in the favored
+                                        facet <em>a</em>.</p>
+                                </li><li class="listitem">
+                                    <p>Values near zero indicate that negative outcomes
+                                        (rejections) are being predicted with equal precision for
+                                        both facets.</p>
+                                </li><li class="listitem">
+                                    <p>Negative values indicate a possible bias caused by the
+                                        occurrence of relatively more false negatives in the
+                                        disfavored facet <em>d</em>.</p>
+                                </li></ul></div></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-te.html">Treatment Equality
+                    (TE)</a>
+                        </td>
+                        <td tabindex="-1">Measures the difference in the ratio of false positives to false
+                            negatives between the favored and disfavored facets.</td>
+                        <td tabindex="-1">In loan applications, is the relative ratio of false positives to
+                            false negatives the same across all age demographics? </td>
+                        <td tabindex="-1">The range for binary and multicategory facet labels: (-∞, +∞).<div class="itemizedlist">
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p>Positive values occur when the ratio of false positives to
+                                        false negatives for facet <em>a</em> is greater than that for facet <em>d</em>. </p>
+                                </li><li class="listitem">
+                                    <p>Values near zero occur when the ratio of false positives
+                                        to false negatives for facet <em>a</em> is similar to that for facet <em>d</em>. </p>
+                                </li><li class="listitem">
+                                    <p>Negative values occur when the ratio of false positives to
+                                        false negatives for facet <em>a</em> is less than that for facet <em>d</em>. </p>
+                                </li></ul></div></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-ge.html">Generalized entropy
+                    (GE)</a>
+                        </td>
+                        <td tabindex="-1">Measures the inequality in benefits <code class="code">b</code> assigned to each
+                            input by the model predictions.</td>
+                        <td tabindex="-1">Of two candidate models for loan application classification, does one
+                            lead to a more uneven distribution of desired outcomes than the
+                            other?</td>
+                        <td tabindex="-1">The range for binary and multicategory labels: (0, 0.5). GE is
+                            undefined when the model predicts only false negatives.<div class="itemizedlist">
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p>Zero values occur when all predictions are correct or all
+                                        predictions are false positives.</p>
+                                </li><li class="listitem">
+                                    <p>Positive values indicate inequality in benefits; 0.5
+                                        corresponds to the largest inequality.</p>
+                                </li></ul></div></td>
+                    </tr>
+                </table></div></div><p>For additional information about post-training bias metrics, see <a href="https://pages.awscloud.com/rs/112-TZM-766/images/Fairness.Measures.for.Machine.Learning.in.Finance.pdf" rel="noopener noreferrer" target="_blank"><span>A Family of Fairness Measures for Machine Learning in Finance</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><div class="highlights"><h6>Topics</h6><ul><li><a href="clarify-post-training-bias-metric-dppl.html">Difference in Positive
+                    Proportions in Predicted Labels (DPPL)</a></li><li><a href="clarify-post-training-bias-metric-di.html">Disparate Impact (DI)</a></li><li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-dcacc.html">Difference in Conditional
+                    Acceptance (DCAcc)</a></li><li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-dcr.html">Difference in Conditional
+                    Rejection (DCR)</a></li><li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-sd.html">Specificity difference
+                    (SD)</a></li><li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-rd.html">Recall Difference
+                    (RD)</a></li><li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-dar.html">Difference in Acceptance
+                    Rates (DAR)</a></li><li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-drr.html">Difference in Rejection
+                    Rates (DRR)</a></li><li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-ad.html">Accuracy Difference
+                    (AD)</a></li><li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-te.html">Treatment Equality
+                    (TE)</a></li><li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-cddpl.html">Conditional Demographic
+                    Disparity in Predicted Labels (CDDPL)</a></li><li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-ft.html">Counterfactual Fliptest
+                    (FT)</a></li><li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-post-training-bias-metric-ge.html">Generalized entropy
+                    (GE)</a></li></ul></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./clarify-detect-post-training-bias.html">Detect Post-training Data and Model Bias</div><div id="next" class="next-link" accesskey="n" href="./clarify-post-training-bias-metric-dppl.html">Difference in Positive
+                    Proportions in Predicted Labels (DPPL)</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-measure-post-training-bias.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-measure-post-training-bias.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

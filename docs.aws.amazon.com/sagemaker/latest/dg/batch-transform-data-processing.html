@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Associate Prediction Results with Input Records - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="batch-transform-data-processing" /><meta name="default_state" content="batch-transform-data-processing" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="batch-transform-data-processing.html" /><meta name="description" content="Use Amazon SageMaker batch transform to associate inputs with prediction results." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="batch-transform-data-processing.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/batch-transform-data-processing.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/batch-transform-data-processing.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/batch-transform-data-processing.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/batch-transform-data-processing.html" hreflang="de" /><link rel="alternative" href="batch-transform-data-processing.html" hreflang="en-us" /><link rel="alternative" href="batch-transform-data-processing.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/batch-transform-data-processing.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/batch-transform-data-processing.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/batch-transform-data-processing.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/batch-transform-data-processing.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/batch-transform-data-processing.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/batch-transform-data-processing.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/batch-transform-data-processing.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/batch-transform-data-processing.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/batch-transform-data-processing.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/batch-transform-data-processing.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/batch-transform-data-processing.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/batch-transform-data-processing.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/batch-transform-data-processing.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/batch-transform-data-processing.html" hreflang="zh-tw" /><link rel="alternative" href="batch-transform-data-processing.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Associate Prediction Results with Input Records" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Associate Prediction Results with Input Records - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#batch-transform-data-processing" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/batch-transform-data-processing.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/batch-transform-data-processing.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/batch-transform-data-processing.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,inference,deploy model,endpoint,prediction,ML application,serverless machine learning,multi model deployment,inference pipelines,ML model" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploy models for inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Use Batch Transform",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Associate Prediction Results with Input Records",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#batch-transform-data-processing" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="batch-transform-data-processing.html#batch-transform-data-processing-workflow">Data Processing Workflow</a><a href="batch-transform-data-processing.html#batch-transform-data-processing-steps">Use Data Processing in Batch Transform</a><a href="batch-transform-data-processing.html#data-processing-operators">Supported JSONPath operators</a><a href="batch-transform-data-processing.html#batch-transform-data-processing-examples">Examples</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="batch-transform-data-processing">Associate
+                Prediction
+                Results with Input Records</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>When
+            making predictions on a large dataset, you can exclude attributes that aren't needed for
+            prediction. After the predictions have been made, you can associate some of the excluded
+            attributes with those predictions or with other input data in your report. By using
+            batch transform to perform these data processing steps, you can often eliminate
+            additional preprocessing or postprocessing. You can use input files in JSON and CSV
+            format only. </p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="batch-transform-data-processing.html#batch-transform-data-processing-workflow">Workflow
+                    for Associating Inferences with Input Records </a></li><li><a href="batch-transform-data-processing.html#batch-transform-data-processing-steps">Use Data Processing in Batch
+                    Transform Jobs</a></li><li><a href="batch-transform-data-processing.html#data-processing-operators">Supported JSONPath Operators</a></li><li><a href="batch-transform-data-processing.html#batch-transform-data-processing-examples">Batch
+                    Transform
+                    Examples</a></li></ul></div>
+            <h2 id="batch-transform-data-processing-workflow">Workflow
+                    for Associating Inferences with Input Records </h2>
+            <p>The following diagram shows the workflow for associating inferences with input
+                records.</p>
+            <div class="mediaobject">
+                 
+                    <img src="../../../images/sagemaker/latest/dg/images/batch-transform-data-processing.png" class="aws-docs-img-whiteBg aws-docs-img-padding" />
+                 
+            </div>
+            <p>To
+                associate inferences with input data, there are three main steps:</p>
+            <div class="orderedlist">
+                 
+                 
+                 
+            <ol><li>
+                    
+                    <p>Filter the input data that is not needed for inference before passing the
+                        input data to the batch transform
+                        job.
+                        Use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html#SageMaker-Type-DataProcessing-InputFilter                             "><code class="code">InputFilter</code></a> parameter to
+                        determine which attributes to use as input for the model.</p>
+                </li><li>
+                    <p>Associate the input data with the inference results. Use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html#SageMaker-Type-DataProcessing-JoinSource                         "><code class="code">JoinSource</code></a> parameter to combine the input data with
+                        the inference.</p>
+                </li><li>
+                    <p>Filter the joined data to retain the inputs that are needed to provide
+                        context for interpreting the predictions in the reports. Use <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html#SageMaker-Type-DataProcessing-OutputFilter                             "><code class="code">OutputFilter</code></a> to store the specified portion of the
+                        joined dataset in the output file.</p>
+                </li></ol></div>
+         
+            <h2 id="batch-transform-data-processing-steps">Use Data Processing in Batch
+                    Transform Jobs</h2>
+            <p>When creating a batch transform job with <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html"><code class="code">CreateTransformJob</code></a> to
+                process
+                data:</p>
+            <div class="orderedlist">
+                 
+                 
+                 
+                 
+            <ol><li>
+                    <p>Specify
+                        the portion of the input to pass to the model with the
+                            <code class="code">InputFilter</code> parameter in the <code class="code">DataProcessing</code>
+                        data structure. </p>
+                </li><li>
+                    <p>Join the raw input data with the transformed data with the
+                            <code class="code">JoinSource</code> parameter.</p>
+                </li><li>
+                    <p>Specify which portion of the joined input and transformed data from the
+                        batch transform job to include in the output file with the
+                            <code class="code">OutputFilter</code> parameter.</p>
+                </li><li>
+                    <p>
+                        Choose
+                        either JSON- or CSV-formatted files for input: </p>
+                    <div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>For JSON- or JSON Lines-formatted input files, SageMaker either adds
+                                the <code class="code">SageMakerOutput</code> attribute to the input file or
+                                creates a new JSON output file with the <code class="code">SageMakerInput</code>
+                                and <code class="code">SageMakerOutput</code> attributes. For more information,
+                                see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DataProcessing.html"><code class="code">DataProcessing</code></a>. </p>
+                        </li><li class="listitem">
+                            <p>For CSV-formatted input files, the joined input data is followed
+                                by the transformed data and the output is a CSV file.</p>
+                        </li></ul></div>
+                </li></ol></div>
+            <p>If
+                you use an algorithm with the <code class="code">DataProcessing</code> structure, it must support
+                your chosen format for <em>both</em> input and output
+                files. For example, with the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TransformOutput.html"><code class="code">TransformOutput</code></a> field of the
+                    <code class="code">CreateTransformJob</code> API, you must set both the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Channel.html#SageMaker-Type-Channel-ContentType"><code class="code">ContentType</code></a> and <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TransformOutput.html#SageMaker-Type-TransformOutput-Accept"><code class="code">Accept</code></a> parameters to one of the following values:
+                    <code class="code">text/csv</code>, <code class="code">application/json</code>, or
+                    <code class="code">application/jsonlines</code>. The syntax for specifying columns in a CSV
+                file and specifying attributes in a JSON file are different. Using the wrong syntax
+                causes an error. For more information, see <a href="batch-transform-data-processing.html#batch-transform-data-processing-examples">Batch
+                    Transform
+                    Examples</a>. For more information
+                about input and output file formats for built-in algorithms, see <a href="algos.html">Use Amazon SageMaker Built-in Algorithms or Pre-trained Models</a>.</p>
+            <p>The record delimiters for the input and output must also be consistent with your
+                chosen file input. The <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TransformInput.html#SageMaker-Type-TransformInput-SplitType"><code class="code">SplitType</code></a> parameter indicates how to split the records in
+                the input dataset. The <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TransformOutput.html#SageMaker-Type-TransformOutput-AssembleWith                     "><code class="code">AssembleWith</code></a> parameter indicates how to reassemble the
+                records for the output. If you set input and output formats to
+                <code class="code">text/csv</code>, you must also set the <code class="code">SplitType</code> and
+                    <code class="code">AssembleWith</code> parameters to <code class="code">line</code>. If you set the input
+                and output formats to <code class="code">application/jsonlines</code>, you can set both
+                    <code class="code">SplitType</code> and <code class="code">AssembleWith</code> to
+                <code class="code">line</code>.</p>
+            <p>For CSV files, you cannot use embedded newline characters. For JSON files, the
+                attribute name <code class="code">SageMakerOutput</code> is reserved for output. The JSON input
+                file can't have an attribute with this name. If it does, the data in the input file
+                might be overwritten. </p>
+         
+            <h2 id="data-processing-operators">Supported JSONPath Operators</h2>
+            <p>To filter and join the input data and inference, use a JSONPath subexpression.
+                SageMaker supports only a subset of the defined JSONPath operators. The following table
+                lists the supported JSONPath operators. For CSV data, each row is taken as a JSON
+                array, so only index based JSONPaths can be applied, e.g. <code class="code">$[0]</code>,
+                    <code class="code">$[1:]</code>. CSV data should also follow <a href="https://tools.ietf.org/html/rfc4180" rel="noopener noreferrer" target="_blank"><span>RFC format</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            <div class="table-container"><div class="table-contents"><table id="w714aac25c39c23c11b5"><thead>
+                        <tr>
+                            <th>JSONPath Operator</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                        <tr>
+                            <td tabindex="-1"><code class="code">$</code></td>
+                            <td tabindex="-1">
+                                <p>The root element to a query. This operator is required at the
+                                    beginning of all path expressions.</p>
+                            </td>
+                            <td tabindex="-1"><code class="code">$</code></td>
+                        </tr>
+                        
+                        
+                        <tr>
+                            <td tabindex="-1"><code class="code">.<code class="replaceable">&lt;name&gt;</code></code></td>
+                            <td tabindex="-1">
+                                <p>A dot-notated child element.</p>
+                            </td>
+                            <td tabindex="-1">
+                                <p><code class="code">$.id</code></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td tabindex="-1"><code class="code">*</code></td>
+                            <td tabindex="-1">
+                                <p>A wildcard. Use in place of an attribute name or numeric
+                                    value.</p>
+                            </td>
+                            <td tabindex="-1">
+                                <p><code class="code">$.id.*</code></p>
+                            </td>
+                        </tr>
+                        
+                        
+                        <tr>
+                            <td tabindex="-1"><code class="code">['<code class="replaceable">&lt;name&gt;</code>'
+                                        (,'<code class="replaceable">&lt;name&gt;</code>')]</code></td>
+                            <td tabindex="-1">
+                                <p>A bracket-notated element or multiple child elements.</p>
+                            </td>
+                            <td tabindex="-1">
+                                <p><code class="code">$['id','SageMakerOutput']</code></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td tabindex="-1"><code class="code">[<code class="replaceable">&lt;number&gt;</code>
+                                        (,<code class="replaceable">&lt;number&gt;</code>)]</code></td>
+                            <td tabindex="-1">
+                                <p>An index or array of indexes. Negative index values are also
+                                    supported. A <code class="code">-1</code> index refers to the last element in
+                                    an array.</p>
+                            </td>
+                            <td tabindex="-1">
+                                <p><code class="code">$[1]</code> , <code class="code">$[1,3,5]</code></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td tabindex="-1"><code class="code">[<code class="replaceable">&lt;start&gt;</code>:<code class="replaceable">&lt;end&gt;</code>]</code></td>
+                            <td tabindex="-1">
+                                <p>An array slice operator.
+                                    
+                                    The array slice() method extracts a section of an array and
+                                    returns a new array. If you omit
+                                        <code class="replaceable">&lt;start&gt;</code>, SageMaker uses the
+                                    first element of the array. If you omit
+                                        <code class="replaceable">&lt;end&gt;</code>, SageMaker uses the last
+                                    element of the array.</p>
+                            </td>
+                            <td tabindex="-1">
+                                <p><code class="code">$[2:5]</code>, <code class="code">$[:5]</code>,
+                                    <code class="code">$[2:]</code></p>
+                            </td>
+                        </tr>
+                        
+                        
+                    </table></div></div>
+            <p>When using the bracket-notation to specify multiple child elements of a given
+                field, additional nesting of children within brackets is not supported. For example,
+                    <code class="code">$.field1.['child1','child2']</code> is supported while
+                    <code class="code">$.field1.['child1','child2.grandchild']</code> is not. </p>
+            <p>For more information about JSONPath operators, see <a href="https://github.com/json-path/JsonPath" rel="noopener noreferrer" target="_blank"><span>JsonPath</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on GitHub.</p>
+         
+            <h2 id="batch-transform-data-processing-examples">Batch
+                    Transform
+                    Examples</h2>
+            <p>The following examples show some common ways to join input data with prediction
+                results.</p>
+            <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="batch-transform-data-processing.html#batch-transform-data-processing-example-default">Example:
+                        Output Only Inferences </a></li><li><a href="batch-transform-data-processing.html#batch-transform-data-processing-example-all">Example: Output
+                        Inferences Joined with Input Data</a></li><li><a href="batch-transform-data-processing.html#batch-transform-data-processing-example-select-csv">Example:
+                        Output Inferences Joined with Input Data and Exclude the ID Column from the
+                        Input (CSV)</a></li><li><a href="batch-transform-data-processing.html#batch-transform-data-processing-example-select-json">Example:
+                        Output Inferences Joined with an ID Column and Exclude the ID Column from
+                        the Input (CSV)</a></li></ul></div>
+             
+                <h3 id="batch-transform-data-processing-example-default">Example:
+                        Output Only Inferences </h3>
+                <p>By default, the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html#SageMaker-CreateTransformJob-request-DataProcessing"><code class="code">DataProcessing</code></a> parameter doesn't join inference results
+                    with input. It outputs only the inference results.</p>
+                <p>If you want to explicitly specify to
+                    not
+                    join results with input, use the <a href="https://sagemaker.readthedocs.io" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and
+                    specify the following settings in a transformer call.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">sm_transformer = sagemaker.transformer.Transformer(…)
+sm_transformer.transform(…, input_filter="$", join_source= "None", output_filter="$")</code></pre>
+                <p>To output inferences using the AWS SDK for Python, add the following code to
+                    your CreateTransformJob request. The following code mimics the default
+                    behavior.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "DataProcessing": <span>{</span>
+        "InputFilter": "$",
+        "JoinSource": "None",
+        "OutputFilter": "$"
+    }
+}</code></pre>
+             
+             
+                <h3 id="batch-transform-data-processing-example-all">Example: Output
+                        Inferences Joined with Input Data</h3>
+                <p>If you're using the <a href="https://sagemaker.readthedocs.io" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to combine the input data with the
+                    inferences in the output file, specify the <code class="code">assemble_with</code> and
+                        <code class="code">accept</code> parameters when initializing the transformer object.
+                    When you use the transform call, specify <code class="code">Input</code> for the
+                        <code class="code">join_source</code> parameter, and specify the <code class="code">split_type</code>
+                    and <code class="code">content_type</code> parameters as well. The <code class="code">split_type</code>
+                    parameter must have the same value as <code class="code">assemble_with</code>, and the
+                        <code class="code">content_type</code> parameter must have the same value as
+                        <code class="code">accept</code>. For more information about the parameters and their
+                    accepted values, see the <a href="https://sagemaker.readthedocs.io/en/stable/api/inference/transformer.html#sagemaker.transformer.Transformer" rel="noopener noreferrer" target="_blank"><span>Transformer</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> page in the <em>Amazon SageMaker Python
+                        SDK</em>.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">sm_transformer = sagemaker.transformer.Transformer(…, assemble_with="Line", accept="text/csv")
+sm_transformer.transform(…, join_source="Input", split_type="Line", content_type="text/csv")</code></pre>
+                <p>If you're using the AWS SDK for Python (Boto 3), join all input data with
+                    the inference by adding the following code to your <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html"><code class="code">CreateTransformJob</code></a> request. The values for
+                        <code class="code">Accept</code> and <code class="code">ContentType</code> must match, and the values
+                    for <code class="code">AssembleWith</code> and <code class="code">SplitType</code> must also match.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "DataProcessing": <span>{</span>
+        "JoinSource": "Input"
+    },
+    "TransformOutput": <span>{</span>
+        "Accept": "text/csv",
+        "AssembleWith": "Line"
+    },
+    "TransformInput": <span>{</span>
+        "ContentType": "text/csv",
+        "SplitType": "Line"
+    }
+}</code></pre>
+                <p>For JSON or JSON Lines input files, the results are in the
+                        <code class="code">SageMakerOutput</code> key in the input JSON file. For example, if the
+                    input is a JSON file that contains the key-value pair <code class="code"><span>{</span>"key":1}</code>,
+                    the data transform result might be <code class="code"><span>{</span>"label":1}</code>.</p>
+                <p>SageMaker
+                    stores
+                    both
+                    in the input file in the <code class="code">SageMakerInput</code>
+                    key.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "key":1,
+    "SageMakerOutput":<span>{</span>"label":1}
+}</code></pre>
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The joined result for JSON must be a key-value pair object. If the input
+                        isn't a key-value pair object, SageMaker creates a new JSON file. In the new JSON
+                        file, the input data is stored in the <code class="code">SageMakerInput</code> key and
+                        the results are stored as the <code class="code">SageMakerOutput</code> value.</p></div></div>
+                <p>For
+                    a CSV file, for example, if the record is <code class="code">[1,2,3]</code>, and the label
+                    result is <code class="code">[1]</code>, then the output file would contain
+                        <code class="code">[1,2,3,1]</code>.</p>
+             
+             
+                <h3 id="batch-transform-data-processing-example-select-csv">Example:
+                        Output Inferences Joined with Input Data and Exclude the ID Column from the
+                        Input (CSV)</h3>
+                <p>If you are using the <a href="https://sagemaker.readthedocs.io" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to join your input data with the
+                    inference output while excluding an ID column from the transformer input,
+                    specify the same parameters from the preceding example as well as a JSONPath
+                    subexpression for the <code class="code">input_filter</code> in your transformer call. For
+                    example, if your input data includes five columns and the first one is the ID
+                    column, use the following transform request to select all columns except the ID
+                    column as features. The transformer still outputs all of the input columns
+                    joined with the inferences. For more information about the parameters and their
+                    accepted values, see the <a href="https://sagemaker.readthedocs.io/en/stable/api/inference/transformer.html#sagemaker.transformer.Transformer" rel="noopener noreferrer" target="_blank"><span>Transformer</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> page in the <em>Amazon SageMaker Python
+                        SDK</em>.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">sm_transformer = sagemaker.transformer.Transformer(…, assemble_with="Line", accept="text/csv")
+sm_transformer.transform(…, split_type="Line", content_type="text/csv", input_filter="$[1:]", join_source="Input")</code></pre>
+                <p>If you are using the AWS SDK for Python (Boto 3), add the following code to
+                    your <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html">
+                        CreateTransformJob</a></code> request.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "DataProcessing": <span>{</span>
+        "InputFilter": "$[1:]",
+        "JoinSource": "Input"
+    },
+    "TransformOutput": <span>{</span>
+        "Accept": "text/csv",
+        "AssembleWith": "Line"
+    },
+    "TransformInput": <span>{</span>
+        "ContentType": "text/csv",
+        "SplitType": "Line"
+    }
+}</code></pre>
+                <p>To specify columns in SageMaker, use the index of the array elements. The first
+                    column is index 0, the second column is index 1, and the sixth column is index
+                    5.</p>
+                <p>To exclude the first column from the input, set <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html#SageMaker-Type-DataProcessing-InputFilter                     ">InputFilter</a></code> to <code class="code">"$[1:]"</code>. The colon
+                        (<code class="code">:</code>) tells SageMaker to include all of the elements between two
+                    values, inclusive. For example, <code class="code">$[1:4]</code> specifies the second through
+                    fifth columns.</p>
+                <p>If you omit the number after the colon, for example, <code class="code">[5:]</code>, the
+                    subset includes all columns from the 6th column through the last column. If you
+                    omit the number before the colon, for example, <code class="code">[:5]</code>, the subset
+                    includes all columns from the first column (index 0) through the sixth
+                    column.</p>
+             
+             
+                <h3 id="batch-transform-data-processing-example-select-json">Example:
+                        Output Inferences Joined with an ID Column and Exclude the ID Column from
+                        the Input (CSV)</h3>
+                <p>If you are using the <a href="https://sagemaker.readthedocs.io" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, you can specify the output to join
+                    only specific input columns (such as the ID column) with the inferences by
+                    specifying the <code class="code">output_filter</code> in the transformer call. The
+                        <code class="code">output_filter</code> uses a JSONPath subexpression to specify which
+                    columns to return as output after joining the input data with the inference
+                    results. The following request shows how you can make predictions while
+                    excluding an ID column and then join the ID column with the inferences. Note
+                    that in the following example, the last column (<code class="code">-1</code>) of the output
+                    contains the inferences. If you are using JSON files, SageMaker stores the inference
+                    results in the attribute <code class="code">SageMakerOutput</code>. For more information
+                    about the parameters and their accepted values, see the <a href="https://sagemaker.readthedocs.io/en/stable/api/inference/transformer.html#sagemaker.transformer.Transformer" rel="noopener noreferrer" target="_blank"><span>Transformer</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> page in the <em>Amazon SageMaker Python
+                        SDK</em>.</p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">sm_transformer = sagemaker.transformer.Transformer(…, assemble_with="Line", accept="text/csv")
+sm_transformer.transform(…, split_type="Line", content_type="text/csv", input_filter="$[1:]", join_source="Input", output_filter="$[0,-1]")</code></pre>
+                <p>If you are using the AWS SDK for Python (Boto 3), join only the ID column
+                    with the inferences by adding the following code to your <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html"><code class="code">CreateTransformJob</code></a> request.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "DataProcessing": <span>{</span>
+        "InputFilter": "$[1:]",
+        "JoinSource": "Input",
+        "OutputFilter": "$[0,-1]"
+    },
+    "TransformOutput": <span>{</span>
+        "Accept": "text/csv",
+        "AssembleWith": "Line"
+    },
+    "TransformInput": <span>{</span>
+        "ContentType": "text/csv",
+        "SplitType": "Line"
+    }
+}</code></pre>
+                <div class="awsdocs-note awsdocs-warning"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Warning</h6></div><div class="awsdocs-note-text"><p>If you are using a JSON-formatted input file, the file can't contain the
+                        attribute name <code class="code">SageMakerOutput</code>. This attribute name is reserved
+                        for the inferences in the output file. If your JSON-formatted input file
+                        contains an attribute with this name, values in the input file might be
+                        overwritten with the inference.</p></div></div>
+             
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./batch-transform.html">Batch Transform</div><div id="next" class="next-link" accesskey="n" href="./batch-transform-storage.html">Storage in Batch Transform</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/batch-transform-data-processing.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/batch-transform-data-processing.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configure for framework profiling - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="debugger-configure-framework-profiling" /><meta name="default_state" content="debugger-configure-framework-profiling" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="debugger-configure-framework-profiling.html" /><meta name="description" content="Learn how to create an estimator for detailed profiling using Debugger." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="debugger-configure-framework-profiling.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/debugger-configure-framework-profiling.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/debugger-configure-framework-profiling.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/debugger-configure-framework-profiling.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/debugger-configure-framework-profiling.html" hreflang="de" /><link rel="alternative" href="debugger-configure-framework-profiling.html" hreflang="en-us" /><link rel="alternative" href="debugger-configure-framework-profiling.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/debugger-configure-framework-profiling.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/debugger-configure-framework-profiling.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/debugger-configure-framework-profiling.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/debugger-configure-framework-profiling.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/debugger-configure-framework-profiling.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/debugger-configure-framework-profiling.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/debugger-configure-framework-profiling.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/debugger-configure-framework-profiling.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/debugger-configure-framework-profiling.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/debugger-configure-framework-profiling.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/debugger-configure-framework-profiling.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/debugger-configure-framework-profiling.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/debugger-configure-framework-profiling.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/debugger-configure-framework-profiling.html" hreflang="zh-tw" /><link rel="alternative" href="debugger-configure-framework-profiling.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Configure for framework profiling" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Configure for framework profiling - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#debugger-configure-framework-profiling" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-configure-framework-profiling.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-configure-framework-profiling.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-configure-framework-profiling.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Profile and optimize computational performance",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-profile-computational-performance.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Monitor AWS compute resource utilization in Amazon SageMaker Studio",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-profile-training-jobs.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Configure an estimator with parameters for basic profiling using the Amazon SageMaker Debugger Python modules",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-configuration-for-profiling.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Configure for framework profiling",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-configuration-for-profiling.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#debugger-configure-framework-profiling" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="debugger-configure-framework-profiling.html#debugger-configure-framework-profiling-basic">Start with the default profiling</a><a href="debugger-configure-framework-profiling.html#debugger-configure-framework-profiling-range">Configure profiling for a target range</a><a href="debugger-configure-framework-profiling.html#debugger-configure-framework-profiling-options">Configure profiling with different profiling options</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="debugger-configure-framework-profiling">Configure for framework
+                profiling</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><div class="awsdocs-note awsdocs-warning"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Warning</h6></div><div class="awsdocs-note-text"><p>In favor of <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/train-use-sagemaker-profiler.html">Amazon SageMaker Profiler</a>, SageMaker
+                Debugger deprecates the framework profiling feature starting from TensorFlow 2.11 and
+                PyTorch 2.0. You can still use the feature in the previous versions of the
+                frameworks and SDKs as follows. </p><div class="itemizedlist">
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>SageMaker Python SDK &lt;= v2.130.0</p>
+                </li><li class="listitem">
+                    <p>PyTorch &gt;= v1.6.0, &lt; v2.0</p>
+                </li><li class="listitem">
+                    <p>TensorFlow &gt;= v2.3.1, &lt; v2.11</p>
+                </li></ul></div><p>See also <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-release-notes.html#debugger-release-notes-20230315">March 16, 2023</a>.</p></div></div><p>To enable Debugger framework profiling, configure the
+                <code class="code">framework_profile_params</code> parameter when you construct an estimator.
+            Debugger framework profiling collects framework metrics, such as data from initialization
+            stage, data loader processes, Python operators of deep learning frameworks and training
+            scripts, detailed profiling within and between steps, with cProfile or Pyinstrument
+            options. Using the <code class="code">FrameworkProfile</code> class, you can configure custom
+            framework profiling options. </p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Before getting started with Debugger framework profiling, verify that the framework
+                used to build your model is supported by Debugger for framework profiling. For more
+                information, see <a href="debugger-supported-frameworks.html">Supported Frameworks and
+                Algorithms</a>. </p><p>Debugger saves the framework metrics in a default S3 bucket. The format of the
+                default S3 bucket URI is
+                    <code class="code">s3://sagemaker-&lt;region&gt;-&lt;12digit_account_id&gt;/&lt;training-job-name&gt;/profiler-output/</code>.</p></div></div>
+            <h2 id="debugger-configure-framework-profiling-basic">Start a training job
+                    with the default framework profiling</h2>
+            <p>The following example code is the simplest <code class="code">profiler_config</code> parameter
+                setting to start the default system monitoring and the default framework profiling.
+                The <code class="code">FrameworkProfile</code> class in the following example code initiates the
+                default framework profiling when a training job starts. Debugger framework profiling
+                includes the following options: detailed profiling, data loader profiling, and
+                Python profiling.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.debugger import ProfilerConfig, FrameworkProfile
+    
+profiler_config=ProfilerConfig(
+    framework_profile_params=FrameworkProfile()
+)</code></pre>
+            <p>With this <code class="code">profiler_config</code> parameter configuration, Debugger calls the
+                default settings of monitoring and profiling. Debugger monitors system metrics every
+                500 milliseconds; profiles the fifth step with the detailed profiling option; the
+                seventh step with the data loader profiling option; and the ninth, tenth, and
+                eleventh steps with the Python profiling option. </p>
+            <p>To find available profiling configuration options, the default parameter settings,
+                and examples of how to configure them, see <a href="debugger-configure-framework-profiling.html#debugger-configure-framework-profiling-options">Start a training
+                    job with the default system monitoring and customized framework profiling with
+                    different profiling options</a> and <a href="https://sagemaker.readthedocs.io/en/stable/api/training/debugger.html#sagemaker.debugger.FrameworkProfile" rel="noopener noreferrer" target="_blank"><span>SageMaker Debugger APIs – FrameworkProfile</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the
+                <a href="https://sagemaker.readthedocs.io" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            <p>If you want to change the system monitoring interval and enable the default
+                framework profiling, you can specify the <code class="code">system_monitor_interval_millis</code>
+                parameter explicitly with the <code class="code">framework_profile_params</code> parameter. For
+                example, to monitor every 1000 milliseconds and enable the default framework
+                profiling, use the following example code.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.debugger import ProfilerConfig, FrameworkProfile
+    
+profiler_config=ProfilerConfig(
+    system_monitor_interval_millis=<code class="replaceable">1000</code>,
+    framework_profile_params=FrameworkProfile()
+)</code></pre>
+            <p>For more information about the <code class="code">FrameworkProfile</code> class, see <a href="https://sagemaker.readthedocs.io/en/stable/api/training/debugger.html#sagemaker.debugger.FrameworkProfile" rel="noopener noreferrer" target="_blank"><span>SageMaker Debugger APIs – FrameworkProfile</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the
+                <a href="https://sagemaker.readthedocs.io" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+         
+            <h2 id="debugger-configure-framework-profiling-range">Start a training job
+                    with the default system monitoring and customized framework profiling for target
+                    steps or a target time range</h2>
+            <p>If you want to specify target steps or target time intervals to profile your
+                training job, you need to specify parameters for the <code class="code">FrameworkProfile</code>
+                class. The following code examples show how to specify the target ranges for
+                profiling along with system monitoring.</p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><b>For a target step range</b></p>
+                    <p>With the following example configuration, Debugger monitors the entire
+                        training job every 500 milliseconds (the default monitoring) and profiles a
+                        target step range from step 5 to step 15 (for 10 steps).</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.debugger import ProfilerConfig, FrameworkProfile
+    
+profiler_config=ProfilerConfig(
+    framework_profile_params=FrameworkProfile(start_step=<code class="replaceable">5</code>, num_steps=<code class="replaceable">10</code>)
+)</code></pre>
+                    <p>With the following example configuration, Debugger monitors the entire
+                        training job every 1000 milliseconds and profiles a target step range from
+                        step 5 to step 15 (for 10 steps).</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.debugger import ProfilerConfig, FrameworkProfile
+    
+profiler_config=ProfilerConfig(
+    system_monitor_interval_millis=<code class="replaceable">1000</code>,
+    framework_profile_params=FrameworkProfile(start_step=<code class="replaceable">5</code>, num_steps=<code class="replaceable">10</code>)
+)</code></pre>
+                </li><li class="listitem">
+                    <p><b>For a target time range</b></p>
+                    <p>With the following example configuration, Debugger monitors the entire
+                        training job every 500 milliseconds (the default monitoring) and profiles a
+                        target time range from the current Unix time for 600 seconds.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import time
+from sagemaker.debugger import ProfilerConfig, FrameworkProfile
+
+profiler_config=ProfilerConfig(
+    framework_profile_params=FrameworkProfile(start_unix_time=int(<code class="replaceable">time.time()</code>), duration=<code class="replaceable">600</code>)
+)</code></pre>
+                    <p>With the following example configuration, Debugger monitors the entire
+                        training job every 1000 milliseconds and profiles a target time range from
+                        the current Unix time for 600 seconds.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import time
+from sagemaker.debugger import ProfilerConfig, FrameworkProfile
+
+profiler_config=ProfilerConfig(
+    system_monitor_interval_millis=<code class="replaceable">1000</code>,
+    framework_profile_params=FrameworkProfile(start_unix_time=int(<code class="replaceable">time.time()</code>), duration=<code class="replaceable">600</code>)
+)</code></pre>
+                    <p>The framework profiling is performed for all of the profiling options at
+                        the target step or time range. </p>
+                    <p>To find more information about available profiling options, see <a href="https://sagemaker.readthedocs.io/en/stable/api/training/debugger.html#sagemaker.debugger.FrameworkProfile" rel="noopener noreferrer" target="_blank"><span>SageMaker Debugger APIs – FrameworkProfile</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the
+                        <a href="https://sagemaker.readthedocs.io" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                    <p>The next section shows you how to script the available profiling
+                        options.</p>
+                </li></ul></div>
+         
+            <h2 id="debugger-configure-framework-profiling-options">Start a training
+                    job with the default system monitoring and customized framework profiling with
+                    different profiling options</h2>
+            <p>You can use the following profiling configuration classes to manage the framework
+                profiling options:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><a href="https://sagemaker.readthedocs.io/en/stable/api/training/debugger.html#sagemaker.debugger.DetailedProfilingConfig" rel="noopener noreferrer" target="_blank"><span>DetailedProfilingConfig</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – Specify a target step or time
+                        range to profile framework operations using the native framework profilers
+                        (TensorFlow profiler and PyTorch profiler). For example, if using
+                        TensorFlow, the Debugger hooks enable the TensorFlow profiler to collect
+                        TensorFlow-specific framework metrics. Detailed profiling enables you to
+                        profile all framework operators at a pre-step (before the first step),
+                        within steps, and between steps of a training job.</p>
+                    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Detailed profiling might significantly increase GPU memory
+                            consumption. We do not recommend enabling detailed profiling for more
+                            than a couple of steps.</p></div></div>
+                </li><li class="listitem">
+                    <p><a href="https://sagemaker.readthedocs.io/en/stable/api/training/debugger.html#sagemaker.debugger.DataloaderProfilingConfig" rel="noopener noreferrer" target="_blank"><span>DataloaderProfilingConfig</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – Specify a target step or
+                        time range to profile deep learning framework data loader processes. Debugger
+                        collects every data loader event of the frameworks.</p>
+                    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Data loader profiling might lower the training performance while
+                            collecting information from data loaders. We don't recommend enabling
+                            data loader profiling for more than a couple of steps.</p><p>Debugger is preconfigured to annotate data loader processes only for the
+                            AWS deep learning containers. Debugger cannot profile data loader
+                            processes from any other custom or external training containers.</p></div></div>
+                </li><li class="listitem">
+                    <p><a href="https://sagemaker.readthedocs.io/en/stable/api/training/debugger.html#sagemaker.debugger.PythonProfilingConfig" rel="noopener noreferrer" target="_blank"><span>PythonProfilingConfig</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – Specify a target step or time
+                        range to profile Python functions. You can also choose between two Python
+                        profilers: cProfile and Pyinstrument.</p>
+                    <div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p><em>cProfile</em> – The standard Python
+                                profiler. cProfile collects information for every Python operator
+                                called during training. With cProfile, Debugger saves cumulative time
+                                and annotation for each function call, providing complete detail
+                                about Python functions. In deep learning, for example, the most
+                                frequently called functions might be the convolutional filters and
+                                backward pass operators, and cProfile profiles every single of them.
+                                For the cProfile option, you can further select a timer option:
+                                total time, CPU time, and off-CPU time. While you can profile every
+                                function call executing on processors (both CPU and GPU) in CPU
+                                time, you can also identify I/O or network bottlenecks with the
+                                off-CPU time option. The default is total time, and Debugger profiles
+                                both CPU and off-CPU time. With cProfile, you are able to drill down
+                                to every single functions when analyzing the profile data.</p>
+                        </li><li class="listitem">
+                            <p><em>Pyinstrument</em> – Pyinstrument is
+                                a low-overhead Python profiler that works based on sampling. With
+                                the Pyinstrument option, Debugger samples profiling events every
+                                millisecond. Because Pyinstrument measures elapsed wall-clock time
+                                instead of CPU time, the Pyinstrument option can be a better choice
+                                over the cProfile option for reducing profiling noise (filtering out
+                                irrelevant function calls that are cumulatively fast) and capturing
+                                operators that are actually compute intensive (cumulatively slow)
+                                for training your model. With Pyinstrument, you are able to see a
+                                tree of function calls and better understand the structure and root
+                                cause of the slowness.</p>
+                        </li></ul></div>
+                    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Enabling Python profiling might slow down the overall training time.
+                            cProfile profiles the most frequently called Python operators at every
+                            call, so the processing time on profiling increases with respect to the
+                            number of calls. For Pyinstrument, the cumulative profiling time
+                            increases with respect to time because of its sampling mechanism.</p></div></div>
+                </li></ul></div>
+            <p>The following example configuration shows the full structure when you use the
+                different profiling options with specified values.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import time
+from sagemaker.debugger import (ProfilerConfig, 
+                                FrameworkProfile, 
+                                DetailedProfilingConfig, 
+                                DataloaderProfilingConfig, 
+                                PythonProfilingConfig,
+                                PythonProfiler, cProfileTimer)
+
+profiler_config=ProfilerConfig(
+    system_monitor_interval_millis=<code class="replaceable">500</code>,
+    framework_profile_params=FrameworkProfile(
+        detailed_profiling_config=DetailedProfilingConfig(
+            start_step=<code class="replaceable">5</code>, 
+            num_steps=<code class="replaceable">1</code>
+        ),
+        dataloader_profiling_config=DataloaderProfilingConfig(
+            start_step=<code class="replaceable">7</code>, 
+            num_steps=<code class="replaceable">1</code>
+        ),
+        python_profiling_config=PythonProfilingConfig(
+            start_step=<code class="replaceable">9</code>, 
+            num_steps=<code class="replaceable">1</code>, 
+            python_profiler=PythonProfiler.<code class="replaceable">CPROFILE</code>, 
+            cprofile_timer=<code class="replaceable">cProfileTimer.TOTAL_TIME</code>
+        )
+    )
+)</code></pre>
+            <p>For more information about available profiling options, see <a href="https://sagemaker.readthedocs.io/en/stable/api/training/debugger.html#sagemaker.debugger.DetailedProfilingConfig" rel="noopener noreferrer" target="_blank"><span>DetailedProfilingConfig</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, <a href="https://sagemaker.readthedocs.io/en/stable/api/training/debugger.html#sagemaker.debugger.DataloaderProfilingConfig" rel="noopener noreferrer" target="_blank"><span>DataloaderProfilingConfig</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, and <a href="https://sagemaker.readthedocs.io/en/stable/api/training/debugger.html#sagemaker.debugger.PythonProfilingConfig" rel="noopener noreferrer" target="_blank"><span>PythonProfilingConfig</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the <a href="https://sagemaker.readthedocs.io" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./debugger-configure-system-monitoring.html">Configure settings for basic profiling of system resource
+                utilization</div><div id="next" class="next-link" accesskey="n" href="./debugger-update-monitoring-profiling.html">Update monitoring and profiling configuration</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-configure-framework-profiling.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-configure-framework-profiling.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

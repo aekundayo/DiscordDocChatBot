@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>AWS managed policies for Amazon SageMaker geospatial - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="security-iam-awsmanpol-geospatial" /><meta name="default_state" content="security-iam-awsmanpol-geospatial" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="security-iam-awsmanpol-geospatial.html" /><meta name="description" content="Learn about AWS managed policies for SageMaker geospatial and recent changes to those policies." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="security-iam-awsmanpol-geospatial.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" hreflang="de" /><link rel="alternative" href="security-iam-awsmanpol-geospatial.html" hreflang="en-us" /><link rel="alternative" href="security-iam-awsmanpol-geospatial.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" hreflang="zh-tw" /><link rel="alternative" href="security-iam-awsmanpol-geospatial.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="AWS managed policies for Amazon SageMaker geospatial" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>AWS managed policies for Amazon SageMaker geospatial - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#security-iam-awsmanpol-geospatial" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,amazon, managed policy,permission,users, groups, roles,sagemaker,AmazonSageMakerFullAccess, full access,AmazonSageMakerReadOnly, read only" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Configure security in Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/security.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Identity and Access Management for Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/security-iam.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "AWS Managed Policies for Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/security-iam-awsmanpol.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "AWS managed policies for Amazon SageMaker geospatial",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/security-iam-awsmanpol.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#security-iam-awsmanpol-geospatial" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="security-iam-awsmanpol-geospatial.html#security-iam-awsmanpol-AmazonSageMakerGeospatialFullAccess">AmazonSageMakerGeospatialFullAccess</a><a href="security-iam-awsmanpol-geospatial.html#security-iam-awsmanpol-AmazonSageMakerGeospatialExecutionRole">AmazonSageMakerGeospatialExecutionRole</a><a href="security-iam-awsmanpol-geospatial.html#security-iam-awsmanpol-geospatial-updates">SageMaker geospatial policy updates</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="security-iam-awsmanpol-geospatial">AWS managed policies for Amazon SageMaker geospatial</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>These AWS managed policies add permissions required to use SageMaker geospatial. The policies
+    are available in your AWS account and are used by execution roles created from the SageMaker console.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="security-iam-awsmanpol-geospatial.html#security-iam-awsmanpol-AmazonSageMakerGeospatialFullAccess">AWS
+         managed policy: AmazonSageMakerGeospatialFullAccess</a></li><li><a href="security-iam-awsmanpol-geospatial.html#security-iam-awsmanpol-AmazonSageMakerGeospatialExecutionRole">AWS
+         managed policy: AmazonSageMakerGeospatialExecutionRole</a></li><li><a href="security-iam-awsmanpol-geospatial.html#security-iam-awsmanpol-geospatial-updates">Amazon SageMaker updates to Amazon SageMaker geospatial
+            managed policies</a></li></ul></div>
+    <h2 id="security-iam-awsmanpol-AmazonSageMakerGeospatialFullAccess">AWS
+         managed policy: AmazonSageMakerGeospatialFullAccess</h2>
+    <p>This policy grants permissions that allow full access to Amazon SageMaker geospatial through the AWS Management Console
+      and SDK.</p>
+
+    <p><b>Permissions details</b></p>
+    <p>This AWS managed policy includes the following permissions.</p>
+    <div class="itemizedlist">
+        
+        
+    <ul class="itemizedlist"><li class="listitem">
+          <p><code class="code">sagemaker-geospatial</code> – Allows principals full access to all
+            SageMaker geospatial resources.</p>
+       </li><li class="listitem">
+          <p><code class="code">iam</code> – Allows principals to pass an IAM role to SageMaker geospatial.</p>
+       </li></ul></div>
+
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Effect": "Allow",
+      "Action": "sagemaker-geospatial:*",
+      "Resource": "*"
+    },
+    <span>{</span>
+      "Effect": "Allow",
+      "Action": ["iam:PassRole"],
+      "Resource": "arn:aws:iam::*:role/*",
+      "Condition": <span>{</span>
+        "StringEquals": <span>{</span>
+          "iam:PassedToService": [
+            "sagemaker-geospatial.amazonaws.com"
+           ]
+        }
+      }
+    }
+  ]
+}</code></pre>
+   
+    <h2 id="security-iam-awsmanpol-AmazonSageMakerGeospatialExecutionRole">AWS
+         managed policy: AmazonSageMakerGeospatialExecutionRole</h2>
+    <p>This policy grants permissions commonly needed to use SageMaker geospatial.</p>
+
+    <p><b>Permissions details</b></p>
+    <p>This AWS managed policy includes the following permissions.</p>
+    <div class="itemizedlist">
+        
+        
+    <ul class="itemizedlist"><li class="listitem">
+          <p><code class="code">s3</code> – Allows principals to add and retrieve objects from Amazon S3
+            buckets. These objects are limited to those whose name contains "SageMaker",
+            "Sagemaker", or "sagemaker".</p>
+       </li><li class="listitem">
+          <p><code class="code">sagemaker-geospatial</code> – Allows principals to access Earth
+            observation jobs through the <code class="code">GetEarthObservationJob</code> API.</p>
+       </li></ul></div>
+
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Effect": "Allow",
+      "Action": [
+          "s3:AbortMultipartUpload",
+          "s3:PutObject",
+          "s3:GetObject",
+          "s3:ListBucketMultipartUploads"
+      ],
+      "Resource": [
+        "arn:aws:s3:::*SageMaker*",
+        "arn:aws:s3:::*Sagemaker*",
+        "arn:aws:s3:::*sagemaker*"
+      ]
+    },
+    <span>{</span>
+      "Effect": "Allow",
+      "Action": "sagemaker-geospatial:GetEarthObservationJob",
+      "Resource": "arn:aws:sagemaker-geospatial:*:*:earth-observation-job/*"
+    },
+    <span>{</span>
+      "Effect": "Allow",
+      "Action": "sagemaker-geospatial:GetRasterDataCollection",
+      "Resource": "arn:aws:sagemaker-geospatial:*:*:raster-data-collection/*"
+    }
+  ]
+}</code></pre>
+   
+      <h2 id="security-iam-awsmanpol-geospatial-updates">Amazon SageMaker updates to Amazon SageMaker geospatial
+            managed policies</h2>
+      <p>View details about updates to AWS managed policies for SageMaker geospatial since this service
+         began tracking these changes.</p>
+      
+      <div class="table-container"><div class="table-contents"><table id="w714aac39c17c34c36c11b7"><thead>
+               <tr>
+                  <th>Policy</th>
+                  <th>Version</th>
+                  <th>Change</th>
+                  <th>Date</th>
+               </tr>
+            </thead>
+               <tr>
+                  <td tabindex="-1">
+                     <p><a href="security-iam-awsmanpol-geospatial.html#security-iam-awsmanpol-AmazonSageMakerGeospatialExecutionRole">AmazonSageMakerGeospatialExecutionRole</a> - Updated policy</p>
+                  </td>
+                  <td tabindex="-1"><p>2</p></td>
+                  <td tabindex="-1">
+                     <p>Add <code class="code">sagemaker-geospatial:GetRasterDataCollection</code> permission.</p>
+                  </td>
+                  <td tabindex="-1">May 10, 2023</td>
+               </tr>
+               <tr>
+                  <td tabindex="-1">
+                     <p><a href="security-iam-awsmanpol-geospatial.html#security-iam-awsmanpol-AmazonSageMakerGeospatialFullAccess">AmazonSageMakerGeospatialFullAccess</a> - New policy</p>
+                  </td>
+                  <td tabindex="-1"><p>1</p></td>
+                  <td tabindex="-1">
+                     <p>Initial policy</p>
+                  </td>
+                  <td tabindex="-1">November 30, 2022</td>
+               </tr>
+               <tr>
+                  <td tabindex="-1"><p>AmazonSageMakerGeospatialExecutionRole - New policy</p></td>
+                  <td tabindex="-1"><p>1</p></td>
+                  <td tabindex="-1">
+                     <p>Initial policy</p>
+                  </td>
+                  <td tabindex="-1">November 30, 2022</td>
+               </tr>
+            </table></div></div>
+   <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./security-iam-awsmanpol-feature-store.html">SageMaker Feature Store</div><div id="next" class="next-link" accesskey="n" href="./security-iam-awsmanpol-ground-truth.html">SageMaker Ground Truth</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/security-iam-awsmanpol-geospatial.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

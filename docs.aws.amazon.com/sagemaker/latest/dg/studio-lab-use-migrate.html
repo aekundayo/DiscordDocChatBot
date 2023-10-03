@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Export an Amazon SageMaker Studio Lab environment to Amazon SageMaker Studio - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="studio-lab-use-migrate" /><meta name="default_state" content="studio-lab-use-migrate" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="studio-lab-use-migrate.html" /><meta name="description" content="Learn how to export an Amazon SageMaker Studio Lab environment and files for use with Amazon SageMaker Studio." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="studio-lab-use-migrate.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-lab-use-migrate.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-lab-use-migrate.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-lab-use-migrate.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-lab-use-migrate.html" hreflang="de" /><link rel="alternative" href="studio-lab-use-migrate.html" hreflang="en-us" /><link rel="alternative" href="studio-lab-use-migrate.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-lab-use-migrate.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-lab-use-migrate.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-lab-use-migrate.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-lab-use-migrate.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-lab-use-migrate.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-lab-use-migrate.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-lab-use-migrate.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-lab-use-migrate.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-lab-use-migrate.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-lab-use-migrate.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-lab-use-migrate.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-lab-use-migrate.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/studio-lab-use-migrate.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/studio-lab-use-migrate.html" hreflang="zh-tw" /><link rel="alternative" href="studio-lab-use-migrate.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Export an Amazon SageMaker Studio Lab environment to Amazon SageMaker Studio" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Export an Amazon SageMaker Studio Lab environment to Amazon SageMaker Studio - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-lab-use-migrate" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-lab-use-migrate.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-lab-use-migrate.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-lab-use-migrate.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use machine learning environments offered by SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/machine-learning-environments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Studio Lab",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-lab.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use the Amazon SageMaker Studio Lab project runtime",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-lab-use.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Export an Amazon SageMaker Studio Lab environment to Amazon SageMaker Studio",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-lab-use.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-lab-use-migrate" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="studio-lab-use-migrate.html#studio-lab-use-migrate-step1">Step 1: Export your Studio Lab conda
+        environment</a><a href="studio-lab-use-migrate.html#studio-lab-use-migrate-step2">Step 2: Save your Studio Lab artifacts</a><a href="studio-lab-use-migrate.html#studio-lab-use-migrate-step3">Step 3: Import your Studio Lab artifacts to
+        Studio</a><a href="studio-lab-use-migrate.html#studio-lab-use-migrate-step4">Step 4: Install your Studio Lab conda environments
+        in Studio</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="studio-lab-use-migrate">Export an Amazon SageMaker Studio Lab environment to
+      Amazon SageMaker Studio</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon SageMaker Studio offers many features for machine learning and deep learning work flows that
+    are unavailable in Amazon SageMaker Studio Lab. This page shows how to migrate a Studio Lab environment to
+    Studio to take advantage of more compute capacity, storage, and features. However, you may
+    want to familiarize yourself with Studio's prebuilt containers, which are optimized for the
+    full MLOP pipeline. For more information, see <a href="studio-lab.html">Amazon SageMaker Studio Lab</a></p><p>To migrate your Studio Lab environment to Studio, you must first onboard to Studio 
+    following the steps in <a href="gs-studio-onboard.html">Onboard to Amazon SageMaker Domain</a>. 
+  </p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="studio-lab-use-migrate.html#studio-lab-use-migrate-step1">Step 1: Export your Studio Lab conda
+        environment</a></li><li><a href="studio-lab-use-migrate.html#studio-lab-use-migrate-step2">Step 2: Save your Studio Lab artifacts</a></li><li><a href="studio-lab-use-migrate.html#studio-lab-use-migrate-step3">Step 3: Import your Studio Lab artifacts to
+        Studio</a></li><li><a href="studio-lab-use-migrate.html#studio-lab-use-migrate-step4">Step 4: Install your Studio Lab conda environments
+        in Studio</a></li></ul></div>
+    <h2 id="studio-lab-use-migrate-step1">Step 1: Export your Studio Lab conda
+        environment</h2>
+    <p>You can export a conda environment and add libraries or packages to the environment by
+      following the steps in <a href="studio-lab-use-manage.html">Manage your environment</a>. The following example demonstrates using the
+        <code class="code">default</code> environment to be exported to Studio. </p>
+    <div class="procedure"><ol><li>
+        <p>Open the Studio Lab terminal by opening the <b>File Browser</b> (<span class="inlinemediaobject">
+             
+              <img src="../../../images/sagemaker/latest/dg/images/studio/icons/folder.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" />
+             
+          </span>) panel, choose the plus (<b>+</b>) sign on the menu at
+          the top of the file browser to open the <b>Launcher</b>, then choose
+            <b>Terminal</b>. From the Studio Lab terminal, list the conda environments by
+          running the following.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">conda env list</code></pre>
+        <p>This command outputs a list of the conda environments and their locations in the file
+          system. When you onboard to Studio Lab, you automatically activate the <code class="code">studiolab</code> 
+          conda environment.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""># conda environments: #
+           default                  /home/studio-lab-user/.conda/envs/default
+           studiolab             *  /home/studio-lab-user/.conda/envs/studiolab
+           studiolab-safemode       /opt/amazon/sagemaker/safemode-home/.conda/envs/studiolab-safemode
+           base                     /opt/conda</code></pre>
+        <p>We recommend that you do not export the <code class="code">studiolab</code>, 
+          <code class="code">studiolab-safemode</code>, and <code class="code">base</code> environments. These environments are 
+          not usable in Studio for the following reasons: </p>
+        <div class="itemizedlist">
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>
+              <code class="code">studiolab</code>: This sets up the JupyterLab environment for Studio Lab. Studio Lab
+              runs a different major version of JupyterLab than Studio, so it is not usable in
+              Studio. </p>
+          </li><li class="listitem">
+            <p>
+              <code class="code">studiolab-safemode</code>: This also sets up the JupyterLab environment for
+              Studio Lab. Studio Lab runs a different major version of JupyterLab than Studio, so it
+              is not usable in Studio. </p>
+          </li><li class="listitem">
+            <p>
+              <code class="code">base</code>: This environment comes with conda by default. The <code class="code">base</code>
+              environment in Studio Lab and the <code class="code">base</code> environment in Studio have
+              incompatible versions of many packages. </p>
+          </li></ul></div>
+      </li><li>
+        <p>For the conda environment that you want to migrate to Studio, first activate the
+          conda environment.The <code class="code">default</code> environment is then changed when new libraries
+          are installed or removed from it. To get the exact state of the environment, export it
+          into a YAML file using the command line. The following command lines export the default
+          environment into a YAML file, creating a file called <code class="code">myenv.yml</code>.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">conda activate default
+conda env export &gt; ~/myenv.yml</code></pre>
+      </li></ol></div>
+   
+    <h2 id="studio-lab-use-migrate-step2">Step 2: Save your Studio Lab artifacts</h2>
+    <p>Now that you have saved your environment to a YAML file, you can move the environment file
+      to any platform. </p>
+    
+    
+    
+    
+    <awsdocs-tabs><dl style="display: none">
+      
+      <dt>Save to a local machine using Studio Lab GUI</dt><dd tab-id="save-to-a-local-machine-using-studio-lab-gui">
+          <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Downloading a directory from the Studio Lab GUI by right-clicking on the directory is
+              currently unavailable. If you wish to export a directory, please follow the steps
+              using the <b>Save to Git repository</b> tab. </p></div></div>
+          <p>One option is to save the environment onto your local machine. To do this, use the
+            following procedure.</p>
+          <div class="procedure"><ol><li>
+              <p>In Studio Lab, choose the <b>File Browser</b> (<span class="inlinemediaobject">
+                 
+                  <img src="../../../images/sagemaker/latest/dg/images/studio/icons/folder.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" />
+                 
+              </span>) icon on the left menu, so that the <b>File Browser</b> panel
+                shows on the left. </p>
+            </li><li>
+              <p>Navigate to your user directory by choosing the file icon beneath the file
+                search bar. </p>
+            </li><li>
+              <p>Choose (right-click) the <code class="code">myenv.yml</code> file and then choose
+                  <b>Download</b>. You can repeat this process for other files you
+                want to import to Studio. </p>
+            </li></ol></div>
+        </dd>
+      
+      <dt>Save to a Git repository</dt><dd tab-id="save-to-a-git-repository">
+          <p>Another option is to save your environment to a Git repository. This option uses
+            GitHub as an example. These steps require a GitHub account and repository. For more
+            information, visit <a href="https://github.com/" rel="noopener noreferrer" target="_blank"><span>GitHub</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. The following
+            procedure shows how to synchronize your content with GitHub using the Studio Lab terminal. </p>
+          <div class="procedure"><ol><li>
+              <p>From the Studio Lab terminal, navigate to your user directory and make a new
+                directory to contain the files you want to export. </p>        
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">cd ~
+mkdir <code class="replaceable">&lt;NEW_DIRECTORY_NAME&gt;</code></code></pre>
+            </li><li>
+              <p>After you create a new directory, copy any file or directory you want to export
+                to <code class="code"><code class="replaceable">&lt;NEW_DIRECTORY_NAME&gt;</code></code>. </p>
+              
+              <p>Copy a file using the following code format:</p>
+              
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">cp <code class="replaceable">&lt;FILE_NAME&gt;</code> <code class="replaceable">&lt;NEW_DIRECTORY_NAME&gt;</code></code></pre>
+              
+              <p>For example, replace <code class="code"><code class="replaceable">&lt;FILE_NAME&gt;</code></code> with
+                <code class="code">myenv.yml</code>. </p>
+              
+              <p>Copy any directory using the following code format:</p>
+              
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">cp -r <code class="replaceable">&lt;DIRECTORY_NAME&gt;</code> <code class="replaceable">&lt;NEW_DIRECTORY_NAME&gt;</code></code></pre>
+              
+              <p>For example, replace <code class="code"><code class="replaceable">&lt;DIRECTORY_NAME&gt;</code></code>
+                with any directory name in your user directory.</p>
+            </li><li>
+              <p>Navigate to the new directory and initialize the directory as a Git repository using
+                the following command. For more information, see the <a href="https://git-scm.com/docs/git-init" rel="noopener noreferrer" target="_blank"><span>git-init documentation</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">cd <code class="replaceable">&lt;NEW_DIRECTORY_NAME&gt;</code>
+git init</code></pre>
+            </li><li>
+              <p>Using Git, add all relevant files and then commit your changes. </p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">git add .
+git commit -m "<code class="replaceable">&lt;COMMIT_MESSAGE&gt;</code>"</code></pre>
+              <p>For example, replace <code class="code"><code class="replaceable">&lt;COMMIT_MESSAGE&gt;</code></code>
+                with <code class="code">Add Amazon SageMaker Studio Lab artifacts to GitHub repository to migrate to
+                 Amazon SageMaker Studio </code>.</p>
+            </li><li>
+              <p>Push the commit to your remote repository. This repository has the
+                format <code class="code">https://github.com/<code class="replaceable">&lt;GITHUB_USERNAME&gt;</code>/
+                  <code class="replaceable">&lt;REPOSITORY_NAME&gt;</code>.git</code> where
+                <code class="code"><code class="replaceable">&lt;GITHUB_USERNAME&gt;</code></code> is your GitHub user 
+                name and the <code class="code"><code class="replaceable">&lt;REPOSITORY_NAME&gt;</code></code> is your 
+                remote repository name. Create a branch
+                <code class="code"><code class="replaceable">&lt;BRANCH_NAME&gt;</code></code> to push the content to the
+                GitHub repository.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">git branch -M <code class="replaceable">&lt;BRANCH_NAME&gt;</code>
+git remote add origin https://github.com/<code class="replaceable">&lt;GITHUB_USERNAME&gt;</code>/<code class="replaceable">&lt;REPOSITORY_NAME&gt;</code>.git
+git push -u origin <code class="replaceable">&lt;BRANCH_NAME&gt;</code></code></pre>
+              
+            </li></ol></div>
+        </dd>
+      
+    </dl></awsdocs-tabs>
+    
+    
+    
+    
+    
+    
+    
+   
+    <h2 id="studio-lab-use-migrate-step3">Step 3: Import your Studio Lab artifacts to
+        Studio</h2>
+    <p>The following procedure shows how to import artifacts to Studio. You first have to
+      open Amazon SageMaker Studio. For more information, see <a href="studio-launch.html">Launch Amazon SageMaker Studio</a>. </p>
+    <p>From Studio, you can import files from your local machine or from a Git repository.
+      You can do this using the Studio GUI or terminal. The following procedure uses the
+      examples from <a href="studio-lab-use-migrate.html#studio-lab-use-migrate-step2">Step 2: Save your Studio Lab artifacts</a>. </p>
+    
+    <awsdocs-tabs><dl style="display: none">
+      <dt>Import using the Studio GUI</dt><dd tab-id="import-using-the-studio-gui">
+          <p>If you saved the files to your local machine, you can import the files to Studio
+            using the following steps.</p>
+          <div class="procedure"><ol><li>
+              <p>Open the <b>File Browser</b> (<span class="inlinemediaobject">
+                   
+                    <img src="../../../images/sagemaker/latest/dg/images/studio/icons/folder.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" />
+                   
+                </span>) panel at the top left of Studio. </p>
+            </li><li>
+              <p>Choose the <b>Upload Files</b> icon ( <span class="inlinemediaobject">
+                   
+                    <img src="../../../images/sagemaker/latest/dg/images/icons/File_upload_squid.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" />
+                   
+                </span>) on the menu at the top of the <b>File
+                  Browser</b> panel. </p>
+            </li><li>
+              <p>Navigate to the file you want to import, then choose <b>Open</b>.
+              </p>
+            </li></ol></div>
+          <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you wish to import a directory into Studio, first compress the directory on
+              your local machine to a file. On a Mac, right-click the directory and choose
+                <b>Compress "<code class="replaceable">&lt;DIRECTORY_NAME&gt;</code>"</b>. In
+              Windows, right-click the directory and choose <b>Send to</b>, and then
+              choose <b>Compressed (zipped) folder</b>. After the directory is
+              compressed, import the compressed file using the preceding steps. Unzip the compressed
+              file by navigating to the Studio terminal and running the command
+                  <code class="code"><code class="replaceable">&lt;DIRECTORY_NAME&gt;</code>.zip</code>. </p></div></div>
+        </dd>
+      
+      <dt>Import using a Git repository</dt><dd tab-id="import-using-a-git-repository">
+          <p>This example provides two options for how to clone a GitHub repository into
+            Studio. You can use the Studio GUI by choosing the <b>Git</b> (<span class="inlinemediaobject">
+               
+                <img src="../../../images/sagemaker/latest/dg/images/studio/icons/git.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" />
+               
+            </span>) tab on the left side of Studio. Choose <b>Clone a
+              Repository</b>, then paste your GitHub repository URL from <a href="studio-lab-use-migrate.html#studio-lab-use-migrate-step2">Step 2: Save your Studio Lab artifacts</a>.
+            Another option is to use the Studio terminal by using the following procedure. </p>
+          <div class="procedure"><ol><li>
+              <p>Open the Studio <b>Launcher</b>. For more information on
+                opening the <b>Launcher</b>, see <a href="studio-launcher.html">Amazon SageMaker Studio Launcher</a>.
+              </p>
+            </li><li>
+              <p>In the <b>Launcher</b>, in the <b>Notebooks and compute
+                  resources</b> section, choose <b>Change
+                environment</b>.</p>
+            </li><li>
+              <p>In Studio, open the <b>Launcher</b>. To open the
+                  <b>Launcher</b>, choose <b>Amazon SageMaker Studio</b> at the
+                top-left corner of Studio. </p>
+              <p>To learn about all the available ways to open the <b>Launcher</b>,
+                see <a href="studio-launcher.html">Use the Amazon SageMaker Studio Launcher</a>.</p>
+            </li><li>
+              <p>In the <b>Change environment</b> dialog, use the
+                  <b>Image</b> dropdown list to select the <b>Data
+                  Science</b> image and choose <b>Select</b>. This image comes
+                with conda pre-installed. </p>
+            </li><li>
+              <p>In the Studio <b>Launcher</b>, choose <b>Open image
+                  terminal</b>.</p>
+            </li><li>
+              <p>From the image terminal, run the following command to clone your repository.
+                This command creates a directory named after <code class="code">&lt;REPOSITORY_NAME&gt;</code> in
+                your Studio instance and clones your artifacts in that repository.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="zsh ">git clone https://github.com/<code class="replaceable">&lt;GITHUB_USERNAME&gt;</code>/<code class="replaceable">&lt;REPOSITORY_NAME&gt;</code>.git</code></pre>
+            </li></ol></div>
+        </dd>
+    </dl></awsdocs-tabs>
+    
+   
+    <h2 id="studio-lab-use-migrate-step4">Step 4: Install your Studio Lab conda environments
+        in Studio</h2>
+    <p>You can now recreate your conda environment by using your YAML file in your Studio
+      instance. Open the Studio <b>Launcher</b>. For more information on opening
+      the <b>Launcher</b>, see <a href="studio-launcher.html">Amazon SageMaker Studio Launcher</a>. From the
+        <b>Launcher</b>, choose <b>Open image terminal</b>. In the
+      terminal navigate to the directory that contains the YAML file, then run the following
+      commands. </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="zsh ">conda env create --file <code class="replaceable">&lt;ENVIRONMENT_NAME&gt;</code>.yml
+conda activate <code class="replaceable">&lt;ENVIRONMENT_NAME&gt;</code></code></pre>
+    <p>After these commands are complete, you can select your environment as the kernel for your
+      Studio notebook instances. To view the available environment, run <code class="code">conda env
+        list</code>. To activate your environment, run <code class="code">conda activate
+          <code class="replaceable">&lt;ENVIRONMENT_NAME&gt;</code></code>.</p>
+    <p></p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./studio-lab-use-diff.html">Get notebook differences</div><div id="next" class="next-link" accesskey="n" href="./studio-lab-use-shutdown.html">Shut down resources</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-lab-use-migrate.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-lab-use-migrate.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

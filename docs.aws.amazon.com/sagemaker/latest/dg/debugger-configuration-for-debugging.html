@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Step 2: Launch and Debug Training Jobs Using SageMaker Python SDK - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="debugger-configuration-for-debugging" /><meta name="default_state" content="debugger-configuration-for-debugging" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="debugger-configuration-for-debugging.html" /><meta name="description" content="Configure Amazon SageMaker Debugger using Amazon SageMaker Python SDK." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="debugger-configuration-for-debugging.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/debugger-configuration-for-debugging.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/debugger-configuration-for-debugging.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/debugger-configuration-for-debugging.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/debugger-configuration-for-debugging.html" hreflang="de" /><link rel="alternative" href="debugger-configuration-for-debugging.html" hreflang="en-us" /><link rel="alternative" href="debugger-configuration-for-debugging.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/debugger-configuration-for-debugging.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/debugger-configuration-for-debugging.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/debugger-configuration-for-debugging.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/debugger-configuration-for-debugging.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/debugger-configuration-for-debugging.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/debugger-configuration-for-debugging.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/debugger-configuration-for-debugging.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/debugger-configuration-for-debugging.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/debugger-configuration-for-debugging.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/debugger-configuration-for-debugging.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/debugger-configuration-for-debugging.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/debugger-configuration-for-debugging.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/debugger-configuration-for-debugging.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/debugger-configuration-for-debugging.html" hreflang="zh-tw" /><link rel="alternative" href="debugger-configuration-for-debugging.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Step 2: Launch and Debug Training Jobs Using SageMaker Python SDK" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Step 2: Launch and Debug Training Jobs Using SageMaker Python SDK - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#debugger-configuration-for-debugging" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-configuration-for-debugging.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-configuration-for-debugging.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-configuration-for-debugging.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Debug and improve model performance",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-debug-and-improve-model-performance.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Amazon SageMaker Debugger to debug and improve model performance",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-debugger.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Debug Training Jobs Using Amazon SageMaker Debugger",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-debug-training-jobs.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Step 2: Launch and Debug Training Jobs Using SageMaker Python SDK",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-debug-training-jobs.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#debugger-configuration-for-debugging" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="debugger-configuration-for-debugging.html#debugger-configuration-structure">Construct a SageMaker Estimator with
+                Debugger-specific parameters</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="debugger-configuration-for-debugging">Step 2: Launch and Debug Training
+            Jobs Using SageMaker Python SDK</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>To configure a SageMaker estimator with SageMaker Debugger, use <a href="https://sagemaker.readthedocs.io" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and
+        specify Debugger-specific parameters. To fully utilize the debugging functionality, there are
+        three parameters you need to configure: <code class="code">debugger_hook_config</code>,
+            <code class="code">tensorboard_output_config</code>, and <code class="code">rules</code>.</p><div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>Before constructing and running the estimator fit method to launch a training job,
+            make sure that you adapt your training script following the instructions at <a href="debugger-modify-script.html">Step 1: Adapt Your Training Script to Register a
+            Hook</a>.</p></div></div>
+        <h2 id="debugger-configuration-structure">Construct a SageMaker Estimator with
+                Debugger-specific parameters</h2>
+        
+        <p>The code examples in this section show how to construct a SageMaker estimator with the
+            Debugger-specific parameters.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The following code examples are templates for constructing the SageMaker framework estimators
+                and not directly executable. You need to proceed to the next sections and configure
+                the Debugger-specific parameters.</p></div></div>
+        <awsdocs-tabs><dl style="display: none">
+            <dt>PyTorch</dt><dd tab-id="pytorch">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py "># An example of constructing a SageMaker PyTorch estimator
+import boto3
+import sagemaker
+from sagemaker.pytorch import PyTorch
+from sagemaker.debugger import CollectionConfig, DebuggerHookConfig, Rule, rule_configs
+
+session=boto3.session.Session()
+region=session.region_name
+
+<code class="userinput">debugger_hook_config</code>=<code class="replaceable">DebuggerHookConfig(...)</code>
+<code class="userinput">rules</code>=[
+    <code class="replaceable">Rule.sagemaker(rule_configs.built_in_rule())</code>
+]
+
+estimator=PyTorch(
+    entry_point="<code class="replaceable">directory/to/your_training_script.py</code>",
+    role=sagemaker.get_execution_role(),
+    base_job_name="<code class="replaceable">debugger-demo</code>",
+    instance_count=<code class="replaceable">1</code>,
+    instance_type="<code class="replaceable">ml.p3.2xlarge</code>",
+    framework_version="<code class="replaceable">1.12.0</code>",
+    py_version="<code class="replaceable">py37</code>",
+    
+    # Debugger-specific parameters
+    debugger_hook_config=<code class="userinput">debugger_hook_config</code>,
+    rules=<code class="userinput">rules</code>
+)
+
+estimator.fit(wait=False)</code></pre>
+                </dd>
+            <dt>TensorFlow</dt><dd tab-id="tensorflow">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py "># An example of constructing a SageMaker TensorFlow estimator
+import boto3
+import sagemaker
+from sagemaker.tensorflow import TensorFlow
+from sagemaker.debugger import CollectionConfig, DebuggerHookConfig, Rule, rule_configs
+
+session=boto3.session.Session()
+region=session.region_name
+
+<code class="userinput">debugger_hook_config</code>=<code class="replaceable">DebuggerHookConfig(...)</code>
+<code class="userinput">rules</code>=[
+    <code class="replaceable">Rule.sagemaker(rule_configs.built_in_rule())</code>,
+    <code class="replaceable">ProfilerRule.sagemaker(rule_configs.BuiltInRule())</code>
+]
+
+estimator=TensorFlow(
+    entry_point="<code class="replaceable">directory/to/your_training_script.py</code>",
+    role=sagemaker.get_execution_role(),
+    base_job_name="<code class="replaceable">debugger-demo</code>",
+    instance_count=<code class="replaceable">1</code>,
+    instance_type="<code class="replaceable">ml.p3.2xlarge</code>",
+    framework_version="<code class="replaceable">2.9.0</code>",
+    py_version="<code class="replaceable">py39</code>",
+    
+    # Debugger-specific parameters
+    debugger_hook_config=<code class="userinput">debugger_hook_config</code>,
+    rules=<code class="userinput">rules</code>
+)
+
+estimator.fit(wait=False)</code></pre>
+                </dd>
+            <dt>MXNet</dt><dd tab-id="mxnet">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py "># An example of constructing a SageMaker MXNet estimator
+import sagemaker
+from sagemaker.mxnet import MXNet
+from sagemaker.debugger import CollectionConfig, DebuggerHookConfig, Rule, rule_configs
+
+<code class="userinput">debugger_hook_config</code>=<code class="replaceable">DebuggerHookConfig(...)</code>
+<code class="userinput">rules</code>=[
+    <code class="replaceable">Rule.sagemaker(rule_configs.built_in_rule())</code>
+]
+
+estimator=MXNet(
+    entry_point="<code class="replaceable">directory/to/your_training_script.py</code>",
+    role=sagemaker.get_execution_role(),
+    base_job_name="<code class="replaceable">debugger-demo</code>",
+    instance_count=<code class="replaceable">1</code>,
+    instance_type="<code class="replaceable">ml.p3.2xlarge</code>",
+    framework_version="<code class="replaceable">1.7.0</code>",
+    py_version="<code class="replaceable">py37</code>",
+    
+    # Debugger-specific parameters
+    debugger_hook_config=<code class="userinput">debugger_hook_config</code>,
+    rules=<code class="userinput">rules</code>
+)
+
+estimator.fit(wait=False)</code></pre>
+                </dd>
+            <dt>XGBoost</dt><dd tab-id="xgboost">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py "># An example of constructing a SageMaker XGBoost estimator
+import sagemaker
+from sagemaker.xgboost.estimator import XGBoost
+from sagemaker.debugger import CollectionConfig, DebuggerHookConfig, Rule, rule_configs
+
+<code class="userinput">debugger_hook_config</code>=<code class="replaceable">DebuggerHookConfig(...)</code>
+<code class="userinput">rules</code>=[
+    <code class="replaceable">Rule.sagemaker(rule_configs.built_in_rule())</code>
+]
+
+estimator=XGBoost(
+    entry_point="<code class="replaceable">directory/to/your_training_script.py</code>",
+    role=sagemaker.get_execution_role(),
+    base_job_name="<code class="replaceable">debugger-demo</code>",
+    instance_count=<code class="replaceable">1</code>,
+    instance_type="<code class="replaceable">ml.p3.2xlarge</code>",
+    framework_version="<code class="replaceable">1.5-1</code>",
+
+    # Debugger-specific parameters
+    debugger_hook_config=<code class="userinput">debugger_hook_config</code>,
+    rules=<code class="userinput">rules</code>
+)
+
+estimator.fit(wait=False)</code></pre>
+                </dd>
+            <dt>Generic estimator</dt><dd tab-id="generic-estimator">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py "># An example of constructing a SageMaker generic estimator using the XGBoost algorithm base image
+import boto3
+import sagemaker
+from sagemaker.estimator import Estimator
+from sagemaker import image_uris
+from sagemaker.debugger import CollectionConfig, DebuggerHookConfig, Rule, rule_configs
+
+<code class="userinput">debugger_hook_config</code>=<code class="replaceable">DebuggerHookConfig(...)</code>
+<code class="userinput">rules</code>=[
+    <code class="replaceable">Rule.sagemaker(rule_configs.built_in_rule())</code>
+]
+
+region=boto3.Session().region_name
+xgboost_container=sagemaker.image_uris.retrieve("xgboost", region, "1.5-1")
+
+estimator=Estimator(
+    role=sagemaker.get_execution_role()
+    image_uri=xgboost_container,
+    base_job_name="<code class="replaceable">debugger-demo</code>",
+    instance_count=<code class="replaceable">1</code>,
+    instance_type="<code class="replaceable">ml.m5.2xlarge</code>",
+    
+    # Debugger-specific parameters
+    debugger_hook_config=<code class="userinput">debugger_hook_config</code>,
+    rules=<code class="userinput">rules</code>
+)
+
+estimator.fit(wait=False)</code></pre>
+                </dd>
+        </dl></awsdocs-tabs>
+        <p>Configure the following parameters to activate SageMaker Debugger:</p>
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><code class="code">debugger_hook_config</code> (an object of <a href="https://sagemaker.readthedocs.io/en/stable/api/training/debugger.html#sagemaker.debugger.DebuggerHookConfig" rel="noopener noreferrer" target="_blank"><span><code class="code">DebuggerHookConfig</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>) – Required to activate
+                    the hook in the adapted training script during <a href="debugger-modify-script.html">Step 1: Adapt Your Training Script to Register a
+            Hook</a>, configure the SageMaker training
+                    launcher (estimator) to collect output tensors from your training job, and save
+                    the tensors into your secured S3 bucket or local machine. To learn how to
+                    configure the <code class="code">debugger_hook_config</code> parameter, see <a href="debugger-configure-hook.html">Configure SageMaker Debugger to Save
+                Tensors</a>.</p>
+            </li><li class="listitem">
+                <p><code class="code">rules</code> (a list of <a href="https://sagemaker.readthedocs.io/en/stable/api/training/debugger.html#sagemaker.debugger.Rule" rel="noopener noreferrer" target="_blank"><span><code class="code">Rule</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> objects) – Configure this parameter to
+                    activate SageMaker Debugger built-in rules that you want to run in real time. The
+                    built-in rules are logics that automatically debug the training progress of your
+                    model and find training issues by analyzing the output tensors saved in your
+                    secured S3 bucket. To learn how to configure the <code class="code">rules</code> parameter,
+                    see <a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a>. To find a complete list of
+                    built-in rules for debugging output tensors, see <a href="debugger-built-in-rules.html#debugger-built-in-rules-Rule">Debugger Rule</a>. If you want to create your own
+                    logic to detect any training issues, see <a href="debugger-custom-rules.html">Create Debugger Custom Rules for Training Job Analysis</a>.</p>
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The built-in rules are available only through SageMaker training
+                        instances. You cannot use them in local mode.</p></div></div>
+            </li><li class="listitem">
+                <p><code class="code">tensorboard_output_config</code> (an object of <a href="https://sagemaker.readthedocs.io/en/stable/api/training/debugger.html#sagemaker.debugger.TensorBoardOutputConfig" rel="noopener noreferrer" target="_blank"><span><code class="code">TensorBoardOutputConfig</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>) – Configure
+                    SageMaker Debugger to collect output tensors in the TensorBoard-compatible format
+                    and save to your S3 output path specified in the
+                        <code class="code">TensorBoardOutputConfig</code> object. To learn more, see <a href="debugger-enable-tensorboard-summaries.html">Visualize Amazon SageMaker Debugger Output Tensors in
+            TensorBoard</a>.</p>
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The <code class="code">tensorboard_output_config</code> must be configured with the
+                            <code class="code">debugger_hook_config</code> parameter, which also requires you to
+                        adapt your training script by adding the <code class="code">sagemaker-debugger</code>
+                        hook.</p></div></div>
+            </li></ul></div>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>SageMaker Debugger securely saves output tensors in subfolders of your S3 bucket. For
+                example, the format of the default S3 bucket URI in your account is
+                    <code class="code">s3://sagemaker-&lt;region&gt;-&lt;12digit_account_id&gt;/&lt;base-job-name&gt;/&lt;debugger-subfolders&gt;/</code>.
+                There are two subfolders created by SageMaker Debugger: <code class="code">debug-output</code>, and
+                    <code class="code">rule-output</code>. If you add the <code class="code">tensorboard_output_config</code>
+                parameter, you'll also find <code class="code">tensorboard-output</code> folder.</p></div></div>
+    <p>See the following topics to find more examples of how to configure the Debugger-specific
+        parameters in detail.</p><div class="highlights"><h6>Topics</h6><ul><li><a href="debugger-configure-hook.html">Configure SageMaker Debugger to Save
+                Tensors</a></li><li><a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a></li><li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-turn-off.html">Turn Off Debugger</a></li><li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-estimator-classmethods.html">Useful SageMaker Estimator Classmethods for
+                Debugger</a></li></ul></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./debugger-modify-script-tensorflow.html">TensorFlow</div><div id="next" class="next-link" accesskey="n" href="./debugger-configure-hook.html">Configure SageMaker Debugger to Save
+                Tensors</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-configuration-for-debugging.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-configuration-for-debugging.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

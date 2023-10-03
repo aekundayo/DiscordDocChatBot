@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>How PCA Works - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="how-pca-works" /><meta name="default_state" content="how-pca-works" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="how-pca-works.html" /><meta name="description" content="Principal Component Analysis (PCA) is a learning algorithm that reduces the dimensionality (number of features) within a dataset while still retaining as much information as possible." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="how-pca-works.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/how-pca-works.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/how-pca-works.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/how-pca-works.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/how-pca-works.html" hreflang="de" /><link rel="alternative" href="how-pca-works.html" hreflang="en-us" /><link rel="alternative" href="how-pca-works.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/how-pca-works.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/how-pca-works.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/how-pca-works.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/how-pca-works.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/how-pca-works.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/how-pca-works.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/how-pca-works.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/how-pca-works.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/how-pca-works.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/how-pca-works.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/how-pca-works.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/how-pca-works.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/how-pca-works.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/how-pca-works.html" hreflang="zh-tw" /><link rel="alternative" href="how-pca-works.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="How PCA Works" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>How PCA Works - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#how-pca-works" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/how-pca-works.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/how-pca-works.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/how-pca-works.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Choose an Algorithm",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-choose.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Amazon SageMaker Built-in Algorithms or Pre-trained Models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Unsupervised Built-in SageMaker Algorithms",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-unsupervised.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Principal Component Analysis (PCA) Algorithm",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/pca.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 9,
+        "name" : "How PCA Works",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/pca.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#how-pca-works" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="how-pca-works.html#mode-1">Mode 1: Regular</a><a href="how-pca-works.html#mode-2">Mode 2: Randomized</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="how-pca-works">How PCA Works</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Principal Component Analysis (PCA) is a learning algorithm that reduces the
+            dimensionality (number of features) within a dataset while still retaining as much
+            information as possible. </p><p>PCA reduces dimensionality by finding a new set of features called
+                <em>components</em>, which are composites of the original features, but
+            are uncorrelated with one another. The first component accounts for the largest possible
+            variability in the data, the second component the second most variability, and so
+            on.</p><p>It is an unsupervised dimensionality reduction algorithm. In unsupervised learning,
+            labels that might be associated with the objects in the training dataset aren't
+            used.</p><p>Given the input of a matrix with rows <span class="inlinemediaobject">
+                 
+                    <img src="../../../images/sagemaker/latest/dg/images/PCA-39b.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                    x_1,…,x_n&#xA;                " />
+                 
+                 
+            </span> each of dimension <code class="code">1 * d</code>, the data is partitioned into
+            mini-batches of rows and distributed among the training nodes (workers). Each worker
+            then computes a summary of its data. The summaries of the different workers are then
+            unified into a single solution at the end of the computation. </p><p><b>Modes</b></p><p>The Amazon SageMaker PCA algorithm uses either of two modes to calculate these summaries,
+            depending on the situation:</p><div class="itemizedlist">
+             
+            
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><b>regular</b>: for datasets with sparse data and a
+                    moderate number of observations and features.</p>
+            </li><li class="listitem">
+                <p><b>randomized</b>: for datasets with both a large
+                    number of observations and features. This mode uses an approximation algorithm.
+                    </p>
+            </li></ul></div><p>As the algorithm's last step, it performs the singular value decomposition on the
+            unified solution, from which the principal components are then derived.</p>
+            <h2 id="mode-1">Mode 1: Regular</h2>
+            <p>The workers jointly compute both <span class="inlinemediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/PCA-1b.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                        \sum x_i^T x_i&#xA;                    " />
+                     
+                     
+                </span> and <span class="inlinemediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/PCA-2b.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                        \sum x_i&#xA;                    " />
+                     
+                     
+                </span> .</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Because <span class="inlinemediaobject">
+                         
+                            <img src="../../../images/sagemaker/latest/dg/images/PCA-3b.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                            x_i&#xA;                        " />
+                         
+                         
+                    </span> are <code class="code">1 * d</code> row vectors, <span class="inlinemediaobject">
+                         
+                            <img src="../../../images/sagemaker/latest/dg/images/PCA-4b.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                            x_i^T x_i&#xA;                        " />
+                         
+                         
+                    </span> is a matrix (not a scalar). Using row vectors within the
+                    code allows us to obtain efficient caching.</p></div></div>
+            <p>The covariance matrix is computed as <span class="inlinemediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/PCA-32b.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                        \sum x_i^T x_i - (1/n) (\sum x_i)^T \sum x_i&#xA;                    " />
+                     
+                     
+                </span> , and its top <code class="code">num_components</code> singular vectors form
+                the model.</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If <code class="code">subtract_mean</code> is <code class="code">False</code>, we avoid computing and
+                    subtracting <span class="inlinemediaobject">
+                         
+                            <img src="../../../images/sagemaker/latest/dg/images/PCA-2b.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                            \sum x_i&#xA;                        " />
+                         
+                         
+                    </span> .</p></div></div>
+            <p>Use this algorithm when the dimension <code class="code">d</code> of the vectors is small
+                enough so that <span class="inlinemediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/PCA-7b.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                        d^2&#xA;                    " />
+                     
+                     
+                </span> can fit in memory.</p>
+
+
+         
+            <h2 id="mode-2">Mode 2: Randomized</h2>
+
+            <p>When the number of features in the input dataset is large, we use a method to
+                approximate the covariance metric. For every mini-batch <span class="inlinemediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/PCA-23b.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                        X_t&#xA;                    " />
+                     
+                     
+                </span> of dimension <code class="code">b * d</code>, we randomly initialize a
+                    <code class="code">(num_components + extra_components) * b</code> matrix that we multiply by
+                each mini-batch, to create a <code class="code">(num_components + extra_components) * d</code>
+                matrix. The sum of these matrices is computed by the workers, and the servers
+                perform SVD on the final <code class="code">(num_components + extra_components) * d</code>
+                matrix. The top right <code class="code">num_components</code> singular vectors of it are the
+                approximation of the top singular vectors of the input matrix.</p>
+
+            <p>Let <span class="inlinemediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/PCA-38b.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                        \ell&#xA;                    " />
+                     
+                     
+                </span>
+                <code class="code"> = num_components + extra_components</code>. Given a mini-batch <span class="inlinemediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/PCA-23b.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                        X_t&#xA;                    " />
+                     
+                     
+                </span> of dimension <code class="code">b * d</code>, the worker draws a random
+                matrix <span class="inlinemediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/PCA-24b.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                        H_t&#xA;                    " />
+                     
+                     
+                </span> of dimension <span class="inlinemediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/PCA-38.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                        \ell * b&#xA;                    " />
+                     
+                     
+                </span> . Depending on whether the environment uses a GPU or CPU and
+                the dimension size, the matrix is either a random sign matrix where each entry is
+                    <code class="code">+-1</code> or a <em>FJLT</em> (fast Johnson Lindenstrauss
+                transform; for information, see <a href="https://www.cs.princeton.edu/~chazelle/pubs/FJLT-sicomp09.pdf" rel="noopener noreferrer" target="_blank"><span>FJLT
+                    Transforms</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and the follow-up papers). The worker then computes <span class="inlinemediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/PCA-26b.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                        H_t X_t&#xA;                    " />
+                     
+                     
+                </span> and maintains <span class="inlinemediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/PCA-27b.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                        B = \sum H_t X_t&#xA;                    " />
+                     
+                     
+                </span> . The worker also maintains <span class="inlinemediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/PCA-28b.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                        h^T&#xA;                    " />
+                     
+                     
+                </span> , the sum of columns of <span class="inlinemediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/PCA-29b.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                        H_1,..,H_T&#xA;                    " />
+                     
+                     
+                </span> (<code class="code">T</code> being the total number of mini-batches), and
+                    <code class="code">s</code>, the sum of all input rows. After processing the entire shard of
+                data, the worker sends the server <code class="code">B</code>, <code class="code">h</code>, <code class="code">s</code>,
+                and <code class="code">n</code> (the number of input rows).</p>
+            <p>Denote the different inputs to the server as <span class="inlinemediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/PCA-30b.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                        B^1, h^1, s^1, n^1,…&#xA;                    " />
+                     
+                     
+                </span> The server computes <code class="code">B</code>, <code class="code">h</code>,
+                    <code class="code">s</code>, <code class="code">n</code> the sums of the respective inputs. It then
+                computes <span class="inlinemediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/PCA-31b.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                        C = B – (1/n) h^T s&#xA;                    " />
+                     
+                     
+                </span> , and finds its singular value decomposition. The top-right
+                singular vectors and singular values of <code class="code">C</code> are used as the approximate
+                solution to the problem.</p>
+
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./pca.html">Principal Component Analysis (PCA) Algorithm</div><div id="next" class="next-link" accesskey="n" href="./PCA-reference.html">Hyperparameters</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/how-pca-works.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/how-pca-works.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

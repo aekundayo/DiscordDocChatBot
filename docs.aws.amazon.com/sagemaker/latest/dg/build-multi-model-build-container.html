@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Build Your Own Container for SageMaker Multi-Model Endpoints - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="build-multi-model-build-container" /><meta name="default_state" content="build-multi-model-build-container" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="build-multi-model-build-container.html" /><meta name="description" content="Build Your Own Container and use it to deploy models with SageMaker multi-model endpoints." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="build-multi-model-build-container.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/build-multi-model-build-container.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/build-multi-model-build-container.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/build-multi-model-build-container.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/build-multi-model-build-container.html" hreflang="de" /><link rel="alternative" href="build-multi-model-build-container.html" hreflang="en-us" /><link rel="alternative" href="build-multi-model-build-container.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/build-multi-model-build-container.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/build-multi-model-build-container.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/build-multi-model-build-container.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/build-multi-model-build-container.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/build-multi-model-build-container.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/build-multi-model-build-container.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/build-multi-model-build-container.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/build-multi-model-build-container.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/build-multi-model-build-container.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/build-multi-model-build-container.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/build-multi-model-build-container.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/build-multi-model-build-container.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/build-multi-model-build-container.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/build-multi-model-build-container.html" hreflang="zh-tw" /><link rel="alternative" href="build-multi-model-build-container.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Build Your Own Container for SageMaker Multi-Model Endpoints" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Build Your Own Container for SageMaker Multi-Model Endpoints - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#build-multi-model-build-container" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/build-multi-model-build-container.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/build-multi-model-build-container.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/build-multi-model-build-container.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,inference,deploy model,endpoint,prediction,ML application,serverless machine learning,multi model deployment,inference pipelines,ML model" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploy models for inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Real-time inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Hosting options",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints-options.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Host multiple models in one container behind one endpoint",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/multi-model-endpoints.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Build Your Own Container for SageMaker Multi-Model Endpoints",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/multi-model-endpoints.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#build-multi-model-build-container" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="build-multi-model-build-container.html#build-multi-model-container-cpu">Bring your own dependencies for multi-model endpoints on CPU backed instances</a><a href="build-multi-model-build-container.html#build-multi-model-container-gpu">Bring your own dependencies for multi-model endpoints on GPU backed instances</a><a href="build-multi-model-build-container.html#multi-model-inference-toolkit">Use the SageMaker Inference Toolkit</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="build-multi-model-build-container">Build Your Own Container for SageMaker Multi-Model Endpoints</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Refer to the following sections for bringing your own container and dependencies to multi-model endpoints.</p><div class="highlights"><h6>Topics</h6><ul><li><a href="build-multi-model-build-container.html#build-multi-model-container-cpu">Bring your own dependencies for multi-model endpoints on CPU backed instances</a></li><li><a href="build-multi-model-build-container.html#build-multi-model-container-gpu">Bring your own dependencies for multi-model endpoints on GPU backed instances</a></li><li><a href="build-multi-model-build-container.html#multi-model-inference-toolkit">Use the SageMaker Inference Toolkit</a></li><li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/mms-container-apis.html">Custom Containers Contract for Multi-Model Endpoints</a></li></ul></div>
+      <h2 id="build-multi-model-container-cpu">Bring your own dependencies for multi-model endpoints on CPU backed instances</h2>
+      <p>If none of the pre-built container images serve your needs, you can build your own container for use with CPU backed multi-model endpoints.</p>
+      <p>Custom Amazon Elastic Container Registry (Amazon ECR) images deployed in Amazon SageMaker are expected to adhere
+        to the basic contract described in <a href="your-algorithms-inference-code.html">Use Your Own Inference Code with Hosting
+            Services</a> that govern how SageMaker interacts with a
+        Docker container that runs your own inference code. For a container to be capable of loading
+        and serving multiple models concurrently, there are additional APIs and behaviors that must be
+        followed. This additional contract includes new APIs to load, list, get, and unload models,
+        and a different API to invoke models. There are also different behaviors for error scenarios
+        that the APIs need to abide by. To indicate that the container complies with the additional
+        requirements, you can add the following command to your Docker file:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">LABEL com.amazonaws.sagemaker.capabilities.multi-models=true</code></pre>
+      <p>SageMaker also injects an environment variable into the container</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">SAGEMAKER_MULTI_MODEL=true</code></pre>
+      <p>If you are creating a multi-model endpoint for a serial inference pipline, your Docker
+        file must have the required labels for both multi-models and serial inference pipelines. For
+        more information about serial information pipelines, see <a href="inference-pipeline-real-time.html">Run
+                Real-time
+                Predictions with an Inference Pipeline</a>.</p>
+      <p>To help you implement these requirements for a custom container, two libraries are
+        available:</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><a href="https://github.com/awslabs/multi-model-server" rel="noopener noreferrer" target="_blank"><span>Multi Model Server</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+            is an open source framework for serving machine learning models that can be installed in
+            containers to provide the front end that fulfills the requirements for the new multi-model
+            endpoint container APIs. It provides the HTTP front end and model management capabilities
+            required by multi-model endpoints to host multiple models within a single container, load
+            models into and unload models out of the container dynamically, and performs inference on
+            a specified loaded model. It also provides a pluggable backend that supports a pluggable
+            custom backend handler where you can implement your own algorithm.</p>
+        </li><li class="listitem">
+          <p><a href="https://github.com/aws/sagemaker-inference-toolkit" rel="noopener noreferrer" target="_blank"><span>SageMaker Inference
+              Toolkit</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> is a library that bootstraps Multi Model Server with a configuration and
+            settings that make it compatible with SageMaker multi-model endpoints. It also allows you to
+            tweak important performance parameters, such as the number of workers per model, depending
+            on the needs of your scenario. </p>
+        </li></ul></div>
+     
+      <h2 id="build-multi-model-container-gpu">Bring your own dependencies for multi-model endpoints on GPU backed instances</h2>
+      <p>The bring your own container (BYOC) capability on multi-model endpoints with GPU backed instances
+        is not currently supported by the Multi Model Server and SageMaker Inference Toolkit libraries.</p>
+      <p>For creating multi-model endpoints with GPU backed instances, you can use the SageMaker supported
+        <a href="triton.html">NVIDIA Triton Inference Server</a>.
+        with the <a href="https://github.com/aws/deep-learning-containers/blob/master/available_images.md#nvidia-triton-inference-containers-sm-support-only" rel="noopener noreferrer" target="_blank"><span>NVIDIA Triton Inference Containers</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+        To bring your own dependencies, you can build your own container
+        with the SageMaker supported <a href="triton.html">NVIDIA Triton Inference Server</a> as the base image to your Docker file:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">FROM 301217895009.dkr.ecr.us-west-2.amazonaws.com/sagemaker-tritonserver:22.07-py3
+</code></pre>
+      <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>Containers with the Triton Inference Server are the only supported containers you can use for GPU backed multi-model endpoints.</p></div></div>
+     
+      <h2 id="multi-model-inference-toolkit">Use the SageMaker Inference Toolkit</h2>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The SageMaker Inference Toolkit is only supported for CPU backed multi-model endpoints.
+        The SageMaker Inference Toolkit is not currently not supported for GPU backed multi-model endpoints.</p></div></div>
+      <p>Pre-built containers that support multi-model endpoints are listed in <a href="multi-model-endpoints.html#multi-model-support">Supported algorithms, frameworks, and instances</a>. If you want to use any other
+        framework or algorithm, you need to build a container. The easiest way to do this is to use
+        the <a href="https://github.com/aws/sagemaker-inference-toolkit" rel="noopener noreferrer" target="_blank"><span>SageMaker Inference
+          Toolkit</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to extend an existing pre-built container. The SageMaker inference toolkit is
+        an implementation for the multi-model server (MMS) that creates endpoints that can be
+        deployed in SageMaker. For a sample notebook that shows how to set up and deploy a custom
+        container that supports multi-model endpoints in SageMaker, see the <a href="https://github.com/awslabs/amazon-sagemaker-examples/tree/master/advanced_functionality/multi_model_bring_your_own" rel="noopener noreferrer" target="_blank"><span>Multi-Model Endpoint BYOC Sample Notebook</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The SageMaker inference toolkit supports only Python model handlers. If you want to
+          implement your handler in any other language, you must build your own container that
+          implements the additional multi-model endpoint APIs. For information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/mms-container-apis.html">Custom Containers Contract for Multi-Model Endpoints</a>.</p></div></div>
+      <div class="procedure"><h6>To extend a container by using the SageMaker inference toolkit</h6><ol><li>
+          <p>Create a model handler. MMS expects a model handler, which is a Python file that
+            implements functions to pre-process, get preditions from the model, and process the
+            output in a model handler. For an example of a model handler, see <a href="https://github.com/awslabs/amazon-sagemaker-examples/blob/master/advanced_functionality/multi_model_bring_your_own/container/model_handler.py" rel="noopener noreferrer" target="_blank"><span>model_handler.py</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> from the sample notebook.</p>
+        </li><li>
+          <p>Import the inference toolkit and use its
+              <code class="code">model_server.start_model_server</code> function to start MMS. The following
+            example is from the <code class="code">dockerd-entrypoint.py</code> file from the sample notebook.
+            Notice that the call to <code class="code">model_server.start_model_server</code> passes the model
+            handler described in the previous step:</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import subprocess
+import sys
+import shlex
+import os
+from retrying import retry
+from subprocess import CalledProcessError
+from sagemaker_inference import model_server
+
+def _retry_if_error(exception):
+    return isinstance(exception, CalledProcessError or OSError)
+
+@retry(stop_max_delay=1000 * 50,
+       retry_on_exception=_retry_if_error)
+def _start_mms():
+    # by default the number of workers per model is 1, but we can configure it through the
+    # environment variable below if desired.
+    # os.environ['SAGEMAKER_MODEL_SERVER_WORKERS'] = '2'
+    model_server.start_model_server(handler_service='/home/model-server/model_handler.py:handle')
+
+def main():
+    if sys.argv[1] == 'serve':
+        _start_mms()
+    else:
+        subprocess.check_call(shlex.split(' '.join(sys.argv[1:])))
+
+    # prevent docker exit
+    subprocess.call(['tail', '-f', '/dev/null'])
+    
+main()</code></pre>
+        </li><li>
+          <p>In your <code class="code">Dockerfile</code>, copy the model handler from the first step and
+            specify the Python file from the previous step as the entrypoint in your
+              <code class="code">Dockerfile</code>. The following lines are from the <a href="https://github.com/awslabs/amazon-sagemaker-examples/blob/master/advanced_functionality/multi_model_bring_your_own/container/Dockerfile" rel="noopener noreferrer" target="_blank"><span>Dockerfile</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> used in the sample notebook:</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python "># Copy the default custom service file to handle incoming data and inference requests
+COPY model_handler.py /home/model-server/model_handler.py
+
+# Define an entrypoint script for the docker image
+ENTRYPOINT ["python", "/usr/local/bin/dockerd-entrypoint.py"]</code></pre>
+        </li><li>
+          <p>Build and register your container. The following shell script from the sample
+            notebook builds the container and uploads it to an Amazon Elastic Container Registry repository in your AWS
+            account:</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="sh ">%%sh
+
+# The name of our algorithm
+algorithm_name=demo-sagemaker-multimodel
+
+cd container
+
+account=$(aws sts get-caller-identity --query Account --output text)
+
+# Get the region defined in the current configuration (default to us-west-2 if none defined)
+region=$(aws configure get region)
+region=$<span>{</span>region:-us-west-2}
+
+fullname="$<span>{</span>account}.dkr.ecr.$<span>{</span>region}.amazonaws.com/$<span>{</span>algorithm_name}:latest"
+
+# If the repository doesn't exist in ECR, create it.
+aws ecr describe-repositories --repository-names "$<span>{</span>algorithm_name}" &gt; /dev/null 2&gt;&amp;1
+
+if [ $? -ne 0 ]
+then
+    aws ecr create-repository --repository-name "$<span>{</span>algorithm_name}" &gt; /dev/null
+fi
+
+# Get the login command from ECR and execute it directly
+$(aws ecr get-login --region $<span>{</span>region} --no-include-email)
+
+# Build the docker image locally with the image name and then push it to ECR
+# with the full name.
+
+docker build -q -t $<span>{</span>algorithm_name} .
+docker tag $<span>{</span>algorithm_name} $<span>{</span>fullname}
+
+docker push $<span>{</span>fullname}</code></pre>
+        </li></ol></div>
+      <p>You can now use this container to deploy multi-model endpoints in SageMaker.</p>
+
+    <div class="highlights"><h6>Topics</h6><ul><li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/mms-container-apis.html">Custom Containers Contract for Multi-Model Endpoints</a></li></ul></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./add-models-to-endpoint.html">Add or Remove Models</div><div id="next" class="next-link" accesskey="n" href="./mms-container-apis.html">API Container Contract</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/build-multi-model-build-container.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/build-multi-model-build-container.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

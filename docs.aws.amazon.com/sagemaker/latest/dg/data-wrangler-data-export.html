@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Export - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="data-wrangler-data-export" /><meta name="default_state" content="data-wrangler-data-export" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="data-wrangler-data-export.html" /><meta name="description" content="You can export some or all of the transformations that you've made in Data Wrangler." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="data-wrangler-data-export.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/data-wrangler-data-export.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/data-wrangler-data-export.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/data-wrangler-data-export.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/data-wrangler-data-export.html" hreflang="de" /><link rel="alternative" href="data-wrangler-data-export.html" hreflang="en-us" /><link rel="alternative" href="data-wrangler-data-export.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/data-wrangler-data-export.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/data-wrangler-data-export.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/data-wrangler-data-export.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/data-wrangler-data-export.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/data-wrangler-data-export.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/data-wrangler-data-export.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/data-wrangler-data-export.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/data-wrangler-data-export.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/data-wrangler-data-export.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/data-wrangler-data-export.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/data-wrangler-data-export.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/data-wrangler-data-export.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/data-wrangler-data-export.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/data-wrangler-data-export.html" hreflang="zh-tw" /><link rel="alternative" href="data-wrangler-data-export.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Export" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Export - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#data-wrangler-data-export" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/data-wrangler-data-export.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/data-wrangler-data-export.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/data-wrangler-data-export.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Prepare data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-prep.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Prepare ML Data with Amazon SageMaker Data Wrangler",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-wrangler.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Export",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-wrangler.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#data-wrangler-data-export" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="data-wrangler-data-export.html#data-wrangler-data-export-s3">Export to Amazon S3</a><a href="data-wrangler-data-export.html#data-wrangler-data-export-pipelines">Export to SageMaker Pipelines</a><a href="data-wrangler-data-export.html#data-wrangler-data-export-inference">Export to an Inference Endpoint</a><a href="data-wrangler-data-export.html#data-wrangler-data-export-python-code">Export to Python Code
+            </a><a href="data-wrangler-data-export.html#data-wrangler-data-export-feature-store">Export to Amazon SageMaker Feature Store</a><a href="data-wrangler-data-export.html#data-wrangler-data-export-fit-transform">Refit Transforms to The Entire Dataset and Export Them</a><a href="data-wrangler-data-export.html#data-wrangler-data-export-schedule-job">Create a Schedule to Automatically Process New Data</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="data-wrangler-data-export">Export</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>In your Data Wrangler flow, you can export some or all of the transformations that you've made to
+        your data processing pipelines.</p><p>A <em>Data Wrangler flow</em> is the series of data preparation steps
+        that you've performed on your data. In your data preparation, you perform one or more
+        transformations to your data. Each transformation is done using a transform step. The flow
+        has a series of nodes that represent the import of your data and the transformations that
+        you've performed. For an example of nodes, see the following image.</p><div class="mediaobject">
+         
+            <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/data-wrangler-destination-nodes-photo-0.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+         
+    </div><p>The preceding image shows a Data Wrangler flow with two nodes. The <b>Source -
+            sampled</b> node shows the data source from which you've imported your data. The
+            <b>Data types</b> node indicates that Data Wrangler has performed a transformation
+        to convert the dataset into a usable format. </p><p>Each transformation that you add to the Data Wrangler flow appears as an additional node. For
+        information on the transforms that you can add, see <a href="data-wrangler-transform.html">Transform Data</a>. The following image shows a Data Wrangler flow that
+        has a <b>Rename-column</b> node to change the name of a column in a
+        dataset.</p><p>You can export your data transformations to the following:</p><div class="itemizedlist">
+         
+         
+         
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p>Amazon S3</p>
+        </li><li class="listitem">
+            <p>SageMaker Pipelines</p>
+        </li><li class="listitem">
+            <p>Amazon SageMaker Feature Store</p>
+        </li><li class="listitem">
+            <p>Python Code</p>
+        </li></ul></div><div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>We recommend that you use the IAM <code class="code">AmazonSageMakerFullAccess</code> managed
+            policy to grant AWS permission to use Data Wrangler. If you don't use the managed policy, you
+            can use an IAM policy that gives Data Wrangler access to an Amazon S3 bucket. For more information
+            on the policy, see <a href="data-wrangler-security.html">Security and Permissions</a>.</p></div></div><p>When you export your data flow, you're charged for the AWS resources that you use. You
+        can use cost allocation tags to organize and manage the costs of those resources. You create
+        these tags for your user-profile and Data Wrangler automatically applies them to the resources used
+        to export the data flow. For more information, see <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html">Using Cost Allocation
+            Tags</a>.</p>
+        <h2 id="data-wrangler-data-export-s3">Export to Amazon S3</h2>
+        <p>Data Wrangler gives you the ability to export your data to a location within an Amazon S3 bucket.
+            You can specify the location using one of the following methods:</p>
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Destination node – Where Data Wrangler stores the data after it has processed
+                    it.</p>
+            </li><li class="listitem">
+                <p>Export to – Exports the data resulting from a transformation to
+                    Amazon S3.</p>
+            </li><li class="listitem">
+                <p>Export data – For small datasets, can quickly export the data that
+                    you've transformed.</p>
+            </li></ul></div>
+
+
+        <p>Use the following sections to learn more about each of these methods.</p>
+        <awsdocs-tabs><dl style="display: none">
+            <dt>Destination Node</dt><dd tab-id="destination-node">
+                    <p>If you want to output a series of data processing steps that you've
+                        performed to Amazon S3, you create a destination node. A <em>destination node</em> tells Data Wrangler where to store the data after
+                        you've processed it. After you create a destination node, you create a
+                        processing job to output the data. A <em>processing
+                            job</em> is an Amazon SageMaker processing job. When you're using a
+                        destination node, it runs the computational resources needed to output the
+                        data that you've transformed to Amazon S3. </p>
+                    <p>You can use a destination node to export some of the transformations or
+                        all of the transformations that you've made in your Data Wrangler flow.</p>
+                    <p>You can use multiple destination nodes to export different transformations
+                        or sets of transformations. The following example shows two destination
+                        nodes in a single Data Wrangler flow.</p>
+                    <div class="mediaobject">
+                         
+                            <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/data-wrangler-destination-nodes-photo-4.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+                         
+                    </div>
+                    <p>You can use the following procedure to create destination nodes and export
+                        them to an Amazon S3 bucket.</p>
+                    <div class="procedure"><p>To export your data flow, you create destination nodes and a Data Wrangler job
+                            to export the data. Creating a Data Wrangler job starts a SageMaker processing job to
+                            export your flow. You can choose the destination nodes that you want to
+                            export after you've created them.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can choose <b>Create job</b> in the Data Wrangler flow to view the instructions to use a processing job.</p></div></div><p>Use the following procedure to create destination nodes.</p><ol><li>
+                            <p>Choose the <b>+</b> next to the nodes that represent
+                                the transformations that you want to export.</p>
+                        </li><li>
+                            <p>Choose <b>Add destination</b>.</p>
+                            <div class="mediaobject">
+                                 
+                                    <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/destination-nodes/destination-nodes-add-destination-0.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+                                 
+                            </div>
+                        </li><li>
+                            <p>Choose <b>Amazon S3</b>.</p>
+                            <div class="mediaobject">
+                                 
+                                    <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/destination-nodes/destination-nodes-add-destination-S3-selected.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+                                 
+                            </div>
+                        </li><li>
+                            <p>Specify the following fields.</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p><b>Dataset name</b> – The name that you specify for the dataset that you're exporting.</p>
+                                </li><li class="listitem">
+                                    <p><b>File type</b> – The format of the file that you're exporting.</p>
+                                </li><li class="listitem">
+                                    <p><b>Delimiter</b> (CSV and Parquet files only) – The value used to separate other values.</p>
+                                </li><li class="listitem">
+                                    <p><b>Compression</b> (CSV and Parquet files only) – The compression method used to reduce the file size. You can use the following compression methods:</p>
+                                    <div class="itemizedlist">
+                                         
+                                         
+                                         
+                                    <ul class="itemizedlist"><li class="listitem">
+                                            <p>bzip2</p>
+                                        </li><li class="listitem">
+                                            <p>deflate</p>
+                                        </li><li class="listitem">
+                                            <p>gzip</p>
+                                        </li></ul></div>
+                                </li><li class="listitem">
+                                    <p>(Optional) <b>Amazon S3 location</b> – The S3 location that you're using to output the files.</p>
+                                </li><li class="listitem">
+                                    <p>(Optional) <b>Number of partitions</b> – The number of datasets that you're writing as the output of the processing job.</p>
+                                </li><li class="listitem">
+                                    <p>(Optional) <b>Partition by column</b> – Writes all data with the same unique value from the column.</p>
+                                </li><li class="listitem">
+                                    <p>(Optional) <b>Inference Parameters</b> – Selecting <b>Generate inference artifact</b> applies all of the transformations you've used in the Data Wrangler flow to data coming into your inference pipeline. The model in your pipeline makes predictions on the transformed data.</p>
+                                </li></ul></div>
+                            
+                        </li><li>
+                            <p>Choose <b>Add destination</b>.</p>
+                        </li></ol></div>
+
+                    <p>Use the following procedure to create a processing job.</p>
+                    <div class="procedure"><p>Create a job from the <b>Data flow</b> page and choose
+                            the destination nodes that you want to export.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can choose <b>Create job</b> in the Data Wrangler flow to view the instructions for creating a processing job.</p></div></div><ol><li>
+                            <p>Choose <b>Create job</b>. The following image shows
+                                the pane that appears after you select <b>Create
+                                    job</b>.</p>
+                            <div class="mediaobject">
+                                 
+                                    <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/destination-nodes/destination-nodes-create-job.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+                                 
+                            </div>
+                        </li><li>
+                            <p>For <b>Job name</b>, specify the name of the export
+                                job.</p>
+                        </li><li>
+                            <p>Choose the destination nodes that you want to export.</p>
+                        </li><li>
+                            <p>(Optional) Specify a AWS KMS key ARN. A AWS KMS key is a cryptographic
+                                key that you can use to protect your data. For more information
+                                about AWS KMS keys, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/overview.html">AWS Key Management Service</a>.</p>
+
+                        </li><li>
+                            <p>(Optional) Under <b>Trained parameters</b>. choose <b>Refit</b> if you've done the following:</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                                
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p>Sampled your dataset</p>
+                                </li><li class="listitem">
+                                    <p>Applied a transform that uses your data to create a new column in the dataset</p>
+                                </li></ul></div>
+                            <p>For more information about refitting the transformations you've made to an entire dataset, see <a href="data-wrangler-data-export.html#data-wrangler-data-export-fit-transform">Refit Transforms to The Entire Dataset and Export Them</a>.</p>
+                            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For image data, Data Wrangler exports the transformations that you've made to all of the images. Refitting the transformations isn't applicable to your use case.</p></div></div>
+                        </li><li>
+                            <p>Choose <b>Configure job</b>. The following image
+                                shows the <b>Configure job</b> page.</p>
+                            <div class="mediaobject">
+                                 
+                                    <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/destination-nodes/destination-nodes-configure-job.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+                                 
+                            </div>
+                        </li><li>
+                            <p>(Optional) Configure the Data Wrangler job. You can make the following
+                                configurations:</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p><b>Job configuration</b></p>
+                                </li><li class="listitem">
+                                    <p><b>Spark memory configuration</b></p>
+                                </li><li class="listitem">
+                                    <p><b>Network configuration</b></p>
+                                </li><li class="listitem">
+                                    <p><b>Tags</b></p>
+                                </li><li class="listitem">
+                                    <p><b>Parameters</b></p>
+                                </li><li class="listitem">
+                                    <p><b>Associate Schedules</b></p>
+                                </li></ul></div>
+                        </li><li>
+                            <p>Choose <b>Run</b>.</p>
+                        </li></ol></div>
+                </dd>
+            <dt>Export to</dt><dd tab-id="export-to">
+                    <p>As an alternative to using a destination node, you can use the
+                            <b>Export to</b> option to export your Data Wrangler flow to Amazon S3
+                        using a Jupyter notebook. You can choose any data node in your Data Wrangler flow and
+                        export it. Exporting the data node exports the transformation that the node
+                        represents and the transformations that precede it.</p>
+                    <div class="procedure"><p>Use the following procedure to generate a Jupyter notebook and run it to
+                            export your Data Wrangler flow to Amazon S3.</p><ol><li>
+                            <p>Choose the <b>+</b> next to the node that you want
+                                to export.</p>
+                        </li><li>
+                            <p>Choose <b>Export to</b>.</p>
+                        </li><li>
+                            <p>Choose <b>Amazon S3 (via Jupyter Notebook)</b>.</p>
+                        </li><li>
+                            <p>Run the Jupyter notebook.</p>
+                            <div class="mediaobject">
+                                 
+                                    <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/data-wrangler-destination-nodes-photo-export-to.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+                                 
+                            </div>
+                        </li></ol></div>
+                    <p>When you run the notebook, it exports your data flow (.flow file) in the same AWS Region as the Data Wrangler flow.</p>
+
+                    <p>The notebook provides options that you can use to configure the processing job and the data that it outputs.</p>
+                    <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>We provide you with job configurations to configure the output of your data. For the partitioning and driver memory options, we strongly recommend that you don't specify a configuration unless you already have knowledge about them.</p></div></div>
+                    <p>Under <b>Job Configurations</b>, you can configure the following:</p>
+                    <div class="itemizedlist">
+                         
+                         
+                         
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p><code class="code">output_content_type</code> – The content type of the output file. Uses <code class="code">CSV</code> as the default format, but you can specify <code class="code">Parquet</code>.</p>
+                        </li><li class="listitem">
+                            <p><code class="code">delimiter</code> – The character used to separate values in the dataset when writing to a CSV file.</p>
+                        </li><li class="listitem">
+                            <p><code class="code">compression</code> – If set, compresses the output file. Uses gzip as the default compression format.</p>
+                        </li><li class="listitem">
+                            <p><code class="code">num_partitions</code> – The number of partitions or files that Data Wrangler writes as the output.</p>
+                        </li><li class="listitem">
+                            <p><code class="code">partition_by</code> – The names of the columns that you use to partition the output.</p>
+                        </li></ul></div>
+                    <p>To change the output file format from CSV to Parquet, change the value from <code class="code">"CSV"</code> to <code class="code">"Parquet"</code>. For the rest of the preceding fields, uncomment the lines containing the fields that you want to specify.</p>
+                    
+                    <p>Under <b>(Optional) Configure Spark Cluster Driver Memory</b> you can configure Spark properties for the job, such as the Spark driver memory, in the <code class="code">config</code> dictionary.</p>
+                    <p>The following shows the <code class="code">config</code> dictionary.</p>
+                    
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">
+config = json.dumps(<span>{</span>
+    "Classification": "spark-defaults",
+    "Properties": <span>{</span>
+        "spark.driver.memory": f"<span>{</span>driver_memory_in_mb}m",
+    }
+})
+                    </code></pre>
+                    
+                    <p>To apply the configuration to the processing job, uncomment the following lines:</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">
+# data_sources.append(ProcessingInput(
+#     source=config_s3_uri,
+#     destination="/opt/ml/processing/input/conf",
+#     input_name="spark-config",
+#     s3_data_type="S3Prefix",
+#     s3_input_mode="File",
+#     s3_data_distribution_type="FullyReplicated"
+# ))                        
+                        
+                    </code></pre>
+                  
+
+                </dd>
+            <dt>Export data</dt><dd tab-id="export-data">
+                    <p>If you have a transformation on a small dataset that you want to export
+                        quickly, you can use the <b>Export data</b> method. When you
+                        start choose <b>Export data</b>, Data Wrangler works synchronously to
+                        export the data that you've transformed to Amazon S3. You can't use Data Wrangler until
+                        either it finishes exporting your data or you cancel the operation.</p>
+                    <p>For information on using the <b>Export data</b> method in
+                        your Data Wrangler flow, see the following procedure.</p>
+                    <div class="procedure"><p>To use the <b>Export data</b>
+                            method:</p><ol><li>
+                            <p>Choose a node in your Data Wrangler flow by opening (double-clicking on)
+                                it.</p>
+                            <div class="mediaobject">
+                                 
+                                    <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/export-s3.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+                                 
+                            </div>
+                        </li><li>
+                            <p>Configure how you want to export the data.</p>
+                        </li><li>
+                            <p>Choose <b>Export data</b>.</p>
+                        </li></ol></div>
+
+
+                </dd>
+        </dl></awsdocs-tabs>
+        <p>When you export your data flow to an Amazon S3 bucket, Data Wrangler stores a copy of the flow file
+            in the S3 bucket. It stores the flow file under the <em>data_wrangler_flows</em> prefix. If you use the default Amazon S3 bucket to store
+            your flow files, it uses the following naming convention:
+                    <code class="code">sagemaker-<code class="replaceable">region</code>-<code class="replaceable">account
+                    number</code></code>. For example, if your account number is
+            111122223333 and you are using Studio in us-east-1, your imported datasets
+            are stored in <code class="code">sagemaker-us-east-1-111122223333</code>. In this example,
+            your .flow files created in us-east-1 are stored in
+                    <code class="code">s3://sagemaker-<code class="replaceable">region</code>-<code class="replaceable">account
+                    number</code>/data_wrangler_flows/</code>. </p>
+     
+        <h2 id="data-wrangler-data-export-pipelines">Export to SageMaker Pipelines</h2>
+        <p>When you want to build and deploy large-scale machine learning (ML) workflows, you can
+            use SageMaker Pipelines to create workflows that manage and deploy SageMaker jobs. With SageMaker Pipelines, you can
+            build workflows that manage your SageMaker data preparation, model training, and model
+            deployment jobs. You can use the first-party algorithms that SageMaker offers by using SageMaker Pipelines.
+            For more information on SageMaker Pipelines, see <a href="pipelines.html">SageMaker Pipelines</a>.</p>
+        <p>When you export one or more steps from your data flow to SageMaker Pipelines, Data Wrangler creates a Jupyter
+            notebook that you can use to define, instantiate, run, and manage a pipeline.</p>
+         
+            <h3 id="data-wrangler-pipelines-notebook">Use a Jupyter Notebook to
+                    Create a Pipeline</h3>
+            
+            <p>Use the following procedure to create a Jupyter notebook to export your Data Wrangler flow to
+                SageMaker Pipelines.</p>
+            
+            <div class="procedure"><p>Use the following procedure to generate a Jupyter notebook and run it to export
+                    your Data Wrangler flow to SageMaker Pipelines.</p><ol><li>
+                    <p>Choose the <b>+</b> next to the node that you want to
+                        export.</p>
+                </li><li>
+                    <p>Choose <b>Export to</b>.</p>
+                </li><li>
+                    <p>Choose <b>SageMaker Pipelines (via Jupyter Notebook)</b>.</p>
+                </li><li>
+                    <p>Run the Jupyter notebook.</p>
+                </li></ol></div>
+            <div class="mediaobject">
+                 
+                    
+                    <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/data-wrangler-destination-nodes-photo-export-to.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+                 
+            </div>
+            <p>You can use the Jupyter notebook that Data Wrangler produces to define a pipeline. The
+                pipeline includes the data processing steps that are defined by your Data Wrangler flow. </p>
+            <p>You can add additional steps to your pipeline by adding steps to the
+                <code class="code">steps</code> list in the following code in the notebook:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">pipeline = Pipeline(
+    name=pipeline_name,
+    parameters=[instance_type, instance_count],
+    steps=[step_process], #Add more steps to this list to run in your Pipeline
+)</code></pre>
+            <p>For more information on defining pipelines, see <a href="define-pipeline.html">Define SageMaker
+                Pipeline</a>.</p>
+         
+     
+        <h2 id="data-wrangler-data-export-inference">Export to an Inference Endpoint</h2>
+        <p>Use your Data Wrangler flow to process data at the time of inference by creating a SageMaker serial inference pipeline from your Data Wrangler flow. An inference pipeline is a series of steps that results in a trained model making predictions on new data. A serial inference pipeline within Data Wrangler transforms the raw data and provides it to the machine learning model for a prediction. 
+            You create, run, and manage the inference pipeline from a Jupyter notebook within Studio. For more information about accessing the notebook, see <a href="data-wrangler-data-export.html#data-wrangler-inference-notebook">Use a Jupyter Notebook to
+                    create an inference endpoint</a>.</p>
+        <p>Within the notebook, you can either train a machine learning model or specify one that you've already trained. You can either use Amazon SageMaker Autopilot or XGBoost to train the model using the data that you've transformed in your Data Wrangler flow.</p>
+        <p>The pipeline provides the ability to perform either batch or real-time inference. You can also add the Data Wrangler flow to SageMaker Model Registry. For more information about hosting models, see <a href="multi-model-endpoints.html">Host multiple models in one container behind one endpoint</a>.</p>
+        <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>You can't export your Data Wrangler flow to an inference endpoint if it has the following transformations:</p><div class="itemizedlist">
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Join</p>
+                </li><li class="listitem">
+                    <p>Concatenate</p>
+                </li><li class="listitem">
+                    <p>Group by</p>
+                </li></ul></div><p>If you must use the preceding transforms to prepare your data, use the following procedure.</p><div class="procedure"><h6>To prepare your data for inference with unsupported transforms</h6><ol><li>
+                    <p>Create a Data Wrangler flow.</p>
+                </li><li>
+                    <p>Apply the preceding transforms that aren't supported.</p>
+                </li><li>
+                    <p>Export the data to an Amazon S3 bucket.</p>
+                </li><li>
+                    <p>Create a separate Data Wrangler flow.</p>
+                </li><li>
+                    <p>Import the data that you've exported from the preceding flow.</p>
+                </li><li>
+                    <p>Apply the remaining transforms.</p>
+                </li><li>
+                    <p>Create a serial inference pipeline using the Jupyter notebook that we provide.</p>
+                </li></ol></div><p>For information about exporting your data to an Amazon S3 bucket see <a href="data-wrangler-data-export.html#data-wrangler-data-export-s3">Export to Amazon S3</a>. For information about opening the Jupyter notebook used to create the serial inference pipeline, see <a href="data-wrangler-data-export.html#data-wrangler-inference-notebook">Use a Jupyter Notebook to
+                    create an inference endpoint</a>.</p></div></div>
+        <p>Data Wrangler ignores transforms that remove data at the time of inference. 
+            For example, Data Wrangler ignores the <a href="data-wrangler-transform.html#data-wrangler-transform-handle-missing">Handle Missing Values</a> transform if you use the <b>Drop missing</b> configuration.</p>
+        <p>If you've refit transforms to your entire dataset, the transforms carry over to your inference pipeline. For example, if you used the median value to impute missing values, the median value from refitting the transform is applied to your inference requests.
+            You can either refit the transforms from your Data Wrangler flow when you're using the Jupyter notebook or when you're exporting your data to an inference pipeline.
+            For information about refitting transforms, see <a href="data-wrangler-data-export.html#data-wrangler-data-export-fit-transform">Refit Transforms to The Entire Dataset and Export Them</a>.</p>
+        <p>The serial inference pipeline supports the following data types for the input and output strings. Each data type has a set of requirements.</p>
+        <div class="itemizedlist">
+            <h6>Supported datatypes</h6>
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><code class="code">text/csv</code> – the datatype for CSV strings</p>
+                <div class="itemizedlist">
+                     
+                     
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>The string can't have a header.</p>
+                    </li><li class="listitem">
+                        <p>Features used for the inference pipeline must be in the same order as features in the training dataset.</p>
+                    </li><li class="listitem">
+                        <p>There must be a comma delimiter between features.</p>
+                    </li><li class="listitem">
+                        <p>Records must be delimited by a newline character.</p>
+                    </li></ul></div>
+                <p>The following is an example of a validly formatted CSV string that you can provide in an inference request.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="text ">
+abc,0.0,"Doe, John",12345\ndef,1.1,"Doe, Jane",67890                    
+                </code></pre>
+            </li><li class="listitem">
+                <p><code class="code">application/json</code> – the datatype for JSON strings</p>
+                <div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>The features used in the dataset for the inference pipeline must be in the same order as the features in the training dataset.</p>
+                    </li><li class="listitem">
+                        <p>The data must have a specific schema. You define schema as a single <code class="code">instances</code> object that has a set of <code class="code">features</code>. Each <code class="code">features</code> object represents an observation.</p>
+                    </li></ul></div>
+                <p>The following is an example of a validly formatted JSON string that you can provide in an inference request.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "instances": [
+        <span>{</span>
+            "features": ["abc", 0.0, "Doe, John", 12345]
+        },
+        <span>{</span>
+            "features": ["def", 1.1, "Doe, Jane", 67890]
+        }
+    ]
+}                  
+                </code></pre>
+            </li></ul></div>
+         
+            <h3 id="data-wrangler-inference-notebook">Use a Jupyter Notebook to
+                    create an inference endpoint</h3>
+            
+            <p>Use the following procedure to export your Data Wrangler
+                flow to create an inference pipeline.</p>
+            
+            <div class="procedure"><p>To create an inference pipeline using a Jupyter notebook, do the following.</p><ol><li>
+                    <p>Choose the <b>+</b> next to the node that you want to
+                        export.</p>
+                </li><li>
+                    <p>Choose <b>Export to</b>.</p>
+                </li><li>
+                    <p>Choose <b>SageMaker Inference Pipeline (via Jupyter Notebook)</b>.</p>
+                </li><li>
+                    <p>Run the Jupyter notebook.</p>
+                </li></ol></div>
+            <p>When you run the Jupyter notebook, it creates an inference flow artifact. An inference flow artifact is a Data Wrangler flow file with additional metadata used to create the serial inference pipeline.
+            The node that you're exporting encompasses all of the transforms from the preceding nodes.</p>
+            <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>Data Wrangler needs the inference flow artifact to run the inference pipeline. You can't use your own flow file as the artifact. You must create it by using the preceding procedure.</p></div></div>
+            
+          
+           
+         
+     
+        <h2 id="data-wrangler-data-export-python-code">Export to Python Code
+            </h2>
+        <p>To export all steps in your data flow to a Python file that you can manually
+            integrate into any data processing workflow, use the following procedure.</p>
+        <div class="procedure"><p>Use the following procedure to generate a Jupyter notebook and run it to export your
+                Data Wrangler flow to Python Code.</p><ol><li>
+                <p>Choose the <b>+</b> next to the node that you want to
+                    export.</p>
+            </li><li>
+                <p>Choose <b>Export to</b>.</p>
+            </li><li>
+                <p>Choose <b>Python Code</b>.</p>
+            </li><li>
+                <p>Run the Jupyter notebook.</p>
+            </li></ol></div>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/data-wrangler-destination-nodes-photo-export-to.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+             
+        </div>
+        <p>You might need to configure the Python script to make it run in your pipeline. For
+            example, if you're running a Spark environment, make sure that you are running the
+            script from an environment that has permission to access AWS resources.</p>
+     
+            <h2 id="data-wrangler-data-export-feature-store">Export to Amazon SageMaker Feature Store</h2>
+            <p>You can use Data Wrangler to export features you've created to Amazon SageMaker Feature Store. A feature is a
+                column in your dataset. Feature Store is a centralized store for features and their
+                associated metadata. You can use Feature Store to create, share, and manage curated data for
+                machine learning (ML) development. Centralized stores make your data more
+                discoverable and reusable. For more information about Feature Store, see <a href="feature-store.html">Amazon SageMaker Feature Store</a>.</p>
+            <p>A core concept in Feature Store is a feature group. A feature group is a collection of
+                features, their records (observations), and associated metadata. It's similar to a
+                table in a database.</p>
+            <p>You can use Data Wrangler to do one of the following:</p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Update an existing feature group with new records. A record is an
+                        observation in the dataset.</p>
+                </li><li class="listitem">
+                    <p>Create a new feature group from a node in your Data Wrangler flow. Data Wrangler adds the
+                        observations from your datasets as records in your feature group.</p>
+                </li></ul></div>
+            <p>If you're updating an existing feature group, your dataset's schema must match the
+                schema of the feature group. All the records in the feature group are replaced with
+                the observations in your dataset.</p>
+            <p>You can use either a Jupyter notebook or a destination node to update your feature
+            group with the observations in the dataset.</p>
+        <p>If your feature groups with the Iceberg table format have a custom offline store encryption key, make sure
+            you grant the IAM that you're using for the Amazon SageMaker Processing job permissions to use it. 
+            At a minimum, you must grant it permissions to encrypt the data that you're writing to Amazon S3. 
+            To grant the permissions, give the IAM role the ability to use the <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKey.html">GenerateDataKey</a>. For more information about granting IAM roles permissions to use AWS KMS keys see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html">https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html</a></p>
+            <awsdocs-tabs><dl style="display: none">
+                <dt>Destination Node</dt><dd tab-id="destination-node">
+                        <p>If you want to output a series of data processing steps that you've
+                            performed to a feature group, you can create a destination node. When
+                            you create and run a destination node, Data Wrangler updates a feature group with
+                            your data. You can also create a new feature group from the destination
+                            node UI. After you create a destination node, you create a processing
+                            job to output the data. A processing job is an Amazon SageMaker processing job.
+                            When you're using a destination node, it runs the computational
+                            resources needed to output the data that you've transformed to the
+                            feature group. </p>
+                        <p>You can use a destination node to export some of the transformations
+                            or all of the transformations that you've made in your Data Wrangler flow.</p>
+                        
+                        <p>Use the following procedure to create a destination node to update a
+                            feature group with the observations from your dataset.</p>
+                        <div class="procedure"><p>To update a feature group using a destination node, do the
+                                following.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can choose <b>Create job</b> in the Data Wrangler flow to view the instructions for using a processing job to update the feature group.</p></div></div><ol><li>
+                                <p>Choose the <b>+</b> symbol next to the node
+                                    containing the dataset that you'd like to export.</p>
+                            </li><li>
+                                <p>Under <b>Add destination</b>, choose
+                                        <b>SageMaker Feature Store</b>.</p>
+                                <div class="mediaobject">
+                                     
+                                        <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/feature-store-destination-node-selection.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+                                     
+                                </div>
+
+                            </li><li>
+                                <p>Choose (double-click) the feature group. Data Wrangler checks whether
+                                the schema of the feature group matches the schema of the data that
+                                you're using to update the feature group.</p>
+                            </li><li>
+                                <p>(Optional) Select <b>Export to offline store
+                                        only</b> for feature groups that have both an online
+                                    store and an offline store. This option only updates the offline
+                                    store with observations from your dataset.</p>
+                            </li><li>
+                                <p>After Data Wrangler validates the schema of your dataset, choose
+                                        <b>Add</b>.</p>
+                            </li></ol></div>
+                        <p>Use the following procedure to create a new feature group with data
+                            from your dataset.</p>
+                        <p>You can  store your feature group in one of the following ways:</p>
+                        <div class="itemizedlist">
+                             
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p>Online – Low-latency, high-availability cache for a
+                                feature group that provides real-time lookup of records. The online
+                                store allows quick access to the latest value for a record in a
+                                feature group.</p>
+                            </li><li class="listitem">
+                                <p>Offline – Stores data for your feature group in an Amazon S3
+                                bucket. You can store your data offline when you don't need
+                                low-latency (sub-second) reads. You can use an offline store for
+                                features used in data exploration, model training, and batch
+                                inference.</p>
+                            </li><li class="listitem">
+                                <p>Both online and offline – Stores your data in both an
+                                    online store and an offline store.</p>
+                            </li></ul></div>
+
+                        <div class="procedure"><p>To create a feature group using a destination node, do the
+                                following.</p><ol><li>
+                                <p>Choose the <b>+</b> symbol next to the node
+                                    containing the dataset that you'd like to export.</p>
+                            </li><li>
+                                <p>Under <b>Add destination</b>, choose
+                                        <b>SageMaker Feature Store</b>.</p>
+                            </li><li>
+                                <p>Choose <b>Create Feature Group</b>.</p>
+                            </li><li>
+                                <p>In the following dialog box, if your dataset doesn't have an
+                                    event time column, select <b>Create "EventTime"
+                                        column</b>.</p>
+                            </li><li>
+                                <p>Choose <b>Next</b>.</p>
+                            </li><li>
+                                <p>Choose <b>Copy JSON Schema</b>. When you create
+                                    a feature group, you paste the schema into the feature
+                                    definitions.</p>
+                            </li><li>
+                                <p>Choose <b>Create</b>.</p>
+                            </li><li>
+                                <p>For <b>Feature group name</b>, specify a name
+                                    for your feature group.</p>
+                            </li><li>
+                                <p>For <b>Description (optional)</b>, specify a
+                                    description to make your feature group more discoverable.</p>
+                            </li><li>
+
+
+                                <p>To create a feature group for an online store, do the
+                                    following.</p>
+
+                                <ol><li>
+                                        <p>Select <b>Enable storage
+                                            online</b>.</p>
+                                    </li><li>
+                                        <p>For <b>Online store encryption key</b>,
+                                            specify an AWS managed encryption key or an encryption
+                                            key of your own.</p>
+                                    </li></ol>
+
+
+
+                            </li><li>
+                                <p>To create a feature group for an offline store, do the
+                                    following.</p>
+                                <ol><li>
+                                    <p>Select <b>Enable storage offline</b>.
+                                        Specify values for the following fields:</p>
+                                    <div class="itemizedlist">
+                                         
+                                         
+                                         
+                                         
+                                         
+                                    <ul class="itemizedlist"><li class="listitem">
+                                            <p><b>S3 bucket name</b> – The name of the Amazon S3 bucket
+                                                that stores the feature group.</p>
+                                        </li><li class="listitem">
+                                            <p>(Optional) <b>Dataset directory name</b> – The
+                                                Amazon S3 prefix that you're using to store the
+                                                feature group.</p>
+                                        </li><li class="listitem">
+                                            <p><b>IAM Role ARN</b> – The IAM role that has
+                                                access to Feature Store.</p>
+                                        </li><li class="listitem">
+                                            <p><b>Table Format</b> – Table format of your offline
+                                                store. You can specify <b>Glue</b> or
+                                                  <b>Iceberg</b>. <b>Glue</b> is the default format.</p>
+                                        </li><li class="listitem">
+                                            <p><b>Offline store encryption
+                                                  key</b> – By default, Feature Store uses an
+                                                AWS Key Management Service managed key, but you can use the field to
+                                                specify a key of your own.</p>
+                                        </li></ul></div>
+                                </li><li>
+                                        <p>Specify values for the following fields:</p>
+                                        <div class="itemizedlist">
+                                             
+                                             
+                                             
+                                             
+                                        <ul class="itemizedlist"><li class="listitem">
+                                                <p><b>S3 bucket name</b> –
+                                                  The name of the bucket storing the feature
+                                                  group.</p>
+                                            </li><li class="listitem">
+                                                <p><b>(Optional) Dataset directory
+                                                  name</b> – The Amazon S3 prefix that
+                                                  you're using to store the feature group.</p>
+                                            </li><li class="listitem">
+                                                <p><b>IAM Role ARN</b> –
+                                                  The IAM role that has access to feature
+                                                  store.</p>
+                                            </li><li class="listitem">
+                                                <p><b>Offline store encryption
+                                                  key</b> – By default, Feature Store uses an
+                                                  AWS managed key, but you can use the field to
+                                                  specify a key of your own.</p>
+                                            </li></ul></div>
+                                    </li></ol>
+                            </li><li>
+                                <p>Choose <b>Continue</b>.</p>
+                            </li><li>
+                                <p>Choose <b>JSON</b>.</p>
+                            </li><li>
+                                <p>Remove the placeholder brackets in the window.</p>
+                            </li><li>
+                                <p>Paste the JSON text from Step 6.</p>
+                            </li><li>
+                                <p>Choose <b>Continue</b>.</p>
+                            </li><li>
+                                <p>For <b>RECORD IDENTIFIER FEATURE NAME</b>,
+                                    choose the column in your dataset that has unique identifiers
+                                    for each record in your dataset.</p>
+                            </li><li>
+                                <p>For <b>EVENT TIME FEATURE NAME</b>, choose the
+                                    column with the timestamp values.</p>
+                            </li><li>
+                                <p>Choose <b>Continue</b>.</p>
+                            </li><li>
+                                <p>(Optional) Add tags to make your feature group more
+                                    discoverable.</p>
+                            </li><li>
+                                <p>Choose <b>Continue</b>.</p>
+                            </li><li>
+                                <p>Choose <b>Create feature group</b>.</p>
+                            </li><li>
+                                <p>Navigate back to your Data Wrangler flow and choose the refresh icon
+                                    next to the <b>Feature Group</b> search
+                                    bar.</p>
+                            </li></ol></div>
+                        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you've already created a destination node for a feature group
+                                within a flow, you can't create another destination node for the
+                                same feature group. If you want to create another destination node
+                                for the same feature group, you must create another flow
+                                file.</p></div></div>
+
+                        <p>Use the following procedure to create a Data Wrangler job.</p>
+                        <div class="procedure"><p>Create a job from the <b>Data flow</b> page and
+                                choose the destination nodes that you want to export.</p><ol><li>
+                                <p>Choose <b>Create job</b>. The following image
+                                    shows the pane that appears after you select <b>Create
+                                        job</b>.</p>
+                            </li><li>
+                                <p>For <b>Job name</b>, specify the name of the
+                                    export job.</p>
+                            </li><li>
+                                <p>Choose the destination nodes that you want to export.</p>
+                            </li><li>
+                                <p>(Optional) For <b>Output KMS Key</b>, specify an
+                                    ARN, ID, or alias of an AWS KMS key. A KMS key is a cryptographic
+                                    key. You can use the key to encrypt the output data from the
+                                    job. For more information about AWS KMS keys, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/overview.html">AWS Key Management Service</a>.</p>                               
+                            </li><li>
+                                <p>The following image
+                                shows the <b>Configure job</b> page with the <b>Job configuration</b> tab open.</p>
+                                <div class="mediaobject">
+                                     
+                                        <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/destination-nodes/destination-nodes-configure-job.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                                        The Job configuration section is&#xA;                                            located near the top of the Configure&#xA;                                                job page.&#xA;                                    " style="max-width:90%" />
+                                     
+                                     
+                                </div>
+                                <p>(Optional) Under <b>Trained parameters</b>. choose <b>Refit</b> if you've done the following:</p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                    
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p>Sampled your dataset</p>
+                                    </li><li class="listitem">
+                                        <p>Applied a transform that uses your data to create a new column in the dataset</p>
+                                    </li></ul></div>
+                                <p>For more information about refitting the transformations you've made to an entire dataset, see <a href="data-wrangler-data-export.html#data-wrangler-data-export-fit-transform">Refit Transforms to The Entire Dataset and Export Them</a>.</p>
+                            </li><li>
+                                <p>Choose <b>Configure job</b>.</p>
+                            </li><li>
+                                <p>(Optional) Configure the Data Wrangler job. You can make the following
+                                    configurations:</p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                     
+                                     
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p><b>Job configuration</b></p>
+                                    </li><li class="listitem">
+                                        <p><b>Spark memory configuration</b></p>
+                                    </li><li class="listitem">
+                                        <p><b>Network configuration</b></p>
+                                    </li><li class="listitem">
+                                        <p><b>Tags</b></p>
+                                    </li><li class="listitem">
+                                        <p><b>Parameters</b></p>
+                                    </li><li class="listitem">
+                                        <p><b>Associate Schedules</b></p>
+                                    </li></ul></div>
+                            </li><li>
+                                <p>Choose <b>Run</b>.</p>
+                            </li></ol></div>
+                    </dd>
+                <dt>Jupyter notebook</dt><dd tab-id="jupyter-notebook">
+                    <p>Use the following procedure to a Jupyter notebook to export to
+                        Amazon SageMaker Feature Store.</p>
+                    <div class="procedure"><p>Use the following procedure to generate a Jupyter notebook and run it to
+                            export your Data Wrangler flow to Feature Store.</p><ol><li>
+                            <p>Choose the <b>+</b> next to the node that you want
+                                to export.</p>
+                        </li><li>
+                            <p>Choose <b>Export to</b>.</p>
+                        </li><li>
+                            <p>Choose <b>Amazon SageMaker Feature Store (via Jupyter Notebook)</b>.</p>
+                        </li><li>
+                            <p>Run the Jupyter notebook.</p>
+                        </li></ol></div>
+                    <div class="mediaobject">
+                         
+                            <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/data-wrangler-destination-nodes-photo-export-to.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+                         
+                    </div>
+                    <p>Running a Jupyter notebook runs a Data Wrangler job. Running a Data Wrangler job starts a SageMaker
+                        processing job. The processing job ingests the flow into an online and
+                        offline feature store.</p>
+                    <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>The IAM role you use to run this notebook must have the following
+                            AWS managed policies attached: <code class="code">AmazonSageMakerFullAccess</code>
+                            and <code class="code">AmazonSageMakerFeatureStoreAccess</code>.</p></div></div>
+                    <p>You only need to enable one online or offline feature store when you
+                        create a feature group. You can also enable both. To disable online store
+                        creation, set <code class="code">EnableOnlineStore</code> to <code class="code">False</code>:</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"># Online Store Configuration
+online_store_config = <span>{</span>
+    "EnableOnlineStore": <code class="replaceable">False</code>
+}</code></pre>
+                    <p>The notebook uses the column names and types of the dataframe you export
+                        to create a feature group schema, which is used to create a feature group. A
+                        feature group is a group of features defined in the feature store to
+                        describe a record. The feature group defines the schema and features
+                        contained in the feature group. A feature group definition is composed of a
+                        list of features, a record identifier feature name, an event time feature
+                        name, and configurations for its online store and offline store. </p>
+                    <p>Each feature in a feature group can have one of the following types:
+                            <em>String</em>, <em>Fractional</em>, or <em>Integral</em>.
+                        If a column in your exported dataframe is not one of these types, it
+                        defaults to <code class="code">String</code>. </p>
+                    <p>The following is an example of a feature group schema.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">column_schema = [
+    <span>{</span>
+        "name": "<code class="replaceable">Height</code>",
+        "type": "<code class="replaceable">long</code>"
+    },
+    <span>{</span>
+        "name": "<code class="replaceable">Input</code>",
+        "type": "<code class="replaceable">string</code>"
+    },
+    <span>{</span>
+        "name": "<code class="replaceable">Output</code>",
+        "type": "<code class="replaceable">string</code>"
+    },
+    <span>{</span>
+        "name": "<code class="replaceable">Sum</code>",
+        "type": "<code class="replaceable">string</code>"
+    },
+    <span>{</span>
+        "name": "<code class="replaceable">Time</code>",
+        "type": "<code class="replaceable">string</code>"
+    }
+]</code></pre>
+                    <p>Additionally, you must specify a record identifier name and event time
+                        feature name:</p>
+                    <div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>The <em>record identifier name</em> is
+                                the name of the feature whose value uniquely identifies a record
+                                defined in the feature store. Only the latest record per identifier
+                                value is stored in the online store. The record identifier feature
+                                name must be one of feature definitions' names.</p>
+                        </li><li class="listitem">
+                            <p>The <em>event time feature name</em> is
+                                the name of the feature that stores the <code class="code">EventTime</code> of a
+                                record in a feature group. An <code class="code">EventTime</code> is a point in
+                                time when a new event occurs that corresponds to the creation or
+                                update of a record in a feature. All records in the feature group
+                                must have a corresponding <code class="code">EventTime</code>.</p>
+                        </li></ul></div>
+                    <p>The notebook uses these configurations to create a feature group, process
+                        your data at scale, and then ingest the processed data into your online and
+                        offline feature stores. To learn more, see <a href="feature-store-ingest-data.html">Data Sources
+                            and Ingestion</a>.</p>
+                </dd>
+            </dl></awsdocs-tabs>
+
+            <p>The notebook uses these configurations to create a feature group, process your
+                data at scale, and then ingest the processed data into your online and offline
+                feature stores. To learn more, see <a href="feature-store-ingest-data.html">Data Sources and
+                    Ingestion</a>.</p>
+         
+        <h2 id="data-wrangler-data-export-fit-transform">Refit Transforms to The Entire Dataset and Export Them</h2>
+        
+        <p>When you import data, Data Wrangler uses a sample of the data to apply the encodings. By
+            default, Data Wrangler uses the first 50,000 rows as a sample, but you can import the entire
+            dataset or use a different sampling method. For more information, see <a href="data-wrangler-import.html">Import</a>.</p>
+        <p>The following transformations use your data to create a column in the
+            dataset:</p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><a href="data-wrangler-transform.html#data-wrangler-transform-cat-encode">Encode Categorical</a></p>
+            </li><li class="listitem">
+                <p><a href="data-wrangler-transform.html#data-wrangler-transform-featurize-text">Featurize Text</a></p>
+            </li><li class="listitem">
+                <p><a href="data-wrangler-transform.html#data-wrangler-transform-handle-outlier">Handle Outliers</a></p>
+            </li><li class="listitem">
+                <p><a href="data-wrangler-transform.html#data-wrangler-transform-handle-missing">Handle Missing Values</a></p>
+            </li></ul></div>
+        <p>If you used sampling to import your data, the preceding transforms only use the
+            data from the sample to create the column. The transform might not have used all of
+            the relevant data. For example, if you use the <b>Encode
+                Categorical</b> transform, there might have been a category in the entire
+            dataset that wasn't present in the sample.</p>
+        <p>You can either use a destination node or a Jupyter notebook to refit the transformations
+            to the entire dataset. When Data Wrangler exports the transformations in the flow, it creates a
+            SageMaker processing job. When the processing job finishes, Data Wrangler saves the following files in
+            either the default Amazon S3 location or an S3 location that you specify:</p>
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>The Data Wrangler flow file that specifies the transformations that are refit to the
+                    dataset</p>
+            </li><li class="listitem">
+                <p>The dataset with the refit transformations applied to it</p>
+            </li></ul></div>
+        <p>You can open a Data Wrangler flow file within Data Wrangler and apply the transformations to a different
+            dataset. For example, if you've applied the transformations to a training dataset, you
+            can open and use the Data Wrangler flow file to apply the transformations to a dataset used for
+            inference.</p>
+        <p>For a information about using destination nodes to refit transforms and export see the following pages:</p>
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><a href="data-wrangler-data-export.html#data-wrangler-data-export-s3">Export to Amazon S3</a></p>
+            </li><li class="listitem">
+                <p><a href="data-wrangler-data-export.html#data-wrangler-data-export-feature-store">Export to Amazon SageMaker Feature Store</a></p>
+            </li></ul></div>
+        <p>Use the following procedure to run a Jupyter notebook to refit the transformations and
+            export the data.</p>
+        <div class="procedure"><p>To run a Jupyter notebook and to refit the transformations and export your Data Wrangler
+                flow, do the following.</p><ol><li>
+                <p>Choose the <b>+</b> next to the node that you
+                    want to export.</p>
+            </li><li>
+                <p>Choose <b>Export to</b>.</p>
+            </li><li>
+                <p>Choose the location to which you're exporting the data.</p>
+            </li><li>
+                <p>For the <code class="code">refit_trained_params</code> object, set <code class="code">refit</code> to <code class="code">True</code>.</p>
+            </li><li>
+                <p>For the <code class="code">output_flow</code> field, specify the name of the output flow
+                    file with the refit transformations.</p>
+            </li><li>
+                <p>Run the Jupyter notebook.</p>
+            </li></ol></div>
+        
+        
+        
+     
+        <h2 id="data-wrangler-data-export-schedule-job">Create a Schedule to Automatically Process New Data</h2>
+        <p>If you're processing data periodically, you can create a schedule to run the processing job automatically. For example, you can create a schedule that runs a processing job automatically when you get new data.
+            For more information about processing jobs, see <a href="data-wrangler-data-export.html#data-wrangler-data-export-s3">Export to Amazon S3</a> and <a href="data-wrangler-data-export.html#data-wrangler-data-export-feature-store">Export to Amazon SageMaker Feature Store</a>.</p>
+        <p>When you create a job you must specify an IAM role that has permissions to create
+            the job. By default, the IAM role that you use to access Data Wrangler is the
+                <code class="code">SageMakerExecutionRole</code>.</p>
+        
+        <p>The following permissions allow Data Wrangler to access EventBridge and allow EventBridge to run processing
+            jobs:</p>
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Add the following AWS Managed policy to the Amazon SageMaker Studio execution role that provides Data Wrangler with permissions to use EventBridge:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">
+arn:aws:iam::aws:policy/AmazonEventBridgeFullAccess
+                </code></pre>
+                <p>For more information about the policy, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-use-identity-based.html#eb-full-access-policy">AWS managed policies for EventBridge</a>.</p>
+            </li><li class="listitem">
+                <p>Add the following policy to the IAM role that you specify when you create a job in Data Wrangler:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json ">
+<span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": "sagemaker:StartPipelineExecution",
+            "Resource": "arn:aws:sagemaker:<code class="replaceable">Region</code>:<code class="replaceable">AWS-account-id</code>:pipeline/data-wrangler-*"
+        }
+    ]
+}
+
+                </code></pre>
+                <p>If you're using the default IAM role, you add the preceding policy to the Amazon SageMaker Studio execution role.</p>
+                <p>Add the following trust policy to the role to allow EventBridge to assume it.</p>
+
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json ">
+<span>{</span>
+    "Effect": "Allow",
+    "Principal": <span>{</span>
+        "Service": "events.amazonaws.com"
+    },
+    "Action": "sts:AssumeRole"
+}
+                </code></pre>
+            </li></ul></div>
+        <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>When you create a schedule, Data Wrangler creates an <code class="code">eventRule</code> in EventBridge. You incur charges for both the event rules that you create and the instances used to run the processing job.</p><p>For information about EventBridge pricing, see <a href="http://aws.amazon.com/eventbridge/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon EventBridge pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. For information about processing job pricing, see <a href="http://aws.amazon.com/sagemaker/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></div></div>
+        <p>You can set a schedule using one of the following methods:</p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule-schedule.html">CRON expressions</a></p>
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Data Wrangler doesn't support the following expressions:</p><div class="itemizedlist">
+                         
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>LW#</p>
+                        </li><li class="listitem">
+                            <p>Abbreviations for days</p>
+                        </li><li class="listitem">
+                            <p>Abbreviations for months</p>
+                        </li></ul></div></div></div>
+            </li><li class="listitem">
+                <p><a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule-schedule.html#eb-rate-expressions">RATE expressions</a></p>
+            </li><li class="listitem">
+                <p>Recurring – Set an hourly or daily interval to run the job.</p>
+            </li><li class="listitem">
+                <p>Specific time – Set specific days and times to run the job.</p>
+            </li></ul></div>
+        <p>The following sections provide procedures on creating jobs.</p>
+        <awsdocs-tabs><dl style="display: none">
+            <dt>CRON</dt><dd tab-id="cron">
+                    <p>Use the following procedure to create a schedule with a CRON expression.</p>
+                    <div class="procedure"><p>To specify a schedule with a CRON expression, do the following.</p><ol><li>
+                            <p>Open your Data Wrangler flow.</p>
+                        </li><li>
+                            <p>Choose <b>Create job</b>.</p>
+                        </li><li>
+                            <p>(Optional) For <b>Output KMS key</b>, specify an AWS KMS key to configure the output of the job.</p>
+                        </li><li>
+                            <p>Choose <b>Next, 2. Configure job</b>.</p>
+                        </li><li>
+                            <p>Select <b>Associate Schedules</b>.</p>
+                        </li><li>
+                            <p>Choose <b>Create a new schedule</b>.</p>
+                        </li><li>
+                            <p>For <b>Schedule Name</b>, specify the name of the schedule.</p>
+                        </li><li>
+                            <p>For <b>Run Frequency</b>, choose <b>CRON</b>.</p>
+                        </li><li>
+                            <p>Specify a valid CRON expression.</p>
+                        </li><li>
+                            <p>Choose <b>Create</b>.</p>
+                        </li><li>
+                            <p>(Optional) Choose <b>Add another schedule</b> to run the job on an additional schedule.</p>
+                            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can associate a maximum of two schedules. The schedules are independent and don't affect each other unless the times overlap.</p></div></div>
+                        </li><li>
+                            <p>Choose one of the following:</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p><b>Schedule and run now</b> – Data Wrangler the job runs immediately and subsequently runs on the schedules.</p>
+                                </li><li class="listitem">
+                                    <p><b>Schedule only</b> – Data Wrangler the job only runs on the schedules that you specify.</p>
+                                </li></ul></div>
+                        </li><li>
+                            <p>Choose <b>Run</b></p>
+                        </li></ol></div>
+                </dd>
+            <dt>RATE</dt><dd tab-id="rate">
+                    <p>Use the following procedure to create a schedule with a RATE expression.</p>
+                    <div class="procedure"><p>To specify a schedule with a RATE expression, do the following.</p><ol><li>
+                            <p>Open your Data Wrangler flow.</p>
+                        </li><li>
+                            <p>Choose <b>Create job</b>.</p>
+                        </li><li>
+                            <p>(Optional) For <b>Output KMS key</b>, specify an AWS KMS key to configure the output of the job.</p>
+                        </li><li>
+                            <p>Choose <b>Next, 2. Configure job</b>.</p>
+                        </li><li>
+                            <p>Select <b>Associate Schedules</b>.</p>
+                        </li><li>
+                            <p>Choose <b>Create a new schedule</b>.</p>
+                        </li><li>
+                            <p>For <b>Schedule Name</b>, specify the name of the schedule.</p>
+                        </li><li>
+                            <p>For <b>Run Frequency</b>, choose <b>Rate</b>.</p>
+                        </li><li>
+                            <p>For <b>Value</b>, specify an integer.</p>
+                        </li><li>
+                            <p>For <b>Unit</b>, select one of the following:</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p><b>Minutes</b></p>
+                                </li><li class="listitem">
+                                    <p><b>Hours</b></p>
+                                </li><li class="listitem">
+                                    <p><b>Days</b></p>
+                                </li></ul></div>
+                        </li><li>
+                            <p>Choose <b>Create</b>.</p>
+                        </li><li>
+                            <p>(Optional) Choose <b>Add another schedule</b> to run the job on an additional schedule.</p>
+                            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can associate a maximum of two schedules. The schedules are independent and don't affect each other unless the times overlap.</p></div></div>
+                        </li><li>
+                            <p>Choose one of the following:</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p><b>Schedule and run now</b> – Data Wrangler the job runs immediately and subsequently runs on the schedules.</p>
+                                </li><li class="listitem">
+                                    <p><b>Schedule only</b> – Data Wrangler the job only runs on the schedules that you specify.</p>
+                                </li></ul></div>
+                        </li><li>
+                            <p>Choose <b>Run</b></p>
+                        </li></ol></div>
+                </dd>
+            <dt>Recurring</dt><dd tab-id="recurring">
+                    <p>Use the following procedure to create a schedule that runs a job on a recurring basis.</p>
+                    <div class="procedure"><p>To specify a schedule with a CRON expression, do the following.</p><ol><li>
+                            <p>Open your Data Wrangler flow.</p>
+                        </li><li>
+                            <p>Choose <b>Create job</b>.</p>
+                        </li><li>
+                            <p>(Optional) For <b>Output KMS key</b>, specify an AWS KMS key to configure the output of the job.</p>
+                        </li><li>
+                            <p>Choose <b>Next, 2. Configure job</b>.</p>
+                        </li><li>
+                            <p>Select <b>Associate Schedules</b>.</p>
+                        </li><li>
+                            <p>Choose <b>Create a new schedule</b>.</p>
+                        </li><li>
+                            <p>For <b>Schedule Name</b>, specify the name of the schedule.</p>
+                        </li><li>
+                            <p>For <b>Run Frequency</b>, make sure <b>Recurring</b> is selected by default.</p>
+                        </li><li>
+                            <p>For <b>Every x hours</b>, specify the hourly frequency that the job runs during the day. Valid values are integers in the inclusive range of <code class="userinput">1</code> and <code class="userinput">23</code>.</p>
+                        </li><li>
+                            <p>For <b>On days</b>, select one of the following options:</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p><b>Every Day</b></p>
+                                </li><li class="listitem">
+                                    <p><b>Weekends</b></p>
+                                </li><li class="listitem">
+                                    <p><b>Weekdays</b></p>
+                                </li><li class="listitem">
+                                    <p><b>Select Days</b></p>
+                                </li></ul></div>
+                            <ol><li>
+                                    <p>(Optional) If you've selected <b>Select Days</b>, choose the days of the week to run the job.</p>
+                                </li></ol>
+                            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The schedule resets every day. If you schedule a job to run every five hours, it runs at the following times during the day:</p><div class="itemizedlist">
+                                     
+                                     
+                                     
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p>00:00</p>
+                                    </li><li class="listitem">
+                                        <p>05:00</p>
+                                    </li><li class="listitem">
+                                        <p>10:00</p>
+                                    </li><li class="listitem">
+                                        <p>15:00</p>
+                                    </li><li class="listitem">
+                                        <p>20:00</p>
+                                    </li></ul></div></div></div>
+                        </li><li>
+                            <p>Choose <b>Create</b>.</p>
+                        </li><li>
+                            <p>(Optional) Choose <b>Add another schedule</b> to run the job on an additional schedule.</p>
+                            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can associate a maximum of two schedules. The schedules are independent and don't affect each other unless the times overlap.</p></div></div>
+                        </li><li>
+                            <p>Choose one of the following:</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p><b>Schedule and run now</b> – Data Wrangler the job runs immediately and subsequently runs on the schedules.</p>
+                                </li><li class="listitem">
+                                    <p><b>Schedule only</b> – Data Wrangler the job only runs on the schedules that you specify.</p>
+                                </li></ul></div>
+                        </li><li>
+                            <p>Choose <b>Run</b></p>
+                        </li></ol></div>
+                </dd>
+            <dt>Specific time</dt><dd tab-id="specific-time">
+                    <p>Use the following procedure to create a schedule that runs a job at specific times.</p>
+                    <div class="procedure"><p>To specify a schedule with a CRON expression, do the following.</p><ol><li>
+                            <p>Open your Data Wrangler flow.</p>
+                        </li><li>
+                            <p>Choose <b>Create job</b>.</p>
+                        </li><li>
+                            <p>(Optional) For <b>Output KMS key</b>, specify an AWS KMS key to configure the output of the job.</p>
+                        </li><li>
+                            <p>Choose <b>Next, 2. Configure job</b>.</p>
+                        </li><li>
+                            <p>Select <b>Associate Schedules</b>.</p>
+                        </li><li>
+                            <p>Choose <b>Create a new schedule</b>.</p>
+                        </li><li>
+                            <p>For <b>Schedule Name</b>, specify the name of the schedule.</p>
+                        </li><li>
+                            <p>Choose <b>Create</b>.</p>
+                        </li><li>
+                            <p>(Optional) Choose <b>Add another schedule</b> to run the job on an additional schedule.</p>
+                            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can associate a maximum of two schedules. The schedules are independent and don't affect each other unless the times overlap.</p></div></div>
+                        </li><li>
+                            <p>Choose one of the following:</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p><b>Schedule and run now</b> – Data Wrangler the job runs immediately and subsequently runs on the schedules.</p>
+                                </li><li class="listitem">
+                                    <p><b>Schedule only</b> – Data Wrangler the job only runs on the schedules that you specify.</p>
+                                </li></ul></div>
+                        </li><li>
+                            <p>Choose <b>Run</b></p>
+                        </li></ol></div>
+                </dd>
+        </dl></awsdocs-tabs>
+        <p>You can use Amazon SageMaker Studio view the jobs that are scheduled to run. Your processing jobs run within SageMaker Pipelines. Each processing job has its own pipeline. It runs as a processing step within the pipeline. You can view the schedules that you've created within a pipeline. 
+            For information about viewing a pipeline, see <a href="pipelines-studio-list-pipelines.html">View a Pipeline</a>.</p>
+        <p>Use the following procedure to view the jobs that you've scheduled.</p>
+        <div class="procedure"><p>To view the jobs you've scheduled, do the following.</p><ol><li>
+                <p>Open Amazon SageMaker Studio.</p>
+            </li><li>
+                <p>Open SageMaker Pipelines</p>
+            </li><li>
+                <p>View the pipelines for the jobs that you've created.</p>
+                <p>The pipeline running the job uses the job name as a prefix. For example, if you've created a job named <code class="code">housing-data-feature-enginnering</code>,
+                the name of the pipeline is <code class="code">data-wrangler-housing-data-feature-engineering</code>.</p>
+            </li><li>
+                <p>Choose the pipeline containing your job.</p>
+            </li><li>
+                <p>View the status of the pipelines. Pipelines with a <b>Status</b> of <b>Succeeded</b> have run the processing job successfully.</p>
+            </li></ol></div>
+        
+        <p>To stop the processing job from running, do the following:</p>
+       
+        <p>To stop a processing job from running, delete the event rule that specifies the schedule. Deleting an event rule stops all the jobs associated with the schedule from running. 
+            For information about deleting a rule, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-delete-rule.html">Disabling or deleting an Amazon EventBridge rule</a>.</p>
+        <p>You can stop and delete the pipelines associated with the schedules as well. For information about stopping a pipeline, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_StopPipelineExecution.html">StopPipelineExecution</a>.
+            For information about deleting a pipeline, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeletePipeline.html#API_DeletePipeline_RequestSyntax">DeletePipeline</a>.</p>
+        
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./data-wrangler-parameterize.html">Reusing Data Flows for Different Datasets</div><div id="next" class="next-link" accesskey="n" href="./data-wrangler-interactively-prepare-data-notebook.html">Use Data Preparation in a Studio Notebook to Get Data
+            Insights</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/data-wrangler-data-export.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/data-wrangler-data-export.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

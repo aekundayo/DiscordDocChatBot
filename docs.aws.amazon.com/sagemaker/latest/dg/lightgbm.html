@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>LightGBM - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="lightgbm" /><meta name="default_state" content="lightgbm" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="lightgbm.html" /><meta name="description" content="LightGBM is a supervised learning algorithm that is an open-source implementation of the gradient boosted decision tree algorithm." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="lightgbm.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/lightgbm.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/lightgbm.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/lightgbm.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/lightgbm.html" hreflang="de" /><link rel="alternative" href="lightgbm.html" hreflang="en-us" /><link rel="alternative" href="lightgbm.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/lightgbm.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/lightgbm.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/lightgbm.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/lightgbm.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/lightgbm.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/lightgbm.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/lightgbm.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/lightgbm.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/lightgbm.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/lightgbm.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/lightgbm.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/lightgbm.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/lightgbm.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/lightgbm.html" hreflang="zh-tw" /><link rel="alternative" href="lightgbm.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="LightGBM" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>LightGBM - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#lightgbm" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/lightgbm.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/lightgbm.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/lightgbm.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Choose an Algorithm",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-choose.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Amazon SageMaker Built-in Algorithms or Pre-trained Models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Built-in SageMaker Algorithms for Tabular Data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-tabular.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "LightGBM",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-tabular.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#lightgbm" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="lightgbm.html#lightgbm-modes">How to use LightGBM</a><a href="lightgbm.html#InputOutput-LightGBM">Input and Output interface for the LightGBM
+                algorithm</a><a href="lightgbm.html#Instance-LightGBM">Amazon EC2 instance recommendation for the LightGBM
+                algorithm</a><a href="lightgbm.html#lightgbm-sample-notebooks">Sample Notebooks</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="lightgbm">LightGBM</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p><a href="https://lightgbm.readthedocs.io/en/latest/" rel="noopener noreferrer" target="_blank"><span>LightGBM</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> is a popular 
+        and efficient open-source implementation of the Gradient Boosting Decision Tree (GBDT) 
+        algorithm. GBDT is a supervised learning algorithm that attempts to accurately predict a 
+        target variable by combining an ensemble of estimates from a set of simpler and weaker models. 
+        LightGBM uses additional techniques to significantly improve the efficiency and scalability 
+        of conventional GBDT. </p>
+        <h2 id="lightgbm-modes">How to use SageMaker LightGBM</h2>
+        <p>You can use LightGBM as an Amazon SageMaker built-in algorithm. The
+            following section describes how to use LightGBM with the SageMaker Python SDK. For information
+            on how to use LightGBM from the Amazon SageMaker Studio UI, see <a href="studio-jumpstart.html">SageMaker JumpStart</a>.</p>
+        <div class="itemizedlist">
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><b>Use LightGBM as a built-in algorithm</b></p>
+                <p>Use the LightGBM built-in algorithm to build a LightGBM training container as
+                    shown in the following code example. You can automatically spot the LightGBM
+                    built-in algorithm image URI using the SageMaker <code class="code">image_uris.retrieve</code> API
+                    (or the <code class="code">get_image_uri</code> API if using <a href="https://sagemaker.readthedocs.io" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> version 2). </p>
+                <p>After specifying the LightGBM image URI, you can use the LightGBM container to
+                    construct an estimator using the SageMaker Estimator API and initiate a training job.
+                    The LightGBM built-in algorithm runs in script mode, but the training script is
+                    provided for you and there is no need to replace it. If you have extensive
+                    experience using script mode to create a SageMaker training job, then you can
+                    incorporate your own LightGBM training scripts.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker import image_uris, model_uris, script_uris
+
+train_model_id, train_model_version, train_scope = "lightgbm-classification-model", "*", "training"
+training_instance_type = "ml.m5.xlarge"
+
+# Retrieve the docker image
+train_image_uri = image_uris.retrieve(
+    region=None,
+    framework=None,
+    model_id=train_model_id,
+    model_version=train_model_version,
+    image_scope=train_scope,
+    instance_type=training_instance_type
+)
+
+# Retrieve the training script
+train_source_uri = script_uris.retrieve(
+    model_id=train_model_id, model_version=train_model_version, script_scope=train_scope
+)
+
+train_model_uri = model_uris.retrieve(
+    model_id=train_model_id, model_version=train_model_version, model_scope=train_scope
+)
+
+# Sample training data is available in this bucket
+training_data_bucket = f"jumpstart-cache-prod-<span>{</span>aws_region}"
+training_data_prefix = "training-datasets/tabular_multiclass/"
+
+training_dataset_s3_path = f"s3://<span>{</span>training_data_bucket}/<span>{</span>training_data_prefix}/train" 
+validation_dataset_s3_path = f"s3://<span>{</span>training_data_bucket}/<span>{</span>training_data_prefix}/validation" 
+
+output_bucket = sess.default_bucket()
+output_prefix = "jumpstart-example-tabular-training"
+
+s3_output_location = f"s3://<span>{</span>output_bucket}/<span>{</span>output_prefix}/output"
+
+from sagemaker import hyperparameters
+
+# Retrieve the default hyperparameters for training the model
+hyperparameters = hyperparameters.retrieve_default(
+    model_id=train_model_id, model_version=train_model_version
+)
+
+# [Optional] Override default hyperparameters with custom values
+hyperparameters[
+    "num_boost_round"
+] = "500"
+print(hyperparameters)
+
+from sagemaker.estimator import Estimator
+from sagemaker.utils import name_from_base
+
+training_job_name = name_from_base(f"built-in-algo-<span>{</span>train_model_id}-training")
+
+# Create SageMaker Estimator instance
+tabular_estimator = Estimator(
+    role=aws_role,
+    image_uri=train_image_uri,
+    source_dir=train_source_uri,
+    model_uri=train_model_uri,
+    entry_point="transfer_learning.py",
+    instance_count=1, # for distributed training, specify an instance_count greater than 1
+    instance_type=training_instance_type,
+    max_run=360000,
+    hyperparameters=hyperparameters,
+    output_path=s3_output_location
+)
+
+# Launch a SageMaker Training job by passing the S3 path of the training data
+tabular_estimator.fit(
+    <span>{</span>
+        "train": training_dataset_s3_path,
+        "validation": validation_dataset_s3_path,
+    }, logs=True, job_name=training_job_name
+)</code></pre>
+                <p>For more information about how to set up the LightGBM as a built-in algorithm,
+                    see the following notebook examples.</p>
+                <div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p><a href="https://github.com/aws/amazon-sagemaker-examples/blob/main/introduction_to_amazon_algorithms/lightgbm_catboost_tabular/Amazon_Tabular_Classification_LightGBM_CatBoost.ipynb" rel="noopener noreferrer" target="_blank"><span>Tabular classification with Amazon SageMaker LightGBM and CatBoost algorithm</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+                    </li><li class="listitem">
+                        <p><a href="https://github.com/aws/amazon-sagemaker-examples/blob/main/introduction_to_amazon_algorithms/lightgbm_catboost_tabular/Amazon_Tabular_Regression_LightGBM_CatBoost.ipynb" rel="noopener noreferrer" target="_blank"><span>Tabular regression with Amazon SageMaker LightGBM and CatBoost algorithm</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+                    </li></ul></div>
+            </li></ul></div>
+     
+        <h2 id="InputOutput-LightGBM">Input and Output interface for the LightGBM
+                algorithm</h2>
+        <p>Gradient boosting operates on tabular data, with the rows representing observations,
+            one column representing the target variable or label, and the remaining columns
+            representing features. </p>
+        <p>The SageMaker implementation of LightGBM supports CSV for training and inference:</p>
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>For <b>Training ContentType</b>, valid inputs must be
+                        <em>text/csv</em>.</p>
+            </li><li class="listitem">
+                <p>For <b>Inference ContentType</b>, valid inputs must be
+                        <em>text/csv</em>.</p>
+            </li></ul></div>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For CSV training, the algorithm assumes that the target variable is in the first
+                column and that the CSV does not have a header record. </p><p>For CSV inference, the algorithm assumes that CSV input does not have the label
+                column. </p></div></div>
+        <p><b>Input format for training data, validation data, and categorical
+                features</b></p>
+                    <p>Be mindful of how to format your training data for input to the LightGBM
+            model. You must provide the path to an Amazon S3 bucket that contains your training and
+            validation data. You can also include a list of categorical features. Use both the
+                <code class="code">train</code> and <code class="code">validation</code> channels to provide your input data.
+            Alternatively, you can use only the <code class="code">train</code> channel.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Both <code class="code">train</code> and <code class="code">training</code> are valid channel names for LightGBM training.</p></div></div>
+        <p><b>Use both the <code class="code">train</code> and <code class="code">validation</code>
+                channels</b></p>
+        <p>You can provide your input data by way of two S3 paths, one for the <code class="code">train</code>
+            channel and one for the <code class="code">validation</code> channel. Each S3 path can either be an
+            S3 prefix that points to one or more CSV files or a full S3 path pointing to one
+            specific CSV file. The target variables should be in the first column of your CSV file.
+            The predictor variables (features) should be in the remaining columns. If multiple CSV
+            files are provided for the <code class="code">train</code> or <code class="code">validation</code> channels, the
+            LightGBM algorithm concatenates the files.  The validation data is used to compute a
+            validation score at the end of each boosting iteration. Early stopping is applied when
+            the validation score stops improving.</p>
+        <p>If your predictors include categorical features, you can provide a JSON file named
+                <code class="code">categorical_index.json</code> in the same location as your training data file
+            or files. If you provide a JSON file for categorical features, your <code class="code">train</code>
+            channel must point to an S3 prefix and not a specific CSV file. This file should contain
+            a Python dictionary where the key is the string <code class="code">"cat_index_list"</code> and the
+            value is a list of unique integers. Each integer in the value list should indicate the
+            column index of the corresponding categorical features in your training data CSV file.
+            Each value should be a positive integer (greater than zero because zero represents the
+            target value), less than the <code class="code">Int32.MaxValue</code> (2147483647), and less than the
+            total number of columns. There should only be one categorical index JSON file.</p>
+                <p><b>Use only the <code class="code">train</code>
+            channel</b>:</p>
+        <p>You can alternatively provide your input data by way of a single S3 path for the
+                <code class="code">train</code> channel. This S3 path should point to a directory with a
+            subdirectory named <code class="code">train/</code> that contains one or more CSV files. You can
+            optionally include another subdirectory in the same location called
+                <code class="code">validation/</code> that also has one or more CSV files. If the validation data
+            is not provided, then 20% of your training data is randomly sampled to serve as the
+            validation data. If your predictors include categorical features, you can provide a JSON
+            file named <code class="code">categorical_index.json</code> in the same location as your data
+            subdirectories.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For CSV training input mode, the total memory available to the algorithm (instance
+            count multiplied by the memory available in the <code class="code">InstanceType</code>) must be able
+            to hold the training dataset.</p></div></div>
+        <p>SageMaker LightGBM uses the Python Joblib module to serialize or deserialize the model,
+            which can be used for saving or loading the model.</p>
+        <div class="procedure"><h6>To use a model trained with SageMaker LightGBM with the JobLib module</h6><ul><li>
+                <p>Use the following Python code:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import joblib 
+import tarfile
+
+t = tarfile.open('model.tar.gz', 'r:gz')
+t.extractall()
+
+model = joblib.load(<code class="replaceable">model_file_path</code>)
+
+# prediction with test data
+# dtest should be a pandas DataFrame with column names feature_0, feature_1, ..., feature_d
+pred = model.predict(<code class="replaceable">dtest</code>) </code></pre>
+            </li></ul></div>
+     
+        <h2 id="Instance-LightGBM">Amazon EC2 instance recommendation for the LightGBM
+                algorithm</h2>
+        <p>SageMaker LightGBM currently supports single-instance and multi-instance CPU training. For
+            multi-instance CPU training (distributed training), specify an
+                <code class="code">instance_count</code> greater than 1 when you define your Estimator. For more
+            information on distributed training with LightGBM, see <a href="https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_applying_machine_learning/sagemaker_lightgbm_distributed_training_dask/sagemaker-lightgbm-distributed-training-dask.html" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker LightGBM Distributed training using Dask</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        <p>LightGBM is a memory-bound (as opposed to compute-bound) algorithm. So, a
+            general-purpose compute instance (for example, M5) is a better choice than a
+            compute-optimized instance (for example, C5). Further, we recommend that you have enough
+            total memory in selected instances to hold the training data. </p>
+     
+        <h2 id="lightgbm-sample-notebooks">LightGBM sample notebooks</h2>
+        <p>The following table outlines a variety of sample notebooks that address different use cases of Amazon SageMaker LightGBM algorithm.</p>
+            <div class="table-container"><div class="table-contents"><table id="w714aac23c11c21c31c18c11b5"><thead>
+                        <tr>
+                            <th><b>Notebook Title</b></th>
+                            <th><b>Description</b></th>
+                        </tr>
+                    </thead>
+                        <tr>
+                            <td tabindex="-1">
+                                <p><a href="https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_amazon_algorithms/lightgbm_catboost_tabular/Amazon_Tabular_Classification_LightGBM_CatBoost.html" rel="noopener noreferrer" target="_blank"><span>Tabular classification with Amazon SageMaker LightGBM and CatBoost algorithm</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+                        </td>
+                        <td tabindex="-1">
+                            <p>This notebook demonstrates the use of the Amazon SageMaker LightGBM
+                                algorithm to train and host a tabular classification model. </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p><a href="https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_amazon_algorithms/lightgbm_catboost_tabular/Amazon_Tabular_Regression_LightGBM_CatBoost.html" rel="noopener noreferrer" target="_blank"><span>Tabular regression with Amazon SageMaker LightGBM and CatBoost algorithm</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+                        </td>
+                        <td tabindex="-1">
+                            <p>This notebook demonstrates the use of the Amazon SageMaker LightGBM
+                                algorithm to train and host a tabular regression model. </p>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td tabindex="-1">
+                                <p><a href="https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_applying_machine_learning/sagemaker_lightgbm_distributed_training_dask/sagemaker-lightgbm-distributed-training-dask.html" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker LightGBM Distributed training using Dask</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+                            </td>
+                            <td tabindex="-1">
+                                <p>This notebook demonstrates distributed training with the Amazon SageMaker LightGBM algorithm using the Dask framework.</p>
+                            </td>
+                        </tr>
+                </table></div></div>
+        <p>For instructions on how to create and access Jupyter notebook instances that you can use
+            to run the example in SageMaker, see <a href="nbi.html">Amazon SageMaker Notebook Instances</a>. After you
+            have created a notebook instance and opened it, choose the <b>SageMaker
+                Examples</b> tab to see a list of all of the SageMaker samples. To open a
+            notebook, choose its <b>Use</b> tab and choose <b>Create copy</b>.</p>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./kNN-inference-formats.html">Inference Formats</div><div id="next" class="next-link" accesskey="n" href="./lightgbm-HowItWorks.html">How It Works</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/lightgbm.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/lightgbm.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>IAM Access Management - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="build-and-manage-access" /><meta name="default_state" content="build-and-manage-access" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="build-and-manage-access.html" /><meta name="description" content="AWS Identity and Access Management (IAM) requirements for Amazon SageMaker Model Building Pipelines" /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="build-and-manage-access.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/build-and-manage-access.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/build-and-manage-access.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/build-and-manage-access.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/build-and-manage-access.html" hreflang="de" /><link rel="alternative" href="build-and-manage-access.html" hreflang="en-us" /><link rel="alternative" href="build-and-manage-access.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/build-and-manage-access.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/build-and-manage-access.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/build-and-manage-access.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/build-and-manage-access.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/build-and-manage-access.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/build-and-manage-access.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/build-and-manage-access.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/build-and-manage-access.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/build-and-manage-access.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/build-and-manage-access.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/build-and-manage-access.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/build-and-manage-access.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/build-and-manage-access.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/build-and-manage-access.html" hreflang="zh-tw" /><link rel="alternative" href="build-and-manage-access.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="IAM Access Management" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>IAM Access Management - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#build-and-manage-access" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/build-and-manage-access.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/build-and-manage-access.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/build-and-manage-access.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,job prefix, pipeline prefix,pipeline access management, pipeline permission" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Implement MLOps",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/mlops.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "SageMaker Workflows",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/workflows.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Amazon SageMaker Model Building Pipelines",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "SageMaker Pipelines Overview",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-sdk.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "IAM Access Management",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-sdk.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#build-and-manage-access" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="build-and-manage-access.html#build-and-manage-role-permissions">Pipeline Role Permissions</a><a href="build-and-manage-access.html#build-and-manage-step-permissions">Pipeline Step Permissions</a><a href="build-and-manage-access.html#build-and-manage-step-permissions-prefix">Customize access management for 
+          SageMaker Pipelines jobs</a><a href="build-and-manage-access.html#build-and-manage-scp">Service Control Policies with Pipelines</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="build-and-manage-access">IAM Access Management</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>The following sections describe the AWS Identity and Access Management (IAM) requirements for Amazon SageMaker Model Building Pipelines. For an
+      example of how you can implement these permissions, see <a href="define-pipeline.html#define-pipeline-prereq">Prerequisites</a>.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="build-and-manage-access.html#build-and-manage-role-permissions">Pipeline Role Permissions</a></li><li><a href="build-and-manage-access.html#build-and-manage-step-permissions">Pipeline Step Permissions</a></li><li><a href="build-and-manage-access.html#build-and-manage-step-permissions-prefix">Customize access management for 
+          SageMaker Pipelines jobs</a></li><li><a href="build-and-manage-access.html#build-and-manage-scp">Service Control Policies with Pipelines</a></li></ul></div>
+      <h2 id="build-and-manage-role-permissions">Pipeline Role Permissions</h2>
+<p>Your pipeline requires an IAM pipeline execution role that is passed to SageMaker Pipelines when you
+        create a pipeline. The role for the SageMaker instance that is creating the pipeline must have
+          the <code class="code">iam:PassRole</code> permission for the pipeline execution role in order to pass
+        it. For more information on IAM roles, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM
+        Roles</a>.</p>
+
+<p>
+  Your pipeline execution role requires the following permissions:
+</p>
+
+<div class="itemizedlist">
+   
+   
+   
+<ul class="itemizedlist"><li class="listitem">
+    <p> To pass any role to a SageMaker job within a pipeline, the <code class="code">iam:PassRole</code>
+            permission for the role that is being passed.  </p>
+  </li><li class="listitem">
+    <p>
+      <code class="code">Create</code> and <code class="code">Describe</code> permissions for each of the job types in the
+      pipeline.
+    </p>
+  </li><li class="listitem">
+    <p> Amazon S3 permissions to use the <code class="code">JsonGet</code> function. You control access to your
+            Amazon S3 resources using resource-based policies and identity-based policies. A
+            resource-based policy is applied to your Amazon S3 bucket and grants SageMaker Pipelines access to the
+            bucket. An identity-based policy gives your pipeline the ability to make Amazon S3 calls from
+            your account. For more information on resource-based policies and identity-based
+            policies, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html">Identity-based policies and resource-based policies</a>. </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Action": [
+        "s3:GetObject"
+    ],
+    "Resource": "arn:aws:s3:::<code class="replaceable">&lt;your-bucket-name&gt;</code>/*",
+    "Effect": "Allow"
+}</code></pre>
+  </li></ul></div>
+     
+      <h2 id="build-and-manage-step-permissions">Pipeline Step Permissions</h2>
+<p>SageMaker Pipelines include steps that run SageMaker jobs. In order for the pipeline steps to run these jobs,
+        they require an IAM role in your account that provides access for the needed resource.
+        This role is passed to the SageMaker service principal by your pipeline. For more information on
+        IAM roles, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM
+          Roles</a>. </p>
+<p>By default, each step takes on the pipeline execution role. You can optionally pass a
+        different role to any of the steps in your pipeline. This ensures that the code in each step
+        does not have the ability to impact resources used in other steps unless there is a direct
+        relationship between the two steps specified in the pipeline definition. You pass these
+        roles when defining the processor or estimator for your step. For examples of how to include
+        these roles in these definitions, see the <a href="https://sagemaker.readthedocs.io/en/stable/overview.html#using-estimators" rel="noopener noreferrer" target="_blank"><span>SageMaker
+          Python SDK documentation</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p>
+     
+      <h2 id="build-and-manage-step-permissions-prefix">Customize access management for 
+          SageMaker Pipelines jobs</h2>
+      <p>You can further customize your IAM policies so selected members in your 
+        organization can run any or all pipeline steps. For example, you can give certain users 
+        permission to create training jobs, and another group of users permission to create 
+        processing jobs, and all of your users permission to run the remaining steps. To use 
+        this feature, you select a custom string which prefixes your job name. Your 
+        admin prepends the permitted ARNs with the prefix while your data scientist includes 
+        this prefix in pipeline instantiations. Because the IAM policy for permitted users 
+        contains a job ARN with the specified prefix, subsequent jobs of your pipeline step 
+        have necessary permissions to proceed. Job prefixing is off by default—you must toggle on this 
+        option in your <code class="code">Pipeline</code> class to use it.
+      </p>
+      <p>For jobs with prefixing turned off, the job name is formatted as shown and is a 
+        concatenation of fields described in the following table:</p>
+      <p><code class="code">pipelines-<code class="replaceable">&lt;executionId&gt;</code>-<code class="replaceable">&lt;stepNamePrefix&gt;</code>-<code class="replaceable">&lt;entityToken&gt;</code>-<code class="replaceable">&lt;failureCount&gt;</code></code></p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac27c11c17c29c13c11b9"><thead>
+            <tr>
+              <th>Field</th>
+              <th>Definition</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1">
+                <p>pipelines
+                </p>
+              </td>
+              <td tabindex="-1">
+                <p>A static string always prepended. This string identifies the pipeline 
+                  orchestration service as the job's source.</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1">
+                <p>executionId</p>
+              </td>
+              <td tabindex="-1">
+                <p>A randomized buffer for the running instance of the pipeline.</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1">
+                <p>stepNamePrefix</p>
+              </td>
+              <td tabindex="-1">
+                <p>The user-specified step name (given in the <code class="code">name</code>
+                argument of the pipeline step), limited to the first 20 characters.</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1">
+                <p>entityToken</p>
+              </td>
+              <td tabindex="-1">
+                <p>A randomized token to ensure idempotency of the step entity.</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1">
+                <p>failureCount</p>
+              </td>
+              <td tabindex="-1">
+                <p>The current number of retries attempted to complete the job.</p>
+              </td>
+            </tr>
+          </table></div></div>
+      <p>In this case, no custom prefix is prepended to the job name, and the corresponding IAM policy
+        must match this string.</p>
+      <p>For users who turn on job prefixing, the underlying job name takes 
+        the following form, with the custom prefix specified as <code class="code">MyBaseJobName</code>:</p>
+      <p><code class="replaceable">&lt;MyBaseJobName&gt;</code>-<code class="replaceable">&lt;executionId&gt;</code>-<code class="replaceable">&lt;entityToken&gt;</code>-<code class="replaceable">&lt;failureCount&gt;</code></p>
+      <p>The custom prefix replaces the static <code class="code">pipelines</code> string to help you narrow the selection 
+        of users who can run the SageMaker job as a part of a pipeline.</p>
+      <p><b>Prefix length restrictions</b></p>
+      <p>The job names have internal length constraints specific to individual pipeline steps. 
+        This constraint also limits the length of the allowed prefix.  The prefix length requirements 
+        are as follows:</p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac27c11c17c29c13c11c23"><thead>
+            <tr>
+              <th>Pipeline step</th>
+              <th>Prefix length</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1">
+                <p>
+                  <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/amazon_sagemaker_model_building_pipeline.html#trainingstep" rel="noopener noreferrer" target="_blank"><span>TrainingStep</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>, 
+                  <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/workflows/pipelines/sagemaker.workflow.pipelines.html#step-collections" rel="noopener noreferrer" target="_blank"><span>ModelStep</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>, 
+                  <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/amazon_sagemaker_model_building_pipeline.html#transformstep" rel="noopener noreferrer" target="_blank"><span>TransformStep</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>, 
+                  <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/amazon_sagemaker_model_building_pipeline.html#processingstep" rel="noopener noreferrer" target="_blank"><span>ProcessingStep</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>, 
+                  <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/amazon_sagemaker_model_building_pipeline.html#clarifycheckstep" rel="noopener noreferrer" target="_blank"><span>ClarifyCheckStep</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>, 
+                  <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/amazon_sagemaker_model_building_pipeline.html#qualitycheckstep" rel="noopener noreferrer" target="_blank"><span>QualityCheckStep</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>, 
+                  <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/workflows/pipelines/sagemaker.workflow.pipelines.html#step-collections" rel="noopener noreferrer" target="_blank"><span>RegisterModelStep</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>
+                </p>
+              </td>
+              <td tabindex="-1">
+                <p>38</p>
+              </td>
+            </tr>
+            <tr>
+              <td tabindex="-1">
+                <p><code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/amazon_sagemaker_model_building_pipeline.html#tuningstep" rel="noopener noreferrer" target="_blank"><span>TuningStep</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>, 
+                  <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/amazon_sagemaker_model_building_pipeline.html#automlstep" rel="noopener noreferrer" target="_blank"><span>AutoML</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code></p>
+              </td>
+              <td tabindex="-1">
+                <p>6</p>
+              </td>
+            </tr>
+          </table></div></div>
+       
+        <h3 id="build-and-manage-step-permissions-prefix-iam">Apply job prefixes to an IAM policy</h3>
+      
+      <p>Your admin creates IAM policies allowing users of specific prefixes to 
+        create jobs. The following example policy permits data scientists to create training jobs 
+        if they use the <code class="code">MyBaseJobName</code> prefix.
+      </p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Action": "sagemaker:CreateTrainingJob",
+    "Effect": "Allow",
+    "Resource": [
+        "arn:aws:sagemaker:<code class="replaceable">region</code>:<code class="replaceable">account-id</code>:*/MyBaseJobName-*"
+    ]
+}</code></pre>
+     
+     
+        <h3 id="build-and-manage-step-permissions-prefix-inst">Apply job prefixes to pipeline instantiations</h3>
+    
+      <p>You specify your prefix with the <code class="code">*base_job_name</code> argument of the job instance class.</p>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You pass your job prefix with the <code class="code">*base_job_name</code> argument to the job instance before creating a pipeline step. This job instance contains the necessary information for the job to run as a step in a pipeline. This argument varies depending upon the job instance used. The following list shows which argument to use for each pipeline step type:</p><div class="itemizedlist">
+         
+         
+         
+         
+         
+        
+      <ul class="itemizedlist"><li class="listitem"><p><code class="code">base_job_name</code> for the <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html" rel="noopener noreferrer" target="_blank"><span>Estimator</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>
+          (<code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/amazon_sagemaker_model_building_pipeline.html#trainingstep" rel="noopener noreferrer" target="_blank"><span>TrainingStep</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>), 
+          <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/api/training/processing.html" rel="noopener noreferrer" target="_blank"><span>Processor</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> (<code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/amazon_sagemaker_model_building_pipeline.html#processingstep" rel="noopener noreferrer" target="_blank"><span>ProcessingStep</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>),
+          and <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/api/training/automl.html" rel="noopener noreferrer" target="_blank"><span>AutoML</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> (<code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/amazon_sagemaker_model_building_pipeline.html#automlstep" rel="noopener noreferrer" target="_blank"><span>AutoMLStep</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>) classes</p></li><li class="listitem"><p><code class="code">tuning_base_job_name</code> for the <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/api/training/tuner.html" rel="noopener noreferrer" target="_blank"><span>Tuner</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> class (<code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/amazon_sagemaker_model_building_pipeline.html#tuningstep" rel="noopener noreferrer" target="_blank"><span>TuningStep</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>)</p></li><li class="listitem"><p><code class="code">transform_base_job_name</code> for the <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/api/inference/transformer.html" rel="noopener noreferrer" target="_blank"><span>Transformer</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> class (<code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/amazon_sagemaker_model_building_pipeline.html#transformstep" rel="noopener noreferrer" target="_blank"><span>TransformStep</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>)</p></li><li class="listitem"><p><code class="code">base_job_name</code> of <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/workflows/pipelines/sagemaker.workflow.pipelines.html#checkjobconfig" rel="noopener noreferrer" target="_blank"><span>CheckJobConfig</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> for the <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/amazon_sagemaker_model_building_pipeline.html#qualitycheckstep" rel="noopener noreferrer" target="_blank"><span>QualityCheckStep</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> (Quality Check) and 
+            <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/amazon_sagemaker_model_building_pipeline.html#clarifycheckstep" rel="noopener noreferrer" target="_blank"><span>ClarifyCheckstep</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> (Clarify Check) classes</p></li><li class="listitem"><p>For the <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/api/inference/model.html" rel="noopener noreferrer" target="_blank"><span>Model</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> class, the argument used depends on if you run <code class="code">create</code>
+          or <code class="code">register</code> on your model before passing the result to <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/workflows/pipelines/sagemaker.workflow.pipelines.html#step-collections" rel="noopener noreferrer" target="_blank"><span>ModelStep</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code></p>
+          <div class="itemizedlist">
+             
+             
+          <ul class="itemizedlist"><li class="listitem"><p>If you call <code class="code">create</code>, the custom prefix comes from the <code class="code">name</code> argument
+              when you construct your model (i.e., <code class="code">Model(name=)</code>)</p></li><li class="listitem"><p>If you call <code class="code">register</code>, the custom prefix comes from the <code class="code">model_package_name</code>
+              argument of your call to <code class="code">register</code> (i.e., 
+              <code class="code"><code class="replaceable">my_model</code>.register(model_package_name=)</code>)</p></li></ul></div>
+        </li></ul></div></div></div>
+      <p>The following example shows how to specify a prefix for a new training job instance.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py "># Create a job instance
+xgb_train = Estimator(
+    image_uri=image_uri,
+    instance_type="ml.m5.xlarge",
+    instance_count=1,
+    output_path=model_path,
+    role=role,
+    subnets=["subnet-0ab12c34567de89f0"],
+    base_job_name="MyBaseJobName"
+    security_group_ids=["sg-1a2bbcc3bd4444e55"],
+    tags = [ ... ]
+    encrypt_inter_container_traffic=True, 
+)
+
+# Attach your job instance to a pipeline step
+step_train = TrainingStep(
+    name="TestTrainingJob",
+    estimator=xgb_train, 
+    inputs=<span>{</span>
+        "train": TrainingInput(...), 
+        "validation": TrainingInput(...) 
+    }
+)</code></pre>
+      <p>Job prefixing is off by default. To opt into this feature, use the 
+        <code class="code">use_custom_job_prefix</code> option of <code class="code">PipelineDefinitionConfig</code> as 
+        shown in the following snippet:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.workflow.pipeline_definition_config import PipelineDefinitionConfig
+        
+# Create a definition configuration and toggle on custom prefixing
+definition_config = PipelineDefinitionConfig(use_custom_job_prefix=True);
+
+# Create a pipeline with a custom prefix
+ pipeline = Pipeline(
+     name="MyJobPrefixedPipeline",
+     parameters=[...]
+     steps=[...]
+     pipeline_definition_config=definition_config
+)</code></pre>
+      
+      
+<p>Create and run your pipeline. The following example creates and runs a pipeline, 
+and also demonstrates how you can turn off job prefixing and rerun your pipeline.</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">pipeline.create(role_arn=sagemaker.get_execution_role())
+
+# Optionally, call definition() to confirm your prefixed job names are in the built JSON
+pipeline.definition()
+pipeline.start()
+      
+# To run a pipeline without custom-prefixes, toggle off use_custom_job_prefix, update the pipeline 
+# via upsert() or update(), and start a new run
+definition_config = PipelineDefinitionConfig(use_custom_job_prefix=False)
+pipeline.pipeline_definition_config = definition_config
+pipeline.update()
+execution = pipeline.start()</code></pre>
+      <p>Similarly, you can toggle the feature on for existing pipelines and start a new run which
+        uses job prefixes.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">definition_config = PipelineDefinitionConfig(use_custom_job_prefix=True)
+pipeline.pipeline_definition_config = definition_config
+pipeline.update()
+execution = pipeline.start()</code></pre>
+      <p>Finally, you can view your custom-prefixed job by calling <code class="code">list_steps</code>
+        on the pipeline execution.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">steps = execution.list_steps()
+
+prefixed_training_job_name = steps['PipelineExecutionSteps'][0]['Metadata']['TrainingJob']['Arn']</code></pre>
+     
+     
+      <h2 id="build-and-manage-scp">Service Control Policies with Pipelines</h2>
+<p>Service control policies (SCPs) are a type of organization policy that you can use to manage
+        permissions in your organization. SCPs offer central control over the maximum available
+        permissions for all accounts in your organization. By using SageMaker Pipelines within your organization,
+        you can ensure that data scientists manage your pipeline executions without having to
+        interact with the AWS console. </p>
+            <p>If you're using a VPC with your SCP that restricts access to Amazon S3, you need to
+        take steps to allow your pipeline to access other Amazon S3 resources. </p>
+
+<p>To allow SageMaker Pipelines to access Amazon S3 outside of your VPC with the <code class="code">JsonGet</code> function,
+        update your organization's SCP to ensure that the role using SageMaker Pipelines can access Amazon S3. To do
+        this, create an exception for roles that are being used by the SageMaker Pipelines executor via the
+        pipeline execution role using a principal tag and condition key. </p>
+
+<div class="procedure"><h6>To allow SageMaker Pipelines to access Amazon S3 outside of your VPC</h6><ol><li>
+    
+    <p>Create a unique tag for your pipeline execution role following the steps in <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM users and
+              roles</a>. </p>
+  </li><li>
+    
+    <p>Grant an exception in your SCP using the <code class="code">Aws:PrincipalTag IAM</code> condition key
+            for the tag you created. For more information, see <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_create.html">Creating,
+              updating, and deleting service control policies</a>. </p>
+  </li></ol></div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./build-and-manage-pipeline.html">Structure and Execution</div><div id="next" class="next-link" accesskey="n" href="./build-and-manage-xaccount.html">Cross-Account Support</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/build-and-manage-access.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/build-and-manage-access.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

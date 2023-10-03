@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Prepare Model for Compilation - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="neo-compilation-preparing-model" /><meta name="default_state" content="neo-compilation-preparing-model" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="neo-compilation-preparing-model.html" /><meta name="description" content="SageMaker Neo requires machine learning models to satisfy specific input data shapes. The input shape required for compilation depends on the deep learning framework you use. Once your model input shape is correctly formatted, save your model according to the requirements below. Once you have a saved model, compress the model artifacts." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="neo-compilation-preparing-model.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/neo-compilation-preparing-model.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/neo-compilation-preparing-model.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/neo-compilation-preparing-model.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/neo-compilation-preparing-model.html" hreflang="de" /><link rel="alternative" href="neo-compilation-preparing-model.html" hreflang="en-us" /><link rel="alternative" href="neo-compilation-preparing-model.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/neo-compilation-preparing-model.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/neo-compilation-preparing-model.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/neo-compilation-preparing-model.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/neo-compilation-preparing-model.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/neo-compilation-preparing-model.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/neo-compilation-preparing-model.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/neo-compilation-preparing-model.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/neo-compilation-preparing-model.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/neo-compilation-preparing-model.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/neo-compilation-preparing-model.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/neo-compilation-preparing-model.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/neo-compilation-preparing-model.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/neo-compilation-preparing-model.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/neo-compilation-preparing-model.html" hreflang="zh-tw" /><link rel="alternative" href="neo-compilation-preparing-model.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Prepare Model for Compilation" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Prepare Model for Compilation - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#neo-compilation-preparing-model" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/neo-compilation-preparing-model.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/neo-compilation-preparing-model.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/neo-compilation-preparing-model.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,inference,deploy model,endpoint,prediction,ML application,serverless machine learning,multi model deployment,inference pipelines,ML model" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploy models for inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Optimize model performance using Neo",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/neo.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Neo to Compile a Model",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/neo-job-compilation.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Prepare Model for Compilation",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/neo-job-compilation.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#neo-compilation-preparing-model" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="neo-compilation-preparing-model.html#neo-job-compilation-expected-inputs">What input data shapes does SageMaker Neo expect?</a><a href="neo-compilation-preparing-model.html#neo-job-compilation-how-to-save-model">Saving Models for SageMaker Neo</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="neo-compilation-preparing-model">Prepare Model for Compilation</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>SageMaker Neo requires machine learning models to satisfy specific input data shapes. The
+            input shape required for compilation depends on the deep learning framework you use.
+            Once your model input shape is correctly formatted, save your model according to the
+            requirements below. Once you have a saved model, compress the model artifacts.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="neo-compilation-preparing-model.html#neo-job-compilation-expected-inputs">What input data shapes does SageMaker Neo expect?</a></li><li><a href="neo-compilation-preparing-model.html#neo-job-compilation-how-to-save-model">Saving Models for SageMaker Neo</a></li></ul></div>
+            <h2 id="neo-job-compilation-expected-inputs">What input data shapes does SageMaker Neo expect?</h2>
+            <p>Before you compile your model, make sure your model is formatted correctly. Neo
+                expects the name and shape of the expected data inputs for your trained model with
+                JSON format or list format. The expected inputs are framework specific. </p>
+            <p>Below are the input shapes SageMaker Neo expects:</p>
+            <div class="collapsible"><awsui-expandable-section variant="container" header="Keras" id="collapsible-section-2" expanded="true"><p>Specify the name and shape (NCHW format) of the expected data inputs using a 
+                        dictionary format for your trained model. Note that while Keras model artifacts 
+                        should be uploaded in NHWC (channel-last) format, DataInputConfig should be specified in 
+                        NCHW (channel-first) format. The dictionary formats required are as follows:
+                    </p><div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem"><p>For one input: <code class="code"><span>{</span>'input_1':[1,3,224,224]}</code></p></li><li class="listitem"><p>For two inputs: <code class="code"><span>{</span>'input_1': [1,3,224,224], 'input_2':[1,3,224,224]}</code></p></li></ul></div></awsui-expandable-section><awsui-expandable-section variant="container" header="MXNet/ONNX" id="collapsible-section-3" expanded="false"><p>Specify the name and shape (NCHW format) of the expected data inputs using 
+                        a dictionary format for your trained model. The dictionary formats required are as follows:</p><div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem"><p>For one input: <code class="code"><span>{</span>'data':[1,3,1024,1024]}</code></p></li><li class="listitem"><p>For two inputs: <code class="code"><span>{</span>'var1': [1,1,28,28], 'var2':[1,1,28,28]}</code></p></li></ul></div></awsui-expandable-section><awsui-expandable-section variant="container" header="PyTorch" id="collapsible-section-4" expanded="false"><p>For a PyTorch model, you don't need to provide the
+                        name and shape of the expected data inputs if you meet both of the following
+                        conditions:</p><div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>You created your model definition file by using PyTorch 2.0 or
+                                later. For more information about how to create the definition file,
+                                see the <a href="neo-compilation-preparing-model.html#how-to-save-pytorch">PyTorch</a> section under <em>Saving Models for SageMaker Neo</em>.</p>
+                        </li><li class="listitem">
+                            <p>You are compiling your model for a cloud instance. For more
+                                information about the instance types that SageMaker Neo supports, see
+                                    <a href="neo-supported-cloud.html">Supported Instance Types and Frameworks</a>.</p>
+                        </li></ul></div><p>If you meet these conditions, SageMaker Neo gets the input
+                        configuration from the model definition file (.pt or .pth) that you create
+                        with PyTorch.</p><p>Otherwise, you must do the following:</p><p>Specify the name and shape (NCHW format) of the expected data inputs using
+                        a dictionary format for your trained model. Alternatively, you can specify
+                        the shape only using a list format. The dictionary formats required are as
+                        follows:</p><div class="itemizedlist">
+                         
+                         
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem"><p>For one input in dictionary format: <code class="code"><span>{</span>'input0':[1,3,224,224]}</code></p></li><li class="listitem"><p>For one input in list format: <code class="code">[[1,3,224,224]]</code></p></li><li class="listitem"><p>For two inputs in dictionary format: <code class="code"><span>{</span>'input0':[1,3,224,224], 'input1':[1,3,224,224]}</code></p></li><li class="listitem"><p>For two inputs in list format: <code class="code">[[1,3,224,224], [1,3,224,224]]</code></p></li></ul></div></awsui-expandable-section><awsui-expandable-section variant="container" header="TensorFlow" id="collapsible-section-1" expanded="false"><p>Specify the name and shape (NHWC format) of the expected 
+                        data inputs using a dictionary format for your trained model. 
+                        The dictionary formats required are as follows:</p><div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem"><p>For one input: <code class="code"><span>{</span>'input':[1,1024,1024,3]}</code></p></li><li class="listitem"><p>For two inputs: <code class="code"><span>{</span>'data1': [1,28,28,1], 'data2':[1,28,28,1]}</code></p></li></ul></div></awsui-expandable-section><awsui-expandable-section variant="container" header="TFLite" id="collapsible-section-6" expanded="false"><p>Specify the name and shape (NHWC format) of the expected data inputs 
+                        using a dictionary format for your trained model. The dictionary formats 
+                        required are as follows:</p><div class="itemizedlist">
+                         
+                    <ul class="itemizedlist"><li class="listitem"><p>For one input: <code class="code"><span>{</span>'input':[1,224,224,3]}</code></p></li></ul></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>SageMaker Neo only supports TensorFlow Lite for edge device targets. 
+                        For a list of supported SageMaker Neo edge device targets, see the SageMaker Neo <a href="neo-supported-devices-edge-devices.html#neo-supported-edge-devices">Devices</a> page.
+                        For a list of supported SageMaker Neo cloud instance targets, see the SageMaker Neo <a href="neo-supported-cloud.html">Supported Instance Types and Frameworks</a> page.</p></div></div></awsui-expandable-section><awsui-expandable-section variant="container" header="XGBoost" id="collapsible-section-5" expanded="false"><p>An input data name and shape are not needed.</p></awsui-expandable-section></div>
+         
+            <h2 id="neo-job-compilation-how-to-save-model">Saving Models for SageMaker Neo</h2>
+            <p>The following code examples show how to save your model to make it compatible with Neo. 
+                Models must be packaged as compressed tar files (<code class="code">*.tar.gz</code>).</p>
+            <div class="collapsible"><awsui-expandable-section variant="container" header="Keras" id="how-to-save-tf-keras" expanded="true"><p>Keras models require one model definition file (<code class="code">.h5</code>).</p><p>There are two options for saving your Keras model in order to
+                        make it compatible for SageMaker Neo:</p><div class="orderedlist">
+                         
+                         
+                    <ol><li><p>Export to <code class="code">.h5</code> format with <code class="code">model.save("&lt;model-name&gt;", save_format="h5")</code>.</p></li><li><p>Freeze the <code class="code">SavedModel</code> after exporting.</p></li></ol></div><p>Below is an example of how to export a <code class="code">tf.keras</code> model as a
+                        frozen graph (option two):</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import os
+import tensorflow as tf
+from tensorflow.keras.applications.resnet50 import ResNet50
+from tensorflow.keras import backend
+
+tf.keras.backend.set_learning_phase(0)
+model = tf.keras.applications.ResNet50(weights='imagenet', include_top=False, input_shape=(224, 224, 3), pooling='avg')
+model.summary()
+
+# Save as a SavedModel
+export_dir = 'saved_model/'
+model.save(export_dir, save_format='tf')
+
+# Freeze saved model
+input_node_names = [inp.name.split(":")[0] for inp in model.inputs]
+output_node_names = [output.name.split(":")[0] for output in model.outputs]
+print("Input names: ", input_node_names)
+with tf.Session() as sess:
+    loaded = tf.saved_model.load(sess, export_dir=export_dir, tags=["serve"]) 
+    frozen_graph = tf.graph_util.convert_variables_to_constants(sess,
+                                                                sess.graph.as_graph_def(),
+                                                                output_node_names)
+    tf.io.write_graph(graph_or_graph_def=frozen_graph, logdir=".", name="frozen_graph.pb", as_text=False)
+
+import tarfile
+tar = tarfile.open("frozen_graph.tar.gz", "w:gz")
+tar.add("frozen_graph.pb")
+tar.close()</code></pre><div class="awsdocs-note awsdocs-warning"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Warning</h6></div><div class="awsdocs-note-text"><p>Do not export your model with the <code class="code">SavedModel</code> class using 
+                        <code class="code">model.save(&lt;path&gt;, save_format='tf')</code>. This format is suitable for training, 
+                        but it is not suitable for inference.</p></div></div></awsui-expandable-section><awsui-expandable-section variant="container" header="MXNet" id="how-to-save-mxnet" expanded="false"><p>MXNet models must be saved as a  single symbol file <code class="code">*-symbol.json</code> and a 
+                        single parameter <code class="code">*.params files</code>.</p><awsdocs-tabs><dl style="display: none">
+                        <dt>Gluon Models</dt><dd tab-id="gluon-models"><p>Define the neural network using the <code class="code">HybridSequential</code> Class. This will run 
+                                the code in the style of symbolic programming (as opposed to imperative programming).</p>
+                                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from mxnet import nd, sym
+from mxnet.gluon import nn
+
+def get_net():
+    net = nn.HybridSequential()  # Here we use the class HybridSequential.
+    net.add(nn.Dense(256, activation='relu'),
+            nn.Dense(128, activation='relu'),
+            nn.Dense(2))
+    net.initialize()
+    return net
+
+# Define an input to compute a forward calculation. 
+x = nd.random.normal(shape=(1, 512))
+net = get_net()
+
+# During the forward calculation, the neural network will automatically infer
+# the shape of the weight parameters of all the layers based on the shape of
+# the input.
+net(x)
+                        
+# hybridize model
+net.hybridize()
+net(x)
+
+# export model
+net.export('&lt;model_name&gt;') # this will create model-symbol.json and model-0000.params files
+
+import tarfile
+tar = tarfile.open("&lt;model_name&gt;.tar.gz", "w:gz")
+for name in ["&lt;model_name&gt;-0000.params", "&lt;model_name&gt;-symbol.json"]:
+    tar.add(name)
+tar.close()</code></pre>
+                                <p>For more information about hybridizing models, see the 
+                                    <a href="https://mxnet.apache.org/versions/1.7.0/api/python/docs/tutorials/packages/gluon/blocks/hybridize.html" rel="noopener noreferrer" target="_blank"><span>MXNet hybridize documentation</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                            </dd>
+                        <dt>Gluon Model Zoo (GluonCV)</dt><dd tab-id="gluon-model-zoo-(gluoncv)">
+                                <p>GluonCV model zoo models come pre-hybridized. So you can just export them.</p>
+                                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import numpy as np
+import mxnet as mx
+import gluoncv as gcv
+from gluoncv.utils import export_block
+import tarfile
+
+net = gcv.model_zoo.get_model('&lt;model_name&gt;', pretrained=True) # For example, choose &lt;model_name&gt; as resnet18_v1
+export_block('&lt;model_name&gt;', net, preprocess=True, layout='HWC')
+
+tar = tarfile.open("&lt;model_name&gt;.tar.gz", "w:gz")
+
+for name in ["&lt;model_name&gt;-0000.params", "&lt;model_name&gt;-symbol.json"]:
+    tar.add(name)
+tar.close()</code></pre>
+                            </dd>
+                        <dt>Non Gluon Models</dt><dd tab-id="non-gluon-models">
+                                <p>All non-Gluon models when saved to disk use <code class="code">*-symbol</code> and <code class="code">*.params</code> files. 
+                                    They are therefore already in the correct format for Neo.</p>
+                                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python "># Pass the following 3 parameters: sym, args, aux
+mx.model.save_checkpoint('&lt;model_name&gt;',0,sym,args,aux) # this will create &lt;model_name&gt;-symbol.json and &lt;model_name&gt;-0000.params files
+
+import tarfile
+tar = tarfile.open("&lt;model_name&gt;.tar.gz", "w:gz")
+
+for name in ["&lt;model_name&gt;-0000.params", "&lt;model_name&gt;-symbol.json"]:
+    tar.add(name)
+tar.close()</code></pre>
+                            </dd>
+                    </dl></awsdocs-tabs></awsui-expandable-section><awsui-expandable-section variant="container" header="PyTorch" id="how-to-save-pytorch" expanded="false"><p>PyTorch models must be saved as a definition file (<code class="code">.pt</code> or <code class="code">.pth</code>) 
+                        with input datatype of <code class="code">float32</code>.</p><p>To save your model, use <code class="code">torch.jit.trace</code> followed by
+                            <code class="code">torch.save</code>. This will save an object to a disk file and by
+                        default uses python pickle (<code class="code">pickle_module=pickle</code>) to save the
+                        objects and some metadata. Next, convert the saved model to a compressed tar
+                        file.</p><p>If you save your model with PyTorch 2.0 or later,
+                        SageMaker Neo uses your definition file to get the name and shape of the expected
+                        input for the model. In that case, you don't need to specify the data input
+                        configuration when you compile the model.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import torchvision
+import torch
+
+model = torchvision.models.resnet18(pretrained=True)
+model.eval()
+inp = torch.rand(1, 3, 224, 224)
+model_trace = torch.jit.trace(model, inp)
+
+# Save your model. The following code saves it with the .pth file extension
+model_trace.save('model.pth')
+
+# Save as a compressed tar file
+import tarfile
+with tarfile.open('model.tar.gz', 'w:gz') as f:
+    f.add('model.pth')
+f.close()</code></pre></awsui-expandable-section><awsui-expandable-section variant="container" header="TensorFlow" id="how-to-save-tf" expanded="false"><p>TensorFlow requires one <code class="code">.pb</code> or one <code class="code">.pbtxt</code> file and a variables 
+                        directory that contains variables. For frozen models, only one <code class="code">.pb</code> or <code class="code">.pbtxt</code> file is required.</p><p>The following code example shows how to use the tar Linux command to
+                        compress your model. Run the following in your terminal or in a Jupyter
+                        notebook (if you use a Jupyter notebook, insert the <code class="code">!</code> magic
+                        command at the beginning of the statement):</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python "># Download SSD_Mobilenet trained model
+!wget http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz
+
+# unzip the compressed tar file
+!tar xvf ssd_mobilenet_v2_coco_2018_03_29.tar.gz
+
+# Compress the tar file and save it in a directory called 'model.tar.gz'
+!tar czvf model.tar.gz ssd_mobilenet_v2_coco_2018_03_29/frozen_inference_graph.pb</code></pre><p>The command flags used in this example accomplish the following:</p><div class="itemizedlist">
+                         
+                         
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p><code class="code">c</code>: Create an archive</p>
+                        </li><li class="listitem">
+                            <p><code class="code">z</code>: Compress the archive with gzip</p>
+                        </li><li class="listitem">
+                            <p><code class="code">v</code>: Display archive progress</p>
+                        </li><li class="listitem">
+                            <p><code class="code">f</code>: Specify the filename of the archive</p>
+                        </li></ul></div></awsui-expandable-section><awsui-expandable-section variant="container" header="Built-In Estimators" id="how-to-save-built-in" expanded="false"><p>Built-in estimators are either made by framework-specific containers or
+                        algorithm-specific containers. Estimator objects for both the built-in
+                        algorithm and framework-specific estimator saves the model in the correct
+                        format for you when you train the model using the built-in <code class="code">.fit</code>
+                        method.</p><p>For example, you can use a <code class="code">sagemaker.TensorFlow</code> to define a TensorFlow estimator:</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from sagemaker.tensorflow import TensorFlow
+
+estimator = TensorFlow(entry_point='mnist.py',
+                        role=role,  #param role can be arn of a sagemaker execution role
+                        framework_version='1.15.3',
+                        py_version='py3',
+                        training_steps=1000, 
+                        evaluation_steps=100,
+                        instance_count=2,
+                        instance_type='ml.c4.xlarge')</code></pre><p>Then train the model with <code class="code">.fit</code> built-in method:</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">estimator.fit(inputs)</code></pre><p>Before finally compiling model with the build in
+                            <code class="code">compile_model</code> method:</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python "># Specify output path of the compiled model
+output_path = '/'.join(estimator.output_path.split('/')[:-1])
+
+# Compile model
+optimized_estimator = estimator.compile_model(target_instance_family='ml_c5', 
+                              input_shape=<span>{</span>'data':[1, 784]},  # Batch size 1, 3 channels, 224x224 Images.
+                              output_path=output_path,
+                              framework='tensorflow', framework_version='1.15.3')</code></pre><p>You can also use the  <code class="code">sagemaker.estimator.Estimator</code> Class to initialize an 
+                        estimator object for training and compiling a built-in algorithm with the 
+                        <code class="code">compile_model</code> method from the SageMaker Python SDK:</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import sagemaker
+from sagemaker.image_uris import retrieve
+sagemaker_session = sagemaker.Session()
+aws_region = sagemaker_session.boto_region_name
+
+# Specify built-in algorithm training image
+training_image = retrieve(framework='image-classification', 
+                          region=aws_region, image_scope='training')
+
+training_image = retrieve(framework='image-classification', region=aws_region, image_scope='training')
+
+# Create estimator object for training
+estimator = sagemaker.estimator.Estimator(image_uri=training_image,
+                                          role=role,  #param role can be arn of a sagemaker execution role
+                                          instance_count=1,
+                                          instance_type='ml.p3.8xlarge',
+                                          volume_size = 50,
+                                          max_run = 360000,
+                                          input_mode= 'File',
+                                          output_path=s3_training_output_location,
+                                          base_job_name='image-classification-training'
+                                          )
+                                          
+# Setup the input data_channels to be used later for training.                                          
+train_data = sagemaker.inputs.TrainingInput(s3_training_data_location,
+                                            content_type='application/x-recordio',
+                                            s3_data_type='S3Prefix')
+validation_data = sagemaker.inputs.TrainingInput(s3_validation_data_location,
+                                                content_type='application/x-recordio',
+                                                s3_data_type='S3Prefix')
+data_channels = <span>{</span>'train': train_data, 'validation': validation_data}
+
+
+# Train model
+estimator.fit(inputs=data_channels, logs=True)
+
+# Compile model with Neo                                                                                  
+optimized_estimator = estimator.compile_model(target_instance_family='ml_c5',
+                                          input_shape=<span>{</span>'data':[1, 3, 224, 224], 'softmax_label':[1]},
+                                          output_path=s3_compilation_output_location,
+                                          framework='mxnet',
+                                          framework_version='1.7')</code></pre><p>For more information about compiling models with the SageMaker Python SDK, 
+                        see <a href="neo-job-compilation-sagemaker-sdk.html">Compile a Model (Amazon SageMaker
+                SDK)</a>.</p></awsui-expandable-section></div>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./neo-job-compilation.html">Compile Models</div><div id="next" class="next-link" accesskey="n" href="./neo-job-compilation-cli.html">Compile Models: CLI</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/neo-compilation-preparing-model.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/neo-compilation-preparing-model.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configure Parameters to Monitor Bias Drift - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="clarify-config-json-monitor-bias-parameters" /><meta name="default_state" content="clarify-config-json-monitor-bias-parameters" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="clarify-config-json-monitor-bias-parameters.html" /><meta name="description" content="How to configure parameters for monitoring bias drift in Amazon SageMaker Clarify." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="clarify-config-json-monitor-bias-parameters.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" hreflang="de" /><link rel="alternative" href="clarify-config-json-monitor-bias-parameters.html" hreflang="en-us" /><link rel="alternative" href="clarify-config-json-monitor-bias-parameters.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" hreflang="zh-tw" /><link rel="alternative" href="clarify-config-json-monitor-bias-parameters.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Configure Parameters to Monitor Bias Drift" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Configure Parameters to Monitor Bias Drift - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#clarify-config-json-monitor-bias-parameters" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,configure bias drift monitoring" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Monitor data and model quality",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Monitor Bias Drift for Models in Production",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-model-monitor-bias-drift.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Configure Parameters to Monitor Bias Drift",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-model-monitor-bias-drift.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#clarify-config-json-monitor-bias-parameters" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="clarify-config-json-monitor-bias-parameters.html#clarify-config-json-monitor-bias-parameters-examples">Example JSON
+                    Configuration Files for CSV and JSON Lines Datasets</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="clarify-config-json-monitor-bias-parameters">Configure Parameters to
+                Monitor Bias Drift</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon SageMaker Clarify bias monitoring reuses a subset of the parameters used in the analysis
+            configuration of <a href="clarify-processing-job-configure-analysis.html">Configure the Analysis</a>. After describing the
+            configuration parameters, this topic provides examples of JSON files. These files are
+            used to configure CSV and JSON Lines datasets to monitor them for bias drift when
+            machine learning models are in production.</p><p>The following parameters must be provided in a JSON file. The path to this JSON file
+            must be provided in the <code class="code">ConfigUri</code> parameter of the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ModelBiasAppSpecification"><code class="code">ModelBiasAppSpecification</code></a> API.</p><div class="itemizedlist">
+             
+             
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><code class="code">"<b>version</b>"</code> – (Optional)
+                    Schema version of the configuration file. If not provided, the latest supported
+                    version is used.</p>
+            </li><li class="listitem">
+                <p><code class="code">"<b>headers</b>"</code> – (Optional) A
+                    list of column names in the dataset. If the <code class="code">dataset_type</code> is
+                        <code class="code">"application/jsonlines"</code> and <code class="code">"label"</code> is specified,
+                    then the last header becomes the header of the label column. </p>
+            </li><li class="listitem">
+                <p><code class="code">"<b>label</b>"</code> – (Optional)
+                    Target attribute for the model to be used for <em>bias
+                        metrics</em>. Specified either as a column name, or an index (if
+                    dataset format is CSV), or as a JMESPath (if dataset format is JSON
+                    Lines).</p>
+            </li><li class="listitem">
+                <p><code class="code">"<b>label_values_or_threshold</b>"</code>
+                    – (Optional) List of label values or threshold. Indicates positive
+                    outcome used for bias metrics.</p>
+            </li><li class="listitem">
+                <p><code class="code">"<b>facet</b>"</code> – (Optional) A
+                    list of features that are sensitive attributes, referred to as facets. Facets
+                    are used for <em>bias metrics</em> in the form of
+                    pairs, and include the following:</p>
+                <div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="code">"name_or_index"</code> – Facet column name or
+                            index.</p>
+                    </li><li class="listitem">
+                        <p><code class="code">"value_or_threshold"</code> – (Optional) List of values
+                            or threshold that the facet column can take. Indicates the sensitive
+                            group, such as the group that is used to measure bias against. If not
+                            provided, bias metrics are computed as one group for every unique value
+                            (rather than all values). If the facet column is numeric, this threshold
+                            value is applied as the lower bound to select the sensitive
+                            group.</p>
+                    </li></ul></div>
+            </li><li class="listitem">
+                <p><code class="code">"<b>group_variable</b>"</code> –
+                    (Optional) A column name or index to indicate the group variable to be used for
+                    the <em>bias metric</em>
+                    <em>Conditional Demographic Disparity.</em></p>
+            </li></ul></div><p>The other parameters should be provided in <code class="code">EndpointInput</code> (for real-time
+            endpoints) or <code class="code">BatchTransformInput</code> (for batch transform jobs) of the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ModelBiasJobInput"><code class="code">ModelBiasJobInput</code></a> API.</p><div class="itemizedlist">
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><code class="code">FeaturesAttribute</code> – This parameter is required if endpoint
+                    input data format is <code class="code">"application/jsonlines"</code>. It is the JMESPath
+                    used to locate the feature columns if the dataset format is JSON Lines.</p>
+            </li><li class="listitem">
+                <p><code class="code">InferenceAttribute</code> – Index or JMESPath location in the
+                    model output for the target attribute to be used for monitored for bias using
+                    bias metrics. If it is not provided in the CSV <code class="code">accept_type</code> case,
+                    then it is assumed that the model output is a single numeric value corresponding
+                    to a score or probability.</p>
+            </li><li class="listitem">
+                <p><code class="code">ProbabilityAttribute</code> – Index or JMESPath location in the
+                    model output for probabilities. If the model output is JSON Lines with a list of
+                    labels and probabilities, for example, then the label that corresponds to the
+                    maximum probability is selected for bias computations.</p>
+            </li><li class="listitem">
+                <p><code class="code">ProbabilityThresholdAttribute</code> – (Optional) A float value
+                    to indicate the threshold to select the binary label, in the case of binary
+                    classification. The default value is 0.5.</p>
+            </li></ul></div>
+            <h2 id="clarify-config-json-monitor-bias-parameters-examples">Example JSON
+                    Configuration Files for CSV and JSON Lines Datasets</h2>
+
+            <p>Here are examples of the JSON files used to configure CSV and JSON Lines datasets
+                to monitor them for bias drift.</p>
+
+            <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="clarify-config-json-monitor-bias-parameters.html#clarify-config-json-monitor-bias-parameters-example-csv">CSV
+                        Datasets</a></li><li><a href="clarify-config-json-monitor-bias-parameters.html#clarify-config-json-monitor-bias-parameters-example-jsonlines">JSON Lines Datasets</a></li></ul></div>
+
+             
+                <h3 id="clarify-config-json-monitor-bias-parameters-example-csv">CSV
+                        Datasets</h3>
+
+                <p>Consider a dataset that has four feature columns and one label column, where
+                    the first feature and the label are binary, as in the following example.</p>
+
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">0, 0.5814568701544718, 0.6651538910132964, 0.3138080342665499, 0
+1, 0.6711642728531724, 0.7466687034026017, 0.1215477472819713, 1
+0, 0.0453256543003371, 0.6377430803264152, 0.3558625219713576, 1
+1, 0.4785191813363956, 0.0265841045263860, 0.0376935084990697, 1</code></pre>
+
+                <p>Assume that the model output has two columns, where the first one is the
+                    predicted label and the second one is the probability, as in the following
+                    example.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">1, 0.5385257417814224</code></pre>
+
+                <p>Then the following JSON configuration file shows an example of how this CSV
+                    dataset can be configured.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "headers": [
+        "feature_0",
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "target"
+    ],
+    "label": "target",
+    "label_values_or_threshold": [1],
+    "facet": [<span>{</span>
+        "name_or_index": "feature_1",
+        "value_or_threshold": [1]
+    }]
+}</code></pre>
+
+                <p>The predicted label is selected by the <code class="code">"InferenceAttribute"</code>
+                    parameter. Zero-based numbering is used, so 0 indicates the first column of the
+                    model output,</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">"EndpointInput": <span>{</span>
+    ...
+    "InferenceAttribute": 0
+    ...
+}</code></pre>
+
+                <p>Alternatively, you can use different parameters to convert probability values
+                    to binary predicted labels. Zero-based numbering is used: 1 indicates the second
+                    column; the <code class="code">ProbabilityThresholdAttribute</code> value of 0.6 indicates
+                    that a probability greater than 0.6 predicts the binary label as 1.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">"EndpointInput": <span>{</span>
+    ...
+    "ProbabilityAttribute": 1,
+    "ProbabilityThresholdAttribute": 0.6
+    ...
+}</code></pre>
+
+             
+             
+                <h3 id="clarify-config-json-monitor-bias-parameters-example-jsonlines">JSON Lines Datasets</h3>
+                <p>Consider a dataset that has four feature columns and one label column, where
+                    the first feature and the label are binary, as in the following example.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>"features":[0, 0.5814568701544718, 0.6651538910132964, 0.3138080342665499], "label":0}
+<span>{</span>"features":[1, 0.6711642728531724, 0.7466687034026017, 0.1215477472819713], "label":1}
+<span>{</span>"features":[0, 0.0453256543003371, 0.6377430803264152, 0.3558625219713576], "label":1}
+<span>{</span>"features":[1, 0.4785191813363956, 0.0265841045263860, 0.0376935084990697], "label":1}</code></pre>
+
+                <p>Assume that the model output has two columns, where the first is a predicted
+                    label and the second is a probability.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>"predicted_label":1, "probability":0.5385257417814224}</code></pre>
+
+                <p>The following JSON configuration file shows an example of how this JSON Lines
+                    dataset can be configured.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "headers": [
+        "feature_0",
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "target"
+    ],
+    "label": "label",
+    "label_values_or_threshold": [1],
+    "facet": [<span>{</span>
+        "name_or_index": "feature_1",
+        "value_or_threshold": [1]
+    }]
+}</code></pre>
+                <p>Then, the <code class="code">"features"</code> parameter value in
+                        <code class="code">EndpointInput</code> (for real-time endpoints) or
+                        <code class="code">BatchTransformInput</code> (for batch transform jobs) is used to
+                    locate the features in the dataset, and the <code class="code">"predicted_label"</code>
+                    parameter value selects the predicted label from the model output. </p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">"EndpointInput": <span>{</span>
+    ...
+    "FeaturesAttribute": "features",
+    "InferenceAttribute": "predicted_label"
+    ...
+}</code></pre>
+
+                <p>Alternatively, you can convert probability values to predicted binary labels
+                    using the <code class="code">ProbabilityThresholdAttribute</code> parameter value. A value of
+                    0.6, for example, indicates that a probability greater than 0.6 predicts the
+                    binary label as 1.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">"EndpointInput": <span>{</span>
+    ...
+    "FeaturesAttribute": "features",
+    "ProbabilityAttribute": "probability",
+    "ProbabilityThresholdAttribute": 0.6
+    ...
+}</code></pre>
+
+             
+
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./clarify-model-monitor-bias-drift-violations.html">Bias Drift
+                Violations</div><div id="next" class="next-link" accesskey="n" href="./clarify-model-monitor-bias-drift-schedule.html">Schedule Bias Drift
+                Monitoring Jobs</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

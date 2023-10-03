@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>List of Debugger Built-in Rules - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="debugger-built-in-rules" /><meta name="default_state" content="debugger-built-in-rules" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="debugger-built-in-rules.html" /><meta name="description" content="Analyze tensors emitted during the training of machine learning models with Amazon SageMaker Debugger built-in rules." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="debugger-built-in-rules.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/debugger-built-in-rules.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/debugger-built-in-rules.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/debugger-built-in-rules.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/debugger-built-in-rules.html" hreflang="de" /><link rel="alternative" href="debugger-built-in-rules.html" hreflang="en-us" /><link rel="alternative" href="debugger-built-in-rules.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/debugger-built-in-rules.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/debugger-built-in-rules.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/debugger-built-in-rules.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/debugger-built-in-rules.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/debugger-built-in-rules.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/debugger-built-in-rules.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/debugger-built-in-rules.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/debugger-built-in-rules.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/debugger-built-in-rules.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/debugger-built-in-rules.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/debugger-built-in-rules.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/debugger-built-in-rules.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/debugger-built-in-rules.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/debugger-built-in-rules.html" hreflang="zh-tw" /><link rel="alternative" href="debugger-built-in-rules.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="List of Debugger Built-in Rules" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>List of Debugger Built-in Rules - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#debugger-built-in-rules" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-built-in-rules.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-built-in-rules.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-built-in-rules.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Debug and improve model performance",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-debug-and-improve-model-performance.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Amazon SageMaker Debugger to debug and improve model performance",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-debugger.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "List of Debugger Built-in Rules",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-debugger.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#debugger-built-in-rules" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="debugger-built-in-rules.html#debugger-built-in-rules-Rule">Debugger Rule</a><a href="debugger-built-in-rules.html#create-xgboost-report">CreateXGBoostReport</a><a href="debugger-built-in-rules.html#dead-relu">DeadRelu</a><a href="debugger-built-in-rules.html#exploding-tensor">ExplodingTensor</a><a href="debugger-built-in-rules.html#poor-weight-initialization">PoorWeightInitialization</a><a href="debugger-built-in-rules.html#saturated-activation">SaturatedActivation</a><a href="debugger-built-in-rules.html#vanishing-gradient">VanishingGradient</a><a href="debugger-built-in-rules.html#weight-update-ratio">WeightUpdateRatio</a><a href="debugger-built-in-rules.html#all-zero">AllZero</a><a href="debugger-built-in-rules.html#class-imbalance">ClassImbalance</a><a href="debugger-built-in-rules.html#loss-not-decreasing">LossNotDecreasing</a><a href="debugger-built-in-rules.html#overfit">Overfit</a><a href="debugger-built-in-rules.html#overtraining">Overtraining</a><a href="debugger-built-in-rules.html#similar-across-runs">SimilarAcrossRuns</a><a href="debugger-built-in-rules.html#stalled-training">StalledTrainingRule</a><a href="debugger-built-in-rules.html#tensor-variance">TensorVariance</a><a href="debugger-built-in-rules.html#unchanged-tensor">UnchangedTensor</a><a href="debugger-built-in-rules.html#checkinput-mages">CheckInputImages</a><a href="debugger-built-in-rules.html#nlp-sequence-ratio">NLPSequenceRatio</a><a href="debugger-built-in-rules.html#confusion">Confusion</a><a href="debugger-built-in-rules.html#feature_importance_overweight">FeatureImportanceOverweight</a><a href="debugger-built-in-rules.html#tree-depth">TreeDepth</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="debugger-built-in-rules">List of Debugger Built-in Rules</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Use the Debugger built-in rules provided by Amazon SageMaker Debugger and analyze metrics and tensors collected
+        while training your models. The Debugger built-in rules monitor various common conditions that
+        are critical for the success of a training job. You can call the built-in rules using
+        <a href="https://sagemaker.readthedocs.io" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> or the low-level SageMaker API operations. There's no additional cost for
+        using the built-in rules. For more information about billing, see the <a href="http://aws.amazon.com/sagemaker/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> page.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The maximum numbers of built-in rules that you can attach to a training job is 20.
+            SageMaker Debugger fully manages the built-in rules and analyzes your training job
+            synchronously.</p></div></div><div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>To use the new Debugger features, you need to upgrade the SageMaker Python SDK and the SMDebug
+        client library. In your iPython kernel, Jupyter notebook, or JupyterLab environment, run
+        the following code to install the latest versions of the libraries and restart the
+        kernel.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import sys
+import IPython
+!<span>{</span>sys.executable} -m pip install -U sagemaker smdebug
+IPython.Application.instance().kernel.do_shutdown(True)</code></pre></div></div>
+        <h2 id="debugger-built-in-rules-Rule">Debugger Rule</h2>
+        
+        <p>The following rules are the Debugger built-in rules that are callable using the
+                <code class="code">Rule.sagemaker</code> classmethod.</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19b9b5"><thead><tr><th class="table-header" colspan="100"><div class="title">Debugger built-in rules for generating training reports</div></th></tr>
+                    <tr>
+                        <th>Scope of Validity</th>
+                        <th>Built-in Rules</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1">Training Report for SageMaker XGboost training job</td>
+                        <td tabindex="-1">
+                            <div class="itemizedlist">
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#create-xgboost-report">create_xgboost_report</a></code></p>
+                                </li></ul></div>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <div class="table-container" id="built-in-rules-debugging"><div class="table-contents"><table id="w714aac23c20c19c19b9b7"><thead><tr><th class="table-header" colspan="100"><div class="title">Debugger built-in rules for debugging model
+                training data (output tensors)</div></th></tr>
+                    <tr>
+                        <th>Scope of Validity</th>
+                        <th>Built-in Rules</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1">Deep learning frameworks (TensorFlow, MXNet, and PyTorch)</td>
+                        <td tabindex="-1">
+                            <div class="itemizedlist">
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#dead-relu">dead_relu</a></code></p>
+                                </li><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#exploding-tensor">exploding_tensor</a></code></p>
+                                </li><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#poor-weight-initialization">poor_weight_initialization</a></code></p>
+                                </li><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#saturated-activation">saturated_activation</a></code></p>
+                                </li><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#vanishing-gradient">vanishing_gradient</a></code></p>
+                                </li><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#weight-update-ratio">weight_update_ratio</a></code></p>
+                                </li></ul></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">Deep learning frameworks (TensorFlow, MXNet, and PyTorch) and the XGBoost
+                            algorithm </td>
+                        <td tabindex="-1">
+                            <div class="itemizedlist">
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#all-zero">all_zero</a></code></p>
+                                </li><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#class-imbalance">class_imbalance</a></code></p>
+                                </li><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#loss-not-decreasing">loss_not_decreasing</a></code></p>
+                                </li><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#overfit">overfit</a></code></p>
+                                </li><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#overtraining">overtraining</a></code></p>
+                                </li><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#similar-across-runs">similar_across_runs</a></code></p>
+                                </li><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#stalled-training">stalled_training_rule</a></code></p>
+                                </li><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#tensor-variance">tensor_variance</a></code></p>
+                                </li><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#unchanged-tensor">unchanged_tensor</a></code></p>
+                                </li></ul></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">Deep learning applications</td>
+                        <td tabindex="-1">
+                            <div class="itemizedlist">
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#checkinput-mages">check_input_images</a></code></p>
+                                </li><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#nlp-sequence-ratio">nlp_sequence_ratio</a></code></p>
+                                </li></ul></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">XGBoost algorithm</td>
+                        <td tabindex="-1">
+                            <div class="itemizedlist">
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#confusion">confusion</a></code></p>
+                                </li><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#feature_importance_overweight">feature_importance_overweight</a></code></p>
+                                </li><li class="listitem">
+                                    <p><code class="code"><a href="debugger-built-in-rules.html#tree-depth">tree_depth</a></code></p>
+                                </li></ul></div>
+                        </td>
+                    </tr>
+                </table></div></div>
+    <p><b>To use the built-in rules with default parameter values</b> –
+        use the following configuration format:</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.debugger import Rule, ProfilerRule, rule_configs
+
+rules = [
+    Rule.sagemaker(rule_configs.<code class="replaceable">built_in_rule_name_1</code>()),
+    Rule.sagemaker(rule_configs.<code class="replaceable">built_in_rule_name_2</code>()),
+    ...
+    Rule.sagemaker(rule_configs.<code class="replaceable">built_in_rule_name_n</code>())
+]</code></pre><p><b>To use the built-in rules with customizing the parameter
+            values</b> – use the following configuration format:</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.debugger import Rule, ProfilerRule, rule_configs
+
+rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.<code class="replaceable">built_in_rule_name</code>(),
+        rule_parameters=<span>{</span>
+                "<code class="replaceable">key</code>": "<code class="replaceable">value</code>"
+        }
+        collections_to_save=[ 
+            CollectionConfig(
+                name="<code class="replaceable">tensor_collection_name</code>", 
+                parameters=<span>{</span>
+                    "<code class="replaceable">key</code>": "<code class="replaceable">value</code>"
+                } 
+            )
+        ]
+    )
+]</code></pre><p>To find available keys for the <code class="code">rule_parameters</code> parameter, see the parameter description tables.</p><p>Sample rule configuration codes are provided for each built-in rule below the parameter
+        description tables.</p><div class="itemizedlist">
+         
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p>For a full instruction and examples of using the Debugger built-in rules, see <a href="use-debugger-built-in-rules.html#debugger-deploy-built-in-rules">Debugger Built-in Rules Example
+                    Code</a>.</p>
+        </li><li class="listitem">
+            <p>For a full instruction on using the built-in rules with the low-level SageMaker API
+                operations, see <a href="debugger-createtrainingjob-api.html">Configure Debugger Using Amazon SageMaker API</a>.</p>
+        </li></ul></div>
+        <h2 id="create-xgboost-report">CreateXgboostReport</h2>
+        <p>The CreateXgboostReport rule collects output tensors from an XGBoost training job and
+            autogenerates a comprehensive training report. You can download a comprehensive
+            profiling report while a training job is running or after the training job is complete,
+            and check progress of training or the final result of the training job. The
+            CreateXgboostReport rule collects the following output tensors by default: </p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><code class="code">hyperparameters</code> – Saves at the first step</p>
+            </li><li class="listitem">
+                <p><code class="code">metrics</code> – Saves loss and accuracy every 5 steps</p>
+            </li><li class="listitem">
+                <p><code class="code">feature_importance</code> – Saves every 5 steps</p>
+            </li><li class="listitem">
+                <p><code class="code">predictions</code> – Saves every 5 steps</p>
+            </li><li class="listitem">
+                <p><code class="code">labels</code> – Saves every 5 steps</p>
+            </li></ul></div>
+        
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c25b7"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameter Descriptions for the CreateXgboostReport Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        
+                        <td tabindex="-1"><p>The base trial training job name. This parameter is
+                            automatically set to the current training job by
+                            Amazon SageMaker Debugger.</p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">rules=[
+    Rule.sagemaker(
+        rule_configs.<code class="userinput">create_xgboost_report</code>()
+    )  
+]</code></pre>
+     
+        <h2 id="dead-relu">DeadRelu</h2>
+        <p>This rule detects when the percentage of rectified linear unit (ReLU) activation
+            functions in a trial are considered dead because their activation activity has dropped
+            below a threshold. If the percent of inactive ReLUs in a layer is greater than the
+                <code class="code">threshold_layer</code> value of inactive ReLUs, the rule returns
+                <code class="code">True</code>.</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c27b5"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameter Descriptions for the DeadRelu Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        <td tabindex="-1">
+                            <p>The base trial training job name. This parameter is automatically
+                                set to the current training job by Amazon SageMaker Debugger. </p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">tensor_regex</code></td>
+                        <td tabindex="-1">
+                            <p>A list of regex patterns used to restrict this comparison to
+                                specific scalar-valued tensors. The rule inspects only the tensors
+                                that match the regex patterns specified in the list. If no patterns
+                                are passed, the rule compares all tensors gathered in the trials by
+                                default. Only scalar-valued tensors can be matched.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: List of strings or a comma-separated string </p>
+                            <p>Default value: <code class="code">".*relu_output"</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">threshold_inactivity</code></td>
+                        <td tabindex="-1">
+                            <p>Defines a level of activity below which a ReLU is considered to be
+                                dead. A ReLU might be active in the beginning of a trial and then
+                                slowly die during the training process. If the ReLU is active less
+                                than the <code class="code">threshold_inactivity</code>, it is considered to be
+                                dead.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default values: <code class="code">1.0</code> (in percentage)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">threshold_layer</code></td>
+                        <td tabindex="-1">
+                            <p>Returns <code class="code">True</code> if the percentage of inactive ReLUs in a
+                                layer is greater than <code class="code">threshold_layer</code>.</p>
+                            <p>Returns <code class="code">False</code> if the percentage of inactive ReLUs in
+                                a layer is less than <code class="code">threshold_layer</code>.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default values: <code class="code">50.0</code> (in percentage)</p>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">built_in_rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.dead_relu(),
+        rule_parameters=<span>{</span>
+                "tensor_regex": "<code class="replaceable">.*relu_output|.*ReLU_output</code>",
+                "threshold_inactivity": "<code class="replaceable">1.0</code>",
+                "threshold_layer": "<code class="replaceable">50.0</code>"
+        },
+        collections_to_save=[ 
+            CollectionConfig(
+                name="<code class="replaceable">custom_relu_collection</code>", 
+                parameters=<span>{</span>
+                    "include_regex: "<code class="replaceable">.*relu_output|.*ReLU_output</code>",
+                    "save_interval": "<code class="replaceable">500</code>"
+                } 
+            )
+        ]
+    )
+]</code></pre>
+        <p>For an example of how to configure and deploy a built-in rule, see <a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a>.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This rule is not available for the XGBoost algorithm.</p></div></div>
+     
+        <h2 id="exploding-tensor">ExplodingTensor</h2>
+        <p>This rule detects whether the tensors emitted during training have non-finite values,
+            either infinite or NaN (not a number). If a non-finite value is detected, the rule
+            returns <code class="code">True</code>.</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c29b5"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameter Descriptions for the ExplodingTensor Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        <td tabindex="-1">
+                            <p>The base trial training job name. This parameter is automatically
+                                set to the current training job by Amazon SageMaker Debugger. </p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">collection_names</code></td>
+                        <td tabindex="-1">
+                            <p>The list of collection names whose tensors the rule
+                                inspects.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: String</p>
+                            <p>Default value: <code class="code">None</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">tensor_regex</code></td>
+                        <td tabindex="-1">
+                            <p>A list of regex patterns used to restrict this comparison to
+                                specific scalar-valued tensors. The rule inspects only the tensors
+                                that match the regex patterns specified in the list. If no patterns
+                                are passed, the rule compares all tensors gathered in the trials by
+                                default. Only scalar-valued tensors can be matched.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: String </p>
+                            <p>Default value: <code class="code">None</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">only_nan</code></td>
+                        <td tabindex="-1">
+                            <p>
+                                <code class="code">True</code> to monitor the <code class="code">base_trial</code> tensors
+                                only for <code class="code">NaN</code> values and not for infinity. </p>
+                            <p><code class="code">False</code> to treat both <code class="code">NaN</code> and infinity as
+                                exploding values and to monitor for both.</p>
+                            <p><b>Optional</b></p>
+                            <p>Default value: <code class="code">False</code></p>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">built_in_rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.<code class="replaceable">exploding_tensor</code>(),
+        rule_parameters=<span>{</span>
+                "tensor_regex": "<code class="replaceable">.*gradient</code>",
+                "only_nan": "<code class="replaceable">False</code>"
+        },
+        collections_to_save=[ 
+            CollectionConfig(
+                name="<code class="replaceable">gradients</code>", 
+                parameters=<span>{</span>
+                    "save_interval": "<code class="replaceable">500</code>"
+                }
+            )
+        ]
+    )
+]</code></pre>
+        <p>For an example of how to configure and deploy a built-in rule, see <a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a>.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This rule is not available for the XGBoost algorithm.</p></div></div>
+     
+        <h2 id="poor-weight-initialization">PoorWeightInitialization</h2>
+        <p> This rule detects if your model parameters have been poorly initialized. </p>
+        <p>Good initialization breaks the symmetry of the weights and gradients in a neural
+            network and maintains commensurate activation variances across layers. Otherwise, the
+            neural network doesn't learn effectively. Initializers like Xavier aim to keep variance
+            constant across activations, which is especially relevant for training very deep neural
+            nets. Too small an initialization can lead to vanishing gradients. Too large an
+            initialization can lead to exploding gradients. This rule checks the variance of
+            activation inputs across layers, the distribution of gradients, and the loss convergence
+            for the initial steps to determine if a neural network has been poorly
+            initialized.</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c31b7"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameter Descriptions for the PoorWeightInitialization Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        <td tabindex="-1">
+                            <p>The base trial training job name. This parameter is automatically
+                                set to the current training job by Amazon SageMaker Debugger. </p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">activation_inputs_regex</code></td>
+                        <td tabindex="-1">
+                            <p>A list of regex patterns used to restrict this comparison to
+                                specific scalar-valued tensors. The rule inspects only the tensors
+                                that match the regex patterns specified in the list. If no patterns
+                                are passed, the rule compares all tensors gathered in the trials by
+                                default. Only scalar-valued tensors can be matched.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: String</p>
+                            <p>Default value: <code class="code">".*relu_input"</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">threshold</code></td>
+                        <td tabindex="-1">
+                            <p>If the ratio between minimum and maximum variance of weights per
+                                layer exceeds the <code class="code">threshold</code> at a step, the rule returns
+                                    <code class="code">True</code>.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default value: <code class="code">10.0</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">distribution_range</code></td>
+                        <td tabindex="-1">
+                            <p>If the minimum difference between 5th and 95th percentiles of the
+                                gradient distribution is less than the
+                                    <code class="code">distribution_range</code>, the rule returns
+                                    <code class="code">True</code>.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default value: <code class="code">0.001</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">patience</code></td>
+                        <td tabindex="-1">
+                            <p>The number of steps to wait until the loss is considered to be no
+                                longer decreasing.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Integer</p>
+                            <p>Default value: <code class="code">5</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">steps</code></td>
+                        <td tabindex="-1">
+                            <p>The number of steps this rule analyzes. You typically need to
+                                check only the first few iterations.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default value: <code class="code">10</code></p>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">built_in_rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.<code class="replaceable">poor_weight_initialization</code>(),
+        rule_parameters=<span>{</span>
+                "activation_inputs_regex": "<code class="replaceable">.*relu_input|.*ReLU_input</code>",
+                "threshold": "<code class="replaceable">10.0</code>",
+                "distribution_range": "<code class="replaceable">0.001</code>",
+                "patience": "<code class="replaceable">5</code>",
+                "steps": "<code class="replaceable">10</code>"
+        },
+        collections_to_save=[ 
+            CollectionConfig(
+                name="<code class="replaceable">custom_relu_collection</code>", 
+                parameters=<span>{</span>
+                    "<code class="replaceable">include_regex</code>": "<code class="replaceable">.*relu_input|.*ReLU_input</code>",
+                    "<code class="replaceable">save_interval</code>": "<code class="replaceable">500</code>"
+                } 
+            )
+        ]
+    )
+]</code></pre>
+        <p>For an example of how to configure and deploy a built-in rule, see <a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a>.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This rule is not available for the XGBoost algorithm.</p></div></div>
+     
+        <h2 id="saturated-activation">SaturatedActivation</h2>
+        <p>This rule detects if the tanh and sigmoid activation layers are becoming saturated. An
+            activation layer is saturated when the input of the layer is close to the maximum or
+            minimum of the activation function. The minimum and maximum of the tanh and sigmoid
+            activation functions are defined by their respective <code class="code">min_threshold</code> and
+                <code class="code">max_thresholds</code> values. If the activity of a node drops below the
+                <code class="code">threshold_inactivity</code> percentage, it is considered saturated. If more
+            than a <code class="code">threshold_layer</code> percent of the nodes are saturated, the rule returns
+                <code class="code">True</code>.</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c33b5"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameter Descriptions for the SaturatedActivation Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        <td tabindex="-1">
+                            <p>The base trial training job name. This parameter is automatically
+                                set to the current training job by Amazon SageMaker Debugger. </p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">collection_names</code></td>
+                        <td tabindex="-1">
+                            <p>The list of collection names whose tensors the rule
+                                inspects.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: List of strings or a comma-separated string</p>
+                            <p>Default value: None</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">tensor_regex</code></td>
+                        <td tabindex="-1">
+                            <p>A list of regex patterns used to restrict this comparison to
+                                specific scalar-valued tensors. The rule inspects only the tensors
+                                that match the regex patterns specified in the list. If no patterns
+                                are passed, the rule compares all tensors gathered in the trials by
+                                default. Only scalar-valued tensors can be matched.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: String </p>
+                            <p>Default value: <code class="code">".*tanh_input|.*sigmoid_input".</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">threshold_tanh_min</code></td>
+                        <td tabindex="-1">
+                            <p>The minimum and maximum thresholds that define the extremes of the
+                                input for a tanh activation function, defined as:
+                                    <code class="code">(min_threshold, max_threshold)</code>. The default values
+                                are determined based on a vanishing gradient threshold of
+                                0.0000001.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default values: <code class="code">-9.4999</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">threshold_tanh_max</code></td>
+                        <td tabindex="-1">
+                            <p>The minimum and maximum thresholds that define the extremes of the
+                                input for a tanh activation function, defined as:
+                                    <code class="code">(min_threshold, max_threshold)</code>. The default values
+                                are determined based on a vanishing gradient threshold of
+                                0.0000001.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default values: <code class="code">9.4999</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">threshold_sigmoid_min</code></td>
+                        <td tabindex="-1">
+                            <p>The minimum and maximum thresholds that define the extremes of the
+                                input for a sigmoid activation function, defined as:
+                                    <code class="code">(min_threshold, max_threshold)</code>. The default values
+                                are determined based on a vanishing gradient threshold of
+                                0.0000001.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default values: <code class="code">-23</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">threshold_sigmoid_max</code></td>
+                        <td tabindex="-1">
+                            <p>The minimum and maximum thresholds that define the extremes of the
+                                input for a sigmoid activation function, defined as:
+                                    <code class="code">(min_threshold, max_threshold)</code>. The default values
+                                are determined based on a vanishing gradient threshold of
+                                0.0000001.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default values: <code class="code">16.99999</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">threshold_inactivity</code></td>
+                        <td tabindex="-1">
+                            <p>The percentage of inactivity below which the activation layer is
+                                considered to be saturated. The activation might be active in the
+                                beginning of a trial and then slowly become less active during the
+                                training process.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default values: <code class="code">1.0</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">threshold_layer</code></td>
+                        <td tabindex="-1">
+                            <p>Returns <code class="code">True</code> if the number of saturated activations
+                                in a layer is greater than the <code class="code">threshold_layer</code>
+                                percentage.</p>
+                            <p>Returns <code class="code">False</code> if the number of saturated activations
+                                in a layer is less than the <code class="code">threshold_layer</code>
+                                percentage.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default values: <code class="code">50.0</code></p>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">built_in_rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.<code class="replaceable">saturated_activation</code>(),
+        rule_parameters=<span>{</span>
+                "tensor_regex": "<code class="replaceable">.*tanh_input|.*sigmoid_input</code>",
+                "threshold_tanh_min": "<code class="replaceable">-9.4999</code>",
+                "threshold_tanh_max": "<code class="replaceable">9.4999</code>",
+                "threshold_sigmoid_min": "<code class="replaceable">-23</code>",
+                "threshold_sigmoid_max": "<code class="replaceable">16.99999</code>",
+                "threshold_inactivity": "<code class="replaceable">1.0</code>",
+                "threshold_layer": "<code class="replaceable">50.0</code>"
+        },
+        collections_to_save=[ 
+            CollectionConfig(
+                name="<code class="replaceable">custom_activations_collection</code>",
+                parameters=<span>{</span>
+                    "<code class="replaceable">include_regex</code>": "<code class="replaceable">.*tanh_input|.*sigmoid_input</code>"
+                    "<code class="replaceable">save_interval</code>": "<code class="replaceable">500</code>"
+                } 
+            )
+        ]
+    )
+]</code></pre>
+        <p>For an example of how to configure and deploy a built-in rule, see <a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a>.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This rule is not available for the XGBoost algorithm.</p></div></div>
+     
+        <h2 id="vanishing-gradient">VanishingGradient</h2>
+        <p>This rule detects if the gradients in a trial become extremely small or drop to a zero
+            magnitude. If the mean of the absolute values of the gradients drops below a specified
+                <code class="code">threshold</code>, the rule returns <code class="code">True</code>.</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c35b5"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameters Descriptions for the VanishingGradient Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        <td tabindex="-1">
+                            <p>The base trial training job name. This parameter is automatically
+                                set to the current training job by Amazon SageMaker Debugger. </p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">threshold</code></td>
+                        <td tabindex="-1">The value at which the gradient is determined to be
+                                    vanishing.<p><b>Optional</b></p><p>Valid values:
+                                Float</p><p>Default value:
+                            <code class="code">0.0000001</code>.</p></td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">built_in_rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.<code class="replaceable">vanishing_gradient</code>(),
+        rule_parameters=<span>{</span>
+                "threshold": "<code class="replaceable">0.0000001</code>"
+        },
+        collections_to_save=[ 
+            CollectionConfig(
+                name="<code class="replaceable">gradients</code>", 
+                parameters=<span>{</span>
+                    "<code class="replaceable">save_interval</code>": "<code class="replaceable">500</code>"
+                } 
+            )
+        ]
+    )
+]</code></pre>
+        <p>For an example of how to configure and deploy a built-in rule, see <a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a>.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This rule is not available for the XGBoost algorithm.</p></div></div>
+     
+        <h2 id="weight-update-ratio">WeightUpdateRatio</h2>
+        <p>This rule keeps track of the ratio of updates to weights during training and detects
+            if that ratio gets too large or too small. If the ratio of updates to weights is larger
+            than the <code class="code">large_threshold value</code> or if this ratio is smaller than
+                <code class="code">small_threshold</code>, the rule returns <code class="code">True</code>.</p>
+        <p>Conditions for training are best when the updates are commensurate to gradients.
+            Excessively large updates can push the weights away from optimal values, and very small
+            updates result in very slow convergence. This rule requires weights to be available for
+            two training steps, and <code class="code">train.save_interval</code> needs to be set equal to
+                <code class="code">num_steps</code>.</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c37b7"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameter Descriptions for the WeightUpdateRatio Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name,</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        <td tabindex="-1">
+                            <p>The base trial training job name. This parameter is automatically
+                                set to the current training job by Amazon SageMaker Debugger. </p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">num_steps</code></td>
+                        <td tabindex="-1">
+                            <p>The number of steps across which the rule checks to determine if
+                                the tensor has changed. </p>
+                            <p>The number of steps across which you want to compare the weight
+                                ratios. If you pass no value, the rule runs by default against the
+                                current step and the immediately previous saved step. If you
+                                override the default by passing a value for this parameter, the
+                                comparison is done between weights at step <code class="code">s</code> and at a
+                                step <code class="code">&gt;= s - num_steps</code>.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Integer</p>
+                            <p>Default value: <code class="code">None</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">large_threshold</code></td>
+                        <td tabindex="-1">
+                            <p>The maximum value that the ratio of updates to weight can take
+                                before the rule returns <code class="code">True</code>. </p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default value: <code class="code">10.0</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">small_threshold</code></td>
+                        <td tabindex="-1">
+                            <p>The minimum value that the ratio of updates to weight can take,
+                                below which the rule returns <code class="code">True</code>.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default value: <code class="code">0.00000001</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">epsilon</code></td>
+                        <td tabindex="-1">
+                            <p>A small constant used to ensure that Debugger does not divide by
+                                zero when computing the ratio updates to weigh.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default value: <code class="code">0.000000001</code></p>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">built_in_rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.<code class="replaceable">weight_update_ratio</code>(),
+        rule_parameters=<span>{</span>
+                "num_steps": "<code class="replaceable">100</code>",
+                "large_threshold": "<code class="replaceable">10.0</code>",
+                "small_threshold": "<code class="replaceable">0.00000001</code>",
+                "epsilon": "<code class="replaceable">0.000000001</code>"
+        },
+        collections_to_save=[ 
+            CollectionConfig(
+                name="<code class="replaceable">weights</code>", 
+                parameters=<span>{</span>
+                    "<code class="replaceable">train.save_interval</code>": "<code class="replaceable">100</code>"
+                } 
+            )
+        ]
+    )
+]</code></pre>
+        <p>For an example of how to configure and deploy a built-in rule, see <a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a>.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This rule is not available for the XGBoost algorithm.</p></div></div>
+     
+        <h2 id="all-zero">AllZero</h2>
+        <p>This rule detects if all or a specified percentage of the tensor values are
+            zero.</p>
+        <p>This rule can be applied either to one of the supported deep learning frameworks
+            (TensorFlow, MXNet, and PyTorch) or to the XGBoost algorithm. You must specify either
+            the <code class="code">collection_names</code> or <code class="code">tensor_regex</code> parameter. If both the
+            parameters are specified, the rule inspects the union of tensors from both sets.</p>
+        <p>For an example of how to configure and deploy a built-in rule, see <a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a>.</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c39b9"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameters Descriptions for the AllZero Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        <td tabindex="-1">
+                            <p>The base trial training job name. This parameter is automatically
+                                set to the current training job by Amazon SageMaker Debugger. </p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">collection_names</code></td>
+                        <td tabindex="-1">
+                            <p>The list of collection names whose tensors the rule
+                                inspects.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: List of strings or a comma-separated string</p>
+                            <p>Default value: <code class="code">None</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">tensor_regex</code></td>
+                        <td tabindex="-1">
+                            <p>A list of regex patterns used to restrict this comparison to
+                                specific scalar-valued tensors. The rule inspects only the tensors
+                                that match the regex patterns specified in the list. If no patterns
+                                are passed, the rule compares all tensors gathered in the trials by
+                                default. Only scalar-valued tensors can be matched.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: List of strings or a comma-separated string</p>
+                            <p>Default value: <code class="code">None</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">threshold</code></td>
+                        <td tabindex="-1">
+                            <p>Specifies the percentage of values in the tensor that needs to be
+                                zero for this rule to be invoked. </p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default value: 100 (in percentage)</p>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">built_in_rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.<code class="replaceable">all_zero</code>(),
+        rule_parameters=<span>{</span>
+                "tensor_regex": "<code class="replaceable">.*</code>",
+                "threshold": "<code class="replaceable">100</code>"
+        },
+        collections_to_save=[ 
+            CollectionConfig(
+                name="<code class="replaceable">all</code>", 
+                parameters=<span>{</span>
+                    "<code class="replaceable">save_interval</code>": "<code class="replaceable">500</code>"
+                } 
+            )
+        ]
+    )
+]</code></pre>
+     
+        <h2 id="class-imbalance">ClassImbalance</h2>
+        <p>This rule measures sampling imbalances between classes and throws errors if the
+            imbalance exceeds a threshold or if too many mispredictions for underrepresented classes
+            occur as a result of the imbalance.</p>
+        <p>Classification models require well-balanced classes in the training dataset or a
+            proper weighting/sampling of classes during training. The rule performs the following
+            checks:</p>
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p> It counts the occurrences per class. If the ratio of number of samples
+                    between smallest and largest class is larger than the
+                        <code class="code">threshold_imbalance</code>, an error is thrown.</p>
+            </li><li class="listitem">
+                <p> It checks the prediction accuracy per class. If resampling or weighting has
+                    not been correctly applied, then the model can reach high accuracy for the class
+                    with many training samples, but low accuracy for the classes with few training
+                    samples. If a fraction of mispredictions for a certain class is above
+                        <code class="code">threshold_misprediction</code>, an error is thrown.</p>
+            </li></ul></div>
+        <p>This rule can be applied either to one of the supported deep learning frameworks
+            (TensorFlow, MXNet, and PyTorch) or to the XGBoost algorithm.</p>
+        <p>For an example of how to configure and deploy a built-in rule, see <a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a>.</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c41c13"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameter Descriptions for the ClassImbalance Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        <td tabindex="-1">
+                            <p>The base trial training job name. This parameter is automatically
+                                set to the current training job by Amazon SageMaker Debugger. </p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">threshold_imbalance</code></td>
+                        <td tabindex="-1">
+                            <p>The acceptable imbalance between the number of samples in the
+                                smallest class and in the largest class. Exceeding this threshold
+                                value throws an error.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default value: <code class="code">10</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">threshold_misprediction</code></td>
+                        <td tabindex="-1">
+                            <p>A limit on the fraction of mispredictions allowed for each class.
+                                Exceeding this threshold throws an error. The underrepresented
+                                classes are most at risk of crossing this threshold. </p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default value: <code class="code">0.7</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">samples</code></td>
+                        <td tabindex="-1">
+                            <p>The number of labels that have to be processed before an imbalance
+                                is evaluated. The rule might not be triggered until it has seen
+                                sufficient samples across several steps. The more classes that your
+                                dataset contains, the larger this <code class="code">sample</code> number should
+                                be. </p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Integer</p>
+                            <p>Default value: <code class="code">500</code> (assuming a dataset like MNIST
+                                with 10 classes)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">argmax</code></td>
+                        <td tabindex="-1">
+                            <p>If <code class="code">True</code>, <a href=" https://docs.scipy.org/doc/numpy-1.9.3/reference/generated/numpy.argmax.html" rel="noopener noreferrer" target="_blank"><span>np.argmax</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> is applied to the prediction tensor. Required
+                                when you have a vector of probabilities for each class. It is used
+                                to determine which class has the highest probability.</p>
+                            <p><b>Conditional</b></p>
+                            <p>Valid values: Boolean</p>
+                            <p>Default value: <code class="code">False</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">labels_regex</code></td>
+                        <td tabindex="-1">
+                            <p>The name of the tensor that contains the labels.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: String</p>
+                            <p>Default value: <code class="code">".*labels"</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">predictions_regex</code></td>
+                        <td tabindex="-1">
+                            <p>The name of the tensor that contains the predictions.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: String</p>
+                            <p>Default value: <code class="code">".*predictions"</code></p>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">built_in_rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.<code class="replaceable">class_imbalance</code>(),
+        rule_parameters=<span>{</span>
+                "threshold_imbalance": "<code class="replaceable">10</code>",
+                "threshold_misprediction": "<code class="replaceable">0.7</code>",
+                "samples": "<code class="replaceable">500</code>",
+                "argmax": "<code class="replaceable">False</code>",
+                "labels_regex": "<code class="replaceable">.*labels</code>",
+                "predictions_regex": "<code class="replaceable">.*predictions</code>"
+        },
+        collections_to_save=[ 
+            CollectionConfig(
+                name="<code class="replaceable">custom_output_collection</code>",
+                parameters=<span>{</span>
+                    "include_regex": "<code class="replaceable">.*labels|.*predictions</code>",
+                    "save_interval": "<code class="replaceable">500</code>"
+                } 
+            )
+        ]
+    )
+]</code></pre>
+     
+        <h2 id="loss-not-decreasing">LossNotDecreasing</h2>
+        <p>This rule detects when the loss is not decreasing in value at an adequate rate. These
+            losses must be scalars. </p>
+        <p>This rule can be applied either to one of the supported deep learning frameworks
+            (TensorFlow, MXNet, and PyTorch) or to the XGBoost algorithm. You must specify either
+            the <code class="code">collection_names</code> or <code class="code">tensor_regex</code> parameter. If both the
+            parameters are specified, the rule inspects the union of tensors from both sets.</p>
+        <p>For an example of how to configure and deploy a built-in rule, see <a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a>.</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c43b9"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameter Descriptions for the LossNotDecreasing Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        <td tabindex="-1">
+                            <p>The base trial training job name. This parameter is automatically
+                                set to the current training job by Amazon SageMaker Debugger. </p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">collection_names</code></td>
+                        <td tabindex="-1">
+                            <p>The list of collection names whose tensors the rule
+                                inspects.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: List of strings or a comma-separated string</p>
+                            <p>Default value: <code class="code">None</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">tensor_regex</code></td>
+                        <td tabindex="-1">
+                            <p>A list of regex patterns that is used to restrict this comparison
+                                to specific scalar-valued tensors. The rule inspects only the
+                                tensors that match the regex patterns specified in the list. If no
+                                patterns are passed, the rule compares all tensors gathered in the
+                                trials by default. Only scalar-valued tensors can be matched.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: List of strings or a comma-separated string </p>
+                            <p>Default value: <code class="code">None</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">use_losses_collection</code></td>
+                        <td tabindex="-1">
+                            <p>If set to <code class="code">True</code>, looks for losses in the collection
+                                named "losses" when the collection is present.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Boolean</p>
+                            <p>Default value: <code class="code">True</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">num_steps</code></td>
+                        <td tabindex="-1">
+                            <p>The minimum number of steps after which the rule checks if the
+                                loss has decreased. Rule evaluation happens every
+                                    <code class="code">num_steps</code>. The rule compares the loss for this step
+                                with the loss at a step which is at least <code class="code">num_steps</code>
+                                behind the current step. For example, suppose that the loss is being
+                                saved every three steps, but <code class="code">num_steps</code> is set to 10. At
+                                step 21, loss for step 21 is compared with loss for step 9. The next
+                                step at which loss is checked is step 33, because ten steps after
+                                step 21 is step 31, and at step 31 and step 32 loss is not saved. </p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Integer</p>
+                            <p>Default value: <code class="code">10</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">diff_percent</code></td>
+                        <td tabindex="-1">
+                            <p>The minimum percentage difference by which the loss should
+                                decrease between <code class="code">num_steps</code>.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: <code class="code">0.0</code> &lt; float &lt;
+                                <code class="code">100</code></p>
+                            <p>Default value: <code class="code">0.1</code> (in percentage)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">increase_threshold_percent</code></td>
+                        <td tabindex="-1">
+                            <p>The maximum threshold percent that loss is allowed to increase in case loss has been
+                                increasing</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: <code class="code">0</code> &lt; float &lt;
+                                <code class="code">100</code></p>
+                            <p>Default value: <code class="code">5</code> (in percentage)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">mode</code></td>
+                        <td tabindex="-1">
+                            <p>The name of the Debugger mode to query tensor values for rule
+                                checking. If this is not passed, the rule checks in order by default
+                                for the <code class="code">mode.EVAL</code>, then <code class="code">mode.TRAIN</code>, and
+                                then <code class="code">mode.GLOBAL</code>. </p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: String (<code class="code">EVAL</code>, <code class="code">TRAIN</code>, or
+                                    <code class="code">GLOBAL</code>)</p>
+                            <p>Default value: <code class="code">GLOBAL</code></p>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">built_in_rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.<code class="replaceable">loss_not_decreasing</code>(),
+        rule_parameters=<span>{</span>
+                "tensor_regex": "<code class="replaceable">.*</code>",
+                "use_losses_collection": "<code class="replaceable">True</code>",
+                "num_steps": "<code class="replaceable">10</code>",
+                "diff_percent": "<code class="replaceable">0.1</code>",
+                "increase_threshold_percent": "<code class="replaceable">5</code>",
+                "mode": "<code class="replaceable">GLOBAL</code>"
+        },
+        collections_to_save=[ 
+            CollectionConfig(
+                name="<code class="replaceable">losses</code>", 
+                parameters=<span>{</span>
+                    "<code class="replaceable">save_interval</code>": "<code class="replaceable">500</code>"
+                } 
+            )
+        ]
+    )
+]</code></pre>
+     
+        <h2 id="overfit">Overfit</h2>
+        <p>This rule detects if your model is being overfit to the training data by comparing the
+            validation and training losses.</p>
+        <p>This rule can be applied either to one of the supported deep learning frameworks
+            (TensorFlow, MXNet, and PyTorch) or to the XGBoost algorithm.</p>
+        <p>For an example of how to configure and deploy a built-in rule, see <a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a>.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>A standard way to prevent overfitting is to regularize your model.</p></div></div>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c45c11"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameter Descriptions for the Overfit Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        <td tabindex="-1">
+                            <p>The base trial training job name. This parameter is automatically
+                                set to the current training job by Amazon SageMaker Debugger. </p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">tensor_regex</code></td>
+                        <td tabindex="-1">
+                            <p>A list of regex patterns used to restrict this comparison to
+                                specific scalar-valued tensors. The rule inspects only the tensors
+                                that match the regex patterns specified in the list. If no patterns
+                                are passed, the rule compares all tensors gathered in the trials by
+                                default. Only scalar-valued tensors can be matched.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: List of strings or a comma-separated string </p>
+                            <p>Default value: None</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">start_step</code></td>
+                        <td tabindex="-1">
+                            <p>The step from which to start comparing the validation and training
+                                loss.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Integer</p>
+                            <p>Default value: <code class="code">0</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">patience</code></td>
+                        <td tabindex="-1">
+                            <p>The number of steps for which the <code class="code">ratio_threshold</code> is
+                                allowed to exceed the value set before the model is considered to be
+                                overfit.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Integer</p>
+                            <p>Default value: <code class="code">1</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">ratio_threshold</code></td>
+                        <td tabindex="-1">
+                            <p>The maximum ratio of the difference between the mean validation
+                                loss and mean training loss to the mean training loss. If this
+                                threshold is exceeded for a <code class="code">patience</code> number of steps,
+                                the model is being overfit and the rule returns
+                                <code class="code">True</code>.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default value: <code class="code">0.1</code></p>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">built_in_rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.<code class="replaceable">overfit</code>(),
+        rule_parameters=<span>{</span>
+                "tensor_regex": "<code class="replaceable">.*</code>",
+                "start_step": "<code class="replaceable">0</code>",
+                "patience": "<code class="replaceable">1</code>",
+                "ratio_threshold": "<code class="replaceable">0.1</code>"
+        },
+        collections_to_save=[
+            CollectionConfig(
+                name="<code class="replaceable">losses</code>", 
+                parameters=<span>{</span>
+                    "train.save_interval": "<code class="replaceable">100</code>",
+                    "eval.save_interval": "<code class="replaceable">10</code>"
+                } 
+            )
+        ]
+    )
+]</code></pre>
+     
+        <h2 id="overtraining">Overtraining</h2>
+        <p>This rule detects if a model is being overtrained. After a number of training
+            iterations on a well-behaved model (both training and validation loss decrease), the
+            model approaches to a minimum of the loss function and does not improve anymore. If the
+            model continues training it can happen that validation loss starts increasing, because
+            the model starts overfitting. This rule sets up thresholds and conditions to determine
+            if the model is not improving, and prevents overfitting problems due to
+            overtraining.</p>
+        <p>This rule can be applied either to one of the supported deep learning frameworks
+            (TensorFlow, MXNet, and PyTorch) or to the XGBoost algorithm.</p>
+        <p>For an example of how to configure and deploy a built-in rule, see <a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a>.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Overtraining can be avoided by early stopping. For information on early stopping,
+                see <a href="automatic-model-tuning-early-stopping.html">Stop Training Jobs Early</a>. For an example that
+                shows how to use spot training with Debugger, see <a href="https://sagemaker-examples.readthedocs.io/en/latest/sagemaker-debugger/mxnet_spot_training/mxnet-spot-training-with-sagemakerdebugger.html" rel="noopener noreferrer" target="_blank"><span>Enable Spot Training with Amazon SageMaker Debugger</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p></div></div>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c47c11"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameter Descriptions for the Overtraining Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        <td tabindex="-1">
+                            <p>The base trial training job name. This parameter is automatically
+                                set to the current training job by Amazon SageMaker Debugger. </p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">patience_train</code></td>
+                        <td tabindex="-1">
+                            <p>The number of steps to wait before the training loss is considered
+                                to not to be improving anymore.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Integer</p>
+                            <p>Default value: <code class="code">5</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">patience_validation</code></td>
+                        <td tabindex="-1">The number of steps to wait before the validation loss is considered
+                            to not to be improving anymore.<p><b>Optional</b></p><p>Valid values:
+                                Integer</p><p>Default value: <code class="code">10</code></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">delta</code></td>
+                        <td tabindex="-1">
+                            <p>The minimum threshold by how much the error should improve before
+                                it is considered as a new optimum.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default value: <code class="code">0.01</code></p>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">built_in_rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.<code class="replaceable">overtraining</code>(),
+        rule_parameters=<span>{</span>
+                "patience_train": "<code class="replaceable">5</code>",
+                "patience_validation": "<code class="replaceable">10</code>",
+                "delta": "<code class="replaceable">0.01</code>"
+        },
+        collections_to_save=[ 
+            CollectionConfig(
+                name="<code class="replaceable">losses</code>", 
+                parameters=<span>{</span>
+                    "<code class="replaceable">save_interval</code>": "<code class="replaceable">500</code>"
+                } 
+            )
+        ]
+    )
+]</code></pre>
+     
+        <h2 id="similar-across-runs">SimilarAcrossRuns</h2>
+        <p>This rule compares tensors gathered from a base trial with tensors from another trial. </p>
+        <p>This rule can be applied either to one of the supported deep learning frameworks
+            (TensorFlow, MXNet, and PyTorch) or to the XGBoost algorithm.</p>
+        <p>For an example of how to configure and deploy a built-in rule, see <a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a>.</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c49b9"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameter Descriptions for the SimilarAcrossRuns Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        <td tabindex="-1">
+                            <p>The base trial training job name. This parameter is automatically
+                                set to the current training job by Amazon SageMaker Debugger. </p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">other_trials</code></td>
+                        <td tabindex="-1">
+                            <p>A completed training job name whose tensors you want to compare to
+                                those tensors gathered from the current
+                                <code class="code">base_trial</code>.</p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">collection_names</code></td>
+                        <td tabindex="-1">
+                            <p>The list of collection names whose tensors the rule
+                                inspects.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: List of strings or a comma-separated string</p>
+                            <p>Default value: None</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">tensor_regex</code></td>
+                        <td tabindex="-1">
+                            <p>A list of regex patterns used to restrict this comparison to
+                                specific scalar-valued tensors. The rule inspects only the tensors
+                                that match the regex patterns specified in the list. If no patterns
+                                are passed, the rule compares all tensors gathered in the trials by
+                                default. Only scalar-valued tensors can be matched.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: List of strings or a comma-separated string </p>
+                            <p>Default value: None</p>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">built_in_rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.<code class="replaceable">similar_across_runs</code>(),
+        rule_parameters=<span>{</span>
+                "other_trials": "<code class="replaceable">&lt;specify-another-job-name&gt;</code>",
+                "collection_names": "<code class="replaceable">losses</code>",
+                "tensor_regex": "<code class="replaceable">.*</code>"
+        },
+        collections_to_save=[ 
+            CollectionConfig(
+                name="<code class="replaceable">losses</code>", 
+                parameters=<span>{</span>
+                    "<code class="replaceable">save_interval</code>": "<code class="replaceable">500</code>"
+                } 
+            )
+        ]
+    )
+]</code></pre>
+     
+        <h2 id="stalled-training">StalledTrainingRule</h2>
+        <p>StalledTrainingRule detects if there is no progress made on training job, and stops
+            the training job if the rule fires. This rule requires tensors to be periodically saved
+            in a time interval defined by its <code class="code">threshold</code> parameter. This rule keeps on
+            monitoring for new tensors, and if no new tensor has been emitted for threshold interval
+            rule gets fired. </p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c51b5"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameter Descriptions for the StalledTrainingRule Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        <td tabindex="-1">
+                            <p>The base trial training job name. This parameter is automatically
+                                set to the current training job by Amazon SageMaker Debugger. </p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">threshold</code></td>
+                        <td tabindex="-1">
+                            <p>A threshold that defines by how much time in seconds the rule
+                                waits for a tensor output until it fires a stalled training issue.
+                                Default value is 1800 seconds.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Integer</p>
+                            <p>Default value: <code class="code">1800</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">stop_training_on_fire</code></td>
+                        <td tabindex="-1">
+                            <p>If set to <code class="code">True</code>, watches if the base training job
+                                outputs tensors in "<code class="code">threshold</code>" seconds.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Boolean</p>
+                            <p>Default value: <code class="code">False</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">training_job_name_prefix</code></td>
+                        <td tabindex="-1">
+                            <p>The prefix of base training job name. If
+                                    <code class="code">stop_training_on_fire</code> is true, the rule searches
+                                for SageMaker training jobs with this prefix in the same account. If
+                                there is an inactivity found, the rule takes a
+                                    <code class="code">StopTrainingJob</code> action. Note if there are multiple
+                                jobs found with same prefix, the rule skips termination. It is
+                                important that the prefix is set unique per each training
+                                job.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">built_in_rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.<code class="replaceable">stalled_training_rule</code>(),
+        rule_parameters=<span>{</span>
+                "threshold": "<code class="replaceable">1800</code>",
+                "stop_training_on_fire": "<code class="replaceable">True</code>",
+                "training_job_name_prefix": "<code class="replaceable">&lt;specify-training-base-job-name&gt;</code>"
+        },
+        collections_to_save=[ 
+            CollectionConfig(
+                name="<code class="replaceable">losses</code>", 
+                parameters=<span>{</span>
+                    "<code class="replaceable">save_interval</code>": "<code class="replaceable">500</code>"
+                } 
+            )
+        ]
+    )
+]</code></pre>
+     
+        <h2 id="tensor-variance">TensorVariance</h2>
+        <p>This rule detects if you have tensors with very high or low variances. Very high or
+            low variances in a tensor could lead to neuron saturation, which reduces the learning
+            ability of the neural network. Very high variance in tensors can also eventually lead to
+            exploding tensors. Use this rule to detect such issues early.</p>
+        <p>This rule can be applied either to one of the supported deep learning frameworks
+            (TensorFlow, MXNet, and PyTorch) or to the XGBoost algorithm. You must specify either
+            the <code class="code">collection_names</code> or <code class="code">tensor_regex</code> parameter. If both the
+            parameters are specified, the rule inspects the union of tensors from both sets.</p>
+        <p>For an example of how to configure and deploy a built-in rule, see <a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a>.</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c53b9"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameter Descriptions for the TensorVariance Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        <td tabindex="-1">
+                            <p>The base trial training job name. This parameter is automatically
+                                set to the current training job by Amazon SageMaker Debugger. </p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">collection_names</code></td>
+                        <td tabindex="-1">
+                            <p>The list of collection names whose tensors the rule
+                                inspects.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: List of strings or a comma-separated string</p>
+                            <p>Default value: None</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">tensor_regex</code></td>
+                        <td tabindex="-1">
+                            <p>A list of regex patterns used to restrict this comparison to
+                                specific scalar-valued tensors. The rule inspects only the tensors
+                                that match the regex patterns specified in the list. If no patterns
+                                are passed, the rule compares all tensors gathered in the trials by
+                                default. Only scalar-valued tensors can be matched.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: List of strings or a comma-separated string </p>
+                            <p>Default value: None</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">max_threshold</code></td>
+                        <td tabindex="-1">
+                            <p>The threshold for the upper bound of tensor variance.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default value: None</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">min_threshold</code></td>
+                        <td tabindex="-1">
+                            <p>The threshold for the lower bound of tensor variance.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default value: None</p>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">built_in_rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.<code class="replaceable">tensor_variance</code>(),
+        rule_parameters=<span>{</span>
+                "collection_names": "<code class="replaceable">weights</code>",
+                "max_threshold": "<code class="replaceable">10</code>",
+                "min_threshold": "<code class="replaceable">0.00001</code>",
+        },
+        collections_to_save=[ 
+            CollectionConfig(
+                name="<code class="replaceable">weights</code>", 
+                parameters=<span>{</span>
+                    "<code class="replaceable">save_interval</code>": "<code class="replaceable">500</code>"
+                } 
+            )
+        ]
+    )
+]</code></pre>
+     
+        <h2 id="unchanged-tensor">UnchangedTensor</h2>
+        <p>This rule detects whether a tensor is no longer changing across steps. </p>
+        <p>This rule runs the <a href=" https://docs.scipy.org/doc/numpy/reference/generated/numpy.allclose.html" rel="noopener noreferrer" target="_blank"><span>numpy.allclose</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> method to check if the tensor isn't changing.</p>
+        <p>This rule can be applied either to one of the supported deep learning frameworks
+            (TensorFlow, MXNet, and PyTorch) or to the XGBoost algorithm. You must specify either
+            the <code class="code">collection_names</code> or <code class="code">tensor_regex</code> parameter. If both the
+            parameters are specified, the rule inspects the union of tensors from both sets.</p>
+        <p>For an example of how to configure and deploy a built-in rule, see <a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a>.</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c55c11"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameter Descriptions for the UnchangedTensor Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        <td tabindex="-1">
+                            <p>The base trial training job name. This parameter is automatically
+                                set to the current training job by Amazon SageMaker Debugger. </p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">collection_names</code></td>
+                        <td tabindex="-1">
+                            <p>The list of collection names whose tensors the rule
+                                inspects.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: List of strings or a comma-separated string</p>
+                            <p>Default value: None</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">tensor_regex</code></td>
+                        <td tabindex="-1">
+                            <p>A list of regex patternsused to restrict this comparison to
+                                specific scalar-valued tensors. The rule inspects only the tensors
+                                that match the regex patterns specified in the list. If no patterns
+                                are passed, the rule compares all tensors gathered in the trials by
+                                default. Only scalar-valued tensors can be matched.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: List of strings or a comma-separated string </p>
+                            <p>Default value: None</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">num_steps</code></td>
+                        <td tabindex="-1">
+                            <p>The number of steps across which the rule checks to determine if
+                                the tensor has changed. </p>
+                            <p>This checks the last <code class="code">num_steps</code> that are available.
+                                They don't need to be consecutive. If <code class="code">num_steps</code> is 2,
+                                at step s it doesn't necessarily check for s-1 and s. If s-1 isn't
+                                available, it checks the last available step along with s. In that
+                                case, it checks the last available step with the current
+                                step.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Integer</p>
+                            <p>Default value: <code class="code">3</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">rtol</code></td>
+                        <td tabindex="-1">
+                            <p>The relative tolerance parameter to be passed to the <code class="code"><a href=" https://docs.scipy.org/doc/numpy/reference/generated/numpy.allclose.html" rel="noopener noreferrer" target="_blank"><span>numpy.allclose</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> method. </p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default value: <code class="code">1e-05</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">atol</code></td>
+                        <td tabindex="-1">
+                            <p>The absolute tolerance parameter to be passed to the <code class="code"><a href=" https://docs.scipy.org/doc/numpy/reference/generated/numpy.allclose.html" rel="noopener noreferrer" target="_blank"><span>numpy.allclose</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> method.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default value: <code class="code">1e-08</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">equal_nan</code></td>
+                        <td tabindex="-1">
+                            <p>Whether to compare NaNs as equal. If <code class="code">True</code>, NaNs in
+                                input array a are considered equal to NaNs in input array b in the
+                                output array. This parameter is passed to the <code class="code"><a href=" https://docs.scipy.org/doc/numpy/reference/generated/numpy.allclose.html" rel="noopener noreferrer" target="_blank"><span>numpy.allclose</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> method.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Boolean</p>
+                            <p>Default value: <code class="code">False</code></p>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">built_in_rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.<code class="replaceable">unchanged_tensor</code>(),
+        rule_parameters=<span>{</span>
+                "collection_names": "<code class="replaceable">losses</code>",
+                "tensor_regex": "",
+                "num_steps": "<code class="replaceable">3</code>",
+                "rtol": "<code class="replaceable">1e-05</code>",
+                "atol": "<code class="replaceable">1e-08</code>",
+                "equal_nan": "<code class="replaceable">False</code>"
+        },
+        collections_to_save=[ 
+            CollectionConfig(
+                name="<code class="replaceable">losses</code>", 
+                parameters=<span>{</span>
+                    "<code class="replaceable">save_interval</code>": "<code class="replaceable">500</code>"
+                } 
+            )
+        ]
+    )
+]</code></pre>
+     
+        <h2 id="checkinput-mages">CheckInputImages</h2>
+        <p>This rule checks if input images have been correctly normalized. Specifically, it
+            detects if the mean of the sample data differs by more than a threshold value from zero.
+            Many computer vision models require that input data has a zero mean and unit
+            variance.</p>
+        <p>This rule is applicable to deep learning applications.</p>
+        <p>For an example of how to configure and deploy a built-in rule, see <a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a>.</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c57b9"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameter Descriptions for the CheckInputImages Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        <td tabindex="-1">
+                            <p>The base trial training job name. This parameter is automatically
+                                set to the current training job by Amazon SageMaker Debugger. </p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">threshold_mean</code></td>
+                        <td tabindex="-1">
+                            <p>A threshold that defines by how much mean of the input data can
+                                differ from 0.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default value: <code class="code">0.2</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">threshold_samples</code></td>
+                        <td tabindex="-1">
+                            <p>The number of images that have to be sampled before an error can
+                                be thrown. If the value is too low, the estimation of the dataset
+                                mean will be inaccurate.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Integer</p>
+                            <p>Default value: <code class="code">500</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">regex</code></td>
+                        <td tabindex="-1">
+                            <p>The name of the input data tensor.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: String</p>
+                            <p>Default value: <code class="code">".*hybridsequential0_input_0"</code> (the
+                                name of the input tensor for Apache MXNet models using
+                                HybridSequential)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">channel</code></td>
+                        <td tabindex="-1">
+                            <p>The position of the color channel in the input tensor shape array. </p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Integer</p>
+                            <p>Default value: <code class="code">1</code> (for example, MXNet expects input
+                                data in the form of (batch_size, channel, height, width))</p>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">built_in_rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.<code class="replaceable">check_input_images</code>(),
+        rule_parameters=<span>{</span>
+                "<code class="replaceable">threshold_mean</code>": "<code class="replaceable">0.2</code>",
+                "<code class="replaceable">threshold_samples</code>": "<code class="replaceable">500</code>",
+                "<code class="replaceable">regex</code>": "<code class="replaceable">.*hybridsequential0_input_0</code>",
+                "<code class="replaceable">channel</code>": "<code class="replaceable">1</code>"
+        },
+        collections_to_save=[ 
+            CollectionConfig(
+                name="<code class="replaceable">custom_inputs_collection</code>", 
+                parameters=<span>{</span>
+                    "<code class="replaceable">include_regex</code>": "<code class="replaceable">.*hybridsequential0_input_0</code>",
+                    "<code class="replaceable">save_interval</code>": "<code class="replaceable">500</code>"
+                } 
+            )
+        ]
+    )
+]</code></pre>
+     
+        <h2 id="nlp-sequence-ratio">NLPSequenceRatio</h2>
+        <p>This rule calculates the ratio of specific tokens given the rest of the input sequence
+            that is useful for optimizing performance. For example, you can calculate the percentage
+            of padding end-of-sentence (EOS) tokens in your input sequence. If the number of EOS
+            tokens is too high, an alternate bucketing strategy should be performed. You also can
+            calculate the percentage of unknown tokens in your input sequence. If the number of
+            unknown words is too high, an alternate vocabulary could be used.</p>
+        <p>This rule is applicable to deep learning applications.</p>
+        <p>For an example of how to configure and deploy a built-in rule, see <a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a>.</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c59b9"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameter Descriptions for the NLPSequenceRatio Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        <td tabindex="-1">
+                            <p>The base trial training job name. This parameter is automatically
+                                set to the current training job by Amazon SageMaker Debugger. </p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">tensor_regex</code></td>
+                        <td tabindex="-1">
+                            <p>A list of regex patterns used to restrict this comparison to
+                                specific scalar-valued tensors. The rule inspects only the tensors
+                                that match the regex patterns specified in the list. If no patterns
+                                are passed, the rule compares all tensors gathered in the trials by
+                                default. Only scalar-valued tensors can be matched.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: List of strings or a comma-separated string </p>
+                            <p>Default value: <code class="code">".*embedding0_input_0"</code> (assuming an
+                                embedding as the initial layer of the network)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">token_values</code></td>
+                        <td tabindex="-1">
+                            <p>A string of a list of the numerical values of the tokens. For
+                                example, "3, 0".</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Comma-separated string of numerical values</p>
+                            <p>Default value: <code class="code">0</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">token_thresholds_percent</code></td>
+                        <td tabindex="-1">
+                            <p>A string of a list of thresholds (in percentages) that correspond
+                                to each of the <code class="code">token_values</code>. For example,"50.0,
+                                50.0".</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Comma-separated string of floats</p>
+                            <p>Default value: <code class="code">"50"</code></p>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">built_in_rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.<code class="replaceable">nlp_sequence_ratio</code>(),
+        rule_parameters=<span>{</span>
+                "tensor_regex": "<code class="replaceable">.*embedding0_input_0</code>",
+                "token_values": "<code class="replaceable">0</code>",
+                "token_thresholds_percent": "<code class="replaceable">50</code>"
+        },
+        collections_to_save=[ 
+            CollectionConfig(
+                name="<code class="replaceable">custom_inputs_collection</code>", 
+                parameters=<span>{</span>
+                    "<code class="replaceable">include_regex</code>": "<code class="replaceable"><code class="replaceable">.*embedding0_input_0</code></code>"
+                } 
+            )
+        ]
+    )
+]</code></pre>
+     
+        <h2 id="confusion">Confusion</h2>
+        <p>This rule evaluates the goodness of a confusion matrix for a classification
+            problem.</p>
+        <p>It creates a matrix of size <code class="code">category_no*category_no</code> and populates it with
+            data coming from (<code class="code">labels</code>, <code class="code">predictions</code>) pairs. For each
+                (<code class="code">labels</code>, <code class="code">predictions</code>) pair, the count in
+                <code class="code">confusion[labels][predictions]</code> is incremented by 1. When the matrix is
+            fully populated, the ratio of data on-diagonal values and off-diagonal values are
+            evaluated as follows:</p>
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>For elements on the diagonal:
+                        <code class="code">confusion[i][i]/sum_j(confusion[j][j])&gt;=min_diag</code></p>
+            </li><li class="listitem">
+                <p>For elements off the diagonal:
+                        <code class="code">confusion[j][i])/sum_j(confusion[j][i])&lt;=max_off_diag</code></p>
+            </li></ul></div>
+        
+        <p>This rule can be applied to the XGBoost algorithm.</p>
+        <p>For an example of how to configure and deploy a built-in rule, see <a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a>.</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c61c15"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameter Descriptions for the Confusion Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        <td tabindex="-1">
+                            <p>The base trial training job name. This parameter is automatically
+                                set to the current training job by Amazon SageMaker Debugger. </p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">category_no</code></td>
+                        <td tabindex="-1">
+                            <p>The number of categories.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Integer ≥2</p>
+                            <p>Default value: <code class="code">"None"</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">labels</code></td>
+                        <td tabindex="-1">
+                            <p>The <code class="code">labels</code> tensor collection or an 1-d vector of true
+                                labels. </p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: String</p>
+                            <p>Default value: <code class="code">"labels"</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">predictions</code></td>
+                        <td tabindex="-1">
+                            <p>The <code class="code">predictions</code> tensor collection or an 1-d vector of
+                                estimated labels. </p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: String</p>
+                            <p>Default value: <code class="code">"predictions"</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">labels_collection</code></td>
+                        <td tabindex="-1">
+                            <p>The rule inspects the tensors in this collection for
+                                    <code class="code">labels</code>.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: String</p>
+                            <p>Default value: <code class="code">"labels"</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">predictions_collection</code></td>
+                        <td tabindex="-1">
+                            <p>The rule inspects the tensors in this collection for
+                                    <code class="code">predictions</code>.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: String</p>
+                            <p>Default value: <code class="code">"predictions"</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">min_diag</code></td>
+                        <td tabindex="-1">
+                            <p>The minimum threshold for the ratio of data on the
+                                diagonal.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: <code class="code">0</code>≤float≤<code class="code">1</code></p>
+                            <p>Default value: <code class="code">0.9</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">max_off_diag</code></td>
+                        <td tabindex="-1">
+                            <p>The maximum threshold for the ratio of data off the
+                                diagonal.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: <code class="code">0</code>≤float≤<code class="code">1</code></p>
+                            <p>Default value: <code class="code">0.1</code></p>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">built_in_rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.<code class="replaceable">confusion</code>(),
+        rule_parameters=<span>{</span>
+                "category_no": "<code class="replaceable">10</code>",
+                "labels": "<code class="replaceable">labels</code>",
+                "predictions": "<code class="replaceable">predictions</code>",
+                "labels_collection": "<code class="replaceable">labels</code>",
+                "predictions_collection": "<code class="replaceable">predictions</code>",
+                "min_diag": "<code class="replaceable">0.9</code>",
+                "max_off_diag": "<code class="replaceable">0.1</code>"
+        },
+        collections_to_save=[ 
+            CollectionConfig(
+                name="<code class="replaceable">labels</code>",
+                parameters=<span>{</span>
+                    "save_interval": "<code class="replaceable">500</code>"
+                } 
+            ),
+            CollectionConfig(
+                name="<code class="replaceable">predictions</code>",
+                parameters=<span>{</span>
+                    "include_regex": "<code class="replaceable">500</code>"
+                } 
+            )
+        ]
+    )
+]</code></pre>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This rule infers default values for the optional parameters if their values aren't
+                specified.</p></div></div>
+     
+        <h2 id="feature_importance_overweight">FeatureImportanceOverweight</h2>
+        <p>This rule accumulates the weights of the n largest feature importance values per step
+            and ensures that they do not exceed the threshold. For example, you can set the
+            threshold for the top 3 features to not hold more than 80 percent of the total weights
+            of the model.</p>
+        <p>This rule is valid only for the XGBoost algorithm.</p>
+        <p>For an example of how to configure and deploy a built-in rule, see <a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a>.</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c63b9"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameter Descriptions for the FeatureImportanceOverweight Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        <td tabindex="-1">
+                            <p>The base trial training job name. This parameter is automatically
+                                set to the current training job by Amazon SageMaker Debugger. </p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">threshold</code></td>
+                        <td tabindex="-1">
+                            <p>Defines the threshold for the proportion of the cumulative sum of
+                                the <code class="code">n</code> largest features. The number <code class="code">n</code> is
+                                defined by the <code class="code">nfeatures</code> parameter.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default value: <code class="code">0.8</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">nfeatures</code></td>
+                        <td tabindex="-1">
+                            <p>The number of largest features.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Integer</p>
+                            <p>Default value: <code class="code">3</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">tensor_regex</code></td>
+                        <td tabindex="-1">
+                            <p>Regular expression (regex) of tensor names the rule to
+                                analyze.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: String</p>
+                            <p>Default value: <code class="code">".*feature_importance/weight"</code></p>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">built_in_rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.<code class="replaceable">feature_importance_overweight</code>(),
+        rule_parameters=<span>{</span>
+                "threshold": "<code class="replaceable">0.8</code>",
+                "nfeatures": "<code class="replaceable">3</code>",
+                "tensor_regex": "<code class="replaceable">.*feature_importance/weight</code>"
+        },
+        collections_to_save=[ 
+            CollectionConfig(
+                name="<code class="replaceable">feature_importance</code>", 
+                parameters=<span>{</span>
+                    "<code class="replaceable">save_interval</code>": "<code class="replaceable">500</code>"
+                } 
+            )
+        ]
+    )
+]</code></pre>
+     
+        <h2 id="tree-depth">TreeDepth</h2>
+        <p>This rule measures the depth of trees in an XGBoost model. XGBoost rejects splits if
+            they do not improve loss. This regularizes the training. As a result, the tree might not
+            grow as deep as defined by the <code class="code">depth</code> parameter.</p>
+        <p>This rule is valid only for the XGBoost algorithm.</p>
+        <p>For an example of how to configure and deploy a built-in rule, see <a href="use-debugger-built-in-rules.html">Configure Debugger Built-in Rules</a>.</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac23c20c19c19c65b9"><thead><tr><th class="table-header" colspan="100"><div class="title">Parameter Descriptions for the TreeDepth Rule</div></th></tr>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_trial</code></td>
+                        <td tabindex="-1">
+                            <p>The base trial training job name. This parameter is automatically
+                                set to the current training job by Amazon SageMaker Debugger. </p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: String</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">depth</code></td>
+                        <td tabindex="-1">
+                            <p>The depth of the tree. The depth of the tree is obtained by
+                                computing the base 2 logarithm of the largest node ID.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Float</p>
+                            <p>Default value: <code class="code">4</code></p>
+                        </td>
+                    </tr>
+                </table></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">built_in_rules = [
+    Rule.sagemaker(
+        base_config=rule_configs.<code class="replaceable">tree_depth</code>(),
+        rule_parameters=<span>{</span>
+                "<code class="replaceable">depth</code>": "<code class="replaceable">4</code>"
+        },
+        collections_to_save=[ 
+            CollectionConfig(
+                name="<code class="replaceable">tree</code>", 
+                parameters=<span>{</span>
+                    "<code class="replaceable">save_interval</code>": "<code class="replaceable">500</code>"
+                } 
+            )
+        ]
+    )
+]</code></pre>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./debugger-enable-tensorboard-summaries.html">Visualize Debugger Output
+            Tensors in TensorBoard</div><div id="next" class="next-link" accesskey="n" href="./debugger-custom-rules.html">Create Custom Rules</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-built-in-rules.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-built-in-rules.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

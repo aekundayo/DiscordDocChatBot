@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Train Using a Heterogeneous Cluster - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="train-heterogeneous-cluster" /><meta name="default_state" content="train-heterogeneous-cluster" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="train-heterogeneous-cluster.html" /><meta name="description" content="Learn how to run a SageMaker training job with multiple types of ML instances." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="train-heterogeneous-cluster.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/train-heterogeneous-cluster.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/train-heterogeneous-cluster.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/train-heterogeneous-cluster.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/train-heterogeneous-cluster.html" hreflang="de" /><link rel="alternative" href="train-heterogeneous-cluster.html" hreflang="en-us" /><link rel="alternative" href="train-heterogeneous-cluster.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/train-heterogeneous-cluster.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/train-heterogeneous-cluster.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/train-heterogeneous-cluster.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/train-heterogeneous-cluster.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/train-heterogeneous-cluster.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/train-heterogeneous-cluster.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/train-heterogeneous-cluster.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/train-heterogeneous-cluster.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/train-heterogeneous-cluster.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/train-heterogeneous-cluster.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/train-heterogeneous-cluster.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/train-heterogeneous-cluster.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/train-heterogeneous-cluster.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/train-heterogeneous-cluster.html" hreflang="zh-tw" /><link rel="alternative" href="train-heterogeneous-cluster.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Train Using a Heterogeneous Cluster" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Train Using a Heterogeneous Cluster - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#train-heterogeneous-cluster" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/train-heterogeneous-cluster.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/train-heterogeneous-cluster.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/train-heterogeneous-cluster.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Train Using a Heterogeneous Cluster",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#train-heterogeneous-cluster" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="train-heterogeneous-cluster.html#train-heterogeneous-cluster-configure">How to Configure a Heterogeneous
+                Cluster</a><a href="train-heterogeneous-cluster.html#train-heterogeneous-cluster-configure-distributed">Distributed Training
+                with a Heterogeneous Cluster</a><a href="train-heterogeneous-cluster.html#train-heterogeneous-cluster-modify-training-script">Modify Your
+                Training Script to Assign Instance Groups</a><a href="train-heterogeneous-cluster.html#train-heterogeneous-cluster-considerations">Considerations</a><a href="train-heterogeneous-cluster.html#trin-heterogeneous-cluster-examples">Examples, Blogs, and Case Studies</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="train-heterogeneous-cluster">Train Using a Heterogeneous Cluster</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Using the heterogeneous cluster feature of SageMaker Training, you can run a training job with
+        multiple types of ML instances for a better resource scaling and utilization for different
+        ML training tasks and purposes. For example, if your training job on a cluster with GPU
+        instances suffers low GPU utilization and CPU bottleneck problems due to CPU-intensive
+        tasks, using a heterogeneous cluster can help offload CPU-intensive tasks by adding more
+        cost-efficient CPU instance groups, resolve such bottleneck problems, and achieve a better
+        GPU utilization.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This feature is available in the SageMaker Python SDK v2.98.0 and later.</p></div></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This feature is available through the SageMaker <a href="https://sagemaker.readthedocs.io/en/stable/frameworks/pytorch/sagemaker.pytorch.html" rel="noopener noreferrer" target="_blank"><span>PyTorch</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and <a href="https://sagemaker.readthedocs.io/en/stable/frameworks/tensorflow/sagemaker.tensorflow.html#tensorflow-estimator" rel="noopener noreferrer" target="_blank"><span>TensorFlow</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> framework estimator classes. Supported frameworks are PyTorch
+            v1.10 or later and TensorFlow v2.6 or later.</p></div></div><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="train-heterogeneous-cluster.html#train-heterogeneous-cluster-configure">How to Configure a Heterogeneous
+                Cluster</a></li><li><a href="train-heterogeneous-cluster.html#train-heterogeneous-cluster-configure-distributed">Distributed Training
+                with a Heterogeneous Cluster</a></li><li><a href="train-heterogeneous-cluster.html#train-heterogeneous-cluster-modify-training-script">Modify Your
+                Training Script to Assign Instance Groups</a></li><li><a href="train-heterogeneous-cluster.html#train-heterogeneous-cluster-considerations">Considerations</a></li><li><a href="train-heterogeneous-cluster.html#trin-heterogeneous-cluster-examples">Examples, Blogs, and Case Studies</a></li></ul></div>
+        <h2 id="train-heterogeneous-cluster-configure">How to Configure a Heterogeneous
+                Cluster</h2>
+        <p>This section provides instructions on how to run a training job using a heterogeneous
+            cluster that consists of multiple instance types.</p>
+        <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="train-heterogeneous-cluster.html#train-heterogeneous-cluster-configure-pysdk">Using the SageMaker Python
+                    SDK</a></li><li><a href="train-heterogeneous-cluster.html#train-heterogeneous-cluster-configure-api">Using the Low-Level SageMaker
+                    APIs</a></li></ul></div>
+         
+            <h3 id="train-heterogeneous-cluster-configure-pysdk">Using the SageMaker Python
+                    SDK</h3>
+            <p>Follow instructions on how to configure instance groups for a heterogeneous
+                cluster using the SageMaker Python SDK.</p>
+            <div class="orderedlist">
+                 
+                 
+                 
+                 
+            <ol><li>
+                    <p>To configure instance groups of a heterogeneous cluster for a training
+                        job, use the <code class="code">sagemaker.instance_group.InstanceGroup</code> class. You
+                        can specify a custom name for each instance group, the instance type, and
+                        the number of instances for each instance group. For more information, see
+                            <a href="https://sagemaker.readthedocs.io/en/stable/api/utility/instance_group.html" rel="noopener noreferrer" target="_blank"><span>sagemaker.instance_group.InstanceGroup</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the <em>SageMaker
+                            Python SDK documentation</em>.</p>
+                    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For more information about available instance types and the maximum
+                            number of instance groups that you can configure in a heterogeneous
+                            cluster, see the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_InstanceGroup.html">
+                                InstanceGroup</a> API reference.</p></div></div>
+                    <p>The following code example shows how to set up two instance groups that
+                        consists of two <code class="code">ml.c5.18xlarge</code> CPU-only instances named
+                            <code class="code">instance_group_1</code> and one <code class="code">ml.p3dn.24xlarge</code> GPU
+                        instance named <code class="code">instance_group_2</code>, as shown in the following
+                        diagram.</p>
+                    <div class="mediaobject">
+                         
+                            <img src="../../../images/sagemaker/latest/dg/images/HCTraining.png" class="aws-docs-img-whiteBg aws-docs-img-padding" />
+                         
+                        <div class="caption">The preceding diagram shows a conceptual example of
+                            how pre-training processes, such as data preprocessing, can be assigned
+                            to the CPU instance group and stream the preprocessed data to the GPU
+                            instance group.</div>
+                    </div>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.instance_group import InstanceGroup
+
+instance_group_1 = InstanceGroup(
+    "<code class="replaceable">instance_group_1</code>", "<code class="replaceable">ml.c5.18xlarge</code>", <code class="replaceable">2</code>
+)
+instance_group_2 = InstanceGroup(
+    "<code class="replaceable">instance_group_2</code>", "<code class="replaceable">ml.p3dn.24xlarge</code>", <code class="replaceable">1</code>
+)</code></pre>
+                </li><li>
+                    <p>Using the instance group objects, set up training input channels and
+                        assign instance groups to the channels through the
+                            <code class="code">instance_group_names</code> argument of the <a href="https://sagemaker.readthedocs.io/en/stable/api/utility/inputs.html" rel="noopener noreferrer" target="_blank"><span>sagemaker.inputs.TrainingInput</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> class. The
+                            <code class="code">instance_group_names</code> argument accepts a list of strings of
+                        instance group names.</p>
+                    <p>The following example shows how to set two training input channels and
+                        assign the instance groups created in the example of the previous step. You
+                        can also specify Amazon S3 bucket paths to the <code class="code">s3_data</code>
+                        argument for the instance groups to process data for your usage
+                        purposes.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.inputs import TrainingInput
+
+training_input_channel_1 = TrainingInput(
+    s3_data_type='<code class="replaceable">S3Prefix</code>', # Available Options: S3Prefix | ManifestFile | AugmentedManifestFile
+    s3_data='<code class="replaceable">s3://your-training-data-storage/folder1</code>',
+    distribution='<code class="replaceable">FullyReplicated</code>', # Available Options: FullyReplicated | ShardedByS3Key 
+    input_mode='<code class="replaceable">File</code>', # Available Options: File | Pipe | FastFile
+    instance_groups=["<code class="replaceable">instance_group_1</code>"]
+)
+
+training_input_channel_2 = TrainingInput(
+    s3_data_type='<code class="replaceable">S3Prefix</code>',
+    s3_data='<code class="replaceable">s3://your-training-data-storage/folder2</code>',
+    distribution='<code class="replaceable">FullyReplicated</code>',
+    input_mode='<code class="replaceable">File</code>',
+    instance_groups=["<code class="replaceable">instance_group_2</code>"]
+)</code></pre>
+                    <p>For more information about the arguments of <code class="code">TrainingInput</code>,
+                        see the following links.</p>
+                    <div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>The <a href="https://sagemaker.readthedocs.io/en/stable/api/utility/inputs.html" rel="noopener noreferrer" target="_blank"><span>sagemaker.inputs.TrainingInput</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> class in the <em>SageMaker Python SDK documentation</em></p>
+                        </li><li class="listitem">
+                            <p>The <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_S3DataSource.html">S3DataSource</a> API in the <em>SageMaker
+                                    API Reference</em></p>
+                        </li></ul></div>
+                </li><li>
+                    <p>Configure a SageMaker estimator with the <code class="code">instance_groups</code> argument
+                        as shown in the following code example. The <code class="code">instance_groups</code>
+                        argument accepts a list of <code class="code">InstanceGroup</code> objects.</p>
+                    <awsdocs-tabs><dl style="display: none">
+                        <dt>PyTorch</dt><dd tab-id="pytorch">
+                                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.<code class="userinput">pytorch</code> import <code class="userinput">PyTorch</code>
+
+estimator = <code class="userinput">PyTorch</code>(
+    ...
+    entry_point='<code class="replaceable">my-training-script.py</code>',
+    framework_version='<code class="replaceable">x.y.z</code>',    # 1.10.0 or later
+    py_version='py<code class="replaceable">xy</code>',            
+    job_name='<code class="replaceable">my-training-job-with-heterogeneous-cluster</code>',
+    instance_groups=[<code class="replaceable">instance_group_1</code>, <code class="replaceable">instance_group_2</code>]
+)</code></pre>
+                            </dd>
+                        <dt>TensorFlow</dt><dd tab-id="tensorflow">
+                                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.<code class="userinput">tensorflow</code> import <code class="userinput">TensorFlow</code>
+
+estimator = <code class="userinput">TensorFlow</code>(
+    ...
+    entry_point='<code class="replaceable">my-training-script.py</code>',
+    framework_version='<code class="replaceable">x.y.z</code>', # 2.6.0 or later
+    py_version='py<code class="replaceable">xy</code>',
+    job_name='<code class="replaceable">my-training-job-with-heterogeneous-cluster</code>',
+    instance_groups=[<code class="replaceable">instance_group_1</code>, <code class="replaceable">instance_group_2</code>]
+)</code></pre>
+                            </dd>
+                    </dl></awsdocs-tabs>
+                    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The <code class="code">instance_type</code> and <code class="code">instance_count</code>
+                            argument pair and the <code class="code">instance_groups</code> argument of the SageMaker
+                            estimator class are mutually exclusive. For homogeneous cluster
+                            training, use the <code class="code">instance_type</code> and
+                                <code class="code">instance_count</code> argument pair. For heterogeneous cluster
+                            training, use <code class="code">instance_groups</code>.</p></div></div>
+                    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>To find a complete list of available framework containers, framework
+                            versions, and Python versions, see <a href="https://github.com/aws/deep-learning-containers/blob/master/available_images.md#sagemaker-framework-containers-sm-support-only" rel="noopener noreferrer" target="_blank"><span>SageMaker Framework Containers</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the AWS Deep Learning
+                            Container GitHub repository.</p></div></div>
+                </li><li>
+                    <p>Configure the <code class="code">estimator.fit</code> method with the training input
+                        channels configured with the instance groups and start the training
+                        job.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">estimator.fit(
+    inputs=<span>{</span>
+        'training': <code class="replaceable">training_input_channel_1</code>, 
+        '<code class="replaceable">dummy-input-channel</code>': <code class="replaceable">training_input_channel_2</code>
+    }
+)</code></pre>
+                </li></ol></div>
+         
+         
+            <h3 id="train-heterogeneous-cluster-configure-api">Using the Low-Level SageMaker
+                    APIs</h3>
+            <p>If you use the AWS Command Line Interface or AWS SDK for Python (Boto3) and want to use low-level SageMaker APIs for
+                submitting a training job request with a heterogeneous cluster, see the following
+                API references.</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html">CreateTrainingJob</a></p>
+                </li><li class="listitem">
+                    <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ResourceConfig.html">ResourceConfig </a></p>
+
+                </li><li class="listitem">
+                    <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_InstanceGroup.html">InstanceGroup</a></p>
+                </li><li class="listitem">
+                    <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_S3DataSource.html">S3DataSource</a></p>
+                </li></ul></div>
+         
+     
+        <h2 id="train-heterogeneous-cluster-configure-distributed">Distributed Training
+                with a Heterogeneous Cluster</h2>
+        <p>Through the <code class="code">distribution</code> argument of the SageMaker estimator class, you can
+            assign a specific instance group to run distributed training. For example, assume that
+            you have the following two instance groups and want to run multi-GPU training on one of
+            them. </p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.instance_group import InstanceGroup
+
+instance_group_1 = InstanceGroup("instance_group_1", "ml.c5.18xlarge", 1)
+instance_group_2 = InstanceGroup("instance_group_2", "ml.p3dn.24xlarge", 2)</code></pre>
+        <p>You can set the distributed training configuration for one of the instance groups. For
+            example, the following code examples show how to assign <code class="code">training_group_2</code>
+            with two <code class="code">ml.p3dn.24xlarge</code> instances to the distributed training
+            configuration.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Currently, only one instance group of a heterogeneous cluster can be specified to
+                the distribution configuration.</p></div></div>
+        <p><b>With MPI</b></p>
+        <awsdocs-tabs><dl style="display: none">
+            <dt>PyTorch</dt><dd tab-id="pytorch">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.<code class="userinput">pytorch</code> import <code class="userinput">PyTorch</code>
+
+estimator = <code class="userinput">PyTorch</code>(
+    ...
+    instance_groups=[<code class="replaceable">instance_group_1</code>, <code class="replaceable">instance_group_2</code>],
+    distribution=<span>{</span>
+        "mpi": <span>{</span>
+            "enabled": True, "processes_per_host": <code class="replaceable">8</code>
+        },
+        "instance_groups": [<code class="replaceable">instance_group_2</code>]
+    }
+)</code></pre>
+                </dd>
+            <dt>TensorFlow</dt><dd tab-id="tensorflow">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.<code class="userinput">tensorflow</code> import <code class="userinput">TensorFlow</code>
+
+estimator = <code class="userinput">TensorFlow</code>(
+    ...
+    instance_groups=[<code class="replaceable">instance_group_1</code>, <code class="replaceable">instance_group_2</code>],
+    distribution=<span>{</span>
+        "mpi": <span>{</span>
+            "enabled": True, "processes_per_host": <code class="replaceable">8</code>
+        },
+        "instance_groups": [<code class="replaceable">instance_group_2</code>]
+    }
+)</code></pre>
+                </dd>
+        </dl></awsdocs-tabs>
+        
+        <p><b>With the SageMaker data parallel library</b></p>
+        <awsdocs-tabs><dl style="display: none">
+            <dt>PyTorch</dt><dd tab-id="pytorch">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.<code class="userinput">pytorch</code> import <code class="userinput">PyTorch</code>
+
+estimator = <code class="userinput">PyTorch</code>(
+    ...
+    instance_groups=[<code class="replaceable">instance_group_1</code>, <code class="replaceable">instance_group_2</code>],
+    distribution=<span>{</span>
+        "smdistributed": <span>{</span>
+            "dataparallel": <span>{</span>
+                "enabled": True
+            }
+        }, 
+        "instance_groups": [<code class="code" copy="true">instance_group_2</code>]
+    }
+)</code></pre>
+                </dd>
+            <dt>TensorFlow</dt><dd tab-id="tensorflow">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.<code class="userinput">tensorflow</code> import <code class="userinput">TensorFlow</code>
+
+estimator = <code class="userinput">TensorFlow</code>(
+    ...
+    instance_groups=[<code class="replaceable">instance_group_1</code>, <code class="replaceable">instance_group_2</code>],
+    distribution=<span>{</span>
+        "smdistributed": <span>{</span>
+            "dataparallel": <span>{</span>
+                "enabled": True
+            }
+        }, 
+        "instance_groups": [<code class="code" copy="true">instance_group_2</code>]
+    }
+)</code></pre>
+                </dd>
+        </dl></awsdocs-tabs>
+        
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When using the SageMaker data parallel library, make sure the instance group consists
+                of the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/distributed-data-parallel-support.html#distributed-data-parallel-supported-instance-types">supported instance types by the library</a>. </p></div></div>
+        <p>For more information about the SageMaker data parallel library, see <a href="data-parallel.html">SageMaker Data
+                Parallel Training</a>.</p>
+        <p><b>With the SageMaker model parallel library</b></p>
+        <awsdocs-tabs><dl style="display: none">
+            <dt>PyTorch</dt><dd tab-id="pytorch">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.<code class="userinput">pytorch</code> import <code class="userinput">PyTorch</code>
+
+estimator = <code class="userinput">PyTorch</code>(
+    ...
+    instance_groups=[<code class="replaceable">instance_group_1</code>, <code class="replaceable">instance_group_2</code>],
+    distribution=<span>{</span>
+        "smdistributed": <span>{</span>
+            "modelparallel": <span>{</span>
+                "enabled":True,
+                "parameters": <span>{</span>
+                    ...   # SageMaker model parallel parameters
+                } 
+            }
+        }, 
+        "instance_groups": [<code class="code" copy="true">instance_group_2</code>]
+    }
+)</code></pre>
+                </dd>
+            <dt>TensorFlow</dt><dd tab-id="tensorflow">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.<code class="userinput">tensorflow</code> import <code class="userinput">TensorFlow</code>
+
+estimator = <code class="userinput">TensorFlow</code>(
+    ...
+    instance_groups=[<code class="replaceable">instance_group_1</code>, <code class="replaceable">instance_group_2</code>],
+    distribution=<span>{</span>
+        "smdistributed": <span>{</span>
+            "modelparallel": <span>{</span>
+                "enabled":True,
+                "parameters": <span>{</span>
+                    ...   # SageMaker model parallel parameters
+                } 
+            }
+        }, 
+        "instance_groups": [<code class="code" copy="true">instance_group_2</code>]
+    }
+)</code></pre>
+                </dd>
+        </dl></awsdocs-tabs>
+        
+        <p>For more information about the SageMaker model parallel library, see <a href="model-parallel.html">SageMaker Model
+                Parallel Training</a>.</p>
+     
+        <h2 id="train-heterogeneous-cluster-modify-training-script">Modify Your
+                Training Script to Assign Instance Groups</h2>
+        <p>With the heterogeneous cluster configuration in the previous sections, you have
+            prepared the SageMaker training environment and instances for your training job. To further
+            assign the instance groups to certain training and data processing tasks, the next step
+            is to modify your training script. By default, the training job simply makes training
+            script replicas for all nodes regardless the size of the instance, and this might lead
+            to performance loss. </p>
+        <p>For example, if you mix CPU instances and GPU instances in a heterogeneous cluster
+            while passing a deep neural network training script to the <code class="code">entry_point</code>
+            argument of the SageMaker estimator, the <code class="code">entry_point</code> script is replicated to
+            each instance. This means that, without proper task assignments, CPU instances also run
+            the entire script and start the training job that’s designed for distributed training on
+            GPU instances. Therefore, you must make changes in specific processing functions that
+            you want to offload and run on the CPU instances. You can use the SageMaker environment
+            variables to retrieve the information of the heterogeneous cluster and let specific
+            processes to run accordingly.</p>
+         
+            <h3 id="train-heterogeneous-cluster-modify-training-script-query-env-var">Query instance group information during the initialization phase of a SageMaker
+                    training job</h3>
+            <p>When your training job starts, your training script reads SageMaker training
+                environment information that includes heterogeneous cluster configuration. The
+                configuration contains information such as the current instance groups, the current
+                hosts in each group, and in which group the current host resides.</p>
+            <p>You can retrieve instance group information in the following ways.</p>
+            <p><b>(Recommended) Reading instance group information with the
+                    SageMaker training toolkit</b></p>
+            <p>Use the environment Python module that the <a href="https://github.com/aws/sagemaker-training-toolkit" rel="noopener noreferrer" target="_blank"><span>SageMaker training toolkit
+                    library</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> provides. The toolkit library is preinstalled in the <a href="https://github.com/aws/deep-learning-containers/blob/master/available_images.md#sagemaker-framework-containers-sm-support-only" rel="noopener noreferrer" target="_blank"><span>SageMaker framework containers</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> for TensorFlow and PyTorch, so you don’t
+                need an additional installation step when using the prebuilt containers. This is the
+                recommended way to retrieve the SageMaker environment variables with fewer code changes
+                in your training script.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker_training import environment
+
+env = environment.Environment()</code></pre>
+            <p>Environment variables related to general SageMaker training and heterogeneous
+                clusters:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><code class="code">env.is_hetero</code> – Returns a Boolean result whether a
+                        heterogeneous cluster is configured or not.</p>
+                </li><li class="listitem">
+                    <p><code class="code">env.current_host</code> – Returns the current host.</p>
+                </li><li class="listitem">
+                    <p><code class="code">env.current_instance_type</code> – Returns the type of
+                        instance of the current host.</p>
+                </li><li class="listitem">
+                    <p><code class="code">env.current_instance_group</code> – Returns the name of the
+                        current instance group.</p>
+                </li><li class="listitem">
+                    <p><code class="code">env.current_instance_group_hosts</code> – Returns a list of
+                        hosts in current instance group.</p>
+                </li><li class="listitem">
+                    <p><code class="code">env.instance_groups</code> – Returns a list of instance group
+                        names used for training.</p>
+                </li><li class="listitem">
+                    <p><code class="code">env.instance_groups_dict</code> – Returns the entire
+                        heterogeneous cluster configuration of the training job.</p>
+                </li><li class="listitem">
+                    <p><code class="code">env.distribution_instance_groups</code> – Returns a list of
+                        instance groups assigned to the <code class="code">distribution</code> parameter of the
+                        SageMaker estimator class.</p>
+                </li><li class="listitem">
+                    <p><code class="code">env.distribution_hosts</code> – Returns a list of hosts
+                        belonging to the instance groups assigned to the <code class="code">distribution</code>
+                        parameter of the SageMaker estimator class.</p>
+                </li></ul></div>
+            <p>For example, consider the following example of a heterogeneous cluster that
+                consists of two instance groups.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">from sagemaker.instance_group import InstanceGroup
+
+instance_group_1 = InstanceGroup(
+    "instance_group_1", "ml.c5.18xlarge", 1)
+instance_group_2 = InstanceGroup(
+    "instance_group_2", "ml.p3dn.24xlarge", 2)</code></pre>
+            <p>The output of <code class="code">env.instance_groups_dict</code> of the example heterogeneous
+                cluster should be similar to the following.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="dict "><span>{</span>
+    "instance_group_1": <span>{</span>
+        "hosts": [
+            "algo-2"
+        ],
+        "instance_group_name": "instance_group_1",
+        "instance_type": "ml.c5.18xlarge"
+    },
+    "instance_group_2": <span>{</span>
+        "hosts": [
+            "algo-3",
+            "algo-1"
+        ],
+        "instance_group_name": "instance_group_2",
+        "instance_type": "ml.p3dn.24xlarge"
+    }
+}</code></pre>
+            <p><b>(Optional) Reading instance group information from the
+                    resource configuration JSON file</b></p>
+            <p>If you prefer to retrieve the environment variables in JSON format, you can
+                directly use the resource configuration JSON file. The JSON file in a SageMaker training
+                instance is located at <code class="code">/opt/ml/input/config/resourceconfig.json</code> by
+                default.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">file_path = '/opt/ml/input/config/resourceconfig.json'
+config = read_file_as_json(file_path)
+print(json.dumps(config, indent=4, sort_keys=True))</code></pre>
+         
+     
+        <h2 id="train-heterogeneous-cluster-considerations">Considerations</h2>
+        <p>Consider the following items when using the heterogeneous cluster feature.</p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>All instance groups share the same Docker image and training script.
+                    Therefore, your training script should be modified to detect which instance
+                    group it belongs to and fork execution accordingly.</p>
+
+            </li><li class="listitem">
+                <p>The heterogeneous cluster feature is not supported in SageMaker local
+                    mode.</p>
+
+            </li><li class="listitem">
+                <p>The Amazon CloudWatch log streams of a heterogeneous cluster training job are not
+                    grouped by instance groups. You need to figure out from the logs which nodes are in
+                    which group.</p>
+            </li><li class="listitem">
+                <p>The heterogeneous cluster feature is available through the SageMaker <a href="https://sagemaker.readthedocs.io/en/stable/frameworks/pytorch/sagemaker.pytorch.html" rel="noopener noreferrer" target="_blank"><span>PyTorch</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and <a href="https://sagemaker.readthedocs.io/en/stable/frameworks/tensorflow/sagemaker.tensorflow.html#tensorflow-estimator" rel="noopener noreferrer" target="_blank"><span>TensorFlow</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> framework estimator classes. Supported frameworks are
+                    PyTorch v1.10 or later and TensorFlow v2.6 or later. To find a complete list of
+                    available framework containers, framework versions, and Python versions, see
+                        <a href="https://github.com/aws/deep-learning-containers/blob/master/available_images.md#sagemaker-framework-containers-sm-support-only" rel="noopener noreferrer" target="_blank"><span>SageMaker Framework Containers</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the AWS Deep Learning Container
+                    GitHub repository.</p>
+
+            </li><li class="listitem">
+                <p>A distributed training strategy can be applied only to one instance
+                    group.</p>
+
+            </li></ul></div>
+     
+        <h2 id="trin-heterogeneous-cluster-examples">Examples, Blogs, and Case Studies</h2>
+        <p>The following blog discusses case studies about using the SageMaker heterogeneous cluster training.</p>
+        <div class="itemizedlist">
+             
+        <ul class="itemizedlist"><li class="listitem"><p><a href="http://aws.amazon.com/blogs/machine-learning/improve-price-performance-of-your-model-training-using-amazon-sagemaker-heterogeneous-clusters/" rel="noopener noreferrer" target="_blank"><span>Improve price performance of your model training using Amazon SageMaker heterogeneous clusters</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> (Oct 27, 2022)</p></li></ul></div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./model-access-training-data.html">Access Training Data</div><div id="next" class="next-link" accesskey="n" href="./incremental-training.html">Use Incremental Training</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/train-heterogeneous-cluster.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/train-heterogeneous-cluster.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

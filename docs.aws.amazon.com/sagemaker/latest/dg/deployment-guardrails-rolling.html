@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Rolling Deployments - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="deployment-guardrails-rolling" /><meta name="default_state" content="deployment-guardrails-rolling" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="deployment-guardrails-rolling.html" /><meta name="description" content="Rolling deployments provide you with the ability to incrementally roll out an update to a new fleet. If there is an issue with the update, the auto-rollback functionality rolls your endpoint traffic back to the old fleet to protect your endpoint." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="deployment-guardrails-rolling.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/deployment-guardrails-rolling.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/deployment-guardrails-rolling.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/deployment-guardrails-rolling.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/deployment-guardrails-rolling.html" hreflang="de" /><link rel="alternative" href="deployment-guardrails-rolling.html" hreflang="en-us" /><link rel="alternative" href="deployment-guardrails-rolling.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/deployment-guardrails-rolling.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/deployment-guardrails-rolling.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/deployment-guardrails-rolling.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/deployment-guardrails-rolling.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/deployment-guardrails-rolling.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/deployment-guardrails-rolling.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/deployment-guardrails-rolling.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/deployment-guardrails-rolling.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/deployment-guardrails-rolling.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/deployment-guardrails-rolling.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/deployment-guardrails-rolling.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/deployment-guardrails-rolling.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/deployment-guardrails-rolling.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/deployment-guardrails-rolling.html" hreflang="zh-tw" /><link rel="alternative" href="deployment-guardrails-rolling.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Rolling Deployments" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Rolling Deployments - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#deployment-guardrails-rolling" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/deployment-guardrails-rolling.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/deployment-guardrails-rolling.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/deployment-guardrails-rolling.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,inference,deploy model,endpoint,prediction,ML application,serverless machine learning,multi model deployment,inference pipelines,ML model,deployment guardrails,blue green deployments,deployments,all at once,canary,linear,rolling deployments" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploy models for inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Update models in production",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deployment-guardrails.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Rolling Deployments",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deployment-guardrails.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#deployment-guardrails-rolling" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="deployment-guardrails-rolling.html#deployment-guardrails-rolling-how-it-works">How it works</a><a href="deployment-guardrails-rolling.html#deployment-guardrails-prereqs">Prerequisites</a><a href="deployment-guardrails-rolling.html#deployment-guardrails-rolling-batch-size">Determine the rolling batch
+                size</a><a href="deployment-guardrails-rolling.html#deployment-guardrails-rolling-configure">Configure a rolling
+                deployment</a><a href="deployment-guardrails-rolling.html#deployment-guardrails-rolling-failures">Failure handling</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="deployment-guardrails-rolling">Rolling Deployments</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>When you update your endpoint, you can specify a rolling deployment to gradually shift
+        traffic from your old fleet to a new fleet. You can control the size of the traffic shifting
+        steps, as well as specify an evaluation period to monitor the new instances for issues
+        before terminating instances from the old fleet. With rolling deployments, instances on the
+        old fleet are cleaned up after each traffic shift to the new fleet, reducing the amount of
+        additional instances needed to update your endpoint. This is useful especially for
+        accelerated instances that are in high demand.</p><p>Rolling deployments gradually replace the previous deployment of your model version with
+        the new version by updating your endpoint in configurable batch sizes. The traffic shifting
+        behavior of rolling deployments is similar to the <a href="deployment-guardrails-blue-green-linear.html">linear traffic
+            shifting mode</a> in blue/green deployments, but rolling deployments provide you
+        with the benefit of reduced capacity requirements when compared to blue/green deployments.
+        With rolling deployments, fewer instances are active at a time, and you have more granular
+        control over how many instances you want to update in the new fleet. You should consider
+        using a rolling deployment instead of a blue/green deployment if you have large models or a
+        large endpoint with many instances.</p><p>The following list describes the key features of rolling deployments in Amazon SageMaker:</p><div class="itemizedlist">
+         
+         
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p><b>Baking period. </b>The baking period is a set amount
+                of time to monitor the new fleet before proceeding to the next deployment stage. If
+                any of the pre-specified alarms trip during any baking period, then all endpoint
+                traffic rolls back to the old fleet. The baking period helps you to build confidence
+                in your update before making the traffic shift permanent.</p>
+        </li><li class="listitem">
+            <p><b>Rolling batch size.</b> You have granular control
+                over the size of each batch for traffic shifting, or the number of instances you
+                want to update in each batch. This number can range for 5–50% of the size of
+                your fleet. You can specify the batch size as a number of instances or as the
+                overall percentage of your fleet.</p>
+        </li><li class="listitem">
+            <p><b>Auto-rollbacks. </b>You can specify Amazon CloudWatch alarms
+                that SageMaker uses to monitor the new fleet. If an issue with the updated code trips any
+                of the alarms, SageMaker initiates an auto-rollback to the old fleet in order to maintain
+                availability, thereby minimizing risk.</p>
+        </li></ul></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If your endpoint uses any of the features listed in the <a href="deployment-guardrails-exclusions.html">Exclusions</a>
+            page, you cannot use rolling deployments.</p></div></div>
+        <h2 id="deployment-guardrails-rolling-how-it-works">How it works</h2>
+        <p>During a rolling deployment, SageMaker provides the infrastructure to shift traffic from
+            the old fleet to the new fleet without having to provision all of the new instances at
+            once. SageMaker uses the following steps to shift traffic:</p>
+        <div class="orderedlist">
+             
+             
+             
+             
+        <ol><li>
+                <p>SageMaker provisions the first batch of instances in the new fleet.</p>
+            </li><li>
+                <p>A portion of traffic is shifted from the old instances to the first batch of
+                    new instances.</p>
+            </li><li>
+                <p>After the baking period, if no Amazon CloudWatch alarms are tripped, then SageMaker cleans
+                    up a batch of old instances.</p>
+            </li><li>
+                <p>SageMaker continues to provision, shift, and clean up instances in batches until
+                    the deployment is complete.</p>
+            </li></ol></div>
+        <p>If an alarm is tripped during one of the baking periods, then traffic is rolled back
+            to the old fleet in batches of a size that you specify. Alternatively, you can specify
+            the rolling deployment to shift 100% of the traffic back to the old fleet if an alarm is
+            tripped.</p>
+        <p>The following diagram shows the progression of a successful rolling deployment, as
+            described in the previous steps.</p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/deployment-guardrails-rolling-diagram.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                A diagram showing the steps of a rolling deployment's traffic shifting&#xA;                    successfully from the old fleet to the new fleet.&#xA;            " style="max-width:100%" />
+             
+             
+        </div>
+        <p>To create a rolling deployment, you only have to specify your desired deployment
+            configuration. Then SageMaker handles provisioning new instances, terminating old instances,
+            and shifting traffic for you. You can create and manage your deployment through the
+            existing <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpoint.html">UpdateEndpoint</a>
+            and <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html">CreateEndpoint</a>
+            SageMaker API and AWS Command Line Interface commands.</p>
+     
+        <h2 id="deployment-guardrails-prereqs">Prerequisites</h2>
+        <p>Before setting up a rolling deployment, you must create Amazon CloudWatch alarms to watch
+            metrics from your endpoint. If any of the alarms trip during the baking period, then the
+            traffic begins rolling back to your old fleet. To learn how to set up CloudWatch alarms on an
+            endpoint, see the prerequisite page <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/deployment-guardrails-configuration.html">Auto-Rollback
+                Configuration and Monitoring</a>. To learn more about CloudWatch alarms, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html">Using Amazon CloudWatch
+                alarms</a> in the <em>Amazon CloudWatch User Guide</em>.</p>
+        <p>Also, review the <a href="deployment-guardrails-exclusions.html">Exclusions</a>
+            page to make sure that your endpoint meets the requirements for a rolling
+            deployment.</p>
+     
+        <h2 id="deployment-guardrails-rolling-batch-size">Determine the rolling batch
+                size</h2>
+        <p>Before updating your endpoint, determine the batch size that you want to use for
+            incrementally shifting traffic to the new fleet.</p>
+        <p>For rolling deployments, you can specify a batch size that is 5–50% of the
+            capacity of your fleet. If you choose a large batch size, the deployment completes more
+            quickly. However, keep in mind that the endpoint requires more capacity while updating,
+            roughly the batch size overhead. If you choose a smaller batch size, the deployment
+            takes longer, but you use less capacity during the deployment.</p>
+     
+        <h2 id="deployment-guardrails-rolling-configure">Configure a rolling
+                deployment</h2>
+        <p>Once you are ready for your deployment and have set up CloudWatch alarms for your endpoint,
+            you can use the SageMaker <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpoint.html">UpdateEndpoint</a>
+            API or the <a href="https://docs.aws.amazon.com/cli/latest/reference/sagemaker/update-endpoint.html">update-endpoint</a>
+            command in the AWS Command Line Interface to initiate the deployment.</p>
+        <p><b>How to update an endpoint</b></p>
+        <p>The following example shows how you can update your endpoint with a rolling deployment
+            using the <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker/client/update_endpoint.html" rel="noopener noreferrer" target="_blank"><span>update_endpoint</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> method of the Boto3 SageMaker client.</p>
+        <p>To configure a rolling deployment, use the following example and fields:</p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>For <code class="code">EndpointName</code>, use the name of the existing endpoint you want
+                    to update.</p>
+            </li><li class="listitem">
+                <p>For <code class="code">EndpointConfigName</code>, use the name of the endpoint
+                    configuration you want to use.</p>
+            </li><li class="listitem">
+                <p>In the <code class="code">AutoRollbackConfiguration</code> object, within the
+                        <code class="code">Alarms</code> field, you can add your CloudWatch alarms by name. Create one
+                        <code class="code">AlarmName: &lt;your-cw-alarm&gt;</code> entry for each alarm you want
+                    to use.</p>
+            </li><li class="listitem">
+                <p>Under <code class="code">DeploymentConfig</code>, for the <code class="code">RollingUpdatePolicy</code>
+                    object, specify the following fields:</p>
+                <div class="itemizedlist">
+                     
+                     
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="code">MaximumExecutionTimeoutInSeconds</code> — The time limit
+                            for the total deployment. Exceeding this limit causes a timeout. The
+                            maximum value you can specify for this field is 28800 seconds, or 8
+                            hours.</p>
+                    </li><li class="listitem">
+                        <p><code class="code">WaitIntervalInSeconds</code> — The length of the baking
+                            period, during which SageMaker monitors alarms for each batch on the new
+                            fleet.</p>
+                    </li><li class="listitem">
+                        <p><code class="code">MaximumBatchSize</code> — Specify the <code class="code">Type</code>
+                            of batch you want to use (either instance count or overall percentage of
+                            your fleet) and the <code class="code">Value</code>, or the size of each
+                            batch.</p>
+                    </li><li class="listitem">
+                        <p><code class="code">RollbackMaximumBatchSize</code> — Use this object to
+                            specify the rollback strategy in case an alarm trips. Specify the
+                                <code class="code">Type</code> of batch you want to use (either instance count or
+                            overall percentage of your fleet), and the <code class="code">Value</code>, or the
+                            size of each batch. If you don’t specify these fields, or if you set the
+                            value to 100% of your endpoint, then SageMaker uses a blue/green rollback
+                            strategy and rolls all traffic back to the old fleet when an alarm
+                            trips.</p>
+                    </li></ul></div>
+            </li></ul></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import boto3
+client = boto3.client("sagemaker")
+
+response = client.update_endpoint(
+    EndpointName="<code class="replaceable">&lt;your-endpoint-name&gt;</code>",
+    EndpointConfigName="<code class="replaceable">&lt;your-config-name&gt;</code>",
+    DeploymentConfig=<span>{</span>
+        "AutoRollbackConfiguration": <span>{</span>
+            "Alarms": [
+                <span>{</span>
+                    "AlarmName": "<code class="replaceable">&lt;your-cw-alarm&gt;</code>"
+                },
+            ]
+        },
+        "RollingUpdatePolicy": <span>{</span> 
+            "MaximumExecutionTimeoutInSeconds": number,
+            "WaitIntervalInSeconds": number,
+            "MaximumBatchSize": <span>{</span>
+                "Type": "INSTANCE_COUNT" | "CAPACITY_PERCENTAGE" (default),
+                "Value": number
+            },
+            "RollbackMaximumBatchSize": <span>{</span>
+                "Type": "INSTANCE_COUNT" | "CAPACITY_PERCENTAGE" (default),
+                "Value": number
+            },
+        }  
+    }
+)</code></pre>
+        <p>After updating your endpoint, you might want to check the status of your rolling
+            deployment and check the health of your endpoint. You can review your endpoint’s status
+            in the SageMaker console, or you can review the status of your endpoint by using the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html">DescribeEndpoint</a> API.</p>
+        <p>In the <code class="code">VariantStatus</code> object returned by the <code class="code">DescribeEndpoint</code>
+            API, the <code class="code">Status</code> field tells you the current deployment or operational
+            status of your endpoint. For more information about the possible statuses and what they
+            mean, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ProductionVariantStatus.html">ProductionVariantStatus</a>.</p>
+        <p>If you attempted to do a rolling deployment and the status of your endpoint is
+                <code class="code">UpdateRollbackFailed</code>, see the following section for troubleshooting
+            help.</p>
+     
+        <h2 id="deployment-guardrails-rolling-failures">Failure handling</h2>
+        <p>If your rolling deployments fails and the auto-rollback fails as well, your endpoint
+            can be left with a status of <code class="code">UpdateRollbackFailed</code>. This status means that
+            different endpoint configurations are deployed to the instances behind your endpoint,
+            and your endpoint is in service with a mix of old and new endpoint
+            configurations.</p>
+        <p>You can make another call to the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpoint.html">UpdateEndpoint</a>
+            API to return your endpoint to a healthy state. Specify your desired endpoint
+            configuration and deployment configuration (either as a rolling deployment, a blue/green
+            deployment, or neither) to update your endpoint.</p>
+        <p>You can call the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html">DescribeEndpoint</a> API to check the health of your endpoint again, which is
+            returned in the <code class="code">VariantStatus</code> object as the <code class="code">Status</code> field. If
+            your update is successful, your endpoint’s <code class="code">Status</code> returns to
+                <code class="code">InService</code>.</p>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./deployment-guardrails-blue-green-linear.html">Linear Traffic Shifting</div><div id="next" class="next-link" accesskey="n" href="./deployment-guardrails-exclusions.html">Exclusions</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/deployment-guardrails-rolling.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/deployment-guardrails-rolling.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

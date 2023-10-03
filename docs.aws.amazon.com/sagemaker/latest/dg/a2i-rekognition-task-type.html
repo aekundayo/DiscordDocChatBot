@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Use Amazon Augmented AI with Amazon Rekognition - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="a2i-rekognition-task-type" /><meta name="default_state" content="a2i-rekognition-task-type" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="a2i-rekognition-task-type.html" /><meta name="description" content="Amazon Rekognition makes it easy to add image analysis to your applications. The Amazon Rekognition DetectModerationLabels API operation is directly integrated with Amazon A2I so that you can easily create a human loop to review unsafe images, such as explicit adult or violent content. You can use" /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="a2i-rekognition-task-type.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/a2i-rekognition-task-type.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/a2i-rekognition-task-type.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/a2i-rekognition-task-type.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/a2i-rekognition-task-type.html" hreflang="de" /><link rel="alternative" href="a2i-rekognition-task-type.html" hreflang="en-us" /><link rel="alternative" href="a2i-rekognition-task-type.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/a2i-rekognition-task-type.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/a2i-rekognition-task-type.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/a2i-rekognition-task-type.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/a2i-rekognition-task-type.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/a2i-rekognition-task-type.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/a2i-rekognition-task-type.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/a2i-rekognition-task-type.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/a2i-rekognition-task-type.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/a2i-rekognition-task-type.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/a2i-rekognition-task-type.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/a2i-rekognition-task-type.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/a2i-rekognition-task-type.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/a2i-rekognition-task-type.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/a2i-rekognition-task-type.html" hreflang="zh-tw" /><link rel="alternative" href="a2i-rekognition-task-type.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Use Amazon Augmented AI with Amazon Rekognition" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Use Amazon Augmented AI with Amazon Rekognition - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#a2i-rekognition-task-type" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/a2i-rekognition-task-type.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/a2i-rekognition-task-type.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/a2i-rekognition-task-type.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Label data with a human-in-the-loop",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-label.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Using Amazon Augmented AI for Human Review",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-use-augmented-ai-a2i-human-review-loops.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Cases and Examples Using Amazon A2I",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-task-types-general.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Use Amazon Augmented AI with Amazon Rekognition",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-task-types-general.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#a2i-rekognition-task-type" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="a2i-rekognition-task-type.html#a2i-create-rekognition-human-review">Get Started: Integrate a Human
+                Review into an Amazon Rekognition Image Moderation Job</a><a href="a2i-rekognition-task-type.html#a2i-task-types-rekognition-notebook-demo">End-to-end Demo Using
+                Amazon Rekognition and Amazon A2I</a><a href="a2i-rekognition-task-type.html#a2i-rekognition-console-preview">A2I Rekognition Worker Console Preview</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="a2i-rekognition-task-type">Use Amazon Augmented AI with Amazon Rekognition</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon Rekognition makes it easy to add image analysis to your applications. The Amazon Rekognition
+            <code class="code">DetectModerationLabels</code> API operation is directly integrated with Amazon A2I
+        so that you can easily create a human loop to review unsafe images, such as explicit adult
+        or violent content. You can use <code class="code">DetectModerationLabels</code> to configure a human
+        loop using a flow definition ARN. This enables Amazon A2I to analyze predictions made by
+        Amazon Rekognition and send results to a human for review to ensure they meet the conditions set in your
+        flow definition.</p><p>The following image depicts the Amazon A2I built-in workflow with Amazon Rekognition. On the left, the
+        resources that are required to create an Amazon Rekognition human review workflow are depicted: and Amazon S3
+        bucket, activation conditions, a worker task template, and a work team. These resources are
+        used to create a human review workflow, or flow definition. An arrow points right to the
+        next step in the workflow: using Amazon Rekognition to configure a human loop with the human review
+        workflow. A second arrow points right from this step to the step in which activation
+        conditions specified in the human review workflow are met. This initiates the creation of a
+        human loop. On the right of the image, the human loop is depicted in three steps: 1) the
+        worker UI and tools are generated and the task is made available to workers, 2) workers
+        review input data, and finally, 3) results are saved in Amazon S3.</p><div class="mediaobject">
+         
+         
+            <img src="../../../images/sagemaker/latest/dg/images/a2i/diagrams/product-page-diagram_A2I-Components_Rekognition@2x.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;            Use Amazon Augmented AI with Amazon Rekognition&#xA;        " />
+            
+         
+    </div><p>You can set the following activation conditions when using the Amazon Rekognition task type:</p><div class="itemizedlist">
+         
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p>Initiate human review for labels identified by Amazon Rekognition based on the label confidence
+                score.</p>
+        </li><li class="listitem">
+            <p>Randomly send a sample of images to humans for review.</p>
+        </li></ul></div><p>You can set these activation conditions using the Amazon SageMaker console when you create a human
+        review workflow, or by creating a JSON for human loop activation conditions and specifying
+        this as input in the <code class="code">HumanLoopActivationConditions</code> parameter of the
+            <code class="code">CreateFlowDefinition</code> API operation. To learn how specify activation
+        conditions in JSON format, see <a href="a2i-human-fallback-conditions-json-schema.html">JSON Schema for Human Loop
+            Activation Conditions in Amazon Augmented AI</a> and <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-json-humantaskactivationconditions-rekognition-example.html">Use Human Loop
+                Activation Conditions JSON Schema with Amazon Rekognition</a>.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When using Augmented AI with Amazon Rekognition, create Augmented AI resources in the same AWS Region you use to
+            call <code class="code">DetectModerationLabels</code>. </p></div></div>
+        <h2 id="a2i-create-rekognition-human-review">Get Started: Integrate a Human
+                Review into an Amazon Rekognition Image Moderation Job</h2>
+        <p>To integrate a human review into an Amazon Rekognition, see the following topics:</p>
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><a href="create-human-review-console.html#a2i-create-human-review-console">Create a Human Review Workflow
+            (Console)</a></p>
+            </li><li class="listitem">
+                <p><a href="create-human-review-console.html#a2i-create-human-review-api">Create a Human Review Workflow (API)</a></p>
+            </li></ul></div>
+        <p>After you've created your flow definition, see <a href="https://docs.aws.amazon.com/rekognition/latest/dg/a2i-rekognition.html">Using Augmented AI with Amazon
+                Rekognition</a> to learn how to integrate your flow definition into your Amazon Rekognition
+            task. </p>
+         
+            <h2 id="a2i-task-types-rekognition-notebook-demo">End-to-end Demo Using
+                Amazon Rekognition and Amazon A2I</h2>
+        <p>For an end-to-end example that demonstrates how to use Amazon Rekognition with Amazon A2I using the
+            console, see <a href="a2i-get-started-console.html">Tutorial: Get Started in the Amazon A2I Console</a>.</p>
+        <p>To learn how to use the Amazon A2I API to create and start a human review, you can use
+                <a href="https://github.com/aws-samples/amazon-a2i-sample-jupyter-notebooks/blob/master/Amazon%20Augmented%20AI%20(A2I)%20and%20Rekognition%20DetectModerationLabels.ipynb" rel="noopener noreferrer" target="_blank"><span>Amazon Augmented AI (Amazon A2I) integration with Amazon Rekognition
+                [Example]</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in a SageMaker notebook instance. To get started, see <a href="a2i-task-types-general.html#a2i-task-types-notebook-demo">Use SageMaker Notebook Instance with
+                Amazon A2I Jupyter Notebook</a>.</p>
+     
+        <h2 id="a2i-rekognition-console-preview">A2I Rekognition Worker Console Preview</h2>
+        
+        <p>When they're assigned a review task in an Amazon Rekognition workflow, workers might see a user
+            interface similar to the following:</p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/a2i-rekognition-example.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+             
+        </div>
+        <p>You can customize this interface in the SageMaker console when you create your human review
+            definition, or by creating and using a custom template. To learn more, see <a href="a2i-instructions-overview.html">Create and Manage Worker Task Templates</a>.</p>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./a2i-textract-task-type.html">Use with Amazon Textract</div><div id="next" class="next-link" accesskey="n" href="./a2i-task-types-custom.html">Use With Custom Task Types</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/a2i-rekognition-task-type.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/a2i-rekognition-task-type.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

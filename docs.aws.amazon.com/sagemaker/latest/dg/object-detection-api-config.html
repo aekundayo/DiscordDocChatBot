@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Object Detection Hyperparameters - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="object-detection-api-config" /><meta name="default_state" content="object-detection-api-config" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="object-detection-api-config.html" /><meta name="description" content="Hyperparameters used to help estimate the parameters of the Object Detection model during training." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="object-detection-api-config.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/object-detection-api-config.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/object-detection-api-config.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/object-detection-api-config.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/object-detection-api-config.html" hreflang="de" /><link rel="alternative" href="object-detection-api-config.html" hreflang="en-us" /><link rel="alternative" href="object-detection-api-config.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/object-detection-api-config.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/object-detection-api-config.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/object-detection-api-config.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/object-detection-api-config.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/object-detection-api-config.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/object-detection-api-config.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/object-detection-api-config.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/object-detection-api-config.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/object-detection-api-config.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/object-detection-api-config.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/object-detection-api-config.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/object-detection-api-config.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/object-detection-api-config.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/object-detection-api-config.html" hreflang="zh-tw" /><link rel="alternative" href="object-detection-api-config.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Object Detection Hyperparameters" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Object Detection Hyperparameters - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#object-detection-api-config" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/object-detection-api-config.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/object-detection-api-config.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/object-detection-api-config.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Choose an Algorithm",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-choose.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Amazon SageMaker Built-in Algorithms or Pre-trained Models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Built-in SageMaker Algorithms for Computer Vision",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-vision.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Object Detection - MXNet",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/object-detection.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 9,
+        "name" : "Object Detection Hyperparameters",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/object-detection.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#object-detection-api-config" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="object-detection-api-config">Object Detection Hyperparameters</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>In the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html"><code class="code">CreateTrainingJob</code></a> request, you specify the training algorithm
+            that you want to use. You can also specify algorithm-specific hyperparameters that are
+            used to help estimate the parameters of the model from a training dataset. The following
+            table lists the hyperparameters provided by Amazon SageMaker for training the object detection
+            algorithm. For more information about how object training works, see <a href="algo-object-detection-tech-notes.html">How Object Detection Works</a>.</p><div class="table-container"><div class="table-contents"><table id="w714aac23c11c21c39c13c15b5"><thead>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">num_classes</code></td>
+                        <td tabindex="-1">
+                            <p>The number of output classes. This parameter defines the
+                                dimensions of the network output and is typically set to the number
+                                of classes in the dataset.</p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: positive integer</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">num_training_samples</code></td>
+                        <td tabindex="-1">
+                            <p>The number of training examples in the input dataset.</p>
+                            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If there is a mismatch between this value and the number of
+                                    samples in the training set, then the behavior of the
+                                        <code class="code">lr_scheduler_step</code> parameter will be undefined
+                                    and distributed training accuracy may be affected.</p></div></div>
+                            <p><b>Required</b></p>
+                            <p>Valid values: positive integer</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">base_network</code></td>
+                        <td tabindex="-1">
+                            <p>The base network architecture to use.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: 'vgg-16' or 'resnet-50'</p>
+                            <p>Default value: 'vgg-16'</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">early_stopping</code></td>
+                        <td tabindex="-1">
+                            <p><code class="code">True</code> to use early stopping logic during training.
+                                    <code class="code">False</code> not to use it.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: <code class="code">True</code> or <code class="code">False</code></p>
+                            <p>Default value: <code class="code">False</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">early_stopping_min_epochs</code></td>
+                        <td tabindex="-1">
+                            <p>The minimum number of epochs that must be run before the early
+                                stopping logic can be invoked. It is used only when
+                                    <code class="code">early_stopping</code> = <code class="code">True</code>.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: positive integer</p>
+                            <p>Default value: 10</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">early_stopping_patience</code></td>
+                        <td tabindex="-1">
+                            <p>The number of epochs to wait before ending training if no
+                                improvement, as defined by the <code class="code">early_stopping_tolerance</code>
+                                hyperparameter, is made in the relevant metric. It is used only when
+                                    <code class="code">early_stopping</code> = <code class="code">True</code>.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: positive integer</p>
+                            <p>Default value: 5</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">early_stopping_tolerance</code></td>
+                        <td tabindex="-1">
+                            <p>The tolerance value that the relative improvement in
+                                    <code class="code">validation:mAP</code>, the mean average precision (mAP),
+                                is required to exceed to avoid early stopping. If the ratio of the
+                                change in the mAP divided by the previous best mAP is smaller than
+                                the <code class="code">early_stopping_tolerance</code> value set, early stopping
+                                considers that there is no improvement. It is used only when
+                                    <code class="code">early_stopping</code> = <code class="code">True</code>.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: 0 ≤ float ≤ 1</p>
+                            <p>Default value: 0.0</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">image_shape</code></td>
+                        <td tabindex="-1">
+                            <p>The image size for input images. We rescale the input image to a
+                                square image with this size. We recommend using 300 and 512 for
+                                better performance.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: positive integer ≥300</p>
+                            <p>Default: 300</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">epochs</code></td>
+                        <td tabindex="-1">
+                            <p>The number of training epochs. </p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: positive integer</p>
+                            <p>Default: 30</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">freeze_layer_pattern</code></td>
+                        <td tabindex="-1">
+                            <p>The regular expression (regex) for freezing layers in the base
+                                network. For example, if we set <code class="code">freeze_layer_pattern</code> =
+                                    <code class="code">"^(conv1_|conv2_).*"</code>, then any layers with a name
+                                that contains <code class="code">"conv1_"</code> or <code class="code">"conv2_"</code> are
+                                frozen, which means that the weights for these layers are not
+                                updated during training. The layer names can be found in the network
+                                symbol files <a href="http://data.mxnet.io/models/imagenet/vgg/vgg16-symbol.json " rel="noopener noreferrer" target="_blank"><span>vgg16-symbol.json</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and <a href="http://data.mxnet.io/models/imagenet/resnet/50-layers/resnet-50-symbol.json" rel="noopener noreferrer" target="_blank"><span>resnet-50-symbol.json</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+                                Freezing a layer means that its weights can not be modified further.
+                                This can reduce training time significantly in exchange for modest
+                                losses in accuracy. This technique is commonly used in transfer
+                                learning where the lower layers in the base network do not need to
+                                be retrained.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: string</p>
+                            <p>Default: No layers frozen.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">kv_store</code></td>
+                        <td tabindex="-1">
+                            <p>The weight update synchronization mode used for distributed
+                                training. The weights can be updated either synchronously or
+                                asynchronously across machines. Synchronous updates typically
+                                provide better accuracy than asynchronous updates but can be slower.
+                                See the <a href="https://mxnet.apache.org/api/faq/distributed_training" rel="noopener noreferrer" target="_blank"><span>Distributed Training</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> MXNet tutorial for details.</p>
+                            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This parameter is not applicable to single machine
+                                    training.</p></div></div>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: <code class="code">'dist_sync'</code> or
+                                    <code class="code">'dist_async'</code></p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p><code class="code">'dist_sync'</code>: The gradients are synchronized
+                                        after every batch with all the workers. With
+                                            <code class="code">'dist_sync'</code>, batch-size now means the batch
+                                        size used on each machine. So if there are n machines and we
+                                        use batch size b, then dist_sync behaves like a single
+                                        machine with batch size n*b.</p>
+                                </li><li class="listitem">
+                                    <p><code class="code">'dist_async'</code>: Performs asynchronous updates.
+                                        The weights are updated whenever gradients are received from
+                                        any machine and the weight updates are atomic. However, the
+                                        order is not guaranteed.</p>
+                                </li></ul></div>
+                            <p>Default: -</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">label_width</code></td>
+                        <td tabindex="-1">
+                            <p>The force padding label width used to sync across training and
+                                validation data. For example, if one image in the data contains at
+                                most 10 objects, and each object's annotation is specified with 5
+                                numbers, [class_id, left, top, width, height], then the
+                                    <code class="code">label_width</code> should be no smaller than (10*5 +
+                                header information length). The header information length is usually
+                                2. We recommend using a slightly larger <code class="code">label_width</code> for
+                                the training, such as 60 for this example.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: Positive integer large enough to accommodate the
+                                largest annotation information length in the data.</p>
+                            <p>Default: 350</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">learning_rate</code></td>
+                        <td tabindex="-1">
+                            <p>The initial learning rate.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: float in (0, 1]</p>
+                            <p>Default: 0.001</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">lr_scheduler_factor</code></td>
+                        <td tabindex="-1">
+                            <p>The ratio to reduce learning rate. Used in conjunction with the
+                                    <code class="code">lr_scheduler_step</code> parameter defined as
+                                    <code class="code">lr_new</code> = <code class="code">lr_old</code> *
+                                    <code class="code">lr_scheduler_factor</code>.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: float in (0, 1)</p>
+                            <p>Default: 0.1</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">lr_scheduler_step</code></td>
+                        <td tabindex="-1">
+                            <p>The epochs at which to reduce the learning rate. The learning rate
+                                is reduced by <code class="code">lr_scheduler_factor</code> at epochs listed in a
+                                comma-delimited string: "epoch1, epoch2, ...". For example, if the
+                                value is set to "10, 20" and the <code class="code">lr_scheduler_factor</code> is
+                                set to 1/2, then the learning rate is halved after 10th epoch and
+                                then halved again after 20th epoch.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: string</p>
+                            <p>Default: empty string</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">mini_batch_size</code></td>
+                        <td tabindex="-1">
+                            <p>The batch size for training. In a single-machine multi-gpu
+                                setting, each GPU handles
+                                    <code class="code">mini_batch_size</code>/<code class="code">num_gpu</code> training
+                                samples. For the multi-machine training in <code class="code">dist_sync</code>
+                                mode, the actual batch size is <code class="code">mini_batch_size</code>*number
+                                of machines. A large <code class="code">mini_batch_size</code> usually leads to
+                                faster training, but it may cause out of memory problem. The memory
+                                usage is related to <code class="code">mini_batch_size</code>,
+                                    <code class="code">image_shape</code>, and <code class="code">base_network</code>
+                                architecture. For example, on a single p3.2xlarge instance, the
+                                largest <code class="code">mini_batch_size</code> without an out of memory error
+                                is 32 with the base_network set to "resnet-50" and an
+                                    <code class="code">image_shape</code> of 300. With the same instance, you can
+                                use 64 as the <code class="code">mini_batch_size</code> with the base network
+                                    <code class="code">vgg-16</code> and an <code class="code">image_shape</code> of
+                                300.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: positive integer</p>
+                            <p>Default: 32</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">momentum</code></td>
+                        <td tabindex="-1">
+                            <p>The momentum for <code class="code">sgd</code>. Ignored for other
+                                optimizers.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: float in (0, 1]</p>
+                            <p>Default: 0.9</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">nms_threshold</code></td>
+                        <td tabindex="-1">
+                            <p>The non-maximum suppression threshold.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: float in (0, 1]</p>
+                            <p>Default: 0.45</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">optimizer</code></td>
+                        <td tabindex="-1">
+                            <p>The optimizer types. For details on optimizer values, see <a href="https://mxnet.apache.org/api/python/docs/api/" rel="noopener noreferrer" target="_blank"><span>MXNet's
+                                    API</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: ['sgd', 'adam', 'rmsprop', 'adadelta']</p>
+                            <p>Default: 'sgd'</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">overlap_threshold</code></td>
+                        <td tabindex="-1">
+                            <p>The evaluation overlap threshold.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: float in (0, 1]</p>
+                            <p>Default: 0.5</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">use_pretrained_model</code></td>
+                        <td tabindex="-1">
+                            <p>Indicates whether to use a pre-trained model for training. If set
+                                to 1, then the pre-trained model with corresponding architecture is
+                                loaded and used for training. Otherwise, the network is trained from
+                                scratch.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: 0 or 1</p>
+                            <p>Default: 1</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">weight_decay</code></td>
+                        <td tabindex="-1">
+                            <p>The weight decay coefficient for <code class="code">sgd</code> and
+                                    <code class="code">rmsprop</code>. Ignored for other optimizers.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: float in (0, 1)</p>
+                            <p>Default: 0.0005</p>
+                        </td>
+                    </tr>
+                </table></div></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./algo-object-detection-tech-notes.html">How It Works</div><div id="next" class="next-link" accesskey="n" href="./object-detection-tuning.html">Model Tuning</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/object-detection-api-config.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/object-detection-api-config.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

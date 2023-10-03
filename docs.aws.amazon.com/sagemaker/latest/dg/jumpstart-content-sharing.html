@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Shared Models and Notebooks - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="jumpstart-content-sharing" /><meta name="default_state" content="jumpstart-content-sharing" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="jumpstart-content-sharing.html" /><meta name="description" content="Share models and notebooks with collaborators in your organization using Amazon SageMaker JumpStart." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="jumpstart-content-sharing.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/jumpstart-content-sharing.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/jumpstart-content-sharing.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/jumpstart-content-sharing.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/jumpstart-content-sharing.html" hreflang="de" /><link rel="alternative" href="jumpstart-content-sharing.html" hreflang="en-us" /><link rel="alternative" href="jumpstart-content-sharing.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/jumpstart-content-sharing.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/jumpstart-content-sharing.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/jumpstart-content-sharing.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/jumpstart-content-sharing.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/jumpstart-content-sharing.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/jumpstart-content-sharing.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/jumpstart-content-sharing.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/jumpstart-content-sharing.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/jumpstart-content-sharing.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/jumpstart-content-sharing.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/jumpstart-content-sharing.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/jumpstart-content-sharing.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/jumpstart-content-sharing.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/jumpstart-content-sharing.html" hreflang="zh-tw" /><link rel="alternative" href="jumpstart-content-sharing.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Shared Models and Notebooks" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Shared Models and Notebooks - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#jumpstart-content-sharing" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-content-sharing.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-content-sharing.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-content-sharing.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use automated ML, no-code, or low-code",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/use-auto-ml.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "SageMaker JumpStart",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Shared Models and Notebooks",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#jumpstart-content-sharing" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="jumpstart-content-sharing.html#jumpstart-content-sharing-access">Access shared models and notebooks</a><a href="jumpstart-content-sharing.html#jumpstart-content-sharing-ui">Share models and notebooks through the Studio UI</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="jumpstart-content-sharing">Shared Models and Notebooks</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Share your models and notebooks to centralize model artifacts, facilitate discoverability,
+    and increase the reuse of models within your organization. When sharing your models, you can
+    provide training and inference environment information and allow collaborators to use these
+    environments for their own training and inference jobs. </p><p>All models that you share and models that are shared with you are searchable in a
+    centralized location directly in Amazon SageMaker Studio. For information on the onboarding steps to
+    sign into Amazon SageMaker Studio, see <a href="gs-studio-onboard.html">Onboard to Amazon SageMaker Domain</a>.</p>
+    <h2 id="jumpstart-content-sharing-access">Access shared models and notebooks</h2>
+    <p>To access your shared content, choose <b>Shared models</b> in the left
+      navigation pane of the Amazon SageMaker Studio UI.</p>
+    
+     
+      <h3 id="jumpstart-content-sharing-access-add">Add shared content</h3>
+      <p>You can share models or notebooks through the <b>Shared models</b> section
+        of the Studio UI. For details about each step, see <a href="jumpstart-content-sharing.html#jumpstart-content-sharing-ui">Share models and notebooks through the Studio UI</a>.</p>
+        
+    
+     
+      <h3 id="jumpstart-content-sharing-access-filter">Filter shared content</h3>
+      <p>There are three main options for filtering shared models and notebooks:</p>
+      <div class="orderedlist">
+         
+         
+         
+      <ol><li>
+            <p><b>Shared by me</b> – Models and notebooks that you shared to either
+            JumpStart or SageMaker Canvas.</p>
+        </li><li>
+            <p><b>Shared with me</b> – Models and notebooks shared with
+            you</p>
+        </li><li>
+            <p><b>Shared by my organization</b> – All models and notebooks
+            that are shared to anyone in your organization</p>
+        </li></ol></div>
+      <p>You can also sort your models and notebooks based on the time they were last updated or
+        by ascending or descending alphabetical order. Choose the filter (<span class="inlinemediaobject">
+           
+            <img src="../../../images/sagemaker/latest/dg/images/jumpstart/jumpstart-filter-icon.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;            The icon to filter shared models and notebooks in JumpStart.&#xA;          " style="max-width:30px" />
+           
+           
+        </span>) icon to further sort your
+        selections.</p>
+     
+
+     
+      <h3 id="jumpstart-content-sharing-access-canvas">Share tabular models with SageMaker Canvas users</h3>
+      <p>In addition to sharing models with your organization, you can also share models with
+        collaborators that use SageMaker Canvas. If you share models to SageMaker Canvas, your collaborators can import
+        those models into SageMaker Canvas and use them to generate predictions. </p>
+      <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>Important: You can only share tabular models to SageMaker Canvas.</p></div></div>
+      <p>You can filter for models and notebooks shared to and from SageMaker Canvas by selecting the filter (<span class="inlinemediaobject">
+           
+            <img src="../../../images/sagemaker/latest/dg/images/jumpstart/jumpstart-filter-icon.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;            The icon to filter shared models and notebooks in JumpStart.&#xA;          " style="max-width:30px" />
+           
+           
+        </span>) icon in the <b>Shared by me</b> or <b>Shared with
+          me</b> tabs. For more information about how to share a model to SageMaker Canvas, see <a href="canvas-byom.html">Bring Your Own Model Into
+          Canvas</a>.</p>
+     
+   
+    <h2 id="jumpstart-content-sharing-ui">Share models and notebooks through the Studio UI</h2>
+    <p>To share models and notebooks, navigate to the <b>Shared models</b> section
+      in Amazon SageMaker Studio, choose <b>Shared by my organization</b>, and then select the
+        <b>Add</b> dropdown list. Choose to either add a model or add a notebook. 
+      <span class="inlinemediaobject">
+         
+          <img src="../../../images/sagemaker/latest/dg/images/jumpstart/jumpstart-shared-models.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;          The menu to add shared models or notebooks to JumpStart.&#xA;        " style="max-width:600px" />
+         
+         
+      </span></p>
+    
+     
+      <h3 id="jumpstart-content-sharing-add-model">Add a model</h3>
+      <p>To add a model, choose <b>Shared by my organization</b>, and then select
+          <b>Add model</b> from the the <b>Add</b> dropdown list. Enter
+        the basic information for your model, and add any training or inference information you want
+        to share with collaborators to train or deploy your model. After you enter all the necessary
+        information, choose <b>Add model</b> in the lower right corner. </p>
+      
+       
+        <h4 id="jumpstart-content-sharing-info">Basic information</h4>
+        <p>First, add the basic descriptive information about your model. This information is
+          used to improve the searchability of your model.</p>
+        <div class="orderedlist">
+           
+           
+           
+           
+           
+           
+        <ol><li>
+            <p>Add a title for this model. Adding a title automatically populates a unique
+              identifier in the ID field based on the model title.</p>
+          </li><li>
+            <p>Add a description of the model.</p>
+          </li><li>
+            <p>Select a data type from the options: <em>text</em>,
+                <em>vision</em>, <em>tabular</em>, or <em>audio</em>.</p>
+          </li><li>
+            <p>Select a machine learning task from the list of available tasks, such as <em>image classification</em> or <em>text
+                generation</em>.</p>
+          </li><li>
+            <p>Select a machine learning framework.</p>
+          </li><li>
+            <p>Add metadata information with keywords or phrases to use when searching for a
+              model. Use commas to separate keywords. Any spaces are automatically replaced with
+              commas. </p>
+          </li></ol></div>
+       
+      
+       
+        <h4 id="jumpstart-content-sharing-training">Enable training</h4>
+        <p>When adding a model to share, you can optionally provide a training environment and
+          allow collaborators in your organization to train the shared model. </p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you are adding a tabular model, you also need to specify a column format and target column
+            to enable training. For more information, see <a href="canvas.html">Amazon SageMaker Canvas</a> in the <em>Amazon SageMaker Developer Guide.</em></p></div></div>
+        <div class="orderedlist">
+           
+           
+           
+             
+           
+           
+           
+           
+             
+           
+           
+           
+           
+        <ol><li>
+              <p>Add a container to use for model training. You can select a container used for
+                an existing training job, bring your own container in Amazon ECR, or use an Amazon SageMaker Deep Learning Container. </p>
+          </li><li>
+              <p>Add environment variables.</p>
+          </li><li>
+              <p>Provide a training script location.</p>
+          </li><li>
+                <p>Provide a script mode entry point.</p>
+            </li><li>
+              <p>Provide an Amazon S3 URI for model artifacts generated during training. </p>
+          </li><li>
+              <p>Provide the Amazon S3 URI to the default training dataset.</p>  
+          </li><li>
+              <p>Provide a model output path. The model output path should be the Amazon S3 URI path
+              for any model artifacts generated from training. SageMaker saves the model artifacts as a
+              single compressed TAR file in Amazon S3.</p>
+          </li><li>
+              <p>Provide a validation dataset to use for evaluating your model during training.
+                Validation datasets must contain the same number of columns and the same feature
+                headers as the training dataset. </p>
+          </li><li>
+                <p>Turn on network isolation. Network isolation isolates the model container so
+              that no inbound or outbound network calls can be made to or from the model container. </p>
+            </li><li>
+              <p>Provide training channels through which SageMaker can access your data. For example,
+              you might specify input channels named <code class="code">train</code> or <code class="code">test</code>. For
+              each channel, specify a channel name and a URI to the location of your data. Choose
+                <b>Browse</b> to search for Amazon S3 locations.</p>
+          </li><li>
+              <p>Provide hyperparameters. Add any hyperparameters with which collaborators should
+              experiment during training. Provide a range of valid values for these hyperparameters.
+              This range is used for training job hyperparameter validation. You can define ranges
+              based on the datatype of the hyperparameter.</p>  
+          </li><li>
+              <p>Select an instance type. We recommend a GPU instance with more memory for
+                training with large batch sizes. For a comprehensive list of SageMaker training
+                instances across AWS Regions, see the <b>On-Demand
+                  Pricing</b> table in <a href="http://aws.amazon.com/sagemaker/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Pricing.</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+          </li><li>
+              <p>Provide metrics. Define metrics for a training job by specifying a name and a
+              regular expression for each metric that your training monitors. Design the regular
+              expressions to capture the values of metrics that your algorithm emits. For example,
+              the metric <code class="code">loss</code> might have the regular expression <code class="code">"Loss
+                =(.*?);"</code>.</p>
+          </li></ol></div>
+       
+       
+        <h4 id="jumpstart-content-sharing-deployment">Enable deployment</h4>
+        <p>When adding a model to share, you can optionally provide an inference environment in
+          which collaborators in your organization can deploy the shared model for inference.</p>
+        <div class="orderedlist">
+           
+           
+           
+           
+        <ol><li>
+            <p>Add a container to use for inference. You can bring your own container in Amazon ECR or
+              use an Amazon SageMaker Deep Learning Container. </p></li><li>
+            <p>Provide the Amazon S3 URI to an inference script. Custom inference scripts run inside
+              your chosen container. Your inference script should include a function for model
+              loading, and optionally functions generating predictions, and input and output
+              processing. For more information on creating inference scripts for the framework of
+              your choice, see <a href="https://sagemaker.readthedocs.io/en/stable/frameworks/index.html" rel="noopener noreferrer" target="_blank"><span>Frameworks</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the SageMaker Python SDK documentation. For example, for TensorFlow,
+              see <a href="https://sagemaker.readthedocs.io/en/stable/frameworks/tensorflow/deploying_tensorflow_serving.html#how-to-implement-the-pre-and-or-post-processing-handler-s" rel="noopener noreferrer" target="_blank"><span>How to implement the pre- and/or post-processing handler(s)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></li><li>
+            <p>Provide an Amazon S3 URI for model artifacts. Model artifacts are the output that results
+              from training a model, and typically consist of trained parameters, a model definition
+              that describes how to compute inferences, and other metadata. If you trained your
+              model in SageMaker, the model artifacts are saved as a single compressed TAR file in Amazon S3.
+              If you trained your model outside SageMaker, you need to create this single compressed TAR
+              file and save it in an Amazon S3 location.</p></li><li>
+            <p>Select an instance type. We recommend a GPU instance with more memory for training
+              with large batch sizes. For a comprehensive list of SageMaker training instances
+              across AWS Regions, see the <b>On-Demand Pricing</b> table
+              in <a href="http://aws.amazon.com/sagemaker/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker
+                Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></li></ol></div>
+       
+     
+     
+      <h3 id="jumpstart-content-sharing-notebooks">Add a notebook</h3>
+      <p>To add a notebook, choose <b>Shared by my organization</b>, and then
+        select <b>Add notebook</b> from the the <b>Add</b> dropdown
+        list. Enter the basic information for your notebook and provide an Amazon S3 URI for the location
+        of that notebook. </p>
+       
+        <h4 id="jumpstart-content-sharing-notebooks-info">Basic information</h4>
+        <p>First, add the basic descriptive information about your notebook. This information is
+          used to improve the searchability of your notebook.</p>
+        <div class="orderedlist">
+           
+           
+           
+           
+           
+           
+        <ol><li>
+              <p>Add a title for this notebook. Adding a title automatically populates a unique
+                identifier in the ID field based on the notebook title.</p>
+          </li><li>
+              <p>Add a description of the notebook.</p>
+          </li><li>
+              <p>Select a data type from the options: <em>text</em>,
+                  <em>vision</em>, <em>tabular</em>, or <em>audio</em>.</p>
+          </li><li>
+              <p>Select an ML task from the list of available tasks, such as <em>image classification</em> or <em>text
+                generation</em>.</p>
+          </li><li>
+              <p>Select an ML framework.</p>
+          </li><li>
+              <p>Add metadata information with keywords or phrases to use when searching for a
+                notebook. Use commas to separate keywords. Any spaces are automatically replaced
+                with commas. </p>
+          </li></ol></div>
+       
+       
+        <h4 id="jumpstart-content-sharing-notebooks-add">Add notebook</h4>
+        <p>Provide an Amazon S3 URI for the location of that notebook. You can choose
+            <b>Browse</b> to search through your Amazon S3 buckets for your notebook file
+          location. After you find your notebook, copy the Amazon S3 URI, choose
+            <b>Cancel</b>, and then add the Amazon S3 URI to the <b>Notebook
+            Location</b> field. </p>
+        <p>After you enter all the necessary information, choose <b>Add
+            notebook</b> in the lower right corner. </p>
+       
+     
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./jumpstart-share-models.html">Share Models</div><div id="next" class="next-link" accesskey="n" href="./studio-jumpstart-industry.html">SageMaker JumpStart Industry: Financial</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-content-sharing.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-content-sharing.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

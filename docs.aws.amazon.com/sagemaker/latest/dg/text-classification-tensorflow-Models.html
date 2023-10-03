@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>TensorFlow Hub Models - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="text-classification-tensorflow-Models" /><meta name="default_state" content="text-classification-tensorflow-Models" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="text-classification-tensorflow-Models.html" /><meta name="description" content="The following pretrained models are available to use for transfer learning with the Text Classification - TensorFlow algorithm." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="text-classification-tensorflow-Models.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/text-classification-tensorflow-Models.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/text-classification-tensorflow-Models.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/text-classification-tensorflow-Models.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/text-classification-tensorflow-Models.html" hreflang="de" /><link rel="alternative" href="text-classification-tensorflow-Models.html" hreflang="en-us" /><link rel="alternative" href="text-classification-tensorflow-Models.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/text-classification-tensorflow-Models.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/text-classification-tensorflow-Models.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/text-classification-tensorflow-Models.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/text-classification-tensorflow-Models.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/text-classification-tensorflow-Models.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/text-classification-tensorflow-Models.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/text-classification-tensorflow-Models.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/text-classification-tensorflow-Models.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/text-classification-tensorflow-Models.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/text-classification-tensorflow-Models.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/text-classification-tensorflow-Models.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/text-classification-tensorflow-Models.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/text-classification-tensorflow-Models.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/text-classification-tensorflow-Models.html" hreflang="zh-tw" /><link rel="alternative" href="text-classification-tensorflow-Models.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="TensorFlow Hub Models" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>TensorFlow Hub Models - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#text-classification-tensorflow-Models" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/text-classification-tensorflow-Models.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/text-classification-tensorflow-Models.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/text-classification-tensorflow-Models.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Choose an Algorithm",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-choose.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Amazon SageMaker Built-in Algorithms or Pre-trained Models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Built-in SageMaker Algorithms for Text Data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-text.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Text Classification - TensorFlow",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/text-classification-tensorflow.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 9,
+        "name" : "TensorFlow Hub Models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/text-classification-tensorflow.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#text-classification-tensorflow-Models" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="text-classification-tensorflow-Models">TensorFlow Hub Models</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>The following pretrained models are available to use for transfer learning with the
+            Text Classification - TensorFlow algorithm. </p><p>The following models vary significantly in size, number of model parameters, training
+            time, and inference latency for any given dataset. The best model for your use case
+            depends on the complexity of your fine-tuning dataset and any requirements that you have
+            on training time, inference latency, or model accuracy.</p><div class="table-container"><div class="table-contents"><table id="w714aac23c11c21c33c22c17b7"><thead>
+                    <tr>
+                        <th>Model Name</th>
+                        <th><code class="code">model_id</code></th>
+                        <th>Source</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>BERT Base Uncased</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-bert-en-uncased-L-12-H-768-A-12-2</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/bert_en_uncased_L-12_H-768_A-12/3" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>BERT Base Cased</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-bert-en-cased-L-12-H-768-A-12-2</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/bert_en_cased_L-12_H-768_A-12/3" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>BERT Base Multilingual Cased</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-bert-multi-cased-L-12-H-768-A-12-2</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/bert_multi_cased_L-12_H-768_A-12/3" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-2_H-128_A-2</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-2-H-128-A-2</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-2_H-128_A-2/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-2_H-256_A-4</p></td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-2-H-256-A-4</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-2_H-256_A-4/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-2_H-512_A-8</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-2-H-512-A-8</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-2_H-512_A-8/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-2_H-768_A-12</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-2-H-768-A-12</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-2_H-768_A-12/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-4_H-128_A-2</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-4-H-128-A-2</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-4_H-128_A-2/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-4_H-256_A-4</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-4-H-256-A-4</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-4_H-256_A-4/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-4_H-512_A-8</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-4-H-512-A-8</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-4_H-512_A-8/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-4_H-768_A-12</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-4-H-768-A-12</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-4_H-768_A-12/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-6_H-128_A-2</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-6-H-128-A-2</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-6_H-128_A-2/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-6_H-256_A-4</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-6-H-256-A-4</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-6_H-256_A-4/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-6_H-512_A-8</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-6-H-512-A-8</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-6_H-512_A-8/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-6_H-768_A-12</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-6-H-768-A-12</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-6_H-768_A-12/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-8_H-128_A-2</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-8-H-128-A-2</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-8_H-128_A-2/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-8_H-256_A-4</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-8-H-256-A-4</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-8_H-256_A-4/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-8_H-512_A-8</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-8-H-512-A-8</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-8_H-512_A-8/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-8_H-768_A-12</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-8-H-768-A-12</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-8_H-768_A-12/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-10_H-128_A-2</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-10-H-128-A-2</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-10_H-128_A-2/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-10_H-256_A-4</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-10-H-256-A-4</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-10_H-256_A-4/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-10_H-512_A-8</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-10-H-512-A-8</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-10_H-512_A-8/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-10_H-768_A-12</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-10-H-768-A-12</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-10_H-768_A-12/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-12_H-128_A-2</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-12-H-128-A-2</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-12_H-128_A-2/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-12_H-256_A-4</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-12-H-256-A-4</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-12_H-256_A-4/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-12_H-512_A-8</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-12-H-512-A-8</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-12_H-512_A-8/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Small BERT L-12_H-768_A-12</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-small-bert-bert-en-uncased-L-12-H-768-A-12</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-12_H-768_A-12/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>BERT Large Uncased</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-bert-en-uncased-L-24-H-1024-A-16-2</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/bert_en_uncased_L-24_H-1024_A-16/3" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>BERT Large Cased</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-bert-en-cased-L-24-H-1024-A-16-2</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/bert_en_cased_L-24_H-1024_A-16/3" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>BERT Large Uncased Whole Word Masking</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-bert-en-wwm-uncased-L-24-H-1024-A-16-2</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/bert_en_wwm_uncased_L-24_H-1024_A-16/3" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>BERT Large Cased Whole Word Masking</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-bert-en-wwm-cased-L-24-H-1024-A-16-2</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/bert_en_wwm_cased_L-24_H-1024_A-16/3" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr><tr>
+                        <td tabindex="-1">
+                            <p>ALBERT Base</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-albert-en-base</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/albert_en_base/2" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr><tr>
+                        <td tabindex="-1">
+                            <p>ELECTRA Small++</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-electra-small-1</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/google/electra_small/2" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>ELECTRA Base</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-electra-base-1</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/google/electra_base/2" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>BERT Base Wikipedia and BooksCorpus</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-experts-bert-wiki-books-1</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/google/experts/bert/wiki_books/2" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>BERT Base MEDLINE/PubMed</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-experts-bert-pubmed-1</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/google/experts/bert/pubmed/2" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Talking Heads Base</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-talking-heads-base</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/talkheads_ggelu_bert_en_base/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>Talking Heads Large</p>
+                        </td>
+                        <td tabindex="-1"><p><code class="code">tensorflow-tc-talking-heads-large</code></p></td>
+                        <td tabindex="-1"><p><a href="https://tfhub.dev/tensorflow/talkheads_ggelu_bert_en_large/1" rel="noopener noreferrer" target="_blank"><span>TensorFlow Hub link</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></td>
+                    </tr>
+                </table></div></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./text-classification-tensorflow-HowItWorks.html">How It Works</div><div id="next" class="next-link" accesskey="n" href="./text-classification-tensorflow-Hyperparameter.html">Hyperparameters</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/text-classification-tensorflow-Models.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/text-classification-tensorflow-Models.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

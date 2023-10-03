@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Invoke real-time endpoints - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="realtime-endpoints-test-endpoints" /><meta name="default_state" content="realtime-endpoints-test-endpoints" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="realtime-endpoints-test-endpoints.html" /><meta name="description" content="After you deploy your model using SageMaker hosting services, you can test your model on that endpoint by sending it test data. You can test your endpoints using Amazon SageMaker Studio, the AWS SDKs, or the AWS CLI." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="realtime-endpoints-test-endpoints.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" hreflang="de" /><link rel="alternative" href="realtime-endpoints-test-endpoints.html" hreflang="en-us" /><link rel="alternative" href="realtime-endpoints-test-endpoints.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" hreflang="zh-tw" /><link rel="alternative" href="realtime-endpoints-test-endpoints.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Invoke real-time endpoints" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Invoke real-time endpoints - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#realtime-endpoints-test-endpoints" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,inference,deploy model,endpoint,prediction,ML application,serverless machine learning,multi model deployment,inference pipelines,ML model" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploy models for inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Real-time inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Invoke real-time endpoints",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#realtime-endpoints-test-endpoints" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="realtime-endpoints-test-endpoints.html#realtime-endpoints-test-endpoints-studio">Invoke Using Studio</a><a href="realtime-endpoints-test-endpoints.html#realtime-endpoints-test-endpoints-api">Invoke Using the SDK for Python (Boto3)</a><a href="realtime-endpoints-test-endpoints.html#realtime-endpoints-test-endpoints-cli">Invoke Using the AWS CLI</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="realtime-endpoints-test-endpoints">Invoke real-time endpoints</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>After you deploy your model using SageMaker hosting services, you can test your model on that
+        endpoint by sending it test data. You can test your endpoints using Amazon SageMaker Studio, the
+        AWS SDKs, or the AWS CLI.</p>
+        <h2 id="realtime-endpoints-test-endpoints-studio">Invoke Your Endpoint Using
+                Amazon SageMaker Studio</h2>
+        <p>After you deploy your model to an endpoint (see 
+            <a href="realtime-endpoints-deployment.html">Create your endpoint and deploy your model</a>) you 
+            can check that endpoint with Amazon SageMaker Studio.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Note: SageMaker only supports endpoint testing with Amazon SageMaker Studio for real-time endpoints.</p></div></div>
+        <div class="procedure"><h6>To send a test inference request to your endpoint</h6><ol><li>
+                <p>Launch Amazon SageMaker Studio.</p>
+            </li><li>
+                <p>In the <b>Home</b> section of the navigation pane on the left,
+                    choose <b>Deployments</b>.</p>
+            </li><li>
+                <p>From the dropdown, choose <b>Endpoints</b>.</p>
+            </li><li>
+                <p>Find for your endpoint by name, and choose the name in the table. The endpoint
+                    names listed in the <b>Endpoints</b> panel are defined when you
+                    deploy a model. The Studio workspace opens the <b>Endpoints</b>
+                    page in a new tab.</p>
+            </li><li>
+                <p>In the <b>Test inference</b> tab, send a request to your
+                    endpoint by providing sample data in JSON format. Use the JSON editor to submit
+                    a request to your endpoint.</p>
+            </li><li>
+                <p>(Optional) You can provide a custom URL to send your request to. In the
+                        <b>Configure endpoint URL and headers</b> section, for the
+                        <b>Custom URL</b> field, provide the URL of where your model
+                    is hosted. Leave this field blank if you are using a SageMaker endpoint. Under
+                        <b>Headers</b>, you can also optionally add key-value headers
+                    to pass additional information with the inference request.</p>
+            </li><li>
+                <p>Choose <b>Send Request</b>. The Studio shows the inference
+                    output in a card to the right of the JSON editor.</p>
+            </li></ol></div>
+        <p>The top of the card shows the type of request that was sent to the endpoint (only JSON
+            is accepted). The card shows the following fields:</p>
+        
+        <div class="itemizedlist">
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem"><p><b>Status</b> – displays one of the following status types:</p>
+                <div class="itemizedlist">
+                     
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem"><p><code class="code">Complete</code> – The request succeeded.</p></li><li class="listitem"><p><code class="code">Failed</code> – The request failed. A response appears under <b>Failure
+                                Reason</b>.</p></li><li class="listitem"><p><code class="code">Pending</code> – While the inference request is pending, the status shows a
+                            spinning, circular icon.</p></li></ul></div>
+            </li><li class="listitem"><p><b>Execution Length</b> – How long the invocation took (end time minus
+                    the start time) in milliseconds.</p></li><li class="listitem"><p><b>Request Time</b> – How many minutes have passed since the request was
+                    sent.</p></li><li class="listitem"><p><b>Result Time</b> – How many minutes have passed since the result was
+                    returned.</p></li></ul></div>
+     
+        <h2 id="realtime-endpoints-test-endpoints-api">Invoke Your Endpoint by Using the
+                AWS SDK for Python (Boto3)</h2>
+        <p>After you deploy your model to an endpoint (see <a href="realtime-endpoints-deployment.html">Create your endpoint and deploy your model</a>) you can check your endpoint by
+            using one of the AWS SDKs, including as the AWS SDK for Python (Boto3). To test your endpoint with
+            this SDK, you use one of the following methods:</p>
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><code class="code">invoke_endpoint</code>– Sends an inference request to a model
+                    endpoint and returns the response that the model generates. This method returns
+                    the inference payload as one response after the model finishes generating it.
+                    For more information, see <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker-runtime/client/invoke_endpoint.html" rel="noopener noreferrer" target="_blank"><span>invoke_endpoint</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the <em>AWS SDK for Python (Boto3) API Reference</em>.</p>
+            </li><li class="listitem">
+                <p><code class="code">invoke_endpoint_with_response_stream</code> – Sends an inference
+                    request to a model endpoint and streams the response in incremental parts while
+                    the model generates the inference. With this method, your client application
+                    immediately starts receiving parts of the response as the parts become
+                    available. Your client doesn't need to wait for the model to generate the whole
+                    response payload. You can implement streaming to support fast interactive
+                    experiences, such as chatbots, virtual assistants, and music
+                    generators.</p>
+                <p>Use this method only to invoke models that support inference streaming.</p>
+                <p>When a container handles a streaming inference request, it returns the model's
+                    inference as a series of parts incrementally as the model generates them. Client
+                    applications start receiving responses immediately when they're available. They
+                    don't need to wait for the model to generate the entire response. You can
+                    implement streaming to support fast interactive experiences, such as chatbots,
+                    virtual assistants, and music generators.</p>
+            </li></ul></div>
+        <p>Before you can use these methods in your client code, you must create a SageMaker Runtime
+            client, and you must specify the name of your endpoint. The following example sets up
+            the client and endpoint for the rest of the examples that follow:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import boto3
+
+# Create a low-level client representing Amazon SageMaker Runtime
+sagemaker_runtime = boto3.client(
+    "sagemaker-runtime", region_name='<code class="replaceable">aws_region</code>')
+
+# The endpoint name must be unique within 
+# an AWS Region in your AWS account. 
+endpoint_name='<code class="replaceable">endpoint-name</code>'
+</code></pre>
+         
+            <h3 id="test-invoke-endpoint">Invoke to Get an Inference Response</h3>
+            <p>The following example uses the <code class="code">invoke_endpoint</code> method to invoke an
+                endpoint with the AWS SDK for Python (Boto3):</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python "># Gets inference from the model hosted at the specified endpoint:
+response = sagemaker_runtime.invoke_endpoint(
+    EndpointName=endpoint_name, 
+    Body=bytes('<span>{</span>"features": ["This is great!"]}', 'utf-8')
+    )
+
+# Decodes and prints the response body:
+print(response['Body'].read().decode('utf-8'))</code></pre>
+            <p>This example provide input data in the <code class="code">Body</code> field for SageMaker to pass to
+                the model. This data must be in the same format that was used for training. The
+                example stores the response in the <code class="code">response</code> variable.</p>
+            <p>The <code class="code">response</code> variable provides access to the HTTP status, the name of
+                the deployed model, and other fields. The following snippet prints the
+                    <code class="code">HTTPStatusCode</code>:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">print(response["HTTPStatusCode"])</code></pre>
+         
+         
+            <h3 id="test-invoke-endpoint-with-response-stream">Invoke to Stream an
+                    Inference Response</h3>
+            <p>If you deployed a model that supports inference streaming, you can invoke the
+                model to receive its inference payload as a stream of parts. The model delivers
+                these parts incrementally as the model generates them. When an application receives
+                an inference stream, the application doesn't need to wait for the model to generate
+                the whole response payload. Instead, the application immediately starts receiving
+                parts of the response as they become available. </p>
+            <p>By consuming an inference stream in your application, you can create interactions
+                where your users perceive the inference to be fast because they get the first part
+                immediately. For example, you could create a chatbot that incrementally shows the
+                text generated by a large language model (LLM).</p>
+            <p>To get an inference stream, you can use the
+                    <code class="code">invoke_endpoint_with_response_stream</code> method in the SDK for Python (Boto3). In
+                the response body, the SDK provides an <code class="code">EventStream</code> object, which gives
+                the inference as a series of <code class="code">PayloadPart</code> objects.</p>
+         
+        <div class="example"><h6>Example Inference Stream</h6><div class="example-contents"><p>The following example is a stream of <code class="code">PayloadPart</code> objects:</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>'PayloadPart': <span>{</span>'Bytes': b'<span>{</span>"outputs": [" a"]}\n'}}
+<span>{</span>'PayloadPart': <span>{</span>'Bytes': b'<span>{</span>"outputs": [" challenging"]}\n'}}
+<span>{</span>'PayloadPart': <span>{</span>'Bytes': b'<span>{</span>"outputs": [" problem"]}\n'}}
+. . .</code></pre><p>In each payload part, the <code class="code">Bytes</code> field provides a portion of the
+                inference response from the model. This portion can be any content type that a model
+                generates, such as text, image, or audio data. In this example, the portions are
+                JSON objects that contain generated text from an LLM.</p><p>Usually, the payload part contains a discrete chunk of data from the model. In
+                this example, the discrete chunks are whole JSON objects. Occasionally, the
+                streaming response splits the chunks over multiple payload parts, or it combines
+                multiple chunks into one payload part. The following example shows a chunk of data
+                in JSON format that's split over two payload parts:</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>'PayloadPart': <span>{</span>'Bytes': b'<span>{</span>"outputs": '}}
+<span>{</span>'PayloadPart': <span>{</span>'Bytes': b'[" problem"]}\n'}}</code></pre><p>When you write application code that processes an inference stream, include logic
+                that handles these occasional splits and combinations of data. As one strategy, you
+                could write code that concatenates the contents of <code class="code">Bytes</code> while your
+                application receives the payload parts. By concatenating the example JSON data here,
+                you would combine the data into a newline-delimited JSON body. Then, your code could
+                process the stream by parsing the whole JSON object on each line.</p><p>The following example shows the newline-delimited JSON that you would create when
+                you concatenate the example contents of <code class="code">Bytes</code>:</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>"outputs": [" a"]}
+<span>{</span>"outputs": [" challenging"]}
+<span>{</span>"outputs": [" problem"]}
+. . .</code></pre></div></div>
+        <div class="example"><h6>Example Code to Process an Inference Stream</h6><div class="example-contents"></div></div>
+        <p>The following example Python class, <code class="code">SmrInferenceStream</code>, demonstrates how
+            you can process an inference stream that sends text data in JSON format:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import io
+import json
+
+# Example class that processes an inference stream:
+class SmrInferenceStream:
+    
+    def __init__(self, sagemaker_runtime, endpoint_name):
+        self.sagemaker_runtime = sagemaker_runtime
+        self.endpoint_name = endpoint_name
+        # A buffered I/O stream to combine the payload parts:
+        self.buff = io.BytesIO() 
+        self.read_pos = 0
+        
+    def stream_inference(self, request_body):
+        # Gets a streaming inference response 
+        # from the specified model endpoint:
+        response = self.sagemaker_runtime\
+            .invoke_endpoint_with_response_stream(
+                EndpointName=self.endpoint_name, 
+                Body=json.dumps(request_body), 
+                ContentType="application/json"
+        )
+        # Gets the EventStream object returned by the SDK:
+        event_stream = response['Body']
+        for event in event_stream:
+            # Passes the contents of each payload part
+            # to be concatenated:
+            self._write(event['PayloadPart']['Bytes'])
+            # Iterates over lines to parse whole JSON objects:
+            for line in self._readlines():
+                resp = json.loads(line)
+                part = resp.get("outputs")[0]
+                # Returns parts incrementally:
+                yield part
+    
+    # Writes to the buffer to concatenate the contents of the parts:
+    def _write(self, content):
+        self.buff.seek(0, io.SEEK_END)
+        self.buff.write(content)
+
+    # The JSON objects in buffer end with '\n'.
+    # This method reads lines to yield a series of JSON objects:
+    def _readlines(self):
+        self.buff.seek(self.read_pos)
+        for line in self.buff.readlines():
+            self.read_pos += len(line)
+            yield line[:-1]</code></pre>
+        <p>This example processes the inference stream by doing the following:</p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Gets initialized with a SageMaker Runtime client and the name of a model endpoint.
+                    Before you can get an inference stream, the model that the endpoint hosts must
+                    support inference streaming.</p>
+            </li><li class="listitem">
+                <p>In the example <code class="code">stream_inference</code> method, receives a request body
+                    and passes it to the <code class="code">invoke_endpoint_with_response_stream</code> method of
+                    the SDK.</p>
+            </li><li class="listitem">
+                <p>Iterates over each event in the <code class="code">EventStream</code> object that the SDK
+                    returns.</p>
+            </li><li class="listitem">
+                <p>From each event, gets the contents of the <code class="code">Bytes</code> object in the
+                        <code class="code">PayloadPart</code> object.</p>
+            </li><li class="listitem">
+                <p>In the example <code class="code">_write</code> method, writes to a buffer to concatenate
+                    the contents of the <code class="code">Bytes</code> objects. The combined contents form a
+                    newline-delimited JSON body.</p>
+            </li><li class="listitem">
+                <p>Uses the example <code class="code">_readlines</code> method to get an iterable series of
+                    JSON objects.</p>
+            </li><li class="listitem">
+                <p>In each JSON object, gets a piece of the inference.</p>
+            </li><li class="listitem">
+                <p>With the <code class="code">yield</code> expression, returns the pieces
+                    incrementally.</p>
+            </li></ul></div>
+        <p>The following example creates and uses a <code class="code">SmrInferenceStream</code>
+            object:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">request_body = <span>{</span>"inputs": ["Large model inference is"],
+                "parameters": <span>{</span>"max_new_tokens": 100,
+                               "enable_sampling": "true"}}
+smr_inference_stream = SmrInferenceStream(
+    sagemaker_runtime, endpoint_name)
+stream = smr_inference_stream.stream_inference(request_body)
+for part in stream:
+    print(part, end='')</code></pre>
+        <p>This example passes a request body to the <code class="code">stream_inference</code> method. It
+            iterates over the response to print each piece that the inference stream returns.</p>
+        <p>The example assumes that the model at the specified endpoint is an LLM that generates
+            text. The output from this example is a body of generated text that prints
+            incrementally:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">a challenging problem in machine learning. The goal is to . . .</code></pre>
+     
+        <h2 id="realtime-endpoints-test-endpoints-cli">Invoke Your Endpoint by Using
+                the AWS CLI</h2>
+        <p>You can test your endpoint by running commands with the AWS Command Line Interface (AWS CLI). The AWS CLI
+            supports standard inference requests with the <code class="code">invoke-endpoint</code> command, and
+            it supports asynchronous inference requests with the <code class="code">invoke-endpoint-async</code>
+            command.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The AWS CLI doesn't support streaming inference requests.</p></div></div>
+        <p>The following example uses the <code class="code">invoke-endpoint</code> command to send an
+            inference request to a model endpoint:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="bash ">aws sagemaker-runtime invoke-endpoint \
+    --endpoint-name <code class="replaceable">endpoint_name</code> \
+    --body <code class="replaceable">fileb://$file_name</code> \
+    <code class="replaceable">output_file.txt</code></code></pre>
+        <p>For the <code class="code">--endpoint-name</code> parameter, provide the name you specified for
+                <code class="code">EndpointName</code> when you created your endpoint with
+                <code class="code">CreateEndpoint</code>. For the <code class="code">--body</code> parameter, provide input
+            data for SageMaker to pass to the model. The data must be in the same format that was used
+            for training. This example shows how to send binary data to your endpoint.</p>
+        <p>For more information on when to use <code>file://</code> over
+                <code>fileb://</code> when passing the contents of a file to a parameter of
+            the AWS CLI, see <a href="https://aws.amazon.com/blogs/developer/best-practices-for-local-file-parameters/" rel="noopener noreferrer" target="_blank"><span>Best Practices for Local File Parameters</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        <p>For more information, and to see additional parameters that you can pass, see <a href="https://docs.aws.amazon.com/cli/latest/reference/sagemaker-runtime/invoke-endpoint.html"><code class="code">invoke-endpoint</code></a> in the <em>AWS CLI Command Reference</em>.</p>
+        <p>If the <code class="code">invoke-endpoint</code> command succeeds it returns a response such as the
+            following:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="bash "><span>{</span>
+    "ContentType": "&lt;content_type&gt;; charset=utf-8",
+    "InvokedProductionVariant": "&lt;Variant&gt;"
+}</code></pre>
+        <p>If the command doesn't succeed, check whether the input payload is in the correct
+            format.</p>
+        <p>View the output of the invocation by checking the file output file (<code>output_file.txt</code> in this example).</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="bash ">more output_file.txt</code></pre>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./clarify-online-explainability-troubleshooting.html">Troubleshooting
+                guide</div><div id="next" class="next-link" accesskey="n" href="./serverless-endpoints.html">Serverless Inference</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

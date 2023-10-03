@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Create a serverless endpoint - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="serverless-endpoints-create" /><meta name="default_state" content="serverless-endpoints-create" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="serverless-endpoints-create.html" /><meta name="description" content="To create a serverless endpoint, create a model, an endpoint configuration, and finally the endpoint." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="serverless-endpoints-create.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/serverless-endpoints-create.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/serverless-endpoints-create.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/serverless-endpoints-create.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/serverless-endpoints-create.html" hreflang="de" /><link rel="alternative" href="serverless-endpoints-create.html" hreflang="en-us" /><link rel="alternative" href="serverless-endpoints-create.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/serverless-endpoints-create.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/serverless-endpoints-create.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/serverless-endpoints-create.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/serverless-endpoints-create.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/serverless-endpoints-create.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/serverless-endpoints-create.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/serverless-endpoints-create.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/serverless-endpoints-create.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/serverless-endpoints-create.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/serverless-endpoints-create.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/serverless-endpoints-create.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/serverless-endpoints-create.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/serverless-endpoints-create.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/serverless-endpoints-create.html" hreflang="zh-tw" /><link rel="alternative" href="serverless-endpoints-create.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Create a serverless endpoint" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Create a serverless endpoint - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#serverless-endpoints-create" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/serverless-endpoints-create.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/serverless-endpoints-create.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/serverless-endpoints-create.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,inference,deploy model,endpoint,prediction,ML application,serverless machine learning,multi model deployment,inference pipelines,ML model,serverless,serverless endpoint,endpoints" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploy models for inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Serverless Inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Create, invoke, update, and delete a serverless endpoint",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints-create-invoke-update-delete.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Create a serverless endpoint",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints-create-invoke-update-delete.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#serverless-endpoints-create" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="serverless-endpoints-create.html#serverless-endpoints-create-model">Create a model</a><a href="serverless-endpoints-create.html#serverless-endpoints-create-config">Create an endpoint configuration</a><a href="serverless-endpoints-create.html#serverless-endpoints-create-endpoint">Create an endpoint</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="serverless-endpoints-create">Create a serverless endpoint</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>To create a serverless endpoint, you can use the Amazon SageMaker console, the APIs, or the AWS CLI.
+   You can create a serverless endpoint using a similar process as a <a href="realtime-endpoints.html">real-time endpoint</a>.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="serverless-endpoints-create.html#serverless-endpoints-create-model">Create a model</a></li><li><a href="serverless-endpoints-create.html#serverless-endpoints-create-config">Create an endpoint configuration</a></li><li><a href="serverless-endpoints-create.html#serverless-endpoints-create-endpoint">Create an endpoint</a></li></ul></div>
+   <h2 id="serverless-endpoints-create-model">Create a model</h2>
+   <p>To create your model, you must provide the location of your model artifacts and container
+    image. You can also use a model version from <a href="model-registry.html">SageMaker Model Registry</a>. The examples in
+    the following sections show you how to create a model using the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html">CreateModel</a> API, Model
+    Registry, and the <a href="https://console.aws.amazon.com/sagemaker/home" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker
+     console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+   
+    
+    <h3 id="serverless-endpoints-create-model-registry">To create a model (using Model
+      Registry)</h3>
+    <p><a href="model-registry.html">Model Registry</a> is a feature of SageMaker that helps you
+     catalog and manage versions of your model for use in ML pipelines. To use Model Registry with
+     Serverless Inference, you must first register a model version in a Model Registry model group. To learn how to
+     register a model in Model Registry, follow the procedures in <a href="model-registry-model-group.html">Create a Model Group</a> and <a href="model-registry-version.html">Register a Model Version</a>.</p>
+    <p>The following example requires you to have the ARN of a registered model version and uses
+     the <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker.html#id309" rel="noopener noreferrer" target="_blank"><span>AWS SDK for Python (Boto3)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to call the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html">CreateModel</a> API. For Serverless Inference,
+     Model Registry is currently only supported by the AWS SDK for Python (Boto3). For the example, specify the
+     following values:</p>
+    <div class="itemizedlist">
+      
+      
+      
+    <ul class="itemizedlist"><li class="listitem"><p>For <code class="code">model_name</code>, enter a name for the model.</p></li><li class="listitem"><p>For <code class="code">sagemaker_role</code>, you can use the default SageMaker-created role or a customized
+      SageMaker IAM role from Step 4 of the <a href="serverless-endpoints-prerequisites.html">Prerequisites</a> section.</p></li><li class="listitem"><p>For <code class="code">ModelPackageName</code>, specify the ARN for your model version, which must be registered to a model group in Model Registry.</p></li></ul></div>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">#Setup
+import boto3
+import sagemaker
+region = boto3.Session().region_name
+client = boto3.client("sagemaker", region_name=region)
+
+#Role to give SageMaker permission to access AWS services.
+sagemaker_role = sagemaker.get_execution_role()
+
+#Specify a name for the model
+model_name = "<code class="replaceable">&lt;name-for-model&gt;</code>"
+
+#Specify a Model Registry model version
+container_list = [
+    <span>{</span>
+        "ModelPackageName": <code class="replaceable">&lt;model-version-arn&gt;</code>
+     }
+ ]
+
+#Create the model
+response = client.create_model(
+    ModelName = model_name,
+    ExecutionRoleArn = sagemaker_role,
+    container_list
+)</code></pre>
+    
+    
+    <h3 id="serverless-endpoints-create-model-api">To create a model (using API)</h3>
+    <p>The following example uses the <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker.html#id309" rel="noopener noreferrer" target="_blank"><span>AWS SDK for Python (Boto3)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to call the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html">CreateModel</a> API. Specify the
+     following values:</p>
+    <div class="itemizedlist">
+      
+      
+      
+      
+    <ul class="itemizedlist"><li class="listitem"><p>For <code class="code">sagemaker_role,</code> you can use the default SageMaker-created role or a customized
+       SageMaker IAM role from Step 4 of the <a href="serverless-endpoints-prerequisites.html">Prerequisites</a> section.</p></li><li class="listitem"><p>For <code class="code">model_url</code>, specify the Amazon S3 URI to your model.</p></li><li class="listitem">
+      <p>For <code class="code">container</code>, retrieve the container you want to use by its Amazon ECR path.
+       This example uses a SageMaker-provided XGBoost container. If you have not selected a SageMaker
+       container or brought your own, see Step 6 of the <a href="serverless-endpoints-prerequisites.html">Prerequisites</a> section for more information.</p></li><li class="listitem"><p>For <code class="code">model_name</code>, enter a name for the model.</p></li></ul></div>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">#Setup
+import boto3
+import sagemaker
+region = boto3.Session().region_name
+client = boto3.client("sagemaker", region_name=region)
+
+#Role to give SageMaker permission to access AWS services.
+sagemaker_role = sagemaker.get_execution_role()
+
+#Get model from S3
+model_url = "<code class="replaceable">s3://DOC-EXAMPLE-BUCKET/models/model.tar.gz</code>"
+
+#Get container image (prebuilt example)
+from sagemaker import image_uris
+container = image_uris.retrieve("xgboost", region, "0.90-1")
+
+#Create model
+model_name = "<code class="replaceable">&lt;name-for-model&gt;</code>"
+
+response = client.create_model(
+    ModelName = model_name,
+    ExecutionRoleArn = sagemaker_role,
+    Containers = [<span>{</span>
+        "Image": container,
+        "Mode": "SingleModel",
+        "ModelDataUrl": model_url,
+    }]
+)</code></pre>
+    
+     
+     <h3 id="serverless-endpoints-create-model-console">To create a model (using the
+      console)</h3>
+     <div class="procedure"><ol><li><p>Sign in to the <a href="https://console.aws.amazon.com/sagemaker/home" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker
+         console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></li><li>
+       <p>In the navigation tab, choose <b>Inference</b>.</p></li><li>
+       <p>Next, choose <b>Models</b>.</p>
+      </li><li>
+       <p>Choose <b>Create model</b>.</p>
+      </li><li>
+       <p>For <b>Model name</b>, enter a name for the model that is unique to your
+       account and AWS Region.</p>
+      </li><li>
+       <p>For <b>IAM role</b>, either select an IAM role you have already
+       created (see <a href="serverless-endpoints-prerequisites.html">Prerequisites</a>) or allow SageMaker to create one for
+       you.</p>
+      </li><li>
+       <p>In <b>Container definition 1</b>, for <b>Container input
+        options</b>, select <b>Provide model artifacts and input
+       location</b>.</p>
+      </li><li>
+       <p>For <b>Provide model artifacts and inference image options</b>, select
+        <b>Use a single model</b>.</p>
+      </li><li>
+       <p>For <b>Location of inference code image</b>, enter an Amazon ECR path to a
+       container. The image must either be a SageMaker-provided first party image (e.g. TensorFlow, XGBoost)
+       or an image that resides in an Amazon ECR repository within the same account in which you are
+       creating the endpoint. If you do not have a container, go back to Step 6 of the <a href="serverless-endpoints-prerequisites.html">Prerequisites</a> section for more information.</p>
+      </li><li>
+       <p>For <b>Location of model artifacts</b>, enter the Amazon S3 URI to your ML
+       model. For example,
+         <code class="code"><code class="replaceable">s3://DOC-EXAMPLE-BUCKET/models/model.tar.gz</code></code>.</p>
+      </li><li>
+       <p>(Optional) For <b>Tags</b>, add key-value pairs to create metadata for
+       your model.</p>
+      </li><li>
+       <p>Choose <b>Create model</b>.</p>
+      </li></ol></div>
+     
+   
+   
+   <h2 id="serverless-endpoints-create-config">Create an endpoint configuration</h2>
+   <p>After you create a model, create an endpoint configuration. You can then deploy your model
+    using the specifications in your endpoint configuration. In the configuration, you specify
+    whether you want a real-time or serverless endpoint. To create a serverless endpoint
+    configuration, you can use the <a href="https://console.aws.amazon.com/sagemaker/home" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpointConfig.html">CreateEndpointConfig</a>
+    API, or the AWS CLI. The API and console approaches are outlined in the following sections.</p>
+   
+     
+     <h3 id="serverless-endpoints-create-config-api">To create an endpoint configuration
+      (using API)</h3>
+     <p>The following example uses the <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker.html#id309" rel="noopener noreferrer" target="_blank"><span>AWS SDK for Python (Boto3)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to call the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpointConfig.html">CreateEndpointConfig</a> API. Specify the following values:</p>
+     <div class="itemizedlist">
+       
+      
+       
+       
+     <ul class="itemizedlist"><li class="listitem">
+       <p>For <code class="code">EndpointConfigName</code>, choose a name for the endpoint configuration. The
+        name should be unique within your account in a Region.</p></li><li class="listitem">
+      <p>(Optional) For <code class="code">KmsKeyId</code>, use the key ID, key ARN, alias name, or alias ARN
+       for an AWS KMS key that you want to use. SageMaker uses this key to encrypt your Amazon ECR image.</p>
+     </li><li class="listitem">
+       <p>For <code class="code">ModelName</code>, use the name of the model you want to deploy. It should be
+        the same model that you used in the <a href="serverless-endpoints-create.html#serverless-endpoints-create-model">Create a model</a> step.</p>
+      </li><li class="listitem">
+       <p>For <code class="code">ServerlessConfig</code>:</p>
+       <div class="itemizedlist">
+         
+         
+         
+       <ul class="itemizedlist"><li class="listitem">
+         <p>Set <code class="code">MemorySizeInMB</code> to <code class="code">2048</code>. For this example, we set the
+          memory size to 2048 MB, but you can choose any of the following values for your memory
+          size: 1024 MB, 2048 MB, 3072 MB, 4096 MB, 5120 MB, or 6144 MB. </p>
+        </li><li class="listitem">
+         <p>Set <code class="code">MaxConcurrency</code> to <code class="code">20</code>. For this example, we set the
+          maximum concurrency to 20. The maximum number of concurrent invocations you can set for a
+          serverless endpoint is 200, and the minimum value you can choose is 1.</p>
+        </li><li class="listitem">
+         <p>(Optional) To use Provisioned Concurrency, set <code class="code">ProvisionedConcurrency</code> to 10.
+          For this example, we set the Provisioned Concurrency to 10. The <code class="code">ProvisionedConcurrency</code> number
+          for a serverless endpoint must be lower than or equal to the <code class="code">MaxConcurrency</code> number. You can
+          leave it empty if you want to use on-demand Serverless Inference endpoint. You can dynamically scale Provision Concurrency.
+          For more information, see <a href="serverless-endpoints-autoscale.html">Automatically scale Provisioned Concurrency for a serverless endpoint</a>.</p>
+        </li></ul></div>
+      </li></ul></div>
+     <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">response = client.create_endpoint_config(
+   EndpointConfigName="<code class="replaceable">&lt;your-endpoint-configuration&gt;</code>",
+   KmsKeyId="arn:aws:kms:us-east-1:123456789012:key/143ef68f-76fd-45e3-abba-ed28fc8d3d5e",
+   ProductionVariants=[
+        <span>{</span>
+            "ModelName": "<code class="replaceable">&lt;your-model-name&gt;</code>",
+            "VariantName": "AllTraffic",
+            "ServerlessConfig": <span>{</span>
+                "MemorySizeInMB": 2048,
+                "MaxConcurrency": 20,
+                "ProvisionedConcurrency": 10,
+            }
+        } 
+    ]
+)</code></pre>
+     
+    
+    <h3 id="serverless-endpoints-create-config-console">To create an endpoint
+      configuration (using the console)</h3>
+    <div class="procedure"><ol><li>
+      <p>Sign in to the <a href="https://console.aws.amazon.com/sagemaker/home" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker
+       console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></li><li>
+      <p>In the navigation tab, choose <b>Inference</b>.</p>
+     </li><li>
+      <p>Next, choose <b>Endpoint configurations</b>.</p>
+     </li><li>
+      <p>Choose <b>Create endpoint configuration</b>.</p>
+     </li><li>
+      <p>For <b>Endpoint configuration name</b>, enter a name that is unique within
+       your account in a Region.</p>
+     </li><li>
+      <p>For <b>Type of endpoint</b>, select <b>Serverless</b>.</p>
+      <div class="mediaobject">
+        
+        <img src="../../../images/sagemaker/latest/dg/images/serverless-endpoints-endpoint-config.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Screenshot of the endpoint type option in the console.&#xA;       " style="max-width:100%" />
+        
+        
+      </div>
+     </li><li>
+      <p>For <b>Production variants</b>, choose <b>Add
+       model</b>.</p>
+     </li><li>
+      <p>Under <b>Add model</b>, select the model you want to use from the list of
+       models and then choose <b>Save</b>.</p>
+     </li><li>
+      <p>After adding your model, under <b>Actions</b>, choose
+        <b>Edit</b>.</p>
+     </li><li>
+      <p>For <b>Memory size</b>, choose the memory size you want in GB.</p>
+      <div class="mediaobject">
+        
+        <img src="../../../images/sagemaker/latest/dg/images/serverless-endpoints-endpoint-config-2.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Screenshot of the memory size option in the console.&#xA;       " style="max-width:100%" />
+        
+        
+      </div>
+     </li><li>
+      <p>For <b>Max Concurrency</b>, enter your desired maximum concurrent
+       invocations for the endpoint. The maximum value you can enter is 200 and the minimum is
+       1.</p>
+     </li><li>
+      <p>(Optional) To use Provisioned Concurrency, enter the desired number of concurrent invocations in the
+      <b>Provisioned Concurrency setting</b> field. The number of provisioned concurrent invocations
+      must be less than or equal to the number of maximum concurrent invocations.</p>
+     </li><li>
+      <p>Choose <b>Save</b>.</p>
+     </li><li>
+      <p>(Optional) For <b>Tags</b>, enter key-value pairs if you want to create
+       metadata for your endpoint configuration.</p>
+     </li><li>
+      <p>Choose <b>Create endpoint configuration</b>.</p>
+     </li></ol></div>
+    
+   
+   
+   <h2 id="serverless-endpoints-create-endpoint">Create an endpoint</h2>
+   <p>To create a serverless endpoint, you can use the <a href="https://console.aws.amazon.com/sagemaker/home" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html">CreateEndpoint</a> API, or the AWS CLI. The API and console approaches are outlined in the
+    following sections. Once you create your endpoint, it can take a few minutes for the endpoint
+    to become available.</p>
+   
+     
+     <h3 id="serverless-endpoints-create-endpoint-api">To create an endpoint (using
+      API)</h3>
+     <p>The following example uses the <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker.html#id309" rel="noopener noreferrer" target="_blank"><span>AWS SDK for Python (Boto3)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to call the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html">CreateEndpoint</a> API.
+      Specify the following values:</p>
+     <div class="itemizedlist">
+       
+       
+     <ul class="itemizedlist"><li class="listitem">
+       <p>For <code class="code">EndpointName</code>, enter a name for the endpoint that is unique within a
+        Region in your account.</p>
+      </li><li class="listitem">
+       <p>For <code class="code">EndpointConfigName</code>, use the name of the endpoint configuration that
+       you created in the previous section.</p></li></ul></div>
+     <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">response = client.create_endpoint(
+    EndpointName="<code class="replaceable">&lt;your-endpoint-name&gt;</code>",
+    EndpointConfigName="<code class="replaceable">&lt;your-endpoint-config&gt;</code>"
+)</code></pre>
+     
+    
+    <h3 id="serverless-endpoints-create-endpoint-console">To create an endpoint (using the
+      console)</h3>
+    <div class="procedure"><ol><li>
+      <p>Sign in to the <a href="https://console.aws.amazon.com/sagemaker/home" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker
+       console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+     </li><li>
+      <p>In the navigation tab, choose <b>Inference</b>.</p>
+     </li><li>
+      <p>Next, choose <b>Endpoints</b>.</p>
+     </li><li>
+      <p>Choose <b>Create endpoint</b>.</p>
+     </li><li>
+      <p>For <b>Endpoint name</b>, enter a name than is unique within a
+       Region in your account.</p>
+     </li><li>
+      <p>For <b>Attach endpoint configuration</b>, select <b>Use an existing
+        endpoint configuration</b>.</p>
+     </li><li>
+      <p>For <b>Endpoint configuration</b>, select the name of the endpoint
+       configuration you created in the previous section and then choose <b>Select endpoint
+        configuration</b>.</p>
+     </li><li>
+      <p>(Optional) For <b>Tags</b>, enter key-value pairs if you want to create
+       metadata for your endpoint.</p>
+     </li><li>
+      <p>Choose <b>Create endpoint</b>.</p>
+      <div class="mediaobject">
+        
+        <img src="../../../images/sagemaker/latest/dg/images/serverless-endpoints-create.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Screenshot of the create and configure endpoint page in the console.&#xA;       " style="max-width:100%" />
+        
+        
+      </div>
+     </li></ol></div>
+    
+   
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./serverless-endpoints-prerequisites.html">Prerequisites</div><div id="next" class="next-link" accesskey="n" href="./serverless-endpoints-invoke.html">Invoke a serverless endpoint</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/serverless-endpoints-create.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/serverless-endpoints-create.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

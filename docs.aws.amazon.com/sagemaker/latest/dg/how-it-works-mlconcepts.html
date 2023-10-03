@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Overview of machine learning with Amazon SageMaker - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="how-it-works-mlconcepts" /><meta name="default_state" content="how-it-works-mlconcepts" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="how-it-works-mlconcepts.html" /><meta name="description" content="This section describes a typical machine learning workflow and summarizes how you accomplish those tasks with Amazon SageMaker." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="how-it-works-mlconcepts.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/how-it-works-mlconcepts.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/how-it-works-mlconcepts.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/how-it-works-mlconcepts.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/how-it-works-mlconcepts.html" hreflang="de" /><link rel="alternative" href="how-it-works-mlconcepts.html" hreflang="en-us" /><link rel="alternative" href="how-it-works-mlconcepts.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/how-it-works-mlconcepts.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/how-it-works-mlconcepts.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/how-it-works-mlconcepts.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/how-it-works-mlconcepts.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/how-it-works-mlconcepts.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/how-it-works-mlconcepts.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/how-it-works-mlconcepts.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/how-it-works-mlconcepts.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/how-it-works-mlconcepts.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/how-it-works-mlconcepts.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/how-it-works-mlconcepts.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/how-it-works-mlconcepts.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/how-it-works-mlconcepts.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/how-it-works-mlconcepts.html" hreflang="zh-tw" /><link rel="alternative" href="how-it-works-mlconcepts.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Overview of machine learning with Amazon SageMaker" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Overview of machine learning with Amazon SageMaker - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#how-it-works-mlconcepts" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/how-it-works-mlconcepts.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/how-it-works-mlconcepts.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/how-it-works-mlconcepts.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "What is Amazon SageMaker?",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/whatis.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Overview of machine learning with Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/whatis.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#how-it-works-mlconcepts" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="how-it-works-mlconcepts">Overview of machine learning with
+            Amazon SageMaker</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>This section describes a typical machine learning workflow and summarizes how you
+            accomplish those tasks with Amazon SageMaker. </p><p>In machine learning, you "teach" a computer to make predictions, or inferences. First,
+            you use an algorithm and example data to train a model. Then you integrate your model
+            into your application to generate inferences in real time and at scale. In a production
+            environment, a model typically learns from millions of example data items and produces
+            inferences in hundreds to less than 20 milliseconds. </p><p>The following diagram illustrates the typical workflow for creating a
+            machine
+            learning model:</p><div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/ml-concepts-10.png" class="aws-docs-img-whiteBg aws-docs-img-padding" />
+             
+        </div><p> As the diagram illustrates, you typically perform the following activities:</p><div class="orderedlist">
+             
+             
+             
+        <ol><li>
+                <p><b>Generate example data</b>—To train a
+                    model, you need example data. The type of data that you need depends on the
+                    business problem that you want the model to solve (the inferences that you want
+                    the model to generate). For example, suppose that you want to create a model to
+                    predict a number given an input image of a handwritten digit. To train such a
+                    model, you need example images of handwritten numbers. </p>
+
+                <p>Data scientists often spend a lot of time exploring and preprocessing, or
+                    "wrangling," example data before using it for model training. To preprocess
+                    data, you typically do the following: </p>
+
+                <div class="orderedlist">
+                     
+                     
+                     
+                <ol><li>
+                        <p><b>Fetch the data</b>— You might have
+                            in-house example data repositories, or you might use datasets that are
+                            publicly available. Typically, you pull the dataset or datasets into a
+                            single repository. </p>
+
+                    </li><li>
+                        <p><b>Clean the data</b>—To improve
+                            model training, inspect the data and clean it as needed. For example, if
+                            your data has a <code class="code">country name</code> attribute with values
+                                <code class="code">United States</code> and <code class="code">US</code>, you might want to
+                            edit the data to be consistent. </p>
+
+                    </li><li>
+                        <p><b>Prepare or transform the
+                            data</b>—To improve performance, you might perform
+                            additional data transformations. For example, you might choose to
+                            combine attributes. If your model predicts the conditions that require
+                            de-icing an aircraft, instead of using temperature and humidity
+                            attributes separately, you might combine those attributes into a new
+                            attribute to get a better model. </p>
+
+                    </li></ol></div>
+                <p>In SageMaker, you preprocess example data in a Jupyter notebook on your notebook
+                    instance. You use your notebook to fetch your dataset, explore it, and prepare
+                    it for model training. For more information, see <a href="how-it-works-notebooks-instances.html">Explore, Analyze, and Process
+                Data</a>. For more information
+                    about preparing data in AWS Marketplace, see <a href="https://aws.amazon.com/marketplace/search/results?searchTerms=data+preparation&amp;spellCheck=false&amp;page=1" rel="noopener noreferrer" target="_blank"><span>data preparation</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p>
+
+            </li><li>
+                <p><b>Train a model</b>—Model training includes
+                    both training and evaluating the model, as follows: </p>
+                <div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p><b>Training the model</b>— To train a
+                        model, you need an algorithm or a pre-trained base model. The algorithm you
+                        choose depends on a number of factors. For a quick, out-of-the-box solution,
+                        you might be able to use one of the algorithms that SageMaker provides. For a
+                        list of algorithms provided by SageMaker and related considerations, see <a href="algos.html">Use Amazon SageMaker Built-in Algorithms or Pre-trained Models</a>. For a UI-based training
+                        solution that provides algorithms and models, see <a href="studio-jumpstart.html">SageMaker JumpStart</a>.</p>
+                        <p> </p>
+                        <p>You also need compute resources for training. Depending on the size of
+                            your training dataset and how quickly you need the results, you can use
+                            resources ranging from a single general-purpose instance to a
+                            distributed cluster of GPU instances. For more information, see <a href="how-it-works-training.html">Train a Model with Amazon SageMaker</a>.</p>
+                        <p> </p>
+                    </li><li class="listitem">
+                        <p><b>Evaluating the model</b>—After
+                            you've trained your model, you evaluate it to determine whether the
+                            accuracy of the inferences is acceptable. In SageMaker, you use either the
+                            AWS SDK for Python (Boto) or the high-level Python library that SageMaker provides to send
+                            requests to the model for inferences. </p>
+                        <p>You use a Jupyter notebook in your SageMaker notebook instance to train and
+                            evaluate your model. </p>
+                        <p></p>
+                    </li></ul></div>
+            </li><li>
+                <p><b>Deploy the model</b>— You traditionally
+                    re-engineer a model before you integrate it with your application and deploy it.
+                    With SageMaker hosting services, you can deploy your model independently, decoupling
+                    it from your application code. For more information, see <a href="deploy-model.html">Deploy models for inference</a>.</p>
+                <p></p>
+            </li></ol></div><p>Machine learning is a continuous cycle. After deploying a model, you monitor the
+            inferences, collect "ground truth," and evaluate the model to identify drift. You then
+            increase the accuracy of your inferences by updating your training data to include the
+            newly collected ground truth. You do this by retraining the model with the new dataset.
+            As more and more example data becomes available, you continue retraining your model to
+            increase accuracy.</p><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./whatis.html">What is Amazon SageMaker?</div><div id="next" class="next-link" accesskey="n" href="./whatis-features-alpha.html">SageMaker Features</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/how-it-works-mlconcepts.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/how-it-works-mlconcepts.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>IP Insights Hyperparameters - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="ip-insights-hyperparameters" /><meta name="default_state" content="ip-insights-hyperparameters" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="ip-insights-hyperparameters.html" /><meta name="description" content="In the CreateTransformJob request, you specify the training algorithm. You can also specify algorithm-specific hyperparameters as string-to-string maps. The following table lists the hyperparameters for the Amazon SageMaker IP Insights algorithm." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="ip-insights-hyperparameters.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/ip-insights-hyperparameters.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/ip-insights-hyperparameters.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/ip-insights-hyperparameters.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/ip-insights-hyperparameters.html" hreflang="de" /><link rel="alternative" href="ip-insights-hyperparameters.html" hreflang="en-us" /><link rel="alternative" href="ip-insights-hyperparameters.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/ip-insights-hyperparameters.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/ip-insights-hyperparameters.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/ip-insights-hyperparameters.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/ip-insights-hyperparameters.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/ip-insights-hyperparameters.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/ip-insights-hyperparameters.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/ip-insights-hyperparameters.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/ip-insights-hyperparameters.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/ip-insights-hyperparameters.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/ip-insights-hyperparameters.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/ip-insights-hyperparameters.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/ip-insights-hyperparameters.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/ip-insights-hyperparameters.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/ip-insights-hyperparameters.html" hreflang="zh-tw" /><link rel="alternative" href="ip-insights-hyperparameters.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="IP Insights Hyperparameters" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>IP Insights Hyperparameters - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#ip-insights-hyperparameters" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/ip-insights-hyperparameters.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/ip-insights-hyperparameters.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/ip-insights-hyperparameters.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Choose an Algorithm",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-choose.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Amazon SageMaker Built-in Algorithms or Pre-trained Models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Unsupervised Built-in SageMaker Algorithms",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-unsupervised.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "IP Insights",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/ip-insights.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 9,
+        "name" : "IP Insights Hyperparameters",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/ip-insights.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#ip-insights-hyperparameters" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="ip-insights-hyperparameters">IP Insights Hyperparameters</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>In the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html"><code class="code">CreateTransformJob</code></a>
+            request, you specify the training algorithm. You can also specify algorithm-specific
+            hyperparameters as string-to-string maps. The following table lists the hyperparameters
+            for the Amazon SageMaker IP Insights algorithm.</p><div class="table-container"><div class="table-contents"><table id="w714aac23c11c21c37b9c19b5"><thead>
+                    <tr>
+                        <th>Parameter Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                    <tr>
+                        <td tabindex="-1"><code class="code">num_entity_vectors</code></td>
+
+                        <td tabindex="-1"><p>The number of entity vector representations (entity embedding
+                                vectors) to train. Each entity in the training set is randomly
+                                assigned to one of these vectors using a hash function. Because of
+                                hash collisions, it might be possible to have multiple entities
+                                assigned to the same vector. This would cause the same vector to
+                                represent multiple entities. This generally has a negligible effect
+                                on model performance, as long as the collision rate is not too
+                                severe. To keep the collision rate low, set this value as high as
+                                possible. However, the model size, and, therefore, the memory
+                                requirement, for both training and inference, scales linearly with
+                                this hyperparameter. We recommend that you set this value to twice
+                                the number of unique entity identifiers.</p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: 1 ≤ positive integer ≤ 250,000,000</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">vector_dim</code></td>
+
+                        <td tabindex="-1"><p>The size of embedding vectors to represent entities and IP
+                                addresses. The larger the value, the more information that can be
+                                encoded using these representations. In practice, model size scales
+                                linearly with this parameter and limits how large the dimension can
+                                be. In addition, using vector representations that are too large can
+                                cause the model to overfit, especially for small training datasets.
+                                Overfitting occurs when a model doesn't learn any pattern in the
+                                data but effectively memorizes the training data and, therefore,
+                                cannot generalize well and performs poorly during inference. The
+                                recommended value is 128.</p>
+                            <p><b>Required</b></p>
+                            <p>Valid values: 4 ≤ positive integer ≤ 4096</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">batch_metrics_publish_interval</code></td>
+
+                        <td tabindex="-1"><p>The interval (every X batches) at
+                                which
+                                the Apache MXNet Speedometer function prints the
+                                training speed of the network (samples/second). </p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: positive integer ≥ 1</p>
+                            <p>Default value: 1,000</p></td>
+                    </tr>
+
+                    <tr>
+                        <td tabindex="-1"><code class="code">epochs</code></td>
+
+                        <td tabindex="-1"><p>The number of passes over the training data. The optimal value
+                                depends on your data size and learning rate. Typical values range
+                                from 5 to 100.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: positive integer ≥ 1</p>
+                            <p>Default value: 10</p></td>
+                    </tr>
+
+                    <tr>
+                        <td tabindex="-1"><code class="code">learning_rate</code></td>
+
+                        <td tabindex="-1"><p>The learning rate for the optimizer. IP Insights use a
+                                gradient-descent-based Adam optimizer. The learning rate effectively
+                                controls the step size to update model parameters at each iteration.
+                                Too large a learning rate can cause the model to diverge because the
+                                training is likely to overshoot a minima. On the other hand, too
+                                small a learning rate slows down convergence. Typical values range
+                                from 1e-4 to 1e-1.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: 1e-6 ≤ float ≤ 10.0</p>
+                            <p>Default value: 0.001</p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">mini_batch_size</code></td>
+
+                        <td tabindex="-1"><p>The number of examples in each mini batch. The training
+                                procedure processes data in mini batches. The optimal value depends
+                                on the number of unique account identifiers in the dataset. In
+                                general, the larger the <code class="code">mini_batch_size</code>, the faster the
+                                training and the greater the number of possible
+                                shuffled-negative-sample combinations. However, with a large
+                                    <code class="code">mini_batch_size</code>, the training is more likely to
+                                converge to a poor local minimum and perform relatively worse for
+                                inference. </p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: 1 ≤ positive integer ≤ 500000</p>
+                            <p>Default value: 10,000</p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">num_ip_encoder_layers</code></td>
+
+                        <td tabindex="-1"><p>The number of fully connected layers used to encode the IP
+                                address embedding. The larger the number of layers, the greater the
+                                model's capacity to capture patterns among IP addresses. However,
+                                using a large number of layers increases the chance of
+                                overfitting.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: 0 ≤ positive integer ≤ 100</p>
+                            <p>Default value: 1</p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">random_negative_sampling_rate</code></td>
+
+                        <td tabindex="-1"><p>The number of random negative samples,
+                                R,
+                                to generate per input example. The training procedure relies on
+                                negative samples to prevent the vector representations of the model
+                                collapsing to a single point. Random negative sampling generates R
+                                random IP addresses for each input account in the mini batch. The
+                                sum of the <code class="code">random_negative_sampling_rate</code> (R) and
+                                    <code class="code">shuffled_negative_sampling_rate</code> (S) must be in the
+                                interval: 1 ≤ R + S ≤ 500.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: 0 ≤ positive integer ≤ 500</p>
+                            <p>Default value: 1</p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">shuffled_negative_sampling_rate</code></td>
+
+                        <td tabindex="-1"><p>The number of shuffled negative samples,
+                                S,
+                                to generate per input example. In some cases, it helps to use more
+                                realistic negative samples that are randomly picked from the
+                                training data itself. This kind of negative sampling is achieved by
+                                shuffling the data within a mini batch. Shuffled negative sampling
+                                generates S negative IP addresses by shuffling the IP address and
+                                account pairings within a mini batch. The sum of the
+                                    <code class="code">random_negative_sampling_rate</code> (R) and
+                                    <code class="code">shuffled_negative_sampling_rate</code> (S) must be in the
+                                interval: 1 ≤ R + S ≤ 500.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: 0 ≤ positive integer ≤ 500</p>
+                            <p>Default value: 1</p></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">weight_decay</code></td>
+
+                        <td tabindex="-1"><p>The weight decay coefficient. This parameter adds an L2
+                                regularization factor that is required to prevent the model from
+                                overfitting the training data.</p>
+                            <p><b>Optional</b></p>
+                            <p>Valid values: 0.0 ≤ float ≤ 10.0</p>
+                            <p>Default value: 0.00001</p></td>
+                    </tr>
+
+                </table></div></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./ip-insights-howitworks.html">How It Works</div><div id="next" class="next-link" accesskey="n" href="./ip-insights-tuning.html">Model Tuning</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/ip-insights-hyperparameters.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/ip-insights-hyperparameters.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Choose a foundation model - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="jumpstart-foundation-models-choose" /><meta name="default_state" content="jumpstart-foundation-models-choose" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="jumpstart-foundation-models-choose.html" /><meta name="description" content="Learn how to select a JumpStart foundation models based on your use case." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="jumpstart-foundation-models-choose.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" hreflang="de" /><link rel="alternative" href="jumpstart-foundation-models-choose.html" hreflang="en-us" /><link rel="alternative" href="jumpstart-foundation-models-choose.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" hreflang="zh-tw" /><link rel="alternative" href="jumpstart-foundation-models-choose.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Choose a foundation model" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Choose a foundation model - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#jumpstart-foundation-models-choose" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-foundation-models-choose.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use automated ML, no-code, or low-code",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/use-auto-ml.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "SageMaker JumpStart",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "JumpStart Foundation Models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Choose a foundation model",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#jumpstart-foundation-models-choose" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="jumpstart-foundation-models-choose.html#jumpstart-foundation-models-choose-task">Foundation model
+                    tasks</a><a href="jumpstart-foundation-models-choose.html#jumpstart-foundation-models-choose-source">Licenses and model sources</a><a href="jumpstart-foundation-models-choose.html#jumpstart-foundation-models-choose-eula">End-user license agreements</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="jumpstart-foundation-models-choose">Choose a foundation model</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon SageMaker JumpStart provides access to hundreds of publicly available and proprietary foundation
+            models from third-party sources and partners. You can explore the JumpStart foundation model
+            selection directly in the SageMaker console or Studio. When selecting a foundation model,
+            we recommend starting with a specific task in mind and exploring potential models from
+            there.</p>
+            <h2 id="jumpstart-foundation-models-choose-task">Foundation model
+                    tasks</h2>
+            <p>By definition, foundation models are adaptable to many downstream tasks.
+                Foundation models are trained on massive amounts of general domain data and the same
+                model can be implemented or customized for multiple use cases. When choosing your
+                foundation model, start with defining a specific task. </p>
+             
+                <h3 id="jumpstart-foundation-models-choose-task-text-generation">Choose a text generation model</h3>
+                <p>Text generation foundation models can be used for a variety of downstream
+                    tasks, including text summarization, text classification, question answering,
+                    long-form content generation, short-form copywriting, information extraction,
+                    and more.</p>
+                <p>To explore the latest text generation JumpStart foundation models, use the
+                        <b>Text Generation</b> filter on the <a href="http://aws.amazon.com/sagemaker/jumpstart/getting-started/?sagemaker-jumpstart-cards.sort-by=item.additionalFields.priority&amp;sagemaker-jumpstart-cards.sort-order=asc&amp;awsf.sagemaker-jumpstart-filter-product-type=product-type%23foundation-model&amp;awsf.sagemaker-jumpstart-filter-text=ml-task-type%23text-generation&amp;awsf.sagemaker-jumpstart-filter-vision=*all&amp;awsf.sagemaker-jumpstart-filter-tabular=*all&amp;awsf.sagemaker-jumpstart-filter-audio-tasks=*all&amp;awsf.sagemaker-jumpstart-filter-multimodal=*all&amp;awsf.sagemaker-jumpstart-filter-RL=*all&amp;awsm.page-sagemaker-jumpstart-cards=1" rel="noopener noreferrer" target="_blank"><span>Getting started with Amazon SageMaker JumpStart</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> product description page. You can
+                    also explore foundation models based on tasks directly in the SageMaker Studio
+                    UI. See <a href="jumpstart-foundation-models-use.html#jumpstart-foundation-models-use-studio">Use foundation models in
+                    Amazon SageMaker Studio</a> for more
+                    information.</p>
+             
+             
+                <h3 id="jumpstart-foundation-models-choose-task-image-generation">Choose an image generation model</h3>
+                <p>JumpStart provides a wide variety of Stable Diffusion image generation foundation
+                    models including base models from Stability AI as well as pre-trained models for
+                    specific text-to-image tasks from Hugging Face. If you need to fine-tune your
+                    text-to-image foundation model, you can use Stable Diffusion 2.1 base from
+                    Stability AI. If you want to explore models that are already trained on specific
+                    art styles, you can explore one of the many third-party models from Hugging Face
+                    directly in the SageMaker Studio UI. </p>
+                <p>To explore the latest image generation JumpStart foundation models, use the
+                        <b>Text to Image</b> filter on the <a href="http://aws.amazon.com/sagemaker/jumpstart/getting-started/?sagemaker-jumpstart-cards.sort-by=item.additionalFields.priority&amp;sagemaker-jumpstart-cards.sort-order=asc&amp;awsf.sagemaker-jumpstart-filter-product-type=product-type%23foundation-model&amp;awsf.sagemaker-jumpstart-filter-text=*all&amp;awsf.sagemaker-jumpstart-filter-vision=*all&amp;awsf.sagemaker-jumpstart-filter-tabular=*all&amp;awsf.sagemaker-jumpstart-filter-audio-tasks=*all&amp;awsf.sagemaker-jumpstart-filter-multimodal=ml-task-type%23txt2img&amp;awsf.sagemaker-jumpstart-filter-RL=*all&amp;awsm.page-sagemaker-jumpstart-cards=1" rel="noopener noreferrer" target="_blank"><span>Getting started with Amazon SageMaker JumpStart</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> product description page. To get
+                    started with your chosen text-to-image foundation model, see <a href="jumpstart-foundation-models-use.html#jumpstart-foundation-models-use-studio">Use foundation models in
+                    Amazon SageMaker Studio</a>.</p>
+             
+         
+            <h2 id="jumpstart-foundation-models-choose-source">Licenses and model sources</h2>
+            <p>Amazon SageMaker JumpStart provides access to both publicly available and proprietary foundation
+                models. Foundation models are onboarded and maintained from third-party open source
+                and proprietary providers. As such, they are released under different licenses as
+                designated by the model source. Be sure to review the license for any foundation
+                model that you use. You are responsible for reviewing and complying with any
+                applicable license terms and making sure they are acceptable for your use case
+                before downloading or using the content. Some examples of common foundation model
+                licenses include:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Alexa Teacher Model</p></li><li class="listitem">
+                    <p>Apache 2.0</p>
+                </li><li class="listitem">
+                    <p>BigScience Responsible AI License v1.0</p></li><li class="listitem">
+                    <p>CreativeML Open RAIL++-M license</p></li></ul></div>
+            <p>Similarly, for any proprietary foundation models, be sure to review and comply
+                with any terms of use and usage guidelines from the model provider. If you have
+                questions about license information for a specific proprietary model, reach
+                out to model provider directly. You can find model provider contact information in
+                the <b>Support</b> tab of each model page in AWS Marketplace. 
+                To explore the latest proprietary foundation models, see <a href="http://aws.amazon.com/sagemaker/jumpstart/getting-started/?sagemaker-jumpstart-cards.sort-by=item.additionalFields.priority&amp;sagemaker-jumpstart-cards.sort-order=asc&amp;awsf.sagemaker-jumpstart-filter-product-type=product-type%23foundation-model&amp;awsf.sagemaker-jumpstart-filter-text=*all&amp;awsf.sagemaker-jumpstart-filter-vision=*all&amp;awsf.sagemaker-jumpstart-filter-tabular=*all&amp;awsf.sagemaker-jumpstart-filter-audio-tasks=*all&amp;awsf.sagemaker-jumpstart-filter-multimodal=*all&amp;awsf.sagemaker-jumpstart-filter-RL=*all&amp;sagemaker-jumpstart-cards.q=proprietary&amp;sagemaker-jumpstart-cards.q_operator=AND" rel="noopener noreferrer" target="_blank"><span>Getting started with Amazon SageMaker JumpStart</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+         
+            <h2 id="jumpstart-foundation-models-choose-eula">End-user license agreements</h2>
+            <p>Some JumpStart foundation models require explicit acceptance of an end-user license
+                agreement (EULA) before deployment. </p>
+             
+                <h3 id="jumpstart-foundation-models-choose-eula-studio">EULA acceptance in Amazon SageMaker Studio</h3>
+                <p>You may be prompted to accept an end-user license agreement before deploying a JumpStart foundation model or opening a JumpStart foundation model notebook in Amazon SageMaker Studio.
+                    To get started with JumpStart foundation models in Studio, see <a href="jumpstart-foundation-models-use.html#jumpstart-foundation-models-use-studio">Use foundation models in
+                    Amazon SageMaker Studio</a>.</p>
+                <p>Some JumpStart foundation models require acceptance of an end-user license
+                    agreement before deployment. If this applies to the foundation model that you
+                    choose to use, Studio prompts you with a window titled <b>Review the
+                        End User License Agreement (EULA) and Acceptable Use Policy (AUP)
+                        below</b> after you choose either <b>Deploy</b> or
+                        <b>Open notebook</b>. You are responsible for reviewing and
+                    complying with any applicable license terms and making sure they are acceptable
+                    for your use case before downloading or using a model.</p>
+             
+             
+                <h3 id="jumpstart-foundation-models-choose-eula-python-sdk">EULA acceptance with the SageMaker Python SDK</h3>
+                <p>After deploying a JumpStart foundation model programmatically using the SageMaker Python
+                    SDK, you can run inference against your deployed endpoint with the SageMaker
+                            <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/api/inference/predictors.html" rel="noopener noreferrer" target="_blank"><span>Predictor</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> class. For models that require the acceptance
+                    of an end-user license agreement, you must explicitly declare EULA acceptance in
+                    your call to the <code class="code">Predictor</code> class. </p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">predictor.predict(payload, custom_attributes="accept_eula=true")</code></pre>
+                <p>The <code class="code">accept_eula</code> value is <code class="code">false</code> by default and must
+                    be explicitly redefined as <code class="code">true</code> in order to accept the end-user
+                    license agreement. The predictor returns a   if
+                    you try to run inference while <code class="code">accept_eula</code> is set to
+                        <code class="code">false</code>. For more information on getting started with JumpStart
+                    foundation models using the SageMaker Python SDK, see <a href="jumpstart-foundation-models-use.html#jumpstart-foundation-models-use-python-sdk">Use foundation models
+                    with the SageMaker Python SDK</a>.</p>
+                <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>The <code class="code">custom_attributes</code> parameter accepts key value pairs in the format
+                            <code class="code">"key1=value1;key2=value2"</code>. If you use the same key multiple
+                        times, the inference server uses the last value associated with the key. For
+                        example, if you pass <code class="code">"accept_eula=false;accept_eula=true"</code> to
+                        the <code class="code">custom_attributes</code> parameter, then the inference server
+                        associates the value <code class="code">true</code> with the <code class="code">accept_eula</code>
+                        key.</p></div></div>
+             
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./jumpstart-foundation-models-use.html">Use a Model</div><div id="next" class="next-link" accesskey="n" href="./jumpstart-foundation-models-customize.html">Customize a Model</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-foundation-models-choose.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-foundation-models-choose.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

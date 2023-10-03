@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Adapt Your TensorFlow Training Script - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="debugger-modify-script-tensorflow" /><meta name="default_state" content="debugger-modify-script-tensorflow" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="debugger-modify-script-tensorflow.html" /><meta name="description" content="To start collecting model output tensors and debug training issues, make the following modifications to your TensorFlow training script." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="debugger-modify-script-tensorflow.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" hreflang="de" /><link rel="alternative" href="debugger-modify-script-tensorflow.html" hreflang="en-us" /><link rel="alternative" href="debugger-modify-script-tensorflow.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" hreflang="zh-tw" /><link rel="alternative" href="debugger-modify-script-tensorflow.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Adapt Your TensorFlow Training Script" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Adapt Your TensorFlow Training Script - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#debugger-modify-script-tensorflow" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-modify-script-tensorflow.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Debug and improve model performance",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-debug-and-improve-model-performance.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Amazon SageMaker Debugger to debug and improve model performance",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-debugger.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Debug Training Jobs Using Amazon SageMaker Debugger",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-debug-training-jobs.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Step 1: Adapt Your Training Script to Register a Hook",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-modify-script.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 9,
+        "name" : "Adapt Your TensorFlow Training Script",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-modify-script.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#debugger-modify-script-tensorflow" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="debugger-modify-script-tensorflow.html#debugger-modify-script-tensorflow-keras">Register the hook in your TensorFlow Keras training script</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="debugger-modify-script-tensorflow">Adapt Your TensorFlow Training Script</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>To start collecting model output tensors and debug training issues, make the following
+            modifications to your TensorFlow training script.</p><p><b>Create a hook for training jobs within
+            SageMaker</b></p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import smdebug.tensorflow as smd
+
+hook=smd.get_hook(hook_type="keras", create_if_not_exists=True) </code></pre><p>This creates a hook when you start a SageMaker training job. When you launch a training job
+            in <a href="debugger-configuration-for-debugging.html">Step 2: Launch and Debug Training
+            Jobs Using SageMaker Python SDK</a> with any of the
+                <code class="code">DebuggerHookConfig</code>, <code class="code">TensorBoardConfig</code>, or
+                <code class="code">Rules</code> in your estimator, SageMaker adds a JSON configuration file to your
+            training instance that is picked up by the <code class="code">smd.get_hook</code> method. Note that
+            if you do not include any of the configuration APIs in your estimator, there will be no
+            configuration file for the hook to find, and the function returns
+            <code class="code">None</code>.</p><p><b>(Optional) Create a hook for training jobs outside
+                SageMaker</b></p><p>If you run training jobs in local mode, directly on SageMaker Notebook instances, Amazon EC2
+            instances, or your own local devices, use <code class="code">smd.Hook</code> class to create a hook.
+            However, this approach can only store the tensor collections and usable for TensorBoard
+            visualization. SageMaker Debugger’s built-in Rules don’t work with the local mode. The
+                <code class="code">smd.get_hook</code> method also returns <code class="code">None</code> in this case. </p><p>If you want to create a manual hook, use the following code snippet with the logic to
+            check if the hook returns <code class="code">None</code> and create a manual hook using the
+                <code class="code">smd.Hook</code> class.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import smdebug.tensorflow as smd
+
+hook=smd.get_hook(hook_type="keras", create_if_not_exists=True) 
+
+if hook is None:
+    hook=smd.KerasHook(
+        out_dir='<code class="replaceable">/path/to/your/local/output/</code>',
+        export_tensorboard=True
+    )</code></pre><p>After adding the hook creation code, proceed to the following topic for TensorFlow
+            Keras.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>SageMaker Debugger currently supports TensorFlow Keras only.</p></div></div>
+            <h2 id="debugger-modify-script-tensorflow-keras">Register the hook in your TensorFlow Keras training script</h2>
+            <p>The following precedure walks you through how to use the hook and its methods to
+                collect output scalars and tensors from your model and optimizer.</p>
+            <div class="orderedlist">
+                 
+                 
+                 
+                 
+                 
+            <ol><li>
+                    <p>Wrap your Keras model and optimizer with the hook’s class methods.</p>
+                    <p>The <code class="code">hook.register_model()</code> method takes your model and
+                        iterates through each layer, looking for any tensors that match with regular
+                        expressions that you’ll provide through the configuration in <a href="debugger-configuration-for-debugging.html">Step 2: Launch and Debug Training
+            Jobs Using SageMaker Python SDK</a>. The collectable
+                        tensors through this hook method are weights, biases, and
+                        activations.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">model=tf.keras.Model(...)
+hook.register_model(model)</code></pre>
+                </li><li>
+                    <p>Wrap the optimizer by the <code class="code">hook.wrap_optimizer()</code>
+                        method.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">optimizer=tf.keras.optimizers.Adam(...)
+optimizer=hook.wrap_optimizer(optimizer)</code></pre>
+                </li><li>
+                    <p>Compile the model in eager mode in TensorFlow.</p>
+                    <p>To collect tensors from the model, such as the input and output tensors of
+                        each layer, you must run the training in eager mode. Otherwise, SageMaker
+                        Debugger will not be able to collect the tensors. However, other tensors,
+                        such as model weights, biases, and the loss, can be collected without
+                        explicitly running in eager mode.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">model.compile(
+    loss="categorical_crossentropy", 
+    optimizer=optimizer, 
+    metrics=["accuracy"],
+    # Required for collecting tensors of each layer
+    run_eagerly=True
+)</code></pre>
+                </li><li>
+                    <p>Register the hook to the <a href="https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit" rel="noopener noreferrer" target="_blank"><span><code class="code">tf.keras.Model.fit()</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> method.</p>
+                    <p>To collect the tensors from the hooks that you registered, add
+                            <code class="code">callbacks=[hook]</code> to the Keras <code class="code">model.fit()</code>
+                        class method. This will pass the <code class="code">sagemaker-debugger</code> hook as a
+                        Keras callback.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">model.fit(
+    X_train, Y_train,
+    batch_size=batch_size,
+    epochs=epoch,
+    validation_data=(X_valid, Y_valid),
+    shuffle=True, 
+    callbacks=[hook]
+)</code></pre>
+                </li><li>
+                    <p>TensorFlow 2.x provides only symbolic gradient variables that do not
+                        provide access to their values. To collect gradients, wrap
+                            <code class="code">tf.GradientTape</code> by the <a href="https://sagemaker-debugger.readthedocs.io/en/website/hook-methods.html#tensorflow-specific-hook-api" rel="noopener noreferrer" target="_blank"><span><code class="code">hook.wrap_tape()</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> method, which requires you to
+                        write your own training step as follows.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">def training_step(model, dataset):
+    <b>with hook.wrap_tape(tf.GradientTape()) as tape:</b>
+        pred=model(data)
+        loss_value=loss_fn(labels, pred)
+    grads=tape.gradient(loss_value, model.trainable_variables)
+    optimizer.apply_gradients(zip(grads, model.trainable_variables))</code></pre>
+                    <p>By wrapping the tape, the <code class="code">sagemaker-debugger</code> hook can
+                        identify output tensors such as gradients, parameters, and losses. Wrapping
+                        the tape ensures that the <code class="code">hook.wrap_tape()</code> method around
+                        functions of the tape object, such as <code class="code">push_tape()</code>,
+                            <code class="code">pop_tape()</code>, <code class="code">gradient()</code>, will set up the
+                        writers of SageMaker Debugger and save tensors that are provided as input to
+                            <code class="code">gradient()</code> (trainable variables and loss) and output of
+                            <code class="code">gradient()</code> (gradients).</p>
+                    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>To collect with a custom training loop, make sure that you use eager
+                            mode. Otherwise, SageMaker Debugger is not able to collect any tensors.</p></div></div>
+                </li></ol></div>
+            <p>For a full list of actions that the <code class="code">sagemaker-debugger</code> hook APIs
+                offer to construct hooks and save tensors, see <a href="https://sagemaker-debugger.readthedocs.io/en/website/hook-methods.html" rel="noopener noreferrer" target="_blank"><span>Hook Methods</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the
+                        <em><code class="code">sagemaker-debugger</code> Python SDK
+                    documentation</em>.</p>
+            <p>After you have completed adapting your training script, proceed to <a href="debugger-configuration-for-debugging.html">Step 2: Launch and Debug Training
+            Jobs Using SageMaker Python SDK</a>.</p>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./debugger-modify-script-pytorch.html">PyTorch</div><div id="next" class="next-link" accesskey="n" href="./debugger-configuration-for-debugging.html">Step 2: Launch and Debug Training Jobs Using SageMaker Python SDK</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-modify-script-tensorflow.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-modify-script-tensorflow.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

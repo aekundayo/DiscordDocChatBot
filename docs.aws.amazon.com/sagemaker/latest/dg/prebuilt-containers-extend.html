@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Extend a Pre-built Container - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="prebuilt-containers-extend" /><meta name="default_state" content="prebuilt-containers-extend" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="prebuilt-containers-extend.html" /><meta name="description" content="If a pre-built SageMaker container doesn't fulfill all of your requirements, you can extend the existing image to accommodate your needs. Even if there is direct support for your environment or framework, you may want to add additional functionality or configure your container environment differently. By extending a pre-built image, you can leverage the included deep learning libraries and settings without having to create an image from scratch. You can extend the container to add libraries, modify settings, and install additional dependencies." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="prebuilt-containers-extend.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/prebuilt-containers-extend.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/prebuilt-containers-extend.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/prebuilt-containers-extend.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/prebuilt-containers-extend.html" hreflang="de" /><link rel="alternative" href="prebuilt-containers-extend.html" hreflang="en-us" /><link rel="alternative" href="prebuilt-containers-extend.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/prebuilt-containers-extend.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/prebuilt-containers-extend.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/prebuilt-containers-extend.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/prebuilt-containers-extend.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/prebuilt-containers-extend.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/prebuilt-containers-extend.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/prebuilt-containers-extend.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/prebuilt-containers-extend.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/prebuilt-containers-extend.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/prebuilt-containers-extend.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/prebuilt-containers-extend.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/prebuilt-containers-extend.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/prebuilt-containers-extend.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/prebuilt-containers-extend.html" hreflang="zh-tw" /><link rel="alternative" href="prebuilt-containers-extend.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Extend a Pre-built Container" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Extend a Pre-built Container - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#prebuilt-containers-extend" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/prebuilt-containers-extend.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/prebuilt-containers-extend.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/prebuilt-containers-extend.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use Docker containers to build models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/docker-containers.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Use Pre-built SageMaker Docker images",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/docker-containers-prebuilt.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Extend a Pre-built Container",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/docker-containers-prebuilt.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#prebuilt-containers-extend" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="prebuilt-containers-extend.html#prebuilt-containers-extend-required">Requirements to Extend a
+                Pre-built Container</a><a href="prebuilt-containers-extend.html#prebuilt-containers-extend-tutorial">Get Started with Containers</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="prebuilt-containers-extend">Extend a Pre-built
+            Container</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>If a pre-built SageMaker container doesn't fulfill all of your requirements, you can
+        extend the existing image to accommodate your needs. Even if there is direct support for
+        your environment or framework, you may want to add additional functionality or configure
+        your container environment differently. By extending a pre-built image, you can leverage the
+        included deep learning libraries and settings without having to create an image from
+        scratch. You can extend the container to add libraries, modify settings, and install
+        additional dependencies. </p><p>The following tutorial shows how to extend a pre-built SageMaker image and publish it to
+        Amazon ECR.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="prebuilt-containers-extend.html#prebuilt-containers-extend-required">Requirements to Extend a
+                Pre-built Container</a></li><li><a href="prebuilt-containers-extend.html#prebuilt-containers-extend-tutorial">Extend SageMaker
+                        Containers to Run a Python Script</a></li></ul></div>
+        <h2 id="prebuilt-containers-extend-required">Requirements to Extend a
+                Pre-built Container</h2>
+        <p>To extend a pre-built SageMaker image, you need to set the following environment variables
+            within your Dockerfile. For more information on environment variables with SageMaker
+            containers, see the <a href="https://github.com/aws/sagemaker-training-toolkit/blob/master/ENVIRONMENT_VARIABLES.md" rel="noopener noreferrer" target="_blank"><span>SageMaker Training Toolkit GitHub repo</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem"><p><code class="code">SAGEMAKER_SUBMIT_DIRECTORY</code>: The directory within the container in which the
+                    Python script for training is located.</p>
+            </li><li class="listitem"><p><code class="code">SAGEMAKER_PROGRAM</code>: The Python script that should be invoked and used as the entry
+                    point for training.</p></li></ul></div>
+        <p>You can also install additional libraries by including the following in your
+            Dockerfile:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">RUN pip install <code class="replaceable">&lt;library&gt;</code></code></pre>
+        <p>The following tutorial shows how to use these environment variables.</p>
+        
+     
+                <h2 id="prebuilt-containers-extend-tutorial">Extend SageMaker
+                        Containers to Run a Python Script</h2> 
+                <p>In this tutorial, you learn how to extend the SageMaker PyTorch container with a
+            Python file that uses the CIFAR-10 dataset. By extending the SageMaker PyTorch container, you
+            utilize the existing training solution made to work with SageMaker. This tutorial extends a
+            training image, but the same steps can be taken to extend an inference image. For a full
+            list of the available images, see <a href="https://github.com/aws/deep-learning-containers/blob/master/available_images.md" rel="noopener noreferrer" target="_blank"><span>Available Deep Learning Containers Images</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                <p>To run your own training model using the SageMaker containers, build a Docker
+            container through a SageMaker Notebook instance. </p>    
+                
+                
+                 
+                    <h3 id="extend-step1">Step 1: Create an SageMaker Notebook
+                    Instance</h3>
+                    <div class="procedure"><ol><li>
+                            <p>Open the <a href="https://console.aws.amazon.com/sagemaker/" rel="noopener noreferrer" target="_blank"><span>SageMaker console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p>
+                        </li><li>
+                            <p>In the left navigation pane, choose <b>Notebook</b>, choose
+                                <b>Notebook instances</b>, and then choose <b>Create
+                                    notebook instance</b>. </p>
+                        </li><li>
+                            <p>On the <b>Create notebook instance</b> page, provide the
+                                following information: </p>
+                            <ol><li>
+                                    <p>For <b>Notebook instance name</b>, enter
+                                        <code class="userinput">RunScriptNotebookInstance</code>.</p>
+                                </li><li>
+                                    <p>For <b>Notebook Instance type</b>, choose
+                                        <code class="userinput">ml.t2.medium</code>.</p>
+                                </li><li>
+                                    <p>In the <b>Permissions and encryption</b> section, do the
+                                        following:</p>
+                                    <ol><li>
+                                            <p>For <b>IAM role</b>, choose <b>Create a new
+                                                role</b>.</p>
+                                        </li><li>
+                                            <p>On the <b>Create an IAM role</b>
+                                        page, choose <b>Specific S3 buckets</b>,
+                                        specify an Amazon S3 bucket named
+                                            <code class="userinput">sagemaker-run-script</code>, and then
+                                        choose <b>Create role</b>.</p>
+                                            <p>SageMaker creates an IAM role named
+                                                <code class="code">AmazonSageMaker-ExecutionRole-<code class="replaceable">YYYYMMDD</code>T<code class="replaceable">HHmmSS</code></code>,
+                                        such as
+                                            <code>AmazonSageMaker-ExecutionRole-20190429T110788</code>.
+                                        Note that the execution role naming convention uses the date
+                                        and time when the role was created, separated by a
+                                            <code class="code">T</code>.</p>
+                                        </li></ol>
+                                </li><li>
+                                    <p>For <b>Root Access</b>, choose
+                                        <b>Enable</b>.</p>
+                                </li><li>
+                                    <p>Choose <b>Create notebook instance</b>. </p>
+                                </li></ol>
+                        </li><li>
+                            <p>On the <b>Notebook instances</b> page, the
+                            <b>Status</b> is <b>Pending</b>. It can take
+                        a few minutes for Amazon CloudWatch Internet Monitor to launch a machine learning compute
+                        instance—in this case, it launches a notebook instance—and
+                        attach an ML storage volume to it. The notebook instance has a preconfigured
+                        Jupyter notebook server and a set of Anaconda libraries. For more
+                        information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateNotebookInstance.html">
+                            &#x2028;CreateNotebookInstance</a>. </p>
+                            <p></p>
+                        </li><li><p>In the <b>Permissions and encryption</b> section, copy <b>the IAM role
+                            ARN number</b>, and paste it into a notepad file to save it
+                        temporarily. You use this IAM role ARN number later to configure a local
+                        training estimator in the notebook instance. <b>The IAM role ARN
+                            number</b> looks like the following:
+                            <code class="code">'arn:aws:iam::111122223333:role/service-role/AmazonSageMaker-ExecutionRole-20190429T110788'</code>
+                    </p>
+                        </li><li>
+                            <p>After the status of the notebook instance changes to
+                                <b>InService</b>, choose <b>Open
+                                    JupyterLab</b>.</p>
+                        </li></ol></div>
+                 
+                 
+                    <h3 id="extend-step2">Step 2: Create and Upload the Dockerfile and
+                    Python Training Scripts</h3>
+                    <div class="procedure"><ol><li>
+                            <p>After JupyterLab opens, create a new folder in the home directory
+                        of your JupyterLab. In the upper-left corner, choose the <b>New
+                            Folder</b> icon, and then enter the folder name
+                            <code class="code">docker_test_folder</code>. </p>
+                        </li><li>
+                            <p>
+                                Create a <code class="code">Dockerfile</code> text file in the <code class="code">docker_test_folder</code> directory.
+                            </p>
+                            <ol><li>
+                                    <p>Choose the <b>New Launcher</b> icon (+) in the upper-left
+                                        corner.  </p>
+                                </li><li>
+                                    <p>In the right pane under the <b>Other</b> section, choose
+                                        <b>Text File</b>.</p>
+                                </li><li>
+                                    <p> Paste the following <code class="code">Dockerfile</code> sample code into your text
+                                        file. </p>
+                                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""># SageMaker PyTorch image
+FROM 763104351884.dkr.ecr.us-east-1.amazonaws.com/pytorch-training:1.5.1-cpu-py36-ubuntu16.04
+
+ENV PATH="/opt/ml/code:$<span>{</span>PATH}"
+
+# this environment variable is used by the SageMaker PyTorch container to determine our user code directory.
+ENV SAGEMAKER_SUBMIT_DIRECTORY /opt/ml/code
+
+# /opt/ml and all subdirectories are utilized by SageMaker, use the /code subdirectory to store your user code.
+COPY cifar10.py /opt/ml/code/cifar10.py
+
+# Defines cifar10.py as script entrypoint 
+ENV SAGEMAKER_PROGRAM cifar10.py</code></pre>
+                                    <p>The Dockerfile script performs the following tasks:</p>
+                                    <div class="itemizedlist">
+                                         
+                                         
+                                         
+                                         
+                                    <ul class="itemizedlist"><li class="listitem">
+                                            <p><code class="code">FROM
+                                            763104351884.dkr.ecr.us-east-1.amazonaws.com/pytorch-training:1.5.1-cpu-py36-ubuntu16.04</code>
+                                        – Downloads the SageMaker PyTorch base image. You can
+                                        replace this with any SageMaker base image you want to bring to
+                                        build containers.</p>
+                                        </li><li class="listitem">
+                                            <p><code class="code">ENV SAGEMAKER_SUBMIT_DIRECTORY
+                                            /opt/ml/code</code> – Sets
+                                            <code class="code">/opt/ml/code</code> as the training script
+                                        directory.</p>
+                                        </li><li class="listitem">
+                                            <p><code class="code">COPY cifar10.py
+                                            /opt/ml/code/cifar10.py</code> – Copies the
+                                        script to the location inside the container that is expected
+                                        by SageMaker. The script must be located in this folder.</p>
+                                        </li><li class="listitem">
+                                            <p><code class="code">ENV SAGEMAKER_PROGRAM cifar10.py</code>
+                                        – Sets your <code>cifar10.py</code> training
+                                        script as the entrypoint script.</p>
+                                        </li></ul></div>
+                                </li><li>
+                                    <p> On the left directory navigation pane, the text file name might
+                                        automatically be named <code class="code">untitled.txt</code>. To rename the file,
+                                        right-click the file, choose <b>Rename</b>, rename the
+                                        file as <code class="code">Dockerfile</code> without the <code class="code">.txt</code> extension,
+                                        and then press <code class="code">Ctrl+s</code> or <code class="code">Command+s</code> to save the
+                                        file.</p>
+                                </li></ol>
+                        </li><li>
+                            <p>Create or upload a training script <code class="code">cifar10.py</code> in the
+                            <code class="code">docker_test_folder</code>. You can use the following example
+                        script for this exercise. </p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python.py ">import ast
+import argparse
+import logging
+
+import os
+
+import torch
+import torch.distributed as dist
+import torch.nn as nn
+import torch.nn.parallel
+import torch.optim
+import torch.utils.data
+import torch.utils.data.distributed
+import torchvision
+import torchvision.models
+import torchvision.transforms as transforms
+import torch.nn.functional as F
+
+logger=logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+classes=('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
+
+
+# https://github.com/pytorch/tutorials/blob/master/beginner_source/blitz/cifar10_tutorial.py#L118
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+        self.conv1=nn.Conv2d(3, 6, 5)
+        self.pool=nn.MaxPool2d(2, 2)
+        self.conv2=nn.Conv2d(6, 16, 5)
+        self.fc1=nn.Linear(16 * 5 * 5, 120)
+        self.fc2=nn.Linear(120, 84)
+        self.fc3=nn.Linear(84, 10)
+
+    def forward(self, x):
+        x=self.pool(F.relu(self.conv1(x)))
+        x=self.pool(F.relu(self.conv2(x)))
+        x=x.view(-1, 16 * 5 * 5)
+        x=F.relu(self.fc1(x))
+        x=F.relu(self.fc2(x))
+        x=self.fc3(x)
+        return x
+
+
+def _train(args):
+    is_distributed=len(args.hosts) &gt; 1 and args.dist_backend is not None
+    logger.debug("Distributed training - <span>{</span>}".format(is_distributed))
+
+    if is_distributed:
+        # Initialize the distributed environment.
+        world_size=len(args.hosts)
+        os.environ['WORLD_SIZE']=str(world_size)
+        host_rank=args.hosts.index(args.current_host)
+        dist.init_process_group(backend=args.dist_backend, rank=host_rank, world_size=world_size)
+        logger.info(
+            'Initialized the distributed environment: \'<span>{</span>}\' backend on <span>{</span>} nodes. '.format(
+                args.dist_backend,
+                dist.get_world_size()) + 'Current host rank is <span>{</span>}. Using cuda: <span>{</span>}. Number of gpus: <span>{</span>}'.format(
+                dist.get_rank(), torch.cuda.is_available(), args.num_gpus))
+
+    device='cuda' if torch.cuda.is_available() else 'cpu'
+    logger.info("Device Type: <span>{</span>}".format(device))
+
+    logger.info("Loading Cifar10 dataset")
+    transform=transforms.Compose(
+        [transforms.ToTensor(),
+         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+
+    trainset=torchvision.datasets.CIFAR10(root=args.data_dir, train=True,
+                                            download=False, transform=transform)
+    train_loader=torch.utils.data.DataLoader(trainset, batch_size=args.batch_size,
+                                               shuffle=True, num_workers=args.workers)
+
+    testset=torchvision.datasets.CIFAR10(root=args.data_dir, train=False,
+                                           download=False, transform=transform)
+    test_loader=torch.utils.data.DataLoader(testset, batch_size=args.batch_size,
+                                              shuffle=False, num_workers=args.workers)
+
+    logger.info("Model loaded")
+    model=Net()
+
+    if torch.cuda.device_count() &gt; 1:
+        logger.info("Gpu count: <span>{</span>}".format(torch.cuda.device_count()))
+        model=nn.DataParallel(model)
+
+    model=model.to(device)
+
+    criterion=nn.CrossEntropyLoss().to(device)
+    optimizer=torch.optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
+
+    for epoch in range(0, args.epochs):
+        running_loss=0.0
+        for i, data in enumerate(train_loader):
+            # get the inputs
+            inputs, labels=data
+            inputs, labels=inputs.to(device), labels.to(device)
+
+            # zero the parameter gradients
+            optimizer.zero_grad()
+
+            # forward + backward + optimize
+            outputs=model(inputs)
+            loss=criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+
+            # print statistics
+            running_loss += loss.item()
+            if i % 2000 == 1999:  # print every 2000 mini-batches
+                print('[%d, %5d] loss: %.3f' %
+                      (epoch + 1, i + 1, running_loss / 2000))
+                running_loss=0.0
+    print('Finished Training')
+    return _save_model(model, args.model_dir)
+
+
+def _save_model(model, model_dir):
+    logger.info("Saving the model.")
+    path=os.path.join(model_dir, 'model.pth')
+    # recommended way from http://pytorch.org/docs/master/notes/serialization.html
+    torch.save(model.cpu().state_dict(), path)
+
+
+def model_fn(model_dir):
+    logger.info('model_fn')
+    device="cuda" if torch.cuda.is_available() else "cpu"
+    model=Net()
+    if torch.cuda.device_count() &gt; 1:
+        logger.info("Gpu count: <span>{</span>}".format(torch.cuda.device_count()))
+        model=nn.DataParallel(model)
+
+    with open(os.path.join(model_dir, 'model.pth'), 'rb') as f:
+        model.load_state_dict(torch.load(f))
+    return model.to(device)
+
+
+if __name__ == '__main__':
+    parser=argparse.ArgumentParser()
+
+    parser.add_argument('--workers', type=int, default=2, metavar='W',
+                        help='number of data loading workers (default: 2)')
+    parser.add_argument('--epochs', type=int, default=2, metavar='E',
+                        help='number of total epochs to run (default: 2)')
+    parser.add_argument('--batch-size', type=int, default=4, metavar='BS',
+                        help='batch size (default: 4)')
+    parser.add_argument('--lr', type=float, default=0.001, metavar='LR',
+                        help='initial learning rate (default: 0.001)')
+    parser.add_argument('--momentum', type=float, default=0.9, metavar='M', help='momentum (default: 0.9)')
+    parser.add_argument('--dist-backend', type=str, default='gloo', help='distributed backend (default: gloo)')
+
+    # The parameters below retrieve their default values from SageMaker environment variables, which are
+    # instantiated by the SageMaker containers framework.
+    # https://github.com/aws/sagemaker-containers#how-a-script-is-executed-inside-the-container
+    parser.add_argument('--hosts', type=str, default=ast.literal_eval(os.environ['SM_HOSTS']))
+    parser.add_argument('--current-host', type=str, default=os.environ['SM_CURRENT_HOST'])
+    parser.add_argument('--model-dir', type=str, default=os.environ['SM_MODEL_DIR'])
+    parser.add_argument('--data-dir', type=str, default=os.environ['SM_CHANNEL_TRAINING'])
+    parser.add_argument('--num-gpus', type=int, default=os.environ['SM_NUM_GPUS'])
+
+    _train(parser.parse_args())</code></pre>   
+                        </li></ol></div>
+                 
+                 
+                    <h3 id="extend-step3">Step 3: Build the Container</h3>
+                    
+                    <div class="procedure"><ol><li>
+                            <p>In the JupyterLab home directory, open a Jupyter notebook. To open
+                        a new notebook, choose the <b>New Launch</b> icon and then
+                        choose <b>conda_pytorch_p39</b> in the
+                            <b>Notebook</b> section. </p>
+                        </li><li>
+                            <p>Run the following command in the first notebook cell to change to the
+                                <code>docker_test_folder</code> directory:</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">% cd ~/SageMaker/docker_test_folder</code></pre>
+                            <p>This returns your current directory as follows:</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">! pwd</code></pre>
+                            <p><code class="code">output: /home/ec2-user/SageMaker/docker_test_folder</code></p>
+                        </li><li>
+                            <p>Log in to Docker to access the base container:</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">! aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 763104351884.dkr.ecr.us-east-1.amazonaws.com</code></pre>
+                        </li><li>
+                            <p>To build the Docker container, run the following Docker build command, including
+                                the space followed by a period at the end:</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">! docker build -t pytorch-extended-container-test .</code></pre>
+                            <p>The Docker build command must be run from the Docker directory you
+                        created, in this case <code>docker_test_folder</code>.</p>
+                            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you get the following error message that Docker cannot find
+                            the Dockerfile, make sure the Dockerfile has the correct name and has
+                            been saved to the directory.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">unable to prepare context: unable to evaluate symlinks in Dockerfile path: 
+lstat /home/ec2-user/SageMaker/docker/Dockerfile: no such file or directory</code></pre><p>Remember that <code class="code">docker</code> looks for a file
+                            specifically called <code>Dockerfile</code> without any
+                            extension within the current directory. If you named it something else,
+                            you can pass in the file name manually with the <code class="code">-f</code> flag.
+                            For example, if you named your Dockerfile
+                                <code class="code">Dockerfile-text.txt</code>, run the following command:</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">! docker build -t tf-custom-container-test -f Dockerfile-text.txt .</code></pre></div></div>
+                        </li></ol></div>
+                 
+                 
+                    <h3 id="extend-step4">Step 4: Test the Container</h3>
+                    <div class="procedure"><ol><li>
+                            <p>To test the container locally in the notebook instance, open a
+                        Jupyter notebook. Choose <b>New Launcher</b> and choose
+                            <b>Notebook</b> in
+                                <b><code class="code">conda_pytorch_p39</code></b> framework. The
+                        rest of the code snippets must run from the Jupyter notebook
+                        instance.</p>
+                        </li><li>
+                            <p>Download the CIFAR-10 dataset.</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">import torch
+import torchvision
+import torchvision.transforms as transforms
+
+def _get_transform():
+    return transforms.Compose(
+        [transforms.ToTensor(),
+         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+
+
+def get_train_data_loader(data_dir='/tmp/pytorch/cifar-10-data'):
+    transform=_get_transform()
+    trainset=torchvision.datasets.CIFAR10(root=data_dir, train=True,
+                                            download=True, transform=transform)
+    return torch.utils.data.DataLoader(trainset, batch_size=4,
+                                       shuffle=True, num_workers=2)
+
+
+def get_test_data_loader(data_dir='/tmp/pytorch/cifar-10-data'):
+    transform=_get_transform()
+    testset=torchvision.datasets.CIFAR10(root=data_dir, train=False,
+                                           download=True, transform=transform)
+    return torch.utils.data.DataLoader(testset, batch_size=4,
+                                       shuffle=False, num_workers=2)
+
+trainloader=get_train_data_loader('/tmp/pytorch-example/cifar-10-data')
+testloader=get_test_data_loader('/tmp/pytorch-example/cifar-10-data')</code></pre>
+                        </li><li>
+                            <p>Set <code class="code">role</code> to the role used to create your Jupyter
+                        notebook. This is used to configure your SageMaker Estimator.</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">from sagemaker import get_execution_role
+
+role=get_execution_role()</code></pre>
+                        </li><li>
+                            <p>Paste the following example script into the notebook code cell to
+                        configure a SageMaker Estimator using your extended container.</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python.py ">from sagemaker.estimator import Estimator
+
+hyperparameters=<span>{</span>'epochs': 1}
+
+estimator=Estimator(
+    image_uri='pytorch-extended-container-test',
+    role=role,
+    instance_count=1,
+    instance_type='local',
+    hyperparameters=hyperparameters
+)
+
+estimator.fit('file:///tmp/pytorch-example/cifar-10-data')</code></pre>
+                        </li><li>
+                            <p>Run the code cell. This test outputs the training environment configuration, 
+                                the values used for the environmental variables, 
+                                the source of the data, and the loss and accuracy
+                                obtained during training.</p>
+                        </li></ol></div>
+                 
+                 
+                    <h3 id="extend-step5">Step 5: Push the Container to Amazon Elastic Container Registry
+                    (Amazon ECR)</h3>
+                    
+                    <div class="procedure"><ol><li><p>After you successfully run the local mode test, you can push the Docker container to <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/what-is-ecr.html">Amazon ECR</a> and use it to run training jobs. </p>
+                            <p>Run the following command lines in a notebook cell.</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">%%sh
+
+# Specify an algorithm name
+algorithm_name=pytorch-extended-container-test
+
+account=$(aws sts get-caller-identity --query Account --output text)
+
+# Get the region defined in the current configuration (default to us-west-2 if none defined)
+region=$(aws configure get region)
+
+fullname="$<span>{</span>account}.dkr.ecr.$<span>{</span>region}.amazonaws.com/$<span>{</span>algorithm_name}:latest"
+
+# If the repository doesn't exist in ECR, create it.
+
+aws ecr describe-repositories --repository-names "$<span>{</span>algorithm_name}" &gt; /dev/null 2&gt;&amp;1
+if [ $? -ne 0 ]
+then
+aws ecr create-repository --repository-name "$<span>{</span>algorithm_name}" &gt; /dev/null
+fi
+
+# Log into Docker
+aws ecr get-login-password --region $<span>{</span>region}|docker login --username AWS --password-stdin $<span>{</span>fullname}
+
+# Build the docker image locally with the image name and then push it to ECR
+# with the full name.
+
+docker build -t $<span>{</span>algorithm_name} .
+docker tag $<span>{</span>algorithm_name} $<span>{</span>fullname}
+
+docker push $<span>{</span>fullname}</code></pre>
+                        </li><li>
+                            <p>After you push the container, you can call the Amazon ECR image from
+                        anywhere in the SageMaker environment. Run the following code example in the next
+                        notebook cell. </p>
+                            <p>If you want to use this training container with SageMaker Studio to use
+                        its visualization features, you can also run the following code in a Studio
+                        notebook cell to call the Amazon ECR image of your training container.</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python.py ">import boto3
+
+client=boto3.client('sts')
+account=client.get_caller_identity()['Account']
+
+my_session=boto3.session.Session()
+region=my_session.region_name
+
+algorithm_name="<code class="userinput">pytorch-extended-container-test</code>"
+ecr_image='<span>{</span>}.dkr.ecr.<span>{</span>}.amazonaws.com/<span>{</span>}:latest'.format(account, region, algorithm_name)
+
+ecr_image
+# This should return something like
+# <em>12-digits-of-your-account</em>.dkr.ecr.us-east-2.amazonaws.com/tf-2.2-test:latest</code></pre>
+                        </li><li><p>Use the <code class="code">ecr_image</code> retrieved from the previous step to configure a SageMaker estimator
+                        object. The following code sample configures a SageMaker PyTorch
+                        estimator.</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python.py ">import sagemaker
+
+from sagemaker import get_execution_role
+from sagemaker.estimator import Estimator
+
+estimator=Estimator(
+    image_uri=ecr_image,
+    role=get_execution_role(),
+    base_job_name='<code class="userinput">pytorch-extended-container-test</code>',
+    instance_count=1,
+    instance_type='ml.p2.xlarge'
+)
+
+# start training
+estimator.fit()
+
+# deploy the trained model
+predictor=estimator.deploy(1, instance_type)</code></pre>
+                        </li></ol></div>
+                 
+                 
+                    <h3 id="extend-step6">Step 6: Clean up Resources</h3>
+                    
+                    <div class="procedure"><h6>To clean up resources when done with the Get Started example</h6><ol><li>
+                            <p>Open the <a href="https://console.aws.amazon.com/sagemaker/" rel="noopener noreferrer" target="_blank"><span>SageMaker console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, choose the
+                                notebook instance <b>RunScriptNotebookInstance</b>, choose
+                                <b>Actions</b>, and choose <b>Stop</b>. It can
+                                take a few minutes for the instance to stop.  </p>
+                        </li><li>
+                            <p>After the instance <b>Status</b> changes to
+                                <b>Stopped</b>, choose <b>Actions</b>, choose
+                                <b>Delete</b>, and then choose <b>Delete</b> in
+                                the dialog box. It can take a few minutes for the instance to be deleted. The
+                                notebook instance disappears from the table when it has been deleted. </p>
+                        </li><li>
+                            <p>Open the <a href="https://console.aws.amazon.com/s3/" rel="noopener noreferrer" target="_blank"><span>Amazon S3 console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and delete the bucket
+                                that you created for storing model artifacts and the training dataset. </p>
+                        </li><li>
+                            <p>Open the <a href="https://console.aws.amazon.com/iam/" rel="noopener noreferrer" target="_blank"><span>IAM console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and delete the
+                                IAM role. If you created permission policies, you can delete them, too. </p>
+                            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p> The Docker container shuts down automatically after it has run. You don't
+                                    need to delete it.</p></div></div>
+                        </li></ol></div>
+                 
+            <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./deep-graph-library.html">Deep Graph Networks</div><div id="next" class="next-link" accesskey="n" href="./docker-containers-adapt-your-own.html">Adapting your own Docker container to
+                work with SageMaker</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/prebuilt-containers-extend.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/prebuilt-containers-extend.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

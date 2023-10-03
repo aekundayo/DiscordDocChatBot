@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Connect a Notebook Instance in a VPC to External Resources - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="appendix-notebook-and-internet-access" /><meta name="default_state" content="appendix-notebook-and-internet-access" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="appendix-notebook-and-internet-access.html" /><meta name="description" content="The following topic gives information on how to connect your notebook instance in a VPC to external resources." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="appendix-notebook-and-internet-access.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" hreflang="de" /><link rel="alternative" href="appendix-notebook-and-internet-access.html" hreflang="en-us" /><link rel="alternative" href="appendix-notebook-and-internet-access.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" hreflang="zh-tw" /><link rel="alternative" href="appendix-notebook-and-internet-access.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Connect a Notebook Instance in a VPC to External Resources" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Connect a Notebook Instance in a VPC to External Resources - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#appendix-notebook-and-internet-access" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/appendix-notebook-and-internet-access.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Configure security in Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/security.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Infrastructure Security in Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-security.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Connect to Resources From Within a VPC",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-connect-to-resources.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Connect a Notebook Instance in a VPC to External Resources",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-connect-to-resources.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#appendix-notebook-and-internet-access" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="appendix-notebook-and-internet-access.html#appendix-notebook-and-internet-access-default">Default
+                    communication with the internet</a><a href="appendix-notebook-and-internet-access.html#appendix-notebook-and-internet-access-default">VPC communication
+                    with the internet</a><a href="appendix-notebook-and-internet-access.html#appendix-notebook-and-single-user">Security and Shared Notebook
+                    Instances</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="appendix-notebook-and-internet-access">Connect a Notebook Instance in a
+                VPC to External Resources</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>The following topic gives information on how to connect your notebook instance in a
+            VPC to external resources.</p>
+            <h2 id="appendix-notebook-and-internet-access-default">Default
+                    communication with the internet</h2>
+            <p>When your notebook allows <em>direct internet access</em>, SageMaker
+                provides a network interface that allows the notebook to communicate with the
+                internet through a VPC managed by SageMaker. Traffic within your VPC's CIDR goes through
+                elastic network interface created in your VPC. All the other traffic goes through
+                the network interface created by SageMaker, which is essentially through the public
+                internet. Traffic to gateway VPC endpoints like Amazon S3 and DynamoDB goes through the
+                public internet, while traffic to interface VPC interface endpoints still goes
+                through your VPC. If you want to use gateway VPC endpoints, you might want to
+                disable direct internet access. </p>
+         
+            <h2 id="appendix-notebook-and-internet-access-default">VPC communication
+                    with the internet</h2>
+            <p>To disable direct internet access, you can specify a VPC for your notebook
+                instance. By doing so, you prevent SageMaker from providing internet access to your
+                notebook instance. As a result, the notebook instance can't train or host models
+                unless your VPC has an interface endpoint (AWS PrivateLink) or a NAT gateway and your
+                security groups allow outbound connections. </p>
+            <p>For information about creating a VPC interface endpoint to use AWS PrivateLink for
+                your notebook instance, see <a href="notebook-interface-endpoint.html">Connect to a Notebook Instance Through a
+                VPC Interface Endpoint</a>. For information about setting up
+                a NAT gateway for your VPC, see <a href="https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Scenario2.html">VPC with
+                    Public and Private Subnets (NAT)</a> in the <em>Amazon Virtual Private
+                    Cloud User Guide</em>. For information about security groups, see <a href="https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html">Security Groups for Your VPC</a>. For more information about networking
+                configurations in each networking mode and configuring network on premise, see
+                    <a href="http://aws.amazon.com/blogs/machine-learning/understanding-amazon-sagemaker-notebook-instance-networking-configurations-and-advanced-routing-options/" rel="noopener noreferrer" target="_blank"><span>Understanding Amazon SageMaker notebook instance networking configurations and advanced
+                    routing options</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p>
+         
+            <h2 id="appendix-notebook-and-single-user">Security and Shared Notebook
+                    Instances</h2>
+            <p>A SageMaker notebook instance is designed to work best for an individual user. It is
+                designed to give data scientists and other users the most power for managing their
+                development environment.</p>
+            <p>A notebook instance user has root access for installing packages and other
+                pertinent software. We recommend that you exercise judgement when granting
+                individuals access to notebook instances that are attached to a VPC that contains
+                sensitive information. For example, you might grant a user access to a notebook
+                instance with an IAM policy, as shown in the following example:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+   <span>{</span>
+      "Effect": "Allow",
+      "Action": "sagemaker:CreatePresignedNotebookInstanceUrl",
+      "Resource": "arn:aws:sagemaker:<code class="replaceable">region</code>:<code class="replaceable">account-id</code>:notebook-instance/myNotebookInstance"
+   }
+  ]
+}</code></pre>
+            <p> </p>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./studio-notebooks-and-internet-access.html">Connect Studio
+                Notebooks in a VPC to External Resources</div><div id="next" class="next-link" accesskey="n" href="./mkt-algo-model-internet-free.html">Run Training and Inference Containers in Internet-Free
+        Mode</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/appendix-notebook-and-internet-access.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/appendix-notebook-and-internet-access.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

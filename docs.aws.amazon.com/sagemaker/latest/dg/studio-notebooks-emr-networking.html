@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configure networking (for administrators) - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="studio-notebooks-emr-networking" /><meta name="default_state" content="studio-notebooks-emr-networking" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="studio-notebooks-emr-networking.html" /><meta name="description" content="Learn how to configure your network to allow communication between Amazon SageMaker Studio notebooks and Amazon EMR clusters." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="studio-notebooks-emr-networking.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-notebooks-emr-networking.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-notebooks-emr-networking.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-notebooks-emr-networking.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-notebooks-emr-networking.html" hreflang="de" /><link rel="alternative" href="studio-notebooks-emr-networking.html" hreflang="en-us" /><link rel="alternative" href="studio-notebooks-emr-networking.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-notebooks-emr-networking.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-notebooks-emr-networking.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-notebooks-emr-networking.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-notebooks-emr-networking.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-notebooks-emr-networking.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-notebooks-emr-networking.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-notebooks-emr-networking.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-notebooks-emr-networking.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-notebooks-emr-networking.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-notebooks-emr-networking.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-notebooks-emr-networking.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-notebooks-emr-networking.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/studio-notebooks-emr-networking.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/studio-notebooks-emr-networking.html" hreflang="zh-tw" /><link rel="alternative" href="studio-notebooks-emr-networking.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Configure networking (for administrators)" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Configure networking (for administrators) - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-notebooks-emr-networking" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-emr-networking.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-emr-networking.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-emr-networking.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,SageMaker Amazon EMR,SageMaker AWS Glue,SageMaker Spark,SageMaker Hive,SageMaker Presto" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Prepare data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-prep.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Scale data preparation using Apache Spark, Hive, or Presto on Amazon EMR or AWS Glue from Amazon SageMaker Studio notebooks",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-emr-spark-glue.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Prepare data using Amazon EMR",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-emr-cluster.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Configure networking (for administrators)",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-emr-cluster.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-notebooks-emr-networking" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="studio-notebooks-emr-networking.html#studio-notebooks-emr-networking-requirements-cross-vpc">Studio and Amazon EMR in separate VPCs</a><a href="studio-notebooks-emr-networking.html#studio-notebooks-emr-networking-requirements-same-vpc">Studio and Amazon EMR in the same VPC</a><a href="studio-notebooks-emr-networking.html#studio-notebooks-emr-networking-requirements-internet">Studio and Amazon EMR communicate over public internet</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="studio-notebooks-emr-networking">Configure networking (for
+                administrators)</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>This section provides information about how administrators can configure their network
+            to allow communication between Amazon SageMaker Studio notebooks and an Amazon EMR cluster.</p><p>The networking instructions vary based on whether SageMaker Studio and Amazon EMR are
+            deployed within a private <a href="https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html">Amazon Virtual Private Cloud</a> (VPC)
+            or communicate over the internet.</p><p>By default, SageMaker Studio runs in an AWS managed VPC with <a href="studio-notebooks-and-internet-access.html#studio-notebooks-and-internet-access-default">internet access</a>. When using an internet connection, Studio accesses
+            AWS resources, such as Amazon S3 buckets, over the internet. However, if you have security
+            requirements to control access to your data and job containers, we recommend that you
+            configure SageMaker Studio and Amazon EMR so that your data and containers aren’t accessible
+            over the internet. To control access to your resources or run SageMaker Studio without
+            public internet access, you can specify the <code class="code">VPC only</code> network access
+            type when you onboard to <a href="gs-studio-onboard.html">Amazon SageMaker Domain</a>. In
+            this scenario, SageMaker Studio establishes connections with other AWS services via
+            private <a href="https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html">VPC
+                endpoints</a>. For information about configuring SageMaker Studio in
+                <code class="code">VPC only</code> mode, see <a href="studio-notebooks-and-internet-access.html#studio-notebooks-and-internet-access-vpc">Connect SageMaker Studio notebooks in a VPC to external
+            resources.</a>.</p><p>The first two sections describe how to ensure communication between SageMaker Studio
+            and an Amazon EMR cluster in VPCs without public internet access. The last section
+            covers how to ensure communication between SageMaker Studio and Amazon EMR using an internet
+            connection. Prior to connecting SageMaker Studio and Amazon EMR without internet access, make
+            sure to establish endpoints for Amazon Simple Storage Service (data storage), Amazon CloudWatch (logging and
+            monitoring), and Amazon SageMaker Runtime (fine-grained role-based access control (RBAC)).</p><div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>If your Amazon SageMaker Studio and Amazon EMR cluster are set up in different VPCs
+                    in the same AWS account or in different accounts, see <a href="studio-notebooks-emr-networking.html#studio-notebooks-emr-networking-requirements-cross-vpc"> Studio
+                    and Amazon EMR are deployed in separate VPCs</a>.</p>
+            </li><li class="listitem">
+                <p>If your Amazon SageMaker Studio and Amazon EMR cluster are set up in the same VPC,
+                    see <a href="studio-notebooks-emr-networking.html#studio-notebooks-emr-networking-requirements-same-vpc">Amazon SageMaker Studio and Amazon EMR are in the same VPC</a>.</p>
+            </li><li class="listitem">
+                <p>If you chose to connect Amazon SageMaker Studio and Amazon EMR cluster over public internet,
+                    see <a href="studio-notebooks-emr-networking.html#studio-notebooks-emr-networking-requirements-internet">Amazon SageMaker Studio and Amazon EMR communicate over public internet</a>.</p>
+            </li></ul></div>
+            <h2 id="studio-notebooks-emr-networking-requirements-cross-vpc"> Studio
+                    and Amazon EMR are deployed in separate VPCs</h2>
+            <p>To allow communication between SageMaker Studio and an Amazon EMR cluster when they are
+                deployed in different VPCs:</p>
+            <div class="orderedlist">
+                 
+                 
+                 
+            <ol><li>
+                    <p>Start by connecting your VPCs through a VPC peering
+                        connection.</p>
+                </li><li>
+                    <p>Update your routing tables in each VPC to route the network
+                        traffic between Studio subnets and Amazon EMR subnets both ways.</p>
+                </li><li>
+                    <p>Configure your security groups to allow inbound and outbound
+                        traffic.</p>
+                </li></ol></div>
+            <p>The steps are similar, regardless of whether Amazon SageMaker Studio and the Amazon EMR cluster
+                are deployed within the same AWS account (Single account use case) or different
+                AWS accounts (Cross accounts use case).</p>
+            <div class="procedure"><ol><li>
+                    <h6>VPC peering</h6>
+                    <p>Create a <a href="https://docs.aws.amazon.com/vpc/latest/peering/working-with-vpc-peering.html">VPC
+                            peering connection</a> to facilitate the networking between the two
+                        VPCs (SageMaker Studio and Amazon EMR).</p>
+                    <ol><li>
+                            <p>From your SageMaker Studio account, on the VPC dashboard,
+                                choose <b>Peering connections</b>, then
+                                    <b>Create peering connection</b>.</p>
+                        </li><li>
+                            <p>Create your request to peer the Studio VPC within the
+                                Amazon EMR VPC. When requesting peering in another AWS account,
+                                choose <b>Another account</b> in <b>Select
+                                    another VPC to peer with</b>.</p>
+                            <p>For cross accounts peering, the administrator must accept the
+                                request from the Amazon EMR account.</p>
+                            <p>When peering private subnets, you should enable private IP DNS
+                                resolution at the VPC peering connection level.</p>
+                        </li></ol>
+                </li><li>
+                    <h6>Routing tables</h6>
+                    <p>Send the network traffic between SageMaker Studio subnets and Amazon EMR subnets
+                        both ways.</p>
+                    <p>After you establish the peering connection, the administrator (on each
+                        account for cross-account access) can add routes to the private subnet route
+                        tables to route the traffic between the notebooks and the cluster subnets.
+                        You can define those routes by going to the <b>Route
+                            Tables</b> section of each VPC in the VPC
+                        dashboard.</p>
+                    <p>The following illustration of the route table of a Studio
+                        VPCsubnet shows an example of an outbound route from the Studio
+                        account to the Amazon EMR VPC IP range (here <code class="code">2.0.1.0/24</code>)
+                        through the peering connection.</p>
+                    <div class="mediaobject">
+                         
+                            <img src="../../../images/sagemaker/latest/dg/images/studio/emr/studio-notebooks-emr-return-route.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                            Route table of an Amazon EMR VPC subnet showing the return&#xA;                                routes from the Amazon EMR VPC to Studio VPC IP range&#xA;                                through the peering connection&#xA;                        " style="max-width:85%" />
+                         
+                         
+                    </div>
+
+                    <p>The following illustration of a route table of an Amazon EMR VPC subnet
+                        shows an example of return routes from the Amazon EMR VPC to Studio
+                        VPC IP range (here <code class="code">10.0.20.0/24</code>) through the peering
+                        connection.</p>
+                    <div class="mediaobject">
+                         
+                            <img src="../../../images/sagemaker/latest/dg/images/studio/emr/studio-notebooks-emr-outbound-route.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                            Route table of a Studio VPC subnet showing the&#xA;                                outbound routes from the Studio account to the Amazon EMR VPC&#xA;                                IP range (here 2.0.1.0/24) through the peering&#xA;                                connection&#xA;                        " style="max-width:85%" />
+                         
+                         
+                    </div>
+                </li><li>
+                    <h6>Security groups</h6>
+                    <p>Lastly, the security group of your Studio domain must allow outbound
+                        traffic, and the security group of the Amazon EMR primary node must allow inbound
+                        traffic on <em>Apache Livy</em>, <em>Hive</em>, or <em>Presto</em> TCP ports (respectively <code class="code">8998</code>,
+                            <code class="code">10000</code>, and <code class="code">8889</code>) from the Studio instance
+                        security group. <a href="https://livy.apache.org/" rel="noopener noreferrer" target="_blank"><span>Apache Livy</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> is
+                        a service that enables interaction with a Amazon EMR cluster over a REST
+                        interface.</p>
+                </li></ol></div>
+            <p>The following image shows an example of an Amazon VPC setup that enables SageMaker
+                Studio notebooks to provision Amazon EMR clusters from AWS CloudFormation templates and then
+                connect to an Amazon EMR cluster within the same AWS account. The diagram provides an
+                additional illustration of the required endpoints for a direct connection to various
+                AWS services, such as Amazon S3 or Amazon CloudWatch, when the VPCs have no internet access.
+                Alternatively, a <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-working-with">NAT
+                    gateway</a> must be used to allow instances in private subnets of multiple
+                VPCs to share a single public IP address provided by the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html">internet gateway</a>
+                when accessing the internet.</p>
+            <div class="mediaobject">
+                 
+                    <img src="../../../images/sagemaker/latest/dg/images/studio/emr/studio-notebooks-emr-architecture-singleaccount-vpcendpoints.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                    Architectural diagram illustrating an example of a simple Amazon VPC setup&#xA;                        that enables SageMaker Studio notebooks to provision Amazon EMR clusters from&#xA;                        AWS CloudFormation templates and then connect to an Amazon EMR cluster within the same AWS&#xA;                        account. The diagram provides an additional illustration of the required&#xA;                        endpoints for a direct connection to various AWS services, such as Amazon S3 or&#xA;                        Amazon CloudWatch, when the VPCs have no internet access. Alternatively, a NAT gateway must be used to allow instances in private subnets&#xA;                        of multiple VPCs to share a single public IP address provided by the internet&#xA;                            gateway when accessing the internet.&#xA;&#xA;                " />
+                 
+                 
+            </div>
+         
+            <h2 id="studio-notebooks-emr-networking-requirements-same-vpc">Amazon SageMaker Studio and Amazon EMR are in the same VPC</h2>
+            <p>If Amazon SageMaker Studio and the cluster are in different subnets, add routes to each
+                private subnet route table to route the traffic between the notebooks and the
+                cluster subnets. You can define those routes by going to the <b>Route
+                    Tables</b> section of each VPC in the VPC dashboard. If
+                you deployed Amazon SageMaker Studio and an Amazon EMR cluster in the same VPC and the
+                same subnet, you do not need to route the traffic between the notebooks and the
+                cluster.</p>
+            <p>Whether or not you needed to update your routing tables, the security group of
+                your Studio domain must allow outbound traffic, and the security group of the
+                Amazon EMR primary node must allow inbound traffic on <em>Apache
+                    Livy</em>, <em>Hive</em>,or <em>Presto</em> TCP ports (respectively <code class="code">8998</code>,
+                    <code class="code">10000</code>, and <code class="code">8889</code>) from the Studio instance security
+                group. <a href="https://livy.apache.org/" rel="noopener noreferrer" target="_blank"><span>Apache Livy</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> is a service that
+                enables interaction with a Amazon EMR cluster over a REST interface.</p>
+         
+            <h2 id="studio-notebooks-emr-networking-requirements-internet">Amazon SageMaker Studio and Amazon EMR communicate over public internet</h2>
+            <p>By default, SageMaker Studio provides a network interface that allows communication
+                with the internet through an internet gateway in the VPC associated with the
+                SageMaker Domain. If you choose to connect to Amazon EMR through the public internet, your
+                Amazon EMR cluster needs to accept inbound traffic on <em>Apache
+                    Livy</em>, <em>Hive</em>,or <em>Presto</em> TCP ports (respectively <code class="code">8998</code>,
+                    <code class="code">10000</code>, and <code class="code">8889</code>) from its internet gateway. <a href="https://livy.apache.org/" rel="noopener noreferrer" target="_blank"><span>Apache Livy</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> is a service that enables
+                interaction with an Amazon EMR cluster over a REST interface.</p>
+
+            <p>Keep in mind that any port on which you allow inbound traffic represents a
+                potential security vulnerability. Carefully review custom security groups to ensure
+                that you minimize vulnerabilities. For more information, see <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-security-groups.html">Control network traffic with security groups</a>.</p>
+            <p>Alternatively, see <a href="studio-notebooks-emr-resources.html">Walkthroughs and whitepapers</a> for a detailed walkthrough of
+                how to enable <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-kerberos.html">Kerberos on Amazon EMR</a>,
+                set the cluster in a private subnet, and access the cluster using a <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html"> Network Load Balancer (NLB)</a> to expose only specific ports, which are
+                access-controlled via security groups.</p>
+
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When connecting to your Apache Livy endpoint through the public internet, we
+                    recommend that you secure communications between Amazon SageMaker Studio and your
+                    Amazon EMR cluster using TLS.</p><p>For information on setting up HTTPS with Apache Livy, see <a href="https://docs.aws.amazon.com/emr/latest/ReleaseGuide/enabling-https.html">Enabling HTTPS with Apache Livy</a>. For information on setting an
+                    Amazon EMR cluster with transit encryption enabled, see <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-encryption-enable.html#emr-encryption-certificates">Providing certificates for encrypting data in transit with Amazon EMR
+                        encryption</a>. Additionally, you need to configure Studio to access
+                    your certificate key as specified in <a href="connect-emr-clusters.html#connect-emr-clusters-ssl">Connect to an Amazon EMR cluster over
+                        HTTPS</a>.</p></div></div>
+
+            
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./studio-notebooks-emr-cluster.html">Prepare data using Amazon EMR</div><div id="next" class="next-link" accesskey="n" href="./studio-notebooks-create-emr-cluster.html">Create an Amazon EMR cluster from
+                Studio notebooks</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-emr-networking.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-emr-networking.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

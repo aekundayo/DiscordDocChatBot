@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Deploy a Model - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="jumpstart-deploy" /><meta name="default_state" content="jumpstart-deploy" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="jumpstart-deploy.html" /><meta name="description" content="Deploy a SageMaker JumpStart pre-trained model." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="jumpstart-deploy.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/jumpstart-deploy.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/jumpstart-deploy.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/jumpstart-deploy.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/jumpstart-deploy.html" hreflang="de" /><link rel="alternative" href="jumpstart-deploy.html" hreflang="en-us" /><link rel="alternative" href="jumpstart-deploy.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/jumpstart-deploy.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/jumpstart-deploy.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/jumpstart-deploy.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/jumpstart-deploy.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/jumpstart-deploy.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/jumpstart-deploy.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/jumpstart-deploy.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/jumpstart-deploy.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/jumpstart-deploy.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/jumpstart-deploy.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/jumpstart-deploy.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/jumpstart-deploy.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/jumpstart-deploy.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/jumpstart-deploy.html" hreflang="zh-tw" /><link rel="alternative" href="jumpstart-deploy.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Deploy a Model" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Deploy a Model - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#jumpstart-deploy" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-deploy.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-deploy.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-deploy.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use automated ML, no-code, or low-code",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/use-auto-ml.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "SageMaker JumpStart",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Task-Specific Models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-models.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Deploy a Model",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-models.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#jumpstart-deploy" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="jumpstart-deploy.html#jumpstart-config">Model deployment configuration</a><a href="jumpstart-deploy.html#jumpstart-config-security">Model deployment security</a><a href="jumpstart-deploy.html#jumpstart-config-defaults">Configure default values for JumpStart models</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="jumpstart-deploy">Deploy a Model</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>When you deploy a model from JumpStart, SageMaker hosts the model and deploys an endpoint
+        that you can use for inference. JumpStart also provides an example notebook that you can use
+        to access the model after it's deployed. </p>
+        <h2 id="jumpstart-config">Model deployment configuration</h2>
+        <p>After you choose a model, the model's tab opens. In the <b>Deploy
+            Model</b> pane, choose <b>Deployment Configuration</b> to configure
+          your model deployment. </p>
+        <p>
+          <span class="inlinemediaobject">
+             
+              <img src="../../../images/sagemaker/latest/dg/images/jumpstart/jumpstart-deploy.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;              Deploy Model pane option to open settings for SageMaker JumpStart Deployment&#xA;                Configuration and Security Settings.&#xA;            " style="max-width:600px" />
+             
+             
+          </span>
+        </p>
+        <p>The default instance type for deploying a model depends on the model. The instance
+          type is the hardware that the training job runs on. In the following example, the
+            <code class="code">ml.p2.xlarge</code> instance is the default for this particular BERT model. </p>
+        <p>You can also change the endpoint name, add <code class="code">key;value</code> resource tags,
+          activate or deactive the <code class="code">jumpstart-</code> prefix for any JumpStart resources
+          related to the model, and specify an Amazon S3 bucket for storing model artifacts used by your
+          SageMaker endpoint.</p>
+        <p>
+          <span class="inlinemediaobject">
+             
+              <img src="../../../images/sagemaker/latest/dg/images/jumpstart/jumpstart-deploy-config.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;              JumpStart Deploy Model pane with Deployment Configuration open to select its&#xA;                settings.&#xA;            " style="max-width:600px" />
+             
+             
+          </span>
+        </p>
+        <p>Choose <b>Security Settings</b> to specify the AWS Identity and Access Management (IAM ) role,
+          Amazon Virtual Private Cloud (Amazon VPC), and encryption keys for the model.</p>
+        <p>
+          <span class="inlinemediaobject">
+             
+              <img src="../../../images/sagemaker/latest/dg/images/jumpstart/jumpstart-deploy-security.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;              JumpStart Deploy Model pane with Security Settings open to select its&#xA;                settings.&#xA;            " style="max-width:600px" />
+             
+             
+          </span>
+        </p>
+         
+          <h2 id="jumpstart-config-security">Model deployment security</h2>
+          <p>When you deploy a model with JumpStart, you can specify an IAM role, Amazon VPC, and
+            encryption keys for the model. If you don't specify any values for these entries: The
+            default IAM role is your Studio runtime role; default encryption is used; no Amazon VPC
+            is used.</p>
+           
+            <h3 id="jumpstart-config-security-iam">IAM role</h3>
+            <p>You can select an IAM role that is passed as part of training jobs and hosting
+              jobs. SageMaker uses this role to access training data and model artifacts. If you don't
+              select an IAM role, SageMaker deploys the model using your Studio runtime role. For
+              more information about IAM roles, see <a href="security-iam.html">Identity and Access Management for
+            Amazon SageMaker</a>.</p>
+            <p>The role that you pass must have access to the resources that the model needs, and
+              must include all of the following.</p>
+            <div class="itemizedlist">
+               
+               
+
+            <ul class="itemizedlist"><li class="listitem">
+                <p>For training jobs: <a href="sagemaker-roles.html#sagemaker-roles-createtrainingjob-perms">CreateTrainingJob API: Execution Role Permissions</a>.</p>
+              </li><li class="listitem">
+                <p>For hosting jobs: <a href="sagemaker-roles.html#sagemaker-roles-createmodel-perms">CreateModel API: Execution Role Permissions</a>.</p>
+              </li></ul></div>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can scope down the Amazon S3 permissions granted in each of the following roles.
+                Do this by using the ARN of your Amazon Simple Storage Service (Amazon S3) bucket and the JumpStart Amazon S3
+                bucket.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+  "Effect": "Allow",
+  "Action": [
+    "s3:GetObject",
+    "s3:PutObject",
+    "s3:ListMultipartUploadParts",
+    "s3:ListBucket"
+  ],
+  "Resources": [
+    "arn:aws:s3:::jumpstart-cache-prod-<code class="replaceable">&lt;region&gt;</code>/*",
+    "arn:aws:s3:::jumpstart-cache-prod-<code class="replaceable">&lt;region&gt;</code>",
+    "arn:aws:s3:::<code class="replaceable">bucket</code>/*"
+  ]
+}</code></pre></div></div>
+
+            <p><b>Find IAM role</b></p>
+            <p>If you select this option, you must select an existing IAM role from the
+              dropdown list.</p>
+            <p>
+              <span class="inlinemediaobject">
+                 
+                  <img src="../../../images/sagemaker/latest/dg/images/jumpstart/jumpstart-deploy-security-findiam.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                  JumpStart Security Settings IAM section with Find IAM role&#xA;                    selected.&#xA;                " style="max-width:600px" />
+                 
+                 
+              </span>
+            </p>
+            <p><b>Input IAM role</b></p>
+            <p>If you select this option, you must manually enter the ARN for an existing IAM
+              role. If your Studio runtime role or Amazon VPC block the <code class="code">iam:list* </code>call,
+              you must use this option to use an existing IAM role.</p>
+            <p>
+              <span class="inlinemediaobject">
+                 
+                  <img src="../../../images/sagemaker/latest/dg/images/jumpstart/jumpstart-deploy-security-inputiam.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                  JumpStart Security Settings IAM section with Input IAM role&#xA;                    selected.&#xA;                " style="max-width:600px" />
+                 
+                 
+              </span>
+            </p>
+           
+           
+            <h3 id="jumpstart-config-security-vpc">Amazon VPC</h3>
+            <p>All JumpStart models run in network isolation mode. After the model container is
+              created, no more calls can be made. You can select an Amazon VPC that is passed as part of
+              training jobs and hosting jobs. SageMaker uses this Amazon VPC to push and pull resources from
+              your Amazon S3 bucket. This Amazon VPC is different from the Amazon VPC that limits access to the
+              public internet from your Studio instance. For more information about the
+              Studio Amazon VPC, see <a href="studio-notebooks-and-internet-access.html">Connect SageMaker Studio Notebooks
+                in a VPC to External Resources</a>.</p>
+            <p>The Amazon VPC that you pass does not need access to the public internet, but it does
+              need access to Amazon S3. The Amazon VPC endpoint for Amazon S3 must allow access to at least the
+              following resources that the model needs.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+  "Effect": "Allow",
+  "Action": [
+    "s3:GetObject",
+    "s3:PutObject",
+    "s3:ListMultipartUploadParts",
+    "s3:ListBucket"
+  ],
+  "Resources": [
+    "arn:aws:s3:::jumpstart-cache-prod-<code class="replaceable">&lt;region&gt;</code>/*",
+    "arn:aws:s3:::jumpstart-cache-prod-<code class="replaceable">&lt;region&gt;</code>",
+    "arn:aws:s3:::<code class="replaceable">bucket</code>/*"
+  ]
+}</code></pre>
+            <p>If you do not select an Amazon VPC, no Amazon VPC is used.</p>
+            <p><b>Find VPC</b></p>
+            <p>If you select this option, you must select an existing Amazon VPC from the dropdown
+              list. After you select an Amazon VPC, you must select a subnet and security group for your
+              Amazon VPC. For more information about subnets and security groups, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html">Overview of VPCs
+                and subnets</a>.</p>
+            <p>
+              <span class="inlinemediaobject">
+                 
+                  <img src="../../../images/sagemaker/latest/dg/images/jumpstart/jumpstart-deploy-security-findvpc.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                  JumpStart Security Settings VPC section with Find VPC selected.&#xA;                " style="max-width:600px" />
+                 
+                 
+              </span>
+            </p>
+            <p><b>Input VPC</b></p>
+            <p>If you select this option, you must manually select the subnet and security group
+              that compose your Amazon VPC. If your Studio runtime role or Amazon VPC blocks the
+                <code class="code">ec2:list*</code> call, you must use this option to select the subnet and
+              security group.</p>
+            <p>
+              <span class="inlinemediaobject">
+                 
+                  <img src="../../../images/sagemaker/latest/dg/images/jumpstart/jumpstart-deploy-security-inputvpc.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                  JumpStart Security Settings VPC section with Input VPC selected.&#xA;                " style="max-width:600px" />
+                 
+                 
+              </span>
+            </p>
+           
+           
+            <h3 id="jumpstart-config-security-encryption">Encryption keys</h3>
+            <p>You can select an AWS KMS key that is passed as part of training jobs and hosting
+              jobs. SageMaker uses this key to encrypt the Amazon EBS volume for the container, and the
+              repackaged model in Amazon S3 for hosting jobs and the output for training jobs. For more
+              information about AWS KMS keys, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#kms_keys">AWS KMS keys</a>.</p>
+            <p>The key that you pass must trust the IAM role that you pass. If you do not
+              specify an IAM role, the AWS KMS key must trust your Studio runtime role.</p>
+            <p>If you do not select an AWS KMS key, SageMaker provides default encryption for the data
+              in the Amazon EBS volume and the Amazon S3 artifacts.</p>
+            <p><b>Find encryption keys</b></p>
+            <p>If you select this option, you must select existing AWS KMS keys from the dropdown
+              list.</p>
+            <p>
+              <span class="inlinemediaobject">
+                 
+                  <img src="../../../images/sagemaker/latest/dg/images/jumpstart/jumpstart-deploy-security-findencryption.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                  JumpStart Security Settings encryption section with Find encryption keys&#xA;                    selected.&#xA;                " style="max-width:600px" />
+                 
+                 
+              </span>
+            </p>
+            <p><b>Input encryption keys</b></p>
+            <p>If you select this option, you must manually enter the AWS KMS keys. If your
+              Studio execution role or Amazon VPC block the <code class="code">kms:list* </code>call, you must use
+              this option to select existing AWS KMS keys.</p>
+            <p>
+              <span class="inlinemediaobject">
+                 
+                  <img src="../../../images/sagemaker/latest/dg/images/jumpstart/jumpstart-deploy-security-inputencryption.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="&#xA;                  JumpStart Security Settings encryption section with Input encryption keys&#xA;                    selected.&#xA;                " style="max-width:600px" />
+                 
+                 
+              </span>
+            </p>
+           
+         
+        <h2 id="jumpstart-config-defaults">Configure default values for JumpStart models</h2>
+        <p>You can configure default values for parameters such as IAM roles, VPCs, and
+          KMS keys to pre-populate for JumpStart model deployment and training. After configuring
+          default values, the Studio UI automatically provides your specified security settings
+          and tags to SageMaker JumpStart models to simplify deployment and training workflows.
+          Administrators and end-users can initialize default values specified in a configuration
+          file in YAML format.</p>
+        <p>By default, the SageMaker Python SDK uses two configuration files: one for the
+          administrator and one for the user. Using the admininistrator configuration file,
+          administrators can define a set of default values. End-users can override values set in
+          the administrator configuration file and set additional default values using the end-user
+          configuration file. For more information, see <a href="https://sagemaker.readthedocs.io/en/stable/overview.html#default-configuration-file-location" rel="noopener noreferrer" target="_blank"><span>Default configuration file location</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p>
+        <p>The following code sample lists the default locations of the configuration files when
+          using the SageMaker Python SDK in Amazon SageMaker Studio.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="bash "># Location of the admin config file
+/etc/xdg/sagemaker/config.yaml
+
+# Location of the user config file
+/root/.config/sagemaker/config.yaml</code></pre>
+        <p>Values specified in the user configuration file override values set in the
+          administrator configuration file. The configuration file is unique to each user profile
+          within an Amazon SageMaker Domain. The user profile's Studio application is directly associated
+          with the user profile. For more information, see <a href="domain-user-profile.html">Domain User Profiles</a>.</p>
+        <p>Administrators can optionally set configuration defaults for JumpStart model training and
+          deployment through <code class="code">JupyterServer</code> lifecycle configurations. For more
+          information, see <a href="studio-lcc-create.html">Create and associate a lifecycle configuration</a>.</p>
+        <div class="collapsible"><awsui-expandable-section variant="container" header="Default value configuration YAML file" id="jumpstart-config-defaults-yaml" expanded="true"><p>Your configuration file should adhere to the SageMaker Python SDK <a href="https://sagemaker.readthedocs.io/en/stable/overview.html#configuration-file-structure" rel="noopener noreferrer" target="_blank"><span>configuration file structure</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. Note that specific fields in the
+                <code class="code">TrainingJob</code>, <code class="code">Model</code>, and
+              <code class="code">EndpointConfig</code> configurations apply to JumpStart model training and deployment
+              default values.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="yaml ">SchemaVersion: '1.0'
+SageMaker:
+  TrainingJob:
+    OutputDataConfig:
+      KmsKeyId: <code class="replaceable">example-key-id</code>
+    ResourceConfig:
+      # Training configuration - Volume encryption key
+      VolumeKmsKeyId: <code class="replaceable">example-key-id</code>
+    # Training configuration form - IAM role
+    RoleArn: arn:aws:iam::<code class="replaceable">123456789012</code>:role/SageMakerExecutionRole
+    VpcConfig:
+      # Training configuration - Security groups
+      SecurityGroupIds:
+      - <code class="replaceable">sg-1</code>
+      - <code class="replaceable">sg-2</code>
+      # Training configuration - Subnets
+      Subnets:
+      - <code class="replaceable">subnet-1</code>
+      - <code class="replaceable">subnet-2</code>
+    # Training configuration - Custom resource tags
+    Tags:
+    - Key: <code class="replaceable">Example-key</code>
+      Value: <code class="replaceable">Example-value</code>
+  Model:
+    EnableNetworkIsolation: <code class="replaceable">true</code>
+    # Deployment configuration - IAM role
+    ExecutionRoleArn: arn:aws:iam::<code class="replaceable">123456789012</code>:role/SageMakerExecutionRole
+    VpcConfig:
+      # Deployment configuration - Security groups
+      SecurityGroupIds:
+      - <code class="replaceable">sg-1</code>
+      - <code class="replaceable">sg-2</code>
+      # Deployment configuration - Subnets
+      Subnets:
+      - <code class="replaceable">subnet-1</code>
+      - <code class="replaceable">subnet-2</code>
+  EndpointConfig:
+    AsyncInferenceConfig:
+      OutputConfig:
+        KmsKeyId: <code class="replaceable">example-key-id</code>
+    DataCaptureConfig:
+      # Deployment configuration - Volume encryption key
+      KmsKeyId: <code class="replaceable">example-key-id</code>
+    KmsKeyId: <code class="replaceable">example-key-id</code>
+    # Deployment configuration - Custom resource tags
+    Tags:
+    - Key: <code class="replaceable">Example-key</code>
+      Value: <code class="replaceable">Example-value</code>       </code></pre></awsui-expandable-section></div>
+      <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./jumpstart-models.html">Task-Specific Models</div><div id="next" class="next-link" accesskey="n" href="./jumpstart-fine-tune.html">Fine-Tune a Model</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-deploy.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-deploy.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

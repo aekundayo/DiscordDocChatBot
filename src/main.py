@@ -1,4 +1,5 @@
 import openai
+import anthropic
 import discord
 from discord.ext import commands
 import asyncio
@@ -7,44 +8,38 @@ import time
 import logging
 import wandb
 from dotenv import load_dotenv
-from PyPDF2 import PdfReader
-from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings, HuggingFaceInstructEmbeddings
-from langchain.vectorstores import FAISS, qdrant, weaviate, Redis
-from langchain.chat_models import ChatOpenAI
+from langchain.chat_models import ChatOpenAI, ChatAnthropic
 from langchain.memory import ConversationBufferMemory
-from langchain.chains import ConversationalRetrievalChain
+from langchain.chains import ConversationalRetrievalChain, RetrievalQA
 from langchain.llms import HuggingFaceHub,OpenAI
 from langchain import HuggingFacePipeline
-from langchain.chains import RetrievalQA
-from langchain.document_loaders import UnstructuredHTMLLoader
 from wandb.integration.langchain import WandbTracer
 from langchain.document_loaders import BSHTMLLoader
-import threading
-
-
 from summary_prompts import get_guidelines
 from utils import extract_url, download_html, get_pdf_text, get_text_chunks, create_directories_if_not_exists, extract_yt_transcript, extract_text_from_htmls, unzip_website
 from vector import get_vectorstore, get_history_vectorstore, persist_new_chunks
 
+from concurrent.futures import ThreadPoolExecutor
 
-from bs4 import BeautifulSoup
+#constants
+vectorpath = './docs/vectorstore'
+pdf_path = './docs/pdfs'
+web_doc_path = './docs/web'
+zip_path = './docs/zip'
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 #GET API KEYS FROM .ENV FILE
+#claude.api_key = os.getenv('ANTHROPIC_API_KEY')
 openai.api_key = os.getenv('OPENAI_API_KEY')
 scraperapi_key = os.getenv('SCRAPER_API_KEY')
 brave_search_api_key = os.getenv('BRAVE_SEARCH_API_KEY')
 intents = discord.Intents.all()
 bot = commands.Bot("/", intents=intents)
+
+# Global Variables
 vectorstore=None
-vectorpath = './docs/vectorstore'
-
-
-pdf_path = './docs/pdfs'
-web_doc_path = './docs/web'
-zip_path = './docs/zip'
+dialog_contexts = {}
 
 class DialogContext:
 #load dot env file
@@ -67,7 +62,7 @@ class DialogContext:
     return self.history.copy()
 
 
-dialog_contexts = {}
+
 
 
 
@@ -116,15 +111,20 @@ async def send_long_message(channel, message):
   for chunk in chunks:
     await channel.send(chunk)
 
-def return_llm():
-  if os.getenv('DEV_MODE'):
-    wandb_config = {"project": "wandb_prompts_quickstart"}
-    return ChatOpenAI(model_name="gpt-3.5-turbo-16k",callbacks=[WandbTracer(wandb_config)])
-  else:
-    return ChatOpenAI(model_name="gpt-3.5-turbo-16k")
+def return_llm(provider="openai"):
+  if provider == "openai":
+    if os.getenv('DEV_MODE'):
+      wandb_config = {"project": "wandb_prompts_quickstart"}
+      return ChatOpenAI(model_name="gpt-3.5-turbo-16k",callbacks=[WandbTracer(wandb_config)])
+    else:
+      return ChatOpenAI(model_name="gpt-3.5-turbo-16k")
+  elif provider == "huggingface":
+    return HuggingFaceHub(repo_id="tiiuae/falcon-40b", model_kwargs={"temperature":0.5, "max_length":512})
+  elif provider == "anthropic":
+    return ChatAnthropic(model_name="claude-2")
 
 def retrieve_answer(vectorstore):
-  llm = return_llm()
+  llm = return_llm()  
   
   #if message.content.startswith('!hf'): 
   #  llm = HuggingFaceHub(repo_id="tiiuae/falcon-40b", task="summarization", model_kwargs={"temperature":0.5, "max_length":1512})
@@ -143,7 +143,15 @@ def retrieve_answer(vectorstore):
   logging.info(answer)
   return answer
 
+async def get_message_history(channel):
+  messages = []
+  async for msg in channel.history(limit=5):
+      messages.append(msg)
 
+  msg_history = ""
+  for msg in messages:
+      msg_history += f"{msg.author.name}: {msg.content}\n"
+  return msg_history
 @bot.event
 async def on_ready():
   logging.info(f'{bot.user} has connected to Discord!')
@@ -173,13 +181,17 @@ async def on_message(message):
 
 
 
+
+
+
   if 'http://' in  message.content or 'https://' in message.content:
     chunks = None
     if 'youtube.com' in message.content or 'youtu.be' in message.content:
         raw_text = extract_yt_transcript(message.content)
         chunks = get_text_chunks(''.join(raw_text))
         vectorstore = get_vectorstore(chunks)
-        persist_new_chunks(chunks)
+        executor = ThreadPoolExecutor()
+        future = executor.submit(persist_new_chunks, chunks)
         answer = retrieve_answer(vectorstore)
         await send_long_message(message.channel, answer)
     else:        
@@ -192,7 +204,8 @@ async def on_message(message):
             for page_info in data:
                 chunks = get_text_chunks(page_info.page_content)
                 vectorstore = get_vectorstore(chunks)
-                persist_new_chunks(chunks)
+                executor = ThreadPoolExecutor()
+                future = executor.submit(persist_new_chunks, chunks)
                 answer = retrieve_answer(vectorstore=vectorstore)
                 os.remove(web_doc) # Change here
                 await send_long_message(message.channel, answer)
@@ -207,7 +220,8 @@ async def on_message(message):
           raw_text = get_pdf_text(pdf_path)
           chunks = get_text_chunks(raw_text)
           vectorstore = get_vectorstore(chunks)
-          persist_new_chunks(chunks)
+          executor = ThreadPoolExecutor()
+          future = executor.submit(persist_new_chunks, chunks)
           answer = retrieve_answer(vectorstore=vectorstore)
           await send_long_message(message.channel, answer)
           return
@@ -223,18 +237,22 @@ async def on_message(message):
   else:
     user_prompt = message.content
     logging.info(f"Received message from {message.author.name}: {user_prompt}")
+    message_history = await get_message_history(message.channel)
+    query = "You are a helpful assistant with concise and accurate responses given in the tone of a professional presentation. Try and answer the question as truthfully as possible. What is the answer to the question: " + user_prompt + message_history
 
     hitory_vectorstore = get_history_vectorstore()
     if os.getenv('DEV_MODE'):
       wandb_config = {"project": "wandb_prompts_quickstart"}
-      qa = RetrievalQA.from_chain_type(llm=return_llm(), chain_type="stuff", retriever=hitory_vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)])
+      qa = RetrievalQA.from_chain_type(llm=return_llm(), chain_type="stuff", retriever=hitory_vectorstore.as_retriever(), return_source_documents=True,callbacks=[WandbTracer(wandb_config)])
     else:
-      qa = RetrievalQA.from_chain_type(llm=return_llm(), chain_type="stuff", retriever=hitory_vectorstore.as_retriever())
+      qa = RetrievalQA.from_chain_type(llm=return_llm(), chain_type="stuff", retriever=hitory_vectorstore.as_retriever(), return_source_documents=True)
+   
     query = "You are a helpful assistant with concise and accurate responses given in the tone of a professional presentation. Try and answer the question as truthfully as possible. What is the answer to the question: " + user_prompt
     answer=qa.run(query)
     logging.info(answer)
 
     await send_long_message(message.channel, answer)
+
 
 
 

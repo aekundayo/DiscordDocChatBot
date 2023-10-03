@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Complete a shadow test - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="shadow-tests-complete" /><meta name="default_state" content="shadow-tests-complete" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="shadow-tests-complete.html" /><meta name="description" content="Complete a shadow test early. Promote a shadow variant to production." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="shadow-tests-complete.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/shadow-tests-complete.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/shadow-tests-complete.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/shadow-tests-complete.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/shadow-tests-complete.html" hreflang="de" /><link rel="alternative" href="shadow-tests-complete.html" hreflang="en-us" /><link rel="alternative" href="shadow-tests-complete.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/shadow-tests-complete.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/shadow-tests-complete.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/shadow-tests-complete.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/shadow-tests-complete.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/shadow-tests-complete.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/shadow-tests-complete.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/shadow-tests-complete.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/shadow-tests-complete.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/shadow-tests-complete.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/shadow-tests-complete.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/shadow-tests-complete.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/shadow-tests-complete.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/shadow-tests-complete.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/shadow-tests-complete.html" hreflang="zh-tw" /><link rel="alternative" href="shadow-tests-complete.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Complete a shadow test" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Complete a shadow test - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#shadow-tests-complete" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/shadow-tests-complete.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/shadow-tests-complete.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/shadow-tests-complete.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,inference,deploy model,endpoint,prediction,ML application,serverless machine learning,multi model deployment,inference pipelines,ML model" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploy models for inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Shadow tests",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/shadow-tests.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Complete a shadow test",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/shadow-tests.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#shadow-tests-complete" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="shadow-tests-complete.html#shadow-tests-complete-early">Complete a shadow test early</a><a href="shadow-tests-complete.html#shadow-tests-complete-promote">Promote a shadow variant</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="shadow-tests-complete">Complete a shadow test</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>
+        Your test automatically completes at the end of the scheduled duration, or you can stop an in-progress test
+        early. After your test has completed, the test’s status in the <b>Shadow tests</b> section on the
+        <b>Shadow tests</b> page shows as <b>Complete</b>. Then you can review and analyze
+        the final metrics of your test.
+    </p><p>
+        You can use the metrics dashboard to decide whether to promote the shadow variant to production. For more
+        information about analyzing the metrics dashboard of your test, see <a href="shadow-tests-view-monitor-edit.html#shadow-tests-view-monitor-edit-dashboard">Monitor a shadow test</a>.
+    </p><p>
+        For instructions on how to complete your test before the end of its scheduled completion time, see <a href="shadow-tests-complete.html#shadow-tests-complete-early">Complete a shadow test early</a>.
+    </p><p>
+        For instructions on promoting your shadow variant to production, see <a href="shadow-tests-complete.html#shadow-tests-complete-promote">Promote a shadow variant</a>.
+    </p>
+        <h2 id="shadow-tests-complete-early">Complete a shadow test early</h2>
+        <p>
+            One reason you might want to complete an in-progress shadow test is if you’ve decided that the metrics for
+            your shadow variant look good and you want to promote it to production. You might also decide to complete
+            the test if one or more of the variants aren’t performing well.
+        </p>
+        <p>
+            To complete your test before its scheduled end date, do the following:
+        </p>
+        <div class="procedure"><ol><li>
+                <p>
+                    Select the test you want to mark complete from the <b>Shadow tests</b> section on the
+                    <b>Shadow tests</b> page.
+                </p>
+            </li><li>
+                <p>
+                    From the <b>Actions</b> dropdown list, choose <b>Complete</b>, and the
+                    <b>Complete shadow test</b> dialog box appears.
+                </p>
+            </li><li>
+                <p>
+                    In the dialog box, choose one of the following options:
+                </p>
+                <div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p><b>Yes, deploy shadow variant</b></p>
+                    </li><li class="listitem">
+                        <p><b>No, remove shadow variant</b></p>
+                    </li></ul></div>
+            </li><li>
+                <p>
+                    (Optional) In the <b>Comment</b> text box, enter your reason for completing the
+                    test before its scheduled end time.
+                </p>
+            </li><li>
+                <div class="orderedlist">
+                     
+                     
+                <ol><li>
+                        <p>
+                            If you decided to deploy the shadow variant, choose <b>Complete and proceed to
+                            deploy</b>. The <b>Deploy shadow variant</b> page appears. For
+                            instructions on how to fill out this page, see <a href="shadow-tests-complete.html#shadow-tests-complete-promote">Promote a shadow variant</a>.
+                        </p>
+                    </li><li>
+                        <p>
+                            If you decide to remove the shadow variant, choose <b>Confirm</b>.
+                        </p>
+                    </li></ol></div>
+            </li></ol></div>
+     
+        <h2 id="shadow-tests-complete-promote">Promote a shadow variant</h2>
+        <p>
+            If you’ve decided that you want to replace your production variant with your shadow variant, you can update
+            your endpoint and promote your shadow variant to respond to inference requests. This removes your current
+            production variant from production and replaces it with your shadow variant.
+        </p>
+        <p>
+            If your shadow test is still in-progress, you must first complete your test. To complete your shadow test
+            before its scheduled end, follow the instructions in <a href="shadow-tests-complete.html#shadow-tests-complete-early">Complete a shadow test early</a> before continuing with this section.
+        </p>
+        <p>
+            When you promote a shadow variant to production, you have the following options for the instance count of
+            the shadow variant.
+        </p>
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>
+                    You can retain the instance count and type from the production variant. If you select this option,
+                    then your shadow variant launches in production with the current instance count, ensuring that your
+                    model can continue to process request traffic at the same scale.
+                </p>
+            </li><li class="listitem">
+                <p>
+                    You can retain the instance count and type of your shadow variant. If you want to use this option,
+                    we recommend that you shadow test with 100 percent traffic sampling to ensure that the shadow
+                    variant can process request traffic at the current scale.
+                </p>
+            </li><li class="listitem">
+                <p>
+                    You can use custom values for the instance count and type. If you want to use this option, we
+                    recommend that you shadow test with 100 percent traffic sampling to ensure that the shadow variant
+                    can process request traffic at the current scale.
+                </p>
+            </li></ul></div>
+        <p>
+              Unless you are validating the instance type or count or both of the shadow variant, we highly recommend
+              that you retain the instance count and type from the production variant when promoting your shadow
+              variant.
+        </p>
+        <p>
+            To promote your shadow variant, do the following:
+        </p>
+        <div class="procedure"><ol><li>
+                <p>
+                    If your test has completed, do the following:
+                </p>
+                <ol><li>
+                        <p>
+                            Select the test from the <b>Shadow test</b> section on the <b>Shadow
+                            tests</b> page.
+                        </p>
+                    </li><li>
+                        <p>
+                            From the <b>Actions</b> dropdown list, choose <b>View</b>. The
+                            dashboard appears.
+                        </p>
+                    </li><li>
+                        <p>
+                            Choose <b>Deploy shadow variant</b> in the <b>Environment</b>
+                            section. The <b>Deploy shadow variant</b> page appears.
+                        </p>
+                    </li></ol>
+                <p>
+                    If your test has not completed, see <a href="shadow-tests-complete.html#shadow-tests-complete-early">Complete a shadow test early</a> to complete it.
+                </p>
+            </li><li>
+                <p>
+                    In the <b>Variant settings</b> section, select one of the following options:
+                </p>
+                <div class="itemizedlist">
+                     
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem"><p><b>Retain production settings</b></p></li><li class="listitem"><p><b>Retain shadow settings</b></p></li><li class="listitem"><p><b>Custom instance settings</b></p></li></ul></div>
+                <p>
+                    If you selected <b>Custom instance settings</b>, do the following:
+                </p>
+                <ol><li>
+                        <p>
+                            Select the instance type from the <b>Instance type</b> dropdown list.
+                        </p>
+                    </li><li>
+                        <p>
+                            Under <b>Instance count</b>, enter the number of instances.
+                        </p>
+                    </li></ol>
+            </li><li>
+                <p>
+                    In <b>Enter 'deploy' to confirm deployment</b> text box, enter
+                    <code class="userinput">deploy</code>.
+                </p>
+            </li><li>
+                <p>
+                    Choose <b>Deploy shadow variant</b>.
+                </p>
+            </li></ol></div>
+        <p>
+            Your SageMaker Inference endpoint is now using the shadow variant as your production variant, and your production
+            variant has been removed from the endpoint.
+        </p>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./shadow-tests-view-monitor-edit.html">View, monitor, and edit shadow tests</div><div id="next" class="next-link" accesskey="n" href="./shadow-tests-best-practices.html">Best Practices</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/shadow-tests-complete.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/shadow-tests-complete.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

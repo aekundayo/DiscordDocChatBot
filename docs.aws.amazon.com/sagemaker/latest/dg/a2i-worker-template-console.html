@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Create and Delete Worker Task Templates - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="a2i-worker-template-console" /><meta name="default_state" content="a2i-worker-template-console" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="a2i-worker-template-console.html" /><meta name="description" content="You can use a worker template to customize the interface and instructions that your workers see when working on your tasks. Use the instructions on this page to create a worker task template in the Augmented AI area of the Amazon SageMaker console. A starter template is provided for Amazon Textract and Amazon Rekognition tasks. To learn how to customize your template using HTML crowd elements, see" /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="a2i-worker-template-console.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/a2i-worker-template-console.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/a2i-worker-template-console.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/a2i-worker-template-console.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/a2i-worker-template-console.html" hreflang="de" /><link rel="alternative" href="a2i-worker-template-console.html" hreflang="en-us" /><link rel="alternative" href="a2i-worker-template-console.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/a2i-worker-template-console.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/a2i-worker-template-console.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/a2i-worker-template-console.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/a2i-worker-template-console.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/a2i-worker-template-console.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/a2i-worker-template-console.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/a2i-worker-template-console.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/a2i-worker-template-console.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/a2i-worker-template-console.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/a2i-worker-template-console.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/a2i-worker-template-console.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/a2i-worker-template-console.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/a2i-worker-template-console.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/a2i-worker-template-console.html" hreflang="zh-tw" /><link rel="alternative" href="a2i-worker-template-console.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Create and Delete Worker Task Templates" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Create and Delete Worker Task Templates - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#a2i-worker-template-console" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/a2i-worker-template-console.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/a2i-worker-template-console.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/a2i-worker-template-console.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Label data with a human-in-the-loop",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-label.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Using Amazon Augmented AI for Human Review",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-use-augmented-ai-a2i-human-review-loops.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Create and Manage Worker Task Templates",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-instructions-overview.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Create and Delete Worker Task Templates",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-instructions-overview.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#a2i-worker-template-console" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="a2i-worker-template-console.html#a2i-create-worker-template-console">Create a Worker Task Template</a><a href="a2i-worker-template-console.html#sms-delete-worker-task-template">Delete a Worker Task Template</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="a2i-worker-template-console">Create and Delete Worker Task
+            Templates</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can use a worker template to customize the interface and instructions that your
+        workers see when working on your tasks. Use the instructions on this page to create a worker
+        task template in the Augmented AI area of the Amazon SageMaker console. A starter template is provided for
+        Amazon Textract and Amazon Rekognition tasks. To learn how to customize your template using HTML crowd
+        elements, see <a href="a2i-custom-templates.html">Create Custom Worker Task Templates</a>.</p><p>When you create a worker template in the worker task templates page of the Augmented AI area of
+        the SageMaker console, a worker task template ARN is generated. Use this ARN as the input to
+            <code class="code">HumanTaskUiArn</code> when you create a flow definition using the API operation
+            <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateFlowDefinition.html"><code class="code">CreateFlowDefinition</code></a>. You can choose this template when creating a
+        human review workflow on the human review workflows page of the console. </p><p>If you are creating a worker task template resource for an Amazon Textract or Amazon Rekognition task type,
+        you can preview the worker UI that is generated from your template on the worker task
+        templates console page. You must attach the policy described in <a href="a2i-permissions-security.html#permissions-for-worker-task-templates-augmented-ai">Enable Worker Task
+        Template Previews </a> to the IAM role
+        that you use to preview the template.</p>
+        <h2 id="a2i-create-worker-template-console">Create a Worker Task Template</h2>
+        <p>You can create a worker task template using the SageMaker console and using the SageMaker API
+            operation <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateHumanTaskUi.html"><code class="code">CreateHumanTaskUi</code></a>. </p>
+    <div class="procedure"><h6>Create a worker task template (console)</h6><ol><li>
+            <p>Open the Amazon A2I console at <a href="https://console.aws.amazon.com/a2i" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/a2i/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        </li><li>
+            <p>Under <b>Amazon Augmented AI</b> in the left navigation pane, choose
+                        <b>Worker task templates</b>.</p>
+        </li><li>
+            <p>Choose <b>Create template</b>.</p>
+        </li><li>
+            <p>In <b>Template name</b>, enter a unique name.</p>
+        </li><li>
+            <p>(Optional) Enter an <b>IAM role</b> that grants Amazon A2I the
+                    permissions necessary to call services on your behalf. </p>
+        </li><li>
+            <p>In <b>Template type</b>, choose a template type from the dropdown
+                    list. If you are creating a template for a <b>Textract-form
+                        extraction</b> or <b>Rekognition-image moderation</b>
+                    task, choose the appropriate option. </p>
+        </li><li>
+            <p>Enter your custom template elements as follows:</p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>If you selected the Amazon Textract or Amazon Rekognition task template, the
+                            <b>Template editor</b> autopopulates with a default
+                        template that you can customize. </p>
+                </li><li class="listitem">
+                    <p>If you are using a custom template, enter your predefined template in the
+                        editor. </p>
+                </li></ul></div>
+        </li><li>
+            <p>(Optional) To complete this step, you must provide an IAM role ARN with
+                    permission to read Amazon S3 objects that get rendered on your user interface in
+                        <b>Step 5</b>. </p>
+            <p>You can only preview your template if you are creating templates for Amazon Textract or
+                Amazon Rekognition. </p>
+            <p>Choose <b>See preview</b> to preview the interface and instructions
+                    that workers see. This is an interactive preview. After you complete the sample
+                    task and choose <b>Submit</b>, you see the resulting output from
+                    the task that you just performed. </p>
+            <p>If you are creating a worker task template for a custom task type, you can preview
+                your worker task UI using <code class="code">RenderUiTemplate</code>. For more information, see
+                    <a href="a2i-custom-templates.html#a2i-preview-your-custom-template">Preview a Worker Task
+                Template</a>.</p>
+        </li><li>
+            <p>When you're satisfied with your template, choose
+                <b>Create</b>.</p>
+        </li></ol></div>
+    
+    <p>After you've created your template, you can select that template when you create a human
+            review workflow in the console. Your template also appears in the
+                <b>Amazon Augmented AI</b> section of the SageMaker console under <b>Worker
+                task templates</b>. Choose your template to view its ARN. Use this ARN when
+            using the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateFlowDefinition.html"><code class="code">CreateFlowDefinition</code></a> API operation . </p>
+      
+         <h6>Create a worker task template using a worker task template (API)</h6>
+         <p>To generate a worker task template using the SageMaker API operation <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateHumanTaskUi.html"><code class="code">CreateHumanTaskUi</code></a>, specify a name for your UI in
+                    <code class="code">HumanTaskUiName</code> and input your HTML template in
+                    <code class="code">Content</code> under <code class="code">UiTemplate</code>. Find documentation on
+                language-specific SDKs that support this API operation in the <b>See
+                    Also</b> section of the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateHumanTaskUi.html"><code class="code">CreateHumanTaskUi</code></a>.</p>
+      
+     
+        <h2 id="sms-delete-worker-task-template">Delete a Worker Task Template</h2>
+    <p>Once you have created a worker task template, you can delete it using the SageMaker console or
+            the SageMaker API operation <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeleteHumanTaskUi.html"><code class="code">DeleteHumanTaskUi</code></a>.</p>
+        <p>When you delete a worker task template, you are not able to use human review workflows
+            (flow definitions) created using that template to start human loops. Any human loops
+            that have already been created using the worker task template that you delete continue
+            to be processed until completion and are not impacted. </p>
+    <div class="procedure"><h6>Delete a worker task template (console)</h6><ol><li>
+            <p>Open the Amazon A2I console at <a href="https://console.aws.amazon.com/a2i" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/a2i/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            </li><li>
+                <p>Under Amazon Augmented AI in the left navigation pane, choose <b>Worker task
+                        templates</b>.</p>
+            </li><li>
+                <p>Select the template that you want to delete. </p>
+            </li><li>
+                <p>Selete <b>Delete</b>.</p>
+            </li><li>
+                <p>A modal appears to confirm your choice. Select
+                    <b>Delete</b>.</p>
+            </li></ol></div>
+         
+            <h6>Delete a worker task template (API)</h6>
+            <p>To delete a worker task template using the SageMaker API operation <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeleteHumanTaskUi.html"><code class="code">DeleteHumanTaskUi</code></a>, specify a name of your UI in
+                    <code class="code">HumanTaskUiName</code>. </p>
+         
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./a2i-instructions-overview.html">Create and Manage Worker Task Templates</div><div id="next" class="next-link" accesskey="n" href="./a2i-custom-templates.html">Create Custom Worker Task Templates</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/a2i-worker-template-console.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/a2i-worker-template-console.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Canary Traffic Shifting - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="deployment-guardrails-blue-green-canary" /><meta name="default_state" content="deployment-guardrails-blue-green-canary" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="deployment-guardrails-blue-green-canary.html" /><meta name="description" content="Canary traffic shifting mode enables you to roll out a blue/green update to your endpoint while taking advantage of safety guardrails, such as auto-rollbacks, to protect your endpoint. This mode shifts endpoint traffic to the new fleet in two steps." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="deployment-guardrails-blue-green-canary.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" hreflang="de" /><link rel="alternative" href="deployment-guardrails-blue-green-canary.html" hreflang="en-us" /><link rel="alternative" href="deployment-guardrails-blue-green-canary.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" hreflang="zh-tw" /><link rel="alternative" href="deployment-guardrails-blue-green-canary.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Canary Traffic Shifting" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Canary Traffic Shifting - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#deployment-guardrails-blue-green-canary" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,inference,deploy model,endpoint,prediction,ML application,serverless machine learning,multi model deployment,inference pipelines,ML model,deployment guardrails,blue green deployments,deployments,all at once,canary,linear" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploy models for inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Update models in production",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deployment-guardrails.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Blue/Green Deployments",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deployment-guardrails-blue-green.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Canary Traffic Shifting",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deployment-guardrails-blue-green.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#deployment-guardrails-blue-green-canary" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="deployment-guardrails-blue-green-canary.html#deployment-guardrails-blue-green-canary-prereqs">Prerequisites</a><a href="deployment-guardrails-blue-green-canary.html#deployment-guardrails-blue-green-canary-configure">Configure Canary Traffic Shifting</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="deployment-guardrails-blue-green-canary">Canary Traffic Shifting</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>With canary traffic shifting, you can test a portion of your endpoint traffic on the new
+  fleet while the old fleet serves the remainder of the traffic. This testing step is a safety
+  guardrail that validates the new fleet’s functionality before shifting all of your traffic to the
+  new fleet. You still have the benefits of a blue/green deployment, and the added canary feature
+  lets you ensure that your new (green) fleet can serve inference before letting it handle 100% of
+  the traffic.</p><p>The portion of your green fleet that turns on to receive traffic is called the canary, and
+        you can choose the size of this canary. Note that the canary size should be less than or
+        equal to 50% of the new fleet's capacity. Once the baking period finishes and no
+        pre-specified Amazon CloudWatch alarms trip, the rest of the traffic shifts from the old (blue) fleet
+        to the green fleet. Canary traffic shifting provides you with more safety during your
+        deployment since any issues with the updated model only impact the canary.</p><p>The following diagram shows how canary traffic shifting manages the distribution of traffic
+  between the blue and green fleets.</p><div class="mediaobject">
+   
+      <img src="../../../images/sagemaker/latest/dg/images/deployment-guardrails-blue-green-canary.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;   A successful two step canary traffic shift from the old fleet to the new fleet.&#xA;  " style="max-width:110%" height="110%" />
+   
+   
+ </div><p>Once SageMaker provisions the green fleet, SageMaker routes a portion of the incoming traffic (for
+        example, 25%) to the canary. Then the baking period begins, during which your CloudWatch alarms
+        monitor the performance of the green fleet. During this time, both the blue fleet and green
+        fleet are partially active and receiving traffic. If any of the alarms trip during the
+        baking period, then SageMaker initiates a rollback and all traffic returns to the blue fleet. If
+        none of the alarms trip, then all of the traffic shifts to the green fleet and there is a
+        final baking period. If the final baking period finishes without tripping any alarms, then
+        the green fleet serves all traffic and SageMaker terminates the blue fleet.</p>
+  <h2 id="deployment-guardrails-blue-green-canary-prereqs">Prerequisites</h2>
+  <p>Before setting up a deployment with canary traffic shifting, you must create Amazon CloudWatch alarms
+   to monitor metrics from your endpoint. The alarms are active during the baking period, and if any
+   alarms trip, then all endpoint traffic rolls back to the blue fleet. To learn how to set up CloudWatch
+   alarms on an endpoint, see the prerequisite page <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/deployment-guardrails-configuration.html">Auto-Rollback Configuration and
+            Monitoring</a>. To learn more about CloudWatch alarms, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html">Using
+    Amazon CloudWatch alarms</a> in the <em>Amazon CloudWatch User Guide</em>.</p>
+  
+  <h2 id="deployment-guardrails-blue-green-canary-configure">Configure Canary Traffic Shifting</h2>
+  <p>Once you are ready for your deployment and have set up Amazon CloudWatch alarms for your endpoint,
+   you can use either the Amazon SageMaker <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpoint.html">UpdateEndpoint</a> API or the
+   <a href="https://docs.aws.amazon.com/cli/latest/reference/sagemaker/update-endpoint.html">update-endpoint</a> command in the AWS CLI to initiate the deployment.</p>
+  
+  <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="deployment-guardrails-blue-green-canary.html#deployment-guardrails-blue-green-canary-configure-api-update">How to update an endpoint (API)</a></li><li><a href="deployment-guardrails-blue-green-canary.html#deployment-guardrails-blue-green-canary-configure-api-existing">How to update an endpoint with an existing blue/green update policy (API)</a></li><li><a href="deployment-guardrails-blue-green-canary.html#deployment-guardrails-blue-green-canary-configure-cli-update">How to update an endpoint (CLI)</a></li></ul></div>
+  
+   
+   <h3 id="deployment-guardrails-blue-green-canary-configure-api-update">How to update an endpoint (API)</h3>
+   <p>The following example of the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpoint.html">UpdateEndpoint</a> API shows
+    how you can update an endpoint with canary traffic shifting.</p>
+   <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">import boto3
+client = boto3.client("sagemaker")
+
+response = client.update_endpoint(
+    EndpointName="<code class="replaceable">&lt;your-endpoint-name&gt;</code>",
+    EndpointConfigName="<code class="replaceable">&lt;your-config-name&gt;</code>",
+    DeploymentConfig=<span>{</span>
+        "BlueGreenUpdatePolicy": <span>{</span>
+            "TrafficRoutingConfiguration": <span>{</span>
+                "Type": "CANARY",
+                "CanarySize": <span>{</span>
+                    "Type": "CAPACITY_PERCENT",
+                    "Value": 30
+                },
+                "WaitIntervalInSeconds": 600
+            },
+            "TerminationWaitInSeconds": 600,
+            "MaximumExecutionTimeoutInSeconds": 1800
+        },
+        "AutoRollbackConfiguration": <span>{</span>
+            "Alarms": [
+                <span>{</span>
+                    "AlarmName": "<code class="replaceable">&lt;your-cw-alarm&gt;</code>"
+                }
+            ]
+        }
+    }
+)</code></pre>
+   <p>To configure the canary traffic shifting option, do the following:</p>
+   <div class="itemizedlist">
+     
+     
+     
+     
+     
+     
+     
+     
+   <ul class="itemizedlist"><li class="listitem"><p>For <code class="code">EndpointName</code>, use the name of the existing endpoint you want to update.</p></li><li class="listitem"><p>For <code class="code">EndpointConfigName</code>, use the name of the endpoint configuration you want to use.</p></li><li class="listitem"><p>Under <code class="code">DeploymentConfig</code> and <code class="code">BlueGreenUpdatePolicy</code>, in
+       <code class="code">TrafficRoutingConfiguration</code>, set the <code class="code">Type</code> parameter to
+       <code class="code">CANARY</code>. This specifies that the deployment uses canary traffic shifting.</p></li><li class="listitem"><p>In the <code class="code">CanarySize</code> field, you can change the size of the canary by modifying the
+                            <code class="code">Type</code> and <code class="code">Value</code> parameters. For
+                            <code class="code">Type</code>, use <code class="code">CAPACITY_PERCENT</code>, meaning the
+                        percentage of your green fleet you want to use as the canary, and then set
+                            <code class="code">Value</code> to <code class="code">30</code>. In this example, you use 30% of
+                        the green fleet’s capacity as the canary. Note that the canary size should
+                        be equal to or less than 50% of the green fleet's capacity.</p></li><li class="listitem"><p>For <code class="code">WaitIntervalInSeconds</code>, use <code class="code">600</code>. The parameter tells SageMaker to wait
+                        for the specified amount of time (in seconds) between each interval shift.
+                        This interval is the duration of the canary baking period. In the preceding
+                        example, SageMaker waits for 10 minutes after the canary shift and then completes
+                        the second and final traffic shift.</p></li><li class="listitem"><p>For <code class="code">TerminationWaitInSeconds</code>, use <code class="code">600</code>. This parameter tells SageMaker to
+      wait for the specified amount of time (in seconds) after your green fleet is fully active
+      before terminating the instances in the blue fleet. In this example, SageMaker waits for 10 minutes
+      after the final baking period before terminating the blue fleet.</p></li><li class="listitem"><p>For <code class="code">MaximumExecutionTimeoutInSeconds</code>, use <code class="code">1800</code>. This parameter sets
+                        the maximum amount of time that the deployment can run before it times out.
+                        In the preceding example, your deployment has a limit of 30 minutes to
+                        finish.</p></li><li class="listitem"><p>In <code class="code">AutoRollbackConfiguration</code>, within the <code class="code">Alarms</code> field, you can add
+      your CloudWatch alarms by name. Create one <code class="code">AlarmName:
+        <code class="replaceable">&lt;your-cw-alarm&gt;</code></code> entry for each alarm you want to
+      use.</p></li></ul></div>
+   
+  
+   
+   <h3 id="deployment-guardrails-blue-green-canary-configure-api-existing">How to update an endpoint with an existing blue/green update policy (API)</h3>
+   <p>When you use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html">CreateEndpoint</a> API to create an endpoint, you can optionally specify a
+                deployment configuration to reuse for future endpoint updates. You can use the same
+                    <code class="code">DeploymentConfig</code> options as the previous UpdateEndpoint API
+                example. There are no changes to the CreateEndpoint API behavior. Specifying the
+                deployment configuration does not automatically perform a blue/green update on your
+                endpoint.</p>
+   <p>The option to use a previous deployment configuration happens when using the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpoint.html">UpdateEndpoint</a> API to update your endpoint. When updating your endpoint, you can use
+    the <code class="code">RetainDeploymentConfig</code> option to keep the deployment configuration you
+    specified when you created the endpoint.</p>
+   <p>When calling the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateEndpoint.html">UpdateEndpoint</a> API, set
+     <code class="code">RetainDeploymentConfig</code> to <code class="code">True</code> to keep the
+     <code class="code">DeploymentConfig</code> options from your original endpoint configuration.</p>
+   <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">response = client.update_endpoint(
+    EndpointName="<code class="replaceable">&lt;your-endpoint-name&gt;</code>",
+    EndpointConfigName="<code class="replaceable">&lt;your-config-name&gt;</code>",
+    RetainDeploymentConfig=True
+)</code></pre>
+   
+  
+   
+   <h3 id="deployment-guardrails-blue-green-canary-configure-cli-update">How to update an endpoint (CLI)</h3>
+   <p>If you are using the AWS CLI, the following example shows how to start a blue/green canary
+    deployment using the <a href="https://docs.aws.amazon.com/cli/latest/reference/sagemaker/update-endpoint.html">update-endpoint</a>
+    command.</p>
+   <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">update-endpoint
+--endpoint-name <code class="replaceable">&lt;your-endpoint-name&gt;
+</code>--endpoint-config-name <code class="replaceable">&lt;your-config-name&gt;</code> 
+--deployment-config '"BlueGreenUpdatePolicy": <span>{</span>"TrafficRoutingConfiguration": <span>{</span>"Type": "CANARY",
+    "CanarySize": <span>{</span>"Type": "CAPACITY_PERCENT", "Value": 30}, "WaitIntervalInSeconds": 600},
+    "TerminationWaitInSeconds": 600, "MaximumExecutionTimeoutInSeconds": 1800},
+    "AutoRollbackConfiguration": <span>{</span>"Alarms": [<span>{</span>"AlarmName": "<code class="replaceable">&lt;your-alarm&gt;</code>"}]}'</code></pre>
+   <p>To configure the canary traffic shifting option, do the following:</p>
+   <div class="itemizedlist">
+     
+     
+     
+   <ul class="itemizedlist"><li class="listitem"><p>For <code class="code">endpoint-name</code>, use the name of the endpoint you want to update.</p></li><li class="listitem"><p>For <code class="code">endpoint-config-name</code>, use the name of the endpoint configuration you want to use.</p></li><li class="listitem"><p>For <code class="code">deployment-config</code>, use a <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_BlueGreenUpdatePolicy.html">BlueGreenUpdatePolicy</a> JSON object.</p></li></ul></div>
+   <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you would rather save your JSON object in a file, see <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-skeleton.html">Generating AWS CLI skeleton and input parameters</a> in the <em>AWS CLI User Guide</em>.</p></div></div>
+   
+  
+ <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./deployment-guardrails-blue-green-all-at-once.html">All At Once Traffic Shifting</div><div id="next" class="next-link" accesskey="n" href="./deployment-guardrails-blue-green-linear.html">Linear Traffic Shifting</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Manage model cards - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="model-cards-manage" /><meta name="default_state" content="model-cards-manage" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="model-cards-manage.html" /><meta name="description" content="After you've created a model card, you can manage them. Managing model cards include the following actions:" /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="model-cards-manage.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/model-cards-manage.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/model-cards-manage.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/model-cards-manage.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/model-cards-manage.html" hreflang="de" /><link rel="alternative" href="model-cards-manage.html" hreflang="en-us" /><link rel="alternative" href="model-cards-manage.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/model-cards-manage.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/model-cards-manage.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/model-cards-manage.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/model-cards-manage.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/model-cards-manage.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/model-cards-manage.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/model-cards-manage.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/model-cards-manage.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/model-cards-manage.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/model-cards-manage.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/model-cards-manage.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/model-cards-manage.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/model-cards-manage.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/model-cards-manage.html" hreflang="zh-tw" /><link rel="alternative" href="model-cards-manage.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Manage model cards" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Manage model cards - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#model-cards-manage" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-cards-manage.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-cards-manage.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-cards-manage.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use governance to document and track model performance",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/governance.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Model Cards",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/model-cards.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Manage model cards",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/model-cards.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#model-cards-manage" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="model-cards-manage.html#model-cards-console-manage">Manage model cards using the console</a><a href="model-cards-manage.html#model-cards-sdk-manage">Manage model cards using the SageMaker Python SDK</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="model-cards-manage">Manage model cards</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>After you've created a model card, you can manage them. Managing model cards include the following actions:</p><div class="itemizedlist">
+         
+         
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p>Editing a model card</p>
+        </li><li class="listitem">
+            <p>Deleting a model card</p>
+        </li><li class="listitem">
+            <p>Exporting a model card to a PDF</p>
+        </li></ul></div><p>You can manage using either the Amazon SageMaker console or the SageMaker Python SDK.</p>
+      <h2 id="model-cards-console-manage">Manage model cards using the console</h2>
+      <p>Use the information in the following sections to manage your model cards with the Amazon SageMaker console.</p>
+    
+    <h3 id="model-cards-console-edit">Edit a model card</h3>
+    <p>To edit a model card, navigate to the model card of your choice by selecting its
+        name in the Amazon SageMaker Model Card console and choose <b>Edit</b>. </p>
+    <p>After you save a model card, you cannot edit the name of that model card. After
+        you save a model card version, you cannot update that version of the model card. Any
+        edits that you need to make are saved as a subsequent version in order to have an
+        immutable record of model changes. </p>
+    <p>To view different versions of the model card, choose <b>Actions</b>,
+        <b>Select version</b>, and then choose the version that you want
+        to view.</p>
+ 
+
+ 
+    <h3 id="model-cards-console-export">Export a model card</h3>
+    <p>Follow these steps to export a model card.</p>
+    <div class="orderedlist">
+         
+         
+         
+         
+         
+    <ol><li>
+            <p>Go to the Amazon SageMaker Model Card console.</p>
+        </li><li>
+            <p>Choose the name of the model card you want to export.</p>
+        </li><li>
+            <p>In the model card overview, choose <b>Actions</b> and then
+                <b>Export PDF</b>.</p>
+        </li><li>
+            <p>Enter an S3 URI or browse available S3 buckets for your model card
+                PDF.</p>
+        </li><li>
+            <p>If your model card exports successfully, you can either choose
+                <b>Download PDF</b> in the resulting banner or download
+                your PDF directly from Amazon S3. </p>
+        </li></ol></div>
+ 
+
+ 
+    <h3 id="model-cards-console-delete">Delete a model card</h3>
+    <p>Follow these steps to permanently delete one or more model cards.</p>
+    <div class="orderedlist">
+         
+         
+         
+         
+    <ol><li>
+            <p>Go to the Amazon SageMaker Model Cards console.</p>
+        </li><li>
+            <p>Check the box to the left of the name of the card(s) you want to
+                delete.</p>
+        </li><li>
+            <p>Choose <b>Delete</b> in the upper right-hand corner.</p>
+        </li><li>
+            <p>Confirm your request to permanently delete one or more cards..</p>
+        </li></ol></div>
+    <p>You can also delete a model card when viewing the model card overview in the
+        console by choosing <b>Actions</b> and then <b>Delete model
+            card</b>.</p>
+ 
+ 
+    <h2 id="model-cards-sdk-manage">Manage model cards using the SageMaker Python SDK</h2>
+    <p>Use the information in the following sections to manage your model cards with the Amazon SageMaker Python SDK.</p>
+     
+    <h3 id="model-cards-sdk">Use model cards through the SageMaker Python SDK</h3>
+    <p>You can create an Amazon SageMaker Model Card programmatically through the SageMaker Python SDK. For more
+        information see <a href="https://sagemaker.readthedocs.io/en/stable/api/governance/model_card.html" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Model Cards</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the SageMaker Python SDK API reference.</p>
+    
+     
+        <h4 id="model-cards-sdk-edit">Edit a model card</h4>
+        <p>You can edit a model card using the
+            <code class="code"><code class="replaceable">model_card</code>.update()</code> method. Updating a
+            model card creates a new model card version in order to have an immutable record of
+            model changes. You cannot update the name of a model card.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python "><code class="replaceable">my_card</code>.model_overview.model_description = <code class="replaceable">"updated-model-decription"</code>
+<code class="replaceable">my_card</code>.update()</code></pre>
+     
+     
+        <h4 id="model-cards-sdk-export">Export a model card</h4>
+        <p>Specify an S3 output path and export your model card PDF to it with the following
+            commands:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">s3_output_path = f"s3://<code class="replaceable"><span>{</span>bucket}</code>/<code class="replaceable"><span>{</span>prefix}</code>/export"
+pdf_s3_url = <code class="replaceable">my_card</code>.export_pdf(s3_output_path=s3_output_path).delete()</code></pre>
+     
+     
+        <h4 id="model-cards-sdk-delete">Delete a model card</h4>
+        <p>Permanently delete a model card with the following command:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python "><code class="replaceable">my_card</code>.delete()</code></pre>
+     
+     
+        <h4 id="model-cards-sdk-delete">Sample notebooks</h4>
+        <p>For more information on working with model cards through the SageMaker Python SDK, see
+            the <em><a href="https://github.com/aws/amazon-sagemaker-examples/tree/main/sagemaker_model_governance/model_card.ipynb" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Model Governance - Model Card</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></em> example notebook.</p>
+     
+     
+<awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./model-cards-create.html">Create a model card</div><div id="next" class="next-link" accesskey="n" href="./model-cards-xaccount.html">Cross account support</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-cards-manage.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-cards-manage.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

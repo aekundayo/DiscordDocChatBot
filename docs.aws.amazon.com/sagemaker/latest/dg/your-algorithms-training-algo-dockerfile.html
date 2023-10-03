@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>How Amazon SageMaker Runs Your Training Image - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="your-algorithms-training-algo-dockerfile" /><meta name="default_state" content="your-algorithms-training-algo-dockerfile" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="your-algorithms-training-algo-dockerfile.html" /><meta name="description" content="Learn how Amazon SageMaker runs your training image in the backend, and how to specify a custom entrypoint script for your Docker container." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="your-algorithms-training-algo-dockerfile.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" hreflang="de" /><link rel="alternative" href="your-algorithms-training-algo-dockerfile.html" hreflang="en-us" /><link rel="alternative" href="your-algorithms-training-algo-dockerfile.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" hreflang="zh-tw" /><link rel="alternative" href="your-algorithms-training-algo-dockerfile.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="How Amazon SageMaker Runs Your Training Image" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>How Amazon SageMaker Runs Your Training Image - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#your-algorithms-training-algo-dockerfile" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,create Docker container,custom entrypoint" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use Docker containers to build models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/docker-containers.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Create a container with your own algorithms and models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/docker-containers-create.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Your Own Training Algorithms",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-training-algo.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "How Amazon SageMaker Runs Your Training Image",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-training-algo.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#your-algorithms-training-algo-dockerfile" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="your-algorithms-training-algo-dockerfile.html#your-algorithms-training-algo-dockerfile-api-ep-in">Run a training
+                    job with an entrypoint script bundled inside the Docker container</a><a href="your-algorithms-training-algo-dockerfile.html#your-algorithms-training-algo-dockerfile-api-pass-ep">Run a
+                    training job with an entrypoint script outside the Docker container</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="your-algorithms-training-algo-dockerfile">How Amazon SageMaker Runs Your
+                Training Image</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can use a custom entrypoint script to automate infrastructure to train in a
+            production environment. If you pass your entrypoint script into your Docker container,
+            you can also run it as a standalone script without rebuilding your images. SageMaker
+            processes your training image using a Docker container entrypoint script. </p><p>This section shows you how to use a custom entrypoint without using the training
+            toolkit. If you want to use a custom entrypoint but are unfamiliar with how to manually
+            configure a Docker container, we recommend that you use the <a href="https://github.com/aws/sagemaker-training-toolkit" rel="noopener noreferrer" target="_blank"><span>SageMaker training toolkit
+                library</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> instead. For more information about how to use the training toolkit,
+            see <a href="adapt-training-container.html">Adapting your own training container</a>. </p><p>By default, SageMaker looks for a script called <code class="code">train</code> inside your container.
+            You can also manually provide your own custom entrypoint by using the
+                <code class="code">ContainerArguments</code> and <code class="code">ContainerEntrypoint</code> parameters of
+            the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AlgorithmSpecification.html">AlgorithmSpecification</a> API. </p><p>You have the following two options to manually configure your Docker container to run
+            your image.</p><div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html">CreateTrainingJob</a> API and a Docker container with an entrypoint
+                    instruction contained inside of it.</p>
+            </li><li class="listitem">
+                <p>Use the <code class="code">CreateTrainingJob</code> API, and pass your training script from
+                    outside of your Docker container.</p>
+            </li></ul></div><p>If you pass your training script from outside your Docker container, you don't need to
+            rebuild the Docker container when you update your script. You can also use several
+            different scripts to run in the same container.</p><p>Your entrypoint script should contain training code for your image. If you use the
+            optional <code class="code">source_dir</code> parameter inside an <a href="https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html" rel="noopener noreferrer" target="_blank"><span>estimator</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, it should reference the relative Amazon S3 path to the folder
+            containing your entrypoint script. You can reference multiple files using the
+                <code class="code">source_dir</code> parameter. If you do not use <code class="code">source_dir</code>, you
+            can specify the entrypoint using the <code class="code">entry_point</code> parameter. For an example
+            of a custom entrypoint script that contains an estimator, see <a href="https://sagemaker-examples.readthedocs.io/en/latest/sagemaker-script-mode/sagemaker-script-mode.html" rel="noopener noreferrer" target="_blank"><span>Bring Your Own Model with SageMaker Script Mode</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            <h2 id="your-algorithms-training-algo-dockerfile-api-ep-in">Run a training
+                    job with an entrypoint script bundled inside the Docker container</h2>
+            <p>SageMaker can run an entrypoint script bundled inside your Docker container. </p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>By default, Amazon SageMaker runs the following container.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker run <code class="replaceable">image</code> train</code></pre>
+                </li><li class="listitem">
+                    <p>SageMaker overrides any default <a href="https://docs.docker.com/engine/reference/builder/#cmd" rel="noopener noreferrer" target="_blank"><span>CMD</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+                        statements in a container by specifying the <code class="code">train</code> argument
+                        after the image name. In your Docker container, use the following
+                            <code class="code">exec</code> form of the <code class="code">ENTRYPOINT</code>
+                        instruction.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">ENTRYPOINT ["<code class="replaceable">executable</code>", "<code class="replaceable">param1</code>", "<code class="replaceable">param2</code>", ...]</code></pre>
+                    <p>The following example shows how to specify a python entrypoint instruction
+                        called <code class="code">k-means-algorithm.py</code>.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">ENTRYPOINT ["python", "k-means-algorithm.py"]</code></pre>
+                    <p>The <code class="code">exec</code> form of the <code class="code">ENTRYPOINT</code> instruction
+                        starts the executable directly, not as a child of <code class="code">/bin/sh</code>. This
+                        enables it to receive signals like <code class="code">SIGTERM</code> and
+                            <code class="code">SIGKILL</code> from SageMaker APIs. The following conditions apply when
+                        using the SageMaker APIs. </p>
+                    <div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>The <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html"><code class="code">CreateTrainingJob</code></a> API has a stopping
+                                condition that directs SageMaker to stop model training after a specific
+                                time. </p>
+                        </li><li class="listitem">
+                            <p>The following shows the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_StopTrainingJob.html"><code class="code">StopTrainingJob</code></a> API. This API issues the
+                                equivalent of the <code class="code">docker stop</code>, with a 2-minute timeout
+                                command to gracefully stop the specified container.</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">docker stop -t 120</code></pre>
+                            <p>The command attempts to stop the running container by sending a
+                                    <code class="code">SIGTERM</code> signal. After the 2-minute timeout, the API
+                                sends <code class="code">SIGKILL</code> and forcibly stops the containers. If the
+                                container handles the <code class="code">SIGTERM</code> gracefully and exits
+                                within 120 seconds from receiving it, no <code class="code">SIGKILL</code> is
+                                sent. </p>
+                        </li></ul></div>
+                    <p>If you want access to the intermediate model artifacts after SageMaker stops
+                        the training, add code to handle saving artifacts in your
+                            <code class="code">SIGTERM</code> handler.</p>
+                </li><li class="listitem">
+                    <p>If you plan to use GPU devices for model training, make sure that your
+                        containers are <code class="code">nvidia-docker</code> compatible. Include only the CUDA
+                        toolkit on containers; don't bundle NVIDIA drivers with the image. For more
+                        information about <code class="code">nvidia-docker</code>, see <a href="https://github.com/NVIDIA/nvidia-docker" rel="noopener noreferrer" target="_blank"><span>NVIDIA/nvidia-docker</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                </li><li class="listitem">
+                    <p>You can't use the <code class="code">tini</code> initializer as your entrypoint script
+                        in SageMaker containers because it gets confused by the <code class="code">train</code> and
+                            <code class="code">serve</code> arguments.</p>
+                </li><li class="listitem">
+                    <p><code class="code">/opt/ml</code> and all subdirectories are reserved by SageMaker training.
+                        When building your algorithm’s Docker image, make sure that you don't place
+                        any data that's required by your algorithm in this directory. Because if you
+                        do, the data may no longer be visible during training.</p>
+                </li></ul></div>
+            <p>To bundle your shell or Python scripts inside your Docker image, or to provide the
+                script in an Amazon S3 bucket or by using the AWS Command Line Interface (CLI), continue to the following
+                section.</p>
+             
+                <h3 id="your-algorithms-training-algo-dockerfile-script-sh">Bundle your
+                        shell script in a Docker container</h3>
+                <p> If you want to bundle a custom shell script inside your Docker image, use the
+                    following steps. </p>
+                <div class="orderedlist">
+                     
+                     
+                     
+                <ol><li>
+                        <p>Copy your shell script from your working directory to inside your
+                            Docker container. The following code snippet copies a custom entrypoint
+                            script <code class="code">custom_entrypoint.sh</code> from the current working
+                            directory to a Docker container located in <code class="code">mydir</code>. The
+                            following example assumes that the base Docker image has Python
+                            installed.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">FROM <code class="replaceable">&lt;base-docker-image&gt;</code>:<code class="replaceable">&lt;tag&gt;</code>
+
+# Copy custom entrypoint from current dir to /mydir on container
+COPY <code class="replaceable">./custom_entrypoint.sh /mydir/ </code></code></pre>
+                    </li><li>
+                        <p>Build and push a Docker container to the Amazon Elastic Container Registry (<a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/what-is-ecr.html">Amazon ECR</a>) by
+                            following the instructions at <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html">Pushing
+                                a Docker image</a> in the <em>Amazon ECR User
+                            Guide</em>.</p>
+                    </li><li>
+                        <p>Launch the training job by running the following AWS CLI command.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws --region <code class="replaceable">&lt;your-region&gt;</code> sagemaker create-training-job \
+--training-job-name <code class="replaceable">&lt;your-training-job-name&gt;</code> \
+--role-arn <code class="replaceable">&lt;your-execution-role-arn&gt;</code> \
+--algorithm-specification '<span>{</span> \ 
+    "TrainingInputMode": "File", \
+    "TrainingImage": "<code class="replaceable">&lt;your-ecr-image&gt;</code>", \
+    "ContainerEntrypoint": ["<code class="replaceable">/bin/sh</code>"], \
+    "ContainerArguments": ["<code class="replaceable">/mydir/custom_entrypoint.sh</code>"]}' \
+--output-data-config '<span>{</span>"S3OutputPath": "<code class="replaceable">s3://custom-entrypoint-output-bucket/</code>"}' \
+--resource-config '<span>{</span>"VolumeSizeInGB":<code class="replaceable">10</code>,"InstanceCount":<code class="replaceable">1</code>,"InstanceType":"<code class="replaceable">ml.m5.2xlarge</code>"}' \
+--stopping-condition '<span>{</span>"MaxRuntimeInSeconds": <code class="replaceable">180</code>}'                    </code></pre>
+                    </li></ol></div>
+             
+             
+                <h3 id="your-algorithms-training-algo-dockerfile-script-py">Bundle your
+                        Python script in a Docker container</h3>
+                <p>To bundle a custom Python script inside your Docker image, use the following
+                    steps. </p>
+                <div class="orderedlist">
+                     
+                     
+                <ol><li>
+                        <p>Copy your Python script from your working directory to inside your
+                            Docker container. The following code snippet copies a custom entrypoint
+                            script <code class="code">custom_entrypoint.py</code> from the current working
+                            directory to a Docker container located in <code class="code">mydir</code>.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">FROM <code class="replaceable">&lt;base-docker-image&gt;</code>:<code class="replaceable">&lt;tag&gt;</code>
+# Copy custom entrypoint from current dir to /mydir on container
+COPY <code class="replaceable">./custom_entrypoint.py /mydir/</code></code></pre>
+                    </li><li>
+                        <p>Launch the training job by running the following AWS CLI command.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">--algorithm-specification '<span>{</span> \ 
+    "TrainingInputMode": "File", \
+    "TrainingImage": "<code class="replaceable">&lt;your-ecr-image&gt;</code>", \
+    "ContainerEntrypoint": ["<code class="replaceable">python</code>"], \
+    "ContainerArguments": ["<code class="replaceable">/mydir/custom_entrypoint.py</code>"]}' \</code></pre>
+                    </li></ol></div>
+             
+         
+            <h2 id="your-algorithms-training-algo-dockerfile-api-pass-ep">Run a
+                    training job with an entrypoint script outside the Docker container</h2>
+            <p>You can use your own Docker container for training and pass in an entrypoint
+                script from outside the Docker container. There are some benefits to structuring
+                your entrypoint script outside the container. If you update your entrypoint script,
+                you don't need to rebuild the Docker container. You can also use several different
+                scripts to run in the same container. </p>
+            <p>Specify the location of your training script using the
+                    <code class="code">ContainerEntrypoint</code> and <code class="code">ContainerArguments</code> parameters
+                of the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AlgorithmSpecification.html">AlgorithmSpecification</a> API. These entrypoints and arguments behave in
+                the same manner as Docker entrypoints and arguments. The values in these parameters
+                override the corresponding <code class="code">ENTRYPOINT</code> or <code class="code">CMD</code> provided as
+                part of the Docker container. </p>
+            <p>When you pass your custom entrypoint script to your Docker training container, the
+                inputs that you provide determine the behavior of the container.</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>For example, if you provide only <code class="code">ContainerEntrypoint</code>, the
+                        request syntax using the CreateTrainingJob API is as follows.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "AlgorithmSpecification": <span>{</span>
+        "ContainerEntrypoint": ["<code class="replaceable">string</code>"],   
+        ...     
+        }       
+}</code></pre>
+                    <p>Then, the SageMaker training backend runs your custom entrypoint as
+                        follows.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker run --entrypoint <code class="replaceable">&lt;ContainerEntrypoint&gt;</code> image</code></pre>
+                    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If <code class="code">ContainerEntrypoint</code> is provided, the SageMaker training
+                            backend runs the image with the given entrypoint and overrides the
+                            default <code class="code">ENTRYPOINT</code> in the image.</p></div></div>
+                </li><li class="listitem">
+                    <p>If you provide only <code class="code">ContainerArguments</code>, SageMaker assumes that the
+                        Docker container contains an entrypoint script. The request syntax using the
+                            <code class="code">CreateTrainingJob</code> API is as follows.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "AlgorithmSpecification": <span>{</span>
+        "ContainerArguments": ["<code class="replaceable">arg1</code>", "<code class="replaceable">arg2</code>"],
+        ...
+    }
+}</code></pre>
+                    <p>The SageMaker training backend runs your custom entrypoint as follows.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker run image <code class="replaceable">&lt;ContainerArguments&gt;</code></code></pre>
+                </li><li class="listitem">
+                    <p>If your provide both the <code class="code">ContainerEntrypoint</code> and
+                            <code class="code">ContainerArguments</code>, then the request syntax using the
+                            <code class="code">CreateTrainingJob</code> API is as follows.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "AlgorithmSpecification": <span>{</span>
+        "ContainerEntrypoint": ["<code class="replaceable">string</code>"],
+        "ContainerArguments": ["<code class="replaceable">arg1</code>", "<code class="replaceable">arg2</code>"],
+        ...
+    }
+}                   </code></pre>
+                    <p> The SageMaker training backend runs your custom entrypoint as follows.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker run --entrypoint <code class="replaceable">&lt;ContainerEntrypoint&gt;</code> image <code class="replaceable">&lt;ContainerArguments&gt;</code></code></pre>
+                </li></ul></div>
+
+            <p>You can use any supported <code class="code">InputDataConfig</code> source in the
+                    <code class="code">CreateTrainingJob</code> API to provide an entrypoint script to run your
+                training image. </p>
+
+             
+                <h3 id="your-algorithms-training-algo-dockerfile-script-s3">Provide
+                        your entrypoint script in an Amazon S3 bucket</h3>
+                <p> To provide a custom entrypoint script using an S3 bucket, use the
+                        <code class="code">S3DataSource</code> parameter of the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DataSource.html#sagemaker-Type-DataSource-S3DataSource">DataSource</a> API to specify the location of the script. If you use
+                    the <code class="code">S3DataSource</code> parameter, the following are required.</p>
+                <div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>The <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Channel.html#sagemaker-Type-Channel-InputMode">InputMode</a> must be of the type <code class="code">File</code>.</p>
+                    </li><li class="listitem">
+                        <p>The <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DataSource.html#sagemaker-Type-DataSource-S3DataSource">S3DataDistributionType</a> must be
+                            <code class="code">FullyReplicated</code>.</p>
+                    </li></ul></div>
+                <p>The following example has a script called custom_entrypoint.sh placed in a
+                    path to an S3 bucket <code class="code">s3://&lt;bucket-name&gt;/&lt;bucket
+                        prefix&gt;/custom_entrypoint.sh</code>.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">#!/bin/bash
+echo "Running custom_entrypoint.sh"
+echo "Hello you have provided the following arguments: " "$@"</code></pre>
+                <p>Next, you must set the configuration of the input data channel to run a
+                    training job. Do this either by using the AWS CLI directly or with a JSON
+                    file.</p>
+                 
+                    <h4 id="your-algorithms-training-algo-dockerfile-script-s3-json">Configure the input data channel using AWS CLI with a JSON file</h4>
+                    <p>To configure your input data channel with a JSON file, use AWS CLI as shown
+                        in the following code structure. Ensure that all of the following fields use
+                        the request syntax defined in the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html#API_CreateTrainingJob_RequestSyntax">CreateTrainingJob</a> API.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json ">// run-my-training-job.json
+<span>{</span>
+ "<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html#sagemaker-CreateTrainingJob-request-AlgorithmSpecification">AlgorithmSpecification</a>": <span>{</span> 
+        "ContainerEntrypoint": ["<code class="replaceable">/bin/sh</code>"],
+        "ContainerArguments": ["/opt/ml/input/data/<code class="replaceable">&lt;your_channel_name&gt;</code>/<code class="replaceable">custom_entrypoint.sh</code>"],
+         ...
+   },
+  "<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html#sagemaker-CreateTrainingJob-request-InputDataConfig">InputDataConfig</a>": [ 
+    <span>{</span> 
+        "<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Channel.html#sagemaker-Type-Channel-ChannelName">ChannelName</a>": "<code class="replaceable">&lt;your_channel_name&gt;</code>",
+        "<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Channel.html#sagemaker-Type-Channel-DataSource">DataSource</a>": <span>{</span> 
+            "<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DataSource.html#sagemaker-Type-DataSource-S3DataSource">S3DataSource</a>": <span>{</span> 
+                "<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_S3DataSource.html#sagemaker-Type-S3DataSource-S3DataDistributionType">S3DataDistributionType</a>": "FullyReplicated",
+                "<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_S3DataSource.html#sagemaker-Type-S3DataSource-S3DataType">S3DataType</a>": "S3Prefix",
+                "<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_S3DataSource.html#sagemaker-Type-S3DataSource-S3Uri">S3Uri</a>": "s3://<code class="replaceable">&lt;bucket-name&gt;</code>/<code class="replaceable">&lt;bucket_prefix&gt;</code>"
+            }
+        },
+        "<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Channel.html#sagemaker-Type-Channel-InputMode">InputMode</a>": "File",
+    },
+    ...]
+}</code></pre>
+                    <p>Next, run the AWS CLI command to launch the training job from the JSON file
+                        as follows.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws sagemaker create-training-job --cli-input-json file:<code class="replaceable">//run-my-training-job.json</code></code></pre>
+                 
+                 
+                    <h4 id="your-algorithms-training-algo-dockerfile-script-s3-directly">Configure the input data channel using AWS CLI directly</h4>
+                    <p>To configure your input data channel without a JSON file, use the
+                        following AWS CLI code structure.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws --region <code class="replaceable">&lt;your-region&gt;</code> sagemaker create-training-job \
+--training-job-name <code class="replaceable">&lt;your-training-job-name&gt;</code> \
+--role-arn <code class="replaceable">&lt;your-execution-role-arn&gt;</code> \
+--algorithm-specification '<span>{</span> \
+    "TrainingInputMode": "File", \
+    "TrainingImage": "<code class="replaceable">&lt;your-ecr-image&gt;</code>", \
+    "ContainerEntrypoint": ["<code class="replaceable">/bin/sh</code>"], \
+    "ContainerArguments": ["<code class="replaceable">/opt/ml/input/data/&lt;your_channel_name&gt;/custom_entrypoint.sh"]}</code>' \
+--input-data-config '[<span>{</span> \
+    "ChannelName":"<code class="replaceable">&lt;your_channel_name&gt;</code>", \
+    "DataSource":<span>{</span> \
+        "S3DataSource":<span>{</span> \
+            "S3DataType":"S3Prefix", \
+            "S3Uri":"s3://<code class="replaceable">&lt;bucket-name&gt;</code>/<code class="replaceable">&lt;bucket_prefix&gt;</code>", \
+            "S3DataDistributionType":"FullyReplicated"}}}]' \
+--output-data-config '<span>{</span>"S3OutputPath": "<code class="replaceable">s3://custom-entrypoint-output-bucket/</code>"}' \
+--resource-config '<span>{</span>"VolumeSizeInGB":<code class="replaceable">10</code>,"InstanceCount":<code class="replaceable">1</code>,"InstanceType":"<code class="replaceable">ml.m5.2xlarge</code>"}' \
+--stopping-condition '<span>{</span>"MaxRuntimeInSeconds": <code class="replaceable">180</code>}'</code></pre>
+                 
+             
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./your-algorithms-training-algo.html">Use Your Own Training Algorithms</div><div id="next" class="next-link" accesskey="n" href="./your-algorithms-training-algo-running-container.html">Provide Training Information</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

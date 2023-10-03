@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Create a Human Review Workflow - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="a2i-create-flow-definition" /><meta name="default_state" content="a2i-create-flow-definition" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="create-human-review-console.html" /><meta name="description" content="Learn how to create a flow definition to configure your Amazon A2I human review loop. Use this topic to learn how to create a flow definition using the Amazon SageMaker console and the SageMaker API operation CreateFlowDefinition." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="create-human-review-console.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/a2i-create-flow-definition.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/a2i-create-flow-definition.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/a2i-create-flow-definition.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/a2i-create-flow-definition.html" hreflang="de" /><link rel="alternative" href="create-human-review-console.html" hreflang="en-us" /><link rel="alternative" href="create-human-review-console.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/a2i-create-flow-definition.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/a2i-create-flow-definition.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/a2i-create-flow-definition.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/a2i-create-flow-definition.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/a2i-create-flow-definition.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/a2i-create-flow-definition.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/a2i-create-flow-definition.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/a2i-create-flow-definition.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/a2i-create-flow-definition.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/a2i-create-flow-definition.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/a2i-create-flow-definition.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/a2i-create-flow-definition.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/a2i-create-flow-definition.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/a2i-create-flow-definition.html" hreflang="zh-tw" /><link rel="alternative" href="create-human-review-console.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Create a Human Review Workflow" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Create a Human Review Workflow - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#a2i-create-flow-definition" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/a2i-create-flow-definition.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/a2i-create-flow-definition.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/a2i-create-flow-definition.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Label data with a human-in-the-loop",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-label.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Using Amazon Augmented AI for Human Review",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-use-augmented-ai-a2i-human-review-loops.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Create a Human Review Workflow",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-use-augmented-ai-a2i-human-review-loops.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#a2i-create-flow-definition" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="create-human-review-console.html#a2i-create-human-review-console">Create a Human Review Workflow
+            (Console)</a><a href="create-human-review-console.html#a2i-create-human-review-api">Create a Human Review Workflow (API)</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="a2i-create-flow-definition">Create a Human Review Workflow</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Use an Amazon Augmented AI (Amazon A2I) <em>human review workflow</em>, or
+            <em>flow definition</em>, to specify the following:</p><div class="itemizedlist">
+         
+         
+         
+         
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p>For the Amazon Textract and Amazon Rekognition built-in task types, the conditions under which your
+                human loop is called</p>
+        </li><li class="listitem">
+            <p>The workforce to which your tasks are sent</p>
+        </li><li class="listitem">
+            <p>The set of instructions that your workforce receives, which is called a
+                    <em>worker task template</em></p>
+        </li><li class="listitem">
+            <p>The configuration of your worker tasks, including the number of workers that
+                receive a task and time limits to complete tasks </p>
+        </li><li class="listitem">
+            <p>Where your output data is stored </p>
+        </li></ul></div><p>You can create a human review workflow in the SageMaker console or using the SageMaker <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateFlowDefinition.html"><code class="code">CreateFlowDefinition</code></a> operation. You can build a worker task template
+        using the console for Amazon Textract and Amazon Rekognition task types while creating your flow
+        definition.</p><div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>Human loop activation conditions, which initiate the human loop—for example,
+            confidence thresholds—aren't available for Amazon A2I custom task types. When
+            using the console to create a flow definition for a custom task type, you can't specify
+            activation conditions. When using the Amazon A2I API to create a flow definition for a
+            custom task type, you can't set the <code class="code">HumanLoopActivationConditions</code> attribute
+            of the <code class="code">HumanLoopActivationConditionsConfig</code> parameter. To control when human
+            reviews are initiated, specify conditions under which <code class="code">StartHumanLoop</code> is
+            called in your custom application. In this case, every <code class="code">StartHumanLoop</code>
+            invocation results in a human review. For more information, see <a href="a2i-task-types-custom.html">Use Amazon Augmented AI with Custom Task Types</a>.</p></div></div><p><b>Prerequisites</b></p><p>To create a human review workflow definition, you must have completed the prerequisites described in <a href="a2i-getting-started-prerequisites.html">Prerequisites to Using Augmented AI</a>. </p><p>If you use the API to create a flow definition for any task type, or if you use a custom
+        task type when creating a flow definition in the console, first create a worker task
+        template. For more information, see <a href="a2i-instructions-overview.html">Create and Manage Worker Task Templates</a>.</p><p>If you want to preview your worker task template while creating a flow definition for a
+        built-in task type in the console, ensure that you grant the role that you use to create the
+        flow definition permission to access the Amazon S3 bucket that contains your template artifacts
+        using a policy like the one described in <a href="a2i-permissions-security.html#permissions-for-worker-task-templates-augmented-ai">Enable Worker Task
+        Template Previews </a>.</p><p></p><div class="highlights"><h6>Topics</h6><ul><li><a href="create-human-review-console.html#a2i-create-human-review-console">Create a Human Review Workflow
+            (Console)</a></li><li><a href="create-human-review-console.html#a2i-create-human-review-api">Create a Human Review Workflow (API)</a></li><li><a href="a2i-human-fallback-conditions-json-schema.html">JSON Schema for Human Loop
+            Activation Conditions in Amazon Augmented AI</a></li></ul></div>
+    <h2 id="a2i-create-human-review-console">Create a Human Review Workflow
+            (Console)</h2>
+    
+    <p>Use this procedure to create a Amazon Augmented AI (Amazon A2I) human review workflow using the SageMaker
+        console. If you are new to Amazon A2I, we recommend that you create a private work team
+        using people in your organization, and use this work team's ARN when creating your flow
+        definition. To learn how to set up a private workforce and create a work team, see <a href="sms-workforce-create-private-console.html">Create a Private Workforce (Amazon SageMaker
+            Console)</a>. If you have already set up a
+        private workforce, see <a href="sms-workforce-management-private-console.html#create-workteam-sm-console">Create a Work Team Using the SageMaker Console</a> to learn how to add a work team to that
+        workforce.</p>
+    <p>If you are using Amazon A2I with one of the built-in task types, you can create worker
+        instructions using a default worker task template provided by Augmented AI while creating a human
+        review workflow in the console. To see samples of the default templates provided by Augmented AI,
+        see the built-in task types in <a href="a2i-task-types-general.html">Use Cases and Examples Using Amazon A2I</a>.</p>
+    <div class="procedure"><h6>To create flow definition (console)</h6><ol><li>
+            <p>Open the SageMaker console at <a href="https://console.aws.amazon.com/sagemaker/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/sagemaker/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        </li><li>
+            <p>In the navigation pane, under the <b>Augmented AI</b> section, choose <b>Human review workflows</b> and then choose
+                <b>Create human review workflow</b>.</p>
+        </li><li>
+            <p>In <b>Overview</b>, do the following:</p>
+            <ol><li>
+                    <p>For <b>Name</b>, enter a unique workflow name. The name must
+                        be lowercase, unique within the AWS Region in your account, and can have
+                        up to 63 characters. Valid characters include: a-z, 0-9, and -
+                        (hyphen).</p>
+                </li><li>
+                    <p>For <b>S3 location for output</b>, enter the S3 bucket where
+                        you want to store the human review results. The bucket must be located in
+                        the same AWS Region as the workflow.</p>
+                </li><li>
+                    <p>For <b>IAM role</b>, choose the role that has the required
+                        permissions. If you choose a built-in task type and want to preview your
+                        worker template in the console, provide a role with the type of policy
+                        described in <a href="a2i-permissions-security.html#permissions-for-worker-task-templates-augmented-ai">Enable Worker Task
+        Template Previews </a>
+                        attached.</p>
+                </li></ol>
+        </li><li>
+            <p>For <b>Task type</b>, choose the task type that you want the human
+                worker to perform. </p>
+        </li><li>
+            <p>If you chose the Amazon Rekognition or Amazon Textract task type, specify the conditions that invoke
+                human review.</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>For Amazon Rekognition image moderation tasks, choose an inference confidence score
+                        threshold interval that initiates human review. </p>
+                </li><li class="listitem">
+                    <p>For Amazon Textract tasks, you can initiate a human review when specific form
+                        keys are missing or when form key detection confidence is low. You can also
+                        initiate a human review if, after evaluating all of the form keys in the
+                        text, confidence is lower than your required threshold for any form key. Two
+                        variables specify your confidence thresholds: <b>Identification
+                            confidence</b> and <b>Qualification
+                            confidence</b>. To learn more about these variables, see <a href="a2i-textract-task-type.html">Use Amazon Augmented AI with Amazon Textract</a>.</p>
+                </li><li class="listitem">
+                    <p>For both task types, you can randomly send a percentage of data objects
+                        (images or forms) and their labels to humans for review. </p>
+                </li></ul></div>
+        </li><li>
+            <p>Configure and specify your worker task template:</p>
+        <ol><li><p>If you are using the Amazon Rekognition or Amazon Textract task type:</p>
+            <ol><li>
+                <p>In the <b>Create template</b> section: </p>
+                            <div class="itemizedlist">
+                                 
+                                     
+                               
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p>To create instructions for your workers using the
+                                        Amazon A2I default template for Amazon Rekognition and Amazon Textract task
+                                        types, choose <b>Build from a default
+                                            template</b>.</p>
+                                    <div class="itemizedlist">
+                                           
+                                
+                                    <ul class="itemizedlist"><li class="listitem">
+                                            <p>If you choose <b>Build from a default
+                                                  template</b>, create your instructions
+                                                under <b>Worker task design</b>: </p>
+                                            <div class="itemizedlist">
+                                                 
+                                                 
+                                                 
+                                            <ul class="itemizedlist"><li class="listitem">
+                                                  <p>Provide a <b>Template name</b>
+                                                  that is unique in the AWS Region you are in.
+                                                  </p>
+                                                </li><li class="listitem">
+                                                  <p>In the <b>Instructions</b>
+                                                  section, provide detailed instructions on how to
+                                                  complete your task. To help workers achieve
+                                                  greater accuracy, provide good and bad examples.
+                                                  </p>
+                                                </li><li class="listitem">
+                                                  <p>(Optional) In <b>Additional
+                                                  instructions</b>, provide your workers with
+                                                  additional information and instructions. </p>
+                                                  <p>For information on creating effective
+                                                  instructions, see <a href="a2i-creating-good-instructions-guide.html">Creating Good Worker Instructions</a>.</p>
+                                                </li></ul></div>
+                                        </li></ul></div>  
+                                </li><li class="listitem">
+                                        <p>To select a custom template that you've created,
+                                            choose it from the <b>Template</b>
+                                            menu and provide a <b>Task
+                                                description</b> to briefly describe the
+                                            task for your workers. To learn how to create a
+                                            custom template, see <a href="a2i-worker-template-console.html#a2i-create-worker-template-console">Create a Worker Task Template</a>.</p>
+                                    </li></ul></div>
+                </li></ol>
+            </li><li>
+                    <p>If you are using the custom task type:</p>
+                    <ol><li>
+                            <p>In the <b>Worker task template</b> section, select
+                                your template from the list. All of the templates that you have
+                                created in the SageMaker console appear in this list. To learn how to
+                                create a template for custom task types, see <a href="a2i-instructions-overview.html">Create and Manage Worker Task Templates</a>.</p>
+                        </li></ol>
+                </li></ol>
+        </li><li>
+            <p>(Optional) Preview your worker template: </p>
+            <p>For Amazon Rekognition and Amazon Textract task types, you have the option to choose <b>See a
+                    sample worker task</b> to preview your worker task UI.</p>
+            <p>If you are creating a flow definition for a custom task type, you can preview your
+                worker task UI using the <code class="code">RenderUiTemplate</code> operation. For more
+                information, see <a href="a2i-custom-templates.html#a2i-preview-your-custom-template">Preview a Worker Task
+                Template</a>.</p>
+        </li><li>
+            <p>For <b>Workers</b>, choose a workforce type.</p>
+        </li><li>
+            <p>Choose <b>Create</b>.</p>
+        </li></ol></div>
+ 
+     
+        <h3 id="a2i-next-step-createflowdefinition-console">Next Steps</h3>
+        <p>After you've created a human review workflow, it appears in the console under
+                <b>Human review workflows</b>. To see your flow definition's Amazon
+            Resource Name (ARN) and configuration details, choose the workflow by selecting its
+            name. </p>
+        <p>If you are using a built-in task type, you can use the flow definition ARN to start a
+            human loop using that AWS service's API (for example, the Amazon Textract API). For custom
+            task types, you can use the ARN to start a human loop using the Amazon Augmented AI Runtime API.
+            To learn more about both options, see <a href="a2i-start-human-loop.html">Create and Start a Human Loop</a>.</p>
+     
+ 
+    <h2 id="a2i-create-human-review-api">Create a Human Review Workflow (API)</h2>
+        
+        <p>To create a flow definition using the SageMaker API, you use the
+            <code class="code">CreateFlowDefinition</code> operation. After you complete the <a href="a2i-getting-started-prerequisites.html">Prerequisites to Using Augmented AI</a>, use the following procedure to
+        learn how to use this API operation. </p>
+    <p>For an overview of the <code class="code">CreateFlowDefinition</code> operation, and details about each
+        parameter, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateFlowDefinition.html"><code class="code">CreateFlowDefinition</code></a>. </p>
+  
+        <div class="procedure"><h6>To create a flow definition (API)</h6><ol><li>
+                <p>For <code class="code">FlowDeﬁnitionName</code>, enter a unique name. The name must be
+                unique within the AWS Region in your account, and can have up to 63 characters.
+                Valid characters include: a-z, 0-9, and - (hyphen).</p>
+            </li><li>
+                <p>For <code class="code">RoleArn</code>, enter the ARN of the role that you configured to
+                grant access to your data sources.</p>
+            </li><li>
+                <p>For <code class="code">HumanLoopConfig</code>, enter information about the workers and what
+                they should see. For information about each parameter in
+                    <code class="code">HumanLoopConfig</code>, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateFlowDefinition.html#sagemaker-CreateFlowDefinition-request-HumanLoopActivationConfig">HumanLoopConfig</a>.</p>
+            </li><li>
+                <p>(Optional) If you are using a built-in task type, provide conditions that
+                initiate a human loop in <code class="code">HumanLoopActivationConﬁg</code>. To learn how to
+                create the input required for the <code class="code">HumanLoopActivationConﬁg</code> parameter,
+                see <a href="a2i-human-fallback-conditions-json-schema.html">JSON Schema for Human Loop
+            Activation Conditions in Amazon Augmented AI</a>. If you do not
+                specify conditions here, when you provide a flow definition to the AWS service
+                associated with a built-in task type (for example, Amazon Textract or Amazon Rekognition), that
+                service sends every task to a human worker for review. </p>
+            <p>If you are using a custom task type, <code class="code">HumanLoopActivationConfig</code> is
+                disabled. To learn how to control when tasks are sent to human workers using a
+                custom task type, see <a href="a2i-task-types-custom.html">Use Amazon Augmented AI with Custom Task Types</a>.</p>
+            </li><li>
+            <p>(Optional) If you are using a built-in task type, specify the integration source
+                (for example, Amazon Rekognition or Amazon Textract) in the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HumanLoopRequestSource.html">HumanLoopRequestSource</a> parameter.</p>
+        </li><li>
+                <p>For <code class="code">OutputConfig</code>, indicate where in Amazon Simple Storage Service (Amazon S3) to store the
+                    output of the human loop.</p>
+            </li><li>
+            <p>(Optional) Use <code class="code">Tags</code> to enter key-value pairs to help you categorize
+                and organize a flow definition. Each tag consists of a key and a value, both of
+                which you define.</p>
+        </li></ol></div>
+    <awsdocs-tabs><dl style="display: none">
+        <dt>Amazon Textract – Key-value pair extraction</dt><dd tab-id="amazon-textract-–-key-value-pair-extraction">
+                <p>The following is an example of a request to create an Amazon Textract human review
+                    workflow (flow definition) using the AWS SDK for Python (Boto3). You must use
+                        <code class="code">'AWS/Textract/AnalyzeDocument/Forms/V1'</code> to create a Amazon Textract
+                    human loop. Only include <code class="code">PublicWorkforceTaskPrice</code> if you are using
+                    the Mechanical Turk workforce.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">sagemaker_client = boto3.client('sagemaker', <code class="replaceable">aws_region</code>)
+
+response = sagemaker_client.create_flow_definition(
+    FlowDefinitionName='ExampleFlowDefinition',
+    HumanLoopRequestSource=<span>{</span>
+         'AwsManagedHumanLoopRequestSource': 'AWS/Textract/AnalyzeDocument/Forms/V1'
+    }, 
+    HumanLoopActivationConfig=<span>{</span>
+        'HumanLoopActivationConditionsConfig': <span>{</span>
+            'HumanLoopActivationConditions': '<span>{</span><code class="replaceable">...</code>}'
+        }
+    },
+    HumanLoopConfig=<span>{</span>
+        'WorkteamArn': 'arn:aws:sagemaker:<code class="replaceable">aws_region</code>:<code class="replaceable">aws_account_number</code>:workteam/private-crowd/<code class="replaceable">workteam_name</code>',
+        'HumanTaskUiArn': 'arn:aws:sagemaker:<code class="replaceable">aws_region</code>:<code class="replaceable">aws_account_number</code>:human-task-ui/<code class="replaceable">template_name</code>',
+        'TaskTitle': 'Example task title',
+        'TaskDescription': 'Example task description.',
+        'TaskCount': <code class="replaceable">123</code>,
+        'TaskAvailabilityLifetimeInSeconds': <code class="replaceable">123</code>,
+        'TaskTimeLimitInSeconds': <code class="replaceable">123</code>,
+        'TaskKeywords': [
+            'Keyword1','Keyword2'
+        ],
+        'PublicWorkforceTaskPrice': <span>{</span>
+            'AmountInUsd': <span>{</span>
+                'Dollars': <code class="replaceable">123</code>,
+                'Cents': <code class="replaceable">123</code>,
+                'TenthFractionsOfACent': <code class="replaceable">123</code>
+            }
+        }
+    },
+    OutputConfig=<span>{</span>
+        'S3OutputPath': 's3://<code class="replaceable">bucket/path/</code>',
+        'KmsKeyId': '1234abcd-12ab-34cd-56ef-1234567890ab'
+    },
+    RoleArn='arn:aws:iam::<code class="replaceable">aws_account_number</code>:role/<code class="replaceable">role_name</code>',
+    Tags=[
+        <span>{</span>
+            'Key': 'KeyName',
+            'Value': 'ValueName'
+        },
+    ]
+)</code></pre>
+            </dd>
+        <dt>Amazon Rekognition – Image moderation</dt><dd tab-id="amazon-rekognition-–-image-moderation">
+                <p>The following is an example of a request to create an Amazon Rekognition human review
+                    workflow (flow definition) using the AWS SDK for Python (Boto3). You must use
+                        <code class="code">'AWS/Rekognition/DetectModerationLabels/Image/V3'</code> to create an
+                    Amazon Rekognition flow definition. Only include <code class="code">PublicWorkforceTaskPrice</code> if you
+                    are using the Mechanical Turk workforce.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">sagemaker_client = boto3.client('sagemaker', <code class="replaceable">aws_region</code>)
+
+response = sagemaker_client.create_flow_definition(
+    FlowDefinitionName='ExampleFlowDefinition',
+    HumanLoopRequestSource=<span>{</span>
+         'AwsManagedHumanLoopRequestSource': 'AWS/Rekognition/DetectModerationLabels/Image/V3'
+    }, 
+    HumanLoopActivationConfig=<span>{</span>
+        'HumanLoopActivationConditionsConfig': <span>{</span>
+            'HumanLoopActivationConditions': '<span>{</span><code class="replaceable">...</code>}'
+        }
+    },
+    HumanLoopConfig=<span>{</span>
+        'WorkteamArn': 'arn:aws:sagemaker:<code class="replaceable">aws_region</code>:<code class="replaceable">aws_account_number</code>:workteam/private-crowd/<code class="replaceable">workteam_name</code>',
+        'HumanTaskUiArn': 'arn:aws:sagemaker:<code class="replaceable">aws_region</code>:<code class="replaceable">aws_account_number</code>:human-task-ui/<code class="replaceable">template_name</code>',
+        'TaskTitle': 'Example task title',
+        'TaskDescription': 'Example task description.',
+        'TaskCount': <code class="replaceable">123</code>,
+        'TaskAvailabilityLifetimeInSeconds': <code class="replaceable">123</code>,
+        'TaskTimeLimitInSeconds': <code class="replaceable">123</code>,
+        'TaskKeywords': [
+            'Keyword1','Keyword2'
+        ],
+        'PublicWorkforceTaskPrice': <span>{</span>
+            'AmountInUsd': <span>{</span>
+                'Dollars': <code class="replaceable">123</code>,
+                'Cents': <code class="replaceable">123</code>,
+                'TenthFractionsOfACent': <code class="replaceable">123</code>
+            }
+        }
+    },
+    OutputConfig=<span>{</span>
+        'S3OutputPath': 's3://<code class="replaceable">bucket/path/</code>',
+        'KmsKeyId': '1234abcd-12ab-34cd-56ef-1234567890ab'
+    },
+    RoleArn='arn:aws:iam::<code class="replaceable">aws_account_number</code>:role/<code class="replaceable">role_name</code>',
+    Tags=[
+        <span>{</span>
+            'Key': <code class="replaceable">'KeyName'</code>,
+            'Value': <code class="replaceable">'ValueName'</code>
+        },
+    ]
+)</code></pre>
+            </dd>
+        <dt>Custom Workflow</dt><dd tab-id="custom-workflow">
+                <p>The following is an example of a request to create a human review workflow
+                    (flow definition) for a custom integration. To create this type of human review
+                    workflow, omit <code class="code">HumanLoopRequestSource</code> from the flow definition
+                    request. You only need to include <code class="code">PublicWorkforceTaskPrice</code> if you
+                    are using the Mechanical Turk workforce.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">sagemaker_client = boto3.client('sagemaker', <code class="replaceable">aws_region</code>)
+
+response = sagemaker_client.create_flow_definition(
+    FlowDefinitionName='ExampleFlowDefinition',
+    HumanLoopActivationConfig=<span>{</span>
+        'HumanLoopActivationConditionsConfig': <span>{</span>
+            'HumanLoopActivationConditions': '<span>{</span><code class="replaceable">...</code>}'
+        }
+    },
+    HumanLoopConfig=<span>{</span>
+        'WorkteamArn': 'arn:aws:sagemaker:<code class="replaceable">aws_region</code>:<code class="replaceable">aws_account_number</code>:workteam/private-crowd/<code class="replaceable">workteam_name</code>',
+        'HumanTaskUiArn': 'arn:aws:sagemaker:<code class="replaceable">aws_region</code>:<code class="replaceable">aws_acount_number</code>:human-task-ui/<code class="replaceable">template_name</code>',
+        'TaskTitle': 'Example task title',
+        'TaskDescription': 'Example task description.',
+        'TaskCount': <code class="replaceable">123</code>,
+        'TaskAvailabilityLifetimeInSeconds': <code class="replaceable">123</code>,
+        'TaskTimeLimitInSeconds': <code class="replaceable">123</code>,
+        'TaskKeywords': [
+            'Keyword1','Keyword2'
+        ],
+        'PublicWorkforceTaskPrice': <span>{</span>
+            'AmountInUsd': <span>{</span>
+                'Dollars': <code class="replaceable">123</code>,
+                'Cents': <code class="replaceable">123</code>,
+                'TenthFractionsOfACent': <code class="replaceable">123</code>
+            }
+        }
+    },
+    OutputConfig=<span>{</span>
+        'S3OutputPath': 's3://<code class="replaceable">bucket/path/</code>',
+        'KmsKeyId': '1234abcd-12ab-34cd-56ef-1234567890ab'
+    },
+    RoleArn='arn:aws:iam::<code class="replaceable">account_number</code>:role/<code class="replaceable">role_name</code>',
+    Tags=[
+        <span>{</span>
+            'Key': <code class="replaceable">'KeyName'</code>,
+            'Value': <code class="replaceable">'ValueName'</code>
+        },
+    ]
+)</code></pre>
+            </dd>
+    </dl></awsdocs-tabs>
+        
+     
+        <h3 id="a2i-next-step-createflowdefinition-api">Next Steps</h3>
+        <p>The return value of a successful call of the <code class="code">CreateFlowDefinition</code> API
+            operation is a flow definition Amazon Resource Name (ARN).</p>
+        <p>If you are using a built-in task type, you can use the flow definition ARN to start a
+            human loop using that AWS service's API (i.e. the Amazon Textract API). For custom task
+            types, you can use the ARN to start a human loop using the Amazon Augmented AI Runtime API. To
+            learn more about both of these options, see <a href="a2i-start-human-loop.html">Create and Start a Human Loop</a>.</p>
+     
+
+<awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./a2i-task-types-custom.html">Use With Custom Task Types</div><div id="next" class="next-link" accesskey="n" href="./a2i-human-fallback-conditions-json-schema.html">JSON Schema for Human Loop
+            Activation Conditions in Amazon Augmented AI</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/a2i-create-flow-definition.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/a2i-create-flow-definition.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

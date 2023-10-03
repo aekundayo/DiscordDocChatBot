@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configure Parameters to Monitor Attribution Drift - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="clarify-config-json-monitor-model-explainability-parameters" /><meta name="default_state" content="clarify-config-json-monitor-model-explainability-parameters" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="clarify-config-json-monitor-model-explainability-parameters.html" /><meta name="description" content="How to configure parameters for monitoring attribution drift in Amazon SageMaker Clarify." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="clarify-config-json-monitor-model-explainability-parameters.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" hreflang="de" /><link rel="alternative" href="clarify-config-json-monitor-model-explainability-parameters.html" hreflang="en-us" /><link rel="alternative" href="clarify-config-json-monitor-model-explainability-parameters.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" hreflang="zh-tw" /><link rel="alternative" href="clarify-config-json-monitor-model-explainability-parameters.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Configure Parameters to Monitor Attribution Drift" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Configure Parameters to Monitor Attribution Drift - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#clarify-config-json-monitor-model-explainability-parameters" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Monitor data and model quality",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Monitor Feature Attribution Drift for Models in Production",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-model-monitor-feature-attribution-drift.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Configure Parameters to Monitor Attribution Drift",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-model-monitor-feature-attribution-drift.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#clarify-config-json-monitor-model-explainability-parameters" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="clarify-config-json-monitor-model-explainability-parameters.html#clarify-config-json-monitor-model-explainability-parameters-examples">Example JSON Configuration Files for CSV and JSON Lines Datasets</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="clarify-config-json-monitor-model-explainability-parameters">Configure
+                Parameters to Monitor Attribution Drift</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon SageMaker Clarify explainability monitor reuses a subset of the parameters used in the
+            analysis configuration of <a href="clarify-processing-job-configure-analysis.html">Configure the Analysis</a>. The following
+            parameters must be provided in a JSON file and the path must be provided in the
+                <code class="code">ConfigUri</code> parameter of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ModelExplainabilityAppSpecification"><code class="code">ModelExplainabilityAppSpecification</code></a>.</p><div class="itemizedlist">
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><code class="code">"<b>version</b>"</code> – (Optional)
+                    Schema version of the configuration file. If not provided, the latest supported
+                    version is used.</p>
+            </li><li class="listitem">
+                <p><code class="code">"<b>headers</b>"</code> – (Optional) A
+                    list of feature names in the dataset. Explainability analysis does not require
+                    labels. </p>
+            </li><li class="listitem">
+                <p><code class="code">"<b>methods</b>"</code> – A list of
+                    methods and their parameters for the analyses and reports. If any section is
+                    omitted, then it is not computed.</p>
+                <div class="itemizedlist">
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="code">"shap"</code> – (Optional) Section on SHAP value
+                            computation.</p>
+                        <div class="itemizedlist">
+                             
+                             
+                             
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p><code class="code">"baseline"</code> – (Optional) A list of rows (at
+                                    least one), or an Amazon Simple Storage Service Amazon S3 object URI. To be used as the
+                                    baseline dataset (also known as a background dataset) in the
+                                    Kernel SHAP algorithm. The format should be the same as the
+                                    dataset format. Each row should contain only the feature columns
+                                    (or values). Before you send each row to the model, omit any
+                                    column that must be excluded.</p>
+                            </li><li class="listitem">
+                                <p><code class="code">"num_samples"</code> – Number of samples to be
+                                    used in the Kernel SHAP algorithm. This number determines the
+                                    size of the generated synthetic dataset to compute the SHAP
+                                    values. If not provided, then a SageMaker Clarify job chooses the value
+                                    based on a count of features.</p>
+                            </li><li class="listitem">
+                                <p><code class="code">"agg_method"</code> – Aggregation method for
+                                    global SHAP values. Valid values are as follows:</p>
+                                <div class="itemizedlist">
+                                     
+                                     
+                                     
+                                <ul class="itemizedlist"><li class="listitem">
+                                        <p><code class="code">"mean_abs"</code> – Mean of absolute SHAP
+                                            values for all instances.</p>
+                                    </li><li class="listitem">
+                                        <p><code class="code">"median"</code> – Median of SHAP values
+                                            for all instances.</p>
+                                    </li><li class="listitem">
+                                        <p><code class="code">"mean_sq"</code> – Mean of squared SHAP
+                                            values for all instances.</p>
+                                    </li></ul></div>
+                            </li><li class="listitem">
+                                <p><code class="code">"use_logit"</code> – (Optional) Boolean value to
+                                    indicate if the logit function is to be applied to the model
+                                    predictions. If <code class="code">"use_logit"</code> is
+                                            <code class="code"><code class="code">true</code></code>, then the SHAP values
+                                    have log-odds units. The default value is <code class="code">false</code>.
+                                </p>
+                            </li><li class="listitem">
+                                <p><code class="code">"save_local_shap_values"</code> – (Optional)
+                                    Boolean value to indicate if local SHAP values are to be saved
+                                    in the output location. Use <code class="code">true</code> to save them. Use
+                                        <code class="code">false</code> to not save them. The default is
+                                        <code class="code">false</code>.</p>
+                            </li></ul></div>
+                    </li></ul></div>
+
+            </li><li class="listitem">
+                <p><code class="code">"<b>predictor</b>"</code> – (Optional for real-time endpoint, required for batch transform)
+                    Section on model parameters, required if <code class="code">"shap"</code> and
+                        <code class="code">"post_training_bias"</code> sections are present.</p>
+                <div class="itemizedlist">
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+
+                <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="code">"model_name"</code> – Model name created by
+                                <code class="code">CreateModel</code> API, with container mode as
+                                <code class="code">SingleModel</code>.</p>
+                    </li><li class="listitem">
+                        <p><code class="code">"instance_type"</code> – Instance type for the shadow
+                            endpoint.</p>
+                    </li><li class="listitem">
+                        <p><code class="code">"initial_instance_count"</code> – Instance count for the
+                            shadow endpoint.</p>
+                    </li><li class="listitem">
+                        <p><code class="code">"content_type"</code> – (Optional) The model input format
+                            to be used for getting inferences with the shadow endpoint. Valid values
+                            are <code class="code">"text/csv"</code> for CSV,
+                                <code class="code">"application/jsonlines"</code> for JSON Lines,
+                                <code class="code">application/x-parquet</code> for Apache Parquet, and
+                                <code class="code">application/x-image</code> to enable Computer Vision
+                            explainability. The default value is the same as the
+                                <code class="code">dataset_type</code> format.</p>
+                    </li><li class="listitem">
+                        <p><code class="code">"accept_type"</code> – (Optional) The model <em>output</em> format to be used for getting
+                            inferences with the shadow endpoint. Valid values are
+                                <code class="code">"text/csv"</code> for CSV,
+                                <code class="code">"application/jsonlines"</code> for JSON Lines. If omitted,
+                            SageMaker Clarify uses the response data type of the captured data.</p>
+                    </li><li class="listitem">
+                        <p><code class="code">"content_template"</code> – (Optional) A template string
+                            used to construct the model input from dataset instances. It is only
+                            used when <code class="code">"content_type"</code> is
+                                <code class="code">"application/jsonlines"</code>. The template should have only
+                            one placeholder, <code class="code">$features</code>, which is replaced by the
+                            features list at runtime. For example, given
+                                <code class="code">"content_template":"<span>{</span>\"myfeatures\":$features}"</code>, if an
+                            instance (no label) is <code class="code">1,2,3</code>, then model input becomes JSON
+                            Lines <code class="code">'<span>{</span>"myfeatures":[1,2,3]}'</code>.</p>
+                    </li><li class="listitem">
+                        <p><code class="code">"label_headers"</code> – (Optional) A list of values that
+                            the <code class="code">"label"</code> takes in the dataset. Associates the scores
+                            returned by the model endpoint or batch transform job with their corresponding label values. If
+                            it is provided, then the analysis report uses the headers instead of
+                            placeholders like <code class="code">“label0”</code>.</p>
+                    </li></ul></div>
+            </li></ul></div><p>The other parameters should be provided in <code class="code">EndpointInput</code> (for real-time endpoints)
+            or <code class="code">BatchTransformInput</code> (for batch transform jobs) of the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ModelExplainabilityJobInput"><code class="code">ModelExplainabilityJobInput</code></a> API.</p><div class="itemizedlist">
+             
+
+             
+
+        <ul class="itemizedlist"><li class="listitem">
+                <p><code class="code">FeaturesAttribute</code> – This parameter is required if endpoint or batch job
+                    input data format is <code class="code">"application/jsonlines"</code>. It is the JMESPath
+                    used to locate the feature columns if the dataset format is JSON Lines.</p>
+            </li><li class="listitem">
+                <p><code class="code">ProbabilityAttribute</code> – Index or JMESPath location in the
+                    model output for probabilities. If the model output is JSON Lines with a list of
+                    labels and probabilities, for example, then the label that corresponds to the
+                    maximum probability is selected for bias computations.</p>
+            </li></ul></div>
+            <h2 id="clarify-config-json-monitor-model-explainability-parameters-examples">Example JSON Configuration Files for CSV and JSON Lines Datasets</h2>
+
+            <p>Here are examples of the JSON files used to configure CSV and JSON Lines datasets
+                to monitor them for feature attribution drift.</p>
+
+            <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="clarify-config-json-monitor-model-explainability-parameters.html#clarify-config-json-monitor-model-explainability-parameters-example-csv">CSV Datasets</a></li><li><a href="clarify-config-json-monitor-model-explainability-parameters.html#clarify-config-json-monitor-model-explainability-parameters-example-jsonlines">JSON Lines Datasets</a></li></ul></div>
+
+             
+                <h3 id="clarify-config-json-monitor-model-explainability-parameters-example-csv">CSV Datasets</h3>
+
+                <p>Consider a dataset that has three numerical feature columns, as in the
+                    following example.</p>
+
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">0.5814568701544718, 0.6651538910132964, 0.3138080342665499
+0.6711642728531724, 0.7466687034026017, 0.1215477472819713
+0.0453256543003371, 0.6377430803264152, 0.3558625219713576
+0.4785191813363956, 0.0265841045263860, 0.0376935084990697</code></pre>
+                <p>Assume that the model output has two columns, where the first one is the
+                    predicted label and the second one is the probability, as in the following
+                    example.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">1, 0.5385257417814224</code></pre>
+
+                <p>The following example JSON configuration file shows how this CSV dataset can
+                    be configured.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+                    
+    "headers": [
+        "feature_1",
+        "feature_2",
+        "feature_3"
+    ],
+    "methods": <span>{</span>
+        "shap": <span>{</span>
+            "baseline": [
+                [0.4441164946610942, 0.5190374448171748, 0.20722795300473712]
+            ],
+            "num_samples": 100,
+            "agg_method": "mean_abs"
+        }
+    },
+    "predictor": <span>{</span>
+        "model_name": "my_model",
+        "instance_type": "ml.m5.xlarge",
+        "initial_instance_count": 1
+    }
+}</code></pre>
+                <p>The predicted label is selected by the <code class="code">"ProbabilityAttribute"</code>
+                    parameter. Zero-based numbering is used, so 1 indicates the second column of the
+                    model output.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">"EndpointInput": <span>{</span>
+    ...
+    "ProbabilityAttribute": 1
+    ...
+}</code></pre>
+
+             
+
+
+             
+                <h3 id="clarify-config-json-monitor-model-explainability-parameters-example-jsonlines">JSON Lines Datasets</h3>
+
+                <p>Consider a dataset that has four feature columns and one label column, where
+                    the first feature and the label are binary, as in the following example.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>"features":[0, 0.5814568701544718, 0.6651538910132964, 0.3138080342665499], "label":0}
+<span>{</span>"features":[1, 0.6711642728531724, 0.7466687034026017, 0.1215477472819713], "label":1}
+<span>{</span>"features":[0, 0.0453256543003371, 0.6377430803264152, 0.3558625219713576], "label":1}
+<span>{</span>"features":[1, 0.4785191813363956, 0.0265841045263860, 0.0376935084990697], "label":1}</code></pre>
+
+                <p>The model input is the same as the dataset format, and the model output are
+                    JSON Lines, as in the following example.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>"predicted_label":1, "probability":0.5385257417814224}</code></pre>
+
+                <p>In the following example, the JSON configuration file shows how this JSON
+                    Lines dataset can be configured.</p>
+
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "headers": [
+        "feature_1",
+        "feature_2",
+        "feature_3"
+    ],
+    "methods": <span>{</span>
+        "shap": <span>{</span>
+            "baseline": [
+                <span>{</span>"features":[0.4441164946610942, 0.5190374448171748, 0.20722795300473712]}
+            ],
+            "num_samples": 100,
+            "agg_method": "mean_abs"
+        }
+    },
+    "predictor": <span>{</span>
+        "model_name": "my_model",
+        "instance_type": "ml.m5.xlarge",
+        "initial_instance_count": 1,
+        "content_template":"<span>{</span>\"features\":$features}"
+    }
+}</code></pre>
+
+                <p>Then the <code class="code">"features"</code> parameter value in <code class="code">EndpointInput</code> (for real-time endpoints)
+            or <code class="code">BatchTransformInput</code> (for batch transform jobs)
+                    is used to locate the features in the dataset, and the
+                        <code class="code">"probability"</code> parameter value selects the probability value
+                    from model output.</p>
+
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">"EndpointInput": <span>{</span>
+    ...
+    "FeaturesAttribute": "features",
+    "ProbabilityAttribute": "probability",
+    ...
+}</code></pre>
+
+             
+
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./clarify-model-monitor-model-attribution-drift-violations.html">Feature Attribution Drift Violations</div><div id="next" class="next-link" accesskey="n" href="./clarify-model-monitor-feature-attribute-drift-schedule.html">Schedule
+                Feature Attribute Drift Monitoring Jobs</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-config-json-monitor-model-explainability-parameters.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

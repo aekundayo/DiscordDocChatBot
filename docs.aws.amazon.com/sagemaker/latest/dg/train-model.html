@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Train machine learning models - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="train-model" /><meta name="default_state" content="train-model" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="train-model.html" /><meta name="description" content="Train Amazon SageMaker models." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="train-model.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/train-model.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/train-model.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/train-model.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/train-model.html" hreflang="de" /><link rel="alternative" href="train-model.html" hreflang="en-us" /><link rel="alternative" href="train-model.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/train-model.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/train-model.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/train-model.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/train-model.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/train-model.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/train-model.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/train-model.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/train-model.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/train-model.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/train-model.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/train-model.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/train-model.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/train-model.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/train-model.html" hreflang="zh-tw" /><link rel="alternative" href="train-model.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Train machine learning models" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Train machine learning models - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#train-model" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/train-model.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/train-model.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/train-model.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#train-model" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="train-model.html#train-model-simple-case">The simplest training workflow in SageMaker</a><a href="train-model.html#train-model-full-view">Full view of the SageMaker Training workflow and
+                features</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="train-model">Train machine learning models</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>The training stage of the full machine learning (ML) lifecycle spans from accessing your
+        training dataset to generating a final model and selecting the best performing model for
+        deployment. The following sections provide an overview of available SageMaker training features
+        and resources with in-depth technical information for each.</p>
+        <h2 id="train-model-simple-case">The simplest training workflow in SageMaker</h2>
+        <p>If you’re using SageMaker for the first time and want to find a quick ML solution to train
+            a model on your dataset, consider using a no-code or low-code solution such as <a href="canvas.html"> SageMaker Canvas</a>, <a href="studio-jumpstart.html">SageMaker JumpStart
+                within SageMaker Studio</a>, or <a href="autopilot-automate-model-development.html">SageMaker
+                Autopilot</a>.</p>
+        <p>For intermediate coding experiences, consider using a <a href="notebooks.html">SageMaker Studio notebook</a> or <a href="nbi.html">SageMaker Notebook
+                Instances</a>. To get started, follow the instructions at <a href="ex1-train-model.html">Step 4: Train a Model</a> of the SageMaker <em>Getting
+                Started</em> guide. We recommend this for use cases in which you create your
+            own model and training script using an ML framework. </p>
+        <p>The following architecture diagram shows how SageMaker manages ML training jobs and
+            provisions Amazon EC2 instances on behalf of SageMaker users. You as a SageMaker user can bring your
+            own training dataset, saving it to Amazon S3. You can choose an ML model training from
+            available SageMaker built-in algorithms, or bring your own training script with a model built
+            with popular machine learning frameworks.</p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/sagemaker-training.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:100%" />
+             
+        </div>
+     
+        <h2 id="train-model-full-view">Full view of the SageMaker Training workflow and
+                features</h2>
+        <p>The full journey of ML training involves tasks beyond data ingestion to ML models,
+            training models on compute instances, and obtaining model artifacts and outputs. You
+            need to evaluate every phase of before, during, and after training to make sure your
+            model is trained well to meet the target accuracy for your objectives.</p>
+        <p>The following flow chart shows a high-level overview of your actions (in blue boxes)
+            and available SageMaker Training features (in light blue boxes) throughout the training phase
+            of the ML lifecycle.</p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/training-main.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                Before training, you must prepare your data, choose an algorithm or framework,&#xA;                    manage data storage, and set up access to training data. Optionally, you can use&#xA;                    augmented manifest files to pipe in your data and analyze is for bias. During&#xA;                    training, you must set up infrastructure and evaluate your model. You can&#xA;                    optionally set up distributed training to run parallel jobs, use SageMaker&#xA;                    Experiments to manage your ML trials. After model evaluation, you can use SageMaker&#xA;                    automatic model tuning to optimize model performance. For deep learning jobs,&#xA;                    you might want to consider using Amazon SageMaker Debugger and SageMaker Training Compiler to optimize your jobs. After&#xA;                    training, you must first obtain the baseline model. Next, you can analyze the&#xA;                    metrics emitted by the model and use CloudWatch Metrics to set alerts. After you&#xA;                    obtain your model predictions, you can also use Amazon SageMaker Clarify to analyze your model&#xA;                    and data for bias and explainability.&#xA;            " style="max-width:100%" />
+             
+             
+        </div>
+        <p>The following sections walk you through each phase of training depicted in the
+            previous flow chart and useful features offered by SageMaker throughout the three sub-stages
+            of the ML training.</p>
+
+        <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="train-model.html#train-model-full-view-before-training">Before training</a></li><li><a href="train-model.html#train-model-full-view-during-training">During training</a></li><li><a href="train-model.html#train-model-full-view-after-training">After training</a></li></ul></div>
+
+         
+            <h3 id="train-model-full-view-before-training">Before training</h3>
+            <p>There are a number of scenarios of setting up data resources and access you need
+                to consider before training. Refer to the following diagram and details of each
+                before-training stage to get a sense of what decisions you need to make.</p>
+            <div class="mediaobject">
+                 
+                    <img src="../../../images/sagemaker/latest/dg/images/training-before.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                    A flow chart showing tasks before training and associated SageMaker&#xA;                        features&#xA;                " style="max-width:100%" />
+                 
+                 
+            </div>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><b>Prepare data:</b> Before training, you must
+                        have finished data cleaning and feature engineering during the data
+                        preparation stage. SageMaker has several labeling and feature engineering tools
+                        to help you. See <a href="data-label.html">Label Data</a>, <a href="data-prep.html">Prepare
+                            and Analyze Datasets</a>, <a href="processing-job.html">Process Data</a>, and
+                            <a href="feature-store.html">Create, Store, and Share Features</a> for more information. </p>
+                </li><li class="listitem">
+                    <p><b>Choose an algorithm or framework:</b>
+                        Depending on how much customization you need, there are different options
+                        for algorithms and frameworks.</p>
+                    <div class="itemizedlist">
+                         
+                         
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>If you prefer a low-code implementation of a pre-built algorithm,
+                                use one of the built-in algorithms offered by SageMaker. For more
+                                information, see <a href="algorithms-choose.html">Choose an
+                                    Algorithm</a>.</p>
+                        </li><li class="listitem">
+                            <p>If you need more flexibility to customize your model, run your
+                                training script using your preferred frameworks and toolkits within
+                                SageMaker. For more information, see <a href="frameworks.html">ML Frameworks and
+                                    Toolkits</a>.</p>
+                        </li><li class="listitem">
+                            <p>To extend pre-built SageMaker Docker images as the base image of your
+                                own container, see <a href="docker-containers-prebuilt.html">Use
+                                    Pre-built SageMaker Docker images</a>.</p>
+                        </li><li class="listitem">
+                            <p>To bring your custom Docker container to SageMaker, see <a href="docker-containers-adapt-your-own.html">Adapting your own Docker container to work with SageMaker</a>.
+                                You need to install the <a href="https://github.com/aws/sagemaker-training-toolkit" rel="noopener noreferrer" target="_blank"><span>sagemaker-training-toolkit</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to your container.</p>
+                        </li></ul></div>
+                </li><li class="listitem">
+                    <p><b>Manage data storage:</b> Understand mapping
+                        between the data storage (such as Amazon S3, Amazon EFS, or Amazon FSx) and
+                        the training container that runs in the Amazon EC2 compute instance. SageMaker helps
+                        map the storage paths and local paths in the training container. You can
+                        also manually specify them. After mapping is done, consider using one of the
+                        data transmission modes: File, Pipe, and FastFile mode. To learn how SageMaker
+                        maps storage paths, see <a href="model-train-storage.html">Training Storage
+                            Folders</a>.</p>
+                </li><li class="listitem">
+                    <p><b>Set up access to training data:</b> Use
+                        Amazon SageMaker Domain, a Domain user profile, IAM, Amazon VPC, and AWS KMS to meet
+                        the requirements of the most security-sensitive organizations.</p>
+                    <div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>For account administration, see <a href="sm-domain.html">Amazon SageMaker Domain</a>.</p>
+                        </li><li class="listitem">
+                            <p>For a complete reference about IAM policies and security, see
+                                    <a href="security.html">Security in
+                                    Amazon SageMaker</a>.</p>
+                        </li></ul></div>
+                </li><li class="listitem">
+                    <p><b>Stream your input data:</b> SageMaker provides
+                        three data input modes, <em>File</em>, <em>Pipe</em>, and <em>FastFile</em>. The default input mode is File mode, which loads
+                        the entire dataset during initializing the training job. To learn about
+                        general best practices for streaming data from your data storage to the
+                        training container, see <a href="model-access-training-data.html">Access
+                            Training Data</a>. </p>
+                    <p>In case of <a href="cdf-training.html">Pipe mode</a>, you can
+                        also consider using an augmented manifest file to stream your data directly
+                        from Amazon Simple Storage Service (Amazon S3) and train your model. Using pipe mode reduces disk
+                        space because Amazon Elastic Block Store only needs to store your final model artifacts,
+                        rather than storing your full training dataset. For more information, see
+                            <a href="augmented-manifest.html">Provide Dataset
+                            Metadata to Training Jobs with an Augmented Manifest
+                        File</a>.</p>
+                </li><li class="listitem">
+                    <p><b>Analyze your data for bias:</b> Before
+                        training, you can analyze your dataset and model for bias against a
+                        disfavored group so that you can check that your model learns an unbiased
+                        dataset using <a href="clarify-detect-data-bias.html">SageMaker Clarify</a>.</p>
+                </li><li class="listitem">
+                    <p><b>Choose which SageMaker SDK to use:</b> There are
+                        two ways to launch a training job in SageMaker: using the high-level SageMaker Python
+                        SDK, or using the low-level SageMaker APIs for the SDK for Python (Boto3) or the AWS CLI. The
+                        SageMaker Python SDK abstracts the low-level SageMaker API to provide convenient
+                        tools. As aforementioned in <a href="train-model.html#train-model-simple-case">The simplest training workflow in SageMaker</a>, you
+                        can also pursue no-code or minimal-code options using <a href="canvas.html">SageMaker Canvas</a>, <a href="studio-jumpstart.html">SageMaker JumpStart within
+                            SageMaker Studio</a>, or <a href="autopilot-automate-model-development.html">SageMaker
+                            Autopilot</a>.</p>
+                </li></ul></div>
+         
+         
+            <h3 id="train-model-full-view-during-training">During training</h3>
+            <p>During training, you need to continuously improve training stability, training
+                speed, training efficiency while scaling compute resources, cost optimization, and,
+                most importantly, model performance. Read on for more information about
+                during-training stages and relevant SageMaker Training features.</p>
+            <div class="mediaobject">
+                 
+                    <img src="../../../images/sagemaker/latest/dg/images/training-during.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                    A flow chart showing tasks during training and associated SageMaker&#xA;                        features&#xA;                " style="max-width:100%" />
+                 
+                 
+            </div>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><b>Set up infrastructure:</b> Choose the right
+                        instance type and infrastructure management tools for your use case. You can
+                        start from a small instance and scale up depending on your workload. For
+                        training a model on a tabular dataset, start with the smallest CPU instance
+                        of the C4 or C5 instance families. For training a large model for computer
+                        vision or natural language processing, start with the smallest GPU instance
+                        of the P2, P3, G4dn or G5 instance families. You can also mix different
+                        instance types in a cluster, or keep instances in warm pools using the
+                        following instance management tools offered by SageMaker. You can also use
+                        persistent cache to reduce latency and billable time on iterative training
+                        jobs over the latency reduction from warm pools alone. To learn more, see
+                        the following topics.</p>
+                    <div class="itemizedlist">
+                         
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p><a href="train-heterogeneous-cluster.html">Train Using a Heterogeneous Cluster</a>
+                            </p>
+                        </li><li class="listitem">
+                            <p><a href="train-warm-pools.html">Train Using SageMaker Managed Warm Pools</a></p>
+                        </li><li class="listitem">
+                            <p><a href="train-warm-pools.html#train-warm-pools-persistent-cache">Using persistent cache</a></p>
+                        </li></ul></div>
+                    <p>You must have sufficient quota to run a training job. If you run your
+                        training job on an instance where you have insufficient quota, you will
+                        receive a <code class="code">ResourceLimitExceeded</code> error. To check the currently
+                        available quotas in your account, use your <a href="https://console.aws.amazon.com/servicequotas/home/services/sagemaker/quotas" rel="noopener noreferrer" target="_blank"><span>Service Quotas console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. To learn how to request a quota
+                        increase, see <a href="regions-quotas.html">Supported Regions and
+                            Quotas</a>. Also, to find pricing information and available instance
+                        types depending on the AWS Regions, look up the tables in the <a href="http://aws.amazon.com/sagemaker/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+                        page.</p>
+                </li><li class="listitem">
+                    <p><b>Run a training job from a local code:</b> You
+                        can annotate your local code with a remote decorator to run your code as a
+                        SageMaker training job from inside Amazon SageMaker Studio, an Amazon SageMaker notebook or
+                        from your local integrated development environment. For more information,
+                        see <a href="train-remote-decorator.html">Run your local code as a SageMaker training job</a>.</p>
+                </li><li class="listitem">
+                    <p><b>Track training jobs:</b> Monitor and track
+                        your training jobs using SageMaker Experiments, SageMaker Debugger, or Amazon CloudWatch. You can
+                        watch the model performance in terms of accuracy and convergence, and run
+                        comparative analysis of metrics between multiple training jobs by using SageMaker
+                        Experiments. You can watch the compute resource utilization rate by using
+                        SageMaker Debugger’s profiling tools or Amazon CloudWatch. To learn more, see the following
+                        topics.</p>
+                    <div class="itemizedlist">
+                         
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p><a href="experiments.html">Manage Machine
+                                    Learning with Amazon SageMaker Experiments</a></p>
+                        </li><li class="listitem">
+                            <p><a href="debugger-profile-training-jobs.html">Profile Training Jobs Using Amazon SageMaker Debugger</a></p>
+                        </li><li class="listitem">
+                            <p><a href="training-metrics.html">Monitor and
+                                    Analyze Using CloudWatch Metrics </a></p>
+                        </li></ul></div>
+                    <p>Additionally, for deep learning tasks, use the <a href="debugger-debug-training-jobs.html">Amazon SageMaker Debugger model
+                            debugging tools</a> and <a href="debugger-built-in-rules.html">built-in
+                            rules</a> to identify more complex issues in model convergence and
+                        weight update processes.</p>
+                </li><li class="listitem">
+                    <p><b>Distributed training:</b> If your training
+                        job is going into a stable stage without breaking due to misconfiguration of
+                        the training infrastructure or out-of-memory issues, you might want to find
+                        more options to scale your job and run over an extended period of time for
+                        days and even months. When you’re ready to scale up, consider distributed
+                        training. SageMaker provides various options for distributed computation from
+                        light ML workloads to heavy deep learning workloads.
+                        
+                    </p>
+                    <p>For deep learning tasks that involve training very large models on very
+                        large datasets, consider using one of the <a href="distributed-training.html">SageMaker distributed
+                            training strategies</a> to scale up and achieve data parallelism,
+                        model parallelism, or a combination of the two. You can also use <a href="training-compiler.html">SageMaker Training Compiler</a> for compiling and optimizing model
+                        graphs on GPU instances. These SageMaker features support deep learning
+                        frameworks such as PyTorch, TensorFlow, and Hugging Face Transformers.</p>
+                </li><li class="listitem">
+                    <p><b>Model hyperparameter tuning:</b> Tune your
+                        model hyperparameters using <a href="automatic-model-tuning.html">Automatic Model
+                            Tuning with SageMaker</a>. SageMaker provides hyperparameter tuning methods
+                        such as grid search and Bayesian search, launching parallel hyperparameter
+                        tuning jobs with early-stopping functionality for non-improving
+                        hyperparameter tuning jobs.</p>
+                </li><li class="listitem">
+                    <p><b>Checkpointing and cost saving with Spot
+                            instances:</b> If training time is not a big concern, you might
+                        consider optimizing model training costs with managed Spot instances. Note
+                        that you must activate checkpointing for Spot training to keep restoring
+                        from intermittent job pauses due to Spot instance replacements. You can also
+                        use the checkpointing functionality to back up your models in case of
+                        unexpected training job termination. To learn more, see the following
+                        topics.</p>
+                    <div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p><a href="model-managed-spot-training.html">Managed Spot Training</a>
+                            </p>
+                        </li><li class="listitem">
+                            <p><a href="model-checkpoints.html">Use
+                                    Checkpoints</a>
+                            </p>
+                        </li></ul></div>
+                </li></ul></div>
+         
+         
+            <h3 id="train-model-full-view-after-training">After training</h3>
+            <p>After training, you obtain a final model artifact to use for model deployment and
+                inference. There are additional actions involved in the after-training phase as
+                shown in the following diagram.</p>
+            <div class="mediaobject">
+                 
+                    <img src="../../../images/sagemaker/latest/dg/images/training-after.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                    A flow chart showing tasks after training and associated SageMaker&#xA;                        features&#xA;                " style="max-width:100%" />
+                 
+                 
+            </div>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><b>Obtain baseline model:</b> After you have the
+                        model artifact, you can set it as a baseline model. Consider the following
+                        post-training actions and using SageMaker features before moving on to model
+                        deployment to production.</p>
+                </li><li class="listitem">
+                    <p><b>Examine model performance and check for
+                            bias:</b> Use Amazon CloudWatch Metrics and <a href="clarify-detect-post-training-bias.html">SageMaker Clarify
+                            for post-training bias</a> to detect any bias in incoming data and
+                        model over time against the baseline. You need to evaluate your new data and
+                        model predictions against the new data regularly or in real time. Using
+                        these features, you can receive alerts about any acute changes or anomalies,
+                        as well as gradual changes or drifts in data and model.</p>
+                </li><li class="listitem">
+                    <p>You can also use the <a href="incremental-training.html">Incremental
+                            Training</a> functionality of SageMaker to load and update your model (or
+                        fine-tune) with an expanded dataset.</p>
+                </li><li class="listitem">
+                    <p>You can register model training as a step in your <a href="pipelines.html">SageMaker
+                            Pipeline</a> or as part of other <a href="workflows.html">Workflow</a> features
+                        offered by SageMaker in order to orchestrate the full ML lifecycle.</p>
+                </li></ul></div>
+         
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./feature-store-resources.html">Amazon SageMaker Feature Store resources</div><div id="next" class="next-link" accesskey="n" href="./how-it-works-training.html">Model Training</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/train-model.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/train-model.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

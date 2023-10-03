@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Create a Multi-Model Endpoint - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="create-multi-model-endpoint" /><meta name="default_state" content="create-multi-model-endpoint" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="create-multi-model-endpoint.html" /><meta name="description" content="Create and deploy a Amazon SageMaker multi-model endpoint." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="create-multi-model-endpoint.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/create-multi-model-endpoint.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/create-multi-model-endpoint.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/create-multi-model-endpoint.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/create-multi-model-endpoint.html" hreflang="de" /><link rel="alternative" href="create-multi-model-endpoint.html" hreflang="en-us" /><link rel="alternative" href="create-multi-model-endpoint.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/create-multi-model-endpoint.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/create-multi-model-endpoint.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/create-multi-model-endpoint.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/create-multi-model-endpoint.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/create-multi-model-endpoint.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/create-multi-model-endpoint.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/create-multi-model-endpoint.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/create-multi-model-endpoint.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/create-multi-model-endpoint.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/create-multi-model-endpoint.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/create-multi-model-endpoint.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/create-multi-model-endpoint.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/create-multi-model-endpoint.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/create-multi-model-endpoint.html" hreflang="zh-tw" /><link rel="alternative" href="create-multi-model-endpoint.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Create a Multi-Model Endpoint" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Create a Multi-Model Endpoint - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#create-multi-model-endpoint" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/create-multi-model-endpoint.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/create-multi-model-endpoint.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/create-multi-model-endpoint.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,inference,deploy model,endpoint,prediction,ML application,serverless machine learning,multi model deployment,inference pipelines,ML model" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploy models for inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Real-time inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Hosting options",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints-options.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Host multiple models in one container behind one endpoint",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/multi-model-endpoints.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Create a Multi-Model Endpoint",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/multi-model-endpoints.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#create-multi-model-endpoint" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="create-multi-model-endpoint.html#create-multi-model-endpoint-console">Create a multi-model endpoint (console)</a><a href="create-multi-model-endpoint.html#create-multi-model-endpoint-sdk-cpu">Create a multi-model endpoint backed by CPUs (SDK)</a><a href="create-multi-model-endpoint.html#create-multi-model-endpoint-sdk-gpu">Create a multi-model endpoint backed by GPUs (SDK)</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="create-multi-model-endpoint">Create
+        a Multi-Model Endpoint</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can use the SageMaker console or the AWS SDK for Python (Boto) to create a multi-model endpoint.
+      To create either a CPU or GPU backed endpoint through the console, see the console procedure in the following sections.
+      If you want to create a multi-model endpoint with the AWS SDK for Python (Boto), use either the CPU or GPU procedure in the following sections.
+      The CPU and GPU workflows are similar but have several differences, such as the container requirements.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="create-multi-model-endpoint.html#create-multi-model-endpoint-console">Create a multi-model endpoint
+          (console)</a></li><li><a href="create-multi-model-endpoint.html#create-multi-model-endpoint-sdk-cpu">Create a multi-model endpoint using CPUs with the AWS SDK for Python (Boto3)</a></li><li><a href="create-multi-model-endpoint.html#create-multi-model-endpoint-sdk-gpu">Create a multi-model endpoint using GPUs with the AWS SDK for Python (Boto3)</a></li></ul></div>
+      <h2 id="create-multi-model-endpoint-console">Create a multi-model endpoint
+          (console)</h2>
+      <p>You can create both CPU and GPU backed multi-model endpoints through the console.
+        Use the following procedure to create a multi-model endpoint through the SageMaker console.</p>
+      <div class="procedure"><h6>To create a multi-model endpoint (console)</h6><ol><li> <p>Open the Amazon SageMaker console at <a href="https://console.aws.amazon.com/sagemaker/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/sagemaker/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p> </li><li>
+          <p>Choose <b>Model</b>, and then from the <b>Inference</b>
+            group, choose <b>Create model</b>. </p>
+        </li><li>
+          <p>For <b>Model name</b>, enter a name.</p>
+        </li><li>
+          <p>For <b>IAM role</b>, choose or create an IAM role that has the
+            <code class="code">AmazonSageMakerFullAccess</code> IAM policy attached. </p>
+        </li><li>
+          <p> In the <b>Container definition</b> section, for <b>Provide
+            model artifacts and inference image options</b>, choose <b>Use multiple
+              models</b>.</p>
+          <div class="mediaobject">
+             
+              <img src="../../../images/sagemaker/latest/dg/images/mme-create-model-ux-2.PNG" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;              The section of the Create model page where you can choose Use&#xA;                multiple models to host multiple models on a single endpoint.&#xA;            " />
+             
+             
+          </div>
+        </li><li>
+          <p>For the <b>Inference container image</b>, enter the Amazon ECR path for your desired container image.</p>
+          <p>For GPU models, you must use a container backed by the NVIDIA Triton Inference Server. For a list of container images that work
+            with GPU backed endpoints, see the <a href="https://github.com/aws/deep-learning-containers/blob/master/available_images.md#nvidia-triton-inference-containers-sm-support-only" rel="noopener noreferrer" target="_blank"><span>NVIDIA Triton Inference Containers (SM support only)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. For more information about the
+            NVIDIA Triton Inference Server, see <a href="triton.html">Use Triton Inference Server with SageMaker</a>.</p>
+        </li><li>
+          <p>Choose <b>Create model</b>.</p>
+        </li><li>
+          <p>Deploy your multi-model endpoint as you would a single model endpoint. For
+            instructions, see <a href="ex1-model-deployment.html#ex1-deploy-model">Deploy the Model to SageMaker Hosting Services</a>.</p>
+        </li></ol></div>
+     
+      <h2 id="create-multi-model-endpoint-sdk-cpu">Create a multi-model endpoint using CPUs with the AWS SDK for Python (Boto3)</h2>
+      <p>Use the following section to create a multi-model endpoint backed by CPU instances.
+        You create a multi-model endpoint using the Amazon SageMaker <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker.html#SageMaker.Client.create_model" rel="noopener noreferrer" target="_blank"><span><code class="code">create_model</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker.html#SageMaker.Client.create_endpoint_config" rel="noopener noreferrer" target="_blank"><span><code class="code">create_endpoint_config</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, and <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker.html#SageMaker.Client.create_endpoint" rel="noopener noreferrer" target="_blank"><span><code class="code">create_endpoint</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> APIs just as you would create a single model
+        endpoint, but with two changes. When defining the model container, you need to pass a new
+          <code class="code">Mode</code> parameter value, <code class="code">MultiModel</code>. You also need to pass the
+          <code class="code">ModelDataUrl</code> field that specifies the prefix in Amazon S3 where the model
+        artifacts are located, instead of the path to a single model artifact, as you would when
+        deploying a single model.</p>
+      <p>For a sample notebook that uses SageMaker to deploy multiple XGBoost models to an endpoint,
+        see <a href="https://sagemaker-examples.readthedocs.io/en/latest/advanced_functionality/multi_model_xgboost_home_value/xgboost_multi_model_endpoint_home_value.html" rel="noopener noreferrer" target="_blank"><span>Multi-Model Endpoint XGBoost Sample Notebook</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p>
+      <p>The following procedure outlines the key steps used in that sample to create a CPU backed
+        multi-model endpoint.</p>
+      <div class="procedure"><h6>To deploy the model (AWS SDK for Python (Boto 3))</h6><ol><li>
+          <p>Get a container with an image that supports deploying multi-model endpoints. For a
+            list of built-in algorithms and framework containers that support multi-model endpoints,
+            see <a href="multi-model-endpoints.html#multi-model-support">Supported algorithms, frameworks, and instances</a>. For this
+            example, we use the <a href="k-nearest-neighbors.html">K-Nearest Neighbors (k-NN) Algorithm</a> built-in algorithm. We call the <a href="https://sagemaker.readthedocs.io/en/stable/v2.html" rel="noopener noreferrer" target="_blank"><span>SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+            utility function <code class="code">image_uris.retrieve()</code> to get the address for the K-Nearest
+            Neighbors built-in algorithm image.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">import sagemaker
+region = sagemaker_session.boto_region_name
+image = sagemaker.image_uris.retrieve("knn",region=region)
+container = <span>{</span> 
+              'Image':        image,
+              'ModelDataUrl': 's3://<code class="replaceable">&lt;BUCKET_NAME&gt;</code>/<code class="replaceable">&lt;PATH_TO_ARTIFACTS&gt;</code>',
+              'Mode':         'MultiModel'
+            }</code></pre>
+        </li><li>
+          <p>Get an AWS SDK for Python (Boto3) SageMaker client and create the model that uses this container.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import boto3
+sagemaker_client = boto3.client('sagemaker')
+response = sagemaker_client.create_model(
+              ModelName        = <code class="replaceable">'&lt;MODEL_NAME&gt;'</code>,
+              ExecutionRoleArn = role,
+              Containers       = [container])</code></pre>
+        </li><li>
+          <p>(Optional) If you are using a serial inference pipeline, get the additional
+            container(s) to include in the pipeline, and include it in the <code class="code">Containers</code>
+            argument of <code class="code">CreateModel</code>:</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">preprocessor_container = <span>{</span> 
+               'Image': '<code class="replaceable">&lt;ACCOUNT_ID&gt;</code>.dkr.ecr.<code class="replaceable">&lt;REGION_NAME&gt;</code>.amazonaws.com/<code class="replaceable">&lt;PREPROCESSOR_IMAGE&gt;</code>:<code class="replaceable">&lt;TAG&gt;</code>'
+            }
+
+multi_model_container = <span>{</span> 
+              'Image': '<code class="replaceable">&lt;ACCOUNT_ID&gt;</code>.dkr.ecr.<code class="replaceable">&lt;REGION_NAME&gt;</code>.amazonaws.com/<code class="replaceable">&lt;IMAGE&gt;</code>:<code class="replaceable">&lt;TAG&gt;</code>',
+              'ModelDataUrl': 's3://<code class="replaceable">&lt;BUCKET_NAME&gt;</code>/<code class="replaceable">&lt;PATH_TO_ARTIFACTS&gt;</code>',
+              'Mode':         'MultiModel'
+            }
+
+response = sagemaker_client.create_model(
+              ModelName        = <code class="replaceable">'&lt;MODEL_NAME&gt;'</code>,
+              ExecutionRoleArn = role,
+              Containers       = [preprocessor_container, multi_model_container]
+            )</code></pre>
+          <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can use only one multi-model-enabled endpoint in a serial inference
+              pipeline.</p></div></div>
+        </li><li>
+          <p>(Optional) If your use case does not benefit from model caching, set the value of
+            the <code class="code">ModelCacheSetting</code> field of the <code class="code">MultiModelConfig</code> parameter to <code class="code">Disabled</code>, and include
+            it in the <code class="code">Container</code> argument of the call to <code class="code">create_model</code>. The
+            value of the <code class="code">ModelCacheSetting</code> field is <code class="code">Enabled</code> by default.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">container = <span>{</span> 
+                'Image': image, 
+                'ModelDataUrl': 's3://<code class="replaceable">&lt;BUCKET_NAME&gt;</code>/<code class="replaceable">&lt;PATH_TO_ARTIFACTS&gt;</code>',
+                'Mode': 'MultiModel' 
+                'MultiModelConfig': <span>{</span>
+                        // Default value is 'Enabled'
+                        'ModelCacheSetting': 'Disabled'
+                }
+           }
+
+response = sagemaker_client.create_model(
+              ModelName        = <code class="replaceable">'&lt;MODEL_NAME&gt;'</code>,
+              ExecutionRoleArn = role,
+              Containers       = [container]
+            )</code></pre>
+        </li><li>
+          <p>Configure the multi-model endpoint for the model. We recommend configuring your
+            endpoints with at least two instances. This allows SageMaker to provide a highly available
+            set of predictions across multiple Availability Zones for the models.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">response = sagemaker_client.create_endpoint_config(
+                EndpointConfigName = <code class="replaceable">'&lt;ENDPOINT_CONFIG_NAME&gt;'</code>,
+                ProductionVariants=[
+                     <span>{</span>
+                        'InstanceType':        'ml.m4.xlarge',
+                        'InitialInstanceCount': 2,
+                        'InitialVariantWeight': 1,
+                        'ModelName':            <code class="replaceable">'&lt;MODEL_NAME&gt;'</code>,
+                        'VariantName':          'AllTraffic'
+                      }
+                ]
+           )</code></pre>
+          <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can use only one multi-model-enabled endpoint in a serial inference
+              pipeline.</p></div></div>
+        </li><li>
+          <p>Create the multi-model endpoint using the <code class="code">EndpointName</code> and
+              <code class="code">EndpointConfigName</code> parameters.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">response = sagemaker_client.create_endpoint(
+              EndpointName       = <code class="replaceable">'&lt;ENDPOINT_NAME&gt;'</code>,
+              EndpointConfigName = <code class="replaceable">'&lt;ENDPOINT_CONFIG_NAME&gt;'</code>)</code></pre>
+        </li></ol></div>
+     
+      <h2 id="create-multi-model-endpoint-sdk-gpu">Create a multi-model endpoint using GPUs with the AWS SDK for Python (Boto3)</h2>
+      <p>Use the following section to create a GPU backed multi-model endpoint.
+        You create a multi-model endpoint using the Amazon SageMaker <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker.html#SageMaker.Client.create_model" rel="noopener noreferrer" target="_blank"><span><code class="code">create_model</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker.html#SageMaker.Client.create_endpoint_config" rel="noopener noreferrer" target="_blank"><span><code class="code">create_endpoint_config</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, and <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker.html#SageMaker.Client.create_endpoint" rel="noopener noreferrer" target="_blank"><span><code class="code">create_endpoint</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> APIs similarly to creating single model endpoints, but there are several changes.
+        When defining the model container, you need to pass a new
+        <code class="code">Mode</code> parameter value, <code class="code">MultiModel</code>. You also need to pass the
+        <code class="code">ModelDataUrl</code> field that specifies the prefix in Amazon S3 where the model
+        artifacts are located, instead of the path to a single model artifact, as you would when
+        deploying a single model. For GPU backed multi-model endpoints, you also must use a container with the NVIDIA Triton Inference Server
+        that is optimized for running on GPU instances. For a list of container images that work with GPU backed endpoints,
+        see the <a href="https://github.com/aws/deep-learning-containers/blob/master/available_images.md#nvidia-triton-inference-containers-sm-support-only" rel="noopener noreferrer" target="_blank"><span>NVIDIA Triton Inference Containers (SM support only)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      <p>For an example notebook that demonstrates how to create a multi-model endpoint backed by GPUs, see <a href="https://github.com/aws/amazon-sagemaker-examples/blob/main/multi-model-endpoints/mme-on-gpu/cv/resnet50_mme_with_gpu.ipynb" rel="noopener noreferrer" target="_blank"><span>Run mulitple deep learning models on GPUs with Amazon SageMaker Multi-model endpoints (MME)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      <p>The following procedure outlines the key steps to create a GPU backed multi-model endpoint.</p>
+      <div class="procedure"><h6>To deploy the model (AWS SDK for Python (Boto 3))</h6><ol><li>
+          <p>Define the container image. To create a multi-model endpoint with GPU support for ResNet models,
+            define the container to use the <a href="triton.html">NVIDIA Triton Server image</a>.
+            This container supports multi-model endpoints and is optimized for running on GPU instances. We call the <a href="https://sagemaker.readthedocs.io/en/stable/v2.html" rel="noopener noreferrer" target="_blank"><span>SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+            utility function <code class="code">image_uris.retrieve()</code> to get the address for the image. For example:</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import sagemaker
+region = sagemaker_session.boto_region_name
+
+// Find the sagemaker-tritonserver image at 
+// https://github.com/aws/amazon-sagemaker-examples/blob/main/sagemaker-triton/resnet50/triton_resnet50.ipynb
+// Find available tags at https://github.com/aws/deep-learning-containers/blob/master/available_images.md#nvidia-triton-inference-containers-sm-support-only
+
+image = "<code class="replaceable">&lt;ACCOUNT_ID&gt;</code>.dkr.ecr.<code class="replaceable">&lt;REGION_NAME&gt;</code>.amazonaws.com/sagemaker-tritonserver:<code class="replaceable">&lt;TAG&gt;</code>".format(
+    account_id=account_id_map[region], region=region
+)
+
+container = <span>{</span> 
+              'Image':        image,
+              'ModelDataUrl': 's3://<code class="replaceable">&lt;BUCKET_NAME&gt;</code>/<code class="replaceable">&lt;PATH_TO_ARTIFACTS&gt;</code>',
+              'Mode':         'MultiModel',
+              "Environment": <span>{</span>"SAGEMAKER_TRITON_DEFAULT_MODEL_NAME": "resnet"},
+            }
+</code></pre>
+        </li><li>
+          <p>Get an AWS SDK for Python (Boto3) SageMaker client and create the model that uses this container.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import boto3
+sagemaker_client = boto3.client('sagemaker')
+response = sagemaker_client.create_model(
+              ModelName        = <code class="replaceable">'&lt;MODEL_NAME&gt;'</code>,
+              ExecutionRoleArn = role,
+              Containers       = [container])</code></pre>
+        </li><li>
+          <p>(Optional) If you are using a serial inference pipeline, get the additional
+            container(s) to include in the pipeline, and include it in the <code class="code">Containers</code>
+            argument of <code class="code">CreateModel</code>:</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">preprocessor_container = <span>{</span> 
+               'Image': '<code class="replaceable">&lt;ACCOUNT_ID&gt;</code>.dkr.ecr.<code class="replaceable">&lt;REGION_NAME&gt;</code>.amazonaws.com/<code class="replaceable">&lt;PREPROCESSOR_IMAGE&gt;</code>:<code class="replaceable">&lt;TAG&gt;</code>'
+            }
+
+multi_model_container = <span>{</span> 
+              'Image': '<code class="replaceable">&lt;ACCOUNT_ID&gt;</code>.dkr.ecr.<code class="replaceable">&lt;REGION_NAME&gt;</code>.amazonaws.com/<code class="replaceable">&lt;IMAGE&gt;</code>:<code class="replaceable">&lt;TAG&gt;</code>',
+              'ModelDataUrl': 's3://<code class="replaceable">&lt;BUCKET_NAME&gt;</code>/<code class="replaceable">&lt;PATH_TO_ARTIFACTS&gt;</code>',
+              'Mode':         'MultiModel'
+            }
+
+response = sagemaker_client.create_model(
+              ModelName        = <code class="replaceable">'&lt;MODEL_NAME&gt;'</code>,
+              ExecutionRoleArn = role,
+              Containers       = [preprocessor_container, multi_model_container]
+            )</code></pre>
+          <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can use only one multi-model-enabled endpoint in a serial inference
+              pipeline.</p></div></div>
+        </li><li>
+          <p>(Optional) If your use case does not benefit from model caching, set the value of
+            the <code class="code">ModelCacheSetting</code> field of the <code class="code">MultiModelConfig</code> parameter to <code class="code">Disabled</code>, and include
+            it in the <code class="code">Container</code> argument of the call to <code class="code">create_model</code>. The
+            value of the <code class="code">ModelCacheSetting</code> field is <code class="code">Enabled</code> by default.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">container = <span>{</span> 
+                'Image': image, 
+                'ModelDataUrl': 's3://<code class="replaceable">&lt;BUCKET_NAME&gt;</code>/<code class="replaceable">&lt;PATH_TO_ARTIFACTS&gt;</code>',
+                'Mode': 'MultiModel' 
+                'MultiModelConfig': <span>{</span>
+                        // Default value is 'Enabled'
+                        'ModelCacheSetting': 'Disabled'
+                }
+           }
+
+response = sagemaker_client.create_model(
+              ModelName        = <code class="replaceable">'&lt;MODEL_NAME&gt;'</code>,
+              ExecutionRoleArn = role,
+              Containers       = [container]
+            )</code></pre>
+        </li><li>
+          <p>Configure the multi-model endpoint with GPU backed instances for the model. We recommend configuring your
+            endpoints with more than one instance to allow for high availability and higher cache hits.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">response = sagemaker_client.create_endpoint_config(
+                EndpointConfigName = <code class="replaceable">'&lt;ENDPOINT_CONFIG_NAME&gt;'</code>,
+                ProductionVariants=[
+                     <span>{</span>
+                        'InstanceType':        'ml.g4dn.4xlarge',
+                        'InitialInstanceCount': 2,
+                        'InitialVariantWeight': 1,
+                        'ModelName':            <code class="replaceable">'&lt;MODEL_NAME&gt;'</code>,
+                        'VariantName':          'AllTraffic'
+                      }
+                ]
+           )</code></pre>
+        </li><li>
+          <p>Create the multi-model endpoint using the <code class="code">EndpointName</code> and
+            <code class="code">EndpointConfigName</code> parameters.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">response = sagemaker_client.create_endpoint(
+              EndpointName       = <code class="replaceable">'&lt;ENDPOINT_NAME&gt;'</code>,
+              EndpointConfigName = <code class="replaceable">'&lt;ENDPOINT_CONFIG_NAME&gt;'</code>)</code></pre>
+        </li></ol></div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./multi-model-endpoints.html">Host multiple models in one container behind one endpoint</div><div id="next" class="next-link" accesskey="n" href="./invoke-multi-model-endpoint.html">Invoke a Multi-Model Endpoint</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/create-multi-model-endpoint.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/create-multi-model-endpoint.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

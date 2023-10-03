@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Register a Model Version - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="model-registry-version" /><meta name="default_state" content="model-registry-version" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="model-registry-version.html" /><meta name="description" content="You can register an Amazon SageMaker model in your account or in a different account." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="model-registry-version.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/model-registry-version.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/model-registry-version.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/model-registry-version.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/model-registry-version.html" hreflang="de" /><link rel="alternative" href="model-registry-version.html" hreflang="en-us" /><link rel="alternative" href="model-registry-version.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/model-registry-version.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/model-registry-version.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/model-registry-version.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/model-registry-version.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/model-registry-version.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/model-registry-version.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/model-registry-version.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/model-registry-version.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/model-registry-version.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/model-registry-version.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/model-registry-version.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/model-registry-version.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/model-registry-version.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/model-registry-version.html" hreflang="zh-tw" /><link rel="alternative" href="model-registry-version.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Register a Model Version" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Register a Model Version - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#model-registry-version" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-registry-version.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-registry-version.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-registry-version.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Implement MLOps",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/mlops.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Register and Deploy Models with Model Registry",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Model Registry Models, Model Versions, and Model Groups",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry-models.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Register a Model Version",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry-models.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#model-registry-version" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="model-registry-version.html#model-registry-pipeline">Register a Model Version (SageMaker
+                    Pipelines)</a><a href="model-registry-version.html#model-registry-version-api">Register a Model Version
+                    (Boto3)</a><a href="model-registry-version.html#model-registry-studio">Register a Model Version (Amazon SageMaker Studio)</a><a href="model-registry-version.html#model-registry-version-xaccount">Register a Model Version from a Different
+                    Account</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="model-registry-version">Register a Model Version</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can register an Amazon SageMaker model by creating a model version that specifies the model
+            group to which it belongs. A model version must include both the model artifacts (the
+            trained weights of a model) and the inference code for the model.</p><p>An <em>inference pipeline</em> is a SageMaker model composed of a linear
+            sequence of two to fifteen containers that process inference requests. You register an
+            inference pipeline by specifying the containers and the associated environment variables.
+            For more information on inference pipelines, see
+            <a href="inference-pipelines.html">Host models along with pre-processing logic as serial inference pipeline behind one endpoint</a>.</p><p>You can register a model with an inference pipeline, by specifying the containers and
+            the associated environment variables. To create a model version with an inference
+            pipeline by using either the AWS SDK for Python (Boto3) or by creating a step in a SageMaker model
+            building pipeline, use the following steps. </p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="model-registry-version.html#model-registry-pipeline">Register a Model Version (SageMaker
+                    Pipelines)</a></li><li><a href="model-registry-version.html#model-registry-version-api">Register a Model Version
+                    (Boto3)</a></li><li><a href="model-registry-version.html#model-registry-studio">Register a Model Version (Amazon SageMaker Studio)</a></li><li><a href="model-registry-version.html#model-registry-version-xaccount">Register a Model Version from a Different
+                    Account</a></li></ul></div>
+            <h2 id="model-registry-pipeline">Register a Model Version (SageMaker
+                    Pipelines)</h2>
+            <p>To register a model version by using a SageMaker model building pipeline, create a
+                    <code class="code">RegisterModel</code> step in your pipeline. For information about creating a
+                    <code class="code">RegisterModel</code> step as part of a pipeline, see <a href="define-pipeline.html#define-pipeline-register">Step 8: Define a RegisterModel Step to Create a
+          Model Package</a>.</p>
+         
+            <h2 id="model-registry-version-api">Register a Model Version
+                    (Boto3)</h2>
+            <p>To register a model version by using Boto3, call the
+                    <code class="code">create_model_package</code> method.</p>
+            <p>First, you set up the parameter dictionary to pass to the
+                    <code class="code">create_model_package</code> method.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python "># Specify the model source
+model_url = "s3://<code class="replaceable">your-bucket-name/model.tar.gz</code>"
+
+modelpackage_inference_specification =  <span>{</span>
+    "InferenceSpecification": <span>{</span>
+      "Containers": [
+         <span>{</span>
+            "Image": '257758044811.dkr.ecr.us-east-2.amazonaws.com/sagemaker-xgboost:1.2-1',
+	    "ModelDataUrl": model_url
+         }
+      ],
+      "SupportedContentTypes": [ "text/csv" ],
+      "SupportedResponseMIMETypes": [ "text/csv" ],
+   }
+ }
+
+# Alternatively, you can specify the model source like this:
+# modelpackage_inference_specification["InferenceSpecification"]["Containers"][0]["ModelDataUrl"]=model_url
+
+create_model_package_input_dict = <span>{</span>
+    "ModelPackageGroupName" : model_package_group_name,
+    "ModelPackageDescription" : "Model to detect 3 different types of irises (Setosa, Versicolour, and Virginica)",
+    "ModelApprovalStatus" : "PendingManualApproval"
+}
+create_model_package_input_dict.update(modelpackage_inference_specification)</code></pre>
+            <p>Then you call the <code class="code">create_model_package</code> method, passing in the
+                parameter dictionary that you just set up.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">create_model_package_response = sm_client.create_model_package(**create_model_package_input_dict)
+model_package_arn = create_model_package_response["ModelPackageArn"]
+print('ModelPackage Version ARN : <span>{</span>}'.format(model_package_arn))</code></pre>
+         
+            <h2 id="model-registry-studio">Register a Model Version (Amazon SageMaker Studio)</h2>
+            <p>To create a Model Version in Amazon SageMaker Studio, complete the following steps.</p>
+            <div class="procedure"><ol><li>
+                    <p>Sign in to Amazon SageMaker Studio. For more information, see <a href="gs-studio-onboard.html">Onboard to Amazon SageMaker Domain</a>.</p>
+                </li><li>
+                    <p>In the left navigation pane, choose the <b>Home</b>
+                        icon ( <span class="inlinemediaobject">
+                             
+                                <img src="../../../images/sagemaker/latest/dg/images/studio/icons/house.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" />
+                             
+                        </span> ).</p>
+                </li><li>
+                    <p>Choose <b>Models</b>, and then <b>Model registry</b>.</p>
+                </li><li><p>Open the <b>Register Version</b> form. You can do this in one of two 
+                    ways:</p>
+                        <div class="itemizedlist">
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem"><p>Choose <b>Actions</b>, and then choose
+                            <b>Create model version</b>.</p></li><li class="listitem"><p>Select the name of the model group for which you want to create 
+                                a model version, then choose <b>Create model version</b>.</p></li></ul></div></li><li><p>In the <b>Register model version</b> form, enter the following
+                  information:</p>
+                    <div class="itemizedlist">
+                         
+                         
+                         
+                        <ul class="itemizedlist"><li class="listitem"><p>In the <b>Model package group name</b> dropdown, select 
+                          the model group name.</p></li><li class="listitem"><p>(Optional) Enter a description for your model version.</p></li><li class="listitem"><p>In the <b>Model Approval Status</b> dropdown, select 
+                            the version approval status.</p></li><li class="listitem"><p>(Optional) In the <b>Custom metadata</b> field, add custom tag(s) 
+                            as key-value pairs.</p></li></ul></div></li><li><p>Choose <b>Next</b>.</p></li><li><p>In the <b>Inference Specification</b> form, enter the
+                    following information:</p>
+                    <div class="itemizedlist">
+                         
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem"><p>Enter your inference image location.</p></li><li class="listitem"><p>Enter your model data artifacts location.</p></li><li class="listitem"><p>(Optional) Enter information about images preferred for
+                            transform and real-time inference jobs, and supported input and output
+                            MIME types.</p></li></ul></div>
+                </li><li><p>Choose <b>Next</b>.</p></li><li><p>(Optional) Provide details to aid endpoint recommendations.</p></li><li><p>Choose <b>Next</b>.</p></li><li><p>(Optional) Choose model metrics you want to include.</p></li><li><p>Choose <b>Next</b>.</p></li><li><p>Ensure the displayed settings are correct, and choose 
+                    <b>Register model version</b>. If you subsequently see a modal window with an error message, 
+                                choose <b>View</b> (next to the message) to view the source 
+                                of the error.</p></li><li><p>Confirm your new model version appears in the parent model group page.</p></li></ol></div>
+         
+            <h2 id="model-registry-version-xaccount">Register a Model Version from a Different
+                    Account</h2>
+            <p>To register model versions with a Model Group created by a different AWS
+                account, you must add a cross-account AWS Identity and Access Management resource policy to enable that
+                account. For example, one AWS account in your organization is responsible for
+                training models, and a different account is responsible for managing, deploying, and
+                updating models. You create IAM resource policies and apply the policies to the
+                specific account resource to which you want to grant access for this case. For more
+                information about cross-account resource policies in AWS, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic-cross-account.html">Cross-account policy evaluation logic</a> in the <em>AWS Identity and Access Management User
+                    Guide</em>.</p>            
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You must also use a KMS key to encrypt the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_OutputDataConfig.html">output data
+                        config</a> action during training for cross-account model
+                    deployment.</p></div></div>            
+            <p>To enable cross-account model registry in SageMaker, you have to provide a cross-account 
+                resource policy for the Model Group that contains the model versions. The following is an 
+                example that creates cross-account policies for the Model Group and applies these 
+                policies to that specific resource.</p>
+            <p>The following configuration must be set in the source account which registers
+                models cross-account in a Model Group. In this example, the source account is the
+                model training account which will train and then register the model cross-account into 
+		the Model Registry of the Model Registry account.</p>
+            <p>The example assumes that you previously defined the following variables:</p>
+            <div class="itemizedlist">
+                 
+                 
+		 
+
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><code class="code">sm_client</code> - A SageMaker Boto3 client.</p>
+                </li><li class="listitem">
+                    <p><code class="code">model_package_group_name</code> - The Model Group to which you want to
+                        grant access.</p>
+                </li><li class="listitem">
+		    <p><code class="code">model_package_group_arn</code> - The Model Group arn to which you want to
+                    grant cross-account access.</p>
+		</li><li class="listitem">
+                    <p><code class="code">bucket</code> - The S3 bucket where the model training artifacts are
+                        stored.</p>
+                </li></ul></div>
+            <p>To be able to deploy a model created in a different account, the user must have a
+                role that has access to SageMaker actions, such as a role with the
+                    <code class="code">AmazonSageMakerFullAccess</code> managed policy. For information about
+                SageMaker managed policies, see <a href="security-iam-awsmanpol.html">AWS Managed Policies for Amazon SageMaker</a>.</p>
+         
+            <h3 id="model-registry-version-xaccount-policies">Required IAM resource policies</h3>
+
+	    <p>The following diagram captures the policies required to allow cross-account model registration.
+	    As shown, these policies need to be active during model training to properly register the model
+	    into the Model Registry account.</p>
+            <div class="mediaobject">
+               
+                <img src="../../../images/sagemaker/latest/dg/images/model_registry_cross_account.png" class="aws-docs-img-whiteBg aws-docs-img-padding" />
+               
+            </div>
+	    <p>Amazon ECR, Amazon S3, and AWS KMS policies are demonstrated 
+		in the following code samples.
+	    </p>
+	    <p><b>Sample Amazon ECR policy</b></p>
+	    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Sid": "AddPerm",
+      "Effect": "Allow",
+      "Principal": <span>{</span>
+        "AWS": "arn:aws:iam::<span>{</span><code class="replaceable">model_registry_account</code>}:root"
+      },
+      "Action": [
+        "ecr:BatchGetImage",
+        "ecr:Describe*"
+      ]
+    }
+  ]
+}
+</code></pre>
+            <p><b>Sample Amazon S3 policy</b></p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Sid": "AddPerm",
+      "Effect": "Allow",
+      "Principal": <span>{</span>
+        "AWS": "arn:aws:iam::<span>{</span><code class="replaceable">model_registry_account</code>}:root"
+      },
+      "Action": [
+        "s3:GetObject",
+        "s3:GetBucketAcl",
+        "s3:GetObjectAcl"
+      ],
+      "Resource": "arn:aws:s3:::<span>{</span><code class="replaceable">bucket</code>}/*"
+    }
+  ]
+}
+</code></pre>
+            <p><b>Sample AWS KMS policy</b></p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Sid": "AddPerm",
+      "Effect": "Allow",
+      "Principal": <span>{</span>
+        "AWS": "arn:aws:iam::<span>{</span><code class="replaceable">model_registry_account</code>}:root"
+      },
+      "Action": [
+        "kms:Decrypt",
+        "kms:GenerateDataKey*"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+</code></pre>
+ 
+         
+            <h3 id="model-registry-version-xaccount-policy-usage">Apply resource policies to accounts</h3>
+            <p>The following policy configuration applies the policies discussed
+	    in the previous section and must be put in the model training account.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import json
+
+# The Model Registry account id of the Model Group 
+model_registry_account = "<code class="replaceable">111111111111</code>"
+
+# The model training account id where training happens
+model_training_account = "<code class="replaceable">222222222222</code>"
+
+# 1. Create a policy for access to the ECR repository 
+# in the model training account for the Model Registry account Model Group
+ecr_repository_policy = <span>{</span>"Version": "2012-10-17",
+    "Statement": [<span>{</span>"Sid": "AddPerm",
+        "Effect": "Allow",
+        "Principal": <span>{</span>
+          "AWS": f"arn:aws:iam::<span>{</span>model_registry_account}:root"
+        },
+        "Action": [
+          "ecr:BatchGetImage",
+          "ecr:Describe*"
+        ]
+    }]
+}
+
+# Convert the ECR policy from JSON dict to string
+ecr_repository_policy = json.dumps(ecr_repository_policy)
+
+# Set the new ECR policy
+ecr = boto3.client('ecr')
+response = ecr.set_repository_policy(
+    registryId = model_training_account,
+    repositoryName = "decision-trees-sample",
+    policyText = ecr_repository_policy
+)
+
+# 2. Create a policy in the model training account for access to the S3 bucket 
+# where the model is present in the Model Registry account Model Group
+bucket_policy = <span>{</span>"Version": "2012-10-17",
+    "Statement": [<span>{</span>"Sid": "AddPerm",
+        "Effect": "Allow",
+        "Principal": <span>{</span>"AWS": f"arn:aws:iam::<span>{</span>model_registry_account}:root"
+        },
+        "Action": [
+          "s3:GetObject",
+          "s3:GetBucketAcl",
+          "s3:GetObjectAcl"
+        ],
+        "Resource": "arn:aws:s3:::<span>{</span><code class="replaceable">bucket</code>}/*"
+    }]
+}
+
+# Convert the S3 policy from JSON dict to string
+bucket_policy = json.dumps(bucket_policy)
+
+# Set the new bucket policy
+s3 = boto3.client("s3")
+response = s3.put_bucket_policy(
+    Bucket = <code class="replaceable">bucket</code>,
+    Policy = bucket_policy)
+
+# 3. Create the KMS grant for the key used during training for encryption
+# in the model training account to the Model Registry account Model Group
+client = boto3.client("kms")
+
+response = client.create_grant(
+    GranteePrincipal=model_registry_account,
+    KeyId=kms_key_id
+    Operations=[
+        "Decrypt",
+        "GenerateDataKey",
+    ],
+)</code></pre>
+            <p>The following configuration needs to be put in the Model Registry account where the Model 
+                Group exists.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">
+# The Model Registry account id of the Model Group 
+model_registry_account = "<code class="replaceable">111111111111</code>"
+
+# 1. Create policy to allow the model training account to access the ModelPackageGroup
+model_package_group_policy = <span>{</span>"Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "AddPermModelPackageVersion",
+            "Effect": "Allow",
+            "Principal": <span>{</span>"AWS": f"arn:aws:iam::<span>{</span><code class="replaceable">model_training_account</code>}:root",
+            "Action": ["sagemaker:CreateModelPackage"],
+            "Resource": f"arn:aws:sagemaker:<span>{</span>region}:<span>{</span>model_registry_account}:model-package/<span>{</span><code class="replaceable">model_package_group_name</code>}/*"
+        }
+    ]
+}
+
+# Convert the policy from JSON dict to string
+model_package_group_policy = json.dumps(model_package_group_policy)
+
+# Set the new policy
+response = sm_client.put_model_package_group_policy(
+    ModelPackageGroupName = <code class="replaceable">model_package_group_name</code>,
+    ResourcePolicy = model_package_group_policy)
+
+            </code></pre>
+            <p>Finally, use the <code class="code">create_model_package</code> action from the model training
+                    account to register the model package in the cross-account.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python "># Specify the model source
+model_url = "s3://<span>{</span><code class="replaceable">bucket</code>}/model.tar.gz"
+
+#Set up the parameter dictionary to pass to the create_model_package method
+modelpackage_inference_specification =  <span>{</span>
+    "InferenceSpecification": <span>{</span>
+        "Containers": [
+            <span>{</span>
+                "Image": f"<span>{</span><code class="replaceable">model_training_account</code>}.dkr.ecr.us-east-2.amazonaws.com/decision-trees-sample:latest",
+                "ModelDataUrl": model_url
+            }
+        ],
+        "SupportedContentTypes": [ "text/csv" ],
+        "SupportedResponseMIMETypes": [ "text/csv" ],
+    }
+}
+
+# Alternatively, you can specify the model source like this:
+# modelpackage_inference_specification["InferenceSpecification"]["Containers"][0]["ModelDataUrl"]=model_url
+
+create_model_package_input_dict = <span>{</span>
+    "ModelPackageGroupName" : <code class="replaceable">model_package_group_arn</code>,
+    "ModelPackageDescription" : "Model to detect 3 different types of irises (Setosa, Versicolour, and Virginica)",
+    "ModelApprovalStatus" : "PendingManualApproval"
+}
+create_model_package_input_dict.update(modelpackage_inference_specification)
+
+# Create the model package in the Model Registry account
+create_model_package_response = sm_client.create_model_package(**create_model_package_input_dict)
+model_package_arn = create_model_package_response["ModelPackageArn"]
+print('ModelPackage Version ARN : <span>{</span>}'.format(model_package_arn))</code></pre>
+         
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./model-registry-delete-model-group.html">Delete a Model Group</div><div id="next" class="next-link" accesskey="n" href="./model-registry-view.html">View Model Groups and Versions</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-registry-version.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-registry-version.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

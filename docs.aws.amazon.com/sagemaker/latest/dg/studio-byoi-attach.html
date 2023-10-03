@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Attach a custom SageMaker image - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="studio-byoi-attach" /><meta name="default_state" content="studio-byoi-attach" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="studio-byoi-attach.html" /><meta name="description" content="Describes how to attach a custom Amazon SageMaker image to your domain." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="studio-byoi-attach.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-byoi-attach.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-byoi-attach.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-byoi-attach.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-byoi-attach.html" hreflang="de" /><link rel="alternative" href="studio-byoi-attach.html" hreflang="en-us" /><link rel="alternative" href="studio-byoi-attach.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-byoi-attach.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-byoi-attach.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-byoi-attach.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-byoi-attach.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-byoi-attach.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-byoi-attach.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-byoi-attach.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-byoi-attach.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-byoi-attach.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-byoi-attach.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-byoi-attach.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-byoi-attach.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/studio-byoi-attach.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/studio-byoi-attach.html" hreflang="zh-tw" /><link rel="alternative" href="studio-byoi-attach.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Attach a custom SageMaker image" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Attach a custom SageMaker image - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-byoi-attach" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-byoi-attach.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-byoi-attach.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-byoi-attach.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use machine learning environments offered by SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/machine-learning-environments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Studio",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Customize Amazon SageMaker Studio",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-customize.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Bring your own SageMaker image",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-byoi.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Attach a custom SageMaker image",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-byoi.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-byoi-attach" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="studio-byoi-attach.html#studio-byoi-attach-domain">Attach the SageMaker image to a Domain</a><a href="studio-byoi-attach.html#studio-byoi-attach-shared-space">Attach the SageMaker image to a shared space</a><a href="studio-byoi-attach.html#studio-byoi-sdk-view">View the attached image</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="studio-byoi-attach">Attach a custom SageMaker image</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>To use a custom SageMaker image, you must attach a version of the image to your domain or shared
+    space. When you attach an image version, it appears in the SageMaker Studio Launcher and is
+    available in the <b>Select image</b> dropdown list, which users use to launch an
+    activity or change the image used by a notebook.</p><p>To make a custom SageMaker image available to all users within a domain, you attach the image to
+    the domain. To make an image available to all users within a shared space, you can attach the
+    image to the shared space. To make an image available to a single user, you attach the image to
+    the user's profile. When you attach an image, SageMaker uses the latest image version by default. You
+    can also attach a specific image version. After you attach the version, you can choose the
+    version from the SageMaker Launcher or the image selector when you launch a notebook.</p><p>There is a limit to the number of image versions that can be attached at any given time. After you
+    reach the limit, you must detach a version in order to attach another version of the image.</p><p>The following sections demonstrate how to attach a custom SageMaker image to your domain using
+    either the SageMaker console or the AWS CLI. You can only attach a custom image to a share space using
+    the AWS CLI.</p>
+    <h2 id="studio-byoi-attach-domain">Attach the SageMaker image to a Domain</h2>
+   
+    <h3 id="studio-byoi-attach-existing">Attach the SageMaker image using the Console</h3>
+    <p>This topic describes how you can attach an existing custom SageMaker image version to your
+      domain using the SageMaker control panel. You can also create a custom SageMaker image and image
+      version, and then attach that version to your domain. For the procedure to create an image and
+      image version, see <a href="studio-byoi-create.html">Create a custom SageMaker image</a>.</p>
+
+    <div class="procedure"><h6>To attach an existing image</h6><ol><li>
+        <p>Open the Amazon SageMaker console at <a href="https://console.aws.amazon.com/sagemaker/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/sagemaker/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      </li><li>
+        <p>On the left navigation pane, choose <b>Admin configurations</b>.</p>
+      </li><li>
+        <p>Under <b>Admin configurations</b>, choose <b>Domains</b>. </p>
+      </li><li>
+        <p>From the <b>Domains</b> page, select the Domain to attach the image
+          to.</p>
+      </li><li>
+        <p>From the <b>Domain details</b> page, select the
+            <b>Environment</b> tab.</p>
+      </li><li>
+        <p>On the <b>Environment</b> tab, under <b>Custom SageMaker Studio
+            images attached to domain</b>, choose <b>Attach image</b>.</p>
+      </li><li>
+        <p>For <b>Image source</b>, choose <b>Existing image</b>.</p>
+      </li><li>
+        <p>Choose an existing image from the list.</p>
+      </li><li>
+        <p>Choose a version of the image from the list.</p>
+      </li><li>
+        <p>Choose <b>Next</b>.</p>
+      </li><li>
+        <p>Verify the values for <b>Image name</b>, <b>Image display
+            name</b>, and <b>Description</b>.</p>
+      </li><li>
+        <p>Choose the IAM role. For more information, see
+          <a href="studio-byoi-create.html">Create a custom SageMaker image</a>.</p>
+      </li><li>
+        <p>(Optional) Add tags for the image.</p>
+      </li><li>
+        <p>Specify the EFS mount path. This is the path within the image to mount the user's
+          Amazon Elastic File System (EFS) home directory.</p>
+      </li><li>
+        <p>For <b>Image type</b>, select <b>SageMaker Studio
+            image</b></p>
+      </li><li>
+        <p>For <b>Kernel name</b>, enter the name of an existing kernel in the
+          image. For information on how to get the kernel information from the image, see <a href="https://github.com/aws-samples/sagemaker-studio-custom-image-samples/blob/main/DEVELOPMENT.md" rel="noopener noreferrer" target="_blank"><span>DEVELOPMENT</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the SageMaker Studio Custom Image Samples repository. For more
+          information, see the <b>Kernel discovery</b> and <b>User
+            data</b> sections of <a href="studio-byoi-specs.html">Custom SageMaker image specifications</a>.</p>
+      </li><li>
+        <p>(Optional) For <b>Kernel display name</b>, enter the display name for
+          the kernel.</p>
+      </li><li>
+        <p>Choose <b>Add kernel</b>.</p></li><li>
+        <p>Choose <b>Submit</b>. </p>
+        <ol><li><p>Wait for the image version to be attached to the
+            domain. When attached, the version is displayed in the <b>Custom images</b>
+            list and briefly highlighted.</p></li></ol>
+      </li></ol></div>
+   
+   
+    <h3 id="studio-byoi-sdk-attach">Attach the SageMaker image using the AWS CLI</h3>
+    <p>The following sections demonstrate how to attach a custom SageMaker image when creating a new
+      domain or updating your existing domain using the AWS CLI.</p>
+  
+   
+    <h4 id="studio-byoi-sdk-attach-new-domain">Attach the SageMaker image to a new
+        domain</h4>
+    <p>The following section demonstrates how to create a new domain with the version attached.
+        These steps require that you specify the Amazon Virtual Private Cloud (VPC) information and execution role
+        required to create the domain. You perform the following steps to create the domain and
+        attach the custom SageMaker image:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem"><p>Get your default VPC ID and subnet IDs.</p></li><li class="listitem"><p>Create the configuration file for the domain, which specifies the image.</p></li><li class="listitem"><p>Create the domain with the configuration file.</p></li></ul></div>
+    <div class="procedure"><h6>To add the custom SageMaker image to your domain</h6><ol><li>
+        <p>Get your default VPC ID.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="cmd ">aws ec2 describe-vpcs \
+    --filters Name=isDefault,Values=true \
+    --query "Vpcs[0].VpcId" --output text</code></pre>
+          <p>The response should look similar to the following.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="cmd ">vpc-xxxxxxxx</code></pre>
+      </li><li>
+        <p>Get your default subnet IDs using the VPC ID from the previous step.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="cmd ">aws ec2 describe-subnets \
+    --filters Name=vpc-id,Values=<code class="replaceable">&lt;vpc-id&gt;</code> \
+    --query "Subnets[*].SubnetId" --output json</code></pre>
+          <p>The response should look similar to the following.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json ">[
+    "subnet-b55171dd",
+    "subnet-8a5f99c6",
+    "subnet-e88d1392"
+]</code></pre>
+      </li><li>
+        <p>Create a configuration file named <code>create-domain-input.json</code>. Insert the VPC
+          ID, subnet IDs, <code class="code">ImageName</code>, and <code class="code">AppImageConfigName</code> from the previous steps.
+          Because <code class="code">ImageVersionNumber</code> isn't specified, the latest version of the image is used,
+          which is the only version in this case.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "DomainName": "domain-with-custom-image",
+    "VpcId": "<code class="replaceable">&lt;vpc-id&gt;</code>",
+    "SubnetIds": [
+        "<code class="replaceable">&lt;subnet-ids&gt;</code>"
+    ],
+    "DefaultUserSettings": <span>{</span>
+        "ExecutionRole": "<code class="replaceable">&lt;execution-role&gt;</code>",
+        "KernelGatewayAppSettings": <span>{</span>
+            "CustomImages": [
+                <span>{</span>
+                    "ImageName": "custom-image",
+                    "AppImageConfigName": "custom-image-config"
+                }
+            ]
+        }
+    },
+    "AuthMode": "IAM"
+}</code></pre>
+      </li><li>
+        <p>Create the domain with the attached custom SageMaker image.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="cmd ">aws sagemaker create-domain \
+    --cli-input-json file://create-domain-input.json</code></pre>
+          <p>The response should look similar to the following.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "DomainArn": "arn:aws:sagemaker:us-east-2:acct-id:domain/d-xxxxxxxxxxxx",
+    "Url": "https://d-xxxxxxxxxxxx.studio.us-east-2.sagemaker.aws/..."
+}</code></pre>
+      </li></ol></div>
+   
+  
+  
+   
+    <h4 id="studio-byoi-sdk-attach-current-domain">Attach the SageMaker image to your
+        current domain</h4>
+      <p>If you have onboarded to a SageMaker domain, you can attach the custom image to your current
+        domain. For more information about onboarding to a SageMaker domain, see <a href="gs-studio-onboard.html">Onboard to Amazon SageMaker Domain</a>. You don't need to specify
+        the VPC information and execution role when attaching a custom image to your current domain.
+        After you attach the version, you must delete all the apps in your domain and reopen
+        Studio. For information about deleting the apps, see <a href="gs-studio-delete-domain.html">Delete an Amazon SageMaker Domain</a>.</p>
+    
+    <p>You perform the following steps to add the SageMaker image to your current domain.</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem"><p>Get your <code class="code">DomainID</code> from SageMaker control panel.</p></li><li class="listitem"><p>Use the <code class="code">DomainID</code> to get the <code class="code">DefaultUserSettings</code>
+        for the domain.</p></li><li class="listitem"><p>Add the <code class="code">ImageName</code> and <code class="code">AppImageConfig</code> as a <code class="code">CustomImage</code> to the
+        <code class="code">DefaultUserSettings</code>.</p></li><li class="listitem"><p>Update your domain to include the custom image.</p></li></ul></div>
+    <div class="procedure"><h6>To add the custom SageMaker image to your domain</h6><ol><li>
+        <p>Open the Amazon SageMaker console at <a href="https://console.aws.amazon.com/sagemaker/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/sagemaker/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      </li><li>
+        <p>On the left navigation pane, choose <b>Admin configurations</b>.</p>
+      </li><li>
+        <p>Under <b>Admin configurations</b>, choose <b>Domains</b>. </p>
+      </li><li>
+        <p>From the <b>Domains</b> page, select the Domain to attach the image
+          to.</p>
+      </li><li>
+        <p>From the <b>Domain details</b> page, select the <b>Domain
+              settings</b> tab.</p>
+      </li><li>
+        <p>From the <b>Domain settings</b> tab, under <b>General
+              settings</b>, find the <code class="code">DomainId</code>. The ID is in the following
+            format: <code class="code">d-xxxxxxxxxxxx</code>.</p>
+      </li><li>
+        <p>Use the domain ID to get the description of the domain.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="cmd ">aws sagemaker describe-domain \
+    --domain-id <code class="replaceable">&lt;d-xxxxxxxxxxxx&gt;</code></code></pre>
+          <p>The response should look similar to the following.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "DomainId": "d-xxxxxxxxxxxx",
+    "DefaultUserSettings": <span>{</span>
+      "KernelGatewayAppSettings": <span>{</span>
+        "CustomImages": [
+        ],
+        ...
+      }
+    }
+}</code></pre>
+      </li><li>
+        <p>Save the default user settings section of the response to a file named
+          <code>default-user-settings.json</code>.</p>
+      </li><li>
+        <p>Insert the <code class="code">ImageName</code> and <code class="code">AppImageConfigName</code> from the previous steps as
+          a custom image. Because <code class="code">ImageVersionNumber</code> isn't specified, the latest version of the
+          image is used, which is the only version in this case.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "DefaultUserSettings": <span>{</span>
+        "KernelGatewayAppSettings": <span>{</span> 
+           "CustomImages": [ 
+              <span>{</span> 
+                 "ImageName": "string",
+                 "AppImageConfigName": "string"
+              }
+           ],
+           ...
+        }
+    }
+}</code></pre>
+      </li><li>
+        <p>Use the domain ID and default user settings file to update your domain.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="cmd ">aws sagemaker update-domain \
+    --domain-id <code class="replaceable">&lt;d-xxxxxxxxxxxx&gt;</code> \
+    --cli-input-json file://default-user-settings.json</code></pre>
+          <p>The response should look similar to the following.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "DomainArn": "arn:aws:sagemaker:us-east-2:acct-id:domain/d-xxxxxxxxxxxx"
+}</code></pre>
+      </li></ol></div>
+   
+   
+   
+    <h2 id="studio-byoi-attach-shared-space">Attach the SageMaker image to a shared space</h2>
+   
+      <p>You can only attach the SageMaker image to a shared space using the AWS CLI. After you attach
+      the version, you must delete all of the applications in your shared space and reopen
+      Studio. For information about deleting the apps, see <a href="gs-studio-delete-domain.html">Delete an Amazon SageMaker Domain</a>.</p>
+      
+      <p>You perform the following steps to add the SageMaker image to a shared space.</p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem"><p>Get your <code class="code">DomainID</code> from SageMaker control panel.</p></li><li class="listitem"><p>Use the <code class="code">DomainID</code> to get the <code class="code">DefaultSpaceSettings</code> for the
+          domain.</p></li><li class="listitem"><p>Add the <code class="code">ImageName</code> and <code class="code">AppImageConfig</code> as a <code class="code">CustomImage</code>
+          to the <code class="code">DefaultSpaceSettings</code>.</p></li><li class="listitem"><p>Update your domain to include the custom image for the shared space.</p></li></ul></div>
+      <div class="procedure"><h6>To add the custom SageMaker image to your shared space</h6><ol><li>
+          <p>Open the Amazon SageMaker console at <a href="https://console.aws.amazon.com/sagemaker/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/sagemaker/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        </li><li>
+          <p>On the left navigation pane, choose <b>Admin configurations</b>.</p>
+        </li><li>
+          <p>Under <b>Admin configurations</b>, choose <b>Domains</b>. </p>
+        </li><li>
+          <p>From the <b>Domains</b> page, select the Domain to attach the image
+            to.</p>
+        </li><li>
+          <p>From the <b>Domain details</b> page, select the <b>Domain
+            settings</b> tab.</p>
+        </li><li>
+          <p>From the <b>Domain settings</b> tab, under <b>General
+            settings</b>, find the <code class="code">DomainId</code>. The ID is in the following
+            format: <code class="code">d-xxxxxxxxxxxx</code>.</p>
+        </li><li>
+          <p>Use the domain ID to get the description of the domain.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="cmd ">aws sagemaker describe-domain \
+    --domain-id <code class="replaceable">&lt;d-xxxxxxxxxxxx&gt;</code></code></pre>
+          <p>The response should look similar to the following.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "DomainId": "d-xxxxxxxxxxxx",
+    ...
+    "DefaultSpaceSettings": <span>{</span>
+      "KernelGatewayAppSettings": <span>{</span>
+        "CustomImages": [
+        ],
+        ...
+      }
+    }
+}</code></pre>
+        </li><li>
+          <p>Save the default space settings section of the response to a file named
+            <code>default-space-settings.json</code>.</p>
+        </li><li>
+          <p>Insert the <code class="code">ImageName</code> and <code class="code">AppImageConfigName</code> from the previous steps as
+            a custom image. Because <code class="code">ImageVersionNumber</code> isn't specified, the latest version of the
+            image is used, which is the only version in this case.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "DefaultSpaceSettings": <span>{</span>
+        "KernelGatewayAppSettings": <span>{</span> 
+           "CustomImages": [ 
+              <span>{</span> 
+                 "ImageName": "string",
+                 "AppImageConfigName": "string"
+              }
+           ],
+           ...
+        }
+    }
+}</code></pre>
+        </li><li>
+          <p>Use the domain ID and default space settings file to update your domain.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="cmd ">aws sagemaker update-domain \
+    --domain-id <code class="replaceable">&lt;d-xxxxxxxxxxxx&gt;</code> \
+    --cli-input-json file://default-space-settings.json</code></pre>
+          <p>The response should look similar to the following.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "DomainArn": "arn:aws:sagemaker:us-east-2:acct-id:domain/d-xxxxxxxxxxxx"
+}</code></pre>
+        </li></ol></div>
+   
+    <h2 id="studio-byoi-sdk-view">View the attached image in SageMaker</h2>
+    <p>After you create the custom SageMaker image and attach it to your domain, the image appears in
+      the <b>Environment</b> tab of the Domain. You can only view the attached
+      images for shared spaces using the AWS CLI by using the following command.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="cmd ">aws sagemaker describe-domain \
+    --domain-id <code class="replaceable">&lt;d-xxxxxxxxxxxx&gt;</code></code></pre>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./studio-byoi-create.html">Create a SageMaker image</div><div id="next" class="next-link" accesskey="n" href="./studio-byoi-launch.html">Launch a custom image</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-byoi-attach.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-byoi-attach.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

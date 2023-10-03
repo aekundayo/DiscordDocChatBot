@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Upgrade the RStudio Version - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="rstudio-version" /><meta name="default_state" content="rstudio-version" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="rstudio-version.html" /><meta name="description" content="Upgrade to the latest RStudio version and get information about how the upgrade works with SageMaker, such as how it affects BYOI images and RSessions." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="rstudio-version.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/rstudio-version.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/rstudio-version.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/rstudio-version.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/rstudio-version.html" hreflang="de" /><link rel="alternative" href="rstudio-version.html" hreflang="en-us" /><link rel="alternative" href="rstudio-version.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/rstudio-version.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/rstudio-version.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/rstudio-version.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/rstudio-version.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/rstudio-version.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/rstudio-version.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/rstudio-version.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/rstudio-version.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/rstudio-version.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/rstudio-version.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/rstudio-version.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/rstudio-version.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/rstudio-version.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/rstudio-version.html" hreflang="zh-tw" /><link rel="alternative" href="rstudio-version.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Upgrade the RStudio Version" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Upgrade the RStudio Version - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#rstudio-version" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/rstudio-version.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/rstudio-version.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/rstudio-version.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use machine learning environments offered by SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/machine-learning-environments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "RStudio on Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/rstudio.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Manage RStudio on Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/rstudio-manage.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Upgrade the RStudio Version",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/rstudio-manage.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#rstudio-version" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="rstudio-version.html#rstudio-version-latest">Latest version updates</a><a href="rstudio-version.html#rstudio-version-new">Versioning</a><a href="rstudio-version.html#rstudio-version-upgrade">Upgrade to the new version</a><a href="rstudio-version.html#rstudio-version-downgrade">Downgrade to the existing version</a><a href="rstudio-version.html#rstudio-version-byoi">Changes to BYOI Images</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="rstudio-version">Upgrade the RStudio Version</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>This guide provides information about the <code class="code">2023.03.2-454.pro2</code> version update
+        for RStudio on SageMaker. Starting June 27, 2023, new domains with RStudio support are created
+        with Posit Workbench version <code class="code">2023.03.2-454.pro2</code>. This applies to
+        the <code class="code">RStudioServerPro</code> applications and default <code class="code">RSessionGateway</code>
+        applications.</p><p>During the grace period until August 31, 2023, you can test the latest version in your
+        existing domains. During this period, existing domains continue to use the previous
+            <code class="code">2022.02.2-485.pro2</code> version by default. To change this default version,
+        recreate the <code class="code">RStudioServerPro</code> application following the steps in <a href="rstudio-version.html#rstudio-version-upgrade">Upgrade to the new version</a>. After
+        August 31, 2023, all existing domains automatically launch <code class="code">RStudioServerPro</code> and
+            <code class="code">RSessionGateway</code> applications with version
+        <code class="code">2023.03.2-454.pro2</code>.</p><p>The following sections give information about the <code class="code">2023.03.2-454.pro2</code> release
+        and how to test the latest version.</p>
+        <h2 id="rstudio-version-latest">Latest version updates</h2>
+        <p>The latest RStudio version is <code class="code">2023.03.2-454.pro2</code>. This version includes
+            the following changes:</p>
+        <div class="itemizedlist">
+            
+                 
+                 
+                 
+                 
+            
+        <ul class="itemizedlist"><li class="listitem">
+                    <p> Added RTools 4.3 support </p>
+                </li><li class="listitem">
+                    <p>
+                        Added support for R 4.3
+                    </p>
+                </li><li class="listitem">
+                    <p> Upgraded Quarto to 1.2.335 </p>
+                </li><li class="listitem">
+                    <p> Improved session management</p>
+                </li></ul></div>
+        <p>For more information about the changes in this release, see <a href="https://docs.posit.co/ide/news/" rel="noopener noreferrer" target="_blank"><span>https://docs.posit.co/ide/news/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p>
+     
+        <h2 id="rstudio-version-new">Versioning</h2>
+        <p>There are currently two versions of Posit Workbench supported by SageMaker. </p>
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Latest version supported: <code class="code">2023.03.2-454.pro2</code></p>
+            </li><li class="listitem">
+                <p>Previous version supported: <code class="code">2022.02.2-485.pro2</code></p>
+            </li></ul></div>
+        <p>During the grace period, the default Posit Workbench version that's
+            selected by SageMaker depends on the creation date of the domain. </p>
+        <div class="itemizedlist">
+            
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>For domains created after June 27, 2023 (newly created domains), version
+                        <code class="code">2023.03.2-454.pro2</code> is the default selected version. </p>
+                
+            </li><li class="listitem">
+                <p>For domains created before June 27, 2023 (existing domains), version
+                        <code class="code">2022.02.2-485.pro2</code> is the default selected version. You can
+                    update your domains to the latest version (<code class="code">2023.03.2-454.pro2</code>) by
+                    setting it as the default version for the domain. For more information, see
+                        <a href="rstudio-version.html#rstudio-version-upgrade">Upgrade to the new version</a>.</p>
+            </li></ul></div>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The default <code class="code">RSessionGateway</code> application version matches the current version of
+                the <code class="code">RStudioServerPro</code> application.</p></div></div>
+        <p>The following table lists the image ARNs for both versions for each AWS Region.
+            These ARNs are passed as part of an <code class="code">update-domain</code> command to set the
+            desired version.</p>
+        <div class="table-container"><div class="table-contents"><table id="w714aac13c21c21c13c11c15">
+                    <tr>
+                        <td tabindex="-1">
+                            Region</td>
+                        <td tabindex="-1"><code class="code">2022.02.2-485.pro2</code> Image ARN </td>
+                        <td tabindex="-1"><code class="code">2023.03.2-454.pro2</code> Image ARN </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"> us-east-1 </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:us-east-1:081325390199:image/rstudio-workbench-2021.08
+                        </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:us-east-1:081325390199:image/rstudio-workbench-2023.03
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"> us-east-2 </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:us-east-2:429704687514:image/rstudio-workbench-2021.08
+                        </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:us-east-2:429704687514:image/rstudio-workbench-2023.03
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"> us-west-1 </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:us-west-1:742091327244:image/rstudio-workbench-2021.08
+                        </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:us-west-1:742091327244:image/rstudio-workbench-2023.03
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"> us-west-2 </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:us-west-2:236514542706:image/rstudio-workbench-2021.08
+                        </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:us-west-2:236514542706:image/rstudio-workbench-2023.03
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"> af-south-1 </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:af-south-1:559312083959:image/rstudio-workbench-2021.08
+                        </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:af-south-1:559312083959:image/rstudio-workbench-2023.03
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"> ap-east-1 </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:ap-east-1:493642496378:image/rstudio-workbench-2021.08
+                        </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:ap-east-1:493642496378:image/rstudio-workbench-2023.03
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"> ap-south-1 </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:ap-south-1:394103062818:image/rstudio-workbench-2021.08
+                        </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:ap-south-1:394103062818:image/rstudio-workbench-2023.03
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"> ap-northeast-2 </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:ap-northeast-2:806072073708:image/rstudio-workbench-2021.08
+                        </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:ap-northeast-2:806072073708:image/rstudio-workbench-2023.03
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"> ap-southeast-1 </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:ap-southeast-1:492261229750:image/rstudio-workbench-2021.08
+                        </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:ap-southeast-1:492261229750:image/rstudio-workbench-2023.03
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"> ap-southeast-2 </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:ap-southeast-2:452832661640:image/rstudio-workbench-2021.08
+                        </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:ap-southeast-2:452832661640:image/rstudio-workbench-2023.03
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"> ap-northeast-1 </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:ap-northeast-1:102112518831:image/rstudio-workbench-2021.08
+                        </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:ap-northeast-1:102112518831:image/rstudio-workbench-2023.03
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"> ca-central-1 </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:ca-central-1:310906938811:image/rstudio-workbench-2021.08
+                        </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:ca-central-1:310906938811:image/rstudio-workbench-2023.03
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"> eu-central-1 </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:eu-central-1:936697816551:image/rstudio-workbench-2021.08
+                        </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:eu-central-1:936697816551:image/rstudio-workbench-2023.03
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"> eu-west-1 </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:eu-west-1:470317259841:image/rstudio-workbench-2021.08
+                        </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:eu-west-1:470317259841:image/rstudio-workbench-2023.03
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"> eu-west-2 </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:eu-west-2:712779665605:image/rstudio-workbench-2021.08
+                        </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:eu-west-2:712779665605:image/rstudio-workbench-2023.03
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"> eu-west-3 </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:eu-west-3:615547856133:image/rstudio-workbench-2021.08
+                        </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:eu-west-3:615547856133:image/rstudio-workbench-2023.03
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"> eu-north-1 </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:eu-north-1:243637512696:image/rstudio-workbench-2021.08
+                        </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:eu-north-1:243637512696:image/rstudio-workbench-2023.03
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"> eu-south-1 </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:eu-south-1:592751261982:image/rstudio-workbench-2021.08
+                        </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:eu-south-1:592751261982:image/rstudio-workbench-2023.03
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"> sa-east-1 </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:sa-east-1:782484402741:image/rstudio-workbench-2021.08
+                        </td>
+                        <td tabindex="-1">
+                            arn:aws:sagemaker:sa-east-1:782484402741:image/rstudio-workbench-2023.03
+                        </td>
+                    </tr>
+                </table></div></div>
+     
+        <h2 id="rstudio-version-upgrade">Upgrade to the new version</h2>
+        <p>Existing domains continue using version <code class="code">2022.02.2-485.pro2</code> during the
+            grace period. During the grace period, you can use the latest
+                <code class="code">2023.03.2-454.pro2</code> version in one of two ways:</p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Create a new domain from the AWS CLI with RStudio enabled.</p>
+                </li><li class="listitem">
+                    <p>Update an existing domain to use the <code class="code">2023.03.2-454.pro2</code>
+                    version.</p>
+                </li></ul></div>
+        <p>The following procedure shows how to delete the RStudio application for an existing
+            domain, set the default version to <code class="code">2023.03.2-454.pro2</code>, and then create an
+            RStudio application. This procedure is only required during the grace period.</p>
+        
+        <div class="procedure"><ol><li>
+                <p>Delete the <code class="code">RStudioServerPro</code> application and all
+                        <code class="code">RSessionGateway</code> applications associated with your existing
+                    domain. For information about how to find your domain ID, see <a href="domain-view-edit.html#domain-view-domains">View Domains</a>. For
+                    more information about deleting applications, see <a href="rstudio-shutdown.html">Shut down and restart RStudio</a>.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws sagemaker delete-app \
+    --region <code class="replaceable">region</code> \
+    --domain-id <code class="replaceable">domainId</code> \
+    --user-profile-name domain-shared \
+    --app-type RStudioServerPro \
+    --app-name default</code></pre>
+            </li><li><p>Update the domain to set <code class="code">2023.03.2-454.pro2</code> as the default Posit
+                        Workbench version. The <code class="code">SageMakerImageArn</code> value in the
+                    following <code class="code">update-domain</code> command specifies the RStudio
+                        <code class="code">2023.03.2-454.pro2</code> version as the default. This ARN must match
+                    the Region that your domain is in. For a list of all available
+                    ARNs, see <a href="rstudio-version.html#rstudio-version-new">Versioning</a>.</p>
+                <p>Pass an execution role ARN for the domain that provides permissions to update
+                    the domain. </p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws sagemaker update-domain \
+    --region <code class="replaceable">region</code> \
+    --domain-id <code class="replaceable">domainId</code> \
+    --domain-settings-for-update "<span>{</span>\"RStudioServerProDomainSettingsForUpdate\":<span>{</span>\"DefaultResourceSpec\": <span>{</span>\"SageMakerImageArn\": \"<code class="replaceable">arn-for-2023.03.2-454.pro2-version</code>\", \"InstanceType\": \"system\"}, \"DomainExecutionRoleArn\": \"<code class="replaceable">execution-role-arn</code>\"}}"</code></pre>
+            </li><li>
+                <p>Create a new <code class="code">RStudioServerPro</code> application in the existing
+                    domain.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws sagemaker create-app \
+    --region <code class="replaceable">region</code>
+    --domain-id <code class="replaceable">domainId</code> \
+    --user-profile-name domain-shared \
+    --app-type RStudioServerPro \
+    --app-name default</code></pre>
+            </li></ol></div>
+        <p>Your <code class="code">RStudioServerPro</code> application is now updated to version
+                <code class="code">2023.03.2-454.pro2</code>. You can now relaunch your
+                <code class="code">RSessionGateway</code> applications.</p>
+     
+        <h2 id="rstudio-version-downgrade">Downgrade to the existing version</h2>
+        <p>During the grace period, you can manually downgrade the version of your existing
+            RStudio application to the <code class="code">2022.02.2-485.pro2</code> version. </p>
+        <div class="procedure"><h6>To downgrade to the existing version</h6><ol><li>
+                <p>Delete the <code class="code">RStudioServerPro</code> application that's associated with
+                    your existing domain. For information about how to find your domain ID, see
+                        <a href="domain-view-edit.html#domain-view-domains">View Domains</a>.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws sagemaker delete-app \
+    --domain-id <code class="replaceable">domainId</code> \
+    --user-profile-name domain-shared \
+    --app-type RStudioServerPro \
+    --app-name default</code></pre>
+            </li><li>
+                <p>Pass the corresponding <code class="code">2022.02.2-485.pro2</code> ARN for your
+                        Region as part of the <code class="code">update-domain</code> command. For
+                    a list of all available ARNs, see <a href="rstudio-version.html#rstudio-version-new">Versioning</a>. You must also pass an execution role
+                    ARN for the domain that provides permissions to update the domain. </p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws sagemaker update-domain \
+    --region <code class="replaceable">region</code> \
+    --domain-id <code class="replaceable">domainId</code> \
+    --domain-settings-for-update "<span>{</span>\"RStudioServerProDomainSettingsForUpdate\":<span>{</span>\"DefaultResourceSpec\": <span>{</span>\"SageMakerImageArn\": \"<code class="replaceable">arn-for-2022.02.2+485.pro2-version</code>\", \"InstanceType\": \"system\"}, \"DomainExecutionRoleArn\": \"<code class="replaceable">execution-role-arn</code>\"}}"</code></pre>
+            </li><li>
+                <p>Create a new <code class="code">RStudioServerPro</code> application in the existing domain.
+                    The RStudio version defaults to <code class="code">2022.02.2-485.pro2</code>.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws sagemaker create-app \
+    --domain-id <code class="replaceable">domainId</code> \
+    --user-profile-name domain-shared \
+    --app-type RStudioServerPro \
+    --app-name default</code></pre>
+            </li></ol></div>
+        <p>Your <code class="code">RStudioServerPro</code> application is now downgraded to version
+                <code class="code">2022.02.2-485.pro2</code>. </p>
+     
+        <h2 id="rstudio-version-byoi">Changes to BYOI Images</h2>
+        <p>If you use a BYOI image with RStudio and update your <code class="code">RStudioServerPro</code>
+            version to <code class="code">2023.03.2-454.pro2</code>, you must upgrade your custom images to use
+                the <code class="code">2023.03.2-454.pro2</code> release and redeploy your existing RSessions. If
+            you attempt to load a non-compatible image in an RSession of a domain using
+                the <code class="code">2023.03.2-454.pro2</code> version, the RSession fails because it cannot
+            parse parameters that it receives. To prevent failure, update all of the deployed custom
+            images in your existing <code class="code">RStudioServerPro</code> application. </p>
+        <p>The <code class="code">RSW_VERSION</code> in the Dockerfile must be consistent with
+            the Posit Workbench version used in RStudio on SageMaker. You can validate the
+            current version in Posit Workbench. To do so, use the version name that's
+            located in the lower left corner of the Posit Workbench launcher
+            page.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">...
+ARG RSW_VERSION=2023.03.2+454.pro2
+ENV RSTUDIO_FORCE_NON_ZERO_EXIT_CODE="1"
+ARG RSW_NAME=rstudio-workbench-rhel
+ARG RSW_DOWNLOAD_URL=https://s3.amazonaws.com/rstudio-ide-build/server/$<span>{</span>OS}/x86_64
+RUN RSW_VERSION_URL=`echo -n "$<span>{</span>RSW_VERSION}" | sed 's/+/-/g'` \
+    &amp;&amp; curl -o rstudio-workbench.rpm $<span>{</span>RSW_DOWNLOAD_URL}/$<span>{</span>RSW_NAME}-$<span>{</span>RSW_VERSION_URL}-x86_64.rpm \
+    &amp;&amp; yum install -y rstudio-workbench.rpm</code></pre>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./rstudio-license.html">RStudio license</div><div id="next" class="next-link" accesskey="n" href="./rstudio-network.html">Network and Storage</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/rstudio-version.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/rstudio-version.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

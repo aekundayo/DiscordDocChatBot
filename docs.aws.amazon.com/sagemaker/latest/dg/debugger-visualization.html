@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Debugger Advanced Demos and Visualization - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="debugger-visualization" /><meta name="default_state" content="debugger-visualization" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="debugger-visualization.html" /><meta name="description" content="The following demos walk you through advanced use cases and visualization scripts using Debugger." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="debugger-visualization.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/debugger-visualization.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/debugger-visualization.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/debugger-visualization.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/debugger-visualization.html" hreflang="de" /><link rel="alternative" href="debugger-visualization.html" hreflang="en-us" /><link rel="alternative" href="debugger-visualization.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/debugger-visualization.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/debugger-visualization.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/debugger-visualization.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/debugger-visualization.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/debugger-visualization.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/debugger-visualization.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/debugger-visualization.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/debugger-visualization.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/debugger-visualization.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/debugger-visualization.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/debugger-visualization.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/debugger-visualization.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/debugger-visualization.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/debugger-visualization.html" hreflang="zh-tw" /><link rel="alternative" href="debugger-visualization.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Debugger Advanced Demos and Visualization" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Debugger Advanced Demos and Visualization - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#debugger-visualization" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-visualization.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-visualization.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-visualization.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Debug and improve model performance",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-debug-and-improve-model-performance.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Amazon SageMaker Debugger to debug and improve model performance",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-debugger.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Get Started with Debugger Tutorials",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-tutorial.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Debugger Advanced Demos and Visualization",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-tutorial.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#debugger-visualization" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="debugger-visualization.html#debugger-visualization-video-model-pruning">Train and Prune Models with Experiments and Debugger</a><a href="debugger-visualization.html#debugger-visualization-autoencoder_mnist">Using Debugger to Monitor an Autoencoder Model Training</a><a href="debugger-visualization.html#debugger-visualization-bert_attention_head_view">Using Debugger to Monitor BERT Model Training</a><a href="debugger-visualization.html#debugger-visualization-cnn_class_activation_maps">Using Debugger to Visualize Class Activation Maps in CNNs</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="debugger-visualization">Debugger Advanced Demos and Visualization</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>The following demos walk you through advanced use cases and visualization scripts using Debugger.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="debugger-visualization.html#debugger-visualization-video-model-pruning">Train and Tune Your Models
+                with Amazon SageMaker Experiments and Debugger</a></li><li><a href="debugger-visualization.html#debugger-visualization-autoencoder_mnist"> Using SageMaker Debugger to Monitor a Convolutional Autoencoder Model Training
+                </a></li><li><a href="debugger-visualization.html#debugger-visualization-bert_attention_head_view"> Using SageMaker Debugger to Monitor Attentions in BERT Model Training
+                </a></li><li><a href="debugger-visualization.html#debugger-visualization-cnn_class_activation_maps"> Using SageMaker Debugger to Visualize Class Activation Maps in Convolutional Neural
+                    Networks (CNNs)</a></li></ul></div>
+        <h2 id="debugger-visualization-video-model-pruning">Train and Tune Your Models
+                with Amazon SageMaker Experiments and Debugger</h2>
+        <p><em>Dr. Nathalie Rauschmayr, AWS Applied Scientist | Length: 49
+                minutes 26 seconds</em></p>
+        <div class="mediaobject">
+             
+                <iframe width="560" height="315" frameborder="0" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" sandbox="allow-scripts allow-same-origin allow-popups" src="https://www.youtube-nocookie.com/embed/Tnv6HsT1r4I"></iframe>
+             
+        </div>
+        
+        <p>Find out how Amazon SageMaker Experiments and Debugger can simplify the management of your
+            training jobs. Amazon SageMaker Debugger provides transparent visibility into training jobs and saves
+            training metrics into your Amazon S3 bucket. SageMaker Experiments enables you to call the
+            training information as <em>trials</em> through SageMaker Studio and supports
+            visualization of the training job. This helps you keep model quality high while reducing
+            less important parameters based on importance rank.</p>
+        <p>This video demonstrates a <em>model pruning</em> technique that makes
+            pre-trained ResNet50 and AlexNet models lighter and affordable while keeping high
+            standards for model accuracy.</p>
+        <p>SageMaker Estimator trains those algorithms supplied from the PyTorch model zoo in an AWS
+            Deep Learning Containers with PyTorch framework, and Debugger extracts training metrics
+            from the training process.</p>
+        <p>The video also demonstrates how to set up a Debugger custom rule to watch the accuracy
+            of a pruned model, to trigger an Amazon CloudWatch event and an AWS Lambda function when the accuracy
+            hits a threshold, and to automatically stop the pruning process to avoid redundant
+            iterations. </p>
+        <p>Learning objectives are as follows: </p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p> Learn how to use SageMaker to accelerate ML model training and improve model
+                    quality. </p>
+            </li><li class="listitem">
+                <p> Understand how to manage training iterations with SageMaker Experiments by
+                    automatically capturing input parameters, configurations, and results. </p>
+            </li><li class="listitem">
+                <p> Discover how Debugger makes the training process transparent by automatically
+                    capturing real-time tensor data from metrics such as weights, gradients, and
+                    activation outputs of convolutional neural networks.</p>
+            </li><li class="listitem">
+                <p>Use CloudWatch to trigger Lambda when Debugger catches issues.</p>
+            </li><li class="listitem">
+                <p> Master the SageMaker training process using SageMaker Experiments and Debugger.</p>
+            </li></ul></div>
+        <p>You can find the notebooks and training scripts used in this video from <a href="https://github.com/awslabs/amazon-sagemaker-examples/tree/master/sagemaker-debugger/pytorch_iterative_model_pruning" rel="noopener noreferrer" target="_blank"><span>SageMaker Debugger PyTorch Iterative Model Pruning</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        <p>The following image shows how the iterative model pruning process reduces the size of
+            AlexNet by cutting out the 100 least significant filters based on importance rank
+            evaluated by activation outputs and gradients.</p>
+        <p>The pruning process reduced the initial 50 million parameters to 18 million. It also
+            reduced the estimated model size from 201 MB to 73 MB. </p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/debugger/debugger-model-pruning-results-alexnet.gif" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                An image containing model pruning result output visualizations&#xA;            " style="max-width:70%" />
+             
+             
+        </div>
+        <p>You also need to track model accuracy, and the following image shows how you can plot
+            the model pruning process to visualize changes in model accuracy based on the number of
+            parameters in SageMaker Studio.</p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/debugger/debugger-model-pruning-studio.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                An image of tensor visualization using Debugger in SageMaker Studio&#xA;            " style="max-width:90%" />
+             
+             
+        </div>
+        <p>In SageMaker Studio, choose the <b>Experiments</b> tab, select a
+            list of tensors saved by Debugger from the pruning process, and then compose a <b>Trial Component List</b> panel. Select all ten iterations and
+            then choose <b>Add chart</b> to create a <b>Trial
+                Component Chart</b>. After you decide on a model to deploy, choose the trial
+            component and choose a menu to perform an action or choose <b>Deploy
+                model</b>.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>To deploy a model through SageMaker Studio using the following notebook example, add a
+                line at the end of the <code class="code">train</code> function in the
+                    <code>train.py</code> script.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">
+# In the train.py script, look for the train function in <b>line 58</b>.
+def train(epochs, batch_size, learning_rate):
+    ...
+        print('acc:<span>{</span>:.4f}'.format(correct/total))
+        hook.save_scalar("accuracy", correct/total, sm_metric=True)
+
+    # Add the following code to <b>line 128</b> of the train.py script to save the pruned models
+    # under the current SageMaker Studio model directory
+    <code class="replaceable">torch.save(model.state_dict(), os.environ['SM_MODEL_DIR'] + '/model.pt')</code>
+            </code></pre></div></div>
+     
+        <h2 id="debugger-visualization-autoencoder_mnist"><a href="https://sagemaker-examples.readthedocs.io/en/latest/sagemaker-debugger/model_specific_realtime_analysis/autoencoder_mnist/autoencoder_mnist.html" rel="noopener noreferrer" target="_blank"><span> Using SageMaker Debugger to Monitor a Convolutional Autoencoder Model Training
+                </span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></h2>
+        <p>This notebook demonstrates how SageMaker Debugger visualizes tensors from an unsupervised (or
+            self-supervised) learning process on a MNIST image dataset of handwritten
+            numbers.</p>
+        <p>The training model in this notebook is a convolutional autoencoder with the MXNet
+            framework. The convolutional autoencoder has a bottleneck-shaped convolutional neural
+            network that consists of an encoder part and a decoder part. </p>
+        <p>The encoder in this example has two convolution layers to produce compressed
+            representation (latent variables) of the input images. In this case, the encoder
+            produces a latent variable of size (1, 20) from an original input image of size (28, 28)
+            and significantly reduces the size of data for training by 40 times.</p>
+        <p>The decoder has two <em>deconvolutional</em> layers and ensures that the
+            latent variables preserve key information by reconstructing output images.</p>
+        <p>The convolutional encoder powers clustering algorithms with smaller input data size
+            and the performance of clustering algorithms such as k-means, k-NN, and t-Distributed
+            Stochastic Neighbor Embedding (t-SNE).</p>
+        <p>This notebook example demonstrates how to visualize the latent variables using Debugger,
+            as shown in the following animation. It also demonstrates how the t-SNE algorithm
+            classifies the latent variables into ten clusters and projects them into a
+            two-dimensional space. The scatter plot color scheme on the right side of the image
+            reflects the true values to show how well the BERT model and t-SNE algorithm organize
+            the latent variables into the clusters.</p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/debugger/debugger-cnn-autoencoder-plot.gif" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                A conceptual image of convolutional autoencoder&#xA;            " style="max-width:90%" />
+             
+             
+        </div>
+     
+        <h2 id="debugger-visualization-bert_attention_head_view"><a href="https://sagemaker-examples.readthedocs.io/en/latest/sagemaker-debugger/model_specific_realtime_analysis/bert_attention_head_view/bert_attention_head_view.html" rel="noopener noreferrer" target="_blank"><span> Using SageMaker Debugger to Monitor Attentions in BERT Model Training
+                </span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></h2>
+        <p>Bidirectional Encode Representations from Transformers (BERT) is a language
+            representation model. As the name of model reflects, the BERT model builds on
+                <em>transfer learning</em> and the <em>Transformer
+                model</em> for natural language processing (NLP).</p>
+        <p>The BERT model is pre-trained on unsupervised tasks such as predicting missing words
+            in a sentence or predicting the next sentence that naturally follows a previous
+            sentence. The training data contains 3.3 billion words (tokens) of English text, from
+            sources such as Wikipedia and electronic books. For a simple example, the BERT model can
+            give a high <em>attention</em> to appropriate verb tokens or pronoun tokens
+            from a subject token.</p>
+        <p>The pre-trained BERT model can be fine-tuned with an additional output layer to
+            achieve state-of-the-art model training in NLP tasks, such as automated responses to
+            questions, text classification, and many others. </p>
+        <p>Debugger collects tensors from the fine-tuning process. In the context of NLP, the
+            weight of neurons is called <em>attention</em>. </p>
+        <p>This notebook demonstrates how to use the <a href="https://gluon-nlp.mxnet.io/model_zoo/bert/index.html" rel="noopener noreferrer" target="_blank"><span> pre-trained BERT model
+                from the GluonNLP model zoo</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the Stanford Question and Answering dataset
+            and how to set up SageMaker Debugger to monitor the training job.</p>
+        <p>Plotting <em>attention scores</em> and individual neurons in the query and
+            key vectors can help to identify causes of incorrect model predictions. With SageMaker
+            Debugger, you can retrieve the tensors and plot the <em>attention-head
+                view</em> in real time as training progresses and understand what the model is
+            learning.</p>
+        <p>The following animation shows the attention scores of the first 20 input tokens for
+            ten iterations in the training job provided in the notebook example.</p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/debugger/debugger-attention_scores.gif" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                An animation of the attention scores&#xA;            " style="max-width:60%" />
+             
+             
+        </div>
+     
+        <h2 id="debugger-visualization-cnn_class_activation_maps"><a href="https://sagemaker-examples.readthedocs.io/en/latest/sagemaker-debugger/model_specific_realtime_analysis/cnn_class_activation_maps/cnn_class_activation_maps.html" rel="noopener noreferrer" target="_blank"><span> Using SageMaker Debugger to Visualize Class Activation Maps in Convolutional Neural
+                    Networks (CNNs)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></h2>
+        <p>This notebook demonstrates how to use SageMaker Debugger to plot class activation maps for
+            image detection and classification in convolutional neural networks (CNNs). In deep
+            learning, a <em>convolutional neural network (CNN or
+                ConvNet)</em> is a class of deep neural networks, most commonly applied to
+            analyzing visual imagery. One of the applications that adopts the class activation maps
+            is self-driving cars, which require instantaneous detection and classification of images
+            such as traffic signs, roads, and obstacles.</p>
+        <p>In this notebook, the PyTorch ResNet model is trained on <a href="http://benchmark.ini.rub.de/" rel="noopener noreferrer" target="_blank"><span>the German Traffic Sign Dataset</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, which
+            contains more than 40 classes of traffic-related objects and more than 50,000 images in
+            total.</p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/debugger/debugger-cnn-class-activation-maps.gif" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                An animation of CNN class activation maps&#xA;            " style="max-width:90%" />
+             
+             
+        </div>
+        <p>During the training process, SageMaker Debugger collects tensors to plot the class activation
+            maps in real time. As shown in the animated image, the class activation map (also called
+            as a <em>saliency map</em>) highlights regions with high activation in red
+            color. </p>
+        <p>Using tensors captured by Debugger, you can visualize how the activation map evolves
+            during the model training. The model starts by detecting the edge on the lower-left
+            corner at the beginning of the training job. As the training progresses, the focus
+            shifts to the center and detects the speed limit sign, and the model successfully
+            predicts the input image as Class 3, which is a class of speed limit 60km/h signs, with
+            a 97% confidence level.</p>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./debugger-notebooks.html">Example Notebooks</div><div id="next" class="next-link" accesskey="n" href="./debugger-debug-training-jobs.html">Debug Training Jobs</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-visualization.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-visualization.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

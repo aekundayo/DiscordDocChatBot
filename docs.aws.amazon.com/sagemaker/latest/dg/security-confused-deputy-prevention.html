@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Cross-Service Confused Deputy Prevention - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="security-confused-deputy-prevention" /><meta name="default_state" content="security-confused-deputy-prevention" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="security-confused-deputy-prevention.html" /><meta name="description" content="Prevent the cross-service confused deputy problem for Amazon SageMaker resources." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="security-confused-deputy-prevention.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/security-confused-deputy-prevention.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/security-confused-deputy-prevention.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/security-confused-deputy-prevention.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/security-confused-deputy-prevention.html" hreflang="de" /><link rel="alternative" href="security-confused-deputy-prevention.html" hreflang="en-us" /><link rel="alternative" href="security-confused-deputy-prevention.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/security-confused-deputy-prevention.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/security-confused-deputy-prevention.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/security-confused-deputy-prevention.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/security-confused-deputy-prevention.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/security-confused-deputy-prevention.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/security-confused-deputy-prevention.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/security-confused-deputy-prevention.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/security-confused-deputy-prevention.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/security-confused-deputy-prevention.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/security-confused-deputy-prevention.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/security-confused-deputy-prevention.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/security-confused-deputy-prevention.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/security-confused-deputy-prevention.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/security-confused-deputy-prevention.html" hreflang="zh-tw" /><link rel="alternative" href="security-confused-deputy-prevention.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Cross-Service Confused Deputy Prevention" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Cross-Service Confused Deputy Prevention - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#security-confused-deputy-prevention" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/security-confused-deputy-prevention.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/security-confused-deputy-prevention.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/security-confused-deputy-prevention.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Configure security in Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/security.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Identity and Access Management for Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/security-iam.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Cross-Service Confused Deputy Prevention",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/security-iam.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#security-confused-deputy-prevention" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="security-confused-deputy-prevention.html#security-confused-deputy-context-keys"> Limit Permissions With Global
+                Condition Keys </a><a href="security-confused-deputy-prevention.html#security-confused-deputy-edge-manager"> SageMaker Edge Manager </a><a href="security-confused-deputy-prevention.html#security-confused-deputy-images"> SageMaker Images </a><a href="security-confused-deputy-prevention.html#security-confused-deputy-inference"> SageMaker Inference </a><a href="security-confused-deputy-prevention.html#security-confused-deputy-batch"> SageMaker Batch Transform Jobs</a><a href="security-confused-deputy-prevention.html#security-confused-deputy-marketplace"> SageMaker Marketplace </a><a href="security-confused-deputy-prevention.html#security-confused-deputy-neo"> SageMaker Neo </a><a href="security-confused-deputy-prevention.html#security-confused-deputy-pipelines"> SageMaker Pipelines </a><a href="security-confused-deputy-prevention.html#security-confused-deputy-processing-job"> SageMaker Processing Jobs </a><a href="security-confused-deputy-prevention.html#security-confused-deputy-studio"> SageMaker Studio </a><a href="security-confused-deputy-prevention.html#security-confused-deputy-training-job"> SageMaker Training Jobs </a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="security-confused-deputy-prevention">Cross-Service Confused Deputy Prevention</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>The <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy">confused deputy problem</a> 
+        is a security issue where an entity that doesn't have
+        permission to perform an action can coerce a more-privileged entity to perform the action.
+        In AWS, cross-service impersonation can result in the confused deputy problem.
+        Cross-service impersonation can occur when one service (the <em>calling
+            service</em>) calls another service (the <em>called service</em>). The
+        calling service can be manipulated to use its permissions to act on another customer's
+        resources in a way it should not otherwise have permission to access. To prevent this, AWS
+        provides tools that help you protect your data for all services with service principals that
+        have been given access to resources in your account. </p><p>Read on for general guidance or navigate to an example for a specific SageMaker
+    feature:</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="security-confused-deputy-prevention.html#security-confused-deputy-context-keys"> Limit Permissions With Global
+                Condition Keys </a></li><li><a href="security-confused-deputy-prevention.html#security-confused-deputy-edge-manager"> SageMaker Edge Manager </a></li><li><a href="security-confused-deputy-prevention.html#security-confused-deputy-images"> SageMaker Images </a></li><li><a href="security-confused-deputy-prevention.html#security-confused-deputy-inference"> SageMaker Inference </a></li><li><a href="security-confused-deputy-prevention.html#security-confused-deputy-batch"> SageMaker Batch Transform Jobs</a></li><li><a href="security-confused-deputy-prevention.html#security-confused-deputy-marketplace"> SageMaker Marketplace </a></li><li><a href="security-confused-deputy-prevention.html#security-confused-deputy-neo"> SageMaker Neo </a></li><li><a href="security-confused-deputy-prevention.html#security-confused-deputy-pipelines"> SageMaker Pipelines </a></li><li><a href="security-confused-deputy-prevention.html#security-confused-deputy-processing-job"> SageMaker Processing Jobs </a></li><li><a href="security-confused-deputy-prevention.html#security-confused-deputy-studio"> SageMaker Studio </a></li><li><a href="security-confused-deputy-prevention.html#security-confused-deputy-training-job"> SageMaker Training Jobs </a></li></ul></div>
+        <h2 id="security-confused-deputy-context-keys"> Limit Permissions With Global
+                Condition Keys </h2>  
+        <p>We recommend using the <code class="code"><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourcearn">aws:SourceArn</a></code> and <code class="code"><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourceaccount">aws:SourceAccount</a></code> global condition keys in resource
+            policies to limit the permissions to the resource that Amazon SageMaker gives another service.
+            If you use both global condition keys and the <code class="code">aws:SourceArn</code> value contains
+            the account ID, the <code class="code">aws:SourceAccount</code> value and the account in the
+                <code class="code">aws:SourceArn</code> value must use the same account ID when used in the same
+            policy statement. Use <code class="code">aws:SourceArn</code> if you want only one resource to be
+            associated with the cross-service access. Use <code class="code">aws:SourceAccount</code> if you want
+            to allow any resource in that account to be associated with the cross-service
+            use.</p>
+    <p>The most effective way to protect against the confused deputy problem is to use the
+                <code class="code">aws:SourceArn</code> global condition key with the full ARN of the resource.
+            If you don't know the full ARN of the resource or if you are specifying multiple
+            resources, use the <code class="code">aws:SourceArn</code> global condition key with wildcards
+                (<code class="code">*</code>) for the unknown portions of the ARN. For example,
+                    <code class="code">arn:aws:sagemaker:*:<code class="replaceable">123456789012</code>:*</code>.</p>
+    <p>The following example shows how you can use the <code class="code">aws:SourceArn</code> and
+                <code class="code">aws:SourceAccount</code> global condition keys in SageMaker to prevent the confused
+            deputy problem.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": <span>{</span>
+    "Sid": "ConfusedDeputyPreventionExamplePolicy",
+    "Effect": "Allow",
+    "Principal": <span>{</span>
+      "Service": "sagemaker.amazonaws.com"
+    },
+    # Specify an action and resource policy for another service
+    "Action": "<code class="replaceable">service</code>:<code class="replaceable">ActionName</code>",
+    "Resource": [
+      "arn:aws:<code class="replaceable">service</code>:::<code class="replaceable">ResourceName</code>/*"
+    ],
+    "Condition": <span>{</span>
+      "ArnLike": <span>{</span>
+        "aws:SourceArn": "arn:<code class="replaceable">partition</code>:sagemaker:<code class="replaceable">region</code>:<code class="replaceable">123456789012</code>:*"
+      },
+      "StringEquals": <span>{</span>
+        "aws:SourceAccount": "<code class="replaceable">123456789012</code>"
+      }
+    }
+  }
+}</code></pre>
+    <h2 id="security-confused-deputy-edge-manager"> SageMaker Edge Manager </h2>
+    <p>The following example shows how you can use the <code class="code">aws:SourceArn</code> global
+      condition key to prevent the cross-service confused deputy problem for SageMaker Edge Manager
+      created by account number <code class="replaceable">123456789012</code> in the
+        <code class="replaceable">us-west-2</code> Region.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": <span>{</span>
+      "Effect": "Allow",
+      "Principal": <span>{</span> "Service": "sagemaker.amazonaws.com" },
+      "Action": "sts:AssumeRole",
+      "Condition": <span>{</span>
+        "ArnLike": <span>{</span>
+          "aws:SourceArn": "arn:aws:sagemaker:<code class="replaceable">us-west-2</code>:<code class="replaceable">123456789012</code>:*"
+      }
+    }
+  }
+}</code></pre>
+    <p>You can replace the <code class="code">aws:SourceArn</code>
+      in this template with the full ARN of one specific packaging job to further limit permissions.</p>
+   
+    <h2 id="security-confused-deputy-images"> SageMaker Images </h2>
+    <p>The following example shows how you can use the <code class="code">aws:SourceArn</code> global
+      condition key to prevent the cross-service confused deputy problem for <a href="studio-byoi.html">SageMaker
+        Images</a>. Use this template with either <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Image.html">Image</a></code> or <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ImageVersion.html">ImageVersion</a></code>. This example uses an <code class="code">ImageVersion</code> record ARN
+      with the account number <code class="replaceable">123456789012</code>. Note that because
+      the account number is part of the <code class="code">aws:SourceArn</code> value, you do not need to specify
+      an <code class="code">aws:SourceAccount</code> value.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": <span>{</span>
+    "Effect": "Allow",
+    "Principal": <span>{</span> "Service": "sagemaker.amazonaws.com" },
+    "Action": "sts:AssumeRole",
+    "Condition": <span>{</span>
+      "ArnLike": <span>{</span>
+        "aws:SourceArn": "arn:<code class="replaceable">partition</code>:sagemaker:<code class="replaceable">us-west-2</code>:<code class="replaceable">123456789012</code>:<code class="replaceable">image-version</code>"
+      }
+    }
+  }
+}</code></pre>
+    <p>Do not replace the <code class="code">aws:SourceArn</code> in this template with the full ARN of a
+      specific image or image version. The ARN must be in the format provided above and specify
+      either <code class="code">image</code> or <code class="code">image-version</code>. The <code class="code">partition</code>
+      placeholder should designate either an AWS commercial partition (<code class="code">aws</code>) or an
+      AWS in China partition (<code class="code">aws-cn</code>), depending on where the image or image version
+      is running. Similarly, the <code class="code">region</code> placeholder in the ARN can be any <a href="regions-quotas.html">valid Region</a>
+      where SageMaker images are available.</p>
+   
+    <h2 id="security-confused-deputy-inference"> SageMaker Inference </h2>
+    <p>The following example shows how you can use the <code class="code">aws:SourceArn</code> global
+          condition key to prevent the cross-service confused deputy problem for SageMaker <a href="realtime-endpoints.html">real-time</a>,
+          <a href="serverless-endpoints.html">serverless</a>, and <a href="async-inference.html">asynchronous</a> inference. Note that
+           because the account number is part of the <code class="code">aws:SourceArn</code> value, you do not
+           need to specify an <code class="code">aws:SourceAccount</code> value.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": <span>{</span>
+    "Effect": "Allow",
+    "Principal": <span>{</span> "Service": "sagemaker.amazonaws.com" },
+    "Action": "sts:AssumeRole",
+    "Condition": <span>{</span>
+      "ArnLike": <span>{</span>
+        "aws:SourceArn": "arn:aws:sagemaker:<code class="replaceable">us-west-2</code>:<code class="replaceable">123456789012</code>:*"
+      }
+    }
+  }
+}</code></pre>
+    <p>Do not replace the <code class="code">aws:SourceArn</code> in this template with the full ARN of a
+           specific model or endpoint. The ARN must be in the format provided above. The asterisk
+           in the ARN template does not stand for wildcard and should not be changed.
+    </p>
+ 
+    <h2 id="security-confused-deputy-batch"> SageMaker Batch Transform Jobs</h2>
+    <p>The following example shows how you can use the <code class="code">aws:SourceArn</code> global
+      condition key to prevent the cross-service confused deputy problem for SageMaker <a href="batch-transform.html">batch transform
+        jobs</a> created by account number <code class="replaceable">123456789012</code> in
+      the <code class="replaceable">us-west-2</code> Region. Note that because the account number is in
+      the ARN, you do not need to specify an <code class="code">aws:SourceAccount</code> value.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Effect": "Allow",
+      "Principal": <span>{</span>
+        "Service": "sagemaker.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole",
+      "Condition": <span>{</span>
+        "ArnLike": <span>{</span>
+          "aws:SourceArn": "arn:aws:sagemaker:<code class="replaceable">us-west-2</code>:<code class="replaceable">123456789012</code>:transform-job/*"
+        }
+      }
+    }
+  ]
+}</code></pre>
+    <p>You can replace the <code class="code">aws:SourceArn</code> in this template
+      with the full ARN of one specific batch transform job to further limit permissions.
+    </p>
+   
+        <h2 id="security-confused-deputy-marketplace"> SageMaker Marketplace </h2>
+        <p>The following example shows how you can use the <code class="code">aws:SourceArn</code> global
+            condition key to prevent the cross-service confused deputy problem for SageMaker Marketplace
+            resources  created by account number <code class="replaceable">123456789012</code>
+            in the <code class="replaceable">us-west-2</code> Region. Note that because the account number is
+            in the ARN, you do not need to specify an <code class="code">aws:SourceAccount</code> value. </p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Effect": "Allow",
+      "Principal": <span>{</span>
+        "Service": "sagemaker.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole",
+      "Condition": <span>{</span>
+        "ArnLike": <span>{</span>
+          "aws:SourceArn": "arn:aws:sagemaker:<code class="replaceable">us-west-2</code>:<code class="replaceable">123456789012</code>:*"
+        }
+      }
+    }
+  ]
+}</code></pre>
+        <p>Do not replace the <code class="code">aws:SourceArn</code> in this template with the full ARN of a
+            specific algorithm or model package. The ARN must be in the format provided above. 
+            The asterisk in the ARN template does stand for wildcard and covers all training jobs,
+            models, and batch transform jobs from validation steps, as well as algorithm and model
+            packages published to SageMaker Marketplace. </p>
+ 
+    <h2 id="security-confused-deputy-neo"> SageMaker Neo </h2>
+    <p>The following example shows how you can use the <code class="code">aws:SourceArn</code> global
+      condition key to prevent the cross-service confused deputy problem for SageMaker Neo compilation jobs 
+      created by account number <code class="replaceable">123456789012</code> in the
+      <code class="replaceable">us-west-2</code> Region. Note that because the account number is in the ARN, you do 
+      not need to specify an <code class="code">aws:SourceAccount</code> value.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Effect": "Allow",
+      "Principal": <span>{</span>
+        "Service": "sagemaker.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole",
+      "Condition": <span>{</span>
+        "ArnLike": <span>{</span>
+          "aws:SourceArn": "arn:aws:sagemaker:<code class="replaceable">us-west-2</code>:<code class="replaceable">123456789012</code>:<code class="replaceable">compilation-job/*</code>"
+        }
+      }
+    }
+  ]
+}</code></pre>
+    <p>You can replace the <code class="code">aws:SourceArn</code>
+      in this template with the full ARN of one specific compilation job to further limit permissions.</p>
+   
+    <h2 id="security-confused-deputy-pipelines"> SageMaker Pipelines </h2>
+    <p>The following example shows how you can use the <code class="code">aws:SourceArn</code> global
+      condition key to prevent the cross-service confused deputy problem for 
+      <a href="pipelines-sdk.html">SageMaker Pipelines</a> using
+      pipeline execution records from one or more pipelines. Note that because the account number is
+      in the ARN, you do not need to specify an <code class="code">aws:SourceAccount</code> value.</p>
+  <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Effect": "Allow",
+      "Principal": <span>{</span>
+        "Service": "sagemaker.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole",
+      "Condition": <span>{</span>
+        "ArnLike": <span>{</span>
+          "aws:SourceArn": "arn:<code class="replaceable">partition</code>:sagemaker:<code class="replaceable">region</code>:<code class="replaceable">123456789012</code>:<code class="replaceable">pipeline/mypipeline/*</code>"
+        }
+      }
+    }
+  ]
+}</code></pre>
+  <p>Do not replace the <code class="code">aws:SourceArn</code> in this template with the full ARN of a specific pipeline execution. 
+    The ARN must be in the format provided above. The <code class="code">partition</code> placeholder should designate either an AWS commercial 
+    partition (<code class="code">aws</code>) or an AWS in China partition (<code class="code">aws-cn</code>), depending on where the pipeline is running. Similarly, 
+    the <code class="code">region</code> placeholder in the ARN can be any <a href="regions-quotas.html">valid Region</a> 
+    where SageMaker Pipelines is available.</p>
+  <p>The asterisk in the ARN template does stand for wildcard and covers all pipeline executions of a pipeline 
+    named <code class="code">mypipeline</code>. If you want to allow the <code class="code">AssumeRole</code> permissions for all pipelines in account <code class="code">123456789012</code> 
+    rather than one specific pipeline, then the <code class="code">aws:SourceArn</code> would be <code class="code">arn:aws:sagemaker:*:123456789012:pipeline/*</code>.</p>
+ 
+    <h2 id="security-confused-deputy-processing-job"> SageMaker Processing Jobs </h2>
+    <p>The following example shows how you can use the <code class="code">aws:SourceArn</code> global
+      condition key to prevent the cross-service confused deputy problem for SageMaker processing jobs
+      created by account number <code class="replaceable">123456789012</code> in the
+        <code class="replaceable">us-west-2</code> Region. Note that because the account number is in the ARN,
+      you do not need to specify an <code class="code">aws:SourceAccount</code> value.</p>
+  <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Effect": "Allow",
+      "Principal": <span>{</span>
+        "Service": "sagemaker.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole",
+      "Condition": <span>{</span>
+        "ArnLike": <span>{</span>
+          "aws:SourceArn": "arn:aws:sagemaker:<code class="replaceable">us-west-2</code>:<code class="replaceable">123456789012</code>:<code class="replaceable">processing-job/*</code>"
+        }
+      }
+    }
+  ]
+}</code></pre>
+  <p>You can replace the <code class="code">aws:SourceArn</code> in this template with the full ARN of one
+      specific processing job to further limit permissions.</p>
+ 
+    <h2 id="security-confused-deputy-studio"> SageMaker Studio </h2>
+    <p>The following example shows how you can use the <code class="code">aws:SourceArn</code> global
+      condition key to prevent the cross-service confused deputy problem for SageMaker Studio
+      created by account number <code class="replaceable">123456789012</code> in the
+      <code class="replaceable">us-west-2</code> Region. Note that because the account number is part
+      of the <code class="code">aws:SourceArn</code> value, you do not need to specify an
+      <code class="code">aws:SourceAccount</code> value. </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Effect": "Allow",
+      "Principal": <span>{</span>
+        "Service": "sagemaker.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole",
+      "Condition": <span>{</span>
+        "ArnLike": <span>{</span>
+          "aws:SourceArn": "arn:aws:sagemaker:<code class="replaceable">us-west-2</code>:<code class="replaceable">123456789012</code>:*"
+        }
+      }
+    }
+  ]
+}</code></pre>
+    <p>Do not replace the <code class="code">aws:SourceArn</code> in this template with the full ARN of a
+      specific Studio application, user profile, or domain. The ARN must be in the format provided
+      in the previous example. The asterisk in the ARN template does not stand for wildcard and should not be
+      changed.</p>
+ 
+    <h2 id="security-confused-deputy-training-job"> SageMaker Training Jobs </h2>
+    <p>The following example shows how you can use the <code class="code">aws:SourceArn</code> global
+            condition key to prevent the cross-service confused deputy problem for SageMaker training
+            jobs created by account number <code class="replaceable">123456789012</code> in
+            the <code class="replaceable">us-west-2</code> Region. Note that because the account number is in
+            the ARN, you do not need to specify an <code class="code">aws:SourceAccount</code> value.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Effect": "Allow",
+      "Principal": <span>{</span>
+        "Service": "sagemaker.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole",
+      "Condition": <span>{</span>
+        "ArnLike": <span>{</span>
+          "aws:SourceArn": "arn:aws:sagemaker:<code class="replaceable">us-west-2</code>:<code class="replaceable">123456789012</code>:<code class="replaceable">training-job/*</code>"
+        }
+      }
+    }
+  ]
+}</code></pre>
+    <p>You can replace the <code class="code">aws:SourceArn</code>
+        in this template with the full ARN of one specific training job to further limit permissions.</p>
+     
+        <h6>Next Up</h6>
+        <p>For more information on managing execution roles, see <a href="sagemaker-roles.html">SageMaker Roles</a>.</p>
+     
+<awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./security_iam_id-based-policy-examples.html">Identity-Based Policy Examples</div><div id="next" class="next-link" accesskey="n" href="./sagemaker-roles.html">SageMaker Roles</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/security-confused-deputy-prevention.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/security-confused-deputy-prevention.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

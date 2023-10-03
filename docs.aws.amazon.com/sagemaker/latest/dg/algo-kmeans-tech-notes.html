@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>How K-Means Clustering Works - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="algo-kmeans-tech-notes" /><meta name="default_state" content="algo-kmeans-tech-notes" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="algo-kmeans-tech-notes.html" /><meta name="description" content="K-means is an algorithm that trains a model that groups similar objects together. The k-means algorithm accomplishes this by mapping each observation in the input dataset to a point in the n -dimensional space (where n is the number of attributes of the observation). For example, your dataset might contain observations of temperature and humidity in a particular location, which are mapped to points (" /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="algo-kmeans-tech-notes.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/algo-kmeans-tech-notes.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/algo-kmeans-tech-notes.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/algo-kmeans-tech-notes.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/algo-kmeans-tech-notes.html" hreflang="de" /><link rel="alternative" href="algo-kmeans-tech-notes.html" hreflang="en-us" /><link rel="alternative" href="algo-kmeans-tech-notes.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/algo-kmeans-tech-notes.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/algo-kmeans-tech-notes.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/algo-kmeans-tech-notes.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/algo-kmeans-tech-notes.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/algo-kmeans-tech-notes.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/algo-kmeans-tech-notes.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/algo-kmeans-tech-notes.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/algo-kmeans-tech-notes.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/algo-kmeans-tech-notes.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/algo-kmeans-tech-notes.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/algo-kmeans-tech-notes.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/algo-kmeans-tech-notes.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/algo-kmeans-tech-notes.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/algo-kmeans-tech-notes.html" hreflang="zh-tw" /><link rel="alternative" href="algo-kmeans-tech-notes.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="How K-Means Clustering Works" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>How K-Means Clustering Works - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#algo-kmeans-tech-notes" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/algo-kmeans-tech-notes.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/algo-kmeans-tech-notes.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/algo-kmeans-tech-notes.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Choose an Algorithm",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-choose.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Amazon SageMaker Built-in Algorithms or Pre-trained Models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Unsupervised Built-in SageMaker Algorithms",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-unsupervised.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "K-Means Algorithm",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/k-means.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 9,
+        "name" : "How K-Means Clustering Works",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/k-means.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#algo-kmeans-tech-notes" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="algo-kmeans-tech-notes.html#kmeans-step1">Step 1: Determine the Initial Cluster Centers</a><a href="algo-kmeans-tech-notes.html#kmeans-step2">Step 2: Iterate over the Training Dataset and
+                    Calculate Cluster Centers</a><a href="algo-kmeans-tech-notes.html#kmeans-step3">Step 3: Reduce the Clusters from K to k</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="algo-kmeans-tech-notes">How K-Means Clustering Works</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>K-means is an algorithm that trains a model that groups similar objects together. The
+            k-means algorithm accomplishes this by mapping each observation in the input dataset to
+            a point in the <em>n</em>-dimensional space (where <em>n</em> is the number of attributes of the observation). For
+            example, your dataset might contain observations of temperature and humidity in a
+            particular location, which are mapped to points (<em>t,
+            h</em>) in 2-dimensional space.
+            </p><p></p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Clustering algorithms are unsupervised. In unsupervised learning, labels that
+                might be associated with the objects in the training dataset aren't used. For more
+                information, see <a href="algorithms-choose.html#algorithms-choose-unsupervised-learning">Unsupervised learning</a>.</p></div></div><p>In k-means clustering, each cluster has a center. During model training, the k-means
+            algorithm uses the distance of the point that corresponds to each observation in the
+            dataset to the cluster centers as the basis for clustering. You choose the number of
+            clusters (<em>k</em>) to create. </p><p>For example, suppose that you want to create a model to recognize handwritten digits
+            and you choose the MNIST dataset for training. The dataset provides thousands of images
+            of handwritten digits (0 through 9). In this example, you might choose to create 10
+            clusters, one for each digit (0, 1, …, 9). As part of model training, the k-means
+            algorithm groups the input images into 10 clusters.</p><p>Each image in the MNIST dataset is a 28x28-pixel image, with a total of 784 pixels.
+            Each image corresponds to a point in a 784-dimensional space, similar to a point in a
+            2-dimensional space (x,y). To find a cluster to which a point belongs, the k-means
+            algorithm finds the distance of that point from all of the cluster centers. It then
+            chooses the cluster with the closest center as the cluster to which the image belongs. </p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Amazon SageMaker uses a customized version of the algorithm where, instead of specifying
+                that the algorithm create <em>k</em> clusters, you might
+                choose to improve model accuracy by specifying extra cluster centers <em>(K = k*x)</em>. However, the algorithm ultimately reduces
+                these to <em>k</em> clusters.</p></div></div><p>In SageMaker, you specify the number of clusters when creating a training job. For more
+            information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html"><code class="code">CreateTrainingJob</code></a>. In the request body, you add the
+                <code class="code">HyperParameters</code> string map to specify the <code class="code">k</code> and
+                <code class="code">extra_center_factor</code> strings.</p><p>The following is a summary of how k-means works for model training in SageMaker:</p><div class="orderedlist">
+             
+             
+             
+        <ol><li>
+                <p>It determines the initial <em>K</em> cluster
+                    centers. </p>
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>In the following topics, <em>K</em> clusters
+                        refer to <em>k * x</em>, where you specify
+                            <em>k</em> and <em>x</em> when creating a model training job. </p></div></div>
+
+            </li><li>
+                <p>It iterates over input training data and recalculates cluster centers.</p>
+            </li><li>
+                <p>It reduces resulting clusters to <em>k</em> (if the
+                    data scientist specified the creation of <em>k*x</em>
+                    clusters in the request). </p>
+            </li></ol></div><p>The following sections also explain some of the parameters that a data scientist might
+            specify to configure a model training job as part of the <code class="code">HyperParameters</code>
+            string map. </p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="algo-kmeans-tech-notes.html#kmeans-step1">Step 1: Determine the Initial Cluster Centers</a></li><li><a href="algo-kmeans-tech-notes.html#kmeans-step2">Step 2: Iterate over the Training Dataset and
+                    Calculate Cluster Centers</a></li><li><a href="algo-kmeans-tech-notes.html#kmeans-step3">Step 3: Reduce the Clusters from K to k</a></li></ul></div>
+            <h2 id="kmeans-step1">Step 1: Determine the Initial Cluster Centers</h2>
+            <p>When using k-means in SageMaker, the initial cluster centers are chosen from the
+                observations in a small, randomly sampled batch. Choose one of the following
+                strategies to determine how these initial cluster centers are selected:</p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>The random approach—Randomly choose <em>K</em> observations in your input dataset as
+                        cluster centers. For example, you might choose a cluster center that points
+                        to the 784-dimensional space that corresponds to any 10 images in the MNIST
+                        training dataset.</p>
+                </li><li class="listitem">
+                    <p>The k-means++ approach, which works as follows: </p>
+                    <div class="orderedlist">
+                         
+                         
+                         
+                         
+                    <ol><li>
+                            <p>Start with one cluster and determine its center. You randomly
+                                select an observation from your training dataset and use the point
+                                corresponding to the observation as the cluster
+                                center. For example, in the MNIST
+                                dataset, randomly choose a handwritten digit image. Then choose the
+                                point in the 784-dimensional space that corresponds to the image as
+                                your cluster center. This is cluster center 1.</p>
+                        </li><li>
+                            <p>Determine the center for cluster 2. From the remaining
+                                observations in the training dataset, pick an observation at random.
+                                Choose one that is different than the one you previously selected.
+                                This observation corresponds to a point that is far away from
+                                cluster center 1. Using the MNIST dataset as an example, you do the
+                                following:</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p>For each of the remaining images, find the distance of the
+                                        corresponding point from cluster center 1. Square the
+                                        distance and assign a probability that is proportional to
+                                        the square of the distance. That way, an image that is
+                                        different from the one that you previously selected has a
+                                        higher probability of getting selected as cluster center 2.
+                                    </p>
+                                </li><li class="listitem">
+                                    <p>Choose one of the images
+                                        randomly,
+                                        based on probabilities assigned in the previous
+                                        step. The point that corresponds to the
+                                        image is cluster center 2.</p>
+                                </li></ul></div>
+                        </li><li>
+                            <p>Repeat Step 2 to find cluster center 3. This time, find the
+                                distances of the remaining images from cluster center 2.</p>
+                        </li><li>
+                            <p>Repeat the process until
+                                you
+                                have the <em>K</em> cluster
+                                centers.</p>
+                        </li></ol></div>
+                </li></ul></div>
+            <p>To
+                train a model in SageMaker, you create a training job. In the request, you provide
+                configuration information by specifying the following <code class="code">HyperParameters</code>
+                string maps:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>To specify the number of clusters to create, add the <code class="code">k</code>
+                        string.</p>
+                </li><li class="listitem">
+                    <p>For greater accuracy, add the optional <code class="code">extra_center_factor</code>
+                        string. </p>
+                </li><li class="listitem">
+                    <p>To specify the strategy that you want to use to determine the initial
+                        cluster centers, add the <code class="code">init_method</code> string and set its value
+                        to <code class="code">random</code> or <code class="code">k-means++</code>.</p>
+                </li></ul></div>
+            <p>For more information about the SageMaker k-means estimator, see <a href="https://sagemaker.readthedocs.io/en/stable/algorithms/unsupervised/kmeans.html" rel="noopener noreferrer" target="_blank"><span>K-means</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the <a href="https://sagemaker.readthedocs.io" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> documentation.</p>
+            <p>You now have an initial set of cluster centers. </p>
+         
+            <h2 id="kmeans-step2">Step 2: Iterate over the Training Dataset and
+                    Calculate Cluster Centers</h2>
+
+
+            <p>The cluster centers that you created in the preceding step are mostly random, with
+                some consideration for the training dataset. In this step, you use the training
+                dataset to move these centers toward the true cluster centers. The algorithm
+                iterates over the training dataset, and recalculates the <em>K</em> cluster centers.</p>
+            <div class="procedure"><ol><li>
+                    <p>Read a mini-batch of observations (a small, randomly chosen subset of all
+                        records) from the training dataset and do the following. </p>
+                    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When creating a model training job, you specify the batch size in the
+                                <code class="code">mini_batch_size</code> string in the
+                                <code class="code">HyperParameters</code> string map. </p></div></div>
+                    <ol><li>
+                            <p>Assign all of the observations in the mini-batch to one of the
+                                clusters with the closest cluster center.</p>
+                        </li><li>
+                            <p>Calculate the number of observations assigned to each cluster.
+                                Then, calculate the proportion of new points assigned per
+                                cluster.</p>
+                            <p>For example, consider the following clusters:</p>
+                            <p>Cluster c1 = 100 previously assigned points. You added 25 points
+                                from the mini-batch in this step.</p>
+                            <p>Cluster c2 = 150 previously assigned points. You added 40 points
+                                from the mini-batch in this step.</p>
+                            <p>Cluster c3 = 450 previously assigned points. You added 5 points
+                                from the mini-batch in this step.</p>
+                            <p>Calculate the proportion of new points assigned to each of
+                                clusters as follows:</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">p1 = proportion of points assigned to c1 = 25/(100+25)
+p2 = proportion of points assigned to c2 = 40/(150+40)
+p3 = proportion of points assigned to c3 = 5/(450+5)</code></pre>
+                        </li><li>
+                            <p>Compute the center of the new points added to each cluster:</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">d1 = center of the new points added to cluster 1
+d2 = center of the new points added to cluster 2
+d3 = center of the new points added to cluster 3</code></pre>
+                        </li><li>
+                            <p>Compute the weighted average to find the updated cluster centers
+                                as follows:</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">Center of cluster 1 = ((1 - p1) * center of cluster 1) + (p1 * d1)
+Center of cluster 2 = ((1 - p2) * center of cluster 2) + (p2 * d2)
+Center of cluster 3 = ((1 - p3) * center of cluster 3) + (p3 * d3)</code></pre>
+                        </li></ol>
+                </li><li>
+                    <p>Read the next mini-batch, and repeat Step 1 to recalculate the cluster
+                        centers. </p>
+                </li><li>
+                    <p>For more information about mini-batch <em>k</em>-means, see <a href="https://citeseerx.ist.psu.edu/document?repid=rep1type=pdf&amp;doi=b452a856a3e3d4d37b1de837996aa6813bedfdcf" rel="noopener noreferrer" target="_blank"><span>Web-scale k-means Clustering</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>).</p>
+                </li></ol></div>
+
+         
+            <h2 id="kmeans-step3">Step 3: Reduce the Clusters from <em>K</em> to <em>k</em></h2>
+
+            <p>If the algorithm created <em>K</em>
+                    clusters—<em>(K = k*x)</em> where <em>x</em> is greater than 1—then it reduces the
+                    <em>K</em> clusters to <em>k</em> clusters. (For more information, see
+                    <code class="code">extra_center_factor</code> in the preceding discussion.) It does this by
+                applying Lloyd's method with <code class="code">kmeans++</code> initialization to the <em>K</em> cluster centers. For more information about Lloyd's
+                method, see <a href="https://pdfs.semanticscholar.org/0074/4cb7cc9ccbbcdadbd5ff2f2fee6358427271.pdf" rel="noopener noreferrer" target="_blank"><span>k-means clustering</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p>
+
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./k-means.html">K-Means Algorithm</div><div id="next" class="next-link" accesskey="n" href="./k-means-api-config.html">Hyperparameters</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/algo-kmeans-tech-notes.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/algo-kmeans-tech-notes.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

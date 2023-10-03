@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Limitations and troubleshooting - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="canvas-limits" /><meta name="default_state" content="canvas-limits" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="canvas-limits.html" /><meta name="description" content="Review the following SageMaker Canvas limitations, which can help you troubleshoot any issues you have in Canvas." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="canvas-limits.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/canvas-limits.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/canvas-limits.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/canvas-limits.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/canvas-limits.html" hreflang="de" /><link rel="alternative" href="canvas-limits.html" hreflang="en-us" /><link rel="alternative" href="canvas-limits.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/canvas-limits.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/canvas-limits.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/canvas-limits.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/canvas-limits.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/canvas-limits.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/canvas-limits.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/canvas-limits.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/canvas-limits.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/canvas-limits.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/canvas-limits.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/canvas-limits.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/canvas-limits.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/canvas-limits.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/canvas-limits.html" hreflang="zh-tw" /><link rel="alternative" href="canvas-limits.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Limitations and troubleshooting" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Limitations and troubleshooting - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#canvas-limits" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-limits.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-limits.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-limits.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use machine learning environments offered by SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/machine-learning-environments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Canvas",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Limitations and troubleshooting",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#canvas-limits" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="canvas-limits.html#canvas-troubleshoot-trusted-services">Troubleshooting issues with granting permissions through the SageMaker console</a><a href="canvas-limits.html#canvas-limits-collaboration">Limitations for collaboration</a><a href="canvas-limits.html#canvas-limits-byom">Limitations for bring your own model (BYOM)</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="canvas-limits">Limitations and troubleshooting</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>The following section outlines troubleshooting help and limitations that apply when using Amazon SageMaker Canvas. You can use these
+  this topic to help troubleshoot any issues you encounter.</p>
+  <h2 id="canvas-troubleshoot-trusted-services">Troubleshooting issues with granting permissions through the SageMaker console</h2>
+  <p>If you’re having trouble granting Canvas base permissions or Ready-to-use models permissions to your user, your user
+   might have an AWS IAM execution role with more than one trust relationship to other AWS services. A trust relationship is a
+   policy attached to your role that defines which principals (users, roles, accounts, or services) can assume the role. For example, you
+   might encounter an issue granting additional Canvas permissions to your user if their execution role has a trust relationship to
+   both Amazon SageMaker and Amazon Forecast.</p>
+  <p>You can fix this problem by choosing one of the following options.</p>
+  
+   
+   <h3 id="canvas-troubleshoot-trusted-services-remove">1. Remove all but one trusted service from the role.</h3>
+   <p>This solution requires you to edit the trust relationship for your user profile’s IAM role and remove all AWS services except SageMaker.</p>
+   <p>To edit the trust relationship for your IAM execution role, do the following:</p>
+   <div class="procedure"><ol><li><p>Go to the IAM console at <a href="https://console.aws.amazon.com/iam/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/iam/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></li><li><p>In the navigation pane of the IAM console, choose <b>Roles</b>. The console displays the roles for your account.</p></li><li><p>Choose the name of the role that you want to modify, and select the <b>Trust relationships</b> tab on the details page.</p></li><li><p>Choose <b>Edit trust policy</b>.</p></li><li>
+     <p>In the <b>Edit trust policy editor</b>, paste the following, and then choose <b>Update Policy</b>.</p>
+     <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Effect": "Allow",
+            "Principal": <span>{</span>
+                "Service": [
+                    "sagemaker.amazonaws.com"
+                ]
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}</code></pre>
+    </li></ol></div>
+   <p>You can also update this policy document using the IAM CLI. For more information, see
+    <a href="https://docs.aws.amazon.com/cli/latest/reference/ds/update-trust.html">update-trust</a>
+    in the <em>IAM Command Line Reference</em>.</p>
+   <p>You can now retry granting the Canvas base permissions or the Ready-to-use models permissions to your user.</p>
+   
+  
+   
+   <h3 id="canvas-troubleshoot-trusted-services-alternate">2. Use a different role with one or fewer trusted services.</h3>
+   <p>This solution requires you to specify a different IAM role for your user profile. Use this option if you already have an IAM role that you can substitute.</p>
+   <p>To specify a different execution role for your user, do the following:</p>
+   <div class="procedure"><ol><li><p>Open the Amazon SageMaker console at <a href="https://console.aws.amazon.com/sagemaker/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/sagemaker/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></li><li>
+     <p>On the left navigation pane, choose <b>Admin configurations</b>.</p>
+    </li><li>
+     <p>Under <b>Admin configurations</b>, choose <b>Domains</b>. </p>
+    </li><li><p>From the list of Domains, select the Domain that you want to view a list of user profiles for.</p></li><li><p>On the <b>Domain details</b> page, choose the <b>User profiles</b> tab.</p></li><li><p>Choose the user whose permissions you want to edit. On the <b>User details</b> page, choose <b>Edit</b>.</p></li><li><p>On the <b>General settings</b> page, choose the <b>Execution role</b> dropdown list and select the role that you want to use.</p></li><li><p>Choose <b>Submit</b> to save your changes to the user profile.</p></li></ol></div>
+   <p>Your user should now be using an execution role with only one trusted service (SageMaker).</p>
+   <p>You can retry granting the Canvas base permissions or the Ready-to-use models permissions to your user.</p>
+   
+  
+   
+   <h3 id="canvas-troubleshoot-trusted-services-manual">3. Manually attach the AWS managed policy to the
+    execution role instead of using the toggle in the SageMaker Domain settings.</h3>
+   <p>Instead of using the toggle in the Domain or user profile settings, you can manually attach the
+    AWS managed policies that grant a user the correct permissions.</p>
+   <p>To grant a user Canvas base permissions, attach the
+    <a href="security-iam-awsmanpol-canvas.html#security-iam-awsmanpol-AmazonSageMakerCanvasFullAccess">AmazonSageMakerCanvasFullAccess</a>
+    policy. To grant a user Ready-to-use models permissions, attach the
+    <a href="security-iam-awsmanpol-canvas.html#security-iam-awsmanpol-AmazonSageMakerCanvasAIServicesAccess">AmazonSageMakerCanvasAIServicesAccess</a>
+    policy.</p>
+   <p>Use the following procedure to attach an AWS managed policy to your role:</p>
+   <div class="procedure"><ol><li><p>Go to the IAM console at <a href="https://console.aws.amazon.com/iam/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/iam/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></li><li><p>Choose <b>Roles</b>.</p></li><li><p>In the search box, search for the user's IAM role by name and select it.</p></li><li><p>On the page for the user's role, under <b>Permissions</b>, choose <b>Add permissions</b>.</p></li><li><p>From the dropdown menu, choose <b>Attach policies</b>.</p></li><li>
+     <p>Search for and select the policy or policies that you want to attach to the user’s execution role:</p>
+     <ol><li><p>To grant the Canvas base permissions, search for and select the
+       <a href="security-iam-awsmanpol-canvas.html#security-iam-awsmanpol-AmazonSageMakerCanvasFullAccess">AmazonSageMakerCanvasFullAccess</a> policy.</p></li><li><p>To grant the Ready-to-use models permissions, search for and select the
+       <a href="security-iam-awsmanpol-canvas.html#security-iam-awsmanpol-AmazonSageMakerCanvasAIServicesAccess">AmazonSageMakerCanvasAIServicesAccess</a> policy.</p></li></ol>
+    </li><li><p>Choose <b>Add permissions</b> to attach the policy to the role.</p></li></ol></div>
+   <p>After attaching an AWS managed policy to the user’s role through the IAM console,
+    your user should now have the Canvas base permissions or Ready-to-use models permissions.</p>
+   
+  
+  <h2 id="canvas-limits-collaboration">Limitations for collaboration</h2>
+  <p>The following general limitations apply when you are <a href="canvas-collaborate.html">collaborating with data scientists</a> in
+   Amazon SageMaker Studio.</p>
+  <div class="itemizedlist">
+    
+    
+    
+    
+    
+    
+    
+  <ul class="itemizedlist"><li class="listitem">
+    <p>You can only share successfully trained models from Canvas to Studio. Similarly,
+     you can only share models that have been successfully trained in Studio back to
+     Canvas.</p>
+   </li><li class="listitem">
+    <p>You can’t share <b>Quick build</b> models from Canvas to Studio. You
+     can only share <b>Standard build</b> models.</p>
+   </li><li class="listitem">
+    <p>You can only share one version of a <b>Standard build</b> model trained in
+     Canvas. You can train additional versions of your model within Canvas, but you can't
+     share them to Studio.</p>
+   </li><li class="listitem">
+    <p>From Studio, you can only share feedback or share an updated model with Canvas.
+     You can’t perform both actions at the same time.</p>
+   </li><li class="listitem">
+    <p>The length limitation for comments shared from Studio to Canvas and Canvas to
+     Studio is 1024 characters.</p>
+   </li><li class="listitem">
+    <p>You can only share your Canvas or Studio models with a different user profile. You
+     can’t share models between Canvas and Studio within your own user profile. </p>
+   </li><li class="listitem">
+    <p>You can't share from a Canvas user to a Canvas user, or from a Studio user to a
+     Studio user.</p>
+   </li></ul></div>
+  <p>There are also limitations that apply depending on the type of model you want to share. See
+   the following sections for limitations on time series forecasting models and numeric and
+   categorical prediction models.</p>
+
+   
+   <h3 id="canvas-limits-collaboration-time-series">Limitations for collaborating on time
+     series forecasting models</h3>
+   <p>The following limitations apply when you are collaborating on <a href="canvas-time-series.html">time series forecasting models</a>
+    between Canvas and Studio.</p>
+   <div class="itemizedlist">
+     
+     
+   <ul class="itemizedlist"><li class="listitem">
+     <p>You can’t make predictions with time series forecasting models in Studio through an
+      automated <b>Share</b> button. However, you can create a Jupyter notebook and
+      write your own code.</p>
+    </li><li class="listitem">
+     <p>For time series forecasting models, you can’t change the model recipe or data
+      transformations in Studio. You can only make the following updates to time series
+      forecasting models in Studio:</p>
+     <div class="itemizedlist">
+       
+       
+       
+     <ul class="itemizedlist"><li class="listitem">
+       <p>You can update the length of the forecast horizon.</p>
+      </li><li class="listitem">
+       <p>You can update the item's metadata field, which groups your data by a certain
+        column.</p>
+      </li><li class="listitem">
+       <p>You can update other dimension fields, such as specifying a holiday schedule.</p>
+      </li></ul></div>
+    </li></ul></div>
+   
+
+   
+   <h3 id="canvas-limits-collaboration-standard">Limitations for collaborating on numeric
+     and categorical prediction models</h3>
+   <p>The following limitations apply when you are collaborating on numeric and categorical
+    prediction model types between Canvas and Studio.</p>
+   <div class="itemizedlist">
+     
+     
+     
+     
+     
+     
+   <ul class="itemizedlist"><li class="listitem">
+     <p>When updating or training models in Studio, if you close the tab with the
+      collaboration banner at the top, it ends the share model workflow and you lose your progress.
+      In that case, you must restart the share model workflow from the <b>Shared With
+       Me</b> section on the <b>Shared Models</b> page. For more information,
+      see <a href="canvas-collaborate.html">Collaborate
+       with data scientists</a>.</p>
+    </li><li class="listitem">
+     <p>When updating models in Studio, you can’t change the target column if you want to
+      share the model updates back to Canvas. If you want to change the target column and
+      re-train the model, train the model and then use the <b>Share</b> button to
+      share to Canvas. For more information about sharing a new model to Canvas, see <a href="canvas-byom.html">Bring your own model to
+       SageMaker Canvas</a>.</p>
+    </li><li class="listitem">
+     <p>When updating models in the Amazon SageMaker Data Wrangler Recipe interface in Studio, there are limits to
+      which changes a Studio user can apply that Canvas supports:</p>
+     <div class="itemizedlist">
+       
+       
+       
+       
+       
+     <ul class="itemizedlist"><li class="listitem">
+       <p>You can only share a model to Canvas that has been trained from the last node in a
+        Data Wrangler linear data flow.</p>
+      </li><li class="listitem">
+       <p>Only transformation nodes are supported.</p>
+      </li><li class="listitem">
+       <p>You can’t perform operations on the <b>Target</b> column.</p>
+      </li><li class="listitem">
+       <p>You can’t update the data type of columns.</p>
+      </li><li class="listitem">
+       <p>You can’t update the data source or add a new data source.</p>
+      </li></ul></div>
+    </li><li class="listitem">
+     <p>When sharing an alternative candidate to Canvas from the Studio Autopilot page, you
+      can’t select the model from the leaderboard. You must choose the shared model from the banner
+      and then select an alternative from the list. For more information, see <a href="canvas-collaborate.html#canvas-collaborate-receive-studio">Share an
+       alternate model with the Canvas user</a> in the Canvas documentation.</p>
+    </li><li class="listitem">
+     <p>Only models that are compatible with <a href="neo.html">SageMaker Neo</a> can be shared back to Canvas
+      successfully. Compatible models are Autopilot models that use XGBoost or MLP algorithms.
+      Incompatible models include Autopilot models that use the linear learner algorithm.</p>
+    </li><li class="listitem">
+     <p>For custom formula transforms using Spark SQL, Canvas only supports Unary operations,
+      Aggregate functions, the String concatenation operation and the Power operation. Other
+      operations are not supported.</p>
+    </li></ul></div>
+   
+  
+  <h2 id="canvas-limits-byom">Limitations for bring your own model (BYOM)</h2>
+  <p>The following general limitations apply when you want to
+   <a href="canvas-byom.html">bring your own model</a> to SageMaker Canvas.</p>
+  <div class="itemizedlist">
+    
+    
+    
+    
+    
+  <ul class="itemizedlist"><li class="listitem"><p>When a model is shared from Studio to Canvas, the Canvas user cannot update or view details
+    on the dataset that was used to build the model.</p></li><li class="listitem"><p>When a Canvas user wants to run a single prediction on an imported model, there are no data type
+    restrictions when updating column values. You must manually make sure that when you update values for single predictions,
+    you match the data type of the existing values.</p></li><li class="listitem"><p>When a Canvas user wants to run batch predictions on an imported model, Canvas assumes that you
+    (the Canvas user) know what the expected input dataset should look like. You should have a dataset with columns and data
+    types that match the dataset that was used to train the model. If not, consult with the user who shared the model with you and
+    import a dataset that you can use for running batch predictions.</p></li><li class="listitem">
+    <p>The Canvas application internally uses a <a href="serverless-endpoints.html">serverless endpoint</a>
+    to run predictions and generate model metrics. The model shared to Canvas must be compatible with serverless endpoints:</p>
+    <div class="itemizedlist">
+      
+      
+      
+      
+    <ul class="itemizedlist"><li class="listitem"><p>The maximum memory size is 6144 MB.</p></li><li class="listitem"><p>When configuring the inference input response keys in your container, use the following configuration:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">INFERENCE_INPUT_RESPONSE_KEYS = <span>{</span>
+ "BINARY": ["predicted_label", "probability"],
+ "MULTI_CLASS": ["predicted_label", "probability", "probabilities", "labels"],
+}</code></pre>
+     </li><li class="listitem"><p>You can choose either a SageMaker-provided inference container or bring your own image inference container to be used for endpoint.
+      SageMaker provides containers for its built-in algorithms and prebuilt Docker images for some of the most common machine learning frameworks.
+      If you are bringing your own container, you must modify it to work with SageMaker. For more information about bringing your own container,
+      see <a href="adapt-inference-container.html">Adapting Your Own Inference Container</a>.</p></li><li class="listitem"><p>The <b>Feature exclusions</b> for serverless endpoints also apply.</p></li></ul></div>
+   </li><li class="listitem">
+    <p>To share a model from Studio to Canvas successfully, Canvas accepts model inference outputs in the format below:</p>
+    <p><b>TEXT/CSV</b></p>
+    <div class="itemizedlist">
+      
+      
+    <ul class="itemizedlist"><li class="listitem"><p>Regression: The model inference response should be a byte string where each of the output predictions are separated by <code class="code">\n</code>:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">b'-0.0007884334772825241\n-0.015136942267417908\n0.050063662230968475\n0.02891816757619381\n'</code></pre>
+     </li><li class="listitem"><p>Classification: The model inference response should be a byte string where each of <code class="code">predicted_label</code>,
+      <code class="code">predicted_probability</code>, <code class="code">probabilities</code>, and <code class="code">labels</code> are separated by <code class="code">\n</code>. The following example
+     is for binary classification:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">b'no,0.9967488050460815,"[0.9967488050460815, 0.003251201706007123]","[\'no\', \'yes\']"\nno,0.9999420642852783,"[0.9999420642852783, 5.793538366560824e-05]","[\'no\', \'yes\']"\nno,0.9999846816062927,"[0.9999846816062927, 1.5326571883633733e-05]","[\'no\', \'yes\']"\nno,0.9999727606773376,"[0.9999727606773376, 2.7267418772680685e-05]","[\'no\', \'yes\']"\n'</code></pre>
+      <p>The following example is for multi-class classification:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">b'Iris-setosa,1.0,"[1.0, 0.0, 0.0]","[\'Iris-setosa\', \'Iris-versicolor\', \'Iris-virginica\']"\nIris-setosa,1.0,"[1.0, 0.0, 0.0]","[\'Iris-setosa\', \'Iris-versicolor\', \'Iris-virginica\']"\nIris-setosa,1.0,"[1.0, 0.0, 0.0]","[\'Iris-setosa\', \'Iris-versicolor\', \'Iris-virginica\']"\nIris-setosa,1.0,"[1.0, 0.0, 0.0]","[\'Iris-setosa\', \'Iris-versicolor\', \'Iris-virginica\']"\n'</code></pre>
+     </li></ul></div>
+    <p><b>APPLICATION/JSON</b></p>
+    <div class="itemizedlist">
+      
+      
+    <ul class="itemizedlist"><li class="listitem"><p>Regression: The model inference response should be a JSON string which contains the <code class="code">prediction</code> key,
+      and its value should be the list of output predictions:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">let response = <span>{</span>
+    "predictions": [ 
+        // First instance prediction. 
+        1.75 
+        // Second instance prediction.
+        3.25 
+    ]
+}</code></pre>
+     </li><li class="listitem"><p>Classification: The model inference response should be a JSON string which contains the <code class="code">probabilities</code> key,
+      and its value should be the list of probabilities.</p>
+     <p>The following example is for binary classification:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">let response = <span>{</span>
+    "probabilities": [ 
+        // First instance prediction. 
+        [0.9, 0.1]
+        // Second instance prediction.
+        [0.2, 0.8]
+    ]
+}</code></pre>
+      <p>The following example is for multi-class classification:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">let response = <span>{</span>
+    "probabilities": [ 
+        // First instance prediction. 
+        [0.7, 0.2, 0.1]
+        // Second instance prediction.
+        [0.2, 0.5, 0.3]
+    ]
+}</code></pre>
+     </li></ul></div>
+   </li></ul></div>
+  
+  <p>There are also limitations that apply depending on the type of model you want to
+   bring:</p>
+  
+   
+   <h3 id="canvas-limits-byom-js">Bring your own model from SageMaker JumpStart</h3>
+   <p>Review the following information and limits when sharing a SageMaker JumpStart model with Canvas.</p>
+   <div class="itemizedlist">
+     
+     
+     
+     
+     
+     
+     
+   <ul class="itemizedlist"><li class="listitem">
+     <p>The following are the supported algorithms for which you can import models into Canvas. For more details,
+      see the <a href="jumpstart-models.html">SageMaker JumpStart documentation</a>.</p>
+     <div class="itemizedlist">
+       
+       
+     <ul class="itemizedlist"><li class="listitem"><p>Tabular classification: LightGBM, CatBoost, XGBoost, AutoGluon-Tabular, TabTransformer, Linear Learner</p></li><li class="listitem"><p>Tabular regression: LightGBM, CatBoost, XGBoost, AutoGluon-Tabular, TabTransformer, Linear Learner</p></li></ul></div>
+    </li><li class="listitem"><p>In SageMaker JumpStart, the <b>Share</b> button is only turned on if the model is ready to share to Canvas.
+     If your trained model does not have a <b>Share</b> to SageMaker Canvas button, your model is not supported for BYOM.</p></li><li class="listitem"><p>You must provide training and validation datasets when training the SageMaker JumpStart model. The datasets should be stored in Amazon S3,
+     and your Studio and Canvas users' execution role must have access to the Amazon S3 location. You can use the same Amazon S3 URIs to share the
+     training and validation datasets with Canvas, or you can share different datasets with the same data schema.</p>
+     <p>Your training or validation data file should look like the following (in CSV format). You should index your files with the first column as the target.</p>
+     <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">3	1	22	1	1	0	4	4
+0	0	38	0	0	1	3	4
+1	0	67	0	1	0	1	6
+1	0	67	0	0	2	2	6
+0	0	40	0	0	2	6	6
+2	0	56	1	0	1	2	6
+</code></pre>
+    </li><li class="listitem"><p>By default, SageMaker JumpStart uses the first column of the training and validation datasets as the target
+     when training a model. The target column (or by default, the first column) of the datasets is shared to Canvas.</p></li><li class="listitem"><p>You must provide the column headers of the training and validation datasets when training the SageMaker JumpStart model.
+     By default, SageMaker JumpStart only accepts datasets without column headers, so you must add the column headers as a file while training your model.
+     The Amazon S3 URI for the column headers file is shared to Canvas as well. Your column headers file should look like the following example (in CSV format). The first column should be the target.</p>
+     <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">Segmentation	EverMarried	Age	Graduated	WorkExperience	SpendingScore	FamilySize	Var1
+</code></pre>
+    </li><li class="listitem"><p>The training job in SageMaker JumpStart must be <code class="code">Complete</code> before you can share with Canvas.</p></li><li class="listitem"><p>For classification problems (or categorical prediction in Canvas), original class names
+      need to be provided in the <b>Configure model output</b> section when sharing to
+      Canvas. The order of the class names must match the indexing used in the model. Your
+      mapping relation file should look like the following example in CSV format, where index 0 (the
+      first index) is mapped to the class name <code class="code">A</code>:</p>
+     <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">A	B	C	D
+</code></pre>
+     <p>When the Canvas user views the model metrics in the Canvas application, they can
+      only see the index of each class (0, 1, 2). However, the user can see the class names when
+      viewing the results for a single prediction.</p>
+    </li></ul></div>
+   
+  
+   
+   <h3 id="canvas-limits-byom-ap">Bring your own model from Autopilot</h3>
+   <p>Review the following information and limits when sharing a model from Autopilot to Canvas.</p>
+   <div class="itemizedlist">
+     
+     
+     
+     
+   <ul class="itemizedlist"><li class="listitem"><p>You can only share models to Canvas that you’ve successfully trained from an AutoML job with
+     <b>Ensembling</b>, <b>HPO</b>, or <b>Auto</b> mode (for <b>Auto</b> mode,
+     Autopilot chooses <b>Ensembling</b> or <b>HPO</b> mode based on the training dataset size). The currently
+     supported Autopilot problem types are Regression, Multi-class classification, Binary classification.</p></li><li class="listitem"><p>For each Autopilot job, you can choose any model (the <b>Best model</b> or any other candidates) to
+     share to Canvas one at a time. You only need to choose the <b>Share model</b> button and then specify the Canvas users
+     with whom you’d like to share the model and a note.</p></li><li class="listitem"><p>AutoGluon-Tabular models that use Data Wrangler transformers for inference cannot be shared to Canvas. This is because Data Wrangler
+     transformers cause the model to use more than one container.</p></li><li class="listitem"><p>HPO models that aren’t <a href="neo.html">compatible with SageMaker Neo</a>
+     can’t be shared to Canvas successfully. Compatible models are Autopilot models that use XGBoost or MLP algorithms. Incompatible models
+     include Autopilot models that use the linear learner algorithm.</p></li></ul></div>
+   
+  
+   
+   <h3 id="canvas-limits-byom-mr">Bring your own model from Model Registry</h3>
+   <p>Review the following information and limits when sharing a model from Model Registry to Canvas.</p>
+   <div class="itemizedlist">
+     
+     
+     
+     
+     
+     
+   <ul class="itemizedlist"><li class="listitem">
+     <p>Unlike the <b>Share</b> button provided by SageMaker JumpStart, Model Registry doesn’t provide model validation, so it’s
+      possible that a registered model shared successfully from Studio can fail while importing to Canvas due to model incompatibility.
+      Review the following tips before sharing to Canvas from Model Registry:</p>
+     <div class="itemizedlist">
+       
+       
+       
+     <ul class="itemizedlist"><li class="listitem"><p>Use a single inference container for your model. You can register models with
+       <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AdditionalInferenceSpecificationDefinition.html#sagemaker-Type-AdditionalInferenceSpecificationDefinition-Containers">multiple containers</a> within the
+       <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeModelPackage.html#sagemaker-DescribeModelPackage-response-AdditionalInferenceSpecifications">AdditionalInferenceSpecifications</a>
+       field, but Canvas is only optimized for one inference container per model. For example, when you use a inference pipeline and register multiple containers
+       in the <code class="code">AdditionalInferenceSpecifications</code> field with multiple data preprocessing containers and an inference container,
+       by default the first container is selected for model inference in Canvas. Evaluate if this works for your use case if you're using machine learning pipelines.</p></li><li class="listitem"><p>Use a SageMaker <a href="algorithms-tabular.html">built-in tabular algorithm</a>
+       with compatible inference formats. Tested sample algorithms with compatible inference outputs are Autogluon-Tabular, CatBoost, LightGBM,
+       TabTransformer and XGBoost. Algorithms like Factorization Machines don't accept CSV as file input, and the inference output formats for algorithms like Linear Learner and
+       K-NN are not supported by Canvas.</p></li><li class="listitem">
+       <p>You can also bring your own image container and share to Canvas, or modify pre-built SageMaker containers.</p>
+       <div class="itemizedlist">
+         
+         
+       <ul class="itemizedlist"><li class="listitem"><p>If you are bringing your own container, you must modify it to work with SageMaker. For more information about bringing your own
+         container, see <a href="adapt-inference-container.html">Adapting Your Own Inference Container</a>.</p></li><li class="listitem"><p>For detailed formatting for your inference output formats, see <a href="canvas-limits.html#canvas-limits-byom">Limitations for bring your own model (BYOM)</a>.</p></li></ul></div>
+      </li></ul></div>
+    </li><li class="listitem">
+     <p>When registering your model in a <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ModelPackageContainerDefinition.html">model package group</a>, remember to provide the following attributes with your inference container:</p>
+     <div class="itemizedlist">
+       
+       
+       
+     <ul class="itemizedlist"><li class="listitem">
+       <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ModelPackageContainerDefinition.html#sagemaker-Type-ModelPackageContainerDefinition-Environment">Environment</a>:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">"<span>{</span>\"SAGEMAKER_CONTAINER_LOG_LEVEL\": \"20\", \"SAGEMAKER_PROGRAM\": \"inference.py\", \"SAGEMAKER_REGION\": \"us-west-2\", \"SAGEMAKER_SUBMIT_DIRECTORY\": \"/opt/ml/model/code\"}"</code></pre>
+      </li><li class="listitem">
+       <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ModelPackageContainerDefinition.html#sagemaker-Type-ModelPackageContainerDefinition-Image">Image</a>:</p>
+       <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">"s3://sagemaker-us-west-2-<code class="replaceable">&lt;account-id&gt;</code>/model-regression-abalone-2022-10-14-23-02-45/model.tar.gz"</code></pre>
+      </li><li class="listitem">
+       <p><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ModelPackageContainerDefinition.html#sagemaker-Type-ModelPackageContainerDefinition-ModelDataUrl">ModelDataUrl</a></p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">"<code class="replaceable">&lt;account-id&gt;</code>.dkr.ecr.us-west-2.amazonaws.com/sagemaker-xgboost:1.3-1"</code></pre>
+      </li></ul></div>
+    </li><li class="listitem">
+     <p>You must provide training and validation datasets when sharing the model from Model Registry to Canvas. The datasets should be stored in Amazon S3,
+      and the Studio and Canvas users' execution role must have access to the Amazon S3 location. You can use the same Amazon S3 URIs to share the training and validation
+      datasets with Canvas, or you can share different datasets with the same data schema. The datasets must have the exact input formatting that feeds your model’s inference container.</p>
+    </li><li class="listitem"><p>You must provide the target column to Canvas, or the first column of your training/validation dataset is used by default.</p></li><li class="listitem"><p>In the <b>Add model details</b> section when sharing to Canvas, you can provide the first row your training and validation datasets as the headers,
+     or you can specify the headers as a different file.</p></li><li class="listitem"><p>For classification problems (or categorical prediction in Canvas), original class names need to be provided when sharing to SageMaker Canvas through
+     the <b>Configure model outputs</b> option. The order of the class names must match the indexing used with the shared model.
+     The mapping can be either a CSV file in Amazon S3, or you can manually input the class names.</p></li></ul></div>
+   
+  
+<awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./canvas-log-out.html">Logging out</div><div id="next" class="next-link" accesskey="n" href="./canvas-manage-cost.html">Manage billing and cost</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-limits.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-limits.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Get Analysis Results - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="clarify-processing-job-analysis-results" /><meta name="default_state" content="clarify-processing-job-analysis-results" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="clarify-processing-job-analysis-results.html" /><meta name="description" content="Learn how to find and interpret analysis results that SageMaker Clarify generates." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="clarify-processing-job-analysis-results.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" hreflang="de" /><link rel="alternative" href="clarify-processing-job-analysis-results.html" hreflang="en-us" /><link rel="alternative" href="clarify-processing-job-analysis-results.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" hreflang="zh-tw" /><link rel="alternative" href="clarify-processing-job-analysis-results.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Get Analysis Results" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Get Analysis Results - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#clarify-processing-job-analysis-results" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-processing-job-analysis-results.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,explainability,bias,analysis results" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Detect bias and understand explanations",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/model-explainability.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Use Amazon SageMaker Clarify Bias Detection and Model Explainability",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-configure-processing-jobs.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Get Analysis Results",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-configure-processing-jobs.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#clarify-processing-job-analysis-results" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="clarify-processing-job-analysis-results.html#clarify-processing-job-analysis-results-bias">Bias analysis</a><a href="clarify-processing-job-analysis-results.html#clarify-processing-job-analysis-results-shap">SHAP analysis</a><a href="clarify-processing-job-analysis-results.html#clarify-processing-job-analysis-results-cv">Computer vision (CV)
+                explainability analysis</a><a href="clarify-processing-job-analysis-results.html#clarify-processing-job-analysis-results-pdp">Partial dependence plots
+                (PDPs) analysis</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="clarify-processing-job-analysis-results">Get Analysis Results</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>This topic shows how to get analysis results that SageMaker Clarify generates. After the SageMaker Clarify
+        processing job is finished, you can download the output files to inspect, or visualize the
+        results in SageMaker Studio. </p><p>The SageMaker Clarify processing job output directory contains the following files:</p><div class="itemizedlist">
+         
+         
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p><code>analysis.json</code> – A file that contains bias metrics and
+                feature importance in JSON format.</p>
+        </li><li class="listitem">
+            <p><code>report.ipynb</code> – A static notebook that contains code to
+                help you visualize bias metrics and feature importance.</p>
+        </li><li class="listitem">
+            <p><code>explanations_shap/out.csv</code> – A directory that is
+                created and contains automatically generated files based on your specific analysis
+                configurations. For example, if you activate the <code class="code">save_local_shap_values</code>
+                parameter, then per-instance local SHAP values will be saved to the
+                    <code class="code">explanations_shap</code> directory. As another example, if your
+                    <code class="code">analysis configuration</code> does not contain a value for the SHAP
+                baseline parameter, the SageMaker Clarify explainability job computes a baseline by clustering
+                the input dataset. It then saves the generated baseline to the directory.</p>
+        </li></ul></div><p>The following sections provide detailed information about the schema and the report that's
+        generated by bias analysis, SHAP analysis, computer vision explainability analysis, and
+        partial dependence plots (PDPs) analysis. If the configuration analysis contains parameters
+        to compute multiple analyses, then the results are aggregated into one analysis and one
+        report file.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="clarify-processing-job-analysis-results.html#clarify-processing-job-analysis-results-bias">Bias analysis</a></li><li><a href="clarify-processing-job-analysis-results.html#clarify-processing-job-analysis-results-shap">SHAP analysis</a></li><li><a href="clarify-processing-job-analysis-results.html#clarify-processing-job-analysis-results-cv">Computer vision (CV)
+                explainability analysis</a></li><li><a href="clarify-processing-job-analysis-results.html#clarify-processing-job-analysis-results-pdp">Partial dependence plots
+                (PDPs) analysis</a></li></ul></div>
+        <h2 id="clarify-processing-job-analysis-results-bias">Bias analysis</h2>
+        <p>Amazon SageMaker Clarify uses the terminology documented in <a href="clarify-detect-data-bias.html#clarify-bias-and-fairness-terms">Amazon SageMaker Clarify Terms for Bias and
+                Fairness</a> to discuss bias and
+            fairness.</p>
+         
+            <h3 id="clarify-processing-job-analysis-results-bias-schema">Schema for the
+                    analysis file</h3>
+            <p>The analysis file is in JSON format and is organized into two sections:
+                pre-training bias metrics and post-training bias metrics. The parameters for
+                pre-training and post-training bias metrics are as follows.</p>
+            <div class="itemizedlist">
+                 
+
+
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><span class="topcom">pre_training_bias_metrics</span> –
+                        Parameters for pre-training bias metrics. For more information, see <a href="clarify-measure-data-bias.html">Measure Pre-training Bias</a> and <a href="clarify-processing-job-configure-analysis.html">Configure the Analysis</a>.</p>
+                    <div class="itemizedlist">
+                         
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p><span class="topcom">label</span> – The ground truth
+                                label name defined by the <code class="code">label</code> parameter of the
+                                analysis configuration.</p>
+                        </li><li class="listitem">
+                            <p><span class="topcom">label_value_or_threshold</span> – A
+                                string containing the label values or interval defined by the
+                                    <code class="code">label_values_or_threshold</code> parameter of the analysis
+                                configuration. For example, if value <code class="code">1</code> is provided for
+                                binary classification problem, then the string will be
+                                    <code class="code">1</code>. If multiple values <code class="code">[1,2]</code> are
+                                provided for multi-class problem, then the string will be
+                                    <code class="code">1,2</code>. If a threshold <code class="code">40</code> is provided for
+                                regression problem, then the string will be an internal like
+                                    <code class="code">(40, 68]</code> in which <code class="code">68</code> is the maximum
+                                value of the label in the input dataset.</p>
+                        </li><li class="listitem">
+                            <p><span class="topcom">facets</span> – The section
+                                contains several key-value pairs, where the key corresponds to the
+                                facet name defined by the <code class="code">name_or_index</code> parameter of
+                                the facet configuration, and the value is an array of facet objects.
+                                Each facet object has the following members:</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p><span class="topcom">value_or_threshold</span> –
+                                        A string containing the facet values or interval defined by
+                                        the <code class="code">value_or_threshold</code> parameter of the facet
+                                        configuration.</p>
+                                </li><li class="listitem">
+                                    <p><span class="topcom">metrics</span> – The
+                                        section contains an array of bias metric elements, and each
+                                        bias metric element has the following attributes:</p>
+                                    <div class="itemizedlist">
+                                         
+                                         
+
+                                         
+                                         
+                                    <ul class="itemizedlist"><li class="listitem">
+                                            <p><span class="topcom">name</span> – The
+                                                short name of the bias metric. For example,
+                                                  <code class="code">CI</code>. </p>
+                                        </li><li class="listitem">
+                                            <p><span class="topcom">description</span>
+                                                – The full name of the bias metric. For
+                                                example, <code class="code">Class Imbalance (CI)</code>.</p>
+                                        </li><li class="listitem">
+                                            <p><span class="topcom">value</span> – The
+                                                bias metric value, or JSON null value if the bias
+                                                metric is not computed for a particular reason. The
+                                                values ±∞ are represented as strings
+                                                  <code class="code">∞</code> and <code class="code">-∞</code>
+                                                respectively.</p>
+                                        </li><li class="listitem">
+                                            <p><span class="topcom">error</span> – An
+                                                optional error message that explains why the bias
+                                                metric was not computed.</p>
+                                        </li></ul></div>
+                                </li></ul></div>
+                        </li></ul></div>
+                </li><li class="listitem">
+                    <p><span class="topcom">post_training_bias_metrics</span> – The
+                        section contains the post-training bias metrics and it follows a similar
+                        layout and structure to the pre-training section. For more information, see
+                            <a href="clarify-measure-post-training-bias.html">Measure Post-training Data and
+                Model Bias</a>.</p>
+                </li></ul></div>
+            <p>The following is an example of an analysis configuration that will calculate both
+                pre-training and post-training bias metrics.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "version": "1.0",
+    "pre_training_bias_metrics": <span>{</span>
+        "label": "Target",
+        "label_value_or_threshold": "1",
+        "facets": <span>{</span>
+            "Gender": [<span>{</span>
+                "value_or_threshold": "0",
+                "metrics": [
+                    <span>{</span>
+                        "name": "CDDL",
+                        "description": "Conditional Demographic Disparity in Labels (CDDL)",
+                        "value": -0.06
+                    },
+                    <span>{</span>
+                        "name": "CI",
+                        "description": "Class Imbalance (CI)",
+                        "value": 0.6
+                    },
+                    ...
+                ]
+            }]
+        }
+    },
+    "post_training_bias_metrics": <span>{</span>
+        "label": "Target",
+        "label_value_or_threshold": "1",
+        "facets": <span>{</span>
+            "Gender": [<span>{</span>
+                "value_or_threshold": "0",
+                "metrics": [
+                    <span>{</span>
+                        "name": "AD",
+                        "description": "Accuracy Difference (AD)",
+                        "value": -0.13
+                    },
+                    <span>{</span>
+                        "name": "CDDPL",
+                        "description": "Conditional Demographic Disparity in Predicted Labels (CDDPL)",
+                        "value": 0.04
+                    },
+                    ...
+                ]
+            }]
+        }
+    }
+}</code></pre>
+         
+         
+            <h3 id="clarify-processing-job-analysis-results-bias-report">Bias analysis
+                    report</h3>
+            <p>The bias analysis report includes several tables and diagrams that contain
+                detailed explanations and descriptions. These include, but are not limited to, the
+                distribution of label values, the distribution of facet values, high-level model
+                performance diagram, a table of bias metrics, and their descriptions. For more
+                information about bias metrics and how to interpret them, see the <a href="http://aws.amazon.com/blogs/machine-learning/learn-how-amazon-sagemaker-clarify-helps-detect-bias/" rel="noopener noreferrer" target="_blank"><span>Learn How Amazon SageMaker Clarify Helps Detect Bias</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+         
+     
+        <h2 id="clarify-processing-job-analysis-results-shap">SHAP analysis</h2>
+        <p>SageMaker Clarify processing jobs use the Kernel SHAP algorithm to compute feature attributions.
+            The SageMaker Clarify processing job produces both local and global SHAP values. These help to
+            determine the contribution of each feature towards model predictions. Local SHAP values
+            represent the feature importance for each individual instance, while global SHAP values
+            aggregate the local SHAP values across all instances in the dataset. For more
+            information about SHAP values and how to interpret them, see <a href="clarify-shapley-values.html">Feature Attributions that Use Shapley
+                Values</a> .</p>
+         
+            <h3 id="clarify-processing-job-analysis-results-shap-schema">Schema for the
+                    SHAP analysis file</h3>
+            <p>Global SHAP analysis results are stored in the explanations section of the
+                analysis file, under the <code class="code">kernel_shap</code> method. The different parameters
+                of the SHAP analysis file are as follows:</p>
+            <div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><span class="topcom">explanations</span> – The section of the
+                        analysis file that contains the feature importance analysis results.</p>
+                    <div class="itemizedlist">
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p><span class="topcom">kernal_shap</span> – The section of
+                                the analysis file that contains the global SHAP analysis
+                                result.</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p><span class="topcom">global_shap_values</span> –
+                                        A section of the analysis file that contains several
+                                        key-value pairs. Each key in the key-value pair represents a
+                                        feature name from the input dataset. Each value in the
+                                        key-value pair corresponds to the feature's global SHAP
+                                        value. The global SHAP value is obtained by aggregating the
+                                        per-instance SHAP values of the feature using the
+                                            <code class="code">agg_method</code> configuration. If the
+                                            <code class="code">use_logit</code> configuration is activated, then
+                                        the value is calculated using the logistic regression
+                                        coefficients, which can be interpreted as log-odds
+                                        ratios.</p>
+                                </li><li class="listitem">
+                                    <p><span class="topcom">expected_value</span> – The
+                                        mean prediction of the baseline dataset. If the
+                                            <code class="code">use_logit</code> configuration is activated, then
+                                        the value is calculated using the logistic regression
+                                        coefficients.</p>
+                                </li><li class="listitem">
+                                    <p><span class="topcom">global_top_shap_text</span>
+                                        – (For NLP explainability analysis). A section of the
+                                        analysis file that includes a set of key-value pairs. SageMaker Clarify
+                                        processing jobs aggregate the SHAP values of each token and
+                                        then select the top tokens based on their global SHAP
+                                        values. The <code class="code">max_top_tokens</code> configuration
+                                        defines the number of tokens to be selected. </p>
+                                    <p>Each of the selected top tokens has a key-value pair. The
+                                        key in the key-value pair corresponds to a top token’s text
+                                        feature name. Each value in the key-value pair is the global
+                                        SHAP values of the top token. For an example of a
+                                            <code class="code">global_top_shap_text</code> key-value pair, see
+                                        the output that follows.</p>
+                                </li></ul></div>
+                        </li></ul></div>
+                </li></ul></div>
+            <p>The following is example output from the SHAP analysis of a tabular
+                dataset.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "version": "1.0",
+    "explanations": <span>{</span>
+        "kernel_shap": <span>{</span>
+            "Target": <span>{</span>
+                 "global_shap_values": <span>{</span>
+                    "Age": 0.022486410860333206,
+                    "Gender": 0.007381025261958729,
+                    "Income": 0.006843906804137847,
+                    "Occupation": 0.006843906804137847,
+                    ...
+                },
+                "expected_value": 0.508233428001
+            }
+        }
+    }
+}</code></pre>
+            <p>The following is example output from the SHAP analysis of a text dataset. The
+                output corresponding to the column <code class="code">Comments</code> is an example of output
+                that is generated after analysis of a text feature.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "version": "1.0",
+    "explanations": <span>{</span>
+        "kernel_shap": <span>{</span>
+            "Target": <span>{</span>
+               "global_shap_values": <span>{</span>
+                    "Rating": 0.022486410860333206,
+                    "Comments": 0.058612104851485144,
+                    ...
+                },
+                "expected_value": 0.46700941970297033,
+                "global_top_shap_text": <span>{</span>
+                    "charming": 0.04127962903247833,
+                    "brilliant": 0.02450240786522321,
+                    "enjoyable": 0.024093569652715457,
+                    ...
+                }
+            }
+        }
+    }
+}</code></pre>
+         
+         
+            <h3 id="clarify-processing-job-analysis-results-baseline-schema">Schema for
+                    the generated baseline file</h3>
+            <p>When a SHAP baseline configuration is not provided, the SageMaker Clarify processing job
+                generates a baseline dataset. SageMaker Clarify uses a distance-based clustering algorithm to
+                generate a baseline dataset from clusters
+                created
+                from the input dataset. The resulting baseline dataset is saved
+                in a CSV file, located at <code class="code">explanations_shap/baseline.csv</code>. This output
+                file contains a header row and several instances based on the
+                    <code class="code">num_clusters</code> parameter that is specified in the analysis
+                configuration. The baseline dataset only consists of feature columns. An example of
+                a baseline created by clustering the input dataset follows.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">Age,Gender,Income,Occupation
+35,0,2883,1
+40,1,6178,2
+42,0,4621,0</code></pre>
+         
+         
+            <h3 id="clarify-processing-job-analysis-results-tabular-schema">Schema for
+                    local SHAP values from tabular dataset explainability analysis</h3>
+            <p>For tabular datasets, if a single compute instance is used, the SageMaker Clarify processing
+                job saves the local SHAP values to a CSV file named
+                    <code class="code">explanations_shap/out.csv</code>. If you use multiple compute instances,
+                local SHAP values are saved to several CSV files in the
+                    <code class="code">explanations_shap</code> directory.</p>
+            <p>An output file containing local SHAP values has a row containing the local SHAP
+                values for each column that is defined by the headers. The headers follow the naming
+                convention of <code class="code">Feature_Label</code> where the feature name is appended by an
+                underscore, followed by the name of the your target variable. </p>
+            <p>For multi-class problems, the feature names in the header vary first, then labels.
+                For example, two features <code class="code">F1, F2</code>, and two classes <code class="code">L1</code> and
+                    <code class="code">L2</code>, in headers are <code class="code">F1_L1</code>, <code class="code">F2_L1</code>,
+                    <code class="code">F1_L2</code>, and <code class="code">F2_L2</code>. If the analysis configuration
+                contains a value for the <code class="code">joinsource_name_or_index</code> parameter, then the
+                key column used in the join is appended to the end of the header name. This allows
+                mapping of the local SHAP values to instances of the input dataset. An example of an
+                output file containing SHAP values follows.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">Age_Target,Gender_Target,Income_Target,Occupation_Target
+0.003937908,0.001388849,0.00242389,0.00274234
+-0.0052784,0.017144491,0.004480645,-0.017144491
+...</code></pre>
+         
+         
+            <h3 id="clarify-processing-job-analysis-results-nlp-schema">Schema for
+                    local SHAP values from NLP explainability analysis</h3>
+            <p>For NLP explainability analysis, if a single compute instance is used, the SageMaker Clarify
+                processing job saves local SHAP values to a JSON Lines file named
+                    <code class="code">explanations_shap/out.jsonl</code>. If you use multiple compute instances,
+                the local SHAP values are saved to several JSON Lines files in the
+                    <code class="code">explanations_shap</code> directory.</p>
+            <p>Each file containing local SHAP values has several data lines, and each line is a
+                valid JSON object. The JSON object has the following attributes:</p>
+            <div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><span class="topcom">explanations</span> – The section of the
+                        analysis file that contains an array of Kernel SHAP explanations for a
+                        single instance. Each element in the array has the following members:</p>
+                    <div class="itemizedlist">
+                         
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p><span class="topcom">feature_name</span> – The header
+                                name of the features provided by the headers configuration.</p>
+                        </li><li class="listitem">
+                            <p><span class="topcom">data_type</span> – The feature type
+                                inferred by the SageMaker Clarify processing job. Valid values for text features
+                                include <code class="code">numerical</code>, <code class="code">categorical</code>, and
+                                    <code class="code">free_text</code> (for text features).</p>
+                        </li><li class="listitem">
+                            <p><span class="topcom">attributions</span> – A
+                                feature-specific array of attribution objects. A text feature can
+                                have multiple attribution objects, each for a unit defined by the
+                                    <code class="code">granularity</code> configuration. The attribution object
+                                has the following members:</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p><span class="topcom">attribution</span> – A
+                                        class-specific array of probability values.</p>
+                                </li><li class="listitem">
+                                    <p><span class="topcom">description</span> – (For
+                                        text features) The description of the text units.</p>
+                                    <div class="itemizedlist">
+                                         
+                                         
+                                    <ul class="itemizedlist"><li class="listitem">
+                                            <p><span class="topcom">partial_text</span>
+                                                – The portion of the text explained by the
+                                                SageMaker Clarify processing job.</p>
+                                        </li><li class="listitem">
+                                            <p><span class="topcom">start_idx</span> –
+                                                A zero-based index to identify the array location
+                                                indicating the beginning of the partial text
+                                                fragment.</p>
+                                        </li></ul></div>
+                                </li></ul></div>
+                        </li></ul></div>
+                </li></ul></div>
+            <p>The following is an example of a single line from a local SHAP values file,
+                beautified to enhance its readability.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "explanations": [
+        <span>{</span>
+            "feature_name": "Rating",
+            "data_type": "categorical",
+            "attributions": [
+                <span>{</span>
+                    "attribution": [0.00342270632248735]
+                }
+            ]
+        },
+        <span>{</span>
+            "feature_name": "Comments",
+            "data_type": "free_text",
+            "attributions": [
+                <span>{</span>
+                    "attribution": [0.005260534499999983],
+                    "description": <span>{</span>
+                        "partial_text": "It's",
+                        "start_idx": 0
+                    }
+                },
+                <span>{</span>
+                    "attribution": [0.00424190349999996],
+                    "description": <span>{</span>
+                        "partial_text": "a",
+                        "start_idx": 5
+                    }
+                },
+                <span>{</span>
+                    "attribution": [0.010247314500000014],
+                    "description": <span>{</span>
+                        "partial_text": "good",
+                        "start_idx": 6
+                    }
+                },
+                <span>{</span>
+                    "attribution": [0.006148907500000005],
+                    "description": <span>{</span>
+                        "partial_text": "product",
+                        "start_idx": 10
+                    }
+                }
+            ]
+        }
+    ]
+}</code></pre>
+         
+         
+            <h3 id="clarify-processing-job-analysis-results-shap-report">SHAP analysis
+                    report</h3>
+            <p>The SHAP analysis report provides a bar chart of a maximum of <code class="code">10</code> top
+                global SHAP values. The following chart example shows the SHAP values for the top
+                    <code class="code">4</code> features.</p>
+            <div class="mediaobject">
+                 
+                    <img src="../../../images/sagemaker/latest/dg/images/clarify/shap-chart.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                    Horizontal bar chart of global SHAP values calculated for target&#xA;                        variable of the top four features.&#xA;                " style="max-width:85%" />
+                 
+                 
+            </div>
+         
+     
+        <h2 id="clarify-processing-job-analysis-results-cv">Computer vision (CV)
+                explainability analysis</h2>
+        <p>SageMaker Clarify computer vision explainability takes a dataset consisting of images and treats
+            each image as a collection of super pixels. After analysis, the SageMaker Clarify processing job
+            outputs a dataset of images where each image shows the heat map of the super
+            pixels.</p>
+        <p>The following example shows an input speed limit sign on the left and a heat map shows
+            the magnitude of SHAP values on the right. These SHAP values were calculated by an image
+            recognition Resnet-18 model that is trained to recognize <a href="https://benchmark.ini.rub.de/gtsrb_news.html" rel="noopener noreferrer" target="_blank"><span>German traffic signs</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. The
+            German Traffic Sign Recognition Benchmark (GTSRB) dataset is provided in the paper
+                <a href="https://www.sciencedirect.com/science/article/abs/pii/S0893608012000457?via%3Dihub" rel="noopener noreferrer" target="_blank"><span>Man vs. computer: Benchmarking machine learning algorithms for traffic sign
+                recognition</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. In the example output, large positive values indicate that the
+            super pixel has a strong positive correlation with the model prediction. Large negative
+            values indicate that the super pixel has a strong negative correlation with the model
+            prediction. The larger the absolute value of the SHAP value shown in the heat map, the
+            stronger the relationship between the super pixel and model prediction.</p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/clarify/shap_speed-limit-70.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                Input image of speed limit sign and resulting heat map of SHAP values from a&#xA;                    Resnet-18 model.&#xA;            " style="max-width:85%" />
+             
+             
+        </div>
+        <p>For more information, see the sample notebooks <a href="https://github.com/aws/amazon-sagemaker-examples/blob/master/sagemaker-clarify/computer_vision/image_classification/explainability_image_classification.ipynb" rel="noopener noreferrer" target="_blank"><span>Explaining Image Classification with SageMaker Clarify</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and <a href="https://github.com/aws/amazon-sagemaker-examples/blob/master/sagemaker-clarify/computer_vision/object_detection/object_detection_clarify.ipynb" rel="noopener noreferrer" target="_blank"><span>Explaining object detection models with Amazon SageMaker Clarify</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+     
+        <h2 id="clarify-processing-job-analysis-results-pdp">Partial dependence plots
+                (PDPs) analysis</h2>
+        <p>Partial dependence plots show the dependence of the predicted target response on a set
+            of input features of interest. These are marginalized over the values of all other input
+            features and are referred to as the complement features. Intuitively, you can interpret
+            the partial dependence as the target response, which is expected as a function of each
+            input feature of interest.</p>
+         
+            <h3 id="clarify-processing-job-analysis-results-pdp-schema">Schema for the
+                    analysis file</h3>
+            <p>The PDP values are stored in the <code class="code">explanations</code> section of the analysis
+                file under the <code class="code">pdp</code> method. The parameters for <code class="code">explanations</code>
+                are as follows:</p>
+            <div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><span class="topcom">explanations</span> – The section of the
+                        analysis files that contains feature importance analysis results.</p>
+                    <div class="itemizedlist">
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p><span class="topcom">pdp</span> – The section of the
+                                analysis file that contains an array of PDP explanations for a
+                                single instance. Each element of the array has the following
+                                members:</p>
+                            <div class="itemizedlist">
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                            <ul class="itemizedlist"><li class="listitem">
+                                    <p><span class="topcom">feature_name</span> – The
+                                        header name of the features provided by the
+                                            <code class="code">headers</code> configuration.</p>
+                                </li><li class="listitem">
+                                    <p><span class="topcom">data_type</span> – The
+                                        feature type inferred by the SageMaker Clarify processing job. Valid
+                                        values for <code class="code">data_type</code> include numerical and
+                                        categorical.</p>
+                                </li><li class="listitem">
+                                    <p><span class="topcom">feature_values</span> –
+                                        Contains the values present in the feature. If the
+                                            <code class="code">data_type</code> inferred by SageMaker Clarify is categorical,
+                                            <code class="code">feature_values</code> contains all of the unique
+                                        values that the feature could be. If the
+                                            <code class="code">data_type</code> inferred by SageMaker Clarify is numerical,
+                                            <code class="code">feature_values</code> contains a list of the
+                                        central value of generated buckets. The
+                                            <code class="code">grid_resolution</code> parameter determines the
+                                        number of buckets used to group the feature column
+                                        values.</p>
+                                </li><li class="listitem">
+                                    <p><span class="topcom">data_distribution</span> –
+                                        An array of percentages, where each value is the percentage
+                                        of instances that a bucket contains. The
+                                            <code class="code">grid_resolution</code> parameter determines the
+                                        number of buckets. The feature column values are grouped
+                                        into these buckets.</p>
+                                </li><li class="listitem">
+                                    <p><span class="topcom">model_predictions</span> –
+                                        An array of model predictions, where each element of the
+                                        array is an array of predictions that corresponds to one
+                                        class in the model’s output.</p>
+                                    <p><span class="topcom">label_headers</span> – The
+                                        label headers provided by the <code class="code">label_headers</code>
+                                        configuration.</p>
+                                </li><li class="listitem">
+                                    <p><span class="topcom">error</span> – An error
+                                        message generated if the PDP values are not computed for a
+                                        particular reason. This error message replaces the content
+                                        contained in the <code class="code">feature_values</code>,
+                                            <code class="code">data_distributions</code>, and
+                                            <code class="code">model_predictions</code> fields.</p>
+                                </li></ul></div>
+                        </li></ul></div>
+                </li></ul></div>
+            <p>The following is example output from an analysis file containing a PDP analysis
+                result.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "version": "1.0",
+    "explanations": <span>{</span>
+        "pdp": [
+            <span>{</span>
+                "feature_name": "Income",
+                "data_type": "numerical",
+                "feature_values": [1046.9, 2454.7, 3862.5, 5270.2, 6678.0, 8085.9, 9493.6, 10901.5, 12309.3, 13717.1],
+                "data_distribution": [0.32, 0.27, 0.17, 0.1, 0.045, 0.05, 0.01, 0.015, 0.01, 0.01],
+                "model_predictions": [[0.69, 0.82, 0.82, 0.77, 0.77, 0.46, 0.46, 0.45, 0.41, 0.41]],
+                "label_headers": ["Target"]
+            },
+            ...
+        ]
+    }
+}</code></pre>
+         
+         
+            <h3 id="clarify-processing-job-analysis-results-pdp-report">PDP analysis
+                    report</h3>
+            <p>You can generate an analysis report containing a PDP chart for each feature. The
+                PDP chart plots <code class="code">feature_values</code> along the x-axis, and it plots
+                    <code class="code">model_predictions</code> along the y-axis. For multi-class models,
+                    <code class="code">model_predictions</code> is an array, and each element of this array
+                corresponds to one of the model prediction classes.</p>
+            <p>The following is an example of PDP chart for the feature <code class="code">Age</code>. In the
+                example output, the PDP shows the number of feature values that are grouped into
+                buckets. The number of buckets is determined by <code class="code">grid_resolution</code>. The
+                buckets of feature values are plotted against model predictions. In this example,
+                the higher feature values have the same model prediction values.</p>
+            <div class="mediaobject">
+                 
+                    <img src="../../../images/sagemaker/latest/dg/images/clarify/pdp-chart.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                    Line chart showing how model predictions vary against&#xA;                            feature_values for 10 unique grid&#xA;                        points.&#xA;                " style="max-width:85%" />
+                 
+                 
+            </div>
+         
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./clarify-processing-job-run.html">Run SageMaker Clarify Processing Jobs</div><div id="next" class="next-link" accesskey="n" href="./clarify-processing-job-run-troubleshooting.html">Troubleshoot Jobs</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-processing-job-analysis-results.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/clarify-processing-job-analysis-results.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

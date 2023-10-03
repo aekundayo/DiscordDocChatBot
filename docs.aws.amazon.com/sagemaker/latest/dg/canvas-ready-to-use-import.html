@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Import data for Ready-to-use models - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="canvas-ready-to-use-import" /><meta name="default_state" content="canvas-ready-to-use-import" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="canvas-ready-to-use-import.html" /><meta name="description" content="Import data for Ready-to-use models in SageMaker Canvas." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="canvas-ready-to-use-import.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/canvas-ready-to-use-import.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/canvas-ready-to-use-import.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/canvas-ready-to-use-import.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/canvas-ready-to-use-import.html" hreflang="de" /><link rel="alternative" href="canvas-ready-to-use-import.html" hreflang="en-us" /><link rel="alternative" href="canvas-ready-to-use-import.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/canvas-ready-to-use-import.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/canvas-ready-to-use-import.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/canvas-ready-to-use-import.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/canvas-ready-to-use-import.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/canvas-ready-to-use-import.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/canvas-ready-to-use-import.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/canvas-ready-to-use-import.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/canvas-ready-to-use-import.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/canvas-ready-to-use-import.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/canvas-ready-to-use-import.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/canvas-ready-to-use-import.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/canvas-ready-to-use-import.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/canvas-ready-to-use-import.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/canvas-ready-to-use-import.html" hreflang="zh-tw" /><link rel="alternative" href="canvas-ready-to-use-import.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Import data for Ready-to-use models" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Import data for Ready-to-use models - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#canvas-ready-to-use-import" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-ready-to-use-import.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-ready-to-use-import.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-ready-to-use-import.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use machine learning environments offered by SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/machine-learning-environments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Canvas",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Ready-to-use models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas-ready-to-use-models.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Import data for Ready-to-use models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas-ready-to-use-models.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#canvas-ready-to-use-import" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="canvas-ready-to-use-import.html#canvas-ready-to-use-import-text-image">Import text or image data</a><a href="canvas-ready-to-use-import.html#canvas-ready-to-use-import-document">Import document data</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="canvas-ready-to-use-import">Import data for Ready-to-use models</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The following topic assumes that want to use Ready-to-use models to get predictions for an
+    entire dataset. If you only want to get a single prediction with a Ready-to-use model, can you
+    skip this section and go directly to the <a href="canvas-ready-to-use-predict.html">Make predictions with Ready-to-use models</a> topic.</p></div></div><p>You can use Canvas Ready-to-use models to get predictions for an entire dataset. You
+   only have to import your data into Canvas.</p><p>Ready-to-use models support predictions for the following dataset types:</p><div class="itemizedlist">
+    
+    
+    
+  <ul class="itemizedlist"><li class="listitem">
+    <p><b>Text data.</b> Text data for Ready-to-use models should
+     consist of a tabular dataset with at least one column of text data entries and can be stored in
+     CSV or Parquet format.</p>
+   </li><li class="listitem">
+    <p><b>Image data.</b> Image datasets should consist of image files
+     in JPG or PNG format.</p>
+   </li><li class="listitem">
+    <p><b>Document data.</b> Document datasets should consist of files
+     in PDF, JPG, PNG, or TIFF format.</p>
+   </li></ul></div><p>When you import your data into Canvas, you must make sure that it meets the input
+   requirements. For a table of requirements by data type, you can refer to the limits table on the
+    <a href="canvas-import-dataset.html">Create a dataset</a> page for custom
+   models.</p><p>You can import data into Canvas from the following data sources:</p><div class="itemizedlist">
+    
+    
+    
+    
+    
+    
+  <ul class="itemizedlist"><li class="listitem">
+    <p>Local files on your computer</p>
+   </li><li class="listitem">
+    <p>Amazon S3 buckets</p>
+   </li><li class="listitem">
+    <p>Amazon Redshift</p>
+   </li><li class="listitem">
+    <p>AWS Glue Data Catalog through Amazon Athena</p>
+   </li><li class="listitem">
+    <p>Snowflake</p>
+   </li><li class="listitem">
+    <p>Over 40 external SaaS platforms, such as SAP OData</p>
+   </li></ul></div><p>For a table of all of the supported data sources and what data types you can import from
+   them, see the data sources table on the <a href="canvas-importing-data.html">Import data into Canvas</a> page in
+   the custom models documentation.</p><p>Use the following procedures to import datasets into Canvas that you can use with
+   Ready-to-use models.</p>
+   <h2 id="canvas-ready-to-use-import-text-image">Import text or image data</h2>
+   <p>With tabular datasets of text data, you can generate predictions for the sentiment
+    analysis, entities extraction, language detection, and personal information detection
+    Ready-to-use models. With image datasets, you can generate predictions for the object detection
+    in images and text detection in images Ready-to-use models.</p>
+   <p>The procedures for importing text and image data are the same for Ready-to-use models and
+    custom models. You can refer to the custom model procedures for instructions on how to import
+    these types of datasets:</p>
+   <div class="itemizedlist">
+     
+     
+   <ul class="itemizedlist"><li class="listitem">
+     <p>To learn how to import text data, use the <a href="canvas-import-dataset.html#canvas-import-dataset-tabular">Import tabular data</a> procedure within the custom model
+      documentation.</p>
+    </li><li class="listitem">
+     <p>To learn how to import image data, use the <a href="canvas-import-dataset.html#canvas-import-dataset-image">Import image data</a> procedure within the custom model
+      documentation.</p>
+    </li></ul></div>
+   <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can only import image datasets from local file upload or an Amazon S3 bucket.</p></div></div>
+   
+   <h2 id="canvas-ready-to-use-import-document">Import document data</h2>
+   <p>The Ready-to-use models for expense analysis, identity document analysis, document
+    analysis, and document queries support document data. You can’t build a custom model with
+    document data.</p>
+   <p>With document datasets, you can generate predictions for expense analysis, identity
+    document analysis, document analysis, and document queries Ready-to-use models. Review the
+    limitations table in the <a href="canvas-import-dataset.html">Create a dataset</a> section to ensure that your document dataset meets the
+    requirements for document data.</p>
+   <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can only import document datasets from local file upload or an Amazon S3 bucket.</p></div></div>
+   <p>Use the following procedure to import a document dataset into Canvas:</p>
+   <div class="procedure"><ol><li>
+     <p>Open your SageMaker Canvas application.</p>
+    </li><li>
+     <p>In the left navigation pane, choose <b>Datasets</b>.</p>
+    </li><li>
+     <p>Choose <b>Create</b>.</p>
+    </li><li>
+     <p>From the dropdown menu, choose <b>Document</b>.</p>
+    </li><li>
+     <p>In the popup dialog box, in the <b>Dataset name</b> field, enter a name for
+      the dataset and choose <b>Create</b>.</p>
+    </li><li>
+     <p>On the <b>Import</b> page, open the <b>Data Source</b>
+      dropdown menu.</p>
+    </li><li>
+     <p>Choose your data source. To upload files from your computer, choose <b>Local
+       upload</b>. To import files from Amazon S3, choose <b>Amazon S3</b>.</p>
+    </li><li>
+     <p>From your computer or Amazon S3 bucket, select the document files that you want to
+      upload.</p>
+    </li><li>
+     <p>When you’re ready to import your data, choose <b>Import data</b>.</p>
+    </li></ol></div>
+   <p>While your dataset is importing into Canvas, you can see your datasets listed on the
+     <b>Datasets</b> page. From this page, you can <a href="canvas-import-dataset.html#canvas-view-dataset-details">View your dataset details</a>.</p>
+   <p>When the <b>Status</b> of your dataset shows as <code class="code">Ready</code>,
+    Canvas has successfully imported your data.</p>
+   <p>On the <b>Datasets</b> page, you can choose your dataset to preview it, which
+    shows you up to the first 100 documents of your dataset.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./canvas-ready-to-use-models.html">Use Ready-to-use models</div><div id="next" class="next-link" accesskey="n" href="./canvas-ready-to-use-predict.html">Make predictions with Ready-to-use models</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-ready-to-use-import.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-ready-to-use-import.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

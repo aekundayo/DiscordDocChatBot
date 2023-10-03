@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Host multiple models in one container behind one endpoint - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="multi-model-endpoints" /><meta name="default_state" content="multi-model-endpoints" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="multi-model-endpoints.html" /><meta name="description" content="Create an endpoint that can host multiple Amazon SageMaker models to help reduce cost." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="multi-model-endpoints.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/multi-model-endpoints.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/multi-model-endpoints.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/multi-model-endpoints.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/multi-model-endpoints.html" hreflang="de" /><link rel="alternative" href="multi-model-endpoints.html" hreflang="en-us" /><link rel="alternative" href="multi-model-endpoints.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/multi-model-endpoints.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/multi-model-endpoints.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/multi-model-endpoints.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/multi-model-endpoints.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/multi-model-endpoints.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/multi-model-endpoints.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/multi-model-endpoints.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/multi-model-endpoints.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/multi-model-endpoints.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/multi-model-endpoints.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/multi-model-endpoints.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/multi-model-endpoints.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/multi-model-endpoints.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/multi-model-endpoints.html" hreflang="zh-tw" /><link rel="alternative" href="multi-model-endpoints.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Host multiple models in one container behind one endpoint" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Host multiple models in one container behind one endpoint - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#multi-model-endpoints" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/multi-model-endpoints.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/multi-model-endpoints.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/multi-model-endpoints.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,inference,deploy model,endpoint,prediction,ML application,serverless machine learning,multi model deployment,inference pipelines,ML model" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploy models for inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Real-time inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Hosting options",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints-options.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Host multiple models in one container behind one endpoint",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints-options.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#multi-model-endpoints" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="multi-model-endpoints.html#multi-model-support">Supported algorithms, frameworks, and instances</a><a href="multi-model-endpoints.html#multi-model-endpoint-sample-notebooks">Sample notebooks</a><a href="multi-model-endpoints.html#how-multi-model-endpoints-work">How Amazon SageMaker multi-model endpoints work</a><a href="multi-model-endpoints.html#multi-model-caching">Setting SageMaker multi-model endpoint model caching
+        behavior</a><a href="multi-model-endpoints.html#multi-model-endpoint-instance">Instance recommendations for multi-model
+        endpoint deployments</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="multi-model-endpoints">Host multiple models in one container behind one endpoint</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Multi-model
+    endpoints provide a scalable and cost-effective solution to deploying large numbers of models.
+    They use the same fleet of resources and a shared serving container to host all of your models. This reduces
+    hosting costs by improving endpoint utilization compared with using single-model endpoints. It
+    also reduces deployment overhead because Amazon SageMaker manages loading models in memory and scaling
+    them based on the traffic patterns to your endpoint.</p><p>The following diagram shows how multi-model endpoints work compared to single-model endpoints.</p><div class="mediaobject">
+     
+      <img src="../../../images/sagemaker/latest/dg/images/multi-model-endpoints-diagram.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;      Diagram that shows how multi-model endpoints host models versus how single-model endpoints host models.&#xA;    " style="max-width:80%" />
+     
+     
+  </div><p>Multi-model endpoints are ideal for hosting a large number of models that use the same ML framework
+    on a shared serving container. If you have a mix of frequently and infrequently accessed models, a multi-model
+    endpoint can efficiently serve this traffic with fewer resources and higher cost savings. Your application should
+    be tolerant of occasional cold start-related latency penalties that occur when invoking infrequently used models.</p><p>Multi-model endpoints support hosting both CPU and GPU backed models. By using GPU backed models, you
+    can lower your model deployment costs through increased usage of the endpoint and its underlying accelerated compute instances.</p><p>Multi-model endpoints also enable time-sharing of memory resources across your models. This
+    works best when the models are fairly similar in size and invocation latency. When this is the
+    case, multi-model endpoints can effectively use instances across all models. If you have models
+    that have significantly higher transactions per second (TPS) or latency requirements, we
+    recommend hosting them on dedicated endpoints.</p><p>You can use multi-model endpoints with the following features:</p><div class="itemizedlist">
+     
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem"><p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-services-overview.html">AWS PrivateLink</a> and VPCs</p></li><li class="listitem"><p><a href="multi-model-endpoints-autoscaling.html">Auto scaling</a></p></li><li class="listitem"><p><a href="inference-pipelines.html">Serial inference pipelines</a> (but only one multi-model enabled container can be included in an inference pipeline)</p></li><li class="listitem"><p>A/B testing</p></li></ul></div><p>You can't use multi-model-enabled containers with Amazon Elastic Inference.</p><p>You can use the AWS SDK for Python (Boto) or the SageMaker console to create a multi-model endpoint. For CPU backed multi-model endpoints, you can
+    create your endpoint with custom-built containers by integrating the <a href="https://github.com/awslabs/multi-model-server" rel="noopener noreferrer" target="_blank"><span>Multi Model Server</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> library.</p><div class="highlights"><h6>Topics</h6><ul><li><a href="multi-model-endpoints.html#multi-model-support">Supported algorithms, frameworks, and instances</a></li><li><a href="multi-model-endpoints.html#multi-model-endpoint-sample-notebooks">Sample notebooks for multi-model
+        endpoints</a></li><li><a href="multi-model-endpoints.html#how-multi-model-endpoints-work">How multi-model endpoints work</a></li><li><a href="multi-model-endpoints.html#multi-model-caching">Setting SageMaker multi-model endpoint model caching
+        behavior</a></li><li><a href="multi-model-endpoints.html#multi-model-endpoint-instance">Instance recommendations for multi-model
+        endpoint deployments</a></li><li><a href="create-multi-model-endpoint.html">Create
+        a Multi-Model Endpoint</a></li><li><a href="invoke-multi-model-endpoint.html">Invoke a Multi-Model Endpoint</a></li><li><a href="add-models-to-endpoint.html">Add or Remove Models</a></li><li><a href="build-multi-model-build-container.html">Build Your Own Container for SageMaker Multi-Model Endpoints</a></li><li><a href="multi-model-endpoint-security.html">Multi-Model Endpoint Security</a></li><li><a href="multi-model-endpoint-cloudwatch-metrics.html">CloudWatch Metrics for Multi-Model
+        Endpoint Deployments </a></li><li><a href="multi-model-endpoints-autoscaling.html">Set Auto Scaling Policies for Multi-Model Endpoint Deployments</a></li></ul></div>
+    <h2 id="multi-model-support">Supported algorithms, frameworks, and instances</h2>
+    <p>For information about the algorithms, frameworks, and instance types that you can use with multi-model endpoints, see the following sections.</p>
+     
+      <h3 id="multi-model-support-cpu">Supported algorithms, frameworks, and instances for multi-model endpoints using CPU backed instances</h3>
+      <p>The inference containers for the following algorithms and frameworks support multi-model
+        endpoints:</p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><a href="xgboost.html">XGBoost Algorithm</a></p>
+        </li><li class="listitem">
+          <p><a href="k-nearest-neighbors.html">K-Nearest Neighbors (k-NN) Algorithm</a></p>
+        </li><li class="listitem">
+          <p><a href="linear-learner.html">Linear Learner Algorithm</a></p>
+        </li><li class="listitem">
+          <p><a href="randomcutforest.html">Random Cut Forest (RCF) Algorithm</a></p>
+        </li><li class="listitem">
+          <p><a href="tf.html">Use TensorFlow with Amazon SageMaker</a></p>
+        </li><li class="listitem">
+          <p><a href="sklearn.html">Use Scikit-learn with Amazon SageMaker</a></p>
+        </li><li class="listitem">
+          <p><a href="mxnet.html">Use Apache MXNet with Amazon SageMaker</a></p>
+        </li><li class="listitem">
+          <p><a href="pytorch.html">Use PyTorch with Amazon SageMaker</a></p>
+        </li></ul></div>
+      <p>To use any other framework or algorithm, use the SageMaker inference toolkit to build a
+        container that supports multi-model endpoints. For information, see <a href="build-multi-model-build-container.html">Build Your Own Container for SageMaker Multi-Model Endpoints</a>.</p>
+      <p>Multi-model endpoints support all of the CPU instance types.</p>
+     
+     
+      <h3 id="multi-model-support-gpu">Supported algorithms, frameworks, and instances for multi-model endpoints using GPU backed instances</h3>
+      <p>Hosting multiple GPU backed models on multi-model endpoints is supported through the <a href="triton.html">SageMaker Triton Inference server</a>.
+        This supports all major inference frameworks such as NVIDIA® TensorRT™, PyTorch, MXNet, Python, ONNX, XGBoost, scikit-learn, RandomForest, OpenVINO, custom C++, and more.</p>
+      <p>To use any other framework or algorithm, you can use Triton backend for Python or C++ to write your model logic and serve any custom model.
+        After you have the server ready, you can start deploying 100s of Deep Learning models behind one endpoint.</p>
+      <p>Multi-model endpoints support the following GPU instance types:</p>
+      <div class="table-container"><div class="table-contents"><table id="w714aac25c33b7c11c25b7b9"><thead>
+            <tr>
+              <th>Instance family</th>
+              <th>Instance type</th>
+              <th>vCPUs</th>
+              <th>GiB of memory per vCPU</th>
+              <th>GPUs</th>
+              <th>GPU memory</th>
+            </tr>
+          </thead>
+            <tr>
+              <td tabindex="-1"><p>p2</p></td>
+              <td tabindex="-1"><p>ml.p2.xlarge</p></td>
+              <td tabindex="-1"><p>4</p></td>
+              <td tabindex="-1"><p>15.25</p></td>
+              <td tabindex="-1"><p>1</p></td>
+              <td tabindex="-1"><p>12</p></td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><p>p3</p></td>
+              <td tabindex="-1"><p>ml.p3.2xlarge</p></td>
+              <td tabindex="-1"><p>8</p></td>
+              <td tabindex="-1"><p>7.62</p></td>
+              <td tabindex="-1"><p>1</p></td>
+              <td tabindex="-1"><p>16</p></td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><p>g5</p></td>
+              <td tabindex="-1"><p>ml.g5.xlarge</p></td>
+              <td tabindex="-1"><p>4</p></td>
+              <td tabindex="-1"><p>4</p></td>
+              <td tabindex="-1"><p>1</p></td>
+              <td tabindex="-1"><p>24</p></td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><p>g5</p></td>
+              <td tabindex="-1"><p>ml.g5.2xlarge</p></td>
+              <td tabindex="-1"><p>8</p></td>
+              <td tabindex="-1"><p>4</p></td>
+              <td tabindex="-1"><p>1</p></td>
+              <td tabindex="-1"><p>24</p></td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><p>g5</p></td>
+              <td tabindex="-1"><p>ml.g5.4xlarge</p></td>
+              <td tabindex="-1"><p>16</p></td>
+              <td tabindex="-1"><p>4</p></td>
+              <td tabindex="-1"><p>1</p></td>
+              <td tabindex="-1"><p>24</p></td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><p>g5</p></td>
+              <td tabindex="-1"><p>ml.g5.8xlarge</p></td>
+              <td tabindex="-1"><p>32</p></td>
+              <td tabindex="-1"><p>4</p></td>
+              <td tabindex="-1"><p>1</p></td>
+              <td tabindex="-1"><p>24</p></td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><p>g5</p></td>
+              <td tabindex="-1"><p>ml.g5.16xlarge</p></td>
+              <td tabindex="-1"><p>64</p></td>
+              <td tabindex="-1"><p>4</p></td>
+              <td tabindex="-1"><p>1</p></td>
+              <td tabindex="-1"><p>24</p></td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><p>g4dn</p></td>
+              <td tabindex="-1"><p>ml.g4dn.xlarge</p></td>
+              <td tabindex="-1"><p>4</p></td>
+              <td tabindex="-1"><p>4</p></td>
+              <td tabindex="-1"><p>1</p></td>
+              <td tabindex="-1"><p>16</p></td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><p>g4dn</p></td>
+              <td tabindex="-1"><p>ml.g4dn.2xlarge</p></td>
+              <td tabindex="-1"><p>8</p></td>
+              <td tabindex="-1"><p>4</p></td>
+              <td tabindex="-1"><p>1</p></td>
+              <td tabindex="-1"><p>16</p></td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><p>g4dn</p></td>
+              <td tabindex="-1"><p>ml.g4dn.4xlarge</p></td>
+              <td tabindex="-1"><p>16</p></td>
+              <td tabindex="-1"><p>4</p></td>
+              <td tabindex="-1"><p>1</p></td>
+              <td tabindex="-1"><p>16</p></td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><p>g4dn</p></td>
+              <td tabindex="-1"><p>ml.g4dn.8xlarge</p></td>
+              <td tabindex="-1"><p>32</p></td>
+              <td tabindex="-1"><p>4</p></td>
+              <td tabindex="-1"><p>1</p></td>
+              <td tabindex="-1"><p>16</p></td>
+            </tr>
+            <tr>
+              <td tabindex="-1"><p>g4dn</p></td>
+              <td tabindex="-1"><p>ml.g4dn.16xlarge</p></td>
+              <td tabindex="-1"><p>64</p></td>
+              <td tabindex="-1"><p>4</p></td>
+              <td tabindex="-1"><p>1</p></td>
+              <td tabindex="-1"><p>16</p></td>
+            </tr>
+          </table></div></div>
+     
+   
+    <h2 id="multi-model-endpoint-sample-notebooks">Sample notebooks for multi-model
+        endpoints</h2>
+    <p>To learn more about how to use multi-model endpoints, you can try the following sample notebooks:</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>Examples for multi-model endpoints using CPU backed instances:</p>
+        <div class="itemizedlist">
+           
+           
+        <ul class="itemizedlist"><li class="listitem"><p><a href="https://sagemaker-examples.readthedocs.io/en/latest/advanced_functionality/multi_model_xgboost_home_value/xgboost_multi_model_endpoint_home_value.html" rel="noopener noreferrer" target="_blank"><span>Multi-Model Endpoint XGBoost Sample Nootebook</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+            – This notebook shows how to deploy multiple XGBoost models to an endpoint.</p></li><li class="listitem"><p><a href="https://sagemaker-examples.readthedocs.io/en/latest/advanced_functionality/multi_model_bring_your_own/multi_model_endpoint_bring_your_own.html" rel="noopener noreferrer" target="_blank"><span>Multi-Model Endpoints BYOC Sample Notebook</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+            – This notebook shows how to set up and deploy a customer container that supports multi-model endpoints in SageMaker.</p></li></ul></div>
+      </li><li class="listitem">
+        <p>Example for multi-model endpoints using GPU backed instances:</p>
+        <div class="itemizedlist">
+           
+        <ul class="itemizedlist"><li class="listitem"><p><a href="https://github.com/aws/amazon-sagemaker-examples/blob/main/multi-model-endpoints/mme-on-gpu/cv/resnet50_mme_with_gpu.ipynb" rel="noopener noreferrer" target="_blank"><span>Run mulitple deep learning models on GPUs with Amazon SageMaker Multi-model endpoints (MME)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+          – This notebook shows how to use an NVIDIA Triton Inference container to deploy ResNet-50 models to a multi-model endpoint.</p></li></ul></div>
+      </li></ul></div>
+    
+    <p>For instructions on how to create and
+      access Jupyter notebook instances that you can use to run the previous examples in SageMaker, see <a href="nbi.html">Amazon SageMaker Notebook Instances</a>. After you've created a notebook instance and opened it,
+      choose the <b>SageMaker Examples</b> tab to see a list of all the SageMaker
+      samples. The multi-model endpoint notebooks are located in the <b>ADVANCED
+        FUNCTIONALITY</b> section. To open a notebook, choose its <b>Use</b> tab and choose <b>Create copy</b>.</p>
+    
+    <p>For more information about use cases for multi-model endpoints, see the following blogs and resources:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem"><p>Video: <a href="https://www.youtube.com/watch?v=XqCNTWmHsLc&amp;t=751s" rel="noopener noreferrer" target="_blank"><span>Hosting thousands of models on SageMaker</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></li><li class="listitem"><p>Video: <a href="https://www.youtube.com/watch?v=BytpYlJ3vsQ" rel="noopener noreferrer" target="_blank"><span>SageMaker ML for SaaS</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></li><li class="listitem"><p>Blog: <a href="http://aws.amazon.com/blogs/machine-learning/how-to-scale-machine-learning-inference-for-multi-tenant-saas-use-cases/" rel="noopener noreferrer" target="_blank"><span>How to scale machine learning inference for multi-tenant SaaS use cases</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></li><li class="listitem"><p>Case study: <a href="http://aws.amazon.com/partners/success/advanced-clinical-veeva/" rel="noopener noreferrer" target="_blank"><span>Veeva Systems</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></li></ul></div>
+   
+    <h2 id="how-multi-model-endpoints-work">How multi-model endpoints work</h2>
+    <p>
+      SageMaker manages the lifecycle of models hosted on multi-model endpoints in the container's memory.
+      Instead of downloading all of the models from an Amazon S3 bucket to the container when you create the endpoint, SageMaker
+      dynamically loads and caches them when you invoke them. When SageMaker receives an invocation request for a particular model, it does the following:
+      </p>
+    <div class="orderedlist">
+       
+       
+       
+    <ol><li>
+        <p>Routes the request to an instance behind the endpoint.</p>
+      </li><li>
+        <p>Downloads the model from the S3 bucket to that instance's storage volume.</p>
+      </li><li>
+        <p>Loads the model to the container's memory (CPU or GPU, depending on whether you have CPU or GPU backed instances)
+          on that accelerated compute instance. If the model is already
+          loaded in the container's memory, invocation is faster because SageMaker doesn't need to
+          download and load it.</p>
+      </li></ol></div>
+    <p>SageMaker continues to route requests for a model to the instance where the model is already
+      loaded. However, if the model receives many invocation requests, and there are additional
+      instances for the multi-model endpoint, SageMaker routes some requests to another instance to
+      accommodate the traffic. If the model isn't already loaded on the second instance, the model
+      is downloaded to that instance's storage volume and loaded into the container's memory.</p>
+    <p>When an instance's memory utilization is high and SageMaker needs to load another model into
+      memory, it unloads unused models from that instance's container to ensure that there is enough
+      memory to load the model. Models that are unloaded remain on the instance's storage volume and
+      can be loaded into the container's memory later without being downloaded again from the S3
+      bucket. If the instance's storage volume reaches its capacity, SageMaker deletes any unused models
+      from the storage volume.</p>
+    <p>To delete a model, stop sending requests and delete it from the S3 bucket. SageMaker provides
+      multi-model endpoint capability in a serving container. Adding models to, and deleting them
+      from, a multi-model endpoint doesn't require updating the endpoint itself. To add a model, you
+      upload it to the S3 bucket and invoke it. You don’t need code changes to use it.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When you update a multi-model endpoint, initial invocation requests on the endpoint might
+      experience higher latencies as Smart Routing in multi-model endpoints adapt to your traffic pattern. However,
+      once it learns your traffic pattern, you can experience low latencies for most frequently used models. Less frequently
+      used models may incur some cold start latencies since the models are dynamically loaded to an instance.</p></div></div>
+    
+   
+    <h2 id="multi-model-caching">Setting SageMaker multi-model endpoint model caching
+        behavior</h2>
+    <p>By default, multi-model endpoints cache frequently used models in memory (CPU or GPU, depending on whether you have CPU or GPU backed instances) and on disk
+      to provide low latency inference. The cached models are unloaded and/or deleted from disk only
+      when a container runs out of memory or disk space to accommodate a newly targeted
+      model.</p>
+    <p>You can change the caching behavior of a multi-model endpoint and explicitly enable or
+      disable model caching by setting the parameter <code class="code">ModelCacheSetting</code> when you call
+        <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker.html#SageMaker.Client.create_model" rel="noopener noreferrer" target="_blank"><span>create_model</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+    <p>We recommend setting the value of the <code class="code">ModelCacheSetting</code> parameter to
+        <code class="code">Disabled</code> for use cases that do not benefit from model caching. For example,
+      when a large number of models need to be served from the endpoint but each model is invoked
+      only once (or very infrequently). For such use cases, setting the value of the
+        <code class="code">ModelCacheSetting</code> parameter to <code class="code">Disabled</code> allows higher transactions
+      per second (TPS) for <code class="code">invoke_endpoint</code> requests compared to the default caching
+      mode. Higher TPS in these use cases is because SageMaker does the following after the
+        <code class="code">invoke_endpoint</code> request:</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>Asynchronously unloads the model from memory and deletes it from disk immediately
+          after it is invoked.</p>
+      </li><li class="listitem">
+        <p>Provides higher concurrency for downloading and loading models in the inference
+          container. For both CPU and GPU backed endpoints, the concurrency is a factor of the number of the vCPUs of the container instance.</p>
+      </li></ul></div>
+    <p>For guidelines on choosing a SageMaker ML instance type for a multi-model endpoint, see <a href="multi-model-endpoints.html#multi-model-endpoint-instance">Instance recommendations for multi-model
+        endpoint deployments</a>.</p>
+   
+    <h2 id="multi-model-endpoint-instance">Instance recommendations for multi-model
+        endpoint deployments</h2>
+    <p>There are several items to consider when selecting a SageMaker ML instance type for a multi-model endpoint:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem"><p>Provision sufficient <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html"> Amazon Elastic Block Store (Amazon EBS)</a> capacity for all of the models that need to be served.</p></li><li class="listitem"><p>Balance performance (minimize cold starts) and cost (don’t over-provision instance capacity).
+        For information about the size of the storage volume that SageMaker attaches for each instance type
+        for an endpoint and for a multi-model endpoint, see <a href="host-instance-storage.html">Host instance storage volumes</a>.</p></li><li class="listitem"><p>For a container configured to run in
+        <code class="code">MultiModel</code> mode, the storage volume provisioned for its instances are larger than the default <code class="code">SingleModel</code>
+        mode. This allows more models to be cached on the instance storage volume than in <code class="code">SingleModel</code> mode.</p></li></ul></div>
+    <p>When choosing a SageMaker ML instance type, consider the following:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>Multi-model endpoints are currently supported for all CPU instances types and on single-GPU instance types.</p>
+      </li><li class="listitem">
+        <p>For the traffic distribution (access patterns) to the models that you want to host
+          behind the multi-model endpoint, along with the model size (how many models could be
+          loaded in memory on the instance), keep the following information in mind:</p>
+        <div class="itemizedlist">
+           
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>Think of the amount of memory on an instance as the cache space for
+                models to be loaded, and think of the number of vCPUs as the concurrency limit to
+                perform inference on the loaded models (assuming that invoking a model is bound to
+                  CPU).</p>
+          </li><li class="listitem">
+            <p>For CPU backed instances, the number of vCPUs impacts your maximum concurrenct
+              invocations per instance (assuming that invoking a model is bound to CPU). A higher
+              amount of vCPUs enables you to invoke more unique models concurrently.</p>
+          </li><li class="listitem">
+            <p>For GPU backed instances, a higher amount of instance and GPU memory enables you to have more models
+              loaded and ready to serve inference requests.</p>
+          </li><li class="listitem">
+            <p>For both CPU and GPU backed instances, have some "slack" memory available so that unused models can be unloaded, and
+              especially for multi-model endpoints with multiple instances. If an instance or an
+              Availability Zone fails, the models on those instances will be rerouted to other
+              instances behind the endpoint.</p>
+          </li></ul></div>
+      </li><li class="listitem">
+        <p>Determine your tolerance to loading/downloading times:</p>
+        <div class="itemizedlist">
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>d instance type families (for example, m5d, c5d, or r5d) and g5s come with an NVMe
+              (non-volatile memory express) SSD, which offers high I/O performance and might reduce
+              the time it takes to download models to the storage volume and for the container to
+              load the model from the storage volume.</p>
+          </li><li class="listitem">
+            <p>Because d and g5 instance types come with an NVMe SSD storage, SageMaker does not attach an
+              Amazon EBS storage volume to these ML compute instances that hosts the multi-model
+              endpoint. Auto scaling works best when the models are similarly sized and homogenous,
+              that is when they have similar inference latency and resource requirements.</p>
+          </li></ul></div>
+      </li></ul></div>
+    <p>You can also use the following guidance to help you optimize model loading on your multi-model endpoints:</p>
+      <p><b>Choosing an instance type that can't hold all of the targeted models in memory</b></p>
+      <p>In some cases, you might opt to reduce costs by choosing an instance type that can't
+      hold all of the targeted models in memory at once. SageMaker dynamically unloads models when it
+      runs out of memory to make room for a newly targeted model. For infrequently requested models,
+      you sacrifice dynamic load latency. In cases with more stringent latency needs, you might opt
+      for larger instance types or more instances. Investing time up front for performance testing
+      and analysis helps you to have successful production deployments.</p>
+    <p><b>Evaluating your model cache hits</b></p>
+    <p>Amazon CloudWatch  metrics can help you evaluate your models. For more information about
+      metrics you can use with multi-model endpoints, see <a href="multi-model-endpoint-cloudwatch-metrics.html">CloudWatch Metrics for Multi-Model
+        Endpoint Deployments </a>.</p>
+    <p>
+      You can use the <code class="code">Average</code> statistic of the <code class="code">ModelCacheHit</code> metric to
+      monitor the ratio of requests where the model is already loaded. You can use the
+        <code class="code">SampleCount</code> statistic for the <code class="code">ModelUnloadingTime</code> metric to monitor
+      the number of unload requests sent to the container during a time period. If models are
+      unloaded too frequently (an indicator of <em>thrashing</em>, where
+      models are being unloaded and loaded again because there is insufficient cache space for the
+      working set of models), consider using a larger instance type with more memory or increasing
+      the number of instances behind the multi-model endpoint. For multi-model endpoints with
+      multiple instances, be aware that a model might be loaded on more than 1 instance.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./realtime-endpoints-delete-resources.html">Delete Endpoints and Resources</div><div id="next" class="next-link" accesskey="n" href="./create-multi-model-endpoint.html">Create
+        a Multi-Model Endpoint</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/multi-model-endpoints.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/multi-model-endpoints.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

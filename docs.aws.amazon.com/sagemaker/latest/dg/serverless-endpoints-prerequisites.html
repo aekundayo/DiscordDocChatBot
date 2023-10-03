@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Prerequisites - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="serverless-endpoints-prerequisites" /><meta name="default_state" content="serverless-endpoints-prerequisites" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="serverless-endpoints-prerequisites.html" /><meta name="description" content="Before creating a serverless endpoint, you must complete the following prerequisites." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="serverless-endpoints-prerequisites.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" hreflang="de" /><link rel="alternative" href="serverless-endpoints-prerequisites.html" hreflang="en-us" /><link rel="alternative" href="serverless-endpoints-prerequisites.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" hreflang="zh-tw" /><link rel="alternative" href="serverless-endpoints-prerequisites.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Prerequisites" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Prerequisites - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#serverless-endpoints-prerequisites" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/serverless-endpoints-prerequisites.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,inference,deploy model,endpoint,prediction,ML application,serverless machine learning,multi model deployment,inference pipelines,ML model,serverless,serverless endpoint,endpoints" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploy models for inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Serverless Inference",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Create, invoke, update, and delete a serverless endpoint",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints-create-invoke-update-delete.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Prerequisites",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints-create-invoke-update-delete.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#serverless-endpoints-prerequisites" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="serverless-endpoints-prerequisites">Prerequisites</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Before you can create a serverless endpoint, complete the following prerequisites.</p><div class="procedure"><ol><li>
+    <p><b>Set up an AWS account.</b> You first need an AWS account
+     and an AWS Identity and Access Management administrator user. For instructions on how to set up an AWS account, see
+      <a href="http://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/" rel="noopener noreferrer" target="_blank"><span>How do I create and activate a new AWS account?</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. For instructions on how to secure
+     your account with an IAM administrator user, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html">Creating your first IAM admin user and user group</a> in the <em>IAM User Guide</em>.</p>
+   </li><li>
+    <p><b>Create an Amazon S3 bucket.</b> You use an Amazon S3 bucket to store
+     your model artifacts. To learn how to create a bucket, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html">Create your first S3 bucket</a> in
+     the <em>Amazon S3 User Guide</em>.</p>
+   </li><li>
+    <p><b>Upload your model artifacts to your S3 bucket.</b> For
+     instructions on how to upload your model to your bucket, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/uploading-an-object-bucket.html">Upload an object to your bucket</a> in the <em>Amazon S3 User Guide</em>.</p>
+   </li><li>
+    <p><b>Create an IAM role for Amazon SageMaker.</b> Amazon SageMaker needs access
+     to the S3 bucket that stores your model. Create an IAM role with a policy that gives SageMaker
+     read access to your bucket. The following procedure shows how to create a role in the console,
+     but you can also use the <a href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html">CreateRole</a> API from the <em>IAM User Guide</em>. For information on giving your role more granular
+     permissions based on your use case, see <a href="sagemaker-roles.html#sagemaker-roles-createmodel-perms">SageMaker Roles</a>.</p>
+    <ol><li><p>Sign in to the <a href="https://console.aws.amazon.com/iam/" rel="noopener noreferrer" target="_blank"><span>IAM console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></li><li><p>In the navigation tab, choose <b>Roles</b>.</p></li><li><p>Choose <b>Create Role</b>.</p></li><li>
+      <p>For <b>Select type of trusted entity</b>, choose <b>AWS
+        service</b> and then choose <b>SageMaker</b>.</p>
+     </li><li>
+      <p>Choose <b>Next: Permissions</b> and then choose <b>Next:
+        Tags</b>.</p>
+     </li><li>
+      <p>(Optional) Add tags as key-value pairs if you want to have metadata for the role.</p>
+     </li><li><p>Choose <b>Next: Review</b>.</p></li><li>
+      <p> For <b>Role name</b>, enter a name for the new role that is unique within
+       your AWS account. You cannot edit the role name after creating the role.</p>
+     </li><li>
+      <p>(Optional) For <b>Role description</b>, enter a description for the new
+       role.</p>
+     </li><li>
+      <p>Choose <b>Create role</b>.</p></li></ol>
+   </li><li>
+    <p><b>Attach S3 bucket permissions to your SageMaker role.</b> After
+     creating an IAM role, attach a policy that gives SageMaker permission to access the S3 bucket
+     containing your model artifacts.</p>
+    <ol><li>
+      <p>In the IAM console navigation tab, choose <b>Roles</b>.</p>
+     </li><li>
+      <p>From the list of roles, search for the role you created in the previous step by
+       name.</p>
+     </li><li>
+      <p>Choose your role, and then choose <b>Attach policies</b>.</p>
+     </li><li>
+      <p>For <b>Attach permissions</b>, choose <b>Create
+       policy</b>.</p>
+     </li><li>
+      <p>In the <b>Create policy</b> view, select the <b>JSON</b>
+       tab.</p>
+     </li><li>
+      <p>Add the following policy statement into the JSON editor. Make sure to replace
+         <code class="code"><code class="replaceable">&lt;your-bucket-name&gt;</code></code> with the name of the S3
+       bucket that stores your model artifacts. If you want to restrict the access to a specific
+       folder or file in your bucket, you can also specify the Amazon S3 folder path, for example,
+         <code class="code"><code class="replaceable">&lt;your-bucket-name&gt;</code>/<code class="replaceable">&lt;model-folder&gt;</code></code>.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::<code class="replaceable">&lt;your-bucket-name&gt;</code>/*"
+        }
+    ]
+}</code></pre>
+     </li><li><p>Choose <b>Next: Tags</b>.</p></li><li>
+      <p>(Optional) Add tags in key-value pairs to the policy.</p>
+     </li><li>
+      <p>Choose <b>Next: Review</b>.</p>
+     </li><li>
+      <p>For <b>Name</b>, enter a name for the new policy.</p>
+     </li><li>
+      <p>(Optional) Add a <b>Description</b> for the policy.</p>
+     </li><li>
+      <p>Choose <b>Create policy</b>.</p>
+     </li><li>
+      <p>After creating the policy, return to <b>Roles</b> in the <a href="https://console.aws.amazon.com/iam/" rel="noopener noreferrer" target="_blank"><span>IAM console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and select your SageMaker
+       role.</p>
+     </li><li>
+      <p>Choose <b>Attach policies</b>.</p>
+     </li><li>
+      <p>For <b>Attach permissions</b>, search for the policy you created by name.
+       Select it and choose <b>Attach policy</b>.</p>
+     </li></ol>
+   </li><li>
+    <p><b>Select a prebuilt Docker container image or bring your
+      own.</b> The container you choose serves inference on your endpoint. SageMaker provides
+     containers for built-in algorithms and prebuilt Docker images for some of the most common
+     machine learning frameworks, such as Apache MXNet, TensorFlow, PyTorch, and Chainer. For a full
+     list of the available SageMaker images, see <a href="https://github.com/aws/deep-learning-containers/blob/master/available_images.md" rel="noopener noreferrer" target="_blank"><span>Available Deep Learning Containers Images</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+    <p>If none of the existing SageMaker containers meet your needs, you may need to create your own
+     Docker container. For information about how to create your Docker image and make it compatible
+     with SageMaker, see <a href="your-algorithms-inference-main.html">Use your own inference code</a>. To use your container with a serverless
+     endpoint, the container image must reside in an Amazon ECR repository within the same AWS account
+     that creates the endpoint.</p>
+   </li><li>
+    <p><b>(Optional) Register your model with Model Registry.</b>
+     <a href="model-registry.html">SageMaker Model Registry</a> helps you catalog and manage versions of
+     your models for use in ML pipelines. For more information about registering a version of your
+     model, see <a href="model-registry-model-group.html">Create a Model Group</a> and <a href="model-registry-version.html">Register a Model Version</a>. For an example of a Model Registry and Serverless Inference workflow,
+     see the following <a href="https://github.com/aws/amazon-sagemaker-examples/blob/main/serverless-inference/serverless-model-registry.ipynb" rel="noopener noreferrer" target="_blank"><span>example notebook</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+   </li><li>
+    <p><b>(Optional) Bring an AWS KMS key.</b> When setting up a
+     serverless endpoint, you have the option to specify a KMS key that SageMaker uses to encrypt your
+     Amazon ECR image. Note that the key policy for the KMS key must grant access to the IAM role you
+     specify when setting up your endpoint. To learn more about KMS keys, see the <a href="https://docs.aws.amazon.com/kms/latest/developerguide/overview.html">AWS Key Management Service Developer
+      Guide</a>.</p>
+   </li></ol></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./serverless-endpoints-create-invoke-update-delete.html">Create, invoke, update, and delete a serverless endpoint</div><div id="next" class="next-link" accesskey="n" href="./serverless-endpoints-create.html">Create a serverless endpoint</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/serverless-endpoints-prerequisites.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/serverless-endpoints-prerequisites.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Ground Truth Streaming Labeling Jobs - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="sms-streaming-labeling-job" /><meta name="default_state" content="sms-streaming-labeling-job" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="sms-streaming-labeling-job.html" /><meta name="description" content="If you want to perpetually send new data objects to Amazon SageMaker Ground Truth to be labeled, use a streaming labeling job. Streaming labeling jobs allow you to:" /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="sms-streaming-labeling-job.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/sms-streaming-labeling-job.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/sms-streaming-labeling-job.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/sms-streaming-labeling-job.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/sms-streaming-labeling-job.html" hreflang="de" /><link rel="alternative" href="sms-streaming-labeling-job.html" hreflang="en-us" /><link rel="alternative" href="sms-streaming-labeling-job.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/sms-streaming-labeling-job.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/sms-streaming-labeling-job.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/sms-streaming-labeling-job.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/sms-streaming-labeling-job.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/sms-streaming-labeling-job.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/sms-streaming-labeling-job.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sms-streaming-labeling-job.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sms-streaming-labeling-job.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/sms-streaming-labeling-job.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/sms-streaming-labeling-job.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/sms-streaming-labeling-job.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/sms-streaming-labeling-job.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/sms-streaming-labeling-job.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/sms-streaming-labeling-job.html" hreflang="zh-tw" /><link rel="alternative" href="sms-streaming-labeling-job.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Ground Truth Streaming Labeling Jobs" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Ground Truth Streaming Labeling Jobs - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#sms-streaming-labeling-job" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-streaming-labeling-job.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-streaming-labeling-job.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-streaming-labeling-job.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Label data with a human-in-the-loop",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-label.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Use Amazon SageMaker Ground Truth to Label Data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Input and Output Data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms-data.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Input Data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms-data-input.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Ground Truth Streaming Labeling Jobs",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms-data-input.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#sms-streaming-labeling-job" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="sms-streaming-labeling-job.html#sms-streaming-how-it-works">How It Works</a><a href="sms-streaming-labeling-job.html#sms-streaming-how-it-works-send-data">Send Data to a Streaming Labeling Job</a><a href="sms-streaming-labeling-job.html#sms-streaming-how-it-works-sqs">Manage Labeling Requests with an Amazon SQS Queue </a><a href="sms-streaming-labeling-job.html#sms-streaming-how-it-works-output-data">Receive Output Data from a Streaming
+                            Labeling Job</a><a href="sms-streaming-labeling-job.html#sms-streaming-impotency"> Duplicate Message Handling</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="sms-streaming-labeling-job">Ground Truth Streaming Labeling Jobs</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>If you want to perpetually send new data objects to Amazon SageMaker Ground Truth to be labeled, use a
+                    streaming labeling job. Streaming labeling jobs allow you to:</p><div class="itemizedlist">
+                     
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>Send new dataset objects to workers in real time using a perpetually running
+                            labeling job. Workers continuously receive new data objects to label as long as the
+                            labeling job is active and new objects are being sent to it.</p>
+                    </li><li class="listitem">
+                        <p>Gain visibility into the number of objects that have been queued and are waiting
+                            to be labeled. Use this information to control the flow of data objects sent to your
+                            labeling job.</p>
+                    </li><li class="listitem">
+                        <p>Receive label data for individual data objects in real time as workers finish
+                            labeling them. </p>
+                    </li></ul></div><p>Ground Truth streaming labeling jobs remain active until they are manually stopped or have been
+                    idle for more than 10 days. You can intermittently send new data objects to workers while
+                    the labeling job is active.</p><p>If you are a new user of Ground Truth streaming labeling jobs, it is recommended that you review
+                    <a href="sms-streaming-labeling-job.html#sms-streaming-how-it-works">How It Works</a>. </p><p>Use <a href="sms-streaming-create-job.html">Create a Streaming Labeling Job</a> to
+                    learn how to create a streaming labeling job.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Ground Truth streaming labeling jobs are only supported through the SageMaker API.</p></div></div><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="sms-streaming-labeling-job.html#sms-streaming-how-it-works">How It Works</a></li><li><a href="sms-streaming-labeling-job.html#sms-streaming-how-it-works-send-data">Send Data to a Streaming Labeling Job</a></li><li><a href="sms-streaming-labeling-job.html#sms-streaming-how-it-works-sqs">Manage Labeling Requests with an Amazon SQS Queue </a></li><li><a href="sms-streaming-labeling-job.html#sms-streaming-how-it-works-output-data">Receive Output Data from a Streaming
+                            Labeling Job</a></li><li><a href="sms-streaming-labeling-job.html#sms-streaming-impotency"> Duplicate Message Handling</a></li></ul></div>
+                    <h2 id="sms-streaming-how-it-works">How It Works</h2>
+                    <p>When you create a Ground Truth streaming labeling job, the job remains active
+                    until it is manually stopped, remains idle for more than 10 days, or is unable
+                    to access input data sources. You can intermittently send new data objects to
+                    workers while it is active. A worker can continue to receive new data objects in
+                    real time as long as the total number of tasks currently available to the worker
+                    is less than the value in <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HumanTaskConfig.html#sagemaker-Type-HumanTaskConfig-MaxConcurrentTaskCount"><code class="code">MaxConcurrentTaskCount</code></a>. Otherwise, the data object
+                    is sent to a queue that Ground Truth creates on your behalf in <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html">Amazon Simple Queue Service</a> (Amazon SQS) for later processing. These tasks are sent to
+                    workers as soon as the total number of tasks currently available to a worker
+                    falls below <code class="code">MaxConcurrentTaskCount</code>. If a data object is not sent to
+                    a worker after 14 days, it expires. You can view the number of tasks pending in
+                    the queue and adjust the number of objects you send to the labeling job. For
+                    example, you may decrease the speed at which you send objects to the labeling
+                    job if the backlog of pending objects moves above a threshold. </p>
+                 
+                        <h2 id="sms-streaming-how-it-works-send-data">Send Data to a Streaming Labeling Job</h2>
+                        <p>You can optionally submit input data to a streaming labeling job one time when you
+                            create the labeling job using an input manifest file. Once the labeling job has
+                            started and the state is <code class="code">InProgress</code>, you can submit new data objects to
+                            your labeling job in real time using your Amazon SNS input topic and Amazon S3 event
+                            notifications. </p>
+                        <p><u><b>Submit Data Objects When you Start
+                            the Labeling Job (One Time):</b></u></p>
+                        <div class="itemizedlist">
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p><b>Use an Input Manifest File</b> – You can
+                                    optionally specify an input manifest file Amazon S3 URI in
+                                    <code class="code">ManifestS3Uri</code> when you create the streaming labeling job.
+                                    Ground Truth sends each data object in the manifest file to workers for labeling as
+                                    soon as the labeling job starts. To learn more, see <a href="sms-streaming-manifest.html">Create a Manifest File (Optional)</a>.</p>
+                                <p>After you submit a request to create the streaming labeling job, its status
+                                    will be <code class="code">Initializing</code>. Once the labeling job is active, the state
+                                    changes to <code class="code">InProgress</code> and you can start using the real-time options
+                                    to submit additional data objects for labeling. </p>
+                            </li></ul></div>
+                        <p><u><b>Submit Data Objects in Real
+                            Time:</b></u></p>
+                        <div class="itemizedlist">
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p><b>Send data objects using Amazon SNS messages</b>
+                                    – You can send Ground Truth new data objects to label by sending an Amazon SNS
+                                    message. You will send this message to an Amazon SNS input topic that you create and
+                                    specify when you create your streaming labeling job. For more information, see
+                                    <a href="sms-streaming-labeling-job.html#sms-streaming-how-it-works-sns">Send Data Objects Using Amazon SNS</a>.</p>
+                            </li><li class="listitem">
+                                <p><b>Send data objects by placing them in an Amazon S3
+                                    bucket</b> – Each time you add a new data object to an
+                                    Amazon S3 bucket, you can prompt Ground Truth to process that object for labeling. To do
+                                    this, you add an event notification to the bucket so that it notifies your
+                                    Amazon SNS input topic each time a new object is added to (or <em>created
+                                        in</em>) that bucket. For more information, see <a href="sms-streaming-labeling-job.html#sms-streaming-how-it-works-s3">Send Data Objects using Amazon S3</a>. This option is not
+                                    available for text-based labeling jobs such as text classification and named
+                                    entity recognition. </p>
+                                <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>If you use the Amazon S3 configuration, do not use the same Amazon S3 location for
+                                        your input data configuration and your output data. You specify the S3
+                                        prefix for your output data when you create a labeling job.</p></div></div>
+                            </li></ul></div>
+                         
+                            <h3 id="sms-streaming-how-it-works-sns">Send Data Objects Using Amazon SNS</h3>
+                            <p>You can send data objects to your streaming labeling job using Amazon Simple Notification Service
+                                (Amazon SNS). Amazon SNS is a web service that coordinates and manages the delivery of
+                                messages to and from <em>endpoints</em> (for example, an email
+                                address or AWS Lambda function). An Amazon SNS <em>topic</em> acts as a
+                                communication channel between two or more endpoints. You use Amazon SNS to send, or
+                                <em>publish</em>, new data objects to the topic specified in the
+                                <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateLabelingJob.html"><code class="code">CreateLabelingJob</code></a> parameter
+                                <code class="code">SnsTopicArn</code> in <code class="code">InputConfig</code>. The format of these
+                                messages is the same as a single line from an <a href="sms-data-input.html">input manifest file</a>. </p>
+                            <p>For example, you may send a piece of text to an active text classification
+                                labeling job by publishing it to your input topic. The message that you publish
+                                may look similar to the following:</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>"source": "Lorem ipsum dolor sit amet"}</code></pre>
+                            <p>To send a new image object to an image classification labeling job, your message
+                                may look similar to the following:</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>"source-ref": "s3://awsexamplebucket/example-image.jpg"}</code></pre>
+                            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can also include custom deduplication IDs and deduplication keys in your
+                                    Amazon SNS messages. To learn  more, see <a href="sms-streaming-labeling-job.html#sms-streaming-impotency"> Duplicate Message Handling</a>.</p></div></div>
+                            <p>When Ground Truth creates your streaming labeling job, it subscribes to your Amazon SNS
+                                input topic. </p>
+                            
+                         
+                         
+                            <h3 id="sms-streaming-how-it-works-s3">Send Data Objects using Amazon S3</h3>
+                            <p>You can send one or more new data objects to a streaming labeling job by
+                                placing them in an Amazon S3 bucket that is configured with an Amazon SNS event
+                                notification. You can set up an event to notify your Amazon SNS input topic anytime a
+                                new object is created in your bucket. You must specify this same Amazon SNS input
+                                topic in the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateLabelingJob.html"><code class="code">CreateLabelingJob</code></a> parameter
+                                <code class="code">SnsTopicArn</code> in <code class="code">InputConfig</code>.</p>
+                        <p>Anytime you configure an Amazon S3 bucket to send notifications to Amazon SNS,
+                            Ground Truth will publish a test event, <code class="code">"s3:TestEvent"</code>, to ensure
+                            that the topic exists and that the owner of the Amazon S3 bucket specified
+                            has permission to publish to the specified topic. It is recommended that
+                            you set up your Amazon S3 connection with Amazon SNS before starting a streaming
+                            labeling job. If you do not, this test event may register as a data
+                            object and be sent to Ground Truth for labeling. </p>
+                            <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>If you use the Amazon S3 configuration, do not use the same Amazon S3 location for
+                                    your input data configuration and your output data. You specify the S3
+                                    prefix for your output data when you create a labeling job.</p><p>For image-based labeling jobs, Ground Truth requires all S3 buckets to have a
+                                    CORS policy attached. To learn more, see <a href="sms-cors-update.html">CORS Permission Requirement</a>.</p></div></div>
+                            <p>Once you have configured your Amazon S3 bucket and created your labeling job, you can
+                                add objects to your bucket and Ground Truth either sends that object to workers or places
+                                it on your Amazon SQS queue. </p>
+                            <p>To learn more, see <a href="sms-streaming-s3-setup.html">Set up Amazon S3 Bucket Event Notifications</a>.</p>
+                            <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>This option is not available for text-based labeling jobs such as text
+                                    classification and named entity recognition.</p></div></div>
+                         
+                     
+                        <h2 id="sms-streaming-how-it-works-sqs">Manage Labeling Requests with an Amazon SQS Queue </h2>
+                        <p>When Ground Truth creates your streaming labeling job, it creates an Amazon SQS
+                    queue in the AWS account used to create the labeling job. The queue name is
+                            <code class="code">GroundTruth-<code class="replaceable">labeling_job_name</code></code>
+                    where <code class="code"><code class="replaceable">labeling_job_name</code></code> is the name of
+                    your labeling job, in lowercase letters. When you send data objects to your
+                    labeling job, Ground Truth either sends the data objects directly to workers or places
+                    the task in your queue to be processed at a later time. If a data object is not
+                    sent to a worker after 14 days, it expires and is removed from the queue. You
+                    can setup an alarm in Amazon SQS to detect when objects expire and use this mechanism
+                    to control the volume of objects you send to your labeling job.</p>
+                        <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>Modifying, deleting, or sending objects directly to the Amazon SQS
+                            queue associated with your streaming labeling job may lead to job
+                            failures. </p></div></div>
+                     
+                        <h2 id="sms-streaming-how-it-works-output-data">Receive Output Data from a Streaming
+                            Labeling Job</h2>
+                        <p>Your Amazon S3 output bucket is periodically updated with new output data
+                    from your streaming labeling job. </p>
+                <p>Optionally, you can specify an Amazon SNS output topic. Each time a worker submits
+                    a labeled object, a notification with the output data is sent to that topic. You
+                    can subscribe an endpoint to your SNS output topic to receive notifications or
+                    trigger events when you receive output data from a labeling task. Use an Amazon SNS
+                    output topic if you want to do real time chaining to another streaming job and
+                    receive an Amazon SNS notifications each time a data object is submitted by a
+                    worker.</p>
+                <p>To learn more, see <a href="sms-create-sns-input-topic.html#sms-streaming-subscribe-output-topic">Subscribe an Endpoint to
+                        Your Amazon SNS Output Topic</a>.</p>
+                     
+                        <h2 id="sms-streaming-impotency"> Duplicate Message Handling</h2>
+                        <p>For data objects sent in real time, Ground Truth guarantees idempotency by ensuring each
+                            unique object is only sent for labeling once, even if the input message referring to
+                            that object is received multiple times (duplicate messages). To do this, each data
+                            object sent to a streaming labeling job is assigned a <em>deduplication ID</em>, which is identified with a <em>deduplication key</em>.</p>
+                        <p>If you send your requests to label data objects directly through your Amazon SNS input
+                            topic using Amazon SNS messages, you can optionally choose a custom deduplication key and
+                            deduplication IDs for your objects. For more information, see <a href="sms-streaming-labeling-job.html#sms-streaming-impotency-create">Specify A Deduplication Key and ID in an Amazon SNS
+                                Message</a>.</p>
+                        <p>If you do not provide your own deduplication key, or if you use the Amazon S3
+                            configuration to send data objects to your labeling job, Ground Truth uses one of the
+                            following for the deduplication ID:</p>
+                        <div class="itemizedlist">
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p>For messages sent directly to your Amazon SNS input topic, Ground Truth uses the SNS
+                                    message ID. </p>
+                            </li><li class="listitem">
+                                <p>For messages that come from an Amazon S3 configuration, Ground Truth creates a
+                                    deduplication ID by combining the Amazon S3 URI of the object with the <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/notification-content-structure.html">sequencer token</a> in the message.</p>
+                            </li></ul></div>
+                         
+                            <h3 id="sms-streaming-impotency-create">Specify A Deduplication Key and ID in an Amazon SNS
+                                Message</h3>
+                            <p>When you send a data object to your streaming labeling job using an Amazon SNS
+                                message, you have the option to specify your deduplication key and deduplication
+                                ID in one of the following ways. In all of these scenarios, identify your
+                                deduplication key with <code class="code">dataset-objectid-attribute-name</code>.</p>
+                        <p><b>Bring Your Own Deduplication Key and
+                                ID</b></p>
+                            <p>Create your own deduplication key and deduplication ID by
+                            configuring your Amazon SNS message as follows. Replace
+                                    <code class="code"><code class="replaceable">byo-key</code></code> with your key
+                            and <code class="code"><code class="replaceable">UniqueId</code></code> with the
+                            deduplication ID for that data object.</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "source-ref":"<code class="replaceable">s3://bucket/prefix/object1</code>", 
+    "dataset-objectid-attribute-name":"<code class="replaceable">byo-key</code>",
+    "<code class="replaceable">byo-key</code>":"<code class="replaceable">UniqueId</code>" 
+}</code></pre>
+                        <p>Your deduplication key can be up to 140 characters. Supported patterns
+                            include: <code class="code">"^[$a-zA-Z0-9](-*[a-zA-Z0-9])*"</code>.</p>
+                        <p>Your deduplication ID can be up to 1,024 characters. Supported
+                            patterns include: <code class="code">^(https|s3)://([^/]+)/?(.*)$</code>.</p>
+                        <p><b>Use an Existing Key for your Deduplication
+                                Key</b></p>
+                            
+                            <p>You can use an existing key in your message as the deduplication
+                            key. When you do this, the value associated with that key is used for
+                            the deduplication ID. </p>
+                            <p>For example, you can specify use the <code class="code">source-ref</code> key as your
+                                deduplication key by formatting your message as follows: </p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "source-ref":"<code class="replaceable">s3://bucket/prefix/object1</code>",
+    "dataset-objectid-attribute-name":"source-ref" 
+}</code></pre>
+                            <p>In this example, Ground Truth uses <code class="code">"s3://bucket/prefix/object1"</code> for the
+                                deduplication id.</p>
+                         
+                         
+                            <h3 id="sms-streaming-impotency-output">Find Deduplication Key and ID in Your Output Data</h3>
+                            <p>You can see the deduplication key and ID in your output data. The deduplication
+                                key is identified by <code class="code">dataset-objectid-attribute-name</code>.</p>
+                            <p>When you use your own custom deduplication key, your output contains something
+                                similar to the following:</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">"dataset-objectid-attribute-name": "<code class="replaceable">byo-key</code>",
+"<code class="replaceable">byo-key</code>": "<code class="replaceable">UniqueId</code>",</code></pre>
+                            <p>When you do not specify a key, you can find the deduplication ID that Ground Truth
+                                assigned to your data object as follows. The
+                                <code class="code">$<code class="replaceable">label-attribute-name</code>-object-id</code>
+                                parameter identifies your deduplication ID. </p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "source-ref":"<code class="replaceable">s3://bucket/prefix/object1</code>", 
+    "dataset-objectid-attribute-name":"$<code class="replaceable">label-attribute-name</code>-object-id"
+    "<code class="replaceable">label-attribute-name</code>" :0,
+    "<code class="replaceable">label-attribute-name</code>-metadata": <span>{</span><code class="replaceable">...</code>},
+    "$<code class="replaceable">label-attribute-name</code>-object-id":"<code class="replaceable">&lt;service-generated-key&gt;</code>"
+}</code></pre>
+                        <p>For
+                            <code class="code"><code class="replaceable">&lt;service-generated-key&gt;</code></code>, if
+                            the data object came through an Amazon S3 configuration, Ground Truth adds a unique
+                            value used by the service and emits a new field keyed by
+                                    <code class="code">$<code class="replaceable">sequencer</code></code> which shows
+                            the Amazon S3 sequencer used. If object was fed to SNS directly, Ground Truth use the
+                            SNS message ID.</p>
+                         
+                        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Do not use the <code class="code">$</code> character in your label attribute name. </p></div></div>
+                    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./sms-supported-data-formats.html">Supported Data Formats</div><div id="next" class="next-link" accesskey="n" href="./input-data-limits.html">Input Data Quotas</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-streaming-labeling-job.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-streaming-labeling-job.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

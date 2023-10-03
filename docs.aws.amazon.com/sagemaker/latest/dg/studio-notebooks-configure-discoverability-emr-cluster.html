@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configure the discoverability of Amazon EMR clusters (for administrators) - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="studio-notebooks-configure-discoverability-emr-cluster" /><meta name="default_state" content="studio-notebooks-configure-discoverability-emr-cluster" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="studio-notebooks-configure-discoverability-emr-cluster.html" /><meta name="description" content="Instructions on how to set up the discoverability of Amazon EMR clusters in a single account or across accounts." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="studio-notebooks-configure-discoverability-emr-cluster.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="de" /><link rel="alternative" href="studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="en-us" /><link rel="alternative" href="studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="zh-tw" /><link rel="alternative" href="studio-notebooks-configure-discoverability-emr-cluster.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Configure the discoverability of Amazon EMR clusters (for administrators)" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Configure the discoverability of Amazon EMR clusters (for administrators) - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-notebooks-configure-discoverability-emr-cluster" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,SageMaker Amazon EMR,SageMaker AWS Glue,SageMaker Spark,SageMaker Hive,SageMaker Presto" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Prepare data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-prep.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Scale data preparation using Apache Spark, Hive, or Presto on Amazon EMR or AWS Glue from Amazon SageMaker Studio notebooks",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-emr-spark-glue.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Prepare data using Amazon EMR",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-emr-cluster.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Use Amazon EMR clusters from Studio notebooks",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Configure the discoverability of Amazon EMR clusters (for administrators)",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-notebooks-configure-discoverability-emr-cluster" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="studio-notebooks-configure-discoverability-emr-cluster">Configure
+                    the discoverability of Amazon EMR clusters (for administrators)</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>This section provides details about how administrators can configure the
+                discoverability of existing Amazon EMR clusters from SageMaker Studio. The clusters can be
+                deployed in the same AWS account as Studio (<em>Single
+                    Account</em> tab) or in separate accounts (<em>Cross
+                    Accounts</em> tab).</p><awsdocs-tabs><dl style="display: none">
+                <dt>Single Account</dt><dd tab-id="single-account">
+                        <p>Attach the following permissions to the SageMaker Studio execution role
+                            accessing your cluster.</p>
+                        <p>The following list provides a breakdown of the permissions
+                            required.</p>
+                        <div class="itemizedlist">
+                             
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p><code class="code">AllowSagemakerProjectManagement</code> enables the
+                                    creation of <a href="sagemaker-projects.html">SageMaker
+                                        projects</a>. In Studio, access to the AWS Service Catalog is
+                                    granted through Projects.</p>
+                            </li><li class="listitem">
+                                <p><code class="code">AllowClusterDetailsDiscovery</code> and
+                                        <code class="code">AllowClusterDiscovery</code> allow the discovery and
+                                    connection to Amazon EMR clusters.</p>
+                            </li><li class="listitem">
+                                <p><code class="code">AllowPresignedUrl</code> allows the creation of
+                                    pre-signed URLs to access Spark UI.</p>
+                            </li></ul></div>
+                        <p>The following is a comprehensive JSON that includes these permissions. </p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "AllowPresignedUrl",
+            "Effect": "Allow",
+            "Action": [
+                "elasticmapreduce:DescribeCluster",
+                "elasticmapreduce:ListInstanceGroups",
+                "elasticmapreduce:CreatePersistentAppUI",
+                "elasticmapreduce:DescribePersistentAppUI",
+                "elasticmapreduce:GetPersistentAppUIPresignedURL",
+                "elasticmapreduce:GetOnClusterAppUIPresignedURL"
+            ],
+            "Resource": [
+                "arn:aws:elasticmapreduce:<code class="replaceable">region</code>:<code class="replaceable">account-id</code>:cluster/*"
+            ]
+        },
+        <span>{</span>
+            "Sid": "AllowClusterDetailsDiscovery",
+            "Effect": "Allow",
+            "Action": [
+               "elasticmapreduce:DescribeCluster",
+               "elasticmapreduce:ListInstances",
+               "elasticmapreduce:ListInstanceGroups",
+               "elasticmapreduce:DescribeSecurityConfiguration"
+            ],
+            "Resource": [
+                "arn:aws:elasticmapreduce:<code class="replaceable">region</code>:<code class="replaceable">account-id</code>:cluster/*"
+            ]
+        },
+        <span>{</span>
+            "Sid": "AllowClusterDiscovery",
+            "Effect": "Allow",
+            "Action": [
+                "elasticmapreduce:ListClusters"
+            ],
+            "Resource": "*"
+        },
+        <span>{</span>
+            "Sid": "AllowSagemakerProjectManagement",
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreateProject",
+                "sagemaker:DeleteProject"
+            ],
+            "Resource": "arn:aws:sagemaker:<code class="replaceable">region</code>:<code class="replaceable">account-id</code>:project/*"
+        },
+    ]
+}</code></pre>
+                    </dd>
+                <dt>Cross Accounts</dt><dd tab-id="cross-accounts">
+                        <p>If your Amazon EMR clusters and SageMaker Studio are deployed in separate
+                            AWS accounts, you configure the permissions in multiple steps.</p>
+                        <div class="itemizedlist">
+                             
+                             
+                             
+                        <ul class="itemizedlist"><li class="listitem">
+                                <p>On the <em>trusting account</em>
+                                    (the account in which Amazon EMR is deployed ), create a custom IAM
+                                    role (referred to as <code class="code">ASSUMABLE-ROLE</code> in this page)
+                                    with the following permissions and trust relationship.</p>
+                                <p>For information about creating a role on an AWS account, see
+                                        <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html">Creating an IAM role (console)</a>.</p>
+                                <div class="orderedlist">
+                                     
+                                     
+                                <ol><li>
+                                        <p>Add a policy defining the following
+                                            permissions.</p>
+                                        <div class="itemizedlist">
+                                             
+                                             
+                                        <ul class="itemizedlist"><li class="listitem">
+                                                <p><code class="code">AllowClusterDetailsDiscovery</code> and
+                                                  <code class="code">AllowClusterDiscovery</code> to allow the
+                                                  discovery and connection to Amazon EMR clusters.</p>
+                                            </li><li class="listitem">
+                                                <p><code class="code">AllowPresignedUrl</code> to allow the
+                                                  creation of pre-signed URLs to access Spark
+                                                  UI.</p>
+                                            </li></ul></div>
+                                        <p>The following is a comprehensive JSON that includes
+                                            these permissions.</p>
+                                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "AllowPresignedUrl",
+            "Effect": "Allow",
+            "Action": [
+                "elasticmapreduce:DescribeCluster",
+                "elasticmapreduce:ListInstanceGroups",
+                "elasticmapreduce:CreatePersistentAppUI",
+                "elasticmapreduce:DescribePersistentAppUI",
+                "elasticmapreduce:GetPersistentAppUIPresignedURL",
+                "elasticmapreduce:GetOnClusterAppUIPresignedURL"
+            ],
+            "Resource": [
+                "arn:aws:elasticmapreduce:<code class="replaceable">emr-region</code>:<code class="replaceable">emr-account</code>:cluster/*"
+            ]
+        },
+        <span>{</span>
+            "Sid": "AllowClusterDetailsDiscovery",
+            "Effect": "Allow",
+            "Action": [
+               "elasticmapreduce:DescribeCluster",
+               "elasticmapreduce:ListInstances",
+               "elasticmapreduce:ListInstanceGroups",
+               "elasticmapreduce:DescribeSecurityConfiguration"
+            ],
+            "Resource": [
+                "arn:aws:elasticmapreduce:<code class="replaceable">emr-region</code>:<code class="replaceable">emr-account</code>:cluster/*"
+            ]
+        },
+        <span>{</span>
+            "Sid": "AllowClusterDiscovery",
+            "Effect": "Allow",
+            "Action": [
+                "elasticmapreduce:ListClusters"
+            ],
+            "Resource": "*"
+        }
+    ]
+}</code></pre>
+                                    </li><li>
+                                        <p>To grant the <em>trusted
+                                                account</em> (the account in which SageMaker
+                                            Studio's account is deployed ) the permission to
+                                            assume a role in the <em>trusting
+                                                account</em>, add the following trust
+                                            relationship.</p>
+                                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Effect": "Allow",
+      "Principal": <span>{</span>
+        "AWS": "arn:aws:iam::<code class="replaceable">studio-account</code>:root"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}</code></pre>
+                                    </li></ol></div>
+                            </li><li class="listitem">
+                                <p>On the <em>trusted account</em> (the
+                                    account in which SageMaker Studio is deployed), add the following
+                                    trust relationship to the Studio execution role.</p>
+
+                                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+  <span>{</span> 
+            "Sid": "AllowRoleAssumptionForCrossAccountDiscovery", 
+            "Effect": "Allow", 
+            "Action": "sts:AssumeRole", 
+            "Resource":  ["arn:aws:iam::<code class="replaceable">emr-account</code>:role/<code class="replaceable">ASSUMABLE-ROLE</code>" ]
+  }]
+}             </code></pre>
+                            </li><li class="listitem">
+                                <p>Last, see <a href="studio-notebooks-emr-cross-accounts-permissions.html">Additional
+                Configuration for cross accounts use cases (for administrators)</a> to learn how to provide the ARN of the
+                                        <code class="code">ASSUMABLE-ROLE</code> to the Studio execution
+                                    role. The ARN is loaded by the Studio Jupyter server at
+                                    launch. The Studio execution role assumes that cross-account
+                                    role to discover and connect to Amazon EMR clusters in the <em>trusting account</em>.</p>
+                            </li></ul></div>
+                    </dd>
+            </dl></awsdocs-tabs><p>Visit <a href="discover-emr-clusters.html">Discover Amazon EMR clusters from SageMaker
+                    Studio</a> to learn about how to discover and connect to Amazon EMR clusters from Studio
+                notebooks.</p><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./studio-notebooks-emr-cluster-connect.html">Use Amazon EMR clusters from
+                Studio notebooks</div><div id="next" class="next-link" accesskey="n" href="./discover-emr-clusters.html">Discover Amazon EMR clusters</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-configure-discoverability-emr-cluster.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Amazon SageMaker Identity-Based Policy Examples - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="security_iam_id-based-policy-examples" /><meta name="default_state" content="security_iam_id-based-policy-examples" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="security_iam_id-based-policy-examples.html" /><meta name="description" content="By default, IAM users and roles don't have permission to create or modify SageMaker resources. They also can't perform tasks using the AWS Management Console, AWS CLI, or AWS API. An IAM administrator must create IAM policies that grant users and roles permission to perform specific API operations on the specified resources they need. The administrator must then attach those policies to the IAM users or groups that require those permissions. To learn how to attach policies to an IAM user or group, see" /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="security_iam_id-based-policy-examples.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" hreflang="de" /><link rel="alternative" href="security_iam_id-based-policy-examples.html" hreflang="en-us" /><link rel="alternative" href="security_iam_id-based-policy-examples.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" hreflang="zh-tw" /><link rel="alternative" href="security_iam_id-based-policy-examples.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Amazon SageMaker Identity-Based Policy Examples" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Amazon SageMaker Identity-Based Policy Examples - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#security_iam_id-based-policy-examples" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/security_iam_id-based-policy-examples.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Configure security in Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/security.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Identity and Access Management for Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/security-iam.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Amazon SageMaker Identity-Based Policy Examples",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/security-iam.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#security_iam_id-based-policy-examples" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="security_iam_id-based-policy-examples.html#security_iam_service-with-iam-policy-best-practices">Policy Best
+                    Practices</a><a href="security_iam_id-based-policy-examples.html#security_iam_id-based-policy-examples-console">Using the Console</a><a href="security_iam_id-based-policy-examples.html#security_iam_id-based-policy-examples-view-own-permissions">Allow
+                    Users to View Their Own Permissions</a><a href="security_iam_id-based-policy-examples.html#sagemaker-condition-examples">Control Creation of SageMaker Resources
+                    with Condition Keys</a><a href="security_iam_id-based-policy-examples.html#api-access-policy">Control Access to the SageMaker API by Using
+                    Identity-based Policies</a><a href="security_iam_id-based-policy-examples.html#api-ip-filter">Limit Access to SageMaker API and Runtime Calls by IP
+                    Address</a><a href="security_iam_id-based-policy-examples.html#nbi-ip-filter">Limit Access to a Notebook Instance by IP
+                    Address</a><a href="security_iam_id-based-policy-examples.html#access-tag-policy">Control Access to SageMaker Resources by Using
+                    Tags</a><a href="security_iam_id-based-policy-examples.html#grant-tagging-permissions">Provide Permissions for Tagging SageMaker
+                    Resources Upon Creation</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="security_iam_id-based-policy-examples">Amazon SageMaker
+                Identity-Based Policy Examples</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>By default, IAM users and roles don't have permission to create or modify
+            SageMaker resources. They also can't perform tasks using the AWS Management Console, AWS CLI, or
+            AWS API. An IAM administrator must create IAM policies that grant users and roles
+            permission to perform specific API operations on the specified resources they need. The
+            administrator must then attach those policies to the IAM users or groups that require
+            those permissions. To learn how to attach policies to an IAM user or group, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html">Adding and Removing
+                IAM Identity Permissions</a> in the <em>IAM User Guide</em>.</p><p>To learn how to create an IAM identity-based policy using these example JSON policy
+            documents, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-json-editor">Creating Policies on the JSON Tab</a> in the
+                <em>IAM User Guide</em>.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="security_iam_id-based-policy-examples.html#security_iam_service-with-iam-policy-best-practices">Policy Best
+                    Practices</a></li><li><a href="security_iam_id-based-policy-examples.html#security_iam_id-based-policy-examples-console">Using the
+                    SageMaker Console</a></li><li><a href="security_iam_id-based-policy-examples.html#security_iam_id-based-policy-examples-view-own-permissions">Allow
+                    Users to View Their Own Permissions</a></li><li><a href="security_iam_id-based-policy-examples.html#sagemaker-condition-examples">Control Creation of SageMaker Resources
+                    with Condition Keys</a></li><li><a href="security_iam_id-based-policy-examples.html#api-access-policy">Control Access to the SageMaker API by Using
+                    Identity-based Policies</a></li><li><a href="security_iam_id-based-policy-examples.html#api-ip-filter">Limit Access to SageMaker API and Runtime Calls by IP
+                    Address</a></li><li><a href="security_iam_id-based-policy-examples.html#nbi-ip-filter">Limit Access to a Notebook Instance by IP
+                    Address</a></li><li><a href="security_iam_id-based-policy-examples.html#access-tag-policy">Control Access to SageMaker Resources by Using
+                    Tags</a></li><li><a href="security_iam_id-based-policy-examples.html#grant-tagging-permissions">Provide Permissions for Tagging SageMaker
+                    Resources Upon Creation</a></li></ul></div>
+            <h2 id="security_iam_service-with-iam-policy-best-practices">Policy Best
+                    Practices</h2>
+            
+            
+   
+ <p>Identity-based policies determine whether someone can create, access, or delete SageMaker resources in your
+      account. These actions can incur costs for your AWS account. When you create or edit identity-based policies, follow these guidelines and
+      recommendations:</p>
+   <div class="itemizedlist">
+       
+       
+       
+       
+       
+   <ul class="itemizedlist"><li class="listitem">
+         <p><b>Get started with AWS managed policies and move toward least-privilege permissions</b>
+            – To get started granting permissions to your users and workloads, use the <em>AWS
+            managed policies</em> that grant permissions for many common use cases. They are
+            available in your AWS account. We recommend that you reduce permissions further by
+            defining AWS customer managed policies that are specific to your use cases. For more information, see 
+            <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies">AWS managed policies</a> or <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html">AWS managed policies for job functions</a> in the <em>IAM User Guide</em>.</p>
+      </li><li class="listitem">
+         <p><b>Apply least-privilege permissions</b> – 
+            When you set permissions with IAM policies, grant only the permissions required to
+            perform a task. You do this by defining the actions that can be taken on specific resources
+            under specific conditions, also known as <em>least-privilege permissions</em>.
+            For more information about using IAM to apply permissions, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html">
+            Policies and permissions in IAM</a> in the <em>IAM User Guide</em>.</p>
+      </li><li class="listitem">
+         <p><b>Use conditions in IAM policies to further restrict access</b>
+            – You can add a condition to your policies to limit access to actions and resources. For example, you can write a policy condition to specify that all requests must
+            be sent using SSL. You can also use conditions to grant access to service actions
+            if they are used through a specific AWS service, such as AWS CloudFormation. For more information, see
+            <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html">
+            IAM JSON policy elements: Condition</a> in the <em>IAM User Guide</em>.</p>
+      </li><li class="listitem">
+         <p><b>Use IAM Access Analyzer to validate your IAM policies to ensure secure and functional permissions</b>
+            – IAM Access Analyzer validates new and existing policies so that the policies adhere to the IAM policy language (JSON) and IAM best practices.
+            IAM Access Analyzer provides more than 100 policy checks and actionable recommendations to help
+            you author secure and functional policies. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-validation.html">IAM Access Analyzer policy validation</a> in the <em>IAM User Guide</em>.</p>
+      </li><li class="listitem">
+         <p><b>Require multi-factor authentication (MFA)</b> –
+            If you have a scenario that requires IAM users or a root user in your AWS account, turn on MFA for additional security. To require
+            MFA when API operations are called, add MFA conditions to your policies. For
+            more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_configure-api-require.html">
+            Configuring MFA-protected API access</a> in the <em>IAM User Guide</em>.</p>
+      </li></ul></div>
+ <p>For more information about best practices in IAM, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html">Security best practices in IAM</a> in the <em>IAM User Guide</em>.</p>
+
+         
+            <h2 id="security_iam_id-based-policy-examples-console">Using the
+                    SageMaker Console</h2>
+            
+            <p>To access the Amazon SageMaker console, you must have a minimum set of
+                permissions. These permissions must allow you to list and view details about the
+                SageMaker resources in your AWS account. If you create an identity-based
+                policy that is more restrictive than the minimum required permissions, the console
+                won't function as intended for entities (users or roles) with that policy.</p>
+            <p>To ensure that those entities can still use the SageMaker console, also
+                attach the following AWS managed policy to the entities. For more information, see
+                    <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-console">Adding Permissions to a User</a> in the
+                    <em>IAM User Guide</em>:</p>
+            <p>You don't need to allow minimum console permissions for users that are making
+                calls only to the AWS CLI or the AWS API. Instead, allow access to only the actions
+                that match the API operation that you're trying to perform.</p>
+            <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="security_iam_id-based-policy-examples.html#console-permissions">Permissions Required to Use the Amazon SageMaker
+                        Console</a></li><li><a href="security_iam_id-based-policy-examples.html#groundtruth-console-policy">Permissions Required to Use the
+                        Amazon SageMaker Ground Truth Console</a></li><li><a href="security_iam_id-based-policy-examples.html#amazon-augmented-ai-console-policy">Permissions Required to Use
+                        the Amazon Augmented AI (Preview) Console</a></li></ul></div>
+             
+                <h3 id="console-permissions">Permissions Required to Use the Amazon SageMaker
+                        Console</h3>
+                <p>The permissions reference table lists the Amazon SageMaker API operations and shows
+                    the required permissions for each operation. For more information about Amazon SageMaker
+                    API operations, see <a href="api-permissions-reference.html">Amazon SageMaker API Permissions: Actions,
+                Permissions, and Resources Reference</a>.</p>
+                <p>To use the Amazon SageMaker console, you need to grant permissions for additional
+                    actions. Specifically, the console needs permissions that allow the
+                        <code class="code">ec2</code> actions to display subnets, VPCs, and security groups.
+                    Optionally, the console needs permission to create <em>execution
+                        roles</em> for tasks such as <code class="code">CreateNotebook</code>,
+                        <code class="code">CreateTrainingJob</code>, and <code class="code">CreateModel</code>. Grant these
+                    permissions with the following permissions policy:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+          "Sid": "SageMakerApis",
+          "Effect": "Allow",
+          "Action": [
+            "sagemaker:*"
+          ],
+          "Resource": "*"
+        },
+        <span>{</span>
+          "Sid": "VpcConfigurationForCreateForms",
+          "Effect": "Allow",
+          "Action": [
+            "ec2:DescribeVpcs",
+            "ec2:DescribeSubnets",
+            "ec2:DescribeSecurityGroups"
+          ],
+          "Resource": "*"
+        },
+        <span>{</span>
+            "Sid":"KmsKeysForCreateForms",
+            "Effect":"Allow",
+            "Action":[
+              "kms:DescribeKey",
+              "kms:ListAliases"
+            ],
+            "Resource":"*"
+        },
+        <span>{</span>
+          "Sid": "AccessAwsMarketplaceSubscriptions",
+          "Effect": "Allow",
+          "Action": [
+            "aws-marketplace:ViewSubscriptions"
+          ],
+          "Resource": "*"
+        },
+        <span>{</span>
+          "Effect": "Allow",
+          "Action": [
+            "codecommit:BatchGetRepositories",
+            "codecommit:CreateRepository",
+            "codecommit:GetRepository",
+            "codecommit:ListRepositories",
+            "codecommit:ListBranches",
+            "secretsmanager:CreateSecret",
+            "secretsmanager:DescribeSecret",
+            "secretsmanager:ListSecrets"
+          ],
+          "Resource": "*"
+        },
+        <span>{</span>
+          "Sid":"ListAndCreateExecutionRoles",
+          "Effect":"Allow",
+          "Action":[
+            "iam:ListRoles",
+            "iam:CreateRole",
+            "iam:CreatePolicy",
+            "iam:AttachRolePolicy"
+          ],
+          "Resource":"*"
+        },
+        <span>{</span>
+          "Sid": "DescribeECRMetaData",
+          "Effect": "Allow",
+          "Action": [
+              "ecr:Describe*"
+          ],
+          "Resource": "*"
+        },
+        <span>{</span>
+          "Sid": "PassRoleForExecutionRoles",
+          "Effect": "Allow",
+          "Action": [
+            "iam:PassRole"
+          ],
+          "Resource": "*",
+          "Condition": <span>{</span>
+            "StringEquals": <span>{</span>
+                "iam:PassedToService": "sagemaker.amazonaws.com"
+            }
+          }
+        }
+    ]
+}</code></pre>
+                <p></p>
+                
+             
+             
+                <h3 id="groundtruth-console-policy">Permissions Required to Use the
+                        Amazon SageMaker Ground Truth Console</h3>
+                <p>To use the Amazon SageMaker Ground Truth console, you need to grant permissions for additional
+                    resources. Specifically, the console needs permissions for the AWS Marketplace
+                    to view subscriptions, Amazon Cognito operations to manage your private workforce, Amazon S3
+                    actions for access to your input and output files, and AWS Lambda actions to list
+                    and invoke functions. Grant these permissions with the following permissions
+                    policy:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "GroundTruthConsole",
+            "Effect": "Allow",
+            "Action": [
+                "aws-marketplace:DescribeListings",
+                "aws-marketplace:ViewSubscriptions",
+
+                "cognito-idp:AdminAddUserToGroup",
+                "cognito-idp:AdminCreateUser",
+                "cognito-idp:AdminDeleteUser",
+                "cognito-idp:AdminDisableUser",
+                "cognito-idp:AdminEnableUser",
+                "cognito-idp:AdminRemoveUserFromGroup",
+                "cognito-idp:CreateGroup",
+                "cognito-idp:CreateUserPool",
+                "cognito-idp:CreateUserPoolClient",
+                "cognito-idp:CreateUserPoolDomain",
+                "cognito-idp:DescribeUserPool",
+                "cognito-idp:DescribeUserPoolClient",
+                "cognito-idp:ListGroups",
+                "cognito-idp:ListIdentityProviders",
+                "cognito-idp:ListUsers",
+                "cognito-idp:ListUsersInGroup",
+                "cognito-idp:ListUserPoolClients",
+                "cognito-idp:ListUserPools",
+                "cognito-idp:UpdateUserPool",
+                "cognito-idp:UpdateUserPoolClient",
+
+                "groundtruthlabeling:DescribeConsoleJob",
+                "groundtruthlabeling:ListDatasetObjects",
+                "groundtruthlabeling:RunFilterOrSampleManifestJob",
+                "groundtruthlabeling:RunGenerateManifestByCrawlingJob",
+
+                "lambda:InvokeFunction",
+                "lambda:ListFunctions",
+
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:SelectObjectContent"
+            ],
+            "Resource": "*"
+        }
+    ]
+}</code></pre>
+             
+             
+                <h3 id="amazon-augmented-ai-console-policy">Permissions Required to Use
+                        the Amazon Augmented AI (Preview) Console</h3>
+                <p>To use the Augmented AI console, you need to grant permissions for additional
+                    resources. Grant these permissions with the following permissions policy:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:*Algorithm",
+                "sagemaker:*Algorithms",
+                "sagemaker:*App",
+                "sagemaker:*Apps",
+                "sagemaker:*AutoMLJob",
+                "sagemaker:*AutoMLJobs",
+                "sagemaker:*CodeRepositories",
+                "sagemaker:*CodeRepository",
+                "sagemaker:*CompilationJob",
+                "sagemaker:*CompilationJobs",
+                "sagemaker:*Endpoint",
+                "sagemaker:*EndpointConfig",
+                "sagemaker:*EndpointConfigs",
+                "sagemaker:*EndpointWeightsAndCapacities",
+                "sagemaker:*Endpoints",
+                "sagemaker:*Environment",
+                "sagemaker:*EnvironmentVersion",
+                "sagemaker:*EnvironmentVersions",
+                "sagemaker:*Environments",
+                "sagemaker:*Experiment",
+                "sagemaker:*Experiments",
+                "sagemaker:*FlowDefinitions",
+                "sagemaker:*HumanLoop",
+                "sagemaker:*HumanLoops",
+                "sagemaker:*HumanTaskUi",
+                "sagemaker:*HumanTaskUis",
+                "sagemaker:*HyperParameterTuningJob",
+                "sagemaker:*HyperParameterTuningJobs",
+                "sagemaker:*LabelingJob",
+                "sagemaker:*LabelingJobs",
+                "sagemaker:*Metrics",
+                "sagemaker:*Model",
+                "sagemaker:*ModelPackage",
+                "sagemaker:*ModelPackages",
+                "sagemaker:*Models",
+                "sagemaker:*MonitoringExecutions",
+                "sagemaker:*MonitoringSchedule",
+                "sagemaker:*MonitoringSchedules",
+                "sagemaker:*NotebookInstance",
+                "sagemaker:*NotebookInstanceLifecycleConfig",
+                "sagemaker:*NotebookInstanceLifecycleConfigs",
+                "sagemaker:*NotebookInstanceUrl",
+                "sagemaker:*NotebookInstances",
+                "sagemaker:*ProcessingJob",
+                "sagemaker:*ProcessingJobs",
+                "sagemaker:*RenderUiTemplate",
+                "sagemaker:*Search",
+                "sagemaker:*SearchSuggestions",
+                "sagemaker:*Tags",
+                "sagemaker:*TrainingJob",
+                "sagemaker:*TrainingJobs",
+                "sagemaker:*TransformJob",
+                "sagemaker:*TransformJobs",
+                "sagemaker:*Trial",
+                "sagemaker:*TrialComponent",
+                "sagemaker:*TrialComponents",
+                "sagemaker:*Trials",
+                "sagemaker:*Workteam",
+                "sagemaker:*Workteams"
+            ],
+            "Resource": "*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:*FlowDefinition"
+            ],
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "StringEqualsIfExists": <span>{</span>
+                    "sagemaker:WorkteamType": [
+                        "private-crowd",
+                        "vendor-crowd"
+                    ]
+                }
+            }
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "application-autoscaling:DeleteScalingPolicy",
+                "application-autoscaling:DeleteScheduledAction",
+                "application-autoscaling:DeregisterScalableTarget",
+                "application-autoscaling:DescribeScalableTargets",
+                "application-autoscaling:DescribeScalingActivities",
+                "application-autoscaling:DescribeScalingPolicies",
+                "application-autoscaling:DescribeScheduledActions",
+                "application-autoscaling:PutScalingPolicy",
+                "application-autoscaling:PutScheduledAction",
+                "application-autoscaling:RegisterScalableTarget",
+                "aws-marketplace:ViewSubscriptions",
+                "cloudwatch:DeleteAlarms",
+                "cloudwatch:DescribeAlarms",
+                "cloudwatch:GetMetricData",
+                "cloudwatch:GetMetricStatistics",
+                "cloudwatch:ListMetrics",
+                "cloudwatch:PutMetricAlarm",
+                "cloudwatch:PutMetricData",
+                "codecommit:BatchGetRepositories",
+                "codecommit:CreateRepository",
+                "codecommit:GetRepository",
+                "codecommit:ListBranches",
+                "codecommit:ListRepositories",
+                "cognito-idp:AdminAddUserToGroup",
+                "cognito-idp:AdminCreateUser",
+                "cognito-idp:AdminDeleteUser",
+                "cognito-idp:AdminDisableUser",
+                "cognito-idp:AdminEnableUser",
+                "cognito-idp:AdminRemoveUserFromGroup",
+                "cognito-idp:CreateGroup",
+                "cognito-idp:CreateUserPool",
+                "cognito-idp:CreateUserPoolClient",
+                "cognito-idp:CreateUserPoolDomain",
+                "cognito-idp:DescribeUserPool",
+                "cognito-idp:DescribeUserPoolClient",
+                "cognito-idp:ListGroups",
+                "cognito-idp:ListIdentityProviders",
+                "cognito-idp:ListUserPoolClients",
+                "cognito-idp:ListUserPools",
+                "cognito-idp:ListUsers",
+                "cognito-idp:ListUsersInGroup",
+                "cognito-idp:UpdateUserPool",
+                "cognito-idp:UpdateUserPoolClient",
+                "ec2:CreateNetworkInterface",
+                "ec2:CreateNetworkInterfacePermission",
+                "ec2:CreateVpcEndpoint",
+                "ec2:DeleteNetworkInterface",
+                "ec2:DeleteNetworkInterfacePermission",
+                "ec2:DescribeDhcpOptions",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DescribeRouteTables",
+                "ec2:DescribeSecurityGroups",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeVpcEndpoints",
+                "ec2:DescribeVpcs",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:BatchGetImage",
+                "ecr:CreateRepository",
+                "ecr:Describe*",
+                "ecr:GetAuthorizationToken",
+                "ecr:GetDownloadUrlForLayer",
+                "elastic-inference:Connect",
+                "elasticfilesystem:DescribeFileSystems",
+                "elasticfilesystem:DescribeMountTargets",
+                "fsx:DescribeFileSystems",
+                "glue:CreateJob",
+                "glue:DeleteJob",
+                "glue:GetJob",
+                "glue:GetJobRun",
+                "glue:GetJobRuns",
+                "glue:GetJobs",
+                "glue:ResetJobBookmark",
+                "glue:StartJobRun",
+                "glue:UpdateJob",
+                "groundtruthlabeling:*",
+                "iam:ListRoles",
+                "kms:DescribeKey",
+                "kms:ListAliases",
+                "lambda:ListFunctions",
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:DescribeLogGroups",
+                "logs:DescribeLogStreams",
+                "logs:GetLogEvents",
+                "logs:PutLogEvents",
+                "sns:ListTopics"
+            ],
+            "Resource": "*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogDelivery",
+                "logs:DeleteLogDelivery",
+                "logs:DescribeResourcePolicies",
+                "logs:GetLogDelivery",
+                "logs:ListLogDeliveries",
+                "logs:PutResourcePolicy",
+                "logs:UpdateLogDelivery"
+            ],
+            "Resource": "*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "ecr:SetRepositoryPolicy",
+                "ecr:CompleteLayerUpload",
+                "ecr:BatchDeleteImage",
+                "ecr:UploadLayerPart",
+                "ecr:DeleteRepositoryPolicy",
+                "ecr:InitiateLayerUpload",
+                "ecr:DeleteRepository",
+                "ecr:PutImage"
+            ],
+            "Resource": "arn:aws:ecr:*:*:repository/*sagemaker*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "codecommit:GitPull",
+                "codecommit:GitPush"
+            ],
+            "Resource": [
+                "arn:aws:codecommit:*:*:*sagemaker*",
+                "arn:aws:codecommit:*:*:*SageMaker*",
+                "arn:aws:codecommit:*:*:*Sagemaker*"
+            ]
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:ListSecrets"
+            ],
+            "Resource": "*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:DescribeSecret",
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:CreateSecret"
+            ],
+            "Resource": [
+                "arn:aws:secretsmanager:*:*:secret:AmazonSageMaker-*"
+            ]
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:DescribeSecret",
+                "secretsmanager:GetSecretValue"
+            ],
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "StringEquals": <span>{</span>
+                    "secretsmanager:ResourceTag/SageMaker": "true"
+                }
+            }
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "robomaker:CreateSimulationApplication",
+                "robomaker:DescribeSimulationApplication",
+                "robomaker:DeleteSimulationApplication"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "robomaker:CreateSimulationJob",
+                "robomaker:DescribeSimulationJob",
+                "robomaker:CancelSimulationJob"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:DeleteObject",
+                "s3:AbortMultipartUpload",
+                "s3:GetBucketCors",
+                "s3:PutBucketCors"
+            ],
+            "Resource": [
+                "arn:aws:s3:::*SageMaker*",
+                "arn:aws:s3:::*Sagemaker*",
+                "arn:aws:s3:::*sagemaker*",
+                "arn:aws:s3:::*aws-glue*"
+            ]
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "s3:CreateBucket",
+                "s3:GetBucketLocation",
+                "s3:ListBucket",
+                "s3:ListAllMyBuckets"
+            ],
+            "Resource": "*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "StringEqualsIgnoreCase": <span>{</span>
+                    "s3:ExistingObjectTag/SageMaker": "true"
+                }
+            }
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "lambda:InvokeFunction"
+            ],
+            "Resource": [
+                "arn:aws:lambda:*:*:function:*SageMaker*",
+                "arn:aws:lambda:*:*:function:*sagemaker*",
+                "arn:aws:lambda:*:*:function:*Sagemaker*",
+                "arn:aws:lambda:*:*:function:*LabelingFunction*"
+            ]
+        },
+        <span>{</span>
+            "Action": "iam:CreateServiceLinkedRole",
+            "Effect": "Allow",
+            "Resource": "arn:aws:iam::*:role/aws-service-role/sagemaker.application-autoscaling.amazonaws.com/AWSServiceRoleForApplicationAutoScaling_SageMakerEndpoint",
+            "Condition": <span>{</span>
+                "StringLike": <span>{</span>
+                    "iam:AWSServiceName": "sagemaker.application-autoscaling.amazonaws.com"
+                }
+            }
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": "iam:CreateServiceLinkedRole",
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "StringEquals": <span>{</span>
+                    "iam:AWSServiceName": "robomaker.amazonaws.com"
+                }
+            }
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "sns:Subscribe",
+                "sns:CreateTopic"
+            ],
+            "Resource": [
+                "arn:aws:sns:*:*:*SageMaker*",
+                "arn:aws:sns:*:*:*Sagemaker*",
+                "arn:aws:sns:*:*:*sagemaker*"
+            ]
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "iam:PassRole"
+            ],
+            "Resource": "arn:aws:iam::*:role/*",
+            "Condition": <span>{</span>
+                "StringEquals": <span>{</span>
+                    "iam:PassedToService": [
+                        "sagemaker.amazonaws.com",
+                        "glue.amazonaws.com",
+                        "robomaker.amazonaws.com",
+                        "states.amazonaws.com"
+                    ]
+                }
+            }
+        }
+    ]
+}</code></pre>
+             
+         
+            <h2 id="security_iam_id-based-policy-examples-view-own-permissions">Allow
+                    Users to View Their Own Permissions</h2>
+            
+            
+   
+         <p>This example shows how you might create a policy that allows IAM users to view the inline and managed policies that are attached to their user
+            identity. This policy includes permissions to complete this action on the console or programmatically using the AWS CLI or AWS API.</p>
+         <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "ViewOwnUserInfo",
+            "Effect": "Allow",
+            "Action": [
+                "iam:GetUserPolicy",
+                "iam:ListGroupsForUser",
+                "iam:ListAttachedUserPolicies",
+                "iam:ListUserPolicies",
+                "iam:GetUser"
+            ],
+            "Resource": ["arn:aws:iam::*:user/$<span>{</span>aws:username}"]
+        },
+        <span>{</span>
+            "Sid": "NavigateInConsole",
+            "Effect": "Allow",
+            "Action": [
+                "iam:GetGroupPolicy",
+                "iam:GetPolicyVersion",
+                "iam:GetPolicy",
+                "iam:ListAttachedGroupPolicies",
+                "iam:ListGroupPolicies",
+                "iam:ListPolicyVersions",
+                "iam:ListPolicies",
+                "iam:ListUsers"
+            ],
+            "Resource": "*"
+        }
+    ]
+}</code></pre>
+  
+         
+            <h2 id="sagemaker-condition-examples">Control Creation of SageMaker Resources
+                    with Condition Keys</h2>
+            <p>Control fine-grained access to allow the creation of SageMaker resources by using
+                SageMaker-specific condition keys. For information about using condition keys in IAM
+                policies, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html">IAM JSON Policy Elements: Condition</a> in the <em>IAM User
+                    Guide</em>.</p>
+            <p>The condition keys, along with related API actions, and links to relevant
+                documentation are listed in <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonsagemaker.html#amazonsagemaker-policy-keys">Condition Keys for SageMaker</a> in the
+                <em>IAM User Guide</em>.</p>
+            <p>The following examples show how to use the SageMaker condition keys to control
+                access.</p>
+            <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="security_iam_id-based-policy-examples.html#access-fs-condition-keys">Control Access to SageMaker Resources by
+                        Using File System Condition Keys</a></li><li><a href="security_iam_id-based-policy-examples.html#sagemaker-condition-vpc">Restrict Training to a Specific
+                        VPC</a></li><li><a href="security_iam_id-based-policy-examples.html#sagemaker-condition-keys-labeling">Restrict Access to Workforce
+                        Types for Ground Truth Labeling Jobs and Amazon A2I Human Review Workflows</a></li><li><a href="security_iam_id-based-policy-examples.html#sagemaker-condition-kms">Enforce Encryption of Input
+                        Data</a></li><li><a href="security_iam_id-based-policy-examples.html#sagemaker-condition-kms-nbi">Enforce Encryption of Notebook
+                        Instance Storage Volume</a></li><li><a href="security_iam_id-based-policy-examples.html#sagemaker-condition-isolation">Enforce Network Isolation for
+                        Training Jobs</a></li><li><a href="security_iam_id-based-policy-examples.html#sagemaker-condition-instance">Enforce a Specific Instance Type
+                        for Training Jobs</a></li><li><a href="security_iam_id-based-policy-examples.html#sagemaker-condition-ei">Enforce a Specific EI Accelerator for
+                        Training Jobs</a></li><li><a href="security_iam_id-based-policy-examples.html#sagemaker-condition-nbi-lockdown">Enforce Disabling Internet Access
+                        and Root Access for Creating Notebook Instances</a></li></ul></div>
+             
+                <h3 id="access-fs-condition-keys">Control Access to SageMaker Resources by
+                        Using File System Condition Keys</h3>
+                <p>SageMaker training provides a secure infrastructure for the training algorithm to
+                    run in, but for some cases you may want increased defense in depth. For example,
+                    you minimize the risk of running untrusted code in your algorithm, or you have
+                    specific security mandates in your organization. For these scenarios, you can
+                    use the service-specific condition keys in the Condition element of an IAM
+                    policy to scope down the user to specific file systems, directories, access
+                    modes (read-write, read-only) and security groups.</p>
+                <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="security_iam_id-based-policy-examples.html#access-fs-condition-keys-ex-dirs">Restrict an IAM User to
+                            Specific Directories and Access Modes</a></li><li><a href="security_iam_id-based-policy-examples.html#access-fs-condition-keys-ex-fs">Restrict a User to a
+                            Specific File System</a></li></ul></div>
+                 
+                    <h4 id="access-fs-condition-keys-ex-dirs">Restrict an IAM User to
+                            Specific Directories and Access Modes</h4>
+                    <p>The policy below restricts a user to the
+                            <code>/sagemaker/xgboost-dm/train</code> and
+                            <code>/sagemaker/xgboost-dm/validation</code> directories of an
+                        EFS file system to <code class="code">ro</code> (read-only) AccessMode:</p>
+                    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When a directory is allowed, all of its subdirectories are also
+                            accessible by the training algorithm. POSIX permissions are
+                            ignored.</p></div></div>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "AccessToElasticFileSystem",
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreateTrainingJob",
+                "sagemaker:CreateHyperParameterTuningJob"
+            ],
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "StringEquals": <span>{</span>
+                    "sagemaker:FileSystemId": "fs-12345678",
+                    "sagemaker:FileSystemAccessMode": "ro",
+                    "sagemaker:FileSystemType": "EFS",
+                    "sagemaker:FileSystemDirectoryPath": "/sagemaker/xgboost-dm/train"
+                }
+            }
+        },
+        <span>{</span>
+            "Sid": "AccessToElasticFileSystemValidation",
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreateTrainingJob",
+                "sagemaker:CreateHyperParameterTuningJob"
+            ],
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "StringEquals": <span>{</span>
+                    "sagemaker:FileSystemId": "fs-12345678",
+                    "sagemaker:FileSystemAccessMode": "ro",
+                    "sagemaker:FileSystemType": "EFS",
+                    "sagemaker:FileSystemDirectoryPath": "/sagemaker/xgboost-dm/validation"
+                }
+            }
+        }
+    ]
+}</code></pre>
+                 
+                 
+                    <h4 id="access-fs-condition-keys-ex-fs">Restrict a User to a
+                            Specific File System</h4>
+                    <p>To prevent a malicious algorithm using a user space client from accessing
+                        any file system directly in your account, you can restrict networking
+                        traffic by allowing ingress from a specific security group. In the following
+                        example, the user can only use the specified security group to access the
+                        file system:</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "AccessToLustreFileSystem",
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreateTrainingJob",
+                "sagemaker:CreateHyperParameterTuningJob"
+            ],
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "StringEquals": <span>{</span>
+                    "sagemaker:FileSystemId": "fs-12345678",
+                    "sagemaker:FileSystemAccessMode": "ro",
+                    "sagemaker:FileSystemType": "FSxLustre",
+                    "sagemaker:FileSystemDirectoryPath": "/fsx/sagemaker/xgboost/train"
+                },
+                "ForAllValues:StringEquals": <span>{</span>
+                    "sagemaker:VpcSecurityGroupIds": [
+                        "sg-12345678"
+                    ]
+                }
+            }
+        }
+    ]
+}</code></pre>
+                    <p>Although the above example can restrict an algorithm to a specific file
+                        system, it does not prevent an algorithm from accessing any directory within
+                        that file system using the user space client. To mitigate this, you
+                        can:</p>
+                    <div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>Ensure that the file system only contains data that you trust your
+                                users to access</p>
+                        </li><li class="listitem">
+                            <p>Create an IAM role that restricts your users to launching
+                                training jobs with algorithms from approved ECR repositories</p>
+                        </li></ul></div>
+                    <p>For more information on how to use roles with SageMaker, see <a href="sagemaker-roles.html">SageMaker Roles</a>. </p>
+                 
+             
+             
+                <h3 id="sagemaker-condition-vpc">Restrict Training to a Specific
+                        VPC</h3>
+                <p>Restrict an AWS user to creating training jobs from within a Amazon VPC. When a
+                    training job is created within a VPC, you can use VPC flow logs to monitor all
+                    traffic to and from the training cluster. For information about using VPC flow
+                    logs, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html">VPC Flow Logs</a> in the
+                        <em>Amazon Virtual Private Cloud User Guide</em>.</p>
+                <p>The following policy enforces that a training job is created by a user calling
+                        <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html"><code class="code">CreateTrainingJob</code></a> from within a VPC:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "AllowFromVpc",
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreateTrainingJob",
+                "sagemaker:CreateHyperParameterTuningJob"
+            ],
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "ForAllValues:StringEquals": <span>{</span>
+                    "sagemaker:VpcSubnets": ["subnet-a1234"],
+                    "sagemaker:VpcSecurityGroupIds": ["sg12345", "sg-67890"]
+                },
+                "Null": <span>{</span>
+                    "sagemaker:VpcSubnets": "false",
+                    "sagemaker:VpcSecurityGroupIds": "false"
+                }
+            }
+        }
+
+    ]
+}</code></pre>
+             
+             
+                <h3 id="sagemaker-condition-keys-labeling">Restrict Access to Workforce
+                        Types for Ground Truth Labeling Jobs and Amazon A2I Human Review Workflows</h3>
+                <p>Amazon SageMaker Ground Truth and Amazon Augmented AI work teams fall into one of three <a href="sms-workforce-management.html">workforce types</a>: public (with Amazon Mechanical Turk), private, and vendor. To
+                    restrict user access to a specific work team using one of these types or the
+                    work team ARN, use the <code class="code">sagemaker:WorkteamType</code> and/or the
+                        <code class="code">sagemaker:WorkteamArn</code> condition keys. For the
+                        <code class="code">sagemaker:WorkteamType</code> condition key, use <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html#Conditions_String">string condition operators</a>. For the
+                        <code class="code">sagemaker:WorkteamArn</code> condition key, use <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html#Conditions_ARN">Amazon Resource Name (ARN) condition operators</a>. If the user
+                    attempts to create a labeling job with a restricted work team, SageMaker returns an
+                    access denied error. </p>
+                <p>The policies below demonstrate different ways to use the
+                        <code class="code">sagemaker:WorkteamType</code> and <code class="code">sagemaker:WorkteamArn</code>
+                    condition keys with appropriate condition operators and valid condition values. </p>
+                <p>The following example uses the <code class="code">sagemaker:WorkteamType</code> condition
+                    key with the <code class="code">StringEquals</code> condition operator to restrict access to
+                    a public work team. It accepts condition values in the following format:
+                            <code class="code"><code class="replaceable">workforcetype</code>-crowd</code>, where
+                        <code class="replaceable">workforcetype</code> can equal <code class="code">public</code>,
+                        <code class="code">private</code>, or <code class="code">vendor</code>.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "RestrictWorkteamType",
+            "Effect": "Deny",
+            "Action": "sagemaker:CreateLabelingJob",
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "StringEquals": <span>{</span>
+                    "sagemaker:WorkteamType": "<code class="replaceable">public-crowd</code>"
+                }
+            }
+        }
+    ]
+}</code></pre>
+                <p>The following policies show how to restrict access to a public work team using
+                    the <code class="code">sagemaker:WorkteamArn</code> condition key. The first shows how to use
+                    it with a valid IAM regex-variant of the work team ARN and the
+                        <code class="code">ArnLike</code> condition operator. The second shows how to use it with
+                    the <code class="code">ArnEquals</code> condition operator and the work team ARN.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "RestrictWorkteamType",
+            "Effect": "Deny",
+            "Action": "sagemaker:CreateLabelingJob",
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "ArnLike": <span>{</span>
+                    "sagemaker:WorkteamArn": "arn:aws:sagemaker:*:*:workteam/public-crowd/*"
+                }
+            }
+        }
+    ]
+}</code></pre>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "RestrictWorkteamType",
+            "Effect": "Deny",
+            "Action": "sagemaker:CreateLabelingJob",
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "ArnEquals": <span>{</span>
+                    "sagemaker:WorkteamArn": "<code class="replaceable">arn:aws:sagemaker:us-west-2:394669845002:workteam/public-crowd/default</code>"
+                }
+            }
+        }
+    ]
+}</code></pre>
+                <p> </p>
+             
+             
+                <h3 id="sagemaker-condition-kms">Enforce Encryption of Input
+                        Data</h3>
+                <p>The following policy restricts a user to specify a AWS KMS key to encrypt input
+                    data when creating training, hyperparameter tuning, and labeling jobs by using
+                    the <code class="code">sagemaker:VolumeKmsKey</code> condition key:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "EnforceEncryption",
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreateTrainingJob",
+                "sagemaker:CreateHyperParameterTuningJob",
+                "sagemaker:CreateLabelingJob",
+                "sagemaker:CreateFlowDefiniton"
+            ],
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "ArnEquals": <span>{</span>
+                    "sagemaker:VolumeKmsKey": "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+                }
+            }
+        }
+
+     ]
+}</code></pre>
+             
+             
+                <h3 id="sagemaker-condition-kms-nbi">Enforce Encryption of Notebook
+                        Instance Storage Volume</h3>
+                <p>The following policy restricts a user to specify an AWS KMS key to encrypt the
+                    attached storage volume when creating or updating a notebook instance by using
+                    the <code class="code">sagemaker:VolumeKmsKey</code> condition key:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "EnforceEncryption",
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreateNotebookInstance"
+            ],
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "ArnLike": <span>{</span>
+                    "sagemaker:VolumeKmsKey": "*key/volume-kms-key-12345"
+                }
+            }
+        }
+
+     ]
+}</code></pre>
+             
+             
+                <h3 id="sagemaker-condition-isolation">Enforce Network Isolation for
+                        Training Jobs</h3>
+                <p>The following policy restricts a user to enable network isolation when
+                    creating training jobs by using the <code class="code">sagemaker:NetworkIsolation</code>
+                    condition key:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "EnforceIsolation",
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreateTrainingJob",
+                "sagemaker:CreateHyperParameterTuningJob"
+            ],
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "Bool": <span>{</span>
+                    "sagemaker:NetworkIsolation": "true"
+                }
+            }
+        }
+    ]
+}</code></pre>
+             
+             
+                <h3 id="sagemaker-condition-instance">Enforce a Specific Instance Type
+                        for Training Jobs</h3>
+                <p>The following policy restricts a user to use a specific instance type when
+                    creating training jobs by using the <code class="code">sagemaker:InstanceTypes</code>
+                    condition key:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "EnforceInstanceType",
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreateTrainingJob",
+                "sagemaker:CreateHyperParameterTuningJob"
+            ],
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "ForAllValues:StringLike": <span>{</span>
+                    "sagemaker:InstanceTypes": ["ml.c5.*"]
+                }
+            }
+        }
+
+     ]
+}</code></pre>
+             
+             
+                <h3 id="sagemaker-condition-ei">Enforce a Specific EI Accelerator for
+                        Training Jobs</h3>
+                <p>The following policy restricts a user to use a specific elastic inference (EI)
+                    accelerator, if an accelerator is provided, when creating or updating notebook
+                    instances and when creating endpoint configurations by using the
+                        <code class="code">sagemaker:AcceleratorTypes</code> condition key:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "EnforceAcceleratorType",
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreateNotebookInstance",
+                "sagemaker:UpdateNotebookInstance",
+                "sagemaker:CreateEndpointConfig"
+            ],
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "ForAllValues:StringEquals": <span>{</span>
+                    "sagemaker:AcceleratorTypes": ["ml.eia1.medium"]
+                }
+            }
+        }
+
+     ]
+}</code></pre>
+             
+             
+                <h3 id="sagemaker-condition-nbi-lockdown">Enforce Disabling Internet Access
+                        and Root Access for Creating Notebook Instances</h3>
+                <p>You can disable both internet access and root access to notebook instances to
+                    help make them more secure. For information about controlling root access to a
+                    notebook instance, see <a href="nbi-root-access.html">Control root access to a SageMaker notebook instance</a>. for information about disabling internet
+                    access for a notebook instance, see <a href="appendix-notebook-and-internet-access.html">Connect a Notebook Instance in a
+                VPC to External Resources</a>.</p>
+                <p>The following policy requires a user to disable network access when creating
+                    instance, and disable root access when creating or updating a notebook instance. </p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "LockDownCreateNotebookInstance",
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreateNotebookInstance"
+            ],
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "StringEquals": <span>{</span>
+                    "sagemaker:DirectInternetAccess": "Disabled",
+                    "sagemaker:RootAccess": "Disabled"
+                },
+                "Null": <span>{</span>
+                  "sagemaker:VpcSubnets": "false",
+                  "sagemaker:VpcSecurityGroupIds": "false"
+                }
+            }
+        },
+        <span>{</span>
+            "Sid": "LockDownUpdateNotebookInstance",
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:UpdateNotebookInstance"
+            ],
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "StringEquals": <span>{</span>
+                    "sagemaker:RootAccess": "Disabled"
+                }
+            }
+        }
+     ]
+}</code></pre>
+             
+         
+            <h2 id="api-access-policy">Control Access to the SageMaker API by Using
+                    Identity-based Policies</h2>
+            <p>To control access to SageMaker API calls and calls to SageMaker hosted endpoints, use
+                identity-based IAM policies.</p>
+            <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="security_iam_id-based-policy-examples.html#api-access-policy-vpc">Restrict Access to SageMaker API and Runtime to
+                        Calls from Within Your VPC</a></li></ul></div>
+             
+                <h3 id="api-access-policy-vpc">Restrict Access to SageMaker API and Runtime to
+                        Calls from Within Your VPC</h3>
+                <p>If you set up an interface endpoint in your VPC, individuals outside the VPC
+                    can still connect to the SageMaker API and runtime over the internet unless you
+                    attach an IAM policy that restricts access to calls coming from within the VPC
+                    to all users and groups that have access to your SageMaker resources. For information
+                    about creating a VPC interface endpoint for the SageMaker API and runtime, see <a href="interface-vpc-endpoint.html">Connect to SageMaker Within your VPC Connect to SageMaker through a VPC interface
+                endpoint</a>.</p>
+                <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>If you apply an IAM policy similar to one of the following, users can't
+                        access the specified SageMaker APIs through the console.</p></div></div>
+                <p>To restrict access to only connections made from within your VPC, create an
+                    AWS Identity and Access Management policy that restricts access to only calls that come from within your
+                    VPC. Then add that policy to every AWS Identity and Access Management user, group, or role used to access
+                    the SageMaker API or runtime.</p>
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This policy allows connections only to callers within a subnet where you
+                        created an interface endpoint.</p></div></div>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Id": "api-example-1",
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "EnableAPIAccess",
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:*"
+            ],
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "StringEquals": <span>{</span>
+                    "aws:SourceVpc": "vpc-111bbaaa"
+                }
+            }
+        }
+    ]
+}</code></pre>
+                <p>If you want to restrict access to the API to only calls made using the
+                    interface endpoint, use the <code class="code">aws:SourceVpce</code> condition key instead of
+                        <code class="code">aws:SourceVpc</code>:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Id": "api-example-1",
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "EnableAPIAccess",
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreatePresignedNotebookInstanceUrl"
+            ],
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "StringEquals": <span>{</span>
+                    "aws:sourceVpce": [
+                        "vpce-111bbccc",
+                        "vpce-111bbddd"
+                    ]
+                }
+            }
+        }
+    ]
+}</code></pre>
+             
+         
+            <h2 id="api-ip-filter">Limit Access to SageMaker API and Runtime Calls by IP
+                    Address</h2>
+            <p>To allow access to SageMaker API calls and runtime invocations only from IP addresses
+                in a list that you specify, attach an IAM policy that denies access to the API
+                unless the call comes from an IP address in the list to every AWS Identity and Access Management user, group,
+                or role used to access the API or runtime. For information about creating IAM
+                policies, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html">Creating
+                    IAM Policies</a> in the <em>AWS Identity and Access Management User Guide</em>. To
+                specify the list of IP addresses that you want to have access to the API call, use
+                the <code class="code">IpAddress</code> condition operator and the <code class="code">aws:SourceIP</code>
+                condition context key. For information about IAM condition operators, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html">IAM JSON Policy Elements: Condition Operators</a> in the
+                    <em>AWS Identity and Access Management User Guide</em>. For information about IAM condition
+                context keys, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html">AWS Global Condition Context Keys</a>.</p>
+            <p>For example, the following policy allows access to the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html"><code class="code">CreateTrainingJob</code></a> only from IP addresses in the ranges
+                    <code class="code">192.0.2.0</code>-<code class="code">192.0.2.255</code> and
+                    <code class="code">203.0.113.0</code>-<code class="code">203.0.113.255</code>:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": "sagemaker:CreateTrainingJob",
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "IpAddress": <span>{</span>
+                    "aws:SourceIp": [
+                        "192.0.2.0/24",
+                        "203.0.113.0/24"
+                    ]
+                }
+            }
+        }
+    ]
+}</code></pre>
+         
+            <h2 id="nbi-ip-filter">Limit Access to a Notebook Instance by IP
+                    Address</h2>
+            <p>To allow access to a notebook instance only from IP addresses in a list that you
+                specify, attach an IAM policy that denies access to <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreatePresignedNotebookInstanceUrl.html"><code class="code">CreatePresignedNotebookInstanceUrl</code></a> unless the call comes
+                from an IP address in the list to every AWS Identity and Access Management user, group, or role used to
+                access the notebook instance. For information about creating IAM policies, see
+                    <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html">Creating IAM Policies</a> in the <em>AWS Identity and Access Management User Guide</em>.
+                To specify the list of IP addresses that you want to have access to the notebook
+                instance, use the <code class="code">IpAddress</code> condition operator and the
+                    <code class="code">aws:SourceIP</code> condition context key. For information about IAM
+                condition operators, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html">IAM JSON Policy Elements: Condition Operators</a> in the
+                    <em>AWS Identity and Access Management User Guide</em>. For information about IAM condition
+                context keys, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html">AWS Global Condition Context Keys</a>.</p>
+            <p>For example, the following policy allows access to a notebook instance only from
+                IP addresses in the ranges <code class="code">192.0.2.0</code>-<code class="code">192.0.2.255</code> and
+                    <code class="code">203.0.113.0</code>-<code class="code">203.0.113.255</code>:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": "sagemaker:CreatePresignedNotebookInstanceUrl",
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "IpAddress": <span>{</span>
+                    "aws:SourceIp": [
+                        "192.0.2.0/24",
+                        "203.0.113.0/24"
+                    ]
+                }
+            }
+        }
+    ]
+}</code></pre>
+            <p>The policy restricts access to both the call to
+                    <code class="code">CreatePresignedNotebookInstanceUrl</code> and to the URL that the call
+                returns. The policy also restricts access to opening a notebook instance in the
+                console and is enforced for every HTTP request and WebSocket frame that attempts to
+                connect to the notebook instance.</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Using this method to filter by IP address is incompatible when <a href="interface-vpc-endpoint.html">connecting to SageMaker through a VPC interface endpoint.</a>. For
+                    information about restricting access to a notebook instance when connecting
+                    through a VPC interface endpoint, see <a href="notebook-interface-endpoint.html">Connect to a Notebook Instance Through a
+                VPC Interface Endpoint</a>.</p></div></div>
+         
+            <h2 id="access-tag-policy">Control Access to SageMaker Resources by Using
+                    Tags</h2>
+            <p>Specify tags within an IAM policy to control access to groups of SageMaker resources.
+                Use tags to implement attribute based access control (ABAC). Using tags helps you
+                partition access to resources to specific groups of users. You can have one team
+                with access to one group of resources and a different team with access to another
+                set of resources. You can provide <code class="code">ResourceTag</code> conditions in IAM
+                policies to provide access for each group.</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Tag-based policies don't work to restrict the following API calls:</p><div class="itemizedlist">
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>DeleteImageVersion</p>
+                    </li><li class="listitem">
+                        <p>DescribeImageVersion</p>
+                    </li><li class="listitem">
+                        <p>ListAlgorithms</p>
+                    </li><li class="listitem">
+                        <p>ListCodeRepositories</p>
+                    </li><li class="listitem">
+                        <p>ListCompilationJobs</p>
+                    </li><li class="listitem">
+                        <p>ListEndpointConfigs</p>
+                    </li><li class="listitem">
+                        <p>ListEndpoints</p>
+                    </li><li class="listitem">
+                        <p>ListFlowDefinitions</p>
+                    </li><li class="listitem">
+                        <p>ListHumanTaskUis</p>
+                    </li><li class="listitem">
+                        <p>ListHyperparameterTuningJobs</p>
+                    </li><li class="listitem">
+                        <p>ListLabelingJobs</p>
+                    </li><li class="listitem">
+                        <p>ListLabelingJobsForWorkteam</p>
+                    </li><li class="listitem">
+                        <p>ListModelPackages</p>
+                    </li><li class="listitem">
+                        <p>ListModels</p>
+                    </li><li class="listitem">
+                        <p>ListNotebookInstanceLifecycleConfigs</p>
+                    </li><li class="listitem">
+                        <p>ListNotebookInstances</p>
+                    </li><li class="listitem">
+                        <p>ListSubscribedWorkteams</p>
+                    </li><li class="listitem">
+                        <p>ListTags</p>
+                    </li><li class="listitem">
+                        <p>ListProcessingJobs</p>
+                    </li><li class="listitem">
+                        <p>ListTrainingJobs</p>
+                    </li><li class="listitem">
+                        <p>ListTrainingJobsForHyperParameterTuningJob</p>
+                    </li><li class="listitem">
+                        <p>ListTransformJobs</p>
+                    </li><li class="listitem">
+                        <p>ListWorkteams</p>
+                    </li><li class="listitem">
+                        <p>Search</p>
+                    </li></ul></div></div></div>
+
+            <p>A simple example can help you understand how you can use tags to partition
+                resources. Suppose that you've defined two different IAM groups, named
+                    <code class="code">DevTeam1</code> and <code class="code">DevTeam2</code>, in your AWS account. You've
+                created 10 notebook instances as well. You're using 5 of the notebook instances for
+                one project. You're using the other 5 for a second project. You can provide
+                    <code class="code">DevTeam1</code> with permissions to make API calls on the notebook
+                instances that you're using for the first project. You can provide
+                    <code class="code">DevTeam2</code> to make API calls on notebook instances used for the
+                second project.</p>
+            <p>The following procedure provides a simple example that helps you understand the
+                concept of adding tags. You can use it to implement the solution described in the
+                preceding paragraph.</p>
+            <div class="procedure"><h6>To control access to API calls (example)</h6><ol><li>
+                    <p>Add a tag with the key <code class="code">Project</code> and value <code class="code">A</code> to
+                        the notebook instances used for the first project. For information about
+                        adding tags to SageMaker resources, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AddTags.html"><code class="code">AddTags</code></a>. </p>
+                </li><li>
+                    <p>Add a tag with the key <code class="code">Project</code> and value <code class="code">B</code> to
+                        the notebook instances used for the second project.</p>
+                </li><li>
+                    <p>Create an IAM policy with a <code class="code">ResourceTag</code> condition that
+                        denies access to the notebook instances used for the second project, and
+                        attach that policy to <code class="code">DevTeam1</code>. The following is an example of
+                        a policy that denies all API calls on any notebook instance that has a tag
+                        with a key of <code class="code">Project</code> and a value of <code class="code">B</code>:</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Effect": "Allow",
+      "Action": "sagemaker:*",
+      "Resource": "*"
+    },
+    <span>{</span>
+      "Effect": "Deny",
+      "Action": "sagemaker:*",
+      "Resource": "*",
+      "Condition": <span>{</span>
+        "StringEquals": <span>{</span>
+          "sagemaker:ResourceTag/Project": "B"
+        }
+      }
+    },
+    <span>{</span>
+      "Effect": "Deny",
+      "Action": [
+        "sagemaker:AddTags",
+        "sagemaker:DeleteTags"
+      ],
+      "Resource": "*"
+    }
+  ]
+}</code></pre>
+                    <p>For information about creating IAM policies and attaching them to
+                        identities, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_controlling.html">Controlling Access Using Policies</a> in the <em>AWS Identity and Access Management
+                            User Guide</em>.</p>
+                </li><li>
+                    <p>Create an IAM policy with a <code class="code">ResourceTag</code> condition that
+                        denies access to the notebook instances used for the first project, and
+                        attach that policy to <code class="code">DevTeam2</code>. The following is an example of
+                        a policy that denies all API calls on any notebook instance that has a tag
+                        with a key of <code class="code">Project</code> and a value of <code class="code">A</code>:</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Effect": "Allow",
+      "Action": "sagemaker:*",
+      "Resource": "*"
+    },
+    <span>{</span>
+      "Effect": "Deny",
+      "Action": "sagemaker:*",
+      "Resource": "*",
+      "Condition": <span>{</span>
+        "StringEquals": <span>{</span>
+          "sagemaker:ResourceTag/Project": "A"
+        }
+      }
+    },
+    <span>{</span>
+      "Effect": "Deny",
+      "Action": [
+        "sagemaker:AddTags",
+        "sagemaker:DeleteTags"
+      ],
+      "Resource": "*"
+    }
+  ]
+}</code></pre>
+                </li></ol></div>
+
+         
+            <h2 id="grant-tagging-permissions">Provide Permissions for Tagging SageMaker
+                    Resources Upon Creation</h2>
+            <p>There are many Amazon SageMaker operations that let your users specify tags when you
+                create a resource. Use resource tags to implement attributed based access control
+                (ABAC). Using tags helps you partition access to resources to specific groups of
+                users. You can have one team with access to one group of resources and a different
+                team with access to another set of resources. You can provide
+                    <code class="code">ResourceTag</code> conditions in IAM policies to provide access for each
+                group.</p>
+            <p>You must give your users access to the permissions that they're using to create
+                the resource. For users that need to create a processing job, you must give them
+                access to <code class="code">sagemaker:CreateProcessingJob</code> within the policy. If your
+                users are tagging the resources that they create, you must also give tagging
+                permissions.</p>
+            <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>You can only give your users permissions to add tags to resources that they
+                    create. They can't add tags to resources that have already been created.</p><p>The following are operations where you can't give them resources to add
+                    tags:</p><div class="itemizedlist">
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>DeleteImageVersion</p>
+                    </li><li class="listitem">
+                        <p>DescribeImageVersion</p>
+                    </li><li class="listitem">
+                        <p>ListAlgorithms</p>
+                    </li><li class="listitem">
+                        <p>ListCodeRepositories</p>
+                    </li><li class="listitem">
+                        <p>ListCompilationJobs</p>
+                    </li><li class="listitem">
+                        <p>ListEndpointConfigs</p>
+                    </li><li class="listitem">
+                        <p>ListEndpoints</p>
+                    </li><li class="listitem">
+                        <p>ListFlowDefinitions</p>
+                    </li><li class="listitem">
+                        <p>ListHumanTaskUis</p>
+                    </li><li class="listitem">
+                        <p>ListHyperparameterTuningJobs</p>
+                    </li><li class="listitem">
+                        <p>ListLabelingJobs</p>
+                    </li><li class="listitem">
+                        <p>ListLabelingJobsForWorkteam</p>
+                    </li><li class="listitem">
+                        <p>ListModelPackages</p>
+                    </li><li class="listitem">
+                        <p>ListModels</p>
+                    </li><li class="listitem">
+                        <p>ListNotebookInstanceLifecycleConfigs</p>
+                    </li><li class="listitem">
+                        <p>ListNotebookInstances</p>
+                    </li><li class="listitem">
+                        <p>ListSubscribedWorkteams</p>
+                    </li><li class="listitem">
+                        <p>ListTags</p>
+                    </li><li class="listitem">
+                        <p>ListProcessingJobs</p>
+                    </li><li class="listitem">
+                        <p>ListTrainingJobs</p>
+                    </li><li class="listitem">
+                        <p>ListTrainingJobsForHyperParameterTuningJob</p>
+                    </li><li class="listitem">
+                        <p>ListTransformJobs</p>
+                    </li><li class="listitem">
+                        <p>ListWorkteams</p>
+                    </li><li class="listitem">
+                        <p>Search</p>
+                    </li></ul></div></div></div>
+            <p>You can control access to the operations that the user can tag or the tags that
+                they can use. You can specify permissions for the following use cases:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Adding permissions to tag the resources created using any operation and
+                        permissions to use any tag</p>
+                </li><li class="listitem">
+                    <p>Adding permissions to tag the resources created using specific operations
+                        and permissions to use any tag</p>
+                </li><li class="listitem">
+                    <p>Adding permissions to tag the resources created using any operation and
+                        permissions to specific tags</p>
+                </li><li class="listitem">
+                    <p>Adding permissions to tag the resources created using specific operations
+                        and permissions to specific tags</p>
+                </li></ul></div>
+            <awsdocs-tabs><dl style="display: none">
+                <dt>Permissions for any operation and any tag</dt><dd tab-id="permissions-for-any-operation-and-any-tag">
+                        <p>Add the following statement to an IAM policy to grant your users
+                            permissions to add any tag for any operation.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json ">
+<span>{</span>
+    "Statement": [
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:Create*"
+            ],
+            "Resource": "*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:AddTags"
+            ],
+            "Resource": "arn:aws:sagemaker:region:account:*/*",
+            "Condition": <span>{</span>
+                "Null": <span>{</span>
+                    "sagemaker:TaggingAction" : "false"
+                }
+            }
+        }
+    ]
+}                           
+                       </code></pre>
+                    </dd>
+                <dt>Permissions for a specific operation with specific tags</dt><dd tab-id="permissions-for-a-specific-operation-with-specific-tags">
+                        <p>The following statement gives the user permission to add the
+                                <code class="code">cc123</code> tag to resources created using the
+                                <code class="code">CreateModel</code> operation. You can modify the statement to
+                            suit your own needs and add it to the IAM policy attached to the role
+                            of your users.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json ">
+<span>{</span>
+    "Statement": [
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreateModel"
+            ],
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "StringEquals": <span>{</span>
+                    "aws:RequestTag/cost-center": [ "cc123" ]
+                },
+                "ForAnyValue:StringEquals": <span>{</span>
+                    "aws:TagKeys": [ "purpose" ]
+                }
+            }
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:AddTags"
+            ],
+            "Resource": "arn:aws:sagemaker:region:account:*/*",
+            "Condition": <span>{</span>
+                "Null": <span>{</span>
+                    "sagemaker:TaggingAction" : "false"
+                }
+            }
+        }
+    ]
+}
+                       </code></pre>
+                    </dd>
+                <dt>Permissions for a specific operation and any tag</dt><dd tab-id="permissions-for-a-specific-operation-and-any-tag">
+                        <p>The following statement gives your users permissions to add any tag to
+                            resources created using the <code class="code">CreateModel</code> operation.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json ">
+<span>{</span>
+    "Statement": [
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreateModel"
+            ],
+            "Resource": "*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:AddTags"
+            ],
+            "Resource": "arn:aws:sagemaker:region:account:model/*",
+            "Condition": <span>{</span>
+                "String": <span>{</span>
+                    "sagemaker:TaggingAction" : [ "CreateModel" ]
+                }
+            }
+        }
+    ]
+}                        
+                       </code></pre>
+                    </dd>
+            </dl></awsdocs-tabs>
+
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./security_iam_service-with-iam.html">How Amazon SageMaker Works with
+                IAM</div><div id="next" class="next-link" accesskey="n" href="./security-confused-deputy-prevention.html">Cross-Service Confused Deputy Prevention</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/security_iam_id-based-policy-examples.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/security_iam_id-based-policy-examples.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

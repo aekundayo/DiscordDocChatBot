@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Use external resources in Amazon SageMaker Studio Lab - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="studio-lab-use-external" /><meta name="default_state" content="studio-lab-use-external" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="studio-lab-use-external.html" /><meta name="description" content="Describes how to integrate external resources in Amazon SageMaker Studio Lab, including GitHub and Amazon S3." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="studio-lab-use-external.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-lab-use-external.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-lab-use-external.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-lab-use-external.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-lab-use-external.html" hreflang="de" /><link rel="alternative" href="studio-lab-use-external.html" hreflang="en-us" /><link rel="alternative" href="studio-lab-use-external.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-lab-use-external.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-lab-use-external.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-lab-use-external.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-lab-use-external.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-lab-use-external.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-lab-use-external.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-lab-use-external.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-lab-use-external.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-lab-use-external.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-lab-use-external.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-lab-use-external.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-lab-use-external.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/studio-lab-use-external.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/studio-lab-use-external.html" hreflang="zh-tw" /><link rel="alternative" href="studio-lab-use-external.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Use external resources in Amazon SageMaker Studio Lab" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Use external resources in Amazon SageMaker Studio Lab - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-lab-use-external" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-lab-use-external.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-lab-use-external.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-lab-use-external.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use machine learning environments offered by SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/machine-learning-environments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Studio Lab",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-lab.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use the Amazon SageMaker Studio Lab project runtime",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-lab-use.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Use external resources in Amazon SageMaker Studio Lab",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-lab-use.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-lab-use-external" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="studio-lab-use-external.html#studio-lab-use-external-clone-github">Use GitHub resources</a><a href="studio-lab-use-external.html#studio-lab-use-external-add-button">Add an Open in
+          Studio Lab button to your notebook</a><a href="studio-lab-use-external.html#studio-lab-use-external-import">Import files from your computer</a><a href="studio-lab-use-external.html#studio-lab-use-external-s3">Connect to Amazon S3</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="studio-lab-use-external">Use external resources in Amazon SageMaker Studio Lab</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>With Amazon SageMaker Studio Lab, you can integrate external resources, such as Jupyter notebooks and data,
+    from Git repositories and Amazon S3. You can also add an <b>Open in Studio Lab</b> button
+    to your GitHub repo and notebooks. This button lets you clone your notebooks directly from
+    Studio Lab.</p><p>The following topics show how to integrate external resources.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="studio-lab-use-external.html#studio-lab-use-external-clone-github">Use GitHub resources</a></li><li><a href="studio-lab-use-external.html#studio-lab-use-external-add-button">Add an Open in
+          Studio Lab button to your notebook</a></li><li><a href="studio-lab-use-external.html#studio-lab-use-external-import">Import files from your computer</a></li><li><a href="studio-lab-use-external.html#studio-lab-use-external-s3">Connect to Amazon S3</a></li></ul></div>
+    <h2 id="studio-lab-use-external-clone-github">Use GitHub resources</h2>
+    <p>Studio Lab offers integration with GitHub. With this integration, you can clone notebooks and
+      repositories directly to your Studio Lab project. </p>
+    <p>The following topics give information about how to use GitHub resources with
+      Studio Lab.</p>
+     
+      <h3 id="studio-lab-use-external-clone-examples">Studio Lab sample notebooks</h3>
+      <p>To get started with a repository of sample notebooks tailored for Studio Lab, see <a href="https://github.com/aws/studio-lab-examples#sagemaker-studio-lab-sample-notebooks" rel="noopener noreferrer" target="_blank"><span>Studio Lab Sample Notebooks</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      <p>This repository provides notebooks for the following use cases and others.</p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>Computer vision</p>
+        </li><li class="listitem">
+          <p>Connecting to AWS</p>
+        </li><li class="listitem">
+          <p>Creating custom environments</p>
+        </li><li class="listitem">
+          <p>Geospatial data analysis</p>
+        </li><li class="listitem">
+          <p>Natural language processing</p>
+        </li><li class="listitem">
+          <p>Using R</p>
+        </li></ul></div>
+     
+     
+      <h3 id="studio-lab-use-external-clone-repo">Clone a GitHub repo</h3>
+      <p>To clone a GitHub repo to your Studio Lab project, follow these steps. </p>
+      <div class="procedure"><ol><li>
+          <p>Start your Studio Lab project runtime. For more information on launching Studio Lab
+            project runtime, see <a href="studio-lab-manage-runtime.html#studio-lab-manage-runtime-start">Start your project runtime</a>.
+          </p>
+        </li><li>
+          <p>In Studio Lab, choose the <b>File Browser</b> icon (<span class="inlinemediaobject">
+               
+                <img src="../../../images/sagemaker/latest/dg/images/studio/icons/folder.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" />
+               
+            </span>) on the left menu, so that the <b>File Browser</b>
+            panel shows on the left. </p>
+        </li><li>
+          <p>Navigate to your user directory by choosing the file icon beneath the file search
+            bar. </p>
+        </li><li>
+          <p>Select the <b>Git</b> icon (<span class="inlinemediaobject">
+               
+                <img src="../../../images/sagemaker/latest/dg/images/studio/icons/git.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" />
+               
+            </span>) from the left menu to open a new dropdown menu. </p>
+        </li><li>
+          <p>Choose <b>Clone a Repository</b>. </p>
+        </li><li>
+          <p>Paste the repository's URL under <b>Git repository URL (.git)</b>.
+          </p>
+        </li><li>
+          <p>Select <b>Clone</b>. </p>
+        </li></ol></div>
+     
+     
+      <h3 id="studio-lab-use-external-clone-individual">Clone individual notebooks from
+          GitHub</h3>
+      <p>To open a notebook in Studio Lab, you must have access to the repo that the notebook is in.
+        The following examples describe Studio Lab permission-related behavior in various
+        situations.</p>
+      <div class="itemizedlist">
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>If a repo is public, you can automatically clone the notebook into your project from
+            the Studio Lab preview page.</p>
+        </li><li class="listitem">
+          <p>If a repo is private, you are prompted to sign in to GitHub from the Studio Lab preview
+            page. If you have access to a private repo, you can clone the notebook into your
+            project.</p>
+        </li><li class="listitem">
+          <p>If you don't have access to a private repo, you cannot clone the notebook from the
+            Studio Lab preview page.</p>
+        </li></ul></div>
+      <p>The following sections show two options for you to copy a GitHub notebook in your
+        Studio Lab project. These options depend on whether the notebook has an <b>Open in
+          Studio Lab</b> button. </p>
+      
+       
+        <h4 id="studio-lab-use-external-clone-individual-button">Option 1: Copy notebook
+            with an <b>Open in Studio Lab</b> button</h4>
+        <p>The following procedure shows how to copy a notebook that has an <b>Open in
+            Studio Lab</b> button. If you want to add this button to your notebook, see <a href="studio-lab-use-external.html#studio-lab-use-external-add-button">Add an Open in
+          Studio Lab button to your notebook</a>.</p>
+        <div class="procedure"><ol><li>
+            <p>Sign in to Studio Lab following the steps in <a href="studio-lab-onboard.html#studio-lab-onboard-signin">Sign in to Studio Lab</a>.</p>
+          </li><li>
+            <p>In a new browser tab, navigate to the GitHub notebook that you want to clone.
+            </p>
+          </li><li>
+            <p>In the notebook, select the <b>Open in Studio Lab</b> button to open a
+              new page in Studio Lab with a preview of the notebook.</p>
+          </li><li>
+            <p>If your project runtime is not already running, start it by choosing the
+                <b>Start runtime</b> button at the top of the preview page. Wait for
+              the runtime to start before proceeding to the next step.</p>
+          </li><li>
+            <p>After your project runtime has started, select <b>Copy to project</b>
+              to open your project runtime in a new browser tab. </p>
+          </li><li>
+            <p>In the <b>Copy from GitHub?</b> dialog box, select <b>Copy
+                notebook only</b>. This copies the notebook file to your project.</p>
+          </li></ol></div>
+       
+       
+        <h4 id="studio-lab-use-external-clone-individual-general">Option 2: Clone any
+            GitHub notebook</h4>
+        <p>The following procedure shows how to copy any notebook from GitHub. </p>
+        <div class="procedure"><ol><li>
+            <p>Navigate to the notebook in GitHub. </p>
+          </li><li>
+            <p>In the browser’s address bar, modify the notebook URL, as follows.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"># Original URL
+<code class="code" copy="true">https://github.com/<code class="replaceable">&lt;PATH_TO_NOTEBOOK&gt;</code></code>
+
+# Modified URL 
+<code class="code" copy="true">https://studiolab.sagemaker.aws/import/github/<code class="replaceable">&lt;PATH_TO_NOTEBOOK&gt;</code></code></code></pre>
+          </li><li>
+            <p>Navigate to the modified URL. This opens a preview of the notebook in Studio Lab.
+            </p>
+          </li><li>
+            <p>If your project runtime is not already running, start it by choosing the
+                <b>Start runtime</b> button at the top of the preview page. Wait for
+              the runtime to start before proceeding to the next step. </p>
+          </li><li>
+            <p>After your project runtime has started, select <b>Copy to project</b>
+              to open your project runtime in a new browser tab. </p>
+          </li><li>
+            <p>In the <b>Copy from GitHub?</b> dialog box, select <b>Copy
+                notebook only</b> to copy the notebook file to your project.</p>
+          </li></ol></div>
+       
+     
+   
+    <h2 id="studio-lab-use-external-add-button">Add an <b>Open in
+          Studio Lab</b> button to your notebook</h2>
+    <p>When you add the <b>Open in Studio Lab</b> button to your notebooks, others can
+      clone your notebooks or repositories directly to their Studio Lab projects. If you are sharing
+      your notebook within a public GitHub repository, your content will be publicly readable. Do
+      not share private content, such as AWS access keys or AWS Identity and Access Management credentials, in your
+      notebook.</p>
+    <p>To add the functional <b>Open in Studio Lab</b> button to your Jupyter notebook
+      or repository, add the following markdown to the top of your notebook or repository. </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">[![Open In SageMaker Studio Lab](https://studiolab.sagemaker.aws/studiolab.svg)](https://studiolab.sagemaker.aws/import/github/<code class="replaceable">&lt;PATH_TO_YOUR_NOTEBOOK_ON_GITHUB&gt;</code>)</code></pre>
+   
+    <h2 id="studio-lab-use-external-import">Import files from your computer</h2>
+    <p>The following steps show how to import files from your computer to your Studio Lab project.  </p>
+    <div class="procedure"><ol><li>
+        <p>Open the Studio Lab project runtime. </p>
+      </li><li>
+        <p>Open the <b>File Browser</b> panel. </p>
+      </li><li>
+        <p>In the actions bar of the <b>File Browser</b> panel, select the
+            <b>Upload Files</b> button. </p>
+      </li><li>
+        <p>Select the files that you want to upload from your local machine. </p>
+      </li><li>
+        <p>Select <b>Open</b>. </p>
+      </li></ol></div>
+    
+    <p></p>
+    <p>Alternatively, you can drag and drop files from your computer into the <b>File
+        Browser</b> panel. </p>
+   
+    <h2 id="studio-lab-use-external-s3">Connect to Amazon S3</h2>
+    <p>The AWS CLI enables AWS integration in your Studio Lab project. With this integration, you
+      can pull resources from Amazon S3 to use with your Jupyter notebooks.</p>
+    <p>To use AWS CLI with Studio Lab, complete the following steps. For a notebook that outlines this
+      integration, see <a href="https://github.com/aws/studio-lab-examples/blob/main/connect-to-aws/Access_AWS_from_Studio_Lab.ipynb" rel="noopener noreferrer" target="_blank"><span>Using Studio Lab with AWS Resources</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+    <div class="procedure"><ol><li>
+        <p>Install the AWS CLI following the steps in  <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">Installing or updating the
+            latest version of the AWS CLI</a>. </p>
+      </li><li>
+        <p>Configure your AWS credentials by following the steps in  <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html">Quick
+            setup</a>. The role for your AWS account must have permissions to access the Amazon S3
+          bucket that you are copying data from. </p>
+      </li><li>
+        <p>From your Jupyter notebook, clone resources from the Amazon S3 bucket, as needed. The
+          following command shows how to clone all resources from an Amazon S3 path to your project. For
+          more information, see the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3/cp.html" rel="noopener noreferrer" target="_blank"><span>AWS CLI Command Reference</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">!aws s3 cp s3://<code class="replaceable">&lt;BUCKET_NAME&gt;</code>/<code class="replaceable">&lt;PATH_TO_RESOURCES&gt;</code>/ <code class="replaceable">&lt;PROJECT_DESTINATION_PATH&gt;</code>/ --recursive</code></pre>
+      </li></ol></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./studio-lab-use-manage.html">Manage your environment</div><div id="next" class="next-link" accesskey="n" href="./studio-lab-use-diff.html">Get notebook differences</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-lab-use-external.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-lab-use-external.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

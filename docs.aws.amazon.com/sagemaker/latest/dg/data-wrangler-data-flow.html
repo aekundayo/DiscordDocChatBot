@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Create and Use a Data Wrangler Flow - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="data-wrangler-data-flow" /><meta name="default_state" content="data-wrangler-data-flow" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="data-wrangler-data-flow.html" /><meta name="description" content="Use a Data Wrangler data flow to connect your datasets, transformations, and analyses into a single pipeline." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="data-wrangler-data-flow.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/data-wrangler-data-flow.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/data-wrangler-data-flow.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/data-wrangler-data-flow.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/data-wrangler-data-flow.html" hreflang="de" /><link rel="alternative" href="data-wrangler-data-flow.html" hreflang="en-us" /><link rel="alternative" href="data-wrangler-data-flow.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/data-wrangler-data-flow.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/data-wrangler-data-flow.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/data-wrangler-data-flow.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/data-wrangler-data-flow.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/data-wrangler-data-flow.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/data-wrangler-data-flow.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/data-wrangler-data-flow.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/data-wrangler-data-flow.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/data-wrangler-data-flow.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/data-wrangler-data-flow.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/data-wrangler-data-flow.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/data-wrangler-data-flow.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/data-wrangler-data-flow.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/data-wrangler-data-flow.html" hreflang="zh-tw" /><link rel="alternative" href="data-wrangler-data-flow.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Create and Use a Data Wrangler Flow" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Create and Use a Data Wrangler Flow - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#data-wrangler-data-flow" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/data-wrangler-data-flow.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/data-wrangler-data-flow.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/data-wrangler-data-flow.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Prepare data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-prep.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Prepare ML Data with Amazon SageMaker Data Wrangler",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-wrangler.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Create and Use a Data Wrangler Flow",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-wrangler.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#data-wrangler-data-flow" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="data-wrangler-data-flow.html#data-wrangler-data-flow-instances">Instances</a><a href="data-wrangler-data-flow.html#data-wrangler-data-flow-ui">The Data Flow UI</a><a href="data-wrangler-data-flow.html#data-wrangler-data-flow-add-step">Add a Step to Your Data Flow</a><a href="data-wrangler-data-flow.html#data-wrangler-data-flow-delete-step">Delete a Step from Your Data
+                Flow</a><a href="data-wrangler-data-flow.html#data-wrangler-data-flow-edit-step">Edit a Step in Your Data Wrangler
+                Flow</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="data-wrangler-data-flow">Create and Use a Data Wrangler Flow</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Use an Amazon SageMaker Data Wrangler flow, or a <em>data flow</em>, to create and
+        modify a data preparation pipeline. The data flow connects the datasets, transformations,
+        and analyses, or <em>steps</em>, you create and can be used to
+        define your pipeline. </p>
+        <h2 id="data-wrangler-data-flow-instances">Instances</h2>
+        <p>When you create a Data Wrangler flow in Amazon SageMaker Studio, Data Wrangler uses an Amazon EC2 instance to run the
+            analyses and transformations in your flow. By default, Data Wrangler uses the m5.4xlarge
+            instance. m5 instances are general purpose instances that provide a balance between
+            compute and memory. You can use m5 instances for a variety of compute workloads.</p>
+        <p>Data Wrangler also gives you the option of using r5 instances. r5 instances are designed to
+            deliver fast performance that processes large datasets in memory.</p>
+        <p>We recommend that you choose an instance that is best optimized around your workloads.
+            For example, the r5.8xlarge might have a higher price than the m5.4xlarge, but the
+            r5.8xlarge might be better optimized for your workloads. With better optimized
+            instances, you can run your data flows in less time at lower cost.</p>
+        <p>The following table shows the instances that you can use to run your Data Wrangler flow.</p>
+        <div class="table-container" id="data-wrangler-instance-table"><div class="table-contents"><table id="w714aac17c21c28b5c11"><thead>
+                    <tr>
+                        <th>Standard Instances</th>
+                        <th>vCPU</th>
+                        <th>Memory</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1">ml.m5.4xlarge</td>
+                        <td tabindex="-1">16</td>
+                        <td tabindex="-1">64 GiB</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">ml.m5.8xlarge</td>
+                        <td tabindex="-1">32</td>
+                        <td tabindex="-1">128 GiB</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">ml.m5.16xlarge</td>
+                        <td tabindex="-1">64</td>
+                        <td tabindex="-1">
+                            <p>256 GiB</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">ml.m5.24xlarge</td>
+                        <td tabindex="-1">96</td>
+                        <td tabindex="-1">384 GiB</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">r5.4xlarge</td>
+                        <td tabindex="-1">16</td>
+                        <td tabindex="-1">128 GiB</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">r5.8xlarge</td>
+                        <td tabindex="-1">32</td>
+                        <td tabindex="-1">256 GiB</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">r5.24xlarge</td>
+                        <td tabindex="-1">96</td>
+                        <td tabindex="-1">768 GiB</td>
+                    </tr>
+                </table></div></div>
+        <p>For more information about r5 instances, see <a href="http://aws.amazon.com/ec2/instance-types/r5/" rel="noopener noreferrer" target="_blank"><span>Amazon EC2 R5 Instances</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. For
+            more information about m5 instances, see <a href="http://aws.amazon.com/ec2/instance-types/m5/" rel="noopener noreferrer" target="_blank"><span>Amazon EC2 M5 Instances</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        <p>Each Data Wrangler flow has an Amazon EC2 instance associated with it. You might have multiple flows
+            that are associated with a single instance.</p>
+        <p>For each flow file, you can seamlessly switch the instance type. If you switch the
+            instance type, the instance that you used to run the flow continues to run.</p>
+
+
+        <div class="procedure"><p>To switch the instance type of your flow, do the following.</p><ol><li>
+                <p>Choose the home icon, <span class="inlinemediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/studio/icons/running-terminals-kernels.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" />
+                     
+                </span>.</p>
+            </li><li>
+                <p>Navigate to the instance that you're using and choose it.</p>
+            </li><li>
+                <p>Choose the instance type that you want to use.</p>
+                <div class="mediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/data-wrangler-instance-switching-list-instances.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+                     
+                </div>
+            </li><li>
+                <p>Choose <b>Save</b>.</p>
+            </li></ol></div>
+        <p>You are charged for all running instances. To avoid incurring additional charges, shut
+            down the instances that you aren't using manually. To shut down an instance that is
+            running, use the following procedure. </p>
+        <div class="procedure"><p>To shut down a running instance.</p><ol><li>
+                <p>Choose the instance icon. The following image shows you where to select the
+                        <b>RUNNING INSTANCES</b> icon.</p>
+                <div class="mediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/instance-switching-running-instances.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                        To see the instances that are running, choose the icon highlighted in&#xA;                            the red text box on the left in the preceding image.&#xA;                    " style="max-width:90%" />
+                     
+                     
+                </div>
+            </li><li>
+                <p>Choose <b>Shut down</b> next to the instance that you want to
+                    shut down.</p>
+            </li></ol></div>
+        <p>If you shut down an instance used to run a flow, you temporarily can't access the
+            flow. If you get an error while attempting to open the flow running an instance you
+            previously shut down, wait for 5 minutes and try opening it again.</p>
+
+        <p>When you export your data flow to a location such as Amazon Simple Storage Service or Amazon SageMaker Feature Store, Data Wrangler runs
+            an Amazon SageMaker processing job. You can use one of the following instances for the
+            processing job. For more information on exporting your data, see <a href="data-wrangler-data-export.html">Export</a>.</p>
+
+        <div class="table-container" id="data-wrangler-instance-table"><div class="table-contents"><table id="w714aac17c21c28b5c29"><thead>
+                    <tr>
+                        <th>Standard Instances</th>
+                        <th>vCPU</th>
+                        <th>Memory</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1">ml.m5.4xlarge</td>
+                        <td tabindex="-1">16</td>
+                        <td tabindex="-1">64 GiB</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">ml.m5.12xlarge</td>
+                        <td tabindex="-1">48</td>
+                        <td tabindex="-1">
+                            <p>192 GiB</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">ml.m5.24xlarge</td>
+                        <td tabindex="-1">96</td>
+                        <td tabindex="-1">384 GiB</td>
+                    </tr>
+                </table></div></div>
+        <p>For more information about the cost per hour for using the available instance types,
+            see <a href="http://aws.amazon.com/sagemaker/pricing/" rel="noopener noreferrer" target="_blank"><span>SageMaker Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p>
+
+
+     
+        <h2 id="data-wrangler-data-flow-ui">The Data Flow UI</h2>
+        <p>When you import a dataset, the original dataset appears on the data flow and is named
+                <b>Source</b>. If you turned on sampling when you imported your data,
+            this dataset is named <b>Source - sampled</b>. Data Wrangler automatically infers
+            the types of each column in your dataset and creates a new dataframe named
+                <b>Data types</b>. You can select this frame to update the inferred
+            data types. You see results similar to those shown in the following image after you
+            upload a single dataset: </p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/dataflow-after-import.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+             
+        </div>
+        <p>Each time you add a transform step, you create a new dataframe. When multiple
+            transform steps (other than <b>Join</b> or
+                <b>Concatenate</b>) are added to the same dataset, they are stacked. </p>
+        <p><b>Join</b> and <b>Concatenate</b> create standalone steps
+            that contain the new joined or concatenated dataset. </p>
+        <p>The following diagram shows a data flow with a join between two datasets, as well as
+            two stacks of steps. The first stack (<b>Steps (2)</b>) adds two
+            transforms to the type inferred in the <b>Data types</b> dataset. The
+                <em>downstream</em> stack, or the stack to the right, adds
+            transforms to the dataset resulting from a join named <b>demo-join</b>. </p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/data-flow-steps.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+             
+        </div>
+        <p>The small, gray box in the bottom right corner of the data flow provides an overview
+            of number of stacks and steps in the flow and the layout of the flow. The lighter box
+            inside the gray box indicates the steps that are within the UI view. You can use this
+            box to see sections of your data flow that fall outside of the UI view. Use the fit
+            screen icon (<span class="inlinemediaobject">
+                 
+                    <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/updates/fit-screen.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" style="max-width:20%" />
+                 
+            </span>) to fit all steps and datasets into your UI view. </p>
+        <p>The bottom left navigation bar includes icons that you can use to zoom in (<span class="inlinemediaobject">
+                 
+                    <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/updates/zoom-in.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" style="max-width:20%" />
+                 
+            </span>) and out (<span class="inlinemediaobject">
+                 
+                    <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/updates/zoom-out.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" style="max-width:20%" />
+                 
+            </span>) of your data flow and resize the data flow to fit the screen (<span class="inlinemediaobject">
+                 
+                    <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/updates/fit-screen.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" style="max-width:20%" />
+                 
+            </span>) . Use the lock icon (<span class="inlinemediaobject">
+                 
+                    <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/updates/lock-nodes.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" style="max-width:20%" />
+                 
+            </span>) to lock and unlock the location of each step on the screen. </p>
+        <p></p>
+     
+        <h2 id="data-wrangler-data-flow-add-step">Add a Step to Your Data Flow</h2>
+        <p>Select <b>+</b> next to any dataset or previously added step and then
+            select one of the following options:</p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><b>Edit data types</b> (For a <b>Data types</b>
+                    step only): If you have not added any transforms to a <b>Data
+                        types</b> step, you can select <b>Edit data types</b>
+                    to update the data types Data Wrangler inferred when importing your dataset. </p>
+            </li><li class="listitem">
+                <p><b>Add transform</b>: Adds a new transform step. See <a href="data-wrangler-transform.html">Transform Data</a>
+                    to learn more about the data transformations you can add. </p>
+            </li><li class="listitem">
+                <p><b>Add analysis</b>: Adds an analysis. You can use this option
+                    to analyze your data at any point in the data flow. When you add one or more
+                    analyses to a step, an analysis icon (<span class="inlinemediaobject">
+                         
+                            <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/updates/analysis-icon.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" style="max-width:3%" />
+                         
+                    </span>) appears on that step. See <a href="data-wrangler-analyses.html">Analyze and Visualize</a> to
+                    learn more about the analyses you can add. </p>
+            </li><li class="listitem">
+                <p><b>Join</b>: Joins two datasets and adds the resulting dataset
+                    to the data flow. To learn more, see <a href="data-wrangler-transform.html#data-wrangler-transform-join">Join Datasets</a>.</p>
+            </li><li class="listitem">
+                <p><b>Concatenate</b>: Concatenates two datasets and adds the
+                    resulting dataset to the data flow. To learn more, see <a href="data-wrangler-transform.html#data-wrangler-transform-concatenate">Concatenate Datasets</a>.</p>
+            </li></ul></div>
+     
+        <h2 id="data-wrangler-data-flow-delete-step">Delete a Step from Your Data
+                Flow</h2>
+        <p>To delete a step, select the step and select <b>Delete</b>. If the node
+            is a node that has a single input, you delete only the step that you select. Deleting a
+            step that has a single input doesn't delete the steps that follow it. If you're deleting
+            a step for a source, join, or concatenate node, all the steps that follow it are also
+            deleted.</p>
+        <p>To delete a step from a stack of steps, select the stack and then select the step you
+            want to delete. </p>
+        <p>You can use one of the following procedures to delete a step without deleting the
+            downstream steps.</p>
+        <awsdocs-tabs><dl style="display: none">
+            <dt>Delete a step in the Data Wrangler flow</dt><dd tab-id="delete-a-step-in-the-data-wrangler-flow">
+                    <p>You can delete an individual step for nodes in your data flow that have a
+                        single input. You can't delete individual steps for source, join, and
+                        concatenate nodes.</p>
+                    <div class="procedure"><p>Use the following procedure to delete a step in the Data Wrangler flow.</p><ol><li>
+                            <p>Choose the group of steps that has the step that you're
+                                deleting.</p>
+                        </li><li>
+                            <p>Choose the icon next to the step.</p>
+                        </li><li>
+                            <p>Choose
+                                    <b>Delete
+                                    step</b>.</p>
+                            <div class="mediaobject">
+                                 
+                                    <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/delete-step-flow-1.png" class="aws-docs-img-whiteBg aws-docs-img-padding" />
+                                 
+                            </div>
+                        </li></ol></div>
+                </dd>
+            <dt>Delete a step in the table view</dt><dd tab-id="delete-a-step-in-the-table-view">
+                    <p>Use the following procedure to delete a step in the table view.</p>
+                    <div class="procedure"><p>You can delete an individual step for nodes in your data flow that
+                            have a single input. You can't delete individual steps for source, join,
+                            and concatenate nodes.</p><ol><li>
+                            <p>Choose the step and open the table view for the step.</p>
+                        </li><li>
+                            <p>Move your cursor over the step so the ellipsis icon
+                                appears.</p>
+                        </li><li>
+                            <p>Choose the icon next to the step.</p>
+                        </li><li>
+                            <p>Choose <b>Delete</b>.</p>
+                            <div class="mediaobject">
+                                 
+                                    <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/delete-step-table-0.png" class="aws-docs-img-whiteBg aws-docs-img-padding" />
+                                 
+                            </div>
+                        </li></ol></div>
+                </dd>
+        </dl></awsdocs-tabs>
+
+     
+        <h2 id="data-wrangler-data-flow-edit-step">Edit a Step in Your Data Wrangler
+                Flow</h2>
+        <p>You can edit each step that you've added in your Data Wrangler flow. By editing steps, you can
+            change the transformations or the data types of the columns. You can edit the steps to
+            make changes with which you can perform better analyses.</p>
+        <p>There are many ways that you can edit a step. Some examples include changing the
+            imputation method or changing the threshold for considering a value to be an
+            outlier.</p>
+        <p>Use the following procedure to edit a step.</p>
+        <div class="procedure"><p>To edit a step, do the following.</p><ol><li>
+                <p>Choose a step in the Data Wrangler flow to open the table view.</p>
+                <div class="mediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/data-flow-edit-choose-step.png" class="aws-docs-img-whiteBg aws-docs-img-padding" />
+                     
+                </div>
+            </li><li>
+                <p>Choose a step in the data flow.</p>
+            </li><li>
+                <p>Edit the step.</p>
+            </li></ol></div>
+        <p>The following image shows an example of editing a step.</p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/studio/mohave/data-flow-table-edit-step.png" class="aws-docs-img-whiteBg aws-docs-img-padding" />
+             
+        </div>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can use the shared spaces within your Amazon SageMaker Domain to work collaboratively on your Data Wrangler flows. 
+                Within a shared space, you and your collaborators can edit a flow file in real-time. However, neither you nor your collaborators can see the changes in real-time. 
+                When anyone makes a change to the Data Wrangler flow, they must save it immediately. When someone saves a file, a collaborator won’t be able to see it unless the close the file and reopen it. 
+                Any changes that aren’t saved by one person are overwritten by the person who saved their changes.</p></div></div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./data-wrangler-import.html">Import</div><div id="next" class="next-link" accesskey="n" href="./data-wrangler-data-insights.html">Get Insights On Data and Data Quality</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/data-wrangler-data-flow.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/data-wrangler-data-flow.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

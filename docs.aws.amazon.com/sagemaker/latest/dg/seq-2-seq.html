@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Sequence-to-Sequence Algorithm - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="seq-2-seq" /><meta name="default_state" content="seq-2-seq" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="seq-2-seq.html" /><meta name="description" content="Sequence to Sequence (seq2seq) is a supervised learning algorithm that uses Recurrent Neural Networks (RNNs) and Convolutional Neural Networks (CNNs) to map a sequence in one doamin to a sequence in another domain." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="seq-2-seq.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/seq-2-seq.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/seq-2-seq.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/seq-2-seq.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/seq-2-seq.html" hreflang="de" /><link rel="alternative" href="seq-2-seq.html" hreflang="en-us" /><link rel="alternative" href="seq-2-seq.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/seq-2-seq.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/seq-2-seq.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/seq-2-seq.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/seq-2-seq.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/seq-2-seq.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/seq-2-seq.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/seq-2-seq.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/seq-2-seq.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/seq-2-seq.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/seq-2-seq.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/seq-2-seq.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/seq-2-seq.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/seq-2-seq.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/seq-2-seq.html" hreflang="zh-tw" /><link rel="alternative" href="seq-2-seq.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Sequence-to-Sequence Algorithm" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Sequence-to-Sequence Algorithm - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#seq-2-seq" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/seq-2-seq.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/seq-2-seq.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/seq-2-seq.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Choose an Algorithm",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-choose.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Amazon SageMaker Built-in Algorithms or Pre-trained Models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Built-in SageMaker Algorithms for Text Data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-text.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Sequence-to-Sequence Algorithm",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-text.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#seq-2-seq" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="seq-2-seq.html#s2s-inputoutput">Input/Output Interface for the Sequence-to-Sequence
+                Algorithm</a><a href="seq-2-seq.html#s2s-instances">EC2 Instance Recommendation for the Sequence-to-Sequence
+                Algorithm</a><a href="seq-2-seq.html#seq-2-seq-sample-notebooks">Sample Notebooks</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="seq-2-seq">Sequence-to-Sequence Algorithm</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon SageMaker Sequence to Sequence is a supervised learning algorithm where the input is a
+        sequence of tokens (for example, text, audio) and the output generated is another sequence
+        of tokens. Example applications include: machine translation (input a sentence from one
+        language and predict what that sentence would be in another language), text summarization
+        (input a longer string of words and predict a shorter string of words that is a summary),
+        speech-to-text (audio clips converted into output sentences in tokens). Recently, problems
+        in this domain have been successfully modeled with deep neural networks that show a
+        significant performance boost over previous methodologies. Amazon SageMaker seq2seq uses Recurrent
+        Neural Networks (RNNs) and Convolutional Neural Network (CNN) models with attention as
+        encoder-decoder architectures. </p><div class="highlights"><h6>Topics</h6><ul><li><a href="seq-2-seq.html#s2s-inputoutput">Input/Output Interface for the Sequence-to-Sequence
+                Algorithm</a></li><li><a href="seq-2-seq.html#s2s-instances">EC2 Instance Recommendation for the Sequence-to-Sequence
+                Algorithm</a></li><li><a href="seq-2-seq.html#seq-2-seq-sample-notebooks">Sequence-to-Sequence Sample
+                Notebooks</a></li><li><a href="seq-2-seq-howitworks.html">How Sequence-to-Sequence Works</a></li><li><a href="seq-2-seq-hyperparameters.html">Sequence-to-Sequence Hyperparameters</a></li><li><a href="seq-2-seq-tuning.html">Tune a Sequence-to-Sequence Model </a></li></ul></div>
+        <h2 id="s2s-inputoutput">Input/Output Interface for the Sequence-to-Sequence
+                Algorithm</h2>
+        <p><b>Training</b></p>
+        <p>SageMaker seq2seq expects data in RecordIO-Protobuf format. However, the tokens are
+            expected as integers, not as floating points, as is usually the case.</p>
+        <p>A script to convert data from tokenized text files to the protobuf format is included
+            in <a href="https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_amazon_algorithms/seq2seq_translation_en-de/SageMaker-Seq2Seq-Translation-English-German.html" rel="noopener noreferrer" target="_blank"><span>the seq2seq example notebook</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. In general, it packs the data into 32-bit
+            integer tensors and generates the necessary vocabulary files, which are needed for
+            metric calculation and inference.</p>
+        <p>After preprocessing is done, the algorithm can be invoked for training. The algorithm
+            expects three channels:</p>
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><code class="code">train</code>: It should contain the training data (for example, the
+                        <code class="code">train.rec</code> file generated by the preprocessing script).</p>
+            </li><li class="listitem">
+                <p><code class="code">validation</code>: It should contain the validation data (for example,
+                    the <code class="code">val.rec</code> file generated by the preprocessing script).</p>
+            </li><li class="listitem">
+                <p><code class="code">vocab</code>: It should contain two vocabulary files
+                        (<code class="code">vocab.src.json</code> and <code class="code">vocab.trg.json</code>) </p>
+            </li></ul></div>
+        <p>If the algorithm doesn't find data in any of these three channels, training results in
+            an error.</p>
+        <p><b>Inference</b></p>
+        <p>For hosted endpoints, inference supports two data formats. To perform inference using
+            space separated text tokens, use the <code class="code">application/json</code> format. Otherwise,
+            use the <code class="code">recordio-protobuf</code> format to work with the integer encoded data.
+            Both modes support batching of input data. <code class="code">application/json</code> format also
+            allows you to visualize the attention matrix.</p>
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><code class="code">application/json</code>: Expects the input in JSON format and returns
+                    the output in JSON format. Both content and accept types should be
+                        <code class="code">application/json</code>. Each sequence is expected to be a string with
+                    whitespace separated tokens. This format is recommended when the number of
+                    source sequences in the batch is small. It also supports the following
+                    additional configuration options:</p>
+                <p><code class="code">configuration</code>: <span>{</span><code class="code">attention_matrix</code>:
+                    <code class="code">true</code>}: Returns the attention matrix for the particular input
+                    sequence.</p>
+            </li><li class="listitem">
+                <p><code class="code">application/x-recordio-protobuf</code>: Expects the input in
+                        <code class="code">recordio-protobuf</code> format and returns the output in
+                        <code class="code">recordio-protobuf format</code>. Both content and accept types should
+                    be <code class="code">applications/x-recordio-protobuf</code>. For this format, the source
+                    sequences must be converted into a list of integers for subsequent protobuf
+                    encoding. This format is recommended for bulk inference.</p>
+            </li></ul></div>
+        <p>For batch transform, inference supports JSON Lines format. Batch transform expects the
+            input in JSON Lines format and returns the output in JSON Lines format. Both content and
+            accept types should be <code class="code">application/jsonlines</code>. The format for input is as
+            follows:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json ">content-type: application/jsonlines
+
+<span>{</span>"source": "source_sequence_0"}
+<span>{</span>"source": "source_sequence_1"}</code></pre>
+        <p>The format for response is as follows:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json ">accept: application/jsonlines
+
+<span>{</span>"target": "predicted_sequence_0"}
+<span>{</span>"target": "predicted_sequence_1"}</code></pre>
+        <p>For additional details on how to serialize and deserialize the inputs and outputs to
+            specific formats for inference, see the <a href="seq-2-seq.html#seq-2-seq-sample-notebooks">Sequence-to-Sequence Sample
+                Notebooks</a> .</p>
+     
+        <h2 id="s2s-instances">EC2 Instance Recommendation for the Sequence-to-Sequence
+                Algorithm</h2>
+
+        <p>The Amazon SageMaker seq2seq algorithm only supports on GPU instance types and can only train
+            on a single machine. However, you can use instances with multiple GPUs. The seq2seq
+            algorithm supports P2, P3, G4dn, and G5 GPU instance families.</p>
+     
+        <h2 id="seq-2-seq-sample-notebooks">Sequence-to-Sequence Sample
+                Notebooks</h2>
+
+        <p>For a sample notebook that shows how to use the SageMaker Sequence to Sequence algorithm to
+            train a English-German translation model, see <a href="https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_amazon_algorithms/seq2seq_translation_en-de/SageMaker-Seq2Seq-Translation-English-German.html" rel="noopener noreferrer" target="_blank"><span>Machine Translation English-German Example Using SageMaker Seq2Seq</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. For
+            instructions how to create and access Jupyter notebook instances that you can use to run
+            the example in SageMaker, see <a href="nbi.html">Amazon SageMaker Notebook Instances</a>. Once you have
+            created a notebook instance and opened it, select the <b>SageMaker
+                Examples</b> tab to see a list of all the SageMaker samples. The topic modeling
+            example notebooks using the NTM algorithms are located in the <b>Introduction to Amazon algorithms</b> section. To open a notebook, click on
+            its <b>Use</b> tab and select <b>Create
+                copy</b>.</p>
+
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./object2vec-encoder-embeddings.html">Inference Formats: Embeddings</div><div id="next" class="next-link" accesskey="n" href="./seq-2-seq-howitworks.html">How It Works</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/seq-2-seq.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/seq-2-seq.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

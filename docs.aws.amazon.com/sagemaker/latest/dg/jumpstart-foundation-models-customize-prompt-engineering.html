@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Prompt engineering for foundation models - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="jumpstart-foundation-models-customize-prompt-engineering" /><meta name="default_state" content="jumpstart-foundation-models-customize-prompt-engineering" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="jumpstart-foundation-models-customize-prompt-engineering.html" /><meta name="description" content="Use prompt engineering to customize your foundation model." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="jumpstart-foundation-models-customize-prompt-engineering.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="de" /><link rel="alternative" href="jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="en-us" /><link rel="alternative" href="jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="zh-tw" /><link rel="alternative" href="jumpstart-foundation-models-customize-prompt-engineering.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Prompt engineering for foundation models" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Prompt engineering for foundation models - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#jumpstart-foundation-models-customize-prompt-engineering" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use automated ML, no-code, or low-code",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/use-auto-ml.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "SageMaker JumpStart",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "JumpStart Foundation Models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Customize a foundation model",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-customize.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Prompt engineering for foundation models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-customize.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#jumpstart-foundation-models-customize-prompt-engineering" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="jumpstart-foundation-models-customize-prompt-engineering.html#jumpstart-foundation-models-customize-prompt-engineering-zero-shot">Zero-shot learning</a><a href="jumpstart-foundation-models-customize-prompt-engineering.html#jumpstart-foundation-models-customize-prompt-engineering-few-shot">Few-shot learning</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="jumpstart-foundation-models-customize-prompt-engineering">Prompt
+                    engineering for foundation models</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Prompt engineering is the process of designing and refining the prompts
+                    or input stimuli for a language model to generate specific types of output.
+                    Prompt engineering involves selecting appropriate keywords, providing context,
+                    and shaping the input in a way that encourages the model to produce the desired
+                        response and is a vital technique to actively shape the behavior and
+                        output of foundation models.</p><p>Effective prompt engineering is crucial for directing model behavior and achieving
+                desired responses. Through prompt engineering, you can control a model’s tone,
+                style, and domain expertise without more involved customization measures like
+                fine-tuning. We recommend dedicating time to prompt engineering before you consider
+                fine-tuning a model on additional data. The goal is to provide sufficient context
+                and guidance to the model so that it can generalize and perform well on unseen or
+                limited data scenarios.</p>
+                <h2 id="jumpstart-foundation-models-customize-prompt-engineering-zero-shot">Zero-shot learning</h2>
+                <p>Zero-shot learning involves training a model to generalize and make
+                    predictions on unseen classes or tasks. To perform prompt engineering in
+                    zero-shot learning environments, we recommend constructing prompts that
+                    explicitly provide information about the target task and the desired output
+                    format. For example, if you want to use a foundation model for zero-shot text
+                    classification on a set of classes that the model did not see during training, a
+                    well-engineered prompt could be: <code class="code">"Classify the following text as either
+                        sports, politics, or entertainment: <code class="replaceable">[input
+                        text]</code>."</code> By explicitly specifying the target classes and
+                    the expected output format, you can guide the model to make accurate predictions
+                    even on unseen classes.</p>
+             
+                <h2 id="jumpstart-foundation-models-customize-prompt-engineering-few-shot">Few-shot learning</h2>
+                <p>Few-shot learning involves training a model with a limited amount of data for
+                    new classes or tasks. Prompt engineering in few-shot learning environments
+                    focuses on designing prompts that effectively use the limited available training
+                    data. For example, if you use a foundation model for an image classification
+                    task and only have a few examples of a new image class, you can engineer a
+                    prompt that includes the available labeled examples with a placeholder for the
+                    target class. For example, the prompt could be: <code class="code">"[image 1], [image 2], and
+                        [image 3] are examples of <code class="replaceable">[target class]</code>.
+                        Classify the following image as <code class="replaceable">[target
+                        class]</code>"</code>. By incorporating the limited labeled examples
+                    and explicitly specifying the target class, you can guide the model to
+                    generalize and make accurate predictions even with minimal training data.</p>
+            <p>If prompt engineering is not sufficient to adapt your foundation model to specific
+                business needs, domain-specific language, target tasks, or other requirements, you
+                can consider fine-tuning your model on additional data or using Retrieval Augmented
+                Generation (RAG) to augment your model architecture with enhanced context from
+                archived knowledge sources. For more information, see <a href="jumpstart-foundation-models-fine-tuning.html">Fine-tune a foundation
+                    model</a> 
+                or <a href="jumpstart-foundation-models-customize-rag.html">Retrieval Augmented Generation (RAG)</a>.</p><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./jumpstart-foundation-models-customize.html">Customize a Model</div><div id="next" class="next-link" accesskey="n" href="./jumpstart-foundation-models-fine-tuning.html">Fine-tuning</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Considerations for Amazon SageMaker Debugger - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="debugger-considerations" /><meta name="default_state" content="debugger-considerations" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="debugger-considerations.html" /><meta name="description" content="Considerations for Amazon SageMaker Debugger." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="debugger-considerations.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/debugger-considerations.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/debugger-considerations.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/debugger-considerations.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/debugger-considerations.html" hreflang="de" /><link rel="alternative" href="debugger-considerations.html" hreflang="en-us" /><link rel="alternative" href="debugger-considerations.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/debugger-considerations.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/debugger-considerations.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/debugger-considerations.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/debugger-considerations.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/debugger-considerations.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/debugger-considerations.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/debugger-considerations.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/debugger-considerations.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/debugger-considerations.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/debugger-considerations.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/debugger-considerations.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/debugger-considerations.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/debugger-considerations.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/debugger-considerations.html" hreflang="zh-tw" /><link rel="alternative" href="debugger-considerations.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Considerations for Amazon SageMaker Debugger" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Considerations for Amazon SageMaker Debugger - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#debugger-considerations" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-considerations.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-considerations.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-considerations.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Debug and improve model performance",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-debug-and-improve-model-performance.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Amazon SageMaker Debugger to debug and improve model performance",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-debugger.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Amazon SageMaker Debugger Advanced Topics and Reference Documentation",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-reference.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Considerations for Amazon SageMaker Debugger",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-reference.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#debugger-considerations" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="debugger-considerations.html#debugger-considerations-debug">Considerations for Distributed
+                    Training</a><a href="debugger-considerations.html#debugger-considerations-profile">Considerations for Monitoring
+                    System Bottlenecks and Profiling Framework Operations</a><a href="debugger-considerations.html#debugger-considerations-debug">Considerations for Debugging Model
+                    Output Tensors</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="debugger-considerations">Considerations for Amazon SageMaker Debugger</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Consider the following when using Amazon SageMaker Debugger.</p>
+            <h2 id="debugger-considerations-debug">Considerations for Distributed
+                    Training</h2>
+            <p>The following list shows the scope of validity and considerations for using Debugger
+                on training jobs with deep learning frameworks and various distributed training
+                options.</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><b>Horovod</b></p>
+                    <div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac23c20c19c30c14b5b5b1b3"><thead><tr><th class="table-header" colspan="100"><div class="title">Scope of validity of using Debugger for training jobs with
+                            Horovod</div></th></tr>
+                                <tr>
+                                    <th>Deep Learning Framework</th>
+                                    <th>Apache MXNet</th>
+                                    <th>TensorFlow 1.x</th>
+                                    <th>TensorFlow 2.x</th>
+                                    <th>TensorFlow 2.x with Keras</th>
+                                    <th>PyTorch</th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td tabindex="-1">Monitoring system bottlenecks</td>
+                                    <td tabindex="-1">Yes</td>
+                                    <td tabindex="-1">Yes</td>
+                                    <td tabindex="-1">Yes</td>
+                                    <td tabindex="-1">Yes</td>
+                                    <td tabindex="-1">Yes</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">Profiling framework operations</td>
+                                    <td tabindex="-1">No</td>
+                                    <td tabindex="-1">No</td>
+                                    <td tabindex="-1">No</td>
+                                    <td tabindex="-1">Yes</td>
+                                    <td tabindex="-1">Yes</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">Debugging model output tensors</td>
+                                    <td tabindex="-1">Yes</td>
+                                    <td tabindex="-1">Yes</td>
+                                    <td tabindex="-1">Yes</td>
+                                    <td tabindex="-1">Yes</td>
+                                    <td tabindex="-1">Yes</td>
+                                </tr>
+                            </table></div></div>
+                </li><li class="listitem">
+                    <p><b>SageMaker distributed data parallel</b></p>
+                    <div class="table-container"><div class="table-contents disable-scroll"><table id="w714aac23c20c19c30c14b5b5b3b3"><thead><tr><th class="table-header" colspan="100"><div class="title">Scope of validity of using Debugger for training jobs with SageMaker
+                            distributed data parallel</div></th></tr>
+                                <tr>
+                                    <th>Deep Learning Framework</th>
+                                    <th>TensorFlow 2.x</th>
+                                    <th>TensorFlow 2.x with Keras</th>
+                                    <th>PyTorch</th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td tabindex="-1">Monitoring system bottlenecks</td>
+                                    <td tabindex="-1">Yes</td>
+                                    <td tabindex="-1">Yes</td>
+                                    <td tabindex="-1">Yes</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">Profiling framework operations</td>
+                                    <td tabindex="-1">No*</td>
+                                    <td tabindex="-1">No**</td>
+                                    <td tabindex="-1">Yes</td>
+                                </tr>
+                                <tr>
+                                    <td tabindex="-1">Debugging model output tensors</td>
+                                    <td tabindex="-1">Yes</td>
+                                    <td tabindex="-1">Yes</td>
+                                    <td tabindex="-1">Yes</td>
+                                </tr>
+                            </table></div></div>
+                    <p>* Debugger does not support framework profiling for TensorFlow 2.x.</p>
+                    <p>** SageMaker distributed data parallel does not support TensorFlow 2.x with
+                        Keras implementation.</p>
+                </li><li class="listitem">
+                    <p><b>SageMaker distributed model parallel</b> – Debugger does
+                        not support SageMaker distributed model parallel training.</p>
+                </li><li class="listitem">
+                    <p><b>Distributed training with SageMaker checkpoints</b> –
+                        Debugger is not available for training jobs when both the distributed training
+                        option and SageMaker checkpoints are enabled. You might see an error that looks
+                        like the following: </p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">SMDebug Does Not Currently Support Distributed Training Jobs With Checkpointing Enabled</code></pre>
+                    <p>To use Debugger for training jobs with distributed training options, you
+                        need to disable SageMaker checkpointing and add manual checkpointing functions to
+                        your training script. For more information about using Debugger with
+                        distributed training options and checkpoints, see <a href="distributed-troubleshooting-data-parallel.html#distributed-ts-data-parallel-debugger">Using SageMaker Distributed Data
+                Parallel with Amazon SageMaker Debugger and Checkpoints</a>
+                        and <a href="distributed-troubleshooting-model-parallel.html#distributed-ts-model-parallel-checkpoints">Saving Checkpoints</a>.</p>
+                </li><li class="listitem">
+                    <p><b>Parameter Server</b> – Debugger does not support
+                        parameter server-based distributed training.</p>
+                </li><li class="listitem">
+                    <p>Profiling distributed training framework operations, such as the
+                            <code class="code">AllReduced</code> operation of SageMaker distributed data parallel and
+                            <a href="https://horovod.readthedocs.io/en/stable/timeline_include.html" rel="noopener noreferrer" target="_blank"><span>Horovod operations</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, is not available.</p>
+                </li></ul></div>
+         
+            <h2 id="debugger-considerations-profile">Considerations for Monitoring
+                    System Bottlenecks and Profiling Framework Operations</h2>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>For AWS TensorFlow, data loader metrics cannot be collected using the
+                        default <code class="code">local_path</code> setting of the <code class="code">FrameworkProfile</code>
+                        class. The path has to be manually configured and end in <code class="code">"/"</code>.
+                        For example:</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">FrameworkProfile(local_path="/opt/ml/output/profiler/")</code></pre>
+                </li><li class="listitem">
+                    <p>For AWS TensorFlow, the data loader profiling configuration cannot be
+                        updated while a training job is running.</p>
+                </li><li class="listitem">
+                    <p>For AWS TensorFlow, a <code class="code">NoneType</code> error might occur when you
+                        use analysis tools and notebook examples with TensorFlow 2.3 training jobs
+                        and the detailed profiling option.</p>
+                </li><li class="listitem">
+                    <p>Python profiling and detailed profiling are only supported for Keras
+                        API.</p>
+                </li><li class="listitem">
+                    <p>To access the deep profiling feature for TensorFlow and PyTorch, currently
+                        you must specify the latest AWS deep learning container images with CUDA
+                        11. For example, you must specify the specific image URI in the TensorFlow
+                        and PyTorch estimator as follows:</p>
+                    <div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>For TensorFlow</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">image_uri = f"763104351884.dkr.ecr.<span>{</span>region}.amazonaws.com/tensorflow-training:2.3.1-gpu-py37-cu110-ubuntu18.04"</code></pre>
+                        </li><li class="listitem">
+                            <p>For PyTorch</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">image_uri = f"763104351884.dkr.ecr.<span>{</span>region}.amazonaws.com/pytorch-training:1.6.0-gpu-py36-cu110-ubuntu18.04"</code></pre>
+                        </li></ul></div>
+                </li></ul></div>
+         
+            <h2 id="debugger-considerations-debug">Considerations for Debugging Model
+                    Output Tensors</h2>
+            <div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Avoid using functional API operations. Debugger cannot collect model output
+                        tensors from PyTorch and MXNet training scripts composed of functional API
+                        operations.</p>
+                    <div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>Debugger cannot collect model output tensors from the <a href="https://pytorch.org/docs/stable/nn.functional.html" rel="noopener noreferrer" target="_blank"><span><code class="code">torch.nn.functional</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> API operations.
+                                When you write a PyTorch training script, it is recommended to use
+                                the <a href="https://pytorch.org/docs/stable/generated/torch.nn.NLLLoss.html" rel="noopener noreferrer" target="_blank"><span><code class="code">torch.nn</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> modules instead.</p>
+                        </li><li class="listitem">
+                            <p>Debugger cannot collect model output tensors from MXNet functional
+                                objects in hybrid blocks. For example, the ReLu activation
+                                    (<code class="code">F.relu</code>) outputs cannot be collected from the
+                                following example of <a href="https://mxnet.apache.org/versions/1.8.0/api/python/docs/api/gluon/hybrid_block.html" rel="noopener noreferrer" target="_blank"><span><code class="code">mxnet.gluon.HybridBlock</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> with
+                                    <code class="code">F</code> in the <code class="code">hybrid_forward</code>
+                                function.</p>
+                            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import mxnet as mx
+from mxnet.gluon import HybridBlock, nn
+
+class Model(HybridBlock):
+    def __init__(self, **kwargs):
+        super(Model, self).__init__(**kwargs)
+        # use name_scope to give child Blocks appropriate names.
+        with self.name_scope():
+            self.dense0 = nn.Dense(20)
+            self.dense1 = nn.Dense(20)
+
+    def hybrid_forward(self, F, x):
+        x = F.relu(self.dense0(x))
+        return F.relu(self.dense1(x))
+
+model = Model()
+model.initialize(ctx=mx.cpu(0))
+model.hybridize()
+model(mx.nd.zeros((10, 10), ctx=mx.cpu(0)))</code></pre>
+                        </li></ul></div>
+                </li></ul></div>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./debugger-exceptions.html">Exceptions</div><div id="next" class="next-link" accesskey="n" href="./debugger-telemetry.html">Debugger Usage Statistics</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-considerations.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/debugger-considerations.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

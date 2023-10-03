@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Use Checkpoints in Amazon SageMaker - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="model-checkpoints" /><meta name="default_state" content="model-checkpoints" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="model-checkpoints.html" /><meta name="description" content="Use checkpoints in Amazon SageMaker to save the state of models. Training can be resumed from the saved checkpoints." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="model-checkpoints.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/model-checkpoints.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/model-checkpoints.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/model-checkpoints.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/model-checkpoints.html" hreflang="de" /><link rel="alternative" href="model-checkpoints.html" hreflang="en-us" /><link rel="alternative" href="model-checkpoints.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/model-checkpoints.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/model-checkpoints.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/model-checkpoints.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/model-checkpoints.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/model-checkpoints.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/model-checkpoints.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/model-checkpoints.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/model-checkpoints.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/model-checkpoints.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/model-checkpoints.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/model-checkpoints.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/model-checkpoints.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/model-checkpoints.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/model-checkpoints.html" hreflang="zh-tw" /><link rel="alternative" href="model-checkpoints.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Use Checkpoints in Amazon SageMaker" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Use Checkpoints in Amazon SageMaker - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#model-checkpoints" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-checkpoints.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-checkpoints.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-checkpoints.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Use Checkpoints in Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#model-checkpoints" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="model-checkpoints.html#model-checkpoints-whats-supported">Frameworks and algorithms</a><a href="model-checkpoints.html#model-checkpoints-enable">Enable Checkpointing</a><a href="model-checkpoints.html#model-checkpoints-saved-file">Browse Checkpoint Files</a><a href="model-checkpoints.html#model-checkpoints-resume">Resume Training From a Checkpoint</a><a href="model-checkpoints.html#model-checkpoints-considerations">Considerations for
+                Checkpointing</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="model-checkpoints">Use Checkpoints in Amazon SageMaker</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Use checkpoints in Amazon SageMaker to save the state of machine learning (ML) models during
+        training. Checkpoints are snapshots of the model and can be configured by the callback
+        functions of ML frameworks. You can use the saved checkpoints to restart a training job from
+        the last saved checkpoint. </p><p>The SageMaker training mechanism uses training containers on Amazon EC2 instances, and the
+        checkpoint files are saved under a local directory of the containers (the default is
+            <code class="code">/opt/ml/checkpoints</code>). SageMaker provides the functionality to copy the
+        checkpoints from the local path to Amazon S3 and automatically syncs the checkpoints in that
+        directory with Amazon S3. Existing checkpoints in S3 are written to the SageMaker container
+        at the start of the job, enabling jobs to resume from a checkpoint. Checkpoints added to the
+        S3 folder after the job has started are not copied to the training container. SageMaker also
+        writes new checkpoints from the container to S3 during training. If a checkpoint is deleted
+        in the SageMaker container, it will also be deleted in the S3 folder.</p><p>Using checkpoints, you can do the following:</p><div class="itemizedlist">
+         
+         
+         
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p>Save your model snapshots under training due to an unexpected interruption to the
+                training job or instance.</p>
+        </li><li class="listitem">
+            <p>Resume training the model in the future from a checkpoint.</p>
+        </li><li class="listitem">
+            <p>Analyze the model at intermediate stages of training.</p>
+        </li><li class="listitem">
+            <p>Use checkpoints with SageMaker managed spot training to save on training costs.</p>
+        </li></ul></div><p>If you are using checkpoints with SageMaker managed spot training, SageMaker manages checkpointing
+        your model training on a spot instance and resuming the training job on the next spot
+        instance. With SageMaker managed spot training, you can significantly reduce the billable time
+        for training ML models. For more information, see <a href="model-managed-spot-training.html">Use Managed Spot Training in Amazon SageMaker</a>.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="model-checkpoints.html#model-checkpoints-whats-supported">Checkpoints for Frameworks and
+                Algorithms in SageMaker</a></li><li><a href="model-checkpoints.html#model-checkpoints-enable">Enable Checkpointing</a></li><li><a href="model-checkpoints.html#model-checkpoints-saved-file">Browse Checkpoint Files</a></li><li><a href="model-checkpoints.html#model-checkpoints-resume">Resume Training From a Checkpoint</a></li><li><a href="model-checkpoints.html#model-checkpoints-considerations">Considerations for
+                Checkpointing</a></li></ul></div>
+        <h2 id="model-checkpoints-whats-supported">Checkpoints for Frameworks and
+                Algorithms in SageMaker</h2>
+        <p>Use checkpoints to save snapshots of ML models built on your preferred frameworks
+            within SageMaker.</p>
+        <p><b>SageMaker frameworks and algorithms that support checkpointing</b></p>
+        <p>SageMaker supports checkpointing for AWS Deep Learning Containers and a subset of
+            built-in algorithms without requiring training script changes. SageMaker saves the
+            checkpoints to the default local path <code class="code">'/opt/ml/checkpoints'</code> and copies them
+            to Amazon S3. </p>
+        
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Deep Learning Containers: <a href="https://sagemaker.readthedocs.io/en/stable/frameworks/tensorflow/sagemaker.tensorflow.html" rel="noopener noreferrer" target="_blank"><span>TensorFlow</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, <a href="https://sagemaker.readthedocs.io/en/stable/frameworks/pytorch/sagemaker.pytorch.html" rel="noopener noreferrer" target="_blank"><span>PyTorch</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, <a href="https://sagemaker.readthedocs.io/en/stable/frameworks/mxnet/sagemaker.mxnet.html" rel="noopener noreferrer" target="_blank"><span>MXNet</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, and <a href="https://sagemaker.readthedocs.io/en/stable/frameworks/huggingface/sagemaker.huggingface.html" rel="noopener noreferrer" target="_blank"><span>HuggingFace</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you are using the HuggingFace framework estimator, you need to specify
+                        a checkpoint output path through hyperparameters. For more information, see
+                            <a href="https://huggingface.co/transformers/sagemaker.html#spot-instances" rel="noopener noreferrer" target="_blank"><span>Run training on Amazon SageMaker</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the <em>HuggingFace
+                            documentation</em>.</p></div></div>
+            </li><li class="listitem">
+                <p>Built-in algorithms: <a href="image-classification.html">Image
+                        Classification</a>, <a href="object-detection.html">Object Detection</a>,
+                        <a href="semantic-segmentation.html">Semantic
+                        Segmentation</a>, and <a href="xgboost.html">XGBoost</a> (0.90-1 or
+                    later)</p>
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you are using the XGBoost algorithm in framework mode (script mode),
+                        you need to bring an XGBoost training script with checkpointing that's
+                        manually configured. For more information about the XGBoost training methods
+                        to save model snapshots, see <a href="https://xgboost.readthedocs.io/en/latest/python/python_intro.html#training" rel="noopener noreferrer" target="_blank"><span>Training XGBoost</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in <em>the XGBoost Python SDK
+                            documentation</em>.</p></div></div>
+            </li></ul></div>
+        <p>If a pre-built algorithm that does not support checkpointing is used in a managed spot
+            training job, SageMaker does not allow a maximum wait time greater than an hour for the job
+            in order to limit wasted training time from interrupts.</p>
+        <p><b>For custom training containers and other frameworks</b></p>
+        <p>If you are using your own training containers, training scripts, or other frameworks
+            not listed in the previous section, you must properly set up your training script using
+            callbacks or training APIs to save checkpoints to the local path
+                (<code class="code">'/opt/ml/checkpoints'</code>) and load from the local path in your training
+            script. SageMaker estimators can sync up with the local path and save the checkpoints to
+            Amazon S3.</p>
+     
+        <h2 id="model-checkpoints-enable">Enable Checkpointing</h2>
+        <p>After you enable checkpointing, SageMaker saves checkpoints to Amazon S3 and syncs your training
+            job with the checkpoint S3 bucket.</p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/checkpoints_write.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                Architecture diagram of writing checkpoints during training.&#xA;            " style="max-width:90%" />
+             
+             
+        </div>
+        <p>The following example shows how to configure checkpoint paths when you construct a
+            SageMaker estimator. To enable checkpointing, add the <code class="code">checkpoint_s3_uri</code> and
+                <code class="code">checkpoint_local_path</code> parameters to your estimator. </p>
+        <p>The following example template shows how to create a generic SageMaker estimator and enable
+            checkpointing. You can use this template for the supported algorithms by specifying the
+            <code class="code">image_uri</code> parameter. To find Docker image URIs for algorithms with
+            checkpointing supported by SageMaker, see
+            <a href="https://docs.aws.amazon.com/sagemaker/latest/dg-ecr-paths/sagemaker-algo-docker-registry-paths">Docker
+              Registry Paths and Example Code</a>.
+            You can also replace
+                <code class="code">estimator</code> and <code class="code">Estimator</code> with other SageMaker frameworks'
+            estimator parent classes and estimator classes, such as <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/frameworks/tensorflow/using_tf.html#create-an-estimator" rel="noopener noreferrer" target="_blank"><span>TensorFlow</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>, <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/frameworks/pytorch/using_pytorch.html#create-an-estimator" rel="noopener noreferrer" target="_blank"><span>PyTorch</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>, <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/frameworks/mxnet/using_mxnet.html#create-an-estimator" rel="noopener noreferrer" target="_blank"><span>MXNet</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>, <code class="code"><a href="https://huggingface.co/docs/sagemaker/train#create-a-hugging-face-estimator" rel="noopener noreferrer" target="_blank"><span>HuggingFace</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> and <code class="code"><a href="https://sagemaker.readthedocs.io/en/stable/frameworks/xgboost/using_xgboost.html#create-an-estimator" rel="noopener noreferrer" target="_blank"><span>XGBoost</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">import sagemaker
+from sagemaker.<code class="userinput">estimator</code> import <code class="userinput">Estimator</code>
+
+bucket=sagemaker.Session().default_bucket()
+base_job_name="<code class="replaceable">sagemaker-checkpoint-test</code>"
+checkpoint_in_bucket="<code class="replaceable">checkpoints</code>"
+
+# The S3 URI to store the checkpoints
+checkpoint_s3_bucket="s3://<span>{</span>}/<span>{</span>}/<span>{</span>}".format(bucket, base_job_name, checkpoint_in_bucket)
+
+# The local path where the model will save its checkpoints in the training container
+checkpoint_local_path="/opt/ml/checkpoints"
+
+estimator = <code class="userinput">Estimator</code>(
+    ...
+    image_uri="<code class="replaceable">&lt;ecr_path&gt;</code>/<code class="replaceable">&lt;algorithm-name&gt;</code>:<code class="replaceable">&lt;tag&gt;</code>" # Specify to use built-in algorithms
+    output_path=bucket,
+    base_job_name=base_job_name,
+    
+    # Parameters required to enable checkpointing
+    checkpoint_s3_uri=checkpoint_s3_bucket,
+    checkpoint_local_path=checkpoint_local_path
+)</code></pre>
+        <p>The following two parameters specify paths for checkpointing:</p>
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><code class="code">checkpoint_local_path</code> – Specify the local path where the
+                    model saves the checkpoints periodically in a training container. The default
+                    path is set to <code class="code">'/opt/ml/checkpoints'</code>. If you are using other
+                    frameworks or bringing your own training container, ensure that your training
+                    script's checkpoint configuration specifies the path to
+                        <code class="code">'/opt/ml/checkpoints'</code>.</p>
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>We recommend specifying the local paths as
+                            <code class="code">'/opt/ml/checkpoints'</code> to be consistent with the default
+                        SageMaker checkpoint settings. If you prefer to specify your own local path, make
+                        sure you match the checkpoint saving path in your training script and the
+                            <code class="code">checkpoint_local_path</code> parameter of the SageMaker
+                        estimators.</p></div></div>
+            </li><li class="listitem">
+                <p><code class="code">checkpoint_s3_uri</code> – The URI to an S3 bucket where the
+                    checkpoints are stored in real time. </p>
+            </li></ul></div>
+        <p>To find a complete list of SageMaker estimator parameters, see the <a href="https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html#sagemaker.estimator.Estimator" rel="noopener noreferrer" target="_blank"><span>Estimator API</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the <em><a href="https://sagemaker.readthedocs.io" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Python SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+                documentation</em>.</p>
+     
+        <h2 id="model-checkpoints-saved-file">Browse Checkpoint Files</h2>
+        <p>Locate checkpoint files using the SageMaker Python SDK and the Amazon S3 console.</p>
+        <p><b>To find the checkpoint files programmatically</b></p>
+        <p>To retrieve the S3 bucket URI where the checkpoints are saved, check the following
+            estimator attribute:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">estimator.checkpoint_s3_uri</code></pre>
+        <p>This returns the Amazon S3 output path for checkpoints configured while requesting the
+                <code class="code">CreateTrainingJob</code> request. To find the saved checkpoint files using the
+            Amazon S3 console, use the following procedure.</p>
+        <div class="procedure"><h6>To find the checkpoint files from the Amazon S3 console</h6><ol><li>
+                <p>Sign in to the AWS Management Console and open the SageMaker console at <a href="https://console.aws.amazon.com/sagemaker/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/sagemaker/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            </li><li>
+                <p>In the left navigation pane, choose <b>Training jobs</b>.</p>
+            </li><li>
+                <p>Choose the link to the training job with checkpointing enabled to open
+                        <b>Job settings</b>.</p>
+            </li><li>
+                <p>On the <b>Job settings</b> page of the training job, locate the
+                        <b>Checkpoint configuration</b> section.</p>
+                <div class="mediaobject">
+                     
+                        <img src="../../../images/sagemaker/latest/dg/images/checkpoints_trainingjob.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                        Checkpoint configuration section in the Job settings page of a&#xA;                            training job.&#xA;                    " style="max-width:90%" />
+                     
+                     
+                </div>
+            </li><li>
+                <p>Use the link to the S3 bucket to access the checkpoint files.</p>
+            </li></ol></div>
+     
+        <h2 id="model-checkpoints-resume">Resume Training From a Checkpoint</h2>
+        <p>To resume a training job from a checkpoint, run a new estimator with the same
+                <code class="code">checkpoint_s3_uri</code> that you created in the <a href="model-checkpoints.html#model-checkpoints-enable">Enable Checkpointing</a>
+            section. Once the training has resumed, the checkpoints from this S3 bucket are restored
+            to <code class="code">checkpoint_local_path</code> in each instance of the new training job. Ensure
+            that the S3 bucket is in the same Region as that of the current SageMaker session.</p>
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/checkpoints_resume.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                Architecture diagram of syncing checkpoints to resume training.&#xA;            " style="max-width:90%" />
+             
+             
+        </div>
+     
+        <h2 id="model-checkpoints-considerations">Considerations for
+                Checkpointing</h2>
+        <p>Consider the following when using checkpoints in SageMaker.</p>
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>To avoid overwrites in distributed training with multiple instances, you must
+                    manually configure the checkpoint file names and paths in your training script.
+                    The high-level SageMaker checkpoint configuration specifies a single Amazon S3 location
+                    without additional suffixes or prefixes to tag checkpoints from multiple
+                    instances.</p>
+            </li><li class="listitem">
+                <p>The SageMaker Python SDK does not support high-level configuration for
+                    checkpointing frequency. To control the checkpointing frequency, modify your
+                    training script using the framework's model save functions or checkpoint
+                    callbacks.</p>
+            </li><li class="listitem">
+                <p>If you use SageMaker checkpoints with SageMaker Debugger and SageMaker distributed and are
+                    facing issues, see the following pages for troubleshooting and
+                    considerations.</p>
+                <div class="itemizedlist">
+                     
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p><a href="debugger-considerations.html">Considerations for Amazon SageMaker Debugger</a></p>
+                    </li><li class="listitem">
+                        <p><a href="distributed-troubleshooting-data-parallel.html">Data Parallel
+            Troubleshooting</a></p>
+                    </li><li class="listitem">
+                        <p><a href="distributed-troubleshooting-model-parallel.html">Model Parallel
+            Troubleshooting</a></p>
+                    </li></ul></div>
+            </li></ul></div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./augmented-manifest.html">Use Augmented Manifest Files</div><div id="next" class="next-link" accesskey="n" href="./deploy-model.html">Deploy models for inference</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-checkpoints.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/model-checkpoints.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>3D Point Cloud Object Detection - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="sms-point-cloud-object-detection" /><meta name="default_state" content="sms-point-cloud-object-detection" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="sms-point-cloud-object-detection.html" /><meta name="description" content="Use this task type when you want workers to classify objects in a 3D point cloud by drawing 3D cuboids around objects. For example, you can use this task type to ask workers to identify different types of objects in a point cloud, such as cars, bikes, and pedestrians." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="sms-point-cloud-object-detection.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/sms-point-cloud-object-detection.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/sms-point-cloud-object-detection.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/sms-point-cloud-object-detection.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/sms-point-cloud-object-detection.html" hreflang="de" /><link rel="alternative" href="sms-point-cloud-object-detection.html" hreflang="en-us" /><link rel="alternative" href="sms-point-cloud-object-detection.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/sms-point-cloud-object-detection.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/sms-point-cloud-object-detection.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/sms-point-cloud-object-detection.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/sms-point-cloud-object-detection.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/sms-point-cloud-object-detection.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/sms-point-cloud-object-detection.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sms-point-cloud-object-detection.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sms-point-cloud-object-detection.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/sms-point-cloud-object-detection.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/sms-point-cloud-object-detection.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/sms-point-cloud-object-detection.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/sms-point-cloud-object-detection.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/sms-point-cloud-object-detection.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/sms-point-cloud-object-detection.html" hreflang="zh-tw" /><link rel="alternative" href="sms-point-cloud-object-detection.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="3D Point Cloud Object Detection" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>3D Point Cloud Object Detection - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#sms-point-cloud-object-detection" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-point-cloud-object-detection.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-point-cloud-object-detection.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-point-cloud-object-detection.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Label data with a human-in-the-loop",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-label.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Use Amazon SageMaker Ground Truth to Label Data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Ground Truth to Label 3D Point Clouds",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "3D Point Cloud Task types",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud-task-types.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "3D Point Cloud Object Detection",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud-task-types.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#sms-point-cloud-object-detection" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="sms-point-cloud-object-detection.html#sms-point-cloud-object-detection-worker-ui">View the Worker Task Interface</a><a href="sms-point-cloud-object-detection.html#sms-point-cloud-object-detection-create-labeling-job">Create a 3D Point Cloud
+                Object Detection Labeling Job</a><a href="sms-point-cloud-object-detection.html#sms-point-cloud-object-detection-adjustment-verification">Create a 3D Point Cloud
+                    Object Detection Adjustment or Verification Labeling Job</a><a href="sms-point-cloud-object-detection.html#sms-point-cloud-object-detection-output-data">Output Data Format </a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="sms-point-cloud-object-detection">3D Point Cloud Object Detection</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Use this task type when you want workers to classify objects in a 3D point cloud by
+        drawing 3D cuboids around objects. For example, you can use this task type to ask workers to
+        identify different types of objects in a point cloud, such as cars, bikes, and pedestrians. </p><p>For this task type, the <em>data object</em> that workers label is a single
+        point cloud frame. Ground Truth renders a 3D point cloud using point cloud data you provide. You
+        can also provide camera data to give workers more visual information about scenes in the
+        frame, and to help workers draw 3D cuboids around objects. </p><p>Ground Truth providers workers with tools to annotate objects with 9 degrees of freedom
+        (x,y,z,rx,ry,rz,l,w,h) in three dimensions in both 3D scene and projected side views (top,
+        side, and back). If you provide sensor fusion information (like camera data), when a worker
+        adds a cuboid to identify an object in the 3D point cloud, the cuboid shows up and can be
+        modified in the 2D images. After a cuboid has been added, all edits made to that cuboid in
+        the 2D or 3D scene are projected into the other view.</p><p>You can create a job to adjust annotations created in a 3D point cloud object detection
+        labeling job using the 3D point cloud object detection adjustment task type. </p><p>If you are a new user of the Ground Truth 3D point cloud labeling modality, we recommend you
+        review <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud-general-information.html">3D Point Cloud Labeling Jobs
+            Overview</a>. This labeling modality is
+        different from other Ground Truth task types, and this page provides an overview of important
+        details you should be aware of when creating a 3D point cloud labeling job.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="sms-point-cloud-object-detection.html#sms-point-cloud-object-detection-worker-ui">View the Worker Task Interface</a></li><li><a href="sms-point-cloud-object-detection.html#sms-point-cloud-object-detection-create-labeling-job">Create a 3D Point Cloud
+                Object Detection Labeling Job</a></li><li><a href="sms-point-cloud-object-detection.html#sms-point-cloud-object-detection-adjustment-verification">Create a 3D Point Cloud
+                    Object Detection Adjustment or Verification Labeling Job</a></li><li><a href="sms-point-cloud-object-detection.html#sms-point-cloud-object-detection-output-data">Output Data Format </a></li></ul></div>
+        <h2 id="sms-point-cloud-object-detection-worker-ui">View the Worker Task Interface</h2>
+        <p>Ground Truth provides workers with a web portal and tools to complete your 3D point cloud
+            object detection annotation tasks. When you create the labeling job, you provide the
+            Amazon Resource Name (ARN) for a pre-built Ground Truth worker UI in the
+                <code class="code">HumanTaskUiArn</code> parameter. When you create a labeling job using this
+            task type in the console, this worker UI is automatically used. You can preview and
+            interact with the worker UI when you create a labeling job in the console. If you are a
+            new user, it is recommended that you create a labeling job using the console to ensure
+            your label attributes, point cloud frames, and if applicable, images, appear as
+            expected. </p>
+        <p>The following is a GIF of the 3D point cloud object detection worker task interface.
+            If you provide camera data for sensor fusion in the world coordinate system, images are
+            matched up with scenes in the point cloud frame. These images appear in the worker
+            portal as shown in the following GIF. </p>
+       
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/pointcloud/gifs/object_detection/ot_basic_tools.gif" class="aws-docs-img-whiteBg aws-docs-img-padding" />
+             
+        </div>
+        <p>Worker can navigate in the 3D scene using their keyboard and mouse. They can:</p>
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Double click on specific objects in the point cloud to zoom into them.</p>
+            </li><li class="listitem">
+                <p>Use a mouse-scroller or trackpad to zoom in and out of the point cloud.</p>
+            </li><li class="listitem">
+                <p>Use both keyboard arrow keys and Q, E, A, and D keys to move Up, Down, Left,
+                    Right. Use keyboard keys W and S to zoom in and out. </p>
+            </li></ul></div>
+        <p>Once a worker places a cuboid in the 3D scene, a side-view will appear with the three
+            projected side views: top, side, and back. These side-views show points in and around
+            the placed cuboid and help workers refine cuboid boundaries in that area. Workers can
+            zoom in and out of each of those side-views using their mouse. </p>
+        <p>The following video demonstrates movements around the 3D point cloud and in the
+            side-view. </p>
+        
+        <div class="mediaobject">
+             
+                <img src="../../../images/sagemaker/latest/dg/images/pointcloud/gifs/object_detection/navigate_od_worker_ui.gif" class="aws-docs-img-whiteBg aws-docs-img-padding" />
+             
+        </div>
+        <p>Additional view options and features are available in the <b>View</b>
+            menu in the worker UI. See the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud-worker-instructions-object-detection">worker instruction page</a> for a
+            comprehensive overview of the Worker UI. </p>
+        
+         
+            <h6>Assistive Labeling Tools</h6>
+            <p>Ground Truth helps workers annotate 3D point clouds faster and more accurately using
+                machine learning and computer vision powered assistive labeling tools for 3D point
+                cloud object tracking tasks. The following assistive labeling tools are available
+                for this task type:</p>
+         
+        <div class="itemizedlist">
+             
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><b>Snapping</b> – Workers can add a cuboid
+                    around an object and use a keyboard shortcut or menu option to have Ground Truth's
+                    autofit tool snap the cuboid tightly around the object. </p>
+            </li><li class="listitem">
+                <p><b>Set to ground </b>– After a worker adds a
+                    cuboid to the 3D scene, the worker can automatically snap the cuboid to the
+                    ground. For example, the worker can use this feature to snap a cuboid to the
+                    road or sidewalk in the scene. </p>
+            </li><li class="listitem">
+                <p><b>Multi-view labeling</b> – After a worker
+                    adds a 3D cuboid to the 3D scene, a side panel displays front, side, and top
+                    perspectives to help the worker adjust the cuboid tightly around the object. In
+                    all of these views, the cuboid includes an arrow that indicates the orientation,
+                    or heading of the object. When the worker adjusts the cuboid, the adjustment
+                    will appear in real time on all of the views (that is, 3D, top, side, and
+                    front). </p>
+            </li><li class="listitem">
+                <p><b>Sensor fusion</b> – If you provide data
+                    for sensor fusion, workers can adjust annotations in the 3D scenes and in 2D
+                    images, and the annotations will be projected into the other view in real time.
+                    Additionally, workers will have the option to view the direction the camera is
+                    facing and the camera frustum.</p>
+            </li><li class="listitem">
+                <p><b>View options </b>– Enables workers to
+                    easily hide or view cuboids, label text, a ground mesh, and additional point
+                    attributes like color or intensity. Workers can also choose between perspective
+                    and orthogonal projections. </p>
+            </li></ul></div>
+        
+     
+        <h2 id="sms-point-cloud-object-detection-create-labeling-job">Create a 3D Point Cloud
+                Object Detection Labeling Job</h2>
+        <p>You can create a 3D point cloud labeling job using the SageMaker console or API operation,
+            <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateLabelingJob.html"><code class="code">CreateLabelingJob</code></a>. To create a labeling job for this
+            task type you need the following: </p>
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>A single-frame input manifest file. To learn how to create this type of
+                    manifest file, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud-single-frame-input-data.html">Create a Point Cloud Frame Input Manifest
+                    File</a>. If you are a new
+                    user of Ground Truth 3D point cloud labeling modalities, you may also want to review
+                        <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud-raw-data-types.html">Accepted Raw 3D Data Formats</a>. </p>
+            </li><li class="listitem">
+                <p>A work team from a private or vendor workforce. You cannot use Amazon Mechanical Turk for
+                    video frame labeling jobs. To learn how to create workforces and work teams, see
+                        <a href="sms-workforce-management.html">Create and Manage Workforces</a>.</p>
+            </li></ul></div>
+        <p>Additionally, make sure that you have reviewed and satisfied the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-security-permission.html">Assign IAM Permissions to Use Ground Truth</a>. </p>
+        <p>Use one of the following sections to learn how to create a labeling job using the
+            console or an API. </p>
+        
+         
+            <h3 id="sms-point-cloud-object-detection-create-labeling-job-console">Create a Labeling Job
+                (Console)</h3>
+            
+            <p>You can follow the instructions <a href="sms-create-labeling-job-console.html">Create a Labeling Job (Console)</a> in order to learn how to
+                create a 3D point cloud object detection labeling job in the SageMaker console. While you
+                are creating your labeling job, be aware of the following: </p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Your input manifest file must be a single-frame manifest file. For more
+                        information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud-single-frame-input-data.html">Create a Point Cloud Frame Input Manifest
+                    File</a>. </p>
+                </li><li class="listitem">
+                    <p>Optionally, you can provide label category and frame attributes. Workers
+                        can assign one or more of these attributes to annotations to provide more
+                        information about that object. For example, you might want to use the
+                        attribute <em>occluded</em> to have workers
+                        identify when an object is partially obstructed.</p>
+                </li><li class="listitem">
+                    <p>Automated data labeling and annotation consolidation are not supported for
+                        3D point cloud labeling tasks.</p>
+                </li><li class="listitem">
+                    <p>3D point cloud object detection labeling jobs can take multiple hours to
+                        complete. You can specify a longer time limit for these labeling jobs when
+                        you select your work team (up to 7 days, or 604800 seconds). </p>
+                </li></ul></div>
+           
+         
+        
+         
+            <h3 id="sms-point-cloud-object-detection-create-labeling-job-api">Create a Labeling Job (API)</h3>
+            
+            <p>This section covers details you need to know when you create a labeling job using
+                the SageMaker API operation <code class="code">CreateLabelingJob</code>. This API defines this
+                operation for all AWS SDKs. To see a list of language-specific SDKs supported for
+                this operation, review the <b>See Also</b> section of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateLabelingJob.html"><code class="code">CreateLabelingJob</code></a>. </p>
+            <p><a href="sms-create-labeling-job-api.html">Create a Labeling Job (API)</a>, provides an overview of the
+                    <code class="code">CreateLabelingJob</code> operation. Follow these instructions and do the
+                following while you configure your request: </p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>You must enter an ARN for <code class="code">HumanTaskUiArn</code>. Use
+                                <code class="code">arn:aws:sagemaker:<code class="replaceable">&lt;region&gt;</code>:394669845002:human-task-ui/PointCloudObjectDetection</code>.
+                        Replace <code class="code"><code class="replaceable">&lt;region&gt;</code></code> with the AWS
+                        Region you are creating the labeling job in. </p>
+                    <p>There should not be an entry for the <code class="code">UiTemplateS3Uri</code>
+                        parameter. </p>
+                </li><li class="listitem">
+                    <p>Your input manifest file must be a single-frame manifest file. For more
+                        information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud-single-frame-input-data.html">Create a Point Cloud Frame Input Manifest
+                    File</a>. </p>
+                </li><li class="listitem">
+                    <p>You specify your labels, label category and frame attributes, and worker
+                        instructions in a label category configuration file. To learn how to create
+                        this file, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-label-cat-config-attributes.html">Create a Labeling Category Configuration
+            File with Label Category and Frame Attributes</a>. </p>
+                </li><li class="listitem">
+                    <p>You need to provide pre-defined ARNs for the pre-annotation and
+                        post-annotation (ACS) Lambda functions. These ARNs are specific to the AWS
+                        Region you use to create your labeling job. </p>
+                    <div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>To find the pre-annotation Lambda ARN, refer to <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HumanTaskConfig.html#sagemaker-Type-HumanTaskConfig-PreHumanTaskLambdaArn"><code class="code">PreHumanTaskLambdaArn</code></a>. Use the Region
+                                you are creating your labeling job in to find the correct ARN. For
+                                example, if you are creating your labeling job in us-east-1, the ARN
+                                will be
+                                    <code class="code">arn:aws:lambda:us-east-1:432418664414:function:PRE-3DPointCloudObjectDetection</code>. </p>
+                        </li><li class="listitem">
+                            <p>To find the post-annotation Lambda ARN, refer to <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AnnotationConsolidationConfig.html#sagemaker-Type-AnnotationConsolidationConfig-AnnotationConsolidationLambdaArn"><code class="code">AnnotationConsolidationLambdaArn</code></a>. Use
+                                the Region you are creating your labeling job in to find the correct
+                                ARN. For example, if you are creating your labeling job in
+                                us-east-1, the ARN will be
+                                    <code class="code">arn:aws:lambda:us-east-1:432418664414:function:ACS-3DPointCloudObjectDetection</code>. </p>
+                        </li></ul></div>
+                </li><li class="listitem">
+                    <p>The number of workers specified in
+                            <code class="code">NumberOfHumanWorkersPerDataObject</code> must be <code class="code">1</code>. </p>
+                </li><li class="listitem">
+                    <p>Automated data labeling is not supported for 3D point cloud labeling jobs.
+                        You should not specify values for parameters in <code class="code"><a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateLabelingJob.html#sagemaker-CreateLabelingJob-request-LabelingJobAlgorithmsConfig">LabelingJobAlgorithmsConfig</a></code>.</p>
+                </li><li class="listitem">
+                    <p>3D point cloud object detection labeling jobs can take multiple hours to
+                        complete. You can specify a longer time limit for these labeling jobs in
+                            <code class="code">TaskTimeLimitInSeconds</code> (up to 7 days, or 604,800 seconds). </p>
+                </li></ul></div>
+         
+     
+            <h2 id="sms-point-cloud-object-detection-adjustment-verification">Create a 3D Point Cloud
+                    Object Detection Adjustment or Verification Labeling Job</h2>
+            <p>You can create an adjustment or verification labeling job using the Ground Truth console
+            or <code class="code">CreateLabelingJob</code> API. To learn more about adjustment and verification
+            labeling jobs, and to learn how create one, see <a href="sms-verification-data.html">Verify and Adjust Labels</a>.</p>
+        <p>When you create an adjustment labeling job, your input data to the labeling job can
+            include labels, and yaw, pitch, and roll measurements from a previous labeling job or
+            external source. In the adjustment job, pitch, and roll will be visualized in the worker
+            UI, but cannot be modified. Yaw is adjustable. </p>
+        <p>Ground Truth uses Tait-Bryan angles with the following intrinsic rotations to visualize yaw,
+            pitch and roll in the worker UI. First, rotation is applied to the vehicle according to
+            the z-axis (yaw). Next, the rotated vehicle is rotated according to the intrinsic
+            y'-axis (pitch). Finally, the vehicle is rotated according to the intrinsic x''-axis
+            (roll). </p>
+         
+        <h2 id="sms-point-cloud-object-detection-output-data">Output Data Format </h2>
+        <p>When you create a 3D point cloud object detection labeling job, tasks are sent to
+            workers. When these workers complete their tasks, labels are written to the Amazon S3 bucket
+            you specified when you created the labeling job. The output data format determines what
+            you see in your Amazon S3 bucket when your labeling job status (<a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeLabelingJob.html#API_DescribeLabelingJob_ResponseSyntax">LabelingJobStatus</a>) is <code class="code">Completed</code>. </p>
+        <p>If you are a new user of Ground Truth, see <a href="sms-data-output.html">Output Data</a> to learn more about the Ground Truth output data format.
+            To learn about the 3D point cloud object detection output data format, see <a href="sms-data-output.html#sms-output-point-cloud-object-detection">3D Point Cloud Object Detection
+                    Output</a>. </p>
+
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./sms-point-cloud-task-types.html">Built-In Task Types</div><div id="next" class="next-link" accesskey="n" href="./sms-point-cloud-object-tracking.html">3D Point Cloud Object Tracking</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-point-cloud-object-detection.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sms-point-cloud-object-detection.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

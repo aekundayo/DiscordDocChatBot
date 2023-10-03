@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Debug lifecycle configurations - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="studio-lcc-debug" /><meta name="default_state" content="studio-lcc-debug" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="studio-lcc-debug.html" /><meta name="description" content="Troubleshoot your lifecycle configurations." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="studio-lcc-debug.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-lcc-debug.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-lcc-debug.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-lcc-debug.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-lcc-debug.html" hreflang="de" /><link rel="alternative" href="studio-lcc-debug.html" hreflang="en-us" /><link rel="alternative" href="studio-lcc-debug.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-lcc-debug.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-lcc-debug.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-lcc-debug.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-lcc-debug.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-lcc-debug.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-lcc-debug.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-lcc-debug.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-lcc-debug.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-lcc-debug.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-lcc-debug.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-lcc-debug.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-lcc-debug.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/studio-lcc-debug.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/studio-lcc-debug.html" hreflang="zh-tw" /><link rel="alternative" href="studio-lcc-debug.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Debug lifecycle configurations" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Debug lifecycle configurations - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-lcc-debug" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-lcc-debug.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-lcc-debug.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-lcc-debug.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use machine learning environments offered by SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/machine-learning-environments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Studio",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Customize Amazon SageMaker Studio",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-customize.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Use lifecycle configurations with Amazon SageMaker Studio",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-lcc.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Debug lifecycle configurations",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-lcc.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-lcc-debug" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="studio-lcc-debug.html#studio-lcc-debug-logs">Verify lifecycle configuration process from
+                CloudWatch Logs</a><a href="studio-lcc-debug.html#studio-lcc-debug-jupyterserver">JupyterServer app failure</a><a href="studio-lcc-debug.html#studio-lcc-debug-kernel">KernelGateway app failure</a><a href="studio-lcc-debug.html#studio-lcc-debug-timeout">Lifecycle configuration timeout</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="studio-lcc-debug">Debug lifecycle configurations</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>The following topics show how to get information about and debug your lifecycle
+        configurations.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="studio-lcc-debug.html#studio-lcc-debug-logs">Verify lifecycle configuration process from
+                CloudWatch Logs</a></li><li><a href="studio-lcc-debug.html#studio-lcc-debug-jupyterserver">JupyterServer app failure</a></li><li><a href="studio-lcc-debug.html#studio-lcc-debug-kernel">KernelGateway app failure</a></li><li><a href="studio-lcc-debug.html#studio-lcc-debug-timeout">Lifecycle configuration timeout</a></li></ul></div>
+        <h2 id="studio-lcc-debug-logs">Verify lifecycle configuration process from
+                CloudWatch Logs</h2>
+        <p>Lifecycle configurations only log <code class="code">STDOUT</code> and <code class="code">STDERR</code>.</p>
+        <p><code class="code">STDOUT</code> is the default output for bash scripts. You can write to
+                <code class="code">STDERR</code> by appending <code class="code">&gt;&amp;2</code> to the end of a bash command.
+            For example, <code class="code">echo 'hello'&gt;&amp;2</code>. </p>
+        <p>Logs for your lifecycle configurations are published to your AWS account using
+            Amazon CloudWatch. These logs can be found in the <code class="code">/aws/sagemaker/studio</code> log stream
+            in the CloudWatch console.</p>
+        <div class="procedure"><ol><li><p>Open the CloudWatch console at
+         <a href="https://console.aws.amazon.com/cloudwatch/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/cloudwatch/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></li><li><p>Choose <b>Logs</b> from the left side. From the dropdown menu, select <b>Log
+                        groups</b>.</p></li><li><p>On the <b>Log groups</b> page, search for <code class="code">aws/sagemaker/studio</code>.
+                    </p></li><li>
+                <p>Select the log group.</p>
+            </li><li><p>On the <b>Log group details</b> page, choose the <b>Log
+                        streams</b> tab.</p></li><li><p>To find the logs for a specific app, search the log streams using the following format:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="replaceable">domain-id</code>/<code class="replaceable">user-profile-name</code>/<code class="replaceable">app-type</code>/<code class="replaceable">app-name</code></code></pre>
+                <p>For example, to find the lifecycle configuration logs for domain
+                        <code class="code">d-m85lcu8vbqmz</code>, user profile <code class="code">i-sonic-js</code>,
+                    application type <code class="code">JupyterServer</code> and application name
+                        <code class="code">test-lcc-echo</code>, use the following search string:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">d-m85lcu8vbqmz/i-sonic-js/JupyterServer/test-lcc-echo </code></pre>
+            </li><li>
+                <p>Select the log stream appended with <code class="code">LifecycleConfigOnStart</code> to view the script execution logs.</p>
+            </li></ol></div>
+     
+        <h2 id="studio-lcc-debug-jupyterserver">JupyterServer app failure</h2>
+        <p>If your JupyterServer app crashes because of an issue with the attached lifecycle
+            configuration, Studio displays the following error message on the Studio startup
+            screen. </p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">Failed to create SageMaker Studio due to start-up script failure</code></pre>
+        <p>Select the <code class="code">View script logs</code> link to view the CloudWatch logs for your
+            JupyterServer app.</p>
+        <p>In the case where the faulty lifecycle configuration is specified in the
+                <code class="code">DefaultResourceSpec</code> of your domain, user profile, or shared space,
+            Studio continues to use the lifecycle configuration even after restarting
+            Studio. </p>
+        <p>To resolve this error, follow the steps in <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/studio-lcc-defaults.html">Set default lifecycle configurations</a> to remove the lifecycle configuration script
+            from the <code class="code">DefaultResourceSpec</code> or select another script as the default. Then
+            launch a new JupyterServer app.</p>
+     
+        <h2 id="studio-lcc-debug-kernel">KernelGateway app failure</h2>
+        <p>If your KernelGateway app crashes because of an issue with the attached lifecycle
+            configuration, Studio displays the error message in your Studio Notebook. </p>
+        <p>Choose <code class="code">View script logs</code> to view the CloudWatch logs for your KernelGateway
+            app.</p>
+        <p>In this case, your lifecycle configuration is specified in the Studio Launcher
+            when launching a new Studio Notebook. </p>
+        <p>To resolve this error, use the Studio launcher to select a different lifecycle
+            configuration or select <code class="code">No script</code>.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>A default KernelGateway lifecycle configuration specified in <code class="code">DefaultResourceSpec</code>
+                applies to all KernelGateway images in the domain, user profile, or shared space
+                unless the user selects a different script from the list presented in the Studio
+                launcher. The default script also runs if <code class="code">No Script</code> is selected by the
+                user. For more information on selecting a script, see <a href="studio-lcc-create-console.html#studio-lcc-create-console-step3">Step 3: Launch an application with the
+                lifecycle configuration</a>.</p></div></div>
+     
+        <h2 id="studio-lcc-debug-timeout">Lifecycle configuration timeout</h2>
+        <p>There is a lifecycle configuration timeout limitation of 5 minutes. If a lifecycle
+            configuration script takes longer than 5 minutes to run, Studio throws an
+            error.</p>
+        <p>To resolve this error, ensure that your lifecycle configuration script completes in
+            less than 5 minutes. </p>
+        <p>To help decrease the run time of scripts, try the following:</p>
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Cut down on necessary steps. For example, limit which conda environments to install large packages in.</p>
+            </li><li class="listitem">
+                <p>Run tasks in parallel processes.</p>
+            </li><li class="listitem">
+                <p>Use the <code class="code">nohup</code> command in your script to ensure that hangup
+                    signals are ignored and do not stop the execution of the script.</p>
+            </li></ul></div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./studio-lcc-defaults-console.html">Set defaults from the SageMaker console</div><div id="next" class="next-link" accesskey="n" href="./studio-lcc-delete.html">Update and detach lifecycle configurations</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-lcc-debug.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-lcc-debug.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

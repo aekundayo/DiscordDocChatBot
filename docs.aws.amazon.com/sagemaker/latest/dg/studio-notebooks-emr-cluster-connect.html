@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Use Amazon EMR clusters from Studio notebooks - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="studio-notebooks-emr-cluster-connect" /><meta name="default_state" content="studio-notebooks-emr-cluster-connect" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="studio-notebooks-emr-cluster-connect.html" /><meta name="description" content="Learn how to discover, connect to, and terminate an Amazon EMR cluster from SageMaker Studio notebooks." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="studio-notebooks-emr-cluster-connect.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" hreflang="de" /><link rel="alternative" href="studio-notebooks-emr-cluster-connect.html" hreflang="en-us" /><link rel="alternative" href="studio-notebooks-emr-cluster-connect.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" hreflang="zh-tw" /><link rel="alternative" href="studio-notebooks-emr-cluster-connect.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Use Amazon EMR clusters from Studio notebooks" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Use Amazon EMR clusters from Studio notebooks - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-notebooks-emr-cluster-connect" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,SageMaker Amazon EMR,SageMaker AWS Glue,SageMaker Spark,SageMaker Hive,SageMaker Presto" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Prepare data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-prep.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Scale data preparation using Apache Spark, Hive, or Presto on Amazon EMR or AWS Glue from Amazon SageMaker Studio notebooks",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-emr-spark-glue.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Prepare data using Amazon EMR",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-emr-cluster.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Use Amazon EMR clusters from Studio notebooks",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-emr-cluster.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-notebooks-emr-cluster-connect" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="studio-notebooks-emr-cluster-connect.html#studio-notebooks-emr-cluster-connect-kernels">Supported images and kernels</a><a href="studio-notebooks-emr-cluster-connect.html#studio-notebooks-emr-byoi">Bring your own image</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="studio-notebooks-emr-cluster-connect">Use Amazon EMR clusters from
+                Studio notebooks</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>In this section, you learn about how to discover, connect to, or terminate an Amazon EMR
+            cluster from SageMaker Studio notebooks.</p><div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>If you are an administrator, see <a href="studio-notebooks-configure-discoverability-emr-cluster.html">Configure
+                    the discoverability of Amazon EMR clusters (for administrators)</a> to
+                    configure the discoverability of Amazon EMR clusters from SageMaker Studio
+                    notebooks.</p>
+            </li><li class="listitem">
+                <p>If you are a data scientist or data engineer looking to discover Amazon EMR
+                    clusters from your Studio notebooks, see <a href="discover-emr-clusters.html">Discover Amazon EMR clusters from SageMaker
+                    Studio</a>.</p>
+            </li><li class="listitem">
+                <p>If you are a data scientist or data engineer looking to connect to existing
+                    Amazon EMR clusters from your Studio notebooks, see <a href="connect-emr-clusters.html">Connect to an Amazon EMR cluster from SageMaker
+                    Studio</a>.</p>
+            </li></ul></div><p>When connecting to your Amazon EMR cluster from SageMaker Studio, you can authenticate to
+            your cluster with <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-kerberos.html">Kerberos</a>, <a href="https://docs.aws.amazon.com/">Lightweight Directory Access Protocol (LDAP)</a>, or
+            use <a href="studio-notebooks-emr-cluster-rbac.html">runtime IAM
+                role</a> authentication. Your authentication method depends on your cluster
+            configuration. You can refer to this example <a href="http://aws.amazon.com/blogs/big-data/access-apache-livy-using-a-network-load-balancer-on-a-kerberos-enabled-amazon-emr-cluster/" rel="noopener noreferrer" target="_blank"><span>Access Apache Livy using a Network Load Balancer on a Kerberos-enabled Amazon EMR
+                cluster</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to set up an Amazon EMR cluster that uses Kerberos. Alternatively, you
+            can look at the CloudFormation example templates using Kerberos or LDAP in the <a href="https://github.com/aws-samples/sagemaker-studio-emr/tree/main/cloudformation/getting_started" rel="noopener noreferrer" target="_blank"><span>aws-samples/sagemaker-studio-emr</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> GitHub repository.</p><p>Find the list of available connection commands to an Amazon EMR cluster per authentication
+            method in <a href="connect-emr-clusters.html#connect-emr-clusters-manually">Enter the connection command to
+                        an Amazon EMR cluster manually</a> to connect to your Amazon EMR
+            cluster.</p>
+            <h2 id="studio-notebooks-emr-cluster-connect-kernels">Supported images and
+                    kernels to connect to an Amazon EMR cluster from SageMaker Studio</h2>
+            <p>SageMaker Studio provides built-in support to connect to Amazon EMR clusters in the
+                following images and kernels:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>DataScience – Python 3 kernel</p>
+                </li><li class="listitem">
+                    <p>DataScience 2.0 – Python 3 kernel</p>
+                </li><li class="listitem">
+                    <p>DataScience 3.0 – Python 3 kernel</p>
+                </li><li class="listitem">
+                    <p>SparkAnalytics 1.0 – SparkMagic and PySpark kernels</p>
+                </li><li class="listitem">
+                    <p>SparkAnalytics 2.0 – SparkMagic and PySpark kernels</p>
+                </li><li class="listitem">
+                    <p>SparkMagic – SparkMagic and PySpark kernels</p>
+                </li><li class="listitem">
+                    <p>PyTorch 1.8 – Python 3 kernels</p>
+                </li><li class="listitem">
+                    <p>TensorFlow 2.6 – Python 3 kernel</p>
+                </li><li class="listitem">
+                    <p>TensorFlow 2.11 – Python 3 kernel</p>
+                </li></ul></div>
+            <p>Those images and kernels come with <a href="https://pypi.org/project/sagemaker-studio-analytics-extension/" rel="noopener noreferrer" target="_blank"><span>sagemaker-studio-analytics-extension</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, a notebook extension that enables
+                connection to a remote Spark (Amazon EMR) cluster via the <a href="https://github.com/jupyter-incubator/sparkmagic" rel="noopener noreferrer" target="_blank"><span>SparkMagic</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> library
+                using <a href="https://livy.apache.org/" rel="noopener noreferrer" target="_blank"><span>Apache Livy</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+
+            <p>To connect to Amazon EMR clusters using another built-in image or your own image,
+                follow the instructions in <a href="studio-notebooks-emr-cluster-connect.html#studio-notebooks-emr-byoi">Bring your own image</a>.</p>
+         
+            <h2 id="studio-notebooks-emr-byoi">Bring your own image</h2>
+
+            <p>To bring your own image in SageMaker Studio and allow your notebooks to connect to
+                Amazon EMR clusters, install the following <a href="https://pypi.org/project/sagemaker-studio-analytics-extension/" rel="noopener noreferrer" target="_blank"><span>sagemaker-studio-analytics-extension</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> extension to your kernel. It
+                supports connecting SageMaker Studio notebooks to Spark(Amazon EMR) clusters through the
+                    <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-studio-magics.html">SparkMagic</a>
+                library.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="bash ">pip install sparkmagic
+pip install sagemaker-studio-sparkmagic-lib
+pip install sagemaker-studio-analytics-extension</code></pre>
+
+            <p>Additionally, to connect to Amazon EMR with <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-kerberos.html">Kerberos </a>
+                authentication, you must install the kinit client. Depending on your OS, the command
+                to install the kinit client can vary. To bring an Ubuntu (Debian based) image, use
+                the <code class="code">apt-get install -y -qq krb5-user</code> command.</p>
+            <p>For more information on bringing your own image in SageMaker Studio, see <a href="studio-byoi.html">Bring your own
+                    SageMaker image</a>.</p>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./studio-notebooks-launch-emr-cluster-from-template.html">Launch an Amazon EMR
+                    cluster from Studio</div><div id="next" class="next-link" accesskey="n" href="./studio-notebooks-configure-discoverability-emr-cluster.html">Configure
+                    the discoverability of Amazon EMR clusters (for administrators)</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

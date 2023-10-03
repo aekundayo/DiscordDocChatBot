@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Amazon SageMaker Studio Lab components overview - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="studio-lab-overview" /><meta name="default_state" content="studio-lab-overview" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="studio-lab-overview.html" /><meta name="description" content="Gives an overview of Amazon SageMaker Studio Lab structure and components." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="studio-lab-overview.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-lab-overview.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-lab-overview.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-lab-overview.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-lab-overview.html" hreflang="de" /><link rel="alternative" href="studio-lab-overview.html" hreflang="en-us" /><link rel="alternative" href="studio-lab-overview.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-lab-overview.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-lab-overview.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-lab-overview.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-lab-overview.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-lab-overview.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-lab-overview.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-lab-overview.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-lab-overview.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-lab-overview.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-lab-overview.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-lab-overview.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-lab-overview.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/studio-lab-overview.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/studio-lab-overview.html" hreflang="zh-tw" /><link rel="alternative" href="studio-lab-overview.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Amazon SageMaker Studio Lab components overview" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Amazon SageMaker Studio Lab components overview - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-lab-overview" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-lab-overview.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-lab-overview.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-lab-overview.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use machine learning environments offered by SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/machine-learning-environments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Studio Lab",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-lab.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Amazon SageMaker Studio Lab components overview",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-lab.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-lab-overview" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="studio-lab-overview.html#studio-lab-overview-landing">Landing page</a><a href="studio-lab-overview.html#studio-lab-overview-account">Studio Lab account</a><a href="studio-lab-overview.html#studio-lab-overview-project-overview">Project overview page</a><a href="studio-lab-overview.html#studio-lab-overview-preview">Preview page</a><a href="studio-lab-overview.html#studio-lab-overview-project">Project</a><a href="studio-lab-overview.html#studio-lab-overview-project-compute">Compute instance type</a><a href="studio-lab-overview.html#studio-lab-overview-runtime">Project runtime</a><a href="studio-lab-overview.html#studio-lab-overview-session">Session</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="studio-lab-overview">Amazon SageMaker Studio Lab components overview</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon SageMaker Studio Lab consists of the following components. The following topics give more details
+    about these components. </p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="studio-lab-overview.html#studio-lab-overview-landing">Landing page</a></li><li><a href="studio-lab-overview.html#studio-lab-overview-account">Studio Lab account</a></li><li><a href="studio-lab-overview.html#studio-lab-overview-project-overview">Project overview page</a></li><li><a href="studio-lab-overview.html#studio-lab-overview-preview">Preview page</a></li><li><a href="studio-lab-overview.html#studio-lab-overview-project">Project</a></li><li><a href="studio-lab-overview.html#studio-lab-overview-project-compute">Compute instance type</a></li><li><a href="studio-lab-overview.html#studio-lab-overview-runtime">Project runtime</a></li><li><a href="studio-lab-overview.html#studio-lab-overview-session">Session</a></li></ul></div>
+    <h2 id="studio-lab-overview-landing">Landing page</h2>
+    <p>You can request an account and sign in to an existing account on your landing page. To
+      navigate to the landing page, see the <a href="https://studiolab.sagemaker.aws/" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Studio Lab website</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. For more information about creating a Studio Lab account, see
+        <a href="studio-lab-onboard.html">Onboard to Amazon SageMaker Studio Lab</a>.</p>
+    <p>The following screenshot shows the Studio Lab landing page interface for requesting a user
+      account and signing in.</p>
+    <div class="mediaobject">
+       
+        <img src="../../../images/sagemaker/latest/dg/images/studio-lab-landing.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        The Amazon SageMaker Studio Lab landing page layout.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+   
+    <h2 id="studio-lab-overview-account">Studio Lab account</h2>
+    <p>Your Studio Lab account gives you access to Studio Lab. For more information about creating a
+      user account, see <a href="studio-lab-onboard.html">Onboard to Amazon SageMaker Studio Lab</a>.</p>
+   
+    <h2 id="studio-lab-overview-project-overview">Project overview page</h2>
+    <p>You can launch a compute instance and view information about your project on this page. To
+      navigate to this page, you must sign in from the <a href="https://studiolab.sagemaker.aws/" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker Studio Lab website</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. The URL takes the following format.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">https://studiolab.sagemaker.aws/users/<code class="replaceable">&lt;YOUR_USER_NAME&gt;</code></code></pre>
+    <p>The following screenshot shows a project overview in the Studio Lab user interface.</p>
+    <div class="mediaobject">
+       
+        <img src="../../../images/sagemaker/latest/dg/images/studio-lab-overview.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        The layout of the project overview user interface, including status, time remaining,&#xA;          and compute type.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+   
+    <h2 id="studio-lab-overview-preview">Preview page</h2>
+    <p>On this page, you can access a read-only preview of a Jupyter notebook. You can not execute
+      the notebook from preview, but you can copy that notebook into your project. For many
+      customers, this may be the first Studio Lab page that customers see, as they may be opening a
+      notebook from GitHub notebook. For more information on how to use GitHub resources, see <a href="studio-lab-use-external.html#studio-lab-use-external-clone-github">Use GitHub resources</a>. </p>
+    <p>To copy the notebook preview to your Studio Lab project:</p>
+    <div class="procedure"><ol><li>
+        <p> Sign in to your Studio Lab account. For more information about creating a Studio Lab
+          account, see <a href="studio-lab-onboard.html">Onboard to Amazon SageMaker Studio Lab</a>.
+        </p>
+      </li><li>
+        <p> Under <b>Notebook compute instance</b>, choose a compute instance type.
+          For more information about compute instance types, see <a href="studio-lab-overview.html#studio-lab-overview-project-compute">Compute instance type</a>. </p>
+      </li><li>
+        <p> Choose <b>Start runtime</b>. You might be asked to solve a CAPTCHA
+          puzzle. For more information on CAPTCHA, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/waf-captcha-puzzle.html"> What is a CAPTCHA
+            puzzle?</a>
+        </p>
+      </li><li>
+        <p> One time setup, for first time starting runtime using your Studio Lab account: </p>
+        <ol><li>
+            <p> Enter a mobile phone number to associate with your Amazon SageMaker Studio Lab account and choose
+                <b>Continue</b>. </p>
+            <p>For information on supported countries and regions, see <a href="https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-sms-countries.html">
+                Supported countries and regions (SMS channel)</a>.</p>
+          </li><li>
+            <p> Enter the 6-digit code sent to the associated mobile phone number and choose
+                <b>Verify</b>. </p>
+          </li></ol>
+      </li><li>
+        <p> Choose <b>Copy to project</b>. </p>
+      </li></ol></div>
+
+
+   
+    <h2 id="studio-lab-overview-project">Project</h2>
+    <p>Your project contains all of your files and folders, including your Jupyter notebooks. You
+      have full control over the files in your project. Your project also includes the
+      JupyterLab-based user interface. From this interface, you can interact with your Jupyter
+      notebooks, edit your source code files, integrate with GitHub, and connect to Amazon S3. For more
+      information, see <a href="studio-lab-use.html">Use the Amazon SageMaker Studio Lab project runtime</a>. </p>
+    <p>The following screenshot shows a Studio Lab project with the file browser open and the
+      Studio Lab Launcher displayed.</p>
+
+    <div class="mediaobject">
+       
+        <img src="../../../images/sagemaker/latest/dg/images/studio-lab-ui.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        The layout of the project user interface, including the left sidebar, main work&#xA;          area, and file and resource browser.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+   
+    <h2 id="studio-lab-overview-project-compute">Compute instance type</h2>
+    <p> Your Amazon SageMaker Studio Lab project runtime is based on an EC2 instance. You are allotted 15 GB of
+      storage and 16 GB of RAM. Availability of compute instances is not guaranteed and is subject
+      to demand. If you require additional storage or compute resources, consider switching to
+      Amazon SageMaker Studio.  </p>
+
+    <p>Amazon SageMaker Studio Lab offers the choice of a CPU (Central Processing Unit) and a GPU (Graphical
+      Processing Unit). The following sections give information about these two options, including
+      selection guidance. </p>
+    <p>
+      <strong>CPU</strong>
+    </p>
+    <p>A central processing unit (CPU) is designed to handle a wide range of tasks efficiently,
+      but is limited in how many tasks it can run concurrently. For machine learning, a CPU is
+      recommended for compute intensive algorithms, such as time series, forecasting, and tabular
+      data.  </p>
+
+    <p>The CPU compute type has up to 4 hours at a time with a limit of 8 hours in a 24-hour
+      period.</p>
+    <p>
+      <strong>GPU</strong>
+    </p>
+    <p>A graphics processing unit (GPU) is designed to render high-resolution images and video
+      concurrently. A GPU is recommended for deep learning tasks, especially for transformers and
+      computer vision. </p>
+
+    <p>The GPU compute type has up to 4 hours at a time with a limit of 4 hours in a 24-hour
+      period.</p>
+    <p>
+      <strong>Compute time</strong>
+    </p>
+    <p>When compute time for Studio Lab reaches its time limit, the instance stops all running
+      computations. Studio Lab does not support time limit increases.</p>
+    <p>Studio Lab automatically saves your environment when you update your environment and every
+      time you create a new file. Custom-installed extensions and packages persist even after your
+      runtime has ended.</p>
+    <p>File edits are periodically saved, but are not saved when your runtime ends. To ensure
+      that you do not lose your progress, save your work manually. If you have content in your
+      Studio Lab project that you don’t want to lose, we recommend that you back up your content
+      elsewhere. For more information about exporting your environment and files, see <a href="studio-lab-use-migrate.html">Export an Amazon SageMaker Studio Lab environment to
+      Amazon SageMaker Studio</a>.</p>
+
+    <p>During long computation, you do not need to keep your project open. For example, you can
+      start training a model, then close your browser. The instance keeps running for up to the
+      compute type limit in a 24-hour period. You can then sign in later to continue your work.  </p>
+    <p>We recommend that you use checkpointing in your deep learning jobs. You can use saved
+      checkpoints to restart a job from the previously saved checkpoint. For more information, see
+        <a href="https://d2l.ai/chapter_deep-learning-computation/read-write.html?highlight=checkpointing" rel="noopener noreferrer" target="_blank"><span>File I/O</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+   
+    <h2 id="studio-lab-overview-runtime">Project runtime</h2>
+    <p>The project runtime is the period of time when your compute instance is running.</p>
+   
+    <h2 id="studio-lab-overview-session">Session</h2>
+    <p>A user session begins every time you launch your project. </p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./studio-lab.html">SageMaker Studio Lab</div><div id="next" class="next-link" accesskey="n" href="./studio-lab-onboard.html">Onboard to Studio Lab</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-lab-overview.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-lab-overview.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

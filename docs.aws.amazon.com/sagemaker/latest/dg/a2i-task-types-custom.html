@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Use Amazon Augmented AI with Custom Task Types - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="a2i-task-types-custom" /><meta name="default_state" content="a2i-task-types-custom" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="a2i-task-types-custom.html" /><meta name="description" content="This topic covers how to integrate Amazon Augmented AI (Amazon A2I) into a custom machine learning workflow." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="a2i-task-types-custom.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/a2i-task-types-custom.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/a2i-task-types-custom.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/a2i-task-types-custom.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/a2i-task-types-custom.html" hreflang="de" /><link rel="alternative" href="a2i-task-types-custom.html" hreflang="en-us" /><link rel="alternative" href="a2i-task-types-custom.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/a2i-task-types-custom.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/a2i-task-types-custom.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/a2i-task-types-custom.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/a2i-task-types-custom.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/a2i-task-types-custom.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/a2i-task-types-custom.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/a2i-task-types-custom.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/a2i-task-types-custom.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/a2i-task-types-custom.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/a2i-task-types-custom.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/a2i-task-types-custom.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/a2i-task-types-custom.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/a2i-task-types-custom.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/a2i-task-types-custom.html" hreflang="zh-tw" /><link rel="alternative" href="a2i-task-types-custom.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Use Amazon Augmented AI with Custom Task Types" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Use Amazon Augmented AI with Custom Task Types - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#a2i-task-types-custom" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/a2i-task-types-custom.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/a2i-task-types-custom.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/a2i-task-types-custom.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Label data with a human-in-the-loop",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-label.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Using Amazon Augmented AI for Human Review",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-use-augmented-ai-a2i-human-review-loops.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use Cases and Examples Using Amazon A2I",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-task-types-general.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Use Amazon Augmented AI with Custom Task Types",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-task-types-general.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#a2i-task-types-custom" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="a2i-task-types-custom.html#a2i-task-types-custom-notebook-demo">End-to-end Tutorial Using
+                Amazon A2I Custom Task Types</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="a2i-task-types-custom">Use Amazon Augmented AI with Custom Task Types</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can use Amazon Augmented AI (Amazon A2I) to incorporate a human review (human loop) into
+            <em>any</em> machine learning workflow using the
+            <em>custom task type</em>. This options gives you the most flexibility to
+        customize the conditions under which your data objects are sent to humans for review, as
+        well as the look and feel of your worker user interface.</p><p>When you use a custom task type, you create a custom human review workflow and specify the
+        conditions under which a data object is sent for human review directly in your application. </p><p>The following image depicts the Amazon A2I custom workflow. A custom ML model is used to
+        generate predictions. The client application filters these predictions using user-defined
+        criteria and determines if a human review is required. If so, these predictions are sent to
+        Amazon A2I for human review. Amazon A2I collects the results of human review in Amazon S3, which
+        can access by the client application. If the filter determines that no human review is
+        needed, predictions can be fed directly to the client application. </p><div class="mediaobject">
+         
+         
+            <img src="../../../images/sagemaker/latest/dg/images/a2i/diagrams/product-page-diagram_A2I-Components_Custom@2x.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;            Use Amazon Augmented AI with Custom Task Types&#xA;        " />
+            
+         
+    </div><p>Use the procedures on this page to learn how to integrate Amazon A2I into any machine
+        learning workflow using the custom task type. </p><div class="procedure"><h6>Create a human loop using a flow definition, integrate it into your application, and
+            monitor the results</h6><ol><li>
+            <p>Complete the Amazon A2I <a href="a2i-getting-started-prerequisites.html">Prerequisites to Using Augmented AI</a>. Note the following: </p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>The path to the Amazon Simple Storage Service (Amazon S3) bucket or buckets where you store your
+                        input and output data. </p>
+                </li><li class="listitem">
+                    <p>The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role with required
+                        permissions attached. </p>
+                </li><li class="listitem">
+                    <p>(Optional) The ARN of your private workforce, if you plan to use one. </p>
+                </li></ul></div>
+        </li><li>
+            <p>Using HTML elements, create a custom worker template which Amazon A2I uses to
+                generate your worker task UI. To learn how to create a custom template, see <a href="a2i-custom-templates.html">Create Custom Worker Task Templates</a>. </p>
+        </li><li>
+            <p>Use the custom worker template from step 2 to generate a worker task template in
+                the Amazon SageMaker console. To learn how, see <a href="a2i-worker-template-console.html#a2i-create-worker-template-console">Create a Worker Task Template</a>.</p>
+            <p>In the next step, you create a flow definition:</p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>If you want to create a flow definition using the SageMaker API, note the ARN
+                        of this worker task template for the next step.</p>
+                </li><li class="listitem">
+                    <p>If you are creating a flow definition using the console, your template
+                        automatically appears in <b>Worker task template</b> section
+                        when you choose <b>Create human review workflow</b>.</p>
+                </li></ul></div>
+        </li><li>
+            <p>When creating your flow definition, provide the path to your S3 buckets, your
+                IAM role ARN, and your worker template. </p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>To learn how to create a flow definition using the SageMaker
+                            <code class="code">CreateFlowDefinition</code> API, see <a href="create-human-review-console.html#a2i-create-human-review-api">Create a Human Review Workflow (API)</a>. </p>
+                </li><li class="listitem">
+                    <p>To learn how to create a flow definition using the SageMaker console, see <a href="create-human-review-console.html#a2i-create-human-review-console">Create a Human Review Workflow
+            (Console)</a>.</p>
+                </li></ul></div>
+        </li><li>
+            <p>Configure your human loop using the <a href="https://docs.aws.amazon.com/augmented-ai/2019-11-07/APIReference/Welcome.html">Amazon A2I Runtime
+                    API</a>. To learn how, see <a href="a2i-start-human-loop.html">Create and Start a Human Loop</a>. </p>
+        </li><li>
+            <p>To control when human reviews are initiated in your application, specify
+                conditions under which <code class="code">StartHumanLoop</code> is called in your application.
+                Human loop activation conditions, such as confidence thresholds that initiate the
+                human loop, are not available when using Amazon A2I with custom task types. Every
+                    <code class="code">StartHumanLoop</code> invocation results in a human review.</p>
+        </li></ol></div><p>Once you have started a human loop, you can manage and monitor your loops using the
+        Amazon Augmented AI Runtime API and Amazon EventBridge (also known as Amazon CloudWatch Events). To learn more, see <a href="a2i-monitor-humanloop-results.html">Monitor and Manage Your Human Loop</a>.</p>
+        <h2 id="a2i-task-types-custom-notebook-demo">End-to-end Tutorial Using
+                Amazon A2I Custom Task Types</h2>
+        <p>For an end-to-end examples that demonstrates how to integrate Amazon A2I into a
+            variety of ML workflows, see the table in <a href="a2i-task-types-general.html">Use Cases and Examples Using Amazon A2I</a>. To get started using one of these
+            notebooks, see <a href="a2i-task-types-general.html#a2i-task-types-notebook-demo">Use SageMaker Notebook Instance with
+                Amazon A2I Jupyter Notebook</a>.</p>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./a2i-rekognition-task-type.html">Use with Amazon Rekognition</div><div id="next" class="next-link" accesskey="n" href="./a2i-create-flow-definition.html">Create a Human Review Workflow</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/a2i-task-types-custom.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/a2i-task-types-custom.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

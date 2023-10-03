@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Delete an Amazon SageMaker Domain - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="gs-studio-delete-domain" /><meta name="default_state" content="gs-studio-delete-domain" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="gs-studio-delete-domain.html" /><meta name="description" content="A Domain consists of a list of authorized users, configuration settings, and an Amazon Elastic File System (Amazon EFS) volume. The Amazon EFS volume contains data for the users, including notebooks, resources, and artifacts. A user can have multiple applications (apps) which support the reading and execution experience of the user’s notebooks, terminals, and consoles." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="gs-studio-delete-domain.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/gs-studio-delete-domain.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/gs-studio-delete-domain.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/gs-studio-delete-domain.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/gs-studio-delete-domain.html" hreflang="de" /><link rel="alternative" href="gs-studio-delete-domain.html" hreflang="en-us" /><link rel="alternative" href="gs-studio-delete-domain.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/gs-studio-delete-domain.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/gs-studio-delete-domain.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/gs-studio-delete-domain.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/gs-studio-delete-domain.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/gs-studio-delete-domain.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/gs-studio-delete-domain.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/gs-studio-delete-domain.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/gs-studio-delete-domain.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/gs-studio-delete-domain.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/gs-studio-delete-domain.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/gs-studio-delete-domain.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/gs-studio-delete-domain.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/gs-studio-delete-domain.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/gs-studio-delete-domain.html" hreflang="zh-tw" /><link rel="alternative" href="gs-studio-delete-domain.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Delete an Amazon SageMaker Domain" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Delete an Amazon SageMaker Domain - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#gs-studio-delete-domain" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/gs-studio-delete-domain.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/gs-studio-delete-domain.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/gs-studio-delete-domain.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Get started",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/gs.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Onboard to Amazon SageMaker Domain",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/gs-studio-onboard.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Amazon SageMaker Domain",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sm-domain.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Delete an Amazon SageMaker Domain",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sm-domain.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#gs-studio-delete-domain" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="gs-studio-delete-domain.html#gs-studio-delete-domain-requirements">Requirements</a><a href="gs-studio-delete-domain.html#gs-studio-delete-domain-efs">EFS files</a><a href="gs-studio-delete-domain.html#gs-studio-delete-domain-studio">Delete a Domain
+                    (Console)</a><a href="gs-studio-delete-domain.html#gs-studio-delete-domain-cli">Delete a Domain
+                    (AWS CLI)</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="gs-studio-delete-domain">Delete an Amazon SageMaker Domain</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>A Domain consists of a list of authorized users, configuration settings, and an
+            Amazon Elastic File System (Amazon EFS) volume. The Amazon EFS volume contains data for the users, including
+            notebooks, resources, and artifacts. A user can have multiple applications (apps) which
+            support the reading and execution experience of the user’s notebooks, terminals, and
+            consoles. </p><p>You can delete your Domain using one of the following:</p><div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>AWS console</p>
+            </li><li class="listitem">
+                <p>AWS Command Line Interface (AWS CLI)</p>
+            </li><li class="listitem">
+                <p>SageMaker SDK</p>
+            </li></ul></div><p>The following sections explain how to delete a Domain and the requirements for
+            doing so.</p>
+            <h2 id="gs-studio-delete-domain-requirements">Requirements</h2>
+            <p>You must satisfy the following requirements to delete a Domain.</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>You must have admin permission to delete a Domain.</p>
+                </li><li class="listitem">
+                    <p>You can only delete an app with the status <code class="code">InService</code>
+                        displayed as <b>Ready</b> in the Domain. To delete the
+                        containing Domain, you don't need to delete an app whose status is
+                            <code class="code">Failed</code>. In the Domain, an attempt to delete an app in
+                        the failed state results in an error.</p>
+                </li><li class="listitem">
+                    <p>To delete a Domain, the Domain cannot contain any user profiles or
+                        shared spaces. To delete a user profile or shared space, the user profile or space
+                        cannot contain any non-failed apps.</p>
+                    <p>When you delete these resources, the following occurs:</p>
+                    <div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>App – The data (files and notebooks) in a user's home
+                                directory is saved. Unsaved notebook data is lost.</p>
+                        </li><li class="listitem">
+                            <p>User profile – The user can no longer sign in to the
+                                Domain. The user loses access to their home directory, but the
+                                data is not deleted. An admin can retrieve the data from the Amazon EFS
+                                volume where it is stored under the user's AWS account.</p>
+                        </li></ul></div>
+                </li><li class="listitem">
+                    <p>To switch authentication modes from IAM to
+                        IAM Identity Center, you must delete the Domain.</p>
+                </li></ul></div>
+         
+            <h2 id="gs-studio-delete-domain-efs">EFS files</h2>
+            <p>Your files are kept in an Amazon EFS volume as a backup. This backup includes the files
+                in the mounted directory, which is <code class="code">/home/sagemaker-user</code> for Jupyter and
+                    <code class="code">/root</code> for your kernel. </p>
+            <p>When you delete files from these mounted directories, the kernel or app may move
+                the deleted files into a hidden trash folder. If the trash folder is inside the
+                mounted directory, those files are copied into the Amazon EFS volume and will incur
+                charges. To avoid these Amazon EFS charges, you must identify and clean the trash folder
+                location. The trash folder location for default apps and kernels is
+                    <code class="code">~/.local/</code>. This may vary depending on the Linux distribution used
+                for custom apps or kernels. For more information about the Amazon EFS volume, see <a href="studio-tasks-manage-storage.html">Manage Your Amazon EFS Storage Volume in SageMaker
+        Studio</a>.</p>
+            <p>When you use the SageMaker console to delete the Domain, the Amazon EFS volume is
+                detached but not deleted. The same behavior occurs by default when you use the AWS CLI
+                or the SageMaker Python SDK to delete the Domain. However, when you use the AWS CLI or
+                the SageMaker Python SDK, you can set the <code class="code">RetentionPolicy</code> to
+                    <code class="code">HomeEfsFileSystem=Delete</code> to delete the Amazon EFS volume along with the
+                Domain.</p>
+         
+            <h2 id="gs-studio-delete-domain-studio">Delete an Amazon SageMaker Domain
+                    (console)</h2>
+            <div class="procedure"><h6>To delete a Domain</h6><ol><li>
+                    <p>Open the <a href="https://console.aws.amazon.com/sagemaker/" rel="noopener noreferrer" target="_blank"><span>SageMaker
+                        console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                </li><li>
+                    <p>On the left navigation pane, choose <b>Admin configurations</b>.</p>
+                </li><li>
+                    <p>Under <b>Admin configurations</b>, choose <b>Domains</b>. </p>
+                </li><li>
+                    <p>Select the Domain that you want to delete.</p>
+                </li><li>
+                    <p>Repeat the following steps for each user in the <b>User
+                            profiles</b> list.</p>
+                    <ol><li>
+                            <p>Choose the user.</p>
+                        </li><li>
+                            <p>On the <b>User Details</b> page, for each non-failed
+                                app in the <b>Apps</b> list, choose
+                                    <b>Action</b>.</p>
+                        </li><li>
+                            <p>From the dropdown list, choose <b>Delete</b>.</p>
+                        </li><li>
+                            <p>On the <b>Delete app</b> dialog box, choose
+                                    <b>Yes, delete app</b>. Then enter
+                                    <em>delete</em> in the confirmation field, and
+                                choose <b>Delete</b>.</p>
+                        </li><li>
+                            <p>When <b>Status</b> shows as
+                                    <b>Deleted</b> for all apps, choose
+                                    <b>Edit</b>.</p>
+                        </li><li>
+                            <p>On the <b>Edit User</b> page, choose
+                                    <b>Delete user</b>.</p>
+                        </li><li>
+                            <p>On the <b>Delete user</b> dialog box, choose
+                                    <b>Yes, delete user</b>. Then enter
+                                    <em>delete</em> in the confirmation field, and
+                                choose <b>Delete</b>.</p>
+                        </li></ol>
+                    <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>When a user is deleted, they lose access to the Amazon EFS volume that
+                            contains their data, including notebooks and other artifacts. The data
+                            is not deleted and can be accessed by an administrator.</p></div></div>
+                </li><li>
+                    <p>When all users are deleted, choose the <b>Space
+                            management</b> tab.</p>
+                </li><li>
+                    <p>Repeat the following steps for each shared space in the
+                            <b>Spaces</b> list.</p>
+                    <ol><li>
+                            <p>Select the name of the shared space.</p>
+                        </li><li>
+                            <p>Choose <b>Delete app</b> for every app.</p>
+                        </li><li>
+                            <p>On the <b>Delete app</b> dialog box, choose
+                                    <b>Yes, delete app</b>. Then enter
+                                    <em>delete</em> in the confirmation field, and
+                                choose <b>Delete</b>.</p>
+                        </li><li>
+                            <p>Choose <b>Cancel</b>.</p>
+                        </li><li>
+                            <p>Select the shared space.</p>
+                        </li><li>
+                            <p>Choose <b>Delete</b>.</p>
+                        </li><li>
+                            <p>On the <b>Delete space</b> dialog box, choose
+                                    <b>Yes, delete space</b>. Then enter
+                                    <em>delete</em> in the confirmation field, and
+                                choose <b>Delete space</b>.</p>
+                        </li></ol>
+                </li><li>
+                    <p>When all users and shared spaces are deleted, choose the <b>Domain
+                            settings</b> tab.</p>
+                </li><li>
+                    <p>Choose <b>Edit</b>.</p>
+                </li><li>
+                    <p>On the <b>General settings</b> page, choose <b>Delete
+                            Domain</b>.</p>
+                </li><li>
+                    <p>On the <b>Delete Domain</b> dialog box, choose
+                            <b>Yes, delete Domain</b>. Then enter
+                            <em>delete</em> in the confirmation field, and choose
+                            <b>Delete</b>.</p>
+                </li></ol></div>
+         
+            <h2 id="gs-studio-delete-domain-cli">Delete an Amazon SageMaker Domain
+                    (AWS CLI)</h2>
+            <div class="procedure"><h6>To delete a Domain</h6><ol><li>
+                    <p>Retrieve the list of Domains in your account.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="cmd ">aws --region <code class="replaceable">Region</code> sagemaker list-domains</code></pre>
+                </li><li>
+                    <p>Retrieve the list of applications for the Domain to be deleted.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="cmd ">aws --region <code class="replaceable">Region</code> sagemaker list-apps \
+    --domain-id-equals <code class="replaceable">DomainId</code></code></pre>
+                </li><li>
+                    <p>Delete each application in the list.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="cmd ">aws --region <code class="replaceable">Region</code> sagemaker delete-app \
+    --domain-id <code class="replaceable">DomainId</code> \
+    --app-name <code class="replaceable">AppName</code> \
+    --app-type <code class="replaceable">AppType</code> \
+    --user-profile-name <code class="replaceable">UserProfileName</code></code></pre>
+                </li><li>
+                    <p>Retrieve the list of user profiles in the Domain.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="cmd ">aws --region <code class="replaceable">Region</code> sagemaker list-user-profiles \
+    --domain-id-equals <code class="replaceable">DomainId</code></code></pre>
+                </li><li>
+                    <p>Delete each user profile in the list.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="cmd ">aws --region <code class="replaceable">Region</code> sagemaker delete-user-profile \
+    --domain-id <code class="replaceable">DomainId</code> \
+    --user-profile-name <code class="replaceable">UserProfileName</code></code></pre>
+                </li><li>
+                    <p>Retrieve the list of shared spaces in the Domain.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="cmd ">aws --region <code class="replaceable">Region</code> sagemaker list-spaces \
+    --domain-id <code class="replaceable">DomainId</code></code></pre>
+                </li><li>
+                    <p>Delete each shared space in the list.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="cmd ">aws --region <code class="replaceable">Region</code> sagemaker delete-space \
+    --domain-id <code class="replaceable">DomainId</code> \
+    --space-name <code class="replaceable">SpaceName</code></code></pre>
+                </li><li>
+                    <p>Delete the Domain. To also delete the Amazon EFS volume, specify
+                            <code class="code">HomeEfsFileSystem=Delete</code>.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="cmd ">aws --region <code class="replaceable">Region</code> sagemaker delete-domain \
+    --domain-id <code class="replaceable">DomainId</code> \
+    --retention-policy HomeEfsFileSystem=<code class="replaceable">Retain</code></code></pre>
+                </li></ol></div>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./domain-view-edit.html">View and Edit Domains</div><div id="next" class="next-link" accesskey="n" href="./domain-user-profile.html">Domain User Profiles</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/gs-studio-delete-domain.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/gs-studio-delete-domain.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

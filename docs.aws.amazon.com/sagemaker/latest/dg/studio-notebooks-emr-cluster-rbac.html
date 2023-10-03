@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Connect to an Amazon EMR cluster from Studio using runtime IAM roles - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="studio-notebooks-emr-cluster-rbac" /><meta name="default_state" content="studio-notebooks-emr-cluster-rbac" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="studio-notebooks-emr-cluster-rbac.html" /><meta name="description" content="Connect to an Amazon EMR cluster from Studio using runtime IAM roles." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="studio-notebooks-emr-cluster-rbac.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" hreflang="de" /><link rel="alternative" href="studio-notebooks-emr-cluster-rbac.html" hreflang="en-us" /><link rel="alternative" href="studio-notebooks-emr-cluster-rbac.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" hreflang="zh-tw" /><link rel="alternative" href="studio-notebooks-emr-cluster-rbac.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Connect to an Amazon EMR cluster from Studio using runtime IAM roles" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Connect to an Amazon EMR cluster from Studio using runtime IAM roles - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-notebooks-emr-cluster-rbac" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,SageMaker Amazon EMR,SageMaker AWS Glue,SageMaker Spark,SageMaker Hive,SageMaker Presto" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Prepare data",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/data-prep.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Scale data preparation using Apache Spark, Hive, or Presto on Amazon EMR or AWS Glue from Amazon SageMaker Studio notebooks",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-emr-spark-glue.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Prepare data using Amazon EMR",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-emr-cluster.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Use Amazon EMR clusters from Studio notebooks",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-emr-cluster-connect.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Connect to an Amazon EMR cluster from SageMaker Studio",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/connect-emr-clusters.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 9,
+        "name" : "Connect to an Amazon EMR cluster from Studio using runtime IAM roles",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/connect-emr-clusters.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#studio-notebooks-emr-cluster-rbac" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="studio-notebooks-emr-cluster-rbac.html#studio-notebooks-emr-cluster-rbac-prereq">Prerequisites</a><a href="studio-notebooks-emr-cluster-rbac.html#studio-notebooks-emr-cluster-rbac-scen">Cross-account connection
+        scenarios</a><a href="studio-notebooks-emr-cluster-rbac.html#studio-notebooks-emr-cluster-iam">Set up Studio to use runtime IAM
+        roles</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="studio-notebooks-emr-cluster-rbac">Connect to an Amazon EMR cluster from Studio
+      using runtime IAM roles</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>When you connect to an Amazon EMR cluster from your Amazon SageMaker Studio notebook, you can visually
+    browse a list of IAM roles, known as runtime roles, and select one on the fly. Subsequently,
+    all your Apache Spark, Apache Hive, or Presto jobs created from your Studio notebook access
+    only the data and resources permitted by policies attached to the runtime role. Also, when data
+    is accessed from data lakes managed with AWS Lake Formation, you can enforce table-level and column-level
+    access using policies attached to the runtime role.</p><p>With this capability, you and your teammates can connect to the same cluster, each using a
+    runtime role scoped with permissions matching your individual level of access to data. Your
+    sessions are also isolated from one another on the shared cluster. With this ability to control
+    fine-grained access to data on the same shared cluster, you can simplify provisioning of Amazon EMR
+    clusters, reducing operational overhead and saving costs.</p><p>To try out this new feature, see <a href="http://aws.amazon.com/blogs/machine-learning/apply-fine-grained-data-access-controls-with-aws-lake-formation-and-amazon-emr-from-amazon-sagemaker-studio/" rel="noopener noreferrer" target="_blank"><span> Apply fine-grained data access controls with AWS Lake Formation and Amazon EMR from Amazon SageMaker Studio
+    </span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. This blog post helps you set up a demo environment where you can try using
+    preconfigured runtime roles to connect to Amazon EMR clusters.</p>
+    <h2 id="studio-notebooks-emr-cluster-rbac-prereq">Prerequisites</h2>
+    <p>Before you get started, make sure you meet the following prerequisites:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>Use Amazon EMR version 6.9 or above.</p>
+      </li><li class="listitem">
+        <p>Use JupyterLab version 3 in the Studio Jupyter server application configuration.
+          This version supports Studio connection to Amazon EMR clusters using runtime roles.</p>
+      </li><li class="listitem">
+        <p>Allow the use of runtime roles in your cluster’s security configuration. For more
+          information, see <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-steps-runtime-roles.html"> Runtime roles for Amazon EMR
+            steps</a>.</p>
+      </li><li class="listitem">
+        <p>Create a notebook with any of the kernels listed in <a href="studio-notebooks-emr-cluster-connect.html">Use Amazon EMR clusters from
+                Studio notebooks</a>.</p>
+      </li><li class="listitem">
+        <p>Make sure you review the instructions in <a href="studio-notebooks-emr-cluster-rbac.html#studio-notebooks-emr-cluster-iam">Set up Studio to use runtime IAM
+        roles</a> to configure runtime roles with
+          Studio.</p>
+      </li></ul></div>
+   
+    <h2 id="studio-notebooks-emr-cluster-rbac-scen">Cross-account connection
+        scenarios</h2>
+    <p>Runtime role authentication supports a variety of cross-account connection scenarios when
+      your data resides outside of your Studio account. The following image shows three
+      different ways you can assign your Amazon EMR cluster, data, and even Amazon EMR execution role between
+      your Studio and data accounts: </p>
+    <div class="mediaobject">
+       
+        <img src="../../../images/sagemaker/latest/dg/images/studio-emr-rbac-scenarios.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Cross-account scenarios supported by runtime IAM role authentication.&#xA;      " />
+       
+       
+    </div>
+    <p>In option 1, your Amazon EMR cluster and Amazon EMR execution role are in a separate data account
+      from your Studio account. You define a separate Amazon EMR access role permission policy which
+      grants permission to your Studio execution role to assume the Amazon EMR access role. The Amazon EMR
+      access role then calls the Amazon EMR API <code class="code">GetClusterSessionCredentials</code> on behalf of
+      your Studio execution role, giving you access to the cluster.</p>
+    <p>In option 2, your Amazon EMR cluster and Amazon EMR execution role are in your Studio account.
+      Your Studio execution role has permission to use the Amazon EMR API
+        <code class="code">GetClusterSessionCredentials</code> to gain access to your cluster. To access the Amazon S3
+      bucket, give the Amazon EMR execution role cross-account Amazon S3 bucket access permissions —
+      you grant these permissions within your Amazon S3 bucket policy.</p>
+    <p>In option 3, your Amazon EMR clusters are in your Studio account, and the Amazon EMR execution
+      role is in the data account. Your Studio execution role has permission to use the Amazon EMR
+      API <code class="code">GetClusterSessionCredentials</code> to gain access to your cluster. Add the Amazon EMR
+      execution role into the execution role configuration JSON. Then you can select the role in the
+      UI when you choose your cluster. For details about how to set up your execution role
+      configuration JSON file, see <a href="studio-notebooks-emr-cluster-rbac.html#studio-notebooks-emr-cluster-iam-preload">Preload your execution roles into
+          Studio</a>.</p>
+   
+    <h2 id="studio-notebooks-emr-cluster-iam">Set up Studio to use runtime IAM
+        roles</h2>
+    <p>To establish runtime role authentication for your Amazon EMR clusters, configure the required
+      IAM policies, network, and usability enhancements. Your setup depends on whether you handle
+      any cross-account arrangements if your Amazon EMR clusters, Amazon EMR execution role, or both, reside
+      outside of your Amazon SageMaker Studio account. The following discussion guides you through the
+      policies to install, how to configure the network to allow traffic between cross-accounts, and
+      the local configuration file to set up to automate your Amazon EMR connection.</p>
+     
+      <h3 id="studio-notebooks-emr-cluster-iam-same">Configure runtime role
+          authentication when your Amazon EMR cluster and Studio are in the same account</h3>
+      <p>If your Amazon EMR cluster resides in your Studio account, add the basic policy to
+        connect to your Amazon EMR cluster and set permissions to call the Amazon EMR API
+          <code class="code">GetClusterSessionCredentials</code>, which gives you access to the cluster. Complete
+        the following steps to add necessary permissions to your Studio execution policy:</p>
+      <div class="orderedlist">
+         
+         
+         
+         
+         
+      <ol><li>
+          <p>Add the required IAM policy to connect to Amazon EMR clusters. For details, see <a href="discover-emr-clusters.html">Discover Amazon EMR clusters from SageMaker
+                    Studio</a>.</p>
+        </li><li>
+          <p>Grant permission to call the Amazon EMR API <code class="code">GetClusterSessionCredentials</code>
+            when you pass one or more permitted Amazon EMR execution roles specified in the
+            policy.</p>
+        </li><li>
+          <p>(Optional) Grant permission to pass IAM roles that follow any user-defined naming
+            conventions.</p>
+        </li><li>
+          <p>(Optional) Grant permission to access Amazon EMR clusters that are tagged with specific
+            user-defined strings.</p>
+        </li><li>
+          <p>If you don't want to manually call the Amazon EMR connection command, install a SageMaker
+            configuration file in your local Amazon EFS and select the role to use when you select your
+            Amazon EMR cluster. For details about how to preload your IAM roles, see <a href="studio-notebooks-emr-cluster-rbac.html#studio-notebooks-emr-cluster-iam-preload">Preload your execution roles into
+          Studio</a>.</p>
+        </li></ol></div>
+      <p>The following example policy permits Amazon EMR execution roles belonging to the modeling and
+        training groups to call <code class="code">GetClusterSessionCredentials</code>. In addition, the
+        policyholder can access Amazon EMR clusters tagged with the strings <code class="code">modeling</code> or
+          <code class="code">training</code>.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "elasticmapreduce:GetClusterSessionCredentials",
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "StringLike": <span>{</span>
+                    "elasticmapreduce:ExecutionRoleArn": [
+                        "arn:aws:iam::123456780910:role/emr-execution-role-ml-modeling*",
+                        "arn:aws:iam::123456780910:role/emr-execution-role-ml-training*"
+                    ],
+                    "elasticmapreduce:ResourceTag/group": [
+                        "*modeling*",
+                        "*training*"
+                    ]
+                }
+            }
+        }
+    ]
+}</code></pre>
+     
+     
+      <h3 id="studio-notebooks-emr-cluster-iam-diff">Configure runtime role
+          authentication when your cluster and Studio are in different accounts</h3>
+      <div class="orderedlist">
+        <p>If your Amazon EMR cluster is not in your Studio account, allow your Studio
+          execution role to assume the cross-account Amazon EMR access role so you can connect to the
+          cluster. Complete the following steps to set up your cross-account configuration:</p>
+         
+         
+         
+         
+         
+      <ol><li>
+          <p>Create your Studio execution role permission policy so that the execution role
+            can assume the Amazon EMR access role. The following policy is an example:</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "AllowAssumeCrossAccountEMRAccessRole",
+            "Effect": "Allow",
+            "Action": "sts:AssumeRole",
+            "Resource": "arn:aws:iam::<code class="replaceable">emr_account_id</code>:role/<code class="replaceable">emr-access-role-name</code>"
+        }
+    ]
+}</code></pre>
+        </li><li>
+          <p>Create the trust policy to specify which Studio account IDs are trusted to
+            assume the Amazon EMR access role. The following policy is an example:</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Sid": "AllowCrossAccountSageMakerExecutionRoleToAssumeThisRole",
+      "Effect": "Allow",
+      "Principal": <span>{</span>
+        "AWS": "arn:aws:iam::<code class="replaceable">studio_account_id</code>:role/<code class="replaceable">studio_execution_role</code>"
+      },
+      "Action": "sts:AssumeRole"
+    }
+}</code></pre>
+        </li><li>
+          <p>Create the Amazon EMR access role permission policy, which grants the Amazon EMR execution
+            role the needed permissions to carry out the intended tasks on the cluster. Configure
+            the Amazon EMR access role to call the API <code class="code">GetClusterSessionCredentials</code> with the
+            Amazon EMR execution roles specified in the access role permission policy. The following
+            policy is an example:</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "AllowCallingEmrGetClusterSessionCredentialsAPI",
+            "Effect": "Allow",
+            "Action": "elasticmapreduce:GetClusterSessionCredentials",
+            "Resource": "",
+            "Condition": <span>{</span>
+                "StringLike": <span>{</span>
+                    "elasticmapreduce:ExecutionRoleArn": [
+                        "arn:aws:iam::<code class="replaceable">emr_account_id</code>:role/<code class="replaceable">emr-execution-role-name</code>"
+                    ]
+                }
+            }
+        }
+    ]
+}</code></pre>
+        </li><li>
+          <p>Set up the cross-account network so that traffic can move back and forth between
+            your accounts. For guided instruction, see <em>Set up the
+              network</em> in the blog post <a href="http://aws.amazon.com/blogs/machine-learning/part-2-create-and-manage-amazon-emr-clusters-from-sagemaker-studio-to-run-interactive-spark-and-ml-workloads/" rel="noopener noreferrer" target="_blank"><span>Create and manage Amazon EMR Clusters from SageMaker Studio to run interactive Spark and ML
+              workloads – Part 2</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. The steps in the blog post help you complete the following
+            tasks:</p>
+          <div class="orderedlist">
+             
+             
+             
+          <ol><li>
+              <p>VPC-peer your Studio account and your Amazon EMR account to establish a
+                connection.</p>
+            </li><li>
+              <p>Manually add routes to the private subnet route tables in both accounts. This
+                permits creation and connection of Amazon EMR clusters from the Studio account to the
+                remote account’s private subnet.</p>
+            </li><li>
+              <p>Set up the security group attached to your Studio domain to allow outbound
+                traffic and the security group of the Amazon EMR primary node to allow inbound TCP
+                traffic from the Studio instance security group.</p>
+            </li></ol></div>
+        </li><li>
+          <p>If you don't want to manually call the Amazon EMR connection command, install a SageMaker
+            configuration file in your local Amazon EFS so you can select the role to use when you choose
+            your Amazon EMR cluster. For details about how to preload your IAM roles, see <a href="studio-notebooks-emr-cluster-rbac.html#studio-notebooks-emr-cluster-iam-preload">Preload your execution roles into
+          Studio</a>.</p>
+        </li></ol></div>
+     
+     
+      <h3 id="studio-notebooks-emr-cluster-iam-lf">Configure Lake Formation access</h3>
+      <p>When you access data from data lakes managed by AWS Lake Formation, you can enforce table-level
+        and column-level access using policies attached to your runtime role. To configure
+        permission for Lake Formation access, see <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-lake-formation.html">Integrate Amazon EMR with
+          AWS Lake Formation</a>.</p>
+     
+     
+      <h3 id="studio-notebooks-emr-cluster-iam-preload">Preload your execution roles into
+          Studio</h3>
+      <p>If you don't want to manually call the Amazon EMR connection command, you can install a SageMaker
+        configuration file in your local Amazon EFS so you can select the execution role to use when you
+        choose your Amazon EMR cluster.</p>
+      <p>To write a configuration file for the Amazon EMR execution roles, associate a <a href="studio-lcc.html">Use lifecycle configurations with Amazon SageMaker Studio</a> (LCC) to the Jupyter server application.
+        Alternatively, you can write or update the configuration file and restart the Jupyter server
+        with the command: <code class="code">restart-jupyter-server</code>.</p>
+      <p>The following snippet is an example LCC bash script you can apply if your Studio
+        application and cluster are in the same account:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">#!/bin/bash
+
+set -eux
+
+FILE_DIRECTORY="/home/sagemaker-user/.sagemaker-analytics-configuration-DO_NOT_DELETE"
+FILE_NAME="emr-configurations-DO_NOT_DELETE.json"
+FILE="$FILE_DIRECTORY/$FILE_NAME"
+
+mkdir -p $FILE_DIRECTORY
+
+cat &lt;&lt; 'EOF' &gt; "$FILE"
+<span>{</span>
+    "emr-execution-role-arns":
+    <span>{</span>
+      "123456789012": [
+          "arn:aws:iam::123456789012:role/<code class="replaceable">emr-execution-role-1</code>",
+          "arn:aws:iam::123456789012:role/<code class="replaceable">emr-execution-role-2</code>"
+      ]
+    }
+}
+EOF</code></pre>
+
+      <p>If your Studio application and clusters are in different accounts, specify the Amazon EMR
+        access roles that can use the cluster. In the following example policy, <em>123456789012</em> is the ARN for the Amazon EMR cluster account, and
+          <em>212121212121</em> and <em>434343434343</em> are the ARNs for the permitted Amazon EMR access roles.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">#!/bin/bash
+
+set -eux
+
+FILE_DIRECTORY="/home/sagemaker-user/.sagemaker-analytics-configuration-DO_NOT_DELETE"
+FILE_NAME="emr-configurations-DO_NOT_DELETE.json"
+FILE="$FILE_DIRECTORY/$FILE_NAME"
+
+mkdir -p $FILE_DIRECTORY
+
+cat &lt;&lt; 'EOF' &gt; "$FILE"
+<span>{</span>
+    "emr-execution-role-arns":
+    <span>{</span>
+      "123456789012": [
+          "arn:aws:iam::212121212121:role/<code class="replaceable">emr-execution-role-1</code>",
+          "arn:aws:iam::434343434343:role/<code class="replaceable">emr-execution-role-2</code>"
+      ]
+    }
+}
+EOF
+
+# add your cross-account EMR access role
+FILE_DIRECTORY="/home/sagemaker-user/.cross-account-configuration-DO_NOT_DELETE"
+FILE_NAME="emr-discovery-iam-role-arns-DO_NOT_DELETE.json"
+FILE="$FILE_DIRECTORY/$FILE_NAME"
+
+mkdir -p $FILE_DIRECTORY
+
+cat &lt;&lt; 'EOF' &gt; "$FILE"
+<span>{</span>
+    "123456789012": "arn:aws:iam::123456789012:role/<code class="replaceable">cross-account-emr-access-role</code>"
+}
+EOF</code></pre>
+
+     
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./connect-emr-clusters.html">Connect to an Amazon EMR cluster</div><div id="next" class="next-link" accesskey="n" href="./terminate-emr-clusters.html">Terminate an Amazon EMR cluster</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/studio-notebooks-emr-cluster-rbac.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>What is a SageMaker Project? - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="sagemaker-projects-whatis" /><meta name="default_state" content="sagemaker-projects-whatis" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="sagemaker-projects-whatis.html" /><meta name="description" content="With SageMaker Projects, you can create an MLOps solution to orchestrate and manage building custom images for processing, training, inference, data preparation, and feature engineering for training, evaluating, deploying, monitoring, and updating models." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="sagemaker-projects-whatis.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/sagemaker-projects-whatis.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/sagemaker-projects-whatis.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/sagemaker-projects-whatis.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/sagemaker-projects-whatis.html" hreflang="de" /><link rel="alternative" href="sagemaker-projects-whatis.html" hreflang="en-us" /><link rel="alternative" href="sagemaker-projects-whatis.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/sagemaker-projects-whatis.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/sagemaker-projects-whatis.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/sagemaker-projects-whatis.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/sagemaker-projects-whatis.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/sagemaker-projects-whatis.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/sagemaker-projects-whatis.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sagemaker-projects-whatis.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sagemaker-projects-whatis.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/sagemaker-projects-whatis.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/sagemaker-projects-whatis.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/sagemaker-projects-whatis.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/sagemaker-projects-whatis.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/sagemaker-projects-whatis.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/sagemaker-projects-whatis.html" hreflang="zh-tw" /><link rel="alternative" href="sagemaker-projects-whatis.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="What is a SageMaker Project?" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>What is a SageMaker Project? - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#sagemaker-projects-whatis" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sagemaker-projects-whatis.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sagemaker-projects-whatis.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sagemaker-projects-whatis.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Implement MLOps",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/mlops.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Automate MLOps with SageMaker Projects",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-projects.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "What is a SageMaker Project?",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-projects.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#sagemaker-projects-whatis" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="sagemaker-projects-whatis.html#sagemaker-projects-when">When Should You Use a SageMaker
+                    Project?</a><a href="sagemaker-projects-whatis.html#sagemaker-projects-within">What is in a SageMaker Project?</a><a href="sagemaker-projects-whatis.html#sagemaker-projects-need">Do I Need to Create a Project to Use SageMaker
+                    Pipelines?</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="sagemaker-projects-whatis">What is a SageMaker Project?</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>SageMaker Projects help organizations set up
+            and standardize developer environments for data scientists and CI/CD systems for MLOps
+            engineers. Projects also help organizations set up dependency management, code repository
+            management, build reproducibility, and artifact sharing.</p><p>You can provision SageMaker Projects from the AWS Service Catalog using
+            custom or SageMaker-provided templates. For information
+            about the AWS Service Catalog, see <a href="https://docs.aws.amazon.com/servicecatalog/latest/dg/what-is-service-catalog.html">What Is AWS Service
+                Catalog</a>. With SageMaker Projects, MLOps engineers and organization admins can
+            define their own templates or use SageMaker-provided templates. The SageMaker-provided templates
+            bootstrap the ML workflow
+            with source version control, automated ML pipelines,
+            and a set of code to quickly start iterating over ML use cases.</p>
+            <h2 id="sagemaker-projects-when">When Should You Use a SageMaker
+                    Project?</h2>
+    <p>While notebooks are helpful for model building and experimentation, a team of data
+                scientists and ML engineers sharing code needs a more scalable way to maintain code
+                consistency and strict version control.</p>
+            <p>Every organization has its own set of standards and practices that provide
+                security and governance for its AWS environment. SageMaker provides a set of
+                first-party templates for organizations that want to quickly get started with ML
+                workflows and CI/CD. The templates include projects that use AWS-native services
+                for CI/CD, such as AWS CodeBuild, AWS CodePipeline, and
+	 	AWS CodeCommit.	
+                The templates also offer the option to create projects that use third-party tools,
+                such as Jenkins and GitHub. For a list of the project templates that SageMaker provides,
+                see <a href="sagemaker-projects-templates-sm.html">Use SageMaker-Provided Project
+        Templates</a>.</p>
+            <p>Organizations often need tight control over the MLOps resources that they
+                provision and manage. Such responsibility assumes certain tasks, including
+                configuring IAM roles and policies, enforcing resource tags, enforcing encryption,
+                and decoupling resources across multiple accounts. SageMaker Projects can support all
+                these tasks through custom template offerings
+                where organizations use AWS CloudFormation templates to define the resources needed for an
+                ML workflow. Data Scientists can choose a template to bootstrap and pre-configure
+                their ML workflow. These custom templates are created as Service Catalog products and you can
+                provision them in the Studio UI under <b>Organization
+                    Templates</b>. The Service Catalog is a service that helps organizations create and
+                manage catalogs of products that are approved for use on AWS. For more information
+                about creating custom templates, see <a href="http://aws.amazon.com/blogs/machine-learning/build-custom-sagemaker-project-templates-best-practices/" rel="noopener noreferrer" target="_blank"><span>Build Custom SageMaker Project Templates – Best Practices</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            <p>SageMaker Projects can help you manage your Git repositories so that you can
+                collaborate more efficiently across teams, ensure code consistency, and support
+                CI/CD. SageMaker Projects can help you with the following tasks:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Organize all entities of the ML lifecycle under one project.</p>
+                </li><li class="listitem">
+                    <p>Establish a single-click approach to set up standard ML infrastructure for
+                        model training and deployment that incorporates best practices.</p>
+                </li><li class="listitem">
+                    <p>Create and share templates for ML infrastructure to serve multiple use
+                        cases.</p>
+                </li><li class="listitem">
+                    <p>Leverage SageMaker-provided pre-built templates to quickly start focusing on
+                        model building, or create custom templates with organization-specific
+                        resources and guidelines.</p>
+                </li><li class="listitem">
+                    <p>Integrate with tools of your choice by extending the project
+                        templates. For an example, see <a href="http://aws.amazon.com/blogs/machine-learning/build-mlops-workflows-with-amazon-sagemaker-projects-gitlab-and-gitlab-pipelines/" rel="noopener noreferrer" target="_blank"><span>Create a SageMaker Project to integrate with GitLab and GitLab
+                            Pipelines</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                </li><li class="listitem">
+                    <p>Organize all entities of the ML lifecycle under one project.</p>
+                </li></ul></div>
+         
+            <h2 id="sagemaker-projects-within">What is in a SageMaker Project?</h2>
+            <p>Customers have the flexibility to set up their projects with the resources that
+                best serve their use case. The example below showcases the MLOps setup for an ML
+                workflow, including model training and deployment.</p>
+            <div class="mediaobject">
+                 
+                    <img src="../../../images/sagemaker/latest/dg/images/projects/projects-ml-workflow.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:105%" />
+                 
+            </div>
+            <p>A typical project with a SageMaker-provided template might include the
+                following:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>One or more repositories with sample code to build and deploy ML
+                        solutions. These are working examples that you can clone locally and modify
+                        for your needs. You own this code and can take advantage of the
+                        version-controlled repositories for your tasks.</p>
+                </li><li class="listitem">
+                    <p>A SageMaker pipeline that defines steps for data preparation, training, model
+                        evaluation, and model deployment, as shown in the following diagram.</p>
+                    <div class="mediaobject">
+                         
+                            <img src="../../../images/sagemaker/latest/dg/images/projects/pipeline-in-project-simple.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:90%" />
+                         
+                    </div>
+                </li><li class="listitem">
+                    <p>A CodePipeline or Jenkins pipeline that runs your SageMaker pipeline every time you check in a
+                        new version of the code. For information about CodePipeline,
+                        see <a href="https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html">What is AWS CodePipeline.</a>
+                        For information about Jenkins, see <a href="https://www.jenkins.io/doc/" rel="noopener noreferrer" target="_blank"><span>Jenkins User Documentation</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                </li><li class="listitem">
+                    <p>A model group that contains model versions.
+                        Every time you approve the resulting model version from a SageMaker pipeline run,
+                        you can deploy it to a SageMaker endpoint.</p>
+                </li></ul></div>
+            <p>Each SageMaker project has a unique name and ID that are applied as tags to all of the
+                SageMaker and AWS resources created in the project. With the name and ID, you can view
+                all of the entities associated with your project. These include:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Pipelines</p>
+                </li><li class="listitem">
+                    <p>Registered models</p>
+                </li><li class="listitem">
+                    <p>Deployed models (endpoints)</p>
+                </li><li class="listitem">
+                    <p>Datasets</p>
+                </li><li class="listitem">
+                    <p>Service Catalog products</p>
+                </li><li class="listitem">
+                        <p>CodePipeline and Jenkins pipelines</p>
+                </li><li class="listitem">
+                        <p>CodeCommit and third-party Git repositories</p>
+                </li></ul></div>
+         
+            <h2 id="sagemaker-projects-need">Do I Need to Create a Project to Use SageMaker
+                    Pipelines?</h2>
+            <p>No. SageMaker pipelines are standalone entities just like training jobs, processing
+                jobs, and other SageMaker jobs. You can create, update, and run pipelines directly within
+                a notebook by using the SageMaker Python SDK without using a SageMaker project.</p>
+            <p>Projects provide an additional layer to help you organize your code and adopt
+                operational best practices that you need for a production-quality system.</p>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./sagemaker-projects.html">Projects</div><div id="next" class="next-link" accesskey="n" href="./sagemaker-projects-studio-updates.html">SageMaker Studio Permissions Required to
+                Use
+            Projects</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sagemaker-projects-whatis.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/sagemaker-projects-whatis.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

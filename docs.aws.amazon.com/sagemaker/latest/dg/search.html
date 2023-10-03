@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Search Using the Amazon SageMaker Console and API - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="search" /><meta name="default_state" content="search" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="search.html" /><meta name="description" content="Manage Amazon SageMaker machine learning training jobs and find the best performing models using SageMaker search capabilities." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="search.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/search.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/search.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/search.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/search.html" hreflang="de" /><link rel="alternative" href="search.html" hreflang="en-us" /><link rel="alternative" href="search.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/search.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/search.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/search.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/search.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/search.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/search.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/search.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/search.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/search.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/search.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/search.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/search.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/search.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/search.html" hreflang="zh-tw" /><link rel="alternative" href="search.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Search Using the Amazon SageMaker Console and API" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Search Using the Amazon SageMaker Console and API - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#search" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/search.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/search.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/search.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Manage Machine Learning with Amazon SageMaker Experiments",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/experiments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Search Using the Amazon SageMaker Console and API",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/experiments.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#search" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="search.html#search-organize-console">Organize,
+                Find, and Evaluate
+                Training
+                Jobs (Console)</a><a href="search.html#search-organize-api">Find
+                and Evaluate Training Jobs (API)</a><a href="search.html#search-verify">Verify the Datasets Used by Your Training Jobs</a><a href="search.html#search-lineage">Trace
+                Model Lineage</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="search">Search Using the Amazon SageMaker Console and API</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Developing a machine learning model typically requires extensive experimenting with
+      different datasets, algorithms, and hyperparameter values. To manage up to thousands of
+      machine learning model experiments, use the search capabilities in SageMaker.</p><p>You can use SageMaker search to:</p><div class="itemizedlist">
+         
+         
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p>Organize,
+                find,
+                and evaluate training jobs using properties, hyperparameters, performance metrics,
+                or any metadata.</p>
+        </li><li class="listitem">
+            <p>Find the best performing model by reviewing training job and model metrics, such
+                as training loss or validation accuracy.</p>
+        </li><li class="listitem">
+            <p>Trace a model's lineage to the training job and its related resources,
+                such as the training datasets.</p>
+        </li></ul></div><p>This topic covers searching from the SageMaker console and the SageMaker API.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="search.html#search-organize-console">Organize,
+                Find, and Evaluate
+                Training
+                Jobs (Console)</a></li><li><a href="search.html#search-organize-api">Find
+                and Evaluate Training Jobs (API)</a></li><li><a href="search.html#search-verify">Verify the Datasets Used by Your Training Jobs</a></li><li><a href="search.html#search-lineage">Trace
+                Model Lineage</a></li></ul></div>
+        <h2 id="search-organize-console">Organize,
+                Find, and Evaluate
+                Training
+                Jobs (Console)</h2>
+        <p>To organize training jobs, assign one or more tags to them.</p>
+            
+            <p>To find a specific training job, model, or resource, use model tracking to search on keywords
+            assigned to any searchable items. <em>Searchable items</em>
+            include training jobs, models, hyperparameters, metadata, tags, and
+            URLs.
+            To refine your tracking results, you can search using multiple criteria.</p>
+        <p>To choose the best model for deployment, evaluate how all models performed against one
+            or more metrics. You can use model tracking results to list, sort, and evaluate the
+            performance of the models in your experiments. </p>
+        <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="search.html#search-tags-console"> Use Tags to Track Training Jobs (Console)</a></li><li><a href="search.html#search-find-jobs-console"> Find Training Jobs (Console)</a></li><li><a href="search.html#search-evaluate-console">Evaluate
+                    Models
+                    (Console)</a></li></ul></div>
+         
+            <h3 id="search-tags-console"> Use Tags to Track Training Jobs (Console)</h3>
+            <p>To group training jobs, create tags with descriptive keys and a value. For
+                example, create tag keys for: project, owner, customer, and industry. </p>
+            <div class="procedure"><h6>Add tags to training jobs (console)</h6><ol><li>
+                    <p>Open the <a href="https://console.aws.amazon.com/sagemaker/" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                </li><li>
+                    <p>In the navigation pane, choose <b>Training jobs</b> and <b>Create training job</b>.</p>
+                </li><li>
+                    <p>Scroll to the bottom of the page and enter a key and value for the
+                        tag.</p>
+                    <div class="mediaobject">
+                         
+                            <img src="../../../images/sagemaker/latest/dg/images/search-1-chooose-unque-label.png" class="aws-docs-img-whiteBg aws-docs-img-padding" />
+                         
+                    </div>
+                </li><li>
+                    <p>To add another tag, choose <b>Add tag</b>, and add another
+                        key-value pair.</p>
+                </li></ol></div>
+         
+         
+            <h3 id="search-find-jobs-console"> Find Training Jobs (Console)</h3>
+            <p>You can search for training jobs using a variety of job attributes. Note that some
+                search parameters  appear only if you have created a training job with that
+                attribute. For example, <b>Tags</b>  appears only if you have  added a
+                tag for a training job.</p>
+            <div class="procedure"><h6> To find training jobs (console)</h6><ol><li>
+                    <p>Open the <a href="https://console.aws.amazon.com/sagemaker/" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                </li><li>
+                    <p>In the navigation pane, choose <b>Search</b>.</p>
+                </li><li>
+                    <p>Add <b>Parameters</b>.</p>
+                    <ol><li>
+                            <p>In the search box, enter a parameter  and choose a parameter type,
+                                for example <b>TrainingJobName</b>.</p>
+                        </li><li>
+                            <p>Choose a conditional operation. For numeric values, use operators
+                                such as <b>is equals to</b>, <b>lesser
+                                    than</b>, or <b>or greater than</b>. For
+                                text-based values, use operators such as <b>equals
+                                    to</b> or <b>contains</b>.</p>
+                        </li><li>
+                            <p>Enter a value for the parameter.</p>
+                        </li></ol>
+                </li><li>
+                    <p>(Optional) To refine your search, add additional search criteria. Choose <b>Add row</b> and enter the parameter
+                        values. </p>
+                </li><li>
+                    <p>Choose <b>Search</b>.</p>
+                </li></ol></div>  
+         
+         
+            <h3 id="search-evaluate-console">Evaluate
+                    Models
+                    (Console)</h3>
+            
+            <p>To evaluate a model's performance, review its metadata, hyperparameters, and
+                metrics. To
+                highlight metrics,
+                adjust
+                the view to show only metrics and important hyperparameters.</p>
+            <div class="procedure"><h6>To evaluate
+          a
+          model (console)</h6><ol><li>
+                    <p>Open the <a href="https://console.aws.amazon.com/sagemaker/" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                </li><li>
+                    <p>In the navigation pane, choose <b>Search</b> and search
+                        for
+                        training jobs
+                        by
+                        specifying relevant parameters. The results are displayed
+                        in a table.</p>
+                    <div class="mediaobject">
+                         
+                            <img src="../../../images/sagemaker/latest/dg/images/search-3-sort-on-performance.png" class="aws-docs-img-whiteBg aws-docs-img-padding" />
+                         
+                    </div>
+                </li><li>
+                    <p>Open the
+            preferences
+            window by choosing the
+            settings
+            icon in the search results table.</p>
+                </li><li>
+                    <p>To show or hide a hyperparameter or metric, turn it on or off by
+            choosing
+              <b>Hyperparameter</b> or <b>Metric</b> .</p>
+                </li><li>
+                    <p>Make necessary changes, then choose <b>Update
+                        view</b>.</p>
+                </li><li>
+                    
+                    <p>After viewing metrics and important hyperparameters, you can compare and
+                        contrast the result. Then, you can choose the best model to host or
+                        investigate the models that are performing poorly.</p>
+                </li></ol></div>
+            
+         
+        
+        
+     
+        <h2 id="search-organize-api">Find
+                and Evaluate Training Jobs (API)</h2>
+        <p>To
+            the find and evaluate training jobs or to
+            get
+            suggestions for items used in experiments that are searchable, you
+            can use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Search.html"><code class="code">Search</code></a>
+            API.</p>
+        <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="search.html#search-api">Find Training Jobs (API)</a></li><li><a href="search.html#search-organize-api">Evaluate Models (API)</a></li><li><a href="search.html#search-suggestion-api">Get
+                    Suggestions for a Search (API)</a></li></ul></div>
+         
+            <h3 id="search-api">Find Training Jobs (API)</h3>
+            <p>To find training jobs, create a search parameter using the
+                    <code class="code">search_params</code> parameter. Then use the search function in the
+                    <code class="code">smclient</code>
+                subprocess
+                in the AWS SDK for Python (Boto3). </p>
+            <p>The
+        following
+        example shows how to use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Search.html"><code class="code">Search</code></a> API
+        to find
+        training jobs. </p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import boto3
+
+search_params=<span>{</span>
+   "MaxResults": 10,
+   "Resource": "TrainingJob",
+   "SearchExpression": <span>{</span> 
+      "Filters": [<span>{</span> 
+            "Name": "Tags.Project",
+            "Operator": "Equals",
+            "Value": "Project_Binary_Classifier"
+         }]},
+  "SortBy": "Metrics.train:binary_classification_accuracy",
+  "SortOrder": "Descending"
+}
+
+smclient = boto3.client(service_name='sagemaker')
+results = smclient.search(**search_params)
+</code></pre>
+         
+         
+            <h3 id="search-organize-api">Evaluate Models (API)</h3>
+            <p>To evaluate models, run a search as described in  <a href="search.html#search-api">Find Training Jobs (API)</a>, review model metrics,
+        then,
+        use the AWS SDK for Python (Boto3) to create a table and plot it.</p>
+            <p>The following example shows how to evaluate models and to display the results in a
+        table.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import pandas
+
+headers=["Training Job Name", "Training Job Status", "Batch Size", "Binary Classification Accuracy"]
+rows=[]
+for result in results['Results']: 
+    trainingJob = result['TrainingJob']
+    metrics = trainingJob['FinalMetricDataList']
+    rows.append([trainingJob['TrainingJobName'],
+     trainingJob['TrainingJobStatus'],
+     trainingJob['HyperParameters']['mini_batch_size'],
+     metrics[[x['MetricName'] for x in  
+     metrics].index('train:binary_classification_accuracy')]['Value']
+    ])
+
+df = pandas.DataFrame(data=rows,columns=headers)
+
+from IPython.display import display, HTMLdisplay(HTML(df.to_html()))
+</code></pre>
+         
+         
+            <h3 id="search-suggestion-api">Get
+                    Suggestions for a Search (API)</h3>
+            <p>To
+                get suggestions for a search, use 
+                the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_GetSearchSuggestions.html"><code class="code">GetSearchSuggestions</code></a>
+                API.</p>
+            <p>The following example
+        for
+        AWS SDK for Python (Boto3) is a <code class="code">get_search_suggestions</code> request for items containing
+        <code class="code">linear</code>.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">search_suggestion_params=<span>{</span>
+   "Resource": "TrainingJob",
+   "SuggestionQuery": <span>{</span> 
+      "PropertyNameQuery": <span>{</span> 
+         "PropertyNameHint": "linear"
+      }
+   }
+}
+</code></pre>
+            <p>The following is an example response for a <code class="code">get_search_suggestions</code>
+                request.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python "><span>{</span>
+        'PropertyNameSuggestions': [<span>{</span>'PropertyName': 'hyperparameters.linear_init_method'},
+                    <span>{</span>'PropertyName': 'hyperparameters.linear_init_value'},
+                    <span>{</span>'PropertyName': 'hyperparameters.linear_init_sigma'},
+                    <span>{</span>'PropertyName': 'hyperparameters.linear_lr'},
+                    <span>{</span>'PropertyName': 'hyperparameters.linear_wd'}]
+}</code></pre>
+            <p>After getting search suggestions, you can use one of the property names in a
+                search.</p>
+         
+     
+        <h2 id="search-verify">Verify the Datasets Used by Your Training Jobs</h2>
+        <p>You can use model tracking capability to verify which datasets were used in training,
+            where holdout datasets were used, and other details about training jobs. For example,
+            use model tracking capability to verify that a specific dataset was used in a training
+            job for an audit or to verify compliance.</p>
+        <p>To check whether a specific dataset was used in a training job, you search for the
+            URL to its location in Amazon Simple Storage Service (Amazon S3). Model tracking capability returns the training
+            jobs that used the dataset that you specify. If your search doesn't return the dataset
+            (the result is empty), the dataset wasn't used in a training job. An empty result
+            confirms, for example, that a holdout dataset wasn't used.</p>
+        
+        
+     
+        <h2 id="search-lineage">Trace
+                Model Lineage</h2>
+
+        
+        <p>You can use model tracking capability to get information about the lineage of training jobs and
+      the model resources that were used for them, including the dataset, algorithm, hyperparameters, and
+      metrics. For example, if you find that the performance of a hosted model has declined, you can review
+      its training job and the resources it used to determine what's causing the problem.</p>
+        <p></p>
+        <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="search.html#search-lineage-console">Trace Model Lineage (Console)</a></li><li><a href="search.html#search-lineage-api">Trace Model Lineage (API)</a></li></ul></div>
+        
+         
+            <h3 id="search-lineage-console">Trace Model Lineage (Console)</h3>
+            
+            <div class="procedure"><h6>To trace a model's lineage (console)</h6><ol><li>
+          <p>Open the <a href="https://console.aws.amazon.com/sagemaker/" rel="noopener noreferrer" target="_blank"><span>Amazon SageMaker console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        </li><li>
+          <p>In the navigation pane, choose <b>Endpoints</b>, and choose the relevant
+            endpoint. </p>
+        </li><li>
+          <p>Scroll to the <b>Endpoint configuration settings</b> section. This section lists
+            all of the model versions deployed at the endpoint, with a hyperlink to the training job that
+            created each. </p>
+        </li></ol></div>
+            
+            
+            
+            
+            
+            
+            
+            
+         
+         
+            <h3 id="search-lineage-api">Trace Model Lineage (API)</h3>
+            <p>To
+                trace a model's lineage,
+                get
+                the model's name, then use it to search
+                for
+                training jobs.</p>
+            <p>The following example shows how to trace a model's lineage using the
+                API.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python "># Get the name of model deployed at endpoint
+endpoint_config = smclient.describe_endpoint_config(EndpointConfigName=endpointName)
+model_name = endpoint_config['ProductionVariants'][0]['ModelName']
+
+# Get the model's name
+model = smclient.describe_model(ModelName=model_name)
+
+# Search the training job by the location of model artifacts in Amazon S3
+search_params=<span>{</span>
+   "MaxResults": 1,
+   "Resource": "TrainingJob",
+   "SearchExpression": <span>{</span> 
+      "Filters": [ 
+         <span>{</span> 
+            "Name": "ModelArtifacts.S3ModelArtifacts",
+            "Operator": "Equals",
+            "Value": model['PrimaryContainer']['ModelDataUrl']
+         }]},
+}
+results = smclient.search(**search_params)</code></pre>
+            <p>After finding the training job,
+                you
+                can review the resources used to train the model.</p>
+         
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./experiment-faq.html">Experiments FAQs</div><div id="next" class="next-link" accesskey="n" href="./automatic-model-tuning.html">Perform Automatic Model Tuning</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/search.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/search.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

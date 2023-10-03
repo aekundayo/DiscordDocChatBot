@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>SageMaker Training Compiler Best Practices and Considerations - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="training-compiler-tips-pitfalls" /><meta name="default_state" content="training-compiler-tips-pitfalls" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="training-compiler-tips-pitfalls.html" /><meta name="description" content="Review tips and considerations when using SageMaker Training Compiler." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="training-compiler-tips-pitfalls.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" hreflang="de" /><link rel="alternative" href="training-compiler-tips-pitfalls.html" hreflang="en-us" /><link rel="alternative" href="training-compiler-tips-pitfalls.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" hreflang="zh-tw" /><link rel="alternative" href="training-compiler-tips-pitfalls.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="SageMaker Training Compiler Best Practices and Considerations" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>SageMaker Training Compiler Best Practices and Considerations - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#training-compiler-tips-pitfalls" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-tips-pitfalls.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,amazon sagemaker training compiler, sagemaker training compiler, sm training compiler,compile deep learning model, compile transformer model, compile tensorflow model, compile pytorch model, compile nlp model,amazon sagemaker training compiler, sagemaker training compiler, sm training compiler,tips and pitfalls, tips, pitfalls,best practice, best, practice,consideration" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Train machine learning models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Training Compiler",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/training-compiler.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "SageMaker Training Compiler Best Practices and Considerations",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/training-compiler.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#training-compiler-tips-pitfalls" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="training-compiler-tips-pitfalls.html#training-compiler-tips-pitfalls-best-practices">Best
+                    Practices</a><a href="training-compiler-tips-pitfalls.html#training-compiler-tips-pitfalls-considerations">Considerations</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="training-compiler-tips-pitfalls">SageMaker Training Compiler Best Practices and
+                Considerations</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Review the following best practices and considerations when using SageMaker Training Compiler.</p>
+            <h2 id="training-compiler-tips-pitfalls-best-practices">Best
+                    Practices</h2>
+            <p>Use the following guidelines to achieve the best results when you run training
+                jobs with SageMaker Training Compiler.</p>
+            <div class="itemizedlist">
+                <h6>General Best Practices</h6>
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Make sure that you use one of the <a href="training-compiler-support.html#training-compiler-supported-instance-types">Supported Instance
+                    Types</a> and <a href="training-compiler-support.html#training-compiler-tested-models">Tested Models</a>. </p>
+                </li><li class="listitem">
+                    <p>When you create a tokenizer for an NLP model using the Hugging Face
+                        Transformers library in your training script, make sure that you use a
+                        static input tensor shape by specifying <code class="code">padding='max_length'</code>.
+                        Do not use <code class="code">padding='longest'</code> because padding to the longest
+                        sequence in the batch can change the tensor shape for each training batch.
+                        The dynamic input shape can initiate recompilation of the model and might
+                        increase total training time. For more information about padding options of
+                        the Transformers tokenizers, see <a href="https://huggingface.co/docs/transformers/pad_truncation" rel="noopener noreferrer" target="_blank"><span>Padding
+                            and truncation</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the <em>Hugging Face
+                            Transformers documentation</em>.</p>
+                </li><li class="listitem">
+                    <p>Measure GPU memory utilization to make sure that you use the maximum batch
+                        size that can fit into the GPU memory. Amazon SageMaker Training Compiler reduces the memory footprint
+                        of your model during training, which typically allows you to fit a larger
+                            <code class="code">batch_size</code> in the GPU memory. Using a larger
+                            <code class="code">batch_size</code> results in a better GPU utilization and reduces
+                        the total training time. </p>
+                    <p>When you adjust the batch size, you also have to adjust the
+                            <code class="code">learning_rate</code> appropriately. For example, if you increased
+                        the batch size by a factor of <code class="code">k</code>, you need to adjust
+                            <code class="code">learning_rate</code> linearly (simple multiplication by
+                            <code class="code">k</code>) or multiply by the square root of <code class="code">k</code>. This
+                        is to achieve the same or similar convergence behavior in the reduced
+                        training time. For reference of <code class="code">batch_size</code> tested for popular
+                        models, see <a href="training-compiler-support.html#training-compiler-tested-models">Tested Models</a>.</p>
+                </li><li class="listitem">
+                    <p>To debug the compiler-accelerated training job, enable the
+                            <code class="code">debug</code> flag in the <code class="code">compiler_config</code> parameter.
+                        This enables SageMaker to put the debugging logs into SageMaker training job
+                        logs.</p>
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">huggingface_estimator=HuggingFace(
+    ...
+    compiler_config=TrainingCompilerConfig(debug=True)
+)</code></pre>
+                    <p>Note that if you enable full debugging of the training job with the
+                        compiler, this might add some overhead.</p>
+                </li></ul></div>
+            <div class="itemizedlist">
+                <h6>Best Practices for PyTorch</h6>
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>If you bring a PyTorch model and want to checkpoint it, make sure you use
+                        PyTorch/XLA's model save function to properly checkpoint your model. For
+                        more information about the function, see <a href="https://pytorch.org/xla/release/1.9/index.html#torch_xla.core.xla_model.save" rel="noopener noreferrer" target="_blank"><span><code class="code">torch_xla.core.xla_model.save</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the <em>PyTorch on XLA Devices documentation</em>. </p>
+                    <p>To learn how to add the modifications to your PyTorch script, see <a href="training-compiler-pytorch-models.html#training-compiler-pytorch-models-non-trainer">Large Language Models
+                    Using PyTorch Directly (without the Hugging Face Transformers Trainer
+                    API)</a>.</p>
+                    <p>For more information about the actual application of using the model save
+                        function, see <a href="https://huggingface.co/blog/pytorch-xla#checkpoint-writing-and-loading" rel="noopener noreferrer" target="_blank"><span>Checkpoint Writing and Loading</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the <em>Hugging Face on PyTorch/XLA TPUs: Faster and cheaper training
+                            blog</em>.</p>
+                </li><li class="listitem">
+                    <p>To achieve the most optimal training time for distributed training,
+                        consider the following.</p>
+                    <div class="itemizedlist">
+                         
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>Use instances with multiple GPUs instead of using single-gpu
+                                instances. For example, a single <code class="code">ml.p3dn.24xlarge</code>
+                                instance has faster training time compared to 8 x
+                                    <code class="code">ml.p3.2xlarge</code> instances.</p>
+                        </li><li class="listitem">
+                            <p>Use instances with EFA support such as
+                                    <code class="code">ml.p3dn.24xlarge</code> and <code class="code">ml.p4d.24xlarge</code>.
+                                These instance types have accelerated networking speed and reduce
+                                training time.</p>
+                        </li><li class="listitem">
+                            <p>Tune the <code class="code">preprocessing_num_workers</code> parameter for
+                                datasets, so that model training is not delayed by slow
+                                preprocessing.</p>
+                        </li></ul></div>
+                </li></ul></div>
+         
+            <h2 id="training-compiler-tips-pitfalls-considerations">Considerations</h2>
+            <p>Consider the following when using SageMaker Training Compiler.</p>
+             
+                <h3 id="training-compiler-considerations-performance-degradation">Performance degradation due to logging, checkpointing, and
+                        profiling</h3>
+                <div class="itemizedlist">
+                    
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>Avoid logging, checkpointing, and profiling model tensors that lead to
+                            explicit evaluations. To understand what an explicit evaluation is, consider
+                            the following code compiling example.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">a = b+c
+e = a+d</code></pre>
+                        <p>A compiler interprets the code as follows and reduces the memory footprint
+                            for the variable <code class="code">a</code>:</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">e = b+c+d</code></pre>
+                        <p>Now consider the following case in which the code is changed to add a
+                            print function for the variable <code class="code">a</code>.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">a = b+c
+e = a+d
+print(a)</code></pre>
+                        <p>The compiler makes an explicit evaluation of the variable <code class="code">a</code>
+                            as follows.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="py ">e = b+c+d
+a = b+c    # Explicit evaluation
+print(a)</code></pre>
+                        <p>In PyTorch, for example, avoid using <a href="https://pytorch.org/docs/stable/generated/torch.Tensor.item.html" rel="noopener noreferrer" target="_blank"><span>torch.tensor.items()</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, which might introduce explicit
+                            evaluations. In deep learning, such explicit evaluations can cause overhead
+                            because they break fused operations in a compilation graph of a model and
+                            lead to recomputation of the tensors. </p>
+                        <p>If you still want to periodically evaluate the model during training while
+                            using SageMaker Training Compiler, we recommend logging and checkpointing at a lower frequency
+                            to reduce overhead due to explicit evaluations. For example, log every 10
+                            epochs instead of every epoch.</p>
+                    </li><li class="listitem">
+                        <p>Graph compilation runs during the first few steps of training. As a
+                            result, the first few steps are expected to be exceptionally slow. However,
+                            this is a one-time compilation cost and can be amortized by training for a
+                            longer duration because compilation makes future steps much faster. The
+                            initial compilation overhead depends on the size of the model, the size of
+                            the input tensors, and the distribution of input tensor shapes.</p>
+                    </li></ul></div>
+             
+            
+             
+                <h3 id="training-compiler-considerations-incorrect-api-use">Incorrect
+                        use of the PyTorch/XLA APIs when using PyTorch directly</h3>
+                <p>PyTorch/XLA defines a set of APIs to replace some of the existing PyTorch
+                    training APIs. Failing to use them properly leads PyTorch training to
+                    fail.</p>
+                <div class="itemizedlist">
+                     
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>One of the most typical errors when compiling a PyTorch model is due
+                            to a wrong device type for operators and tensors. To properly compile a
+                            PyTorch model, make sure you use XLA devices (<a href="https://pytorch.org/xla/release/1.9/index.html" rel="noopener noreferrer" target="_blank"><span><code class="code"><u>xm.xla_device()</u></code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>)
+                            instead of using CUDA or mixing CUDA devices and XLA devices.</p>
+                    </li><li class="listitem">
+                        <p><code class="code">mark_step()</code> is a barrier just for XLA. Failing to set it
+                            correctly causes a training job to stall.</p>
+                    </li><li class="listitem">
+                        <p>PyTorch/XLA provides additional distributed training APIs. Failing to
+                            program the APIs properly causes gradients to be collected incorrectly,
+                            which causes a training convergence failure.</p>
+                    </li></ul></div>
+                <p>To properly set up your PyTorch script and avoid the aforementioned incorrect
+                    API uses, see <a href="training-compiler-pytorch-models.html#training-compiler-pytorch-models-non-trainer">Large Language Models
+                    Using PyTorch Directly (without the Hugging Face Transformers Trainer
+                    API)</a>.</p>
+             
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./training-compiler-examples-and-blogs.html">Example Notebooks and Blogs</div><div id="next" class="next-link" accesskey="n" href="./training-compiler-faq.html">Training Compiler FAQ</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-tips-pitfalls.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/training-compiler-tips-pitfalls.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

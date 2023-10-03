@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Use sample datasets - Amazon SageMaker</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="canvas-sample-datasets" /><meta name="default_state" content="canvas-sample-datasets" /><link rel="icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="../../../assets/images/favicon.ico" /><link rel="canonical" href="canvas-sample-datasets.html" /><meta name="description" content="Use the sample datasets and getting started tutorials to learn how to use SageMaker Canvas." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon SageMaker" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use Internet Monitor to build, train, and host machine learning models in AWS." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="canvas-sample-datasets.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/canvas-sample-datasets.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/sagemaker/latest/dg/canvas-sample-datasets.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/canvas-sample-datasets.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/sagemaker/latest/dg/canvas-sample-datasets.html" hreflang="de" /><link rel="alternative" href="canvas-sample-datasets.html" hreflang="en-us" /><link rel="alternative" href="canvas-sample-datasets.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/canvas-sample-datasets.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/sagemaker/latest/dg/canvas-sample-datasets.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/canvas-sample-datasets.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/sagemaker/latest/dg/canvas-sample-datasets.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/canvas-sample-datasets.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/sagemaker/latest/dg/canvas-sample-datasets.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/canvas-sample-datasets.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/canvas-sample-datasets.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/canvas-sample-datasets.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/sagemaker/latest/dg/canvas-sample-datasets.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/canvas-sample-datasets.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/sagemaker/latest/dg/canvas-sample-datasets.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/canvas-sample-datasets.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/sagemaker/latest/dg/canvas-sample-datasets.html" hreflang="zh-tw" /><link rel="alternative" href="canvas-sample-datasets.html" hreflang="x-default" /><meta name="feedback-item" content="SageMaker" /><meta name="this_doc_product" content="Amazon SageMaker" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="../../../assets/r/vendor4.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor3.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/vendor1.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-common.js@version=2021.12.02"></script><script defer="" src="../../../assets/r/awsdocs-doc-page.js@version=2021.12.02"></script><link href="../../../assets/r/vendor4.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-common.css@version=2021.12.02.css" rel="stylesheet" /><link href="../../../assets/r/awsdocs-doc-page.css@version=2021.12.02.css" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sagemaker'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Use sample datasets" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Use sample datasets - Amazon SageMaker</title><meta name="pdf" content="/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#canvas-sample-datasets" /><meta name="rss" content="amazon-sagemaker-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=285" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-sample-datasets.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-sample-datasets.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-sample-datasets.html" /><meta name="keywords" content="SageMaker,Amazon SageMaker,machine learning,notebook instance,sample dataset,Canvas,tutorial" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use machine learning environments offered by SageMaker",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/machine-learning-environments.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Amazon SageMaker Canvas",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Use custom models",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas-custom-models.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Import data into Canvas",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas-importing-data.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Use sample datasets",
+        "item" : "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas-importing-data.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="https://docs.aws.amazon.com/pdfs/sagemaker/latest/dg/sagemaker-dg.pdf#canvas-sample-datasets" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="https://docs.aws.amazon.com/index.html">Documentation</a><a href="https://docs.aws.amazon.com/sagemaker/index.html">Amazon SageMaker</a><a href="whatis.html">Developer Guide</a></div><div id="page-toc-src"><a href="canvas-sample-datasets.html#canvas-sample-datasets-list">Sample datasets</a><a href="canvas-sample-datasets.html#canvas-sample-datasets-reimport">Re-import a deleted sample dataset</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="canvas-sample-datasets">Use sample datasets</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>SageMaker Canvas provides sample datasets addressing unique use cases so you can start building,
+            training, and validating models quickly without writing any code. The use cases
+            associated with these datasets highlight the capabilities of SageMaker Canvas, and you can leverage
+            these datasets to get started with building models. You can find the sample datasets in
+            the <b>Datasets</b> page of your SageMaker Canvas application.</p>
+            <h2 id="canvas-sample-datasets-list">Sample datasets</h2>
+        
+            <p>The following datasets are the samples that SageMaker Canvas provides by default. These
+                datasets cover use cases such as predicting house prices, loan defaults, and
+                readmission for diabetic patients; forecasting sales;  predicting machine failures
+                to streamline predictive maintenance in manufacturing units; and generating supply
+                chain predictions for transportation and logistics. The datasets are stored in the
+                    <code class="code">sample_dataset</code> folder in the default Amazon S3 bucket that SageMaker creates
+                for your account in a Region.</p>
+            
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><b>canvas-sample-diabetic-readmission.csv:</b>
+                        This dataset contains historical data including over fifteen features with
+                        patient and hospital outcomes. You can use this dataset to predict whether
+                        high-risk diabetic patients are likely to get readmitted to the hospital
+                        within 30 days of discharge, after 30 days, or not at all. Use the <b>redadmitted</b> column as the target column, and use
+                        the 3+ category prediction model type with this dataset. To learn more about
+                        how to build a model with this dataset, see the <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/80ba0ea5-7cf9-4b8c-9d3f-1cd988b6c071/en-US/1-use-cases/5-hcls" rel="noopener noreferrer" target="_blank"><span>SageMaker Canvas workshop page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. This dataset was obtained from the <a href="https://archive.ics.uci.edu/ml/datasets/diabetes+130-us+hospitals+for+years+1999-2008" rel="noopener noreferrer" target="_blank"><span>UCI Machine Learning Repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p>
+                </li><li class="listitem">
+                    <p><b>canvas-sample-housing.csv:</b> This dataset
+                        contains data on the characteristics tied to a given housing price. You can
+                        use this dataset to predict housing prices. Use the <b>median_house_value</b> column as the target column, and use the
+                        Numeric prediction model type with this dataset. To learn more about
+                        building a model with this dataset, see the <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/80ba0ea5-7cf9-4b8c-9d3f-1cd988b6c071/en-US/1-use-cases/2-real-estate" rel="noopener noreferrer" target="_blank"><span>SageMaker Canvas workshop page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. This is the California housing dataset
+                        obtained from the <a href="https://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.html" rel="noopener noreferrer" target="_blank"><span>StatLib repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                </li><li class="listitem">
+                    <p><b>canvas-sample-loans.csv:</b> This dataset
+                        contains complete loan data for all loans issued from 2007–2011, including
+                        the current loan status and latest payment information. You can use this
+                        dataset to predict whether a customer will repay a loan. Use the <b>loan_status</b> column as the target column, and use
+                        the 3+ category prediction model type with this dataset. To learn more about
+                        how to build a model with this dataset, see the <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/80ba0ea5-7cf9-4b8c-9d3f-1cd988b6c071/en-US/1-use-cases/4-finserv" rel="noopener noreferrer" target="_blank"><span>SageMaker Canvas workshop page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. This data uses the LendingClub data
+                        obtained from <a href="https://www.kaggle.com/datasets/wordsforthewise/lending-club" rel="noopener noreferrer" target="_blank"><span>Kaggle</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                </li><li class="listitem">
+                    <p><b>canvas-sample-maintenance.csv:</b> This
+                        dataset contains data on the characteristics tied to a given maintenance
+                        failure type. You can use this dataset to predict which failure will occur
+                        in the future. Use the <b>Failure Type</b> column
+                        as the target column, and use the 3+ category prediction model type with
+                        this dataset. To learn more about how to build a model with this dataset,
+                        see the <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/80ba0ea5-7cf9-4b8c-9d3f-1cd988b6c071/en-US/1-use-cases/6-manufacturing" rel="noopener noreferrer" target="_blank"><span>SageMaker Canvas workshop page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. This dataset was obtained from the <a href="https://archive.ics.uci.edu/ml/datasets/AI4I+2020+Predictive+Maintenance+Dataset" rel="noopener noreferrer" target="_blank"><span>UCI Machine Learning Repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                </li><li class="listitem">
+                    <p><b>canvas-sample-shipping-logs.csv:</b> This
+                        dataset contains complete shipping data for all products delivered,
+                        including estimated time shipping priority, carrier, and origin. You can use
+                        this dataset to predict the estimated time of arrival of the shipment in
+                        number of days. Use the <b>ActualShippingDays</b>
+                        column as the target column, and use the Numeric prediction model type with
+                        this dataset. To learn more about how to build a model with this data, see
+                        the <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/80ba0ea5-7cf9-4b8c-9d3f-1cd988b6c071/en-US/1-use-cases/7-supply-chain" rel="noopener noreferrer" target="_blank"><span>SageMaker Canvas workshop page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. This is a synthetic dataset created by
+                        Amazon.</p>
+                </li><li class="listitem">
+                    <p><b>canvas-sample-sales-forecasting.csv:</b> This
+                        dataset contains historical time series sales data for retail stores. You
+                        can use this dataset to forecast sales for a particular retail store. Use
+                        the <b>sales</b> column as the target column, and
+                        use the Time series forecasting model type with this dataset. To learn more
+                        about how to build a model with this dataset, see the <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/80ba0ea5-7cf9-4b8c-9d3f-1cd988b6c071/en-US/1-use-cases/3-retail" rel="noopener noreferrer" target="_blank"><span>SageMaker Canvas workshop page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. This is a synthetic dataset created by
+                        Amazon.</p>
+                </li></ul></div>
+         
+            <h2 id="canvas-sample-datasets-reimport">Re-import a deleted sample dataset</h2>
+            <p>If you no longer wish to use the sample datasets, you can delete them from the
+                    <b>Datasets</b> page of your SageMaker Canvas application. However, these
+                datasets are still stored in the Amazon S3 bucket that you specified as the <a href="canvas-storage-configuration.html">Canvas storage location</a>,
+                so you can always access them later.</p>
+            <p>If you used the default Amazon S3 bucket, the bucket name follows the pattern
+                        <code class="code">sagemaker-<code class="replaceable"><span>{</span>region}</code>-<code class="replaceable"><span>{</span>account
+                        ID}</code></code>. You can find the sample datasets in the directory
+                path <code class="code">Canvas/sample_dataset</code>.</p>
+            <div class="procedure"><p>If you delete a sample dataset from your SageMaker Canvas application and want to access
+                    the sample dataset again, use the following procedure.</p><ol><li>
+                    <p>Navigate to the <b>Datasets</b> page in your SageMaker Canvas
+                        application.</p>
+                </li><li>
+                    <p>Choose <b>Import data</b>.</p>
+                </li><li>
+                    <p>From the list of Amazon S3 buckets, select the bucket that is your Canvas storage location.
+                        If using the default SageMaker-created Amazon S3 bucket, it follows the naming pattern <code class="code">sagemaker-<code class="replaceable"><span>{</span>region}</code>-<code class="replaceable"><span>{</span>account
+                        ID}</code></code>.</p>
+                </li><li>
+                    <p>Select the <b>Canvas</b> folder.</p>
+                </li><li>
+                    <p>Select the <b>sample_dataset</b> folder, which contains all
+                        of the sample datasets for SageMaker Canvas.</p>
+                </li><li>
+                    <p>Select the dataset you want to import, and then choose <b>Import
+                            data</b>.</p>
+                </li></ol></div>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="https://docs.aws.amazon.com/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./canvas-joining-data.html">Join data that you've imported into SageMaker Canvas</div><div id="next" class="next-link" accesskey="n" href="./canvas-build-model.html">Build a custom model</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-sample-datasets.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=SageMaker&amp;topic_url=https://docs.aws.amazon.com/en_us/sagemaker/latest/dg/canvas-sample-datasets.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>
