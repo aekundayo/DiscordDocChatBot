@@ -39,7 +39,7 @@ def unzip_website(file_name, extract_folder="extracted_website"):
     with zipfile.ZipFile(file_name, 'r') as zip_ref:
         zip_ref.extractall(extract_folder)
 
-async def extract_text_from_htmls(folder):
+def extract_text_from_htmls(folder):
     # Iterate through all files in the folder
     for subdir, _, files in os.walk(folder):
         for file in files:

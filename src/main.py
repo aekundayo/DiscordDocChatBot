@@ -18,9 +18,10 @@ from langchain.document_loaders import BSHTMLLoader
 from summary_prompts import get_guidelines
 from utils import extract_url, download_html, get_pdf_text, get_text_chunks, create_directories_if_not_exists, extract_yt_transcript, extract_text_from_htmls, unzip_website
 from vector import get_vectorstore, get_history_vectorstore, persist_new_chunks
-from qdrant_vector import get_Qvector_store, return_qdrant, update_qdrant
+from qdrant_vector import get_Qvector_store, return_qdrant
 from concurrent.futures import ThreadPoolExecutor
 from wandb.sdk.data_types.trace_tree import Trace
+import threading
 
 #constants
 vectorpath = './docs/vectorstore'
@@ -184,7 +185,7 @@ async def on_message(message):
             data = loader.load()
         
             for page_info in data:
-                vectorstore = create_qdrant_vector_from_data(page_info.page_content) if vector_flag else create_faiss_vector_from_data(raw_text)
+                vectorstore = create_qdrant_vector_from_data(page_info.page_content) if vector_flag else create_faiss_vector_from_data(page_info.page_content)
                 answer = retrieve_answer(vectorstore=vectorstore)
                 os.remove(web_doc) # Change here
                 await send_long_message(message.channel, answer)
@@ -208,7 +209,10 @@ async def on_message(message):
               f.write(data)
           unzip_website(zip_path+"/"+attachment.filename, zip_path)
           executor = ThreadPoolExecutor()
-          future = executor.submit(extract_text_from_htmls, zip_path)
+          bg_thread = threading.Thread(target=extract_text_from_htmls, args=(zip_path,))
+          bg_thread.start()
+          #extract_text_from_htmls(zip_path)
+          #future = executor.submit(extract_text_from_htmls, zip_path)
           return
 
           

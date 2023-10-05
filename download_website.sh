@@ -10,5 +10,6 @@ wget --recursive --no-clobber --page-requisites --html-extension --convert-links
 foldername=$(echo "$website_url" | awk -F[/:] '{print $4}')
 
 # Zip up the downloaded website
-zip -r "$foldername.zip" "$foldername/"
+zip -r "download-$foldername.zip" "$foldername/"
+rm -rf "$foldername/"
 
