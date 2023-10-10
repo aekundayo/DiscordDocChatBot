@@ -14,7 +14,7 @@ def get_Qvector_store(text_chunks):
     text_chunks,
     embeddings,
     location=":memory:",  # Local mode with in-memory storage only
-    collection_name="my_documents",
+    collection_name="current_document",
     force_recreate=True,
     )
 

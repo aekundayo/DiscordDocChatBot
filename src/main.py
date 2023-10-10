@@ -1,7 +1,7 @@
 import openai
-import anthropic
+from anthropic import Anthropic, HUMAN_PROMPT, AI_PROMPT
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 import asyncio
 import os
 import time
@@ -16,18 +16,29 @@ from langchain import HuggingFacePipeline
 from wandb.integration.langchain import WandbTracer
 from langchain.document_loaders import BSHTMLLoader
 from summary_prompts import get_guidelines
-from utils import extract_url, download_html, get_pdf_text, get_text_chunks, create_directories_if_not_exists, extract_yt_transcript, extract_text_from_htmls, unzip_website
+from utils import extract_url, download_html, get_pdf_text, get_text_chunks, create_directories_if_not_exists, extract_yt_transcript, extract_text_from_htmls, unzip_website, download_pdf_paper_from_url, convert_pdf_to_images, images_2_OCR
 from vector import get_vectorstore, get_history_vectorstore, persist_new_chunks
 from qdrant_vector import get_Qvector_store, return_qdrant
 from concurrent.futures import ThreadPoolExecutor
 from wandb.sdk.data_types.trace_tree import Trace
 import threading
+from langchain.llms import Bedrock
+import boto3
 
 #constants
 vectorpath = './docs/vectorstore'
 pdf_path = './docs/pdfs'
 web_doc_path = './docs/web'
 zip_path = './docs/zip'
+
+def return_bedrock_llm():
+  bedrockruntime = boto3.client(service_name='bedrock-runtime')
+  llm = Bedrock(
+      credentials_profile_name="default",
+      model_id="anthropic.claude-v2",
+      client=bedrockruntime
+  )
+  return llm
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -38,6 +49,7 @@ scraperapi_key = os.getenv('SCRAPER_API_KEY')
 brave_search_api_key = os.getenv('BRAVE_SEARCH_API_KEY')
 intents = discord.Intents.all()
 bot = commands.Bot("/", intents=intents)
+client = commands
 
 # Global Variables
 vectorstore=None
@@ -84,9 +96,9 @@ def return_llm(provider="openai"):
   if provider == "openai":
     if os.getenv('DEV_MODE'):
       wandb_config = {"project": "wandb_prompts_quickstart"}
-      return ChatOpenAI(model_name="gpt-3.5-turbo-16k",callbacks=[WandbTracer(wandb_config)])
+      return ChatOpenAI(model_name="gpt-3.5-turbo-16k",callbacks=[WandbTracer(wandb_config)], temperature=0)
     else:
-      return ChatOpenAI(model_name="gpt-3.5-turbo-16k")
+      return ChatOpenAI(model_name="gpt-3.5-turbo-16k", temperature=0)
   elif provider == "huggingface":
     return HuggingFaceHub(repo_id="tiiuae/falcon-40b", model_kwargs={"temperature":0.5, "max_length":512})
   elif provider == "anthropic":
@@ -105,8 +117,8 @@ def retrieve_answer(vectorstore):
     qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)])
   else:
     qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorstore.as_retriever())
-  guidelines = get_guidelines()
-  query = guidelines[2]
+  guidelines = get_guidelines()["std_summary_prompt"]
+  query = guidelines
   #query = "You are a helpful assistant with concise and accurate responses given in the tone of a professional presentation. Give and detailed Summary of this document making sure to include the following sections Title: Authors: Ideas: Conclusions:"
   answer=qa.run(query)
   logging.info(answer)
@@ -137,7 +149,23 @@ def create_qdrant_vector_from_data(data):
   vectorstore = get_Qvector_store(chunks)
   return vectorstore
 
-#Event handler for bot messages. Could break into smaller functions.
+@bot.event
+async def on_raw_reaction_add(reaction):
+    channel = bot.get_channel(reaction.channel_id)
+    # skip DM messages
+    if isinstance(channel, discord.DMChannel):
+        return
+
+    message = await channel.fetch_message(reaction.message_id)
+    emoji = reaction.emoji
+    guild = bot.get_guild(reaction.guild_id)
+    user = guild.get_member(reaction.user_id)
+    emoji_name = reaction.emoji.name
+    reaction = discord.utils.get(message.reactions, emoji=emoji)
+    await send_long_message(channel, f'{user.display_name} reacted with {emoji} with the name {emoji_name}')
+
+
+#Event handl  er for bot messages. Could break into smaller functions.
 @bot.event
 async def on_message(message):
   vector_flag = True
@@ -173,6 +201,14 @@ async def on_message(message):
     chunks = None
     if 'youtube.com' in message.content or 'youtu.be' in message.content:
         raw_text = extract_yt_transcript(message.content)
+        vectorstore = create_qdrant_vector_from_data(raw_text) if vector_flag else create_faiss_vector_from_data(raw_text)
+
+        answer = retrieve_answer(vectorstore)
+        await send_long_message(message.channel, answer)
+    elif 'arxiv.org' in message.content:
+        download_pdf_paper_from_url(message.content)
+        img_path = convert_pdf_to_images(pdf_path)
+        chunks = images_2_OCR(img_path)
         vectorstore = create_qdrant_vector_from_data(raw_text) if vector_flag else create_faiss_vector_from_data(raw_text)
 
         answer = retrieve_answer(vectorstore)
@@ -226,11 +262,11 @@ async def on_message(message):
     
     if os.getenv('DEV_MODE'):
       wandb_config = {"project": "wandb_prompts_quickstart"}
-      qa = RetrievalQA.from_chain_type(llm=return_llm(), chain_type="stuff", retriever=vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)],return_source_documents = True,)
+      qa = RetrievalQA.from_chain_type(llm=return_llm(), chain_type="stuff", retriever=vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)],return_source_documents = True)
     else:
-      qa = RetrievalQA.from_chain_type(llm=return_llm(), chain_type="stuff", retriever=vectorstore.as_retriever(),return_source_documents = True,)
+      qa = RetrievalQA.from_chain_type(llm=return_llm(), chain_type="stuff", retriever=vectorstore.as_retriever(),return_source_documents = True)
    
-    query = "You are a helpful assistant with concise and accurate responses given in the tone of a professional presentation. Try and answer the question as truthfully as possible. What is the answer to the question: " + user_prompt
+    query = "You are a helpful assistant with concise and accurate responses given in the tone of a professional presentation. Try and answer the question as truthfully as possible. What is the answer to the question: {user_prompt}" 
     result=qa({"query":query})
     answer = result['result']
     sources = result['source_documents']
@@ -240,7 +276,17 @@ async def on_message(message):
    
     logging.info(answer)
 
-    await send_long_message(message.channel, answer)
+    anthropic = Anthropic()
+    completion = anthropic.completions.create(
+    model="claude-2",
+    max_tokens_to_sample=100000,
+    prompt=f"{HUMAN_PROMPT} {query} {AI_PROMPT}",
+    )
+    print(completion.completion)
+
+    await send_long_message(message.channel, completion.completion)
+
+    #await send_long_message(message.channel, answer)
 
 
 
