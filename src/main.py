@@ -16,9 +16,9 @@ from langchain import HuggingFacePipeline
 from wandb.integration.langchain import WandbTracer
 from langchain.document_loaders import BSHTMLLoader
 from summary_prompts import get_guidelines
-from utils import extract_url, download_html, get_pdf_text, get_text_chunks, create_directories_if_not_exists, extract_yt_transcript, extract_text_from_htmls, unzip_website, download_pdf_paper_from_url, convert_pdf_to_images, images_2_OCR
+from utils import extract_url, download_html, get_text_from_pdf, get_documents_from_pdf, get_text_chunks, create_directories_if_not_exists, extract_yt_transcript, extract_text_from_htmls, unzip_website, download_pdf_paper_from_url, convert_pdf_to_images, images_2_OCR
 from vector import get_vectorstore, get_history_vectorstore, persist_new_chunks
-from qdrant_vector import get_Qvector_store, return_qdrant
+from qdrant_vector import get_Qvector_store, return_qdrant, get_Qvector_store_from_docs
 from concurrent.futures import ThreadPoolExecutor
 from wandb.sdk.data_types.trace_tree import Trace
 import threading
@@ -26,10 +26,7 @@ from langchain.llms import Bedrock
 import boto3
 
 #constants
-vectorpath = './docs/vectorstore'
-pdf_path = './docs/pdfs'
-web_doc_path = './docs/web'
-zip_path = './docs/zip'
+
 
 def return_bedrock_llm():
   bedrockruntime = boto3.client(service_name='bedrock-runtime')
@@ -40,7 +37,17 @@ def return_bedrock_llm():
   )
   return llm
 
-# Set up logging
+
+def return_llm(provider="openai"):
+  if provider == "openai":
+    if os.getenv('DEV_MODE'):
+      wandb_config = {"project": "DiscordChatBot"}
+      return ChatOpenAI(model_name="gpt-3.5-turbo-16k",callbacks=[WandbTracer(wandb_config)], temperature=0)
+    else:
+      return ChatOpenAI(model_name="gpt-3.5-turbo-16k", temperature=0)
+
+
+# Set up logging  
 logging.basicConfig(level=logging.INFO)
 #GET API KEYS FROM .ENV FILE
 #claude.api_key = os.getenv('ANTHROPIC_API_KEY')
@@ -92,17 +99,6 @@ async def send_long_message(channel, message):
   for chunk in chunks:
     await channel.send(chunk)
 
-def return_llm(provider="openai"):
-  if provider == "openai":
-    if os.getenv('DEV_MODE'):
-      wandb_config = {"project": "wandb_prompts_quickstart"}
-      return ChatOpenAI(model_name="gpt-3.5-turbo-16k",callbacks=[WandbTracer(wandb_config)], temperature=0)
-    else:
-      return ChatOpenAI(model_name="gpt-3.5-turbo-16k", temperature=0)
-  elif provider == "huggingface":
-    return HuggingFaceHub(repo_id="tiiuae/falcon-40b", model_kwargs={"temperature":0.5, "max_length":512})
-  elif provider == "anthropic":
-    return ChatAnthropic(model_name="claude-2")
 
 def retrieve_answer(vectorstore):
   llm = return_llm()  
@@ -113,11 +109,11 @@ def retrieve_answer(vectorstore):
   #  logging.info("SETTING MODEL TO HUGGING FACE")
     
   if os.getenv('DEV_MODE'):
-    wandb_config = {"project": "wandb_prompts_quickstart"}
+    wandb_config = {"project": "DiscordChatBot"}
     qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)])
   else:
     qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorstore.as_retriever())
-  guidelines = get_guidelines()["std_summary_prompt"]
+  guidelines = get_guidelines()["medium_summary_prompt"]
   query = guidelines
   #query = "You are a helpful assistant with concise and accurate responses given in the tone of a professional presentation. Give and detailed Summary of this document making sure to include the following sections Title: Authors: Ideas: Conclusions:"
   answer=qa.run(query)
@@ -133,21 +129,26 @@ async def get_message_history(channel):
   for msg in messages:
       msg_history += f"{msg.author.name}: {msg.content}\n"
   return msg_history
+
+async def get_message_text_history(channel):
+    messages = []
+    async for msg in channel.history(limit=5):
+        messages.append(f"{msg.author.name}: {msg.content}")
+    return messages
+
 @bot.event
 async def on_ready():
   logging.info(f'{bot.user} has connected to Discord!')
 
-def create_faiss_vector_from_data(data):
-  chunks = get_text_chunks(data)
+def create_faiss_vector_from_data(chunks):
+  #chunks = get_text_chunks(data)
   vectorstore = get_vectorstore(chunks)
   executor = ThreadPoolExecutor()
   future = executor.submit(persist_new_chunks, chunks)
   return vectorstore
 
-def create_qdrant_vector_from_data(data):
-  chunks = get_text_chunks(data)
-  vectorstore = get_Qvector_store(chunks)
-  return vectorstore
+
+
 
 @bot.event
 async def on_raw_reaction_add(reaction):
@@ -164,10 +165,24 @@ async def on_raw_reaction_add(reaction):
     reaction = discord.utils.get(message.reactions, emoji=emoji)
     await send_long_message(channel, f'{user.display_name} reacted with {emoji} with the name {emoji_name}')
 
+def ask_claude(query):
+    
+    anthropic = Anthropic()
+    completion = anthropic.completions.create(
+    model="claude-2",
+    max_tokens_to_sample=100000,
+    prompt=f"{HUMAN_PROMPT} {query} {AI_PROMPT}",
+    )
+    return completion.completion
 
 #Event handl  er for bot messages. Could break into smaller functions.
 @bot.event
 async def on_message(message):
+  load_dotenv()
+  vectorpath = os.getenv('VECTOR_FOLDER')
+  pdf_path = os.getenv('PDF_FOLDER')
+  web_doc_path = os.getenv('WEB_FOLDER')
+  zip_path = os.getenv('ZIP_FOLDER')
   vector_flag = True
   if message.content.startswith('faiss'): 
     vector_flag = False
@@ -177,7 +192,7 @@ async def on_message(message):
   
   if os.getenv('DEV_MODE'):
     global wandb_config
-    wandb_config = {"project": "wandb_prompts_quickstart"}
+    wandb_config = {"project": "DiscordChatBot"}
   logging.info(f"MESSAGE RECEIVED!")
   
   if message.author == bot.user:
@@ -187,10 +202,9 @@ async def on_message(message):
 
   create_directories_if_not_exists(pdf_path)
   web_doc = web_doc_path +'/download.html'
-  create_directories_if_not_exists('./docs/web')
+  create_directories_if_not_exists('docs/web')
   create_directories_if_not_exists(zip_path)
   create_directories_if_not_exists(vectorpath)
-
 
 
 
@@ -201,18 +215,21 @@ async def on_message(message):
     chunks = None
     if 'youtube.com' in message.content or 'youtu.be' in message.content:
         raw_text = extract_yt_transcript(message.content)
-        vectorstore = create_qdrant_vector_from_data(raw_text) if vector_flag else create_faiss_vector_from_data(raw_text)
+        vectorstore = get_Qvector_store_from_docs(raw_text) if vector_flag else create_faiss_vector_from_data(raw_text)
 
         answer = retrieve_answer(vectorstore)
         await send_long_message(message.channel, answer)
+        return
     elif 'arxiv.org' in message.content:
-        download_pdf_paper_from_url(message.content)
-        img_path = convert_pdf_to_images(pdf_path)
-        chunks = images_2_OCR(img_path)
-        vectorstore = create_qdrant_vector_from_data(raw_text) if vector_flag else create_faiss_vector_from_data(raw_text)
+        docs, pdf_path, paper_number = download_pdf_paper_from_url(message.content)
+        #img_path = convert_pdf_to_images(pdf_path)
+        #chunks = images_2_OCR(img_path, paper_number)
+        vectorstore = get_Qvector_store_from_docs(docs) if vector_flag else create_faiss_vector_from_data(docs)
 
         answer = retrieve_answer(vectorstore)
+        #remove_pdf = os.remove(img_path)
         await send_long_message(message.channel, answer)
+        return
     else:        
         urls = extract_url(message.content)   
         for url in urls:
@@ -221,22 +238,28 @@ async def on_message(message):
             data = loader.load()
         
             for page_info in data:
-                vectorstore = create_qdrant_vector_from_data(page_info.page_content) if vector_flag else create_faiss_vector_from_data(page_info.page_content)
+                vectorstore = get_Qvector_store_from_docs(page_info.page_content) if vector_flag else create_faiss_vector_from_data(page_info.page_content)
                 answer = retrieve_answer(vectorstore=vectorstore)
                 os.remove(web_doc) # Change here
                 await send_long_message(message.channel, answer)
+                return
 
 #handle Attachments (pdf and zip)
-  vector_flag = True
+  
   if message.attachments:
     for attachment in message.attachments:
+        vectorstore = None
         if attachment.filename.endswith('.pdf'):  # if the attachment is a pdf
           data = await attachment.read()  # read the content of the file
           with open(os.path.join(pdf_path, attachment.filename), 'wb') as f:  # save the pdf to a file
               f.write(data)
-          raw_text = get_pdf_text(pdf_path)
-          vectorstore = create_qdrant_vector_from_data(raw_text) if vector_flag else create_faiss_vector_from_data(raw_text)
-          answer = retrieve_answer(vectorstore=vectorstore)
+          raw_text = get_text_from_pdf(pdf_path)
+          #docs = get_documents_from_pdf(pdf_path)
+          if vector_flag:
+            vectorstore = get_Qvector_store(raw_text) 
+          else: 
+             vectorstore = create_faiss_vector_from_data(raw_text)
+          answer = retrieve_answer(vectorstore)
           await send_long_message(message.channel, answer)
           return
         elif attachment.filename.endswith('.zip'):  # if the attachment is a pdf
@@ -255,19 +278,20 @@ async def on_message(message):
   else:
     user_prompt = message.content
     logging.info(f"Received message from {message.author.name}: {user_prompt}")
-    message_history = await get_message_history(message.channel)
+    message_history = await get_message_text_history(message.channel)
     query = "You are a helpful assistant with concise and accurate responses given in the tone of a professional presentation. Try and answer the question as truthfully as possible. What is the answer to the question: " + user_prompt + message_history
 
     vectorstore = return_qdrant()
     
     if os.getenv('DEV_MODE'):
-      wandb_config = {"project": "wandb_prompts_quickstart"}
+      wandb_config = {"project": "DiscordChatBot"}
       qa = RetrievalQA.from_chain_type(llm=return_llm(), chain_type="stuff", retriever=vectorstore.as_retriever(),callbacks=[WandbTracer(wandb_config)],return_source_documents = True)
     else:
       qa = RetrievalQA.from_chain_type(llm=return_llm(), chain_type="stuff", retriever=vectorstore.as_retriever(),return_source_documents = True)
    
     query = "You are a helpful assistant with concise and accurate responses given in the tone of a professional presentation. Try and answer the question as truthfully as possible. What is the answer to the question: {user_prompt}" 
-    result=qa({"query":query})
+    #result=qa({"query":query})
+    result=qa({"question":query})
     answer = result['result']
     sources = result['source_documents']
 
@@ -276,15 +300,10 @@ async def on_message(message):
    
     logging.info(answer)
 
-    anthropic = Anthropic()
-    completion = anthropic.completions.create(
-    model="claude-2",
-    max_tokens_to_sample=100000,
-    prompt=f"{HUMAN_PROMPT} {query} {AI_PROMPT}",
-    )
-    print(completion.completion)
+    
 
-    await send_long_message(message.channel, completion.completion)
+    await send_long_message(message.channel, answer)
+    return
 
     #await send_long_message(message.channel, answer)
 

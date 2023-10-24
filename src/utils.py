@@ -13,7 +13,8 @@ import threading
 from vector import persist_new_chunks
 from qdrant_vector import update_qdrant
 from langchain.document_loaders import PDFMinerLoader
-from pdf2image import convert_from_path
+from langchain.docstore.document import Document 
+from pdf2image import convert_from_path, convert_from_bytes
 import layoutparser as lp
 import torch
 
@@ -76,8 +77,28 @@ def remove_folder_contents(path):
             remove_folder_contents(filepath)
             os.rmdir(filepath)
 
-def get_pdf_text(path):
+def get_documents_from_pdf(path):
     # define the path
+    documents  =   []
+    for filename in os.listdir(path):
+    # check if the file is a pdf
+      if filename.endswith('.pdf'):
+        text = ""
+        with open(os.path.join(path, filename), 'rb') as pdf_doc:
+        
+            docs    =   PDFMinerLoader(f"{pdf_doc.name}").load()
+            text_splitter   =   RecursiveCharacterTextSplitter(
+            chunk_size=os.getenv("CHUNK_SIZE"), # Specify the character chunk sizecz
+            chunk_overlap=os.getenv("CHUNK_OVERLAP"), # "Allowed" Overlap across chunks
+            length_function=len # Function used to evaluate the chunk size (here in terms of characters)
+            )     
+
+            documents    =   text_splitter.split_documents(docs)
+            os.remove(os.path.join(path, filename))
+    return documents
+
+def get_text_from_pdf(path):
+     # define the path
     
     for filename in os.listdir(path):
     # check if the file is a pdf
@@ -91,7 +112,8 @@ def get_pdf_text(path):
             os.remove(os.path.join(path, filename))
         return text
 
-def images_2_OCR(imgs_paths):
+        
+def images_2_OCR(imgs_paths, paper_number):
     docs        =   []
     for img_path_idx in range(len(os.listdir(imgs_paths))):
         img_path        =   os.path.join(imgs_paths, "page{}.jpg".format(img_path_idx))
@@ -108,18 +130,21 @@ def images_2_OCR(imgs_paths):
 
 def download_pdf_paper_from_url(url):
     paper_number    =   os.path.basename(url).strip(".pdf")
-    res             =   requests.get(url)
-    pdf_path        =   f"docs/pdf/{paper_number}.pdf"
+    pdf_url = f"https://arxiv.org/pdf/{paper_number}.pdf"
+    res             =   requests.get(pdf_url)
+    pdf_folder_path = os.getenv("PDF_FOLDER")
+    pdf_path        =   f"{pdf_folder_path}/{paper_number}.pdf"
     with open(pdf_path, 'wb') as f:
         f.write(res.content)
-    docs    =   PDFMinerLoader(f"papers/{paper_number}.pdf").load()
+    docs    =   PDFMinerLoader(f"{pdf_path}").load()
     text_splitter   =   RecursiveCharacterTextSplitter(
-    chunk_size=700, # Specify the character chunk sizecz
-    chunk_overlap=0, # "Allowed" Overlap across chunks
+    chunk_size=os.getenv("CHUNK_SIZE"), # Specify the character chunk sizecz
+    chunk_overlap=os.getenv("CHUNK_OVERLAP"), # "Allowed" Overlap across chunks
     length_function=len # Function used to evaluate the chunk size (here in terms of characters)
     )     
 
     docs    =   text_splitter.split_documents(docs)
+    return docs, pdf_path, paper_number
 
 
 
@@ -130,28 +155,32 @@ model_publay    =   lp.Detectron2LayoutModel('lp://PubLayNet/mask_rcnn_X_101_32x
                     label_map={0: "Text", 1: "Title", 2: "List", 3:"Table", 4:"Figure"})
 
 def convert_pdf_to_images(pdf_path):
-    img_path    =   os.path.join("papers_images", os.path.basename(pdf_path).strip(".pdf") + "_images")
-    if not os.path.exists(img_path):
-        os.makedirs(img_path)
-    images      =   convert_from_path(pdf_path=pdf_path)
+    img_folder    = f"{os.getenv('PDF_FOLDER')}/images"
+    #img_path    =   os.path.join(os.getenv("ZIP_FOLDER"), os.path.basename(pdf_path).strip(".pdf") + "_images")
+    if not os.path.exists(img_folder):
+        os.makedirs(img_folder)
+    images      =   convert_from_path(pdf_path, output_folder=img_folder)
     for i in range(len(images)):
-        images[i].save(os.path.join(img_path, "page" + str(i) + ".jpg"), "JPEG")
+        images[i].save(os.path.join(img_folder, "page" + str(i) + ".jpg"), "JPEG")
     print("Images Saved !")
-    img_path
+    
     model_publay    =   lp.Detectron2LayoutModel('lp://PubLayNet/mask_rcnn_X_101_32x8d_FPN_3x/config',
                     extra_config=["MODEL.ROI_HEADS.SCORE_THRESH_TEST", 0.6],
                     label_map={0: "Text", 1: "Title", 2: "List", 3:"Table", 4:"Figure"})
     page_idx    =   6
-    img_path    =   os.path.join(pdf_path, f"page{page_idx}.jpg")
+    img_path    =   os.path.join(img_folder, f"page{page_idx}.jpg")
     img         =   cv2.imread(img_path)
     img         =   img[..., ::-1]
     layout  =   model_publay.detect(img)
     lp.draw_box(img, layout)
-    return img_path
+    return img_folder
 
 def extract_text_pdf_image_PubLay_OCR(img_path):
     texts       =   []
     image       =   cv2.imread(img_path)
+    if image is None:
+        print("Could not read the image.")
+        return texts
     image       =   image[..., ::-1]
     layout      =   model_publay.detect(image)
     text_blocks =   lp.Layout([b for b in layout if b.type in ['Text', 'List', 'Title']])
@@ -194,9 +223,38 @@ def get_coordinate(data):
 
   return torch.tensor([[x1, y1, x2, y2]], dtype=torch.float)
 
-def get_iou(box_1, box_2):
+import cv2
+import torch
 
-  return bops.box_iou(box_1, box_2)
+def get_iou(box_1, box_2):
+    # Convert torch tensors to lists
+    box_1 = box_1[0].tolist()
+    box_2 = box_2[0].tolist()
+
+    # Convert to integer coordinates as OpenCV expects them as integers
+    box_1 = [int(coord) for coord in box_1]
+    box_2 = [int(coord) for coord in box_2]
+
+    # Create rectangles from bounding boxes
+    rect_1 = (box_1[0], box_1[1], box_1[2] - box_1[0], box_1[3] - box_1[1])
+    rect_2 = (box_2[0], box_2[1], box_2[2] - box_2[0], box_2[3] - box_2[1])
+
+    # Calculate intersection area
+    intersection_area = (max(0, min(rect_1[0] + rect_1[2], rect_2[0] + rect_2[2]) - max(rect_1[0], rect_2[0])) *
+                        max(0, min(rect_1[1] + rect_1[3], rect_2[1] + rect_2[3]) - max(rect_1[1], rect_2[1])))
+
+    # Calculate union area
+    union_area = rect_1[2] * rect_1[3] + rect_2[2] * rect_2[3] - intersection_area
+
+    # Calculate IoU
+    iou = intersection_area / union_area if union_area != 0 else 0.0
+
+    return torch.tensor([[iou]], dtype=torch.float)
+
+# Example usage:
+# Assuming box_1 and box_2 are torch tensors representing bounding boxes
+# iou = get_iou(box_1, box_2)
+
 
 def get_area(bbox):
   w = bbox[0, 2] - bbox[0, 0] # Width
