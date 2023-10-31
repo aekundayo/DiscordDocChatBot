@@ -20,7 +20,7 @@ import torch
 
 
 
-def extract_url(s):
+def extract_urls(s):
     # Regular expression to match URLs
     url_pattern = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
     urls = re.findall(url_pattern, s)
@@ -63,7 +63,15 @@ def extract_text_from_htmls(folder):
                     update_qdrant(chunks)
     
     remove_folder_contents(folder)
-                    
+
+def split_text(text):
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=int(os.getenv("CHUNK_SIZE")), # Specify the character chunk sizecz
+        chunk_overlap=int(os.getenv("CHUNK_OVERLAP")), # "Allowed" Overlap across chunks
+        length_function=len
+    )
+    chunks = text_splitter.split_text(text)
+    return chunks              
 
 def remove_folder_contents(path):
     for filename in os.listdir(path):
@@ -92,6 +100,7 @@ def get_documents_from_pdf(path):
             chunk_overlap=os.getenv("CHUNK_OVERLAP"), # "Allowed" Overlap across chunks
             length_function=len # Function used to evaluate the chunk size (here in terms of characters)
             )     
+
 
             documents    =   text_splitter.split_documents(docs)
             os.remove(os.path.join(path, filename))
@@ -132,19 +141,21 @@ def download_pdf_paper_from_url(url):
     paper_number    =   os.path.basename(url).strip(".pdf")
     pdf_url = f"https://arxiv.org/pdf/{paper_number}.pdf"
     res             =   requests.get(pdf_url)
-    pdf_folder_path = os.getenv("PDF_FOLDER")
+    pdf_folder_path = json.loads(os.getenv('FOLDERS'))['PDF_FOLDER']
     pdf_path        =   f"{pdf_folder_path}/{paper_number}.pdf"
     with open(pdf_path, 'wb') as f:
         f.write(res.content)
     docs    =   PDFMinerLoader(f"{pdf_path}").load()
     text_splitter   =   RecursiveCharacterTextSplitter(
-    chunk_size=os.getenv("CHUNK_SIZE"), # Specify the character chunk sizecz
-    chunk_overlap=os.getenv("CHUNK_OVERLAP"), # "Allowed" Overlap across chunks
+    chunk_size=int(os.getenv("CHUNK_SIZE")), # Specify the character chunk sizecz
+    chunk_overlap=int(os.getenv("CHUNK_OVERLAP")), # "Allowed" Overlap across chunks
     length_function=len # Function used to evaluate the chunk size (here in terms of characters)
     )     
 
     docs    =   text_splitter.split_documents(docs)
-    return docs, pdf_path, paper_number
+    texts = [doc.page_content for doc in docs]
+    os.remove(pdf_path)
+    return texts, docs, pdf_path, paper_number
 
 
 
@@ -155,7 +166,7 @@ model_publay    =   lp.Detectron2LayoutModel('lp://PubLayNet/mask_rcnn_X_101_32x
                     label_map={0: "Text", 1: "Title", 2: "List", 3:"Table", 4:"Figure"})
 
 def convert_pdf_to_images(pdf_path):
-    img_folder    = f"{os.getenv('PDF_FOLDER')}/images"
+    img_folder    = f"{json.loads(os.getenv('FOLDERS'))['PDF_FOLDER']}/images"
     #img_path    =   os.path.join(os.getenv("ZIP_FOLDER"), os.path.basename(pdf_path).strip(".pdf") + "_images")
     if not os.path.exists(img_folder):
         os.makedirs(img_folder)

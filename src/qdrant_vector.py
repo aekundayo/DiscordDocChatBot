@@ -12,7 +12,7 @@ def get_Qvector_store(text_chunks):
     embeddings = OpenAIEmbeddings()
     #embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
     
-    memory_vectorstore = Qdrant.from_documents(
+    memory_vectorstore = Qdrant.from_texts(
     text_chunks,
     embeddings,
     location=":memory:",  # Local mode with in-memory storage only
