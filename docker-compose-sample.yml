@@ -10,5 +10,25 @@ services:
       HUGGINGFACE_API_TOKEN: 'YOUR_HUGGINGFACE_API_TOKEN'
       HUGGINGFACEHUB_API_TOKEN: 'YOUR_HUGGINGFACEHUB_API_TOKEN'
       GOOGLE_API_KEY: 'YOUR_GOOGLE_API_KEY'
+      ANTHROPIC_API_KEY: 'ANTHROPIC_API_KEY'
+      QDRANT_HOST_STRING: 'http://qdrant-store:6333'
+      WANDB_API_KEY: 'WANDB_API_KEY'
+      AWS_ACCESS_KEY_ID: 'AWS_ACCESS_KEY_ID'
+      AWS_SECRET_ACCESS_KEY: 'AWS_SECRET_ACCESS_KEY'
+      FOLDERS: '{"PDF_FOLDER": "docs/pdfs", "WEB_FOLDER": "docs/web", "ZIP_FOLDER": "docs/zip", "LOG_FOLDER": "docs/logs" , "VECTOR_FOLDER": "docs/vectorstore"}'
+      LANGCHAIN_WANDB_TRACING: $DEV_MODE
+      CHUNK_SIZE: 1500
+      CHUNK_OVERLAP: 300
+      AZURE_CLIENT_ID: 'AZURE_CLIENT_ID'
+      AZURE_TENANT_ID: 'AZURE_TENANT_ID'
+      AZURE_CLIENT_SECRET: 'AZURE_CLIENT_SECRET'
+      AZURE_SUBSCRIPTION_ID: 'AZURE_SUBSCRIPTION_ID'
+      SUBSCRIPTION_MAPPINGS: 'SUBSCRIPTION_MAPPINGS'
+      DEVOPS_ASSISTANT_NAME: 'YOUR OPENAI ASSISTANT NAME'
     volumes:
-      - /tmp/discord:/app/docs
+      - ~/Documents/discord:/app/docs # mount the docs folder of your choice to the container
+  qdrant-store:
+    image: qdrant/qdrant:latest
+    ports:
+      - 6333:6333
+    
