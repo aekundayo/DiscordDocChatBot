@@ -1,7 +1,12 @@
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings, HuggingFaceInstructEmbeddings
 from langchain.vectorstores import FAISS, Qdrant, weaviate, Redis
-import qdrant_client    
+import qdrant_client
+from qdrant_client.http.models import Distance, VectorParams
+from qdrant_client import models, QdrantClient
+from sentence_transformers import SentenceTransformer
+  
+from qdrant_client.http.models import CollectionDescription
 import os
 
 vectorpath = 'docs/vectorstore'
@@ -11,7 +16,8 @@ url = os.getenv("QDRANT_HOST_STRING"),
 def get_Qvector_store(text_chunks):
     embeddings = OpenAIEmbeddings()
     #embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
-    
+    #encoder = SentenceTransformer("all-MiniLM-L6-v2")
+
     memory_vectorstore = Qdrant.from_texts(
     text_chunks,
     embeddings,
@@ -21,21 +27,39 @@ def get_Qvector_store(text_chunks):
     )
 
 
-    client = qdrant_client.QdrantClient(
-    url=os.getenv("QDRANT_HOST_STRING")
-    )
-    qdrant = Qdrant(
-    client=client,
-    embeddings=embeddings,
-    collection_name="my_documents"
-    )
-    qdrant.add_texts(text_chunks)
+    try: 
+        client = qdrant_client.QdrantClient(
+        url=os.getenv("QDRANT_HOST_STRING")
+        )
+        qdrant = Qdrant(
+        client=client,
+        embeddings=embeddings,
+        collection_name="my_documents"
+        )
+        qdrant.add_texts(text_chunks)
+    except:
+        try:
+            qdrant = qdrant_client.QdrantClient(url=os.getenv("QDRANT_HOST_STRING"))
+            collection_created = qdrant.recreate_collection(
+            collection_name="my_documents",
+            vectors_config=models.VectorParams(
+                size=1536,  # Vector size is defined by used model
+                distance=models.Distance.COSINE,
+            ),
+        )
+            print("VECTOR DB CREATED RESULT: " + collection_created)
+
+            qdrant.add_texts(text_chunks)       
+
+        except:
+            pass
 
 
     return memory_vectorstore 
 
 def get_Qvector_store_from_docs(documents):
     embeddings = OpenAIEmbeddings()
+    #encoder = SentenceTransformer("all-MiniLM-L6-v2")
     #embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
     
     memory_vectorstore = Qdrant.from_documents(
@@ -46,22 +70,35 @@ def get_Qvector_store_from_docs(documents):
     force_recreate=True,
     )
 
+    try: 
+        client = qdrant_client.QdrantClient(
+        url=os.getenv("QDRANT_HOST_STRING")
+        )
+        qdrant = Qdrant(
+        client=client,
+        embeddings=embeddings,
+        collection_name="my_documents"
+        )
+        qdrant.add_documents(documents)
+    except:
+        try:
+            qdrant = qdrant_client.QdrantClient(url=os.getenv("QDRANT_HOST_STRING"))
+            collection_created= qdrant.recreate_collection(
+            collection_name="my_documents",
+            vectors_config=models.VectorParams(
+                size=1536,  # Vector size is defined by used model
+                distance=models.Distance.COSINE,
+            ),
+        )
+            print("VECTOR DB CREATED RESULT: " + collection_created)
+            qdrant.add_documents(documents)       
 
-    client = qdrant_client.QdrantClient(
-    url=os.getenv("QDRANT_HOST_STRING")
-    )
-    qdrant = Qdrant(
-    client=client,
-    embeddings=embeddings,
-    collection_name="my_documents"
-    )
-    qdrant.add_documents(documents)
+        except:
+            pass
 
 
     return memory_vectorstore 
 
-
-    return memory_vectorstore 
 
 
 def return_qdrant():    

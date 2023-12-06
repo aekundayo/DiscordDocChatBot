@@ -1,0 +1,1242 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Radius Docs – containers</title>
+    <link>https://docs.radapp.io/tags/containers/</link>
+    <description>Recent content in containers on Radius Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	  <atom:link href="https://docs.radapp.io/tags/containers/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Guides: Overview: Radius containers</title>
+      <link>https://docs.radapp.io/guides/author-apps/containers/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/guides/author-apps/containers/overview/</guid>
+      <description>
+        
+        
+        &lt;p&gt;A Radius container enables you to run a container workload as part of your application across different platforms and runtimes. Your container can be a frontend UI, a backend API, a database, or any other container you need to run as part of your app. Plus, with Radius Connections, you can easily connect your container to other resources in your application, such as databases, message queues, and more and automatically configure your container with identity, secrets, and other configuration.&lt;/p&gt;
+&lt;img src=&#34;containers-splash.png&#34; alt=&#34;Container graphic&#34; width=300px &gt;
+&lt;blockquote&gt;
+&lt;p&gt;Adding a container and want to jump to the reference docs? Check out the &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/core-schema/container-schema/&#34;&gt;container resource schema&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;supported-runtimes&#34;&gt;Supported runtimes&lt;/h2&gt;
+&lt;p&gt;Radius containers are portable across container runtimes, allowing you to define your container workload once and run it on any of the supported runtimes.&lt;/p&gt;
+&lt;h3 id=&#34;kubernetes&#34;&gt;Kubernetes&lt;/h3&gt;
+&lt;p&gt;Containers are deployed to the same Kubernetes cluster as your Radius installation, into the namespace that is defined in your application. For more information on how Radius resources map to Kubernetes objects, refer to the &lt;a href=&#34;https://docs.radapp.io/guides/operations/kubernetes/overview/#resource-mapping&#34;&gt;Kubernetes mapping guide&lt;/a&gt;.&lt;/p&gt;
+&lt;h4 id=&#34;customize-kubernetes-configurations&#34;&gt;Customize Kubernetes configurations&lt;/h4&gt;
+&lt;p&gt;Radius provides a way to apply custom Kubernetes configurations to container resources that are created by Radius. This allows you to make use of Kubernetes configurations or features that are not supported by Radius, yet remain composable with other Radius features like &lt;a href=&#34;https://docs.radapp.io/guides/author-apps/containers/overview/#connections&#34;&gt;Connections&lt;/a&gt;. Additionally, it provides a way to migrate your existing Kubernetes applications into Radius without having to rewrite your Kubernetes configurations, while giving you the option to incrementally adopt Radius features over time. The customizations are applied to the container resource via the &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/core-schema/container-schema/#runtimes&#34;&gt;&lt;code&gt;runtimes&lt;/code&gt;&lt;/a&gt; property within the container resource definition.&lt;/p&gt;
+&lt;h5 id=&#34;base-kubernetes-yaml&#34;&gt;Base Kubernetes YAML&lt;/h5&gt;
+&lt;p&gt;You can provide a Kubernetes YAML definition as a base or foundation upon which Radius will build your containers, enabling you to incrementally adopting Radius by starting with your existing YAML definition and use applying Radius customizations on top. The provided YAML is fully passed through to Kubernetes when Radius creates the container resource, which means that you may even provide a definition for a CRD that Radius has no visibility into. &lt;!-- For more information on how to onboard existing Kubernetes resources into Radius, refer to the [base Kubernetes YAML guide](&#34;guides/author-apps/kubernetes/how-to-yaml-base-support&#34;). --&gt;&lt;/p&gt;
+&lt;p&gt;Radius currently supports the following Kubernetes resource types for the &lt;code&gt;base&lt;/code&gt; property:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Kubernetes Resource Types&lt;/th&gt;
+&lt;th&gt;Number of resources&lt;/th&gt;
+&lt;th&gt;Limitation&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Deployment&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;Deployment name must match the name of the Radius container&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ServiceAccount&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;ServiceAccount name must match the name of the Radius container using the correct namespace&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Service&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;ServiceAccount name must match the name of the Radius container using the correct namespace&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Secrets&lt;/td&gt;
+&lt;td&gt;Multiple&lt;/td&gt;
+&lt;td&gt;No limitation except within the respective namespace&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ConfigMap&lt;/td&gt;
+&lt;td&gt;Multiple config maps&lt;/td&gt;
+&lt;td&gt;No limitation except within the respective namespace&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h5 id=&#34;pod-patching&#34;&gt;Pod patching&lt;/h5&gt;
+&lt;p&gt;You can also &amp;ldquo;patch&amp;rdquo; the Kubernetes containers created and deployed by Radius using &lt;a href=&#34;https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#PodSpec&#34;&gt;PodSpec&lt;/a&gt; definitions. This allows for setting Kubernetes-specific configurations, as well as overriding Radius behaviors, which means that you may access all Kubernetes Pod features, even if they are not supported by Radius. &lt;!-- For more information on how to patch Kubernetes pods, refer to the [Kubernetes pod patching guide](&#34;guides/author-apps/kubernetes/how-to-patch-pod&#34;). --&gt;&lt;/p&gt;
+&lt;h2 id=&#34;container-definition&#34;&gt;Container definition&lt;/h2&gt;
+&lt;p&gt;Radius containers allow you to specify your image, ports, environment variables, volumes, and more. Refer to the &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/core-schema/container-schema/&#34;&gt;container resource schema&lt;/a&gt; for more information.&lt;/p&gt;
+&lt;h3 id=&#34;ports&#34;&gt;Ports&lt;/h3&gt;
+&lt;p&gt;Ports allow you to expose your container to incoming network traffic. Refer to the &lt;a href=&#34;https://docs.radapp.io/guides/author-apps/networking/&#34;&gt;networking guide&lt;/a&gt; for more information on container networking.&lt;/p&gt;
+&lt;h2 id=&#34;volumes&#34;&gt;Volumes&lt;/h2&gt;
+&lt;p&gt;Volumes can be mounted to the container to provide access to data. There are two types of volumes, ephemeral and persistent.&lt;/p&gt;
+&lt;p&gt;Ephemeral volumes have the same lifecycle as the container, being deployed and deleted with the container. They create an empty directory on the host and mount it to the container.&lt;/p&gt;
+&lt;p&gt;Persistent volumes have life cycles that are separate from the container. Containers can mount these persistent volumes and restart without losing data. Persistent volumes can also be useful for storing data that needs to be accessed by multiple containers.&lt;/p&gt;
+&lt;h2 id=&#34;health-probes&#34;&gt;Health Probes&lt;/h2&gt;
+&lt;p&gt;Health probes are used to determine the health of a container. There are two types of probes, readiness and liveness. For more information on how to setup health probes, refer to the &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/core-schema/container-schema/&#34;&gt;container resource schema&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;readiness-probe&#34;&gt;Readiness Probe&lt;/h3&gt;
+&lt;p&gt;Readiness probes detect when a container begins reporting it is ready to receive traffic, such as after loading a large configuration file that may take a couple seconds to process. There are three types of probes available, httpGet, tcp and exec.&lt;/p&gt;
+&lt;p&gt;For an &lt;strong&gt;httpGet&lt;/strong&gt; probe, an HTTP GET request at the specified endpoint will be used to probe the application. If a success code is returned, the probe passes. If no code or an error code is returned, the probe fails, and the container won’t receive any requests after a specified number of failures. Any code greater than or equal to 200 and less than 400 indicates success. Any other code indicates failure.&lt;/p&gt;
+&lt;p&gt;For a &lt;strong&gt;tcp&lt;/strong&gt; probe, the specified container port is probed to be listening. If not, the probe fails.&lt;/p&gt;
+&lt;p&gt;For an &lt;strong&gt;exec probe&lt;/strong&gt;, a command is run within the container. A return code of 0 indicates a success and the probe succeeds. Any other return indicates a failure, and the container doesn’t receive any requests after a specified number of failures&lt;/p&gt;
+&lt;p&gt;Refer to the readiness probes section of the &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/core-schema/container-schema/#readiness-probes&#34;&gt;container resource schema&lt;/a&gt; for more details.&lt;/p&gt;
+&lt;h3 id=&#34;liveness-probe&#34;&gt;Liveness Probe&lt;/h3&gt;
+&lt;p&gt;Liveness probes detect when a container is in a broken state, restarting the container to return it to a healthy state. There are three types of probes available, httpGet, tcp and exec.&lt;/p&gt;
+&lt;p&gt;For an &lt;strong&gt;httpGet probe&lt;/strong&gt;, an HTTP GET request at the specified endpoint will be used to probe the application. If a success code is returned, the probe passes. If no code or an error code is returned, the probe fails, and the container won’t receive any requests after a specified number of failures. Any code greater than or equal to 200 and less than 400 indicates success. Any other code indicates failure.&lt;/p&gt;
+&lt;p&gt;For a &lt;strong&gt;tcp probe&lt;/strong&gt;, the specified container port is probed to be listening. If not, the probe fails.&lt;/p&gt;
+&lt;p&gt;For an &lt;strong&gt;exec probe&lt;/strong&gt;, a command is run within the container. A return code of 0 indicates a success and the probe succeeds. Any other return indicates a failure, and the container doesn’t receive any requests after a specified number of failures.&lt;/p&gt;
+&lt;p&gt;Refer to the probes section of the &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/core-schema/container-schema/#liveness-probes&#34;&gt;container resource schema&lt;/a&gt; for more details.&lt;/p&gt;
+&lt;h2 id=&#34;connections&#34;&gt;Connections&lt;/h2&gt;
+&lt;p&gt;When a connection between two resources is declared, Radius injects resource related information into environment variables that are then used to access the respective resource without having to hard code URIs, connection strings, access keys, or anything that application code needs to successfully communicate.&lt;/p&gt;
+&lt;p&gt;These environment variables follow a naming convention that makes their use predictable. The naming pattern is derived from the connection name and resource type, which determines what values are required. This way the code that needs to read the values gets to define how they are named. Refer to the &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/&#34;&gt;reference documentation&lt;/a&gt; of each resource for more information.&lt;/p&gt;
+&lt;p&gt;For example, adding a connection called &lt;code&gt;database&lt;/code&gt; that connects to a MongoDB resource would result in the following environment variables being injected:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th&gt;Value&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;CONNECTION_DATABASE_CONNECTIONSTRING&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;The connection string to the database&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;CONNECTION_DATABASE_DATABASE&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Database name of the target database&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;CONNECTION_DATABASE_USERNAME&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Username of the target database&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;CONNECTION_DATABASE_PASSWORD&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Password of the target database&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Alternatively, if you already have another convention you would like to follow or if you just prefer to be explicit, you may ignore the values generated by a connection and instead override it by setting your own environment variable values.&lt;/p&gt;
+&lt;!-- For more information on how to add connections, refer to the [connect to dependencies how-to guide](&#34;guides/author-apps/containers/how-to-connect-dependencies&#34;). --&gt;
+&lt;h2 id=&#34;extensions&#34;&gt;Extensions&lt;/h2&gt;
+&lt;p&gt;Extensions define additional capabilities and configuration for a container.&lt;/p&gt;
+&lt;h3 id=&#34;kubernetes-metadata-extension&#34;&gt;Kubernetes metadata extension&lt;/h3&gt;
+&lt;p&gt;The &lt;a href=&#34;https://docs.radapp.io/guides/operations/kubernetes/kubernetes-metadata/&#34;&gt;Kubernetes metadata extension&lt;/a&gt; enables you to configure the Kubernetes metadata for the container. This includes the labels and annotations for the container. Refer to to the extension overview page to get more details about the extension and how it works with other Radius resources.&lt;/p&gt;
+&lt;h3 id=&#34;manual-scaling-extension&#34;&gt;Manual scaling extension&lt;/h3&gt;
+&lt;p&gt;The manualScaling extension configures the number of replicas of a compute instance (such as a container) to run. Refer to the &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/core-schema/container-schema/#extensions&#34;&gt;container resource schema&lt;/a&gt; for more details.&lt;/p&gt;
+&lt;h3 id=&#34;dapr-sidecar-extension&#34;&gt;Dapr sidecar extension&lt;/h3&gt;
+&lt;p&gt;The &lt;code&gt;daprSidecar&lt;/code&gt; extensions adds and configures a &lt;a href=&#34;https://dapr.io&#34;&gt;Dapr&lt;/a&gt; sidecar to your application. Refer to the &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/core-schema/container-schema/#extensions&#34;&gt;container resource schema&lt;/a&gt; for more details&lt;/p&gt;
+&lt;h2 id=&#34;further-reading&#34;&gt;Further reading&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/core-schema/container-schema/&#34;&gt;Container schema&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Guides: How-To: Connect to dependencies</title>
+      <link>https://docs.radapp.io/guides/author-apps/containers/howto-connect-dependencies/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/guides/author-apps/containers/howto-connect-dependencies/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This how-to guide will teach how to connect to your dependencies via &lt;a href=&#34;https://docs.radapp.io/guides/author-apps/containers/#connections&#34;&gt;connections&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/installation/#step-1-install-the-rad-cli&#34;&gt;rad CLI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/installation/#step-2-install-the-vs-code-extension&#34;&gt;Radius Bicep VSCode extension&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/installation/#step-3-initialize-radius&#34;&gt;Radius environment&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;step-1-view-the-container-definition&#34;&gt;Step 1: View the container definition&lt;/h2&gt;
+&lt;p&gt;Open the &lt;code&gt;app.bicep&lt;/code&gt; and view the &lt;a href=&#34;https://docs.radapp.io/guides/author-apps/containers/&#34;&gt;container&lt;/a&gt;:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;import radius as rad
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@&lt;span style=&#34;color:#a6e22e&#34;&gt;description&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;The app ID of your Radius application. Set automatically by the rad CLI.&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;param&lt;/span&gt; application &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; demo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/containers@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;demo&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: application
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    container: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      image: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;radius.azurecr.io/samples/demo:latest&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      ports: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        web: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          containerPort: 3000
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id=&#34;step-2-add-a-redis-cache-as-a-dependency&#34;&gt;Step 2: Add a Redis cache as a dependency&lt;/h2&gt;
+&lt;p&gt;Next, add to &lt;code&gt;app.bicep&lt;/code&gt; a &lt;a href=&#34;https://docs.radapp.io/guides/author-apps/portable-resources/overview/&#34;&gt;Redis cache&lt;/a&gt;, leveraging the default &amp;ldquo;local-dev&amp;rdquo; Recipe:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@&lt;span style=&#34;color:#a6e22e&#34;&gt;description&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;The env ID of your Radius Environment. Set automatically by the rad CLI.&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;param&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; db &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Datastores/redisCaches@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;db&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: application
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id=&#34;step-3-connect-to-the-redis-cache&#34;&gt;Step 3: Connect to the Redis cache&lt;/h2&gt;
+&lt;p&gt;Connections from a container to a resource result in environment variables for connection information automatically being set on the container. Update your container definition to add a connection to the new Redis cache:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;&#34;&gt;&lt;code&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 7
+&lt;/span&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 8
+&lt;/span&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 9
+&lt;/span&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;10
+&lt;/span&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;11
+&lt;/span&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;12
+&lt;/span&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;13
+&lt;/span&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;14
+&lt;/span&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;15
+&lt;/span&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;16
+&lt;/span&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;17
+&lt;/span&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;18
+&lt;/span&gt;&lt;span style=&#34;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;19
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;20
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;21
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;22
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;23
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;24
+&lt;/span&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;25
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; demo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/containers@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;demo&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: application
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    container: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      image: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;radius.azurecr.io/samples/demo:latest&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      ports: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        web: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          containerPort: 3000
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span&gt;    connections: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span&gt;      redis: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span&gt;        source: db.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;h2 id=&#34;step-4-deploy-your-app&#34;&gt;Step 4: Deploy your app&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Run your application in your environment:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad run ./app.bicep -a demo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Visit &lt;a href=&#34;http://localhost:3000&#34;&gt;localhost:3000&lt;/a&gt; in your browser. You should see the following page, now showing injected environment variables:&lt;/p&gt;
+&lt;img src=&#34;./demo-with-redis-screenshot.png&#34; alt=&#34;Screenshot of the demo app with all environment variables&#34; width=1000px /&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;step-5-view-the-application-connections&#34;&gt;Step 5: View the Application Connections&lt;/h2&gt;
+&lt;p&gt;Radius Connections are more than just environment variables and configuration. You can also access the &amp;ldquo;application graph&amp;rdquo; and understand the connections within your application with the following command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad app connections -a demo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see the following output, detailing the connections between the &lt;code&gt;demo&lt;/code&gt; container and the &lt;code&gt;db&lt;/code&gt; Redis cache, along with information about the underlying Kubernetes resources running the app:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Displaying application: demo
+
+Name: demo (Applications.Core/containers)
+Connections:
+  demo -&amp;gt; db (Applications.Datastores/redisCaches)
+Resources:
+  demo (kubernetes: apps/Deployment)
+  demo (kubernetes: core/Secret)
+  demo (kubernetes: core/Service)
+  demo (kubernetes: core/ServiceAccount)
+  demo (kubernetes: rbac.authorization.k8s.io/Role)
+  demo (kubernetes: rbac.authorization.k8s.io/RoleBinding)
+
+Name: db (Applications.Datastores/redisCaches)
+Connections:
+  demo (Applications.Core/containers) -&amp;gt; db
+Resources:
+  redis-r5tcrra3d7uh6 (kubernetes: apps/Deployment)
+  redis-r5tcrra3d7uh6 (kubernetes: core/Service)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;cleanup&#34;&gt;Cleanup&lt;/h2&gt;
+&lt;p&gt;Run &lt;code&gt;rad app delete&lt;/code&gt; to cleanup your Radius application, container, and Redis cache:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad app delete -a demo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;further-reading&#34;&gt;Further reading&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/guides/author-apps/containers/overview/#connections&#34;&gt;Connections&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/core-schema/container-schema/&#34;&gt;Container schema&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Guides: How-To: Set Kubernetes metadata</title>
+      <link>https://docs.radapp.io/guides/operations/kubernetes/kubernetes-metadata/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/guides/operations/kubernetes/kubernetes-metadata/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/&#34;&gt;Kubernetes Labels&lt;/a&gt; are key/value pairs attached to Kubernetes objects and used to identify groups of related resources by organizational structure, release, process etc. Labels are descriptive in nature and can be queried.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/&#34;&gt;Kubernetes Annotations&lt;/a&gt; attach non-identifying information to Kubernetes objects. They are used to provide  additional information to users and can also be used for operational purposes. Annotations are used to represent behavior that can be leveraged by tools and libraries and often they are not human readable or queried.&lt;/p&gt;
+&lt;h2 id=&#34;kubernetes-metadata-extension&#34;&gt;Kubernetes metadata extension&lt;/h2&gt;
+&lt;p&gt;Radius enables you to retain or use your own defined tagging scheme for Kubernetes resources using Kubernetes labels and annotations. This enables users to incrementally adopt Radius for microservices built in the Kubernetes ecosystem using Kubernetes metadata concepts.&lt;/p&gt;
+&lt;p&gt;You can set labels and annotations on an environment, application, or container using the Kubernetes metadata extension. The Kubernetes objects output from your resources (&lt;em&gt;Deployments, Services, etc.&lt;/em&gt;) will now have the defined metadata.&lt;/p&gt;
+&lt;ul class=&#34;nav nav-tabs&#34; id=&#34;tabs-0&#34; role=&#34;tablist&#34;&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link active&#34;
+    id=&#34;tabs-0-environment-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-0-environment&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-0-environment&#34; aria-selected=&#34;true&#34;&gt;
+    Environment
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link&#34;
+    id=&#34;tabs-0-application-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-0-application&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-0-application&#34; aria-selected=&#34;false&#34;&gt;
+    Application
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link&#34;
+    id=&#34;tabs-0-container-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-0-container&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-0-container&#34; aria-selected=&#34;false&#34;&gt;
+    Container
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;/ul&gt;
+
+
+&lt;div class=&#34;tab-content&#34; id=&#34;tabs-0-content&#34;&gt;
+
+
+&lt;div class=&#34;tab-pane fade show active&#34; id=&#34;tabs-0-environment&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-0-environment-tab&#34;&gt;
+&lt;br /&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; env &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/environments@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myenv&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    compute: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kubernetes&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      namespace: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;my-ns&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    extensions: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kubernetesMetadata&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        labels: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.key1&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;envValue1&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.key2&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;envValue2&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&#34;tab-pane fade&#34; id=&#34;tabs-0-application&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-0-application-tab&#34;&gt;
+&lt;br /&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; app &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/applications@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myapp&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: env.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    extensions: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kubernetesMetadata&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        labels: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.key1&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;appValue1&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.key2&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;appValue2&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.contact.name&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Operations&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.contact.alias&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;ops&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        annotations: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;prometheus.io/port&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;9090&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;prometheus.io/scrape&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;true&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&#34;tab-pane fade&#34; id=&#34;tabs-0-container&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-0-container-tab&#34;&gt;
+&lt;br /&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; frontend &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/containers@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;frontend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    container: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      image: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myregistry/mycontainer:latest&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    extensions: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kubernetesMetadata&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        labels: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.key2&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;containerValue2&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.contact.name&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Frontend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.contact.alias&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;frontend-eng&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;/div&gt;
+&lt;h2 id=&#34;cascading-metadata&#34;&gt;Cascading metadata&lt;/h2&gt;
+&lt;p&gt;Kubernetes metadata can be applied at the environment, application, or container layers. Metadata cascades down from the environment to the application to the containers, gateway and route resources. For example, you can set labels and annotations at an environment level and all containers within the environment will gain these labels and annotation, without the need for an explicit extension on the containers. The following resources will gain the Kubernetes metadata for their &lt;a href=&#34;https://docs.radapp.io/guides/operations/kubernetes/overview/#resource-mapping&#34;&gt;output resources&lt;/a&gt; from labels, annotations set at Environment, Application levels:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Applications.Core/containers&lt;/li&gt;
+&lt;li&gt;Applications.Core/gateways&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;metadata-processing-order&#34;&gt;Metadata processing order&lt;/h3&gt;
+&lt;p&gt;Labels and annotations are processed in the following order, combining the keys/values at each level:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Environment&lt;/li&gt;
+&lt;li&gt;Application&lt;/li&gt;
+&lt;li&gt;Container&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;conflicts-and-overrides&#34;&gt;Conflicts and overrides&lt;/h3&gt;
+&lt;p&gt;In the case where layers have conflicting keys (&lt;em&gt;i.e. Application and Container both specify a &lt;code&gt;myapp.team.name&lt;/code&gt; label&lt;/em&gt;), the last level to process wins out and overrides other values (container). The metadata specified on the container will override the metadata specified on the application or environment.&lt;/p&gt;
+&lt;h2 id=&#34;reserved-keys&#34;&gt;Reserved keys&lt;/h2&gt;
+&lt;p&gt;Certain labels/annotations have special uses to Radius internally and are not allowed to be overridden by user. Labels/Annotations with keys that have a prefix : &lt;code&gt;radapp.io/&lt;/code&gt; will be ignored during processing.&lt;/p&gt;
+&lt;h2 id=&#34;extension-processing-order&#34;&gt;Extension processing order&lt;/h2&gt;
+&lt;p&gt;Other extensions may set Kubernetes metadata. For example, the &lt;code&gt;daprSidecar&lt;/code&gt; extension sets the &lt;code&gt;dapr.io/enabled&lt;/code&gt; annotation, as well as some others. This may cause issues in the case of conflicts.&lt;/p&gt;
+&lt;p&gt;The order in which extensions are executed is as follows, from first to last:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Dapr sidecar extension&lt;/li&gt;
+&lt;li&gt;Manual scale extension&lt;/li&gt;
+&lt;li&gt;Kubernetes metadata extension&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;conflicts&#34;&gt;Conflicts&lt;/h3&gt;
+&lt;p&gt;When labels/annotation have the same set of key(s) added by two or more extensions, the final value is determined by the last extension that is processed.&lt;/p&gt;
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s take an example of an application with some labels and annotations. This example shows some generic &amp;lsquo;keys&amp;rsquo;, as well as an example of how an organization may use labels to track organization contact information inside labels for troubleshooting scenarios:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; app &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/applications@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myapp&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: env.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    extensions: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kubernetesMetadata&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        labels: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.key1&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;appValue1&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.key2&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;appValue2&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.contact.name&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Operations&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.contact.alias&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;ops&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        annotations: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;prometheus.io/port&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;9090&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;prometheus.io/scrape&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;true&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;All resources within this application with Kubernetes outputs will gain these labels. Let&amp;rsquo;s now take a look at a frontend container, where the frontend team has overridden some of the values:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; frontend &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/containers@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;frontend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    container: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      image: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myregistry/mycontainer:latest&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    extensions: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kubernetesMetadata&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        labels: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.key2&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;containerValue2&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.contact.name&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Frontend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.contact.alias&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;frontend-eng&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;When this file is deployed, the metadata on the &lt;code&gt;frontend&lt;/code&gt; deployment is:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ kubectl describe deployment frontend
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Name:             frontend
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Namespace:        default-myapp
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Labels:           key1&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;appValue1
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  key2&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;containerValue2
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  team.contact.name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;Frontend
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  team.contact.alias&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;frontend-eng
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  radapp.io/application&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;myapp
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  radapp.io/resource&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;frontend
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  radapp.io/resource-type&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;applications.core-containers
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  ...
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Annotations:      prometheus.io/port: &lt;span style=&#34;color:#ae81ff&#34;&gt;9090&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  prometheus.io/scrape: true
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  ...
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The labels &amp;amp; annotations were set based on the following:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th&gt;Value&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Labels&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;team.key1&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;appValue1&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Application value is applied&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;team.key2&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;containerValue2&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Container value overrides application value&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;team.contact.name&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Frontend&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Container value overrides application value&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;team.contact.alias&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;frontend-eng&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Container value overrides application value&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;radapp.io/application&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;myapp&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Radius-injected label&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;radapp.io/resource&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;frontend&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Radius-injected label&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;radapp.io/resource-type&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;applications.core-containers&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Radius-injected label&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Annotations&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;prometheus.io/port&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;9090&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Application annotation is applied&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;prometheus.io/scrape&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true &lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Application annotation is applied&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Guides: How-To: Mount a volume to a container</title>
+      <link>https://docs.radapp.io/guides/author-apps/containers/volumes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/guides/author-apps/containers/volumes/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This how-to guide will provide an overview of how to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mount an ephemeral (short-lived) volume to a container&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/installation/#step-1-install-the-rad-cli&#34;&gt;rad CLI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/installation/#step-2-install-the-vs-code-extension&#34;&gt;Radius Bicep VSCode extension&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/installation/#step-3-initialize-radius&#34;&gt;Radius environment&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;step-1-define-an-app-and-a-container&#34;&gt;Step 1: Define an app and a container&lt;/h2&gt;
+&lt;p&gt;Begin by creating a file named &lt;code&gt;app.bicep&lt;/code&gt; with a Radius Application and &lt;a href=&#34;https://docs.radapp.io/guides/author-apps/containers/&#34;&gt;container&lt;/a&gt;:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;import radius as rad
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;param&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; app &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/applications@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myapp&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; container &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/containers@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;mycontainer&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    container: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      image: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;radius.azurecr.io/samples/volumes:latest&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The &lt;code&gt;samples/volumes&lt;/code&gt; container will display the status and contents of the &lt;code&gt;/tmpdir&lt;/code&gt; directory within the container.&lt;/p&gt;
+&lt;h2 id=&#34;step-2-deploy-the-app-and-container&#34;&gt;Step 2: Deploy the app and container&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Deploy your app with the command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad deploy ./app.bicep
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once complete, port forward to your container with &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_resource_expose/&#34;&gt;&lt;code&gt;rad resource expose&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad resource expose containers mycontainer -a myapp --port &lt;span style=&#34;color:#ae81ff&#34;&gt;5000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Visit &lt;a href=&#34;http://localhost:5000&#34;&gt;localhost:5000&lt;/a&gt; in your browser. You should see a message warning that the directory &lt;code&gt;/tmpdir&lt;/code&gt; does not exist:&lt;/p&gt;
+&lt;img src=&#34;screenshot-error.jpg&#34; width=500px alt=&#34;Screeshot of container showing that the tmp directory does not exist&#34;&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;step-3-add-an-ephemeral-volume&#34;&gt;Step 3: Add an ephemeral volume&lt;/h2&gt;
+&lt;p&gt;Within the &lt;code&gt;container.volume&lt;/code&gt; property, add a new volume named &lt;code&gt;temp&lt;/code&gt; and configure it as a memory-backed ephemeral volume:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; container &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/containers@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;mycontainer&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    container: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      image: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;radius.azurecr.io/samples/volumes:latest&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      volumes: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        tmp: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;ephemeral&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          managedStore: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;memory&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          mountPath: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/tmpdir&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id=&#34;redeploy-your-app-and-container&#34;&gt;Redeploy your app and container&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Redeploy your application to apply the new definition of your container:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad deploy ./app.bicep
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once complete, port forward to your container with &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_resource_expose/&#34;&gt;&lt;code&gt;rad resource expose&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad resource expose containers mycontainer -a myapp --port &lt;span style=&#34;color:#ae81ff&#34;&gt;5000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Visit &lt;a href=&#34;http://localhost:5000&#34;&gt;localhost:5000&lt;/a&gt; in your browser. You should see the contents of &lt;code&gt;/tmpdir&lt;/code&gt;, showing an empty directory.&lt;/p&gt;
+&lt;img src=&#34;screenshot-empty.jpg&#34; width=500px alt=&#34;Screeshot of container showing that the tmp directory has no items&#34;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Press the &lt;code&gt;Create file&lt;/code&gt; button to generate a new file in the directory, such as &lt;code&gt;test.txt&lt;/code&gt;:&lt;/p&gt;
+&lt;img src=&#34;screenshot.jpg&#34; width=400px alt=&#34;Screeshot of container showing files being created&#34;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Done! You&amp;rsquo;ve now learned how to mount an ephemeral volume&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;cleanup&#34;&gt;Cleanup&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Run the following command to delete your app and container:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad app delete myapp
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Guides: How-To: Connect a container to an Azure resource</title>
+      <link>https://docs.radapp.io/guides/author-apps/azure/azure-connection/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/guides/author-apps/azure/azure-connection/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This how-to guide will provide an overview of how to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Setup a Radius Environment with an identity provider&lt;/li&gt;
+&lt;li&gt;Define a connection to an Azure resource with Azure AD role-based access control (RBAC) assignments&lt;/li&gt;
+&lt;li&gt;Leverage Azure managed identities to connect to an Azure resource&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The steps below will showcase a &amp;ldquo;rad-ified&amp;rdquo; version of the existing &lt;a href=&#34;https://azure.github.io/azure-workload-identity/docs/quick-start.html&#34;&gt;Azure AD workload identity quickstart&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/installation/#step-1-install-the-rad-cli&#34;&gt;rad CLI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/installation/#step-2-install-the-vs-code-extension&#34;&gt;Radius Bicep VSCode extension&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/guides/operations/kubernetes/overview/#supported-clusters&#34;&gt;Setup a supported Kubernetes cluster&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://azure.github.io/azure-workload-identity/docs/installation.html&#34;&gt;Azure AD Workload Identity&lt;/a&gt; installed in your cluster, including the &lt;a href=&#34;https://azure.github.io/azure-workload-identity/docs/installation/mutating-admission-webhook.html&#34;&gt;Mutating Admission Webhook&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;step-1-initialize-radius&#34;&gt;Step 1: Initialize Radius&lt;/h2&gt;
+&lt;p&gt;Begin by running &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_init/&#34;&gt;&lt;code&gt;rad init --full&lt;/code&gt;&lt;/a&gt;. Make sure to configure an Azure cloud provider:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad init --full
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;step-2-define-a-radius-environment&#34;&gt;Step 2: Define a Radius Environment&lt;/h2&gt;
+&lt;p&gt;Create a file named &lt;code&gt;app.bicep&lt;/code&gt; and define a Radius Environment with &lt;a href=&#34;https://docs.radapp.io/guides/deploy-apps/environments/overview/&#34;&gt;identity property&lt;/a&gt; set. This configures your environment to use your Azure AD workload identity installation with your cluster&amp;rsquo;s OIDC endpoint:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;import radius as radius
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@&lt;span style=&#34;color:#a6e22e&#34;&gt;description&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;The Azure region to deploy Azure resource(s) into. Defaults to the region of the target Azure resource group.&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;param&lt;/span&gt; azLocation &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;resourceGroup&lt;/span&gt;().location
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@&lt;span style=&#34;color:#a6e22e&#34;&gt;description&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Specifies the OIDC issuer URL&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;param&lt;/span&gt; oidcIssuer &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; env &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/environments@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;iam-quickstart&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    compute: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kubernetes&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      resourceId: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;self&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      namespace: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;iam-quickstart&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      identity: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;azure.com.workload&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        oidcIssuer: oidcIssuer
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    providers: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      azure: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        scope: &lt;span style=&#34;color:#a6e22e&#34;&gt;resourceGroup&lt;/span&gt;().id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id=&#34;step-3-define-an-app-and-a-container&#34;&gt;Step 3: Define an app and a container&lt;/h2&gt;
+&lt;p&gt;Add a Radius Application, a Radius &lt;a href=&#34;https://docs.radapp.io/guides/author-apps/containers/&#34;&gt;container&lt;/a&gt;, and an Azure Key Vault to your &lt;code&gt;app.bicep&lt;/code&gt; file. Note the connection from the container to the Key Vault, with an iam property set for the Azure AD RBAC role:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; app &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/applications@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myapp&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: env.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; container &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/containers@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;mycontainer&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    container: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      image: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;ghcr.io/azure/azure-workload-identity/msal-go:latest&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      env: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        KEYVAULT_NAME: keyvault.name
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        KEYVAULT_URL: keyvault.properties.vaultUri
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        SECRET_NAME: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;mysecret&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    connections: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      vault: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        source: keyvault.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        iam: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;azure&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          roles: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Key Vault Secrets User&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; keyvault &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Microsoft.KeyVault/vaults@2021-10-01&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;qs-${uniqueString(resourceGroup().id)}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  location: azLocation
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    enabledForTemplateDeployment: true
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    tenantId: &lt;span style=&#34;color:#a6e22e&#34;&gt;subscription&lt;/span&gt;().tenantId
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    enableRbacAuthorization:true
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    sku: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;standard&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      family: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;A&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; mySecret &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;secrets&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;mysecret&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      value: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;supersecret&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id=&#34;step-4-deploy-the-app-and-container&#34;&gt;Step 4: Deploy the app and container&lt;/h2&gt;
+&lt;p&gt;Deploy your app by specifying the OIDC issuer URL. To retrieve the OIDC issuer URL, follow the &lt;a href=&#34;https://azure.github.io/azure-workload-identity/docs/installation.html&#34;&gt;Azure Workload Identity installation guide&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad deploy ./app.bicep -p oidcIssuer&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&amp;lt;OIDC_ISSUER_URL&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;step-5-verify-access-to-the-key-vault&#34;&gt;Step 5: Verify access to the Key Vault&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Once deployment completes, read the logs from your running container resource:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad resource logs containers mycontainer -a myapp
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You should see the contents of the secret from your Key Vault:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[myapp-mycontainer-79c54bd7c7-tgdpn] I1108 18:39:53.636314       1 main.go:33] &amp;#34;successfully got secret&amp;#34; secret=&amp;#34;supersecret&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Note: the container retrieves the secret every 60 seconds. If you get an error on the first attempt, wait a minute and try again. The Azure AD federation may still be in progress.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;cleanup&#34;&gt;Cleanup&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Run the following command to delete your app and container:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad app delete myapp --yes
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Delete the deployed Azure Key Vault via the Azure portal or the Azure CLI&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Guides: How-To: Mount an Azure Key Vault as a volume to a container</title>
+      <link>https://docs.radapp.io/guides/author-apps/containers/volume-keyvault/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/guides/author-apps/containers/volume-keyvault/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This how-to guide will provide an overview of how to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Setup a Radius Environment with an identity provider&lt;/li&gt;
+&lt;li&gt;Define a connection to an Azure resource with Azure AD role-based access control (RBAC) assignments&lt;/li&gt;
+&lt;li&gt;Leverage Azure managed identities to connect to an Azure resource&lt;/li&gt;
+&lt;li&gt;Mount a Key vault as a volume to a container&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/installation/#step-1-install-the-rad-cli&#34;&gt;rad CLI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/installation/#step-2-install-the-vs-code-extension&#34;&gt;Radius Bicep VSCode extension&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/guides/operations/kubernetes/&#34;&gt;Supported Kubernetes cluster&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://azure.github.io/azure-workload-identity/docs/installation.html&#34;&gt;Azure AD Workload Identity&lt;/a&gt; installed on your cluster&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://azure.github.io/secrets-store-csi-driver-provider-azure/docs/getting-started/installation/&#34;&gt;Azure Keyvault Provider&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;The above installation will also install the required &lt;a href=&#34;https://secrets-store-csi-driver.sigs.k8s.io/getting-started/installation.html&#34;&gt;Secrets Store CSI Driver&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;step-1-initialize-radius&#34;&gt;Step 1: Initialize Radius&lt;/h2&gt;
+&lt;p&gt;Begin by running &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_init/&#34;&gt;&lt;code&gt;rad init --full&lt;/code&gt;&lt;/a&gt;. Make sure to configure an Azure cloud provider:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad init --full
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;step-2-define-a-radius-environment&#34;&gt;Step 2: Define a Radius Environment&lt;/h2&gt;
+&lt;p&gt;Create a file named &lt;code&gt;app.bicep&lt;/code&gt; and define a Radius Environment with the identity property set:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;import radius as rad
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@&lt;span style=&#34;color:#a6e22e&#34;&gt;description&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;The Azure region to deploy Azure resource(s) into. Defaults to the region of the target Azure resource group.&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;param&lt;/span&gt; azLocation &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;resourceGroup&lt;/span&gt;().location
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@&lt;span style=&#34;color:#a6e22e&#34;&gt;description&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Specifies the environment for resources.&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;param&lt;/span&gt; oidcIssuer &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; env &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/environments@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kv-volume-quickstart&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    compute: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kubernetes&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      namespace: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kv-volume-quickstart&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      resourceId: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;self&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      identity: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;azure.com.workload&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        oidcIssuer: oidcIssuer
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    providers: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      azure: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        scope: &lt;span style=&#34;color:#a6e22e&#34;&gt;resourceGroup&lt;/span&gt;().id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id=&#34;step-3-define-an-app-key--vault-and-volume&#34;&gt;Step 3: Define an app, Key  Vault, and volume&lt;/h2&gt;
+&lt;p&gt;Add a Radius Application, an Azure Key Vault, and a Radius volume which uses the Key Vault to your &lt;code&gt;app.bicep&lt;/code&gt; file:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; app &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/applications@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myapp&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: env.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; volume &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/volumes@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myvolume&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;azure.com.keyvault&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    resource: keyvault.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    secrets: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      mysecret: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;mysecret&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; keyvault &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Microsoft.KeyVault/vaults@2021-10-01&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kvqs-${uniqueString(resourceGroup().id)}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  location: azLocation
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    sku: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      family: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;A&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;standard&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    tenantId: &lt;span style=&#34;color:#a6e22e&#34;&gt;subscription&lt;/span&gt;().tenantId
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    enableRbacAuthorization: true
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; mySecret &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;secrets&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;mysecret&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      value: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;supersecret&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id=&#34;step-4-define-an-app-key--vault-and-volume&#34;&gt;Step 4: Define an app, Key  Vault, and volume&lt;/h2&gt;
+&lt;p&gt;Now add a Radius &lt;a href=&#34;https://docs.radapp.io/guides/author-apps/containers/&#34;&gt;container&lt;/a&gt; with a volume mount for the Radius volume:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; container &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/containers@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;mycontainer&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    container: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      image: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;debian&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      command: [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/bin/sh&amp;#39;&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      args: [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;-c&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;while true; do echo secret context : `cat /var/secrets/mysecret`; sleep 10; done&amp;#39;&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      volumes: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        volkv: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;persistent&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          source: volume.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          mountPath: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/var/secrets&amp;#39;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id=&#34;step-5-deploy-the-app&#34;&gt;Step 5: Deploy the app&lt;/h2&gt;
+&lt;p&gt;Deploy your app, specifying the OIDC issuer URL. To retrieve the OIDC issuer URL, follow the &lt;a href=&#34;https://azure.github.io/azure-workload-identity/docs/installation.html&#34;&gt;Azure Workload Identity installation guide&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad deploy ./app.bicep -p oidcIssuer&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&amp;lt;OIDC_ISSUER_URL&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;step-5-verify-access-to-the-mounted-azure-key-vault&#34;&gt;Step 5: Verify access to the mounted Azure Key Vault&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Once deployment completes, read the logs from your running container resource:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad resource logs containers mycontainer -a myapp
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You should see the contents of the &lt;code&gt;/var/secrets&lt;/code&gt; mount path defined in your &lt;code&gt;app.bicep&lt;/code&gt; file:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[myapp-mycontainer-d8b4fc44-qrhnn] secret context : supersecret
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Note: You might need to wait 1-2 minutes for the pods and identities to be set up completely. Retry in a few minutes if you are unable to view the secret contents.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;cleanup&#34;&gt;Cleanup&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Run the following command to delete your app and container:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad app delete myapp --yes
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Delete the deployed Azure Key Vault via the Azure portal or the Azure CLI&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

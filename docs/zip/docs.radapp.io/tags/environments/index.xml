@@ -1,0 +1,666 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Radius Docs – environments</title>
+    <link>https://docs.radapp.io/tags/environments/</link>
+    <description>Recent content in environments on Radius Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	  <atom:link href="https://docs.radapp.io/tags/environments/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Guides: Overview: Radius Environments</title>
+      <link>https://docs.radapp.io/guides/deploy-apps/environments/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/guides/deploy-apps/environments/overview/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Radius Environments are prepared &amp;ldquo;landing zones&amp;rdquo; for Radius Applications. Applications deployed to an environment will inherit the container runtime, configuration, and other settings from the environment. Stay tuned for additional environment capabilities coming soon.&lt;/p&gt;
+&lt;h2 id=&#34;configuration&#34;&gt;Configuration&lt;/h2&gt;
+&lt;p&gt;The following configuration options are available for environments:&lt;/p&gt;
+&lt;h3 id=&#34;container-runtime&#34;&gt;Container runtime&lt;/h3&gt;
+&lt;p&gt;Radius Environments can be configured with a container runtime, where Radius &lt;a href=&#34;https://docs.radapp.io/guides/author-apps/containers/&#34;&gt;containers&lt;/a&gt; will be run, along with &lt;a href=&#34;https://docs.radapp.io/guides/author-apps/networking/&#34;&gt;gateways and routes&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A Kubernetes namespace is specified on the environment to tell Radius where to render application resources at deploy time.&lt;/p&gt;
+&lt;img src=environments.png alt=&#34;Diagram showing a Radius Environment mapping to a Kubernetes cluster and namespace&#34; width=800px /&gt;
+&lt;h3 id=&#34;cloud-provider&#34;&gt;Cloud Provider&lt;/h3&gt;
+&lt;p&gt;You can optionally configure cloud providers allow you to deploy and connect to cloud resources across various cloud platforms. For example, you can use the Radius Azure provider to run your application&amp;rsquo;s services in your Kubernetes cluster, while deploying Azure resources to a specified Azure subscription and resource group. More information on setting up a cloud provider can be found in the &lt;a href=&#34;https://docs.radapp.io/guides/operations/providers/&#34;&gt;providers&lt;/a&gt; section.&lt;/p&gt;
+&lt;h4 id=&#34;supported-cloud-providers&#34;&gt;Supported cloud providers&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Provider&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Microsoft Azure&lt;/td&gt;
+&lt;td&gt;Deploy and connect to Azure resources&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Amazon Web Services&lt;/td&gt;
+&lt;td&gt;Deploy and connect to AWS resources&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;external-identity-provider&#34;&gt;External identity provider&lt;/h3&gt;
+&lt;p&gt;You can optionally specify an external identity provider for your environment. This allows you to add to a Radius container an external identity such as an Azure user-assigned managed identity, and then specify role-based access control (RBAC) policies for that identity on Azure resources.&lt;/p&gt;
+&lt;p&gt;Supported identity providers:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://azure.github.io/azure-workload-identity/docs/introduction.html&#34;&gt;Azure AD workload identity&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;cli-commands&#34;&gt;CLI commands&lt;/h2&gt;
+&lt;p&gt;The following commands let you interact with Radius Environments:&lt;/p&gt;
+&lt;ul class=&#34;nav nav-tabs&#34; id=&#34;tabs-3&#34; role=&#34;tablist&#34;&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link active&#34;
+    id=&#34;tabs-3-init-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-3-init&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-3-init&#34; aria-selected=&#34;true&#34;&gt;
+    init
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link&#34;
+    id=&#34;tabs-3-list-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-3-list&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-3-list&#34; aria-selected=&#34;false&#34;&gt;
+    list
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link&#34;
+    id=&#34;tabs-3-show-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-3-show&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-3-show&#34; aria-selected=&#34;false&#34;&gt;
+    show
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link&#34;
+    id=&#34;tabs-3-delete-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-3-delete&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-3-delete&#34; aria-selected=&#34;false&#34;&gt;
+    delete
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link&#34;
+    id=&#34;tabs-3-switch-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-3-switch&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-3-switch&#34; aria-selected=&#34;false&#34;&gt;
+    switch
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;/ul&gt;
+
+
+&lt;div class=&#34;tab-content&#34; id=&#34;tabs-3-content&#34;&gt;
+
+
+&lt;div class=&#34;tab-pane fade show active&#34; id=&#34;tabs-3-init&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-3-init-tab&#34;&gt;
+&lt;br /&gt;&lt;p&gt;&lt;code&gt;rad init&lt;/code&gt; initializes a new Kubernetes environment:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad init
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&#34;tab-pane fade&#34; id=&#34;tabs-3-list&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-3-list-tab&#34;&gt;
+&lt;br /&gt;&lt;p&gt;&lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_env_list/&#34;&gt;rad env list&lt;/a&gt; lists all of the environments in your &lt;a href=&#34;https://docs.radapp.io/guides/operations/workspaces/&#34;&gt;workspace&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad env list
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&#34;tab-pane fade&#34; id=&#34;tabs-3-show&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-3-show-tab&#34;&gt;
+&lt;br /&gt;&lt;p&gt;&lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_env_show/&#34;&gt;rad env show&lt;/a&gt; prints information on the default or specified environment:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad env show
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&#34;tab-pane fade&#34; id=&#34;tabs-3-delete&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-3-delete-tab&#34;&gt;
+&lt;br /&gt;&lt;p&gt;&lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_env_delete/&#34;&gt;rad env delete&lt;/a&gt; deletes the specified environment:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad env delete -e myenv
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&#34;tab-pane fade&#34; id=&#34;tabs-3-switch&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-3-switch-tab&#34;&gt;
+&lt;br /&gt;&lt;p&gt;&lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_env_switch/&#34;&gt;rad env switch&lt;/a&gt; switches the default environment:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad env switch -e myenv
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+
+&lt;/div&gt;
+&lt;h2 id=&#34;schema&#34;&gt;Schema&lt;/h2&gt;
+&lt;p&gt;Visit the &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/core-schema/environment-schema/&#34;&gt;environment schema page&lt;/a&gt; to learn more about environment properties and values.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+&lt;a class=&#34;btn  btn-primary&#34; href=&#34;https://docs.radapp.io/reference/resource-schema/core-schema/environment-schema/&#34; role=&#34;button&#34;&gt;Schema&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+&lt;p&gt;The following example shows an environment configured with Kubernetes as the target runtime. The &lt;code&gt;default&lt;/code&gt; namespace designates where to render application resources.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/environments@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myenv&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    compute: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kubernetes&amp;#39;&lt;/span&gt;   &lt;span style=&#34;color:#75715e&#34;&gt;// What kind of container runtime to use&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      namespace: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;default&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;// Where application resources are rendered&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Guides: Radius Environments</title>
+      <link>https://docs.radapp.io/guides/deploy-apps/environments/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/guides/deploy-apps/environments/</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Guides: How-To: Initialize Radius Environments</title>
+      <link>https://docs.radapp.io/guides/deploy-apps/environments/howto-environment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/guides/deploy-apps/environments/howto-environment/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Radius Environments are prepared landing zones for applications that contain configuration and Recipes. To learn more visit the &lt;a href=&#34;https://docs.radapp.io/guides/deploy-apps/environments/overview/&#34;&gt;environments overview&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;Radius Environments can be setup with the rad CLI via two paths: interactive or manual.&lt;/p&gt;
+&lt;h2 id=&#34;pre-requisites&#34;&gt;Pre-requisites&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/guides/operations/kubernetes/overview/#supported-clusters&#34;&gt;Setup a supported Kubernetes cluster&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/installation/#step-1-install-the-rad-cli&#34;&gt;rad CLI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/installation/#step-2-install-the-vs-code-extension&#34;&gt;Radius Bicep VSCode extension&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;create-a-development-environment&#34;&gt;Create a development environment&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Initialize a new &lt;a href=&#34;https://docs.radapp.io/guides/deploy-apps/environments/overview/&#34;&gt;Radius Environment&lt;/a&gt; with &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_init/&#34;&gt;&lt;code&gt;rad init&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad init
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Select &lt;code&gt;Yes&lt;/code&gt; to setup the app.bicep in the current directory&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Initializing Radius...                                                
+
+🕔 Install Radius v0.26                                             
+   - Kubernetes cluster: kind
+   - Kubernetes namespace: radius-system                              
+⏳ Create new environment default                                     
+   - Kubernetes namespace: default                                    
+   - Recipe pack: local-dev                                                 
+⏳ Scaffold application                                          
+⏳ Update local configuration                                                 
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Verify the initialization by running:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl get deployments -n radius-system
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+ucp                       1/1     1            1           53s
+appcore-rp                1/1     1            1           53s
+bicep-de                  1/1     1            1           53s
+contour-contour           1/1     1            1           46s
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You can also use &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_env_list/&#34;&gt;&lt;code&gt;rad env list&lt;/code&gt;&lt;/a&gt; to view your environment:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad env list
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use &lt;code&gt;rad recipe list&lt;/code&gt; to see the list of available Recipes:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad recipe list
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;NAME      TYPE                              TEMPLATE KIND  TEMPLATE
+default   Applications.Datastores/mongoDatabases  bicep          radius.azurecr.io/recipes/dev/mongodatabases:latest
+default   Applications.Datastores/redisCaches     bicep          radius.azurecr.io/recipes/dev/rediscaches:latest
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You can follow the &lt;a href=&#34;https://docs.radapp.io/guides/recipes/overview/&#34;&gt;Recipes&lt;/a&gt; documentation to learn more about the Recipes and how to use them in your application.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;create-an-environment-interactively&#34;&gt;Create an environment interactively&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Initialize a new environment with &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_init/&#34;&gt;&lt;code&gt;rad init --full&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad init --full
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Follow the prompts, specifying:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Namespace&lt;/strong&gt; - The Kubernetes namespace where your application containers and networking resources will be deployed (different than the Radius control-plane namespace, &lt;code&gt;radius-system&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Azure provider&lt;/strong&gt; (optional) - Allows you to &lt;a href=&#34;https://docs.radapp.io/guides/operations/providers/howto-azure-provider/&#34;&gt;deploy and manage Azure resources&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AWS provider&lt;/strong&gt; (optional) - Allows you to &lt;a href=&#34;https://docs.radapp.io/guides/operations/providers/howto-aws-provider/&#34;&gt;deploy and manage AWS resources&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Environment name&lt;/strong&gt; - The name of the environment to create&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You should see the following output:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Initializing Radius...                     
+
+✅ Install Radius v0.26               
+   - Kubernetes cluster: k3d-k3s-default   
+   - Kubernetes namespace: radius-system   
+✅ Create new environment default          
+   - Kubernetes namespace: default 
+   - Recipe pack: dev        
+✅ Scaffold application samples            
+✅ Update local configuration              
+
+Initialization complete! Have a RAD time 😎
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Verify the Radius services were installed by running:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl get deployments -n radius-system
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;NAME              READY   UP-TO-DATE   AVAILABLE   AGE
+ucp               1/1     1            1           2m56s
+appcore-rp        1/1     1            1           2m56s
+bicep-de          1/1     1            1           2m56s
+contour-contour   1/1     1            1           2m33s
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Verify an environment was created with &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_env_show/&#34;&gt;&lt;code&gt;rad env show&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad env show -o json
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see your new environment:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{
+  &amp;#34;id&amp;#34;: &amp;#34;/planes/radius/local/resourcegroups/default/providers/Applications.Core/environments/default&amp;#34;,
+  &amp;#34;location&amp;#34;: &amp;#34;global&amp;#34;,
+  &amp;#34;name&amp;#34;: &amp;#34;default&amp;#34;,
+  &amp;#34;properties&amp;#34;: {
+    &amp;#34;compute&amp;#34;: {
+      &amp;#34;kind&amp;#34;: &amp;#34;kubernetes&amp;#34;,
+      &amp;#34;namespace&amp;#34;: &amp;#34;default&amp;#34;
+    },
+    &amp;#34;provisioningState&amp;#34;: &amp;#34;Succeeded&amp;#34;,
+    &amp;#34;recipes&amp;#34;: {}
+    }
+  },
+  &amp;#34;systemData&amp;#34;: {},
+  &amp;#34;tags&amp;#34;: {},
+  &amp;#34;type&amp;#34;: &amp;#34;Applications.Core/environments&amp;#34;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;create-an-environment-manually-advanced&#34;&gt;Create an environment manually (advanced)&lt;/h2&gt;
+&lt;p&gt;Radius can also be installed and an environment created with manual rad CLI commands. This is useful for pipelines or scripts that need to install and manage Radius.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Install Radius onto a Kubernetes cluster:&lt;/p&gt;
+&lt;p&gt;Run &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_install_kubernetes/&#34;&gt;&lt;code&gt;rad install kubernetes&lt;/code&gt;&lt;/a&gt; to install Radius into your default Kubernetes context and cluster:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad install kubernetes
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see the following message:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Installing Radius version 2134e8e to namespace: radius-system...
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create a new Radius resource group:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.radapp.io/guides/operations/groups/&#34;&gt;Radius resource groups&lt;/a&gt; are used to organize Radius resources such as applications, environments, portable resources, and routes. Run &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_group_create/&#34;&gt;&lt;code&gt;rad group create&lt;/code&gt;&lt;/a&gt; to create a new resource group:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; rad group create myGroup
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see the following message:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; creating resource group &amp;#34;myGroup&amp;#34; in workspace &amp;#34;&amp;#34;...
+
+ resource group &amp;#34;myGroup&amp;#34; created
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create your Radius Environment:&lt;/p&gt;
+&lt;p&gt;Run &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_env_create/&#34;&gt;&lt;code&gt;rad env create&lt;/code&gt;&lt;/a&gt; to create a new environment in your resource group. Specify the &lt;code&gt;--namespace&lt;/code&gt; flag to select the Kubernetes namespace to deploy resources into:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad env create myEnvironment --group myGroup --namespace my-namespace
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see your Radius Environment being created and linked to your resource group:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Creating Environment...
+Successfully created environment &amp;#34;myEnvironment&amp;#34; in resource group &amp;#34;myGroup&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Verify the initialization by running:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl get deployments -n radius-system
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;NAME              READY   UP-TO-DATE   AVAILABLE   AGE
+ucp               1/1     1            1           2m56s
+appcore-rp        1/1     1            1           2m56s
+bicep-de          1/1     1            1           2m56s
+contour-contour   1/1     1            1           2m33s
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You can also use &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_env_list/&#34;&gt;&lt;code&gt;rad env list&lt;/code&gt;&lt;/a&gt; to see if the created environment gets listed:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad env list --group myGroup
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;NAME
+myEnvironment
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;next-steps&#34;&gt;Next steps&lt;/h2&gt;
+&lt;p&gt;Follow the &lt;a href=&#34;https://docs.radapp.io/guides/operations/providers/&#34;&gt;cloud provider guides&lt;/a&gt; to configure cloud providers for your environment to deploy and manage cloud resources&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Guides: How-To: Set Kubernetes metadata</title>
+      <link>https://docs.radapp.io/guides/operations/kubernetes/kubernetes-metadata/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/guides/operations/kubernetes/kubernetes-metadata/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/&#34;&gt;Kubernetes Labels&lt;/a&gt; are key/value pairs attached to Kubernetes objects and used to identify groups of related resources by organizational structure, release, process etc. Labels are descriptive in nature and can be queried.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/&#34;&gt;Kubernetes Annotations&lt;/a&gt; attach non-identifying information to Kubernetes objects. They are used to provide  additional information to users and can also be used for operational purposes. Annotations are used to represent behavior that can be leveraged by tools and libraries and often they are not human readable or queried.&lt;/p&gt;
+&lt;h2 id=&#34;kubernetes-metadata-extension&#34;&gt;Kubernetes metadata extension&lt;/h2&gt;
+&lt;p&gt;Radius enables you to retain or use your own defined tagging scheme for Kubernetes resources using Kubernetes labels and annotations. This enables users to incrementally adopt Radius for microservices built in the Kubernetes ecosystem using Kubernetes metadata concepts.&lt;/p&gt;
+&lt;p&gt;You can set labels and annotations on an environment, application, or container using the Kubernetes metadata extension. The Kubernetes objects output from your resources (&lt;em&gt;Deployments, Services, etc.&lt;/em&gt;) will now have the defined metadata.&lt;/p&gt;
+&lt;ul class=&#34;nav nav-tabs&#34; id=&#34;tabs-0&#34; role=&#34;tablist&#34;&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link active&#34;
+    id=&#34;tabs-0-environment-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-0-environment&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-0-environment&#34; aria-selected=&#34;true&#34;&gt;
+    Environment
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link&#34;
+    id=&#34;tabs-0-application-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-0-application&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-0-application&#34; aria-selected=&#34;false&#34;&gt;
+    Application
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link&#34;
+    id=&#34;tabs-0-container-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-0-container&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-0-container&#34; aria-selected=&#34;false&#34;&gt;
+    Container
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;/ul&gt;
+
+
+&lt;div class=&#34;tab-content&#34; id=&#34;tabs-0-content&#34;&gt;
+
+
+&lt;div class=&#34;tab-pane fade show active&#34; id=&#34;tabs-0-environment&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-0-environment-tab&#34;&gt;
+&lt;br /&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; env &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/environments@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myenv&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    compute: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kubernetes&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      namespace: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;my-ns&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    extensions: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kubernetesMetadata&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        labels: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.key1&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;envValue1&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.key2&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;envValue2&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&#34;tab-pane fade&#34; id=&#34;tabs-0-application&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-0-application-tab&#34;&gt;
+&lt;br /&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; app &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/applications@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myapp&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: env.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    extensions: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kubernetesMetadata&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        labels: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.key1&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;appValue1&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.key2&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;appValue2&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.contact.name&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Operations&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.contact.alias&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;ops&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        annotations: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;prometheus.io/port&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;9090&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;prometheus.io/scrape&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;true&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&#34;tab-pane fade&#34; id=&#34;tabs-0-container&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-0-container-tab&#34;&gt;
+&lt;br /&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; frontend &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/containers@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;frontend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    container: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      image: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myregistry/mycontainer:latest&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    extensions: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kubernetesMetadata&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        labels: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.key2&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;containerValue2&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.contact.name&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Frontend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.contact.alias&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;frontend-eng&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;/div&gt;
+&lt;h2 id=&#34;cascading-metadata&#34;&gt;Cascading metadata&lt;/h2&gt;
+&lt;p&gt;Kubernetes metadata can be applied at the environment, application, or container layers. Metadata cascades down from the environment to the application to the containers, gateway and route resources. For example, you can set labels and annotations at an environment level and all containers within the environment will gain these labels and annotation, without the need for an explicit extension on the containers. The following resources will gain the Kubernetes metadata for their &lt;a href=&#34;https://docs.radapp.io/guides/operations/kubernetes/overview/#resource-mapping&#34;&gt;output resources&lt;/a&gt; from labels, annotations set at Environment, Application levels:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Applications.Core/containers&lt;/li&gt;
+&lt;li&gt;Applications.Core/gateways&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;metadata-processing-order&#34;&gt;Metadata processing order&lt;/h3&gt;
+&lt;p&gt;Labels and annotations are processed in the following order, combining the keys/values at each level:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Environment&lt;/li&gt;
+&lt;li&gt;Application&lt;/li&gt;
+&lt;li&gt;Container&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;conflicts-and-overrides&#34;&gt;Conflicts and overrides&lt;/h3&gt;
+&lt;p&gt;In the case where layers have conflicting keys (&lt;em&gt;i.e. Application and Container both specify a &lt;code&gt;myapp.team.name&lt;/code&gt; label&lt;/em&gt;), the last level to process wins out and overrides other values (container). The metadata specified on the container will override the metadata specified on the application or environment.&lt;/p&gt;
+&lt;h2 id=&#34;reserved-keys&#34;&gt;Reserved keys&lt;/h2&gt;
+&lt;p&gt;Certain labels/annotations have special uses to Radius internally and are not allowed to be overridden by user. Labels/Annotations with keys that have a prefix : &lt;code&gt;radapp.io/&lt;/code&gt; will be ignored during processing.&lt;/p&gt;
+&lt;h2 id=&#34;extension-processing-order&#34;&gt;Extension processing order&lt;/h2&gt;
+&lt;p&gt;Other extensions may set Kubernetes metadata. For example, the &lt;code&gt;daprSidecar&lt;/code&gt; extension sets the &lt;code&gt;dapr.io/enabled&lt;/code&gt; annotation, as well as some others. This may cause issues in the case of conflicts.&lt;/p&gt;
+&lt;p&gt;The order in which extensions are executed is as follows, from first to last:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Dapr sidecar extension&lt;/li&gt;
+&lt;li&gt;Manual scale extension&lt;/li&gt;
+&lt;li&gt;Kubernetes metadata extension&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;conflicts&#34;&gt;Conflicts&lt;/h3&gt;
+&lt;p&gt;When labels/annotation have the same set of key(s) added by two or more extensions, the final value is determined by the last extension that is processed.&lt;/p&gt;
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s take an example of an application with some labels and annotations. This example shows some generic &amp;lsquo;keys&amp;rsquo;, as well as an example of how an organization may use labels to track organization contact information inside labels for troubleshooting scenarios:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; app &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/applications@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myapp&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: env.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    extensions: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kubernetesMetadata&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        labels: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.key1&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;appValue1&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.key2&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;appValue2&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.contact.name&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Operations&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.contact.alias&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;ops&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        annotations: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;prometheus.io/port&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;9090&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;prometheus.io/scrape&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;true&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;All resources within this application with Kubernetes outputs will gain these labels. Let&amp;rsquo;s now take a look at a frontend container, where the frontend team has overridden some of the values:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; frontend &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/containers@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;frontend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    container: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      image: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myregistry/mycontainer:latest&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    extensions: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kubernetesMetadata&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        labels: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.key2&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;containerValue2&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.contact.name&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Frontend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.contact.alias&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;frontend-eng&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;When this file is deployed, the metadata on the &lt;code&gt;frontend&lt;/code&gt; deployment is:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ kubectl describe deployment frontend
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Name:             frontend
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Namespace:        default-myapp
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Labels:           key1&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;appValue1
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  key2&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;containerValue2
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  team.contact.name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;Frontend
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  team.contact.alias&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;frontend-eng
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  radapp.io/application&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;myapp
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  radapp.io/resource&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;frontend
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  radapp.io/resource-type&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;applications.core-containers
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  ...
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Annotations:      prometheus.io/port: &lt;span style=&#34;color:#ae81ff&#34;&gt;9090&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  prometheus.io/scrape: true
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  ...
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The labels &amp;amp; annotations were set based on the following:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th&gt;Value&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Labels&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;team.key1&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;appValue1&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Application value is applied&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;team.key2&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;containerValue2&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Container value overrides application value&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;team.contact.name&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Frontend&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Container value overrides application value&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;team.contact.alias&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;frontend-eng&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Container value overrides application value&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;radapp.io/application&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;myapp&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Radius-injected label&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;radapp.io/resource&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;frontend&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Radius-injected label&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;radapp.io/resource-type&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;applications.core-containers&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Radius-injected label&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Annotations&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;prometheus.io/port&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;9090&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Application annotation is applied&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;prometheus.io/scrape&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true &lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Application annotation is applied&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

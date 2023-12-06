@@ -1,0 +1,271 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Radius Docs – Control plane logging</title>
+    <link>https://docs.radapp.io/guides/operations/control-plane/logs/</link>
+    <description>Recent content in Control plane logging on Radius Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	  <atom:link href="https://docs.radapp.io/guides/operations/control-plane/logs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Guides: Overview: Control plane logs</title>
+      <link>https://docs.radapp.io/guides/operations/control-plane/logs/overview/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/guides/operations/control-plane/logs/overview/overview/</guid>
+      <description>
+        
+        
+        &lt;p&gt;The Radius control plane produces logs that you can use to monitor and troubleshoot the control plane. This document describes how to collect and search logs, as well as the log schema.&lt;/p&gt;
+&lt;h2 id=&#34;log-formats&#34;&gt;Log formats&lt;/h2&gt;
+&lt;p&gt;The Radius control plane outputs structured logs to stdout, either plain-text or JSON-formatted. By default, services produce JSON formatted logs.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you want to use a search engine such as Elastic Search or Azure Monitor to search logs, it is strongly recommended to use JSON-formatted logs which the log collector and the search engine can parse using the built-in JSON parser.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;log-collectors&#34;&gt;Log collectors&lt;/h2&gt;
+&lt;h3 id=&#34;fluentd&#34;&gt;Fluentd&lt;/h3&gt;
+&lt;p&gt;If you run the control plane in a Kubernetes cluster, &lt;a href=&#34;https://www.fluentd.org/&#34;&gt;Fluentd&lt;/a&gt; is a popular container log collector. You can use Fluentd with a &lt;a href=&#34;https://docs.fluentd.org/parser/json&#34;&gt;JSON parser plugin&lt;/a&gt; to parse Radius JSON-formatted logs. This &lt;a href=&#34;https://docs.radapp.io/guides/operations/control-plane/logs/fluentd/&#34;&gt;how-to&lt;/a&gt; shows how to configure Fluentd in your cluster.&lt;/p&gt;
+&lt;h3 id=&#34;azure-monitor&#34;&gt;Azure Monitor&lt;/h3&gt;
+&lt;p&gt;If you are using Azure Kubernetes Service, you can use the &lt;a href=&#34;https://learn.microsoft.com/azure/aks/monitor-aks&#34;&gt;built-in agent to collect logs with Azure Monitor&lt;/a&gt; without needing to install Fluentd.&lt;/p&gt;
+&lt;h2 id=&#34;search-engines&#34;&gt;Search engines&lt;/h2&gt;
+&lt;h3 id=&#34;elastic-search-and-kibana&#34;&gt;Elastic Search and Kibana&lt;/h3&gt;
+&lt;p&gt;If you use &lt;a href=&#34;https://www.fluentd.org/&#34;&gt;Fluentd&lt;/a&gt;, we recommend using Elastic Search and Kibana. This &lt;a href=&#34;https://docs.radapp.io/guides/operations/control-plane/logs/fluentd/&#34;&gt;how-to&lt;/a&gt; shows how to set up Elastic Search and Kibana in your Kubernetes cluster.&lt;/p&gt;
+&lt;h3 id=&#34;azure-monitor-1&#34;&gt;Azure Monitor&lt;/h3&gt;
+&lt;p&gt;If you are using the Azure Kubernetes Service, you can use &lt;a href=&#34;https://docs.microsoft.com/azure/azure-monitor/insights/container-insights-overview&#34;&gt;Azure Monitor for containers&lt;/a&gt; without installing any additional monitoring tools. Also read &lt;a href=&#34;https://learn.microsoft.com/azure/azure-monitor/containers/container-insights-onboard&#34;&gt;How to enable Azure Monitor for containers&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;log-schema&#34;&gt;Log schema&lt;/h2&gt;
+&lt;p&gt;Control plane logs contain the following fields:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Field&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;timestamp&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.iso.org/iso-8601-date-and-time-format.html&#34;&gt;ISO8601&lt;/a&gt; timestamp&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;2011-10-05T14:48:00.000Z&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;severity&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Log level. Available levels are info, warn, debug, and error.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;info&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;message&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Log message&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;proxying request target: http://de-api.radius-system:6443&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;name&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Logging scope&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ucplogger.api&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;caller&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Service logging point&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;planes/proxyplane.go:171&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;version&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Control plane version&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;0.18&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;serviceName&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Name of control plane service&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ucplogger&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;hostName&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Service host name&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ucp-77bc9b4cbb-nmjlz&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;resourceId&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;The resourceId being affected, if applicable&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/apis/api.ucp.dev/v1alpha3/planes/deployments/local/resourcegroups/myrg/providers/Microsoft.Resources/deployments/rad-deploy-6c0d37b0-705e-454b-9167-877aa080e656&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;traceId&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.w3.org/TR/trace-context/#trace-id&#34;&gt;w3c traceId&lt;/a&gt;. Used to uniquely identify a &lt;a href=&#34;https://www.w3.org/TR/trace-context/#dfn-distributed-traces&#34;&gt;distributed trace&lt;/a&gt; through a system.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;d1ba9c7d2326ee1b44eb0b8177ef554f&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;spanId&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.w3.org/TR/trace-context/#parent-id&#34;&gt;w3c spanId&lt;/a&gt; The ID of this request as known by the caller. Also known as &lt;code&gt;parent-id&lt;/code&gt; in some tracing systems.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ce52a91ed3c86c6d&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;example&#34;&gt;Example&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;severity&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;info&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;timestamp&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;2023-03-03T00:03:55.355Z&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ucplogger.api&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;caller&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;planes/proxyplane.go:171&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;message&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;proxying request target: http://de-api.radius-system:6443&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;serviceName&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ucplogger&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;version&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;0.18&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;hostName&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ucp-77bc9b4cbb-nmjlz&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;resourceId&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/apis/api.ucp.dev/v1alpha3/planes/deployments/local/resourcegroups/myrg/providers/Microsoft.Resources/deployments/rad-deploy-6c0d37b0-705e-454b-9167-877aa080e656&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;traceId&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;2435428bbf8533c68b122b1ef31bb42f&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;spanId&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;30a88181fe683c00&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/guides/operations/control-plane/logs/fluentd/&#34;&gt;How-to: Set up Fluentd, Elastic search, and Kibana&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://learn.microsoft.com/azure/aks/monitor-aks&#34;&gt;How-to: Set up Azure Monitor for containers&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Guides: How-To: Set up Fluentd, Elastic search and Kibana in Kubernetes</title>
+      <link>https://docs.radapp.io/guides/operations/control-plane/logs/fluentd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/guides/operations/control-plane/logs/fluentd/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/guides/operations/kubernetes/overview/#supported-clusters&#34;&gt;Setup a supported Kubernetes cluster&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/&#34;&gt;kubectl&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://helm.sh/&#34;&gt;Helm 3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;install-elastic-search-and-kibana&#34;&gt;Install Elastic search and Kibana&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Create a Kubernetes namespace for monitoring tools&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl create namespace radius-monitoring
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add the helm repo for Elastic Search&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;helm repo add elastic https://helm.elastic.co
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;helm repo update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Install Elastic Search using Helm&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;By default, the chart creates three replicas which must be on different nodes. If your cluster has fewer than 3 nodes, specify a smaller number of replicas with the &lt;code&gt;--set replicas=1&lt;/code&gt; flag:&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;helm install elasticsearch elastic/elasticsearch --version 7.17.3 -n radius-monitoring --set replicas&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;em&gt;If you are using minikube or simply want to disable persistent volumes for development purposes, you can do so with &lt;code&gt;--set persistence.enabled=false&lt;/code&gt;:&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;helm install elasticsearch elastic/elasticsearch --version 7.17.3 -n radius-monitoring --set persistence.enabled&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;false,replicas&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Install Kibana&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;helm install kibana elastic/kibana --version 7.17.3 -n radius-monitoring
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Ensure that Elastic Search and Kibana are running in your Kubernetes cluster&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl get pods -n radius-monitoring
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;NAME                            READY   STATUS    RESTARTS   AGE
+elasticsearch-master-0          1/1     Running   0          6m58s
+kibana-kibana-95bc54b89-zqdrk   1/1     Running   0          4m21s
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;install-fluentd&#34;&gt;Install Fluentd&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Install config map and Fluentd as a daemonset&lt;/p&gt;
+&lt;p&gt;Download these config files:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;fluentd-config-map.yaml&#34;&gt;fluentd-config-map.yaml&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;fluentd-radius-with-rbac.yaml&#34;&gt;fluentd-radius-with-rbac.yaml&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Note: If you already have Fluentd running in your cluster, enable the nested json parser so that it can parse JSON-formatted logs from radius.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Apply the configurations to your cluster:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl apply -f ./fluentd-config-map.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl apply -f ./fluentd-radius-with-rbac.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Ensure that Fluentd is running as a daemonset. The number of Fluentd instances should be the same as the number of cluster nodes. In the example below, there is only one node in the cluster:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl get pods -n kube-system -w
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;NAME                          READY   STATUS    RESTARTS   AGE
+coredns-6955765f44-cxjxk      1/1     Running   0          4m41s
+coredns-6955765f44-jlskv      1/1     Running   0          4m41s
+etcd-m01                      1/1     Running   0          4m48s
+fluentd-sdrld                 1/1     Running   0          14s
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;install-radius-control-plane&#34;&gt;Install Radius control plane&lt;/h2&gt;
+&lt;p&gt;Visit the &lt;a href=&#34;https://docs.radapp.io/guides/operations/kubernetes/&#34;&gt;Kubernetes docs&lt;/a&gt; to learn how to install the Radius control plane. By default, Radius has JSON logging enabled.&lt;/p&gt;
+&lt;p&gt;For Kubernetes, you can install with the rad CLI:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad install kubernetes
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;search-logs&#34;&gt;Search logs&lt;/h2&gt;
+&lt;p&gt;Once the Radius control plane is installed, you can search the logs using Kibana.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Note: There is a small delay for Elastic Search to index the logs that Fluentd sends. You may need to wait a minute and refresh to see your logs.&lt;/em&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Port-forward from localhost to &lt;code&gt;svc/kibana-kibana&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl port-forward svc/kibana-kibana &lt;span style=&#34;color:#ae81ff&#34;&gt;5601&lt;/span&gt; -n radius-monitoring
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Forwarding from 127.0.0.1:5601 -&amp;gt; 5601
+Forwarding from [::1]:5601 -&amp;gt; 5601
+Handling connection for 5601
+Handling connection for 5601
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Browse to &lt;code&gt;http://localhost:5601&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Expand the drop-down menu and click &lt;strong&gt;Management → Stack Management&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;kibana-1.png&#34; alt=&#34;Stack Management item under Kibana Management menu options&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;On the Stack Management page, select &lt;strong&gt;Data → Index Management&lt;/strong&gt; and wait until &lt;code&gt;radius-*&lt;/code&gt; is indexed.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;kibana-2.png&#34; alt=&#34;Index Management view on Kibana Stack Management page&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once &lt;code&gt;radius-*&lt;/code&gt; is indexed, click on &lt;strong&gt;Kibana → Index Patterns&lt;/strong&gt; and then the &lt;strong&gt;Create index pattern&lt;/strong&gt; button.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;kibana-3.png&#34; alt=&#34;Kibana create index pattern button&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Define a new index pattern by typing &lt;code&gt;radius*&lt;/code&gt; into the &lt;strong&gt;Index Pattern name&lt;/strong&gt; field, then click the &lt;strong&gt;Next step&lt;/strong&gt; button to continue.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;kibana-4.png&#34; alt=&#34;Kibana define an index pattern page&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Configure the primary time field to use with the new index pattern by selecting the &lt;code&gt;@timestamp&lt;/code&gt; option from the &lt;strong&gt;Time field&lt;/strong&gt; drop-down. Click the &lt;strong&gt;Create index pattern&lt;/strong&gt; button to complete creation of the index pattern.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;kibana-5.png&#34; alt=&#34;Kibana configure settings page for creating an index pattern&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The newly created index pattern should be shown. Confirm that the fields of interest such as &lt;code&gt;scope&lt;/code&gt;, &lt;code&gt;type&lt;/code&gt;, &lt;code&gt;app_id&lt;/code&gt;, &lt;code&gt;level&lt;/code&gt;, etc. are being indexed by using the search box in the &lt;strong&gt;Fields&lt;/strong&gt; tab.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Note: If you cannot find the indexed field, please wait. The time it takes to search across all indexed fields depends on the volume of data and size of the resource that the elastic search is running on.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;kibana-6.png&#34; alt=&#34;View of created Kibana index pattern&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;To explore the indexed data, expand the drop-down menu and click &lt;strong&gt;Analytics → Discover&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;kibana-7.png&#34; alt=&#34;Discover item under Kibana Analytics menu options&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In the search box, type in a query string such as &lt;code&gt;scope:*&lt;/code&gt; and click the &lt;strong&gt;Refresh&lt;/strong&gt; button to view the results.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Note: This can take a long time. The time it takes to return all results depends on the volume of data and size of the resource that the elastic search is running on.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;kibana-8.png&#34; alt=&#34;Using the search box in the Kibana Analytics Discover page&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.fluentd.org/v/0.12/articles/kubernetes-fluentd&#34;&gt;Fluentd for Kubernetes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/elastic/helm-charts/tree/master/elasticsearch&#34;&gt;Elastic search helm chart&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/elastic/helm-charts/tree/master/kibana&#34;&gt;Kibana helm chart&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.elastic.co/guide/en/kibana/current/kuery-query.html&#34;&gt;Kibana Query Language&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,2016 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Radius Docs – Core resource schemas</title>
+    <link>https://docs.radapp.io/reference/resource-schema/core-schema/</link>
+    <description>Recent content in Core resource schemas on Radius Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	  <atom:link href="https://docs.radapp.io/reference/resource-schema/core-schema/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Reference: Application reference</title>
+      <link>https://docs.radapp.io/reference/resource-schema/core-schema/application-schema/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/reference/resource-schema/core-schema/application-schema/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;resource-format&#34;&gt;Resource format&lt;/h2&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; app &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/applications@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myapp&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    extensions: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kubernetesNamespace&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        namespace: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myapp&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kubernetesMetadata&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        labels: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.contact.name&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;frontend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id=&#34;top-level&#34;&gt;Top-level&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The name of your resource. See &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/#common-values&#34;&gt;common values&lt;/a&gt; for more information.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;frontend&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;location&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The location of your resource. See &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/#common-values&#34;&gt;common values&lt;/a&gt; for more information.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;global&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#properties&#34;&gt;properties&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;Properties of the resource.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#properties&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;properties&#34;&gt;Properties&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;environment&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The ID of the environment resource this container belongs to.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;env.id&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#extensions&#34;&gt;extensions&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;List of extensions on the container.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#extensions&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;extensions&#34;&gt;Extensions&lt;/h4&gt;
+&lt;p&gt;Extensions allow you to customize how resources are generated or customized as part of deployment.&lt;/p&gt;
+&lt;h5 id=&#34;kubernetesnamespace&#34;&gt;kubernetesNamespace&lt;/h5&gt;
+&lt;p&gt;The Kubernetes namespace extension allows you to customize how all of the resources within your application generate Kubernetes resources. See the &lt;a href=&#34;https://docs.radapp.io/guides/operations/kubernetes/overview/#resource-mapping&#34;&gt;Kubernetes mapping guide&lt;/a&gt; for more information on namespace mapping behavior.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;kind&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The kind of extension being used. Must be &amp;lsquo;kubernetesNamespace&amp;rsquo;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;kubernetesNamespace&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;namespace&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The namespace where all application-scoped resources generate Kubernetes objects.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;default&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h5 id=&#34;kubernetesmetadata&#34;&gt;kubernetesMetadata&lt;/h5&gt;
+&lt;p&gt;The &lt;a href=&#34;https://docs.radapp.io/guides/operations/kubernetes/kubernetes-metadata/&#34;&gt;Kubernetes Metadata extension&lt;/a&gt; enables you set and cascade Kubernetes metadata such as labels and Annotations on all the Kubernetes resources defined with in your Radius Application. For examples, please refer to the extension overview page.&lt;/p&gt;
+&lt;h6 id=&#34;properties-1&#34;&gt;Properties&lt;/h6&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;kind&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The kind of extension being used. Must be &amp;lsquo;kubernetesMetadata&amp;rsquo;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;kubernetesMetadata&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#labels&#34;&gt;labels&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The Kubernetes labels to be set on the application and its resources&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#labels&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#annotations&#34;&gt;annotations&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The Kubernetes annotations to set on your application and its resources&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#annotations&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h6 id=&#34;labels&#34;&gt;labels&lt;/h6&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;user defined label key&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The key and value of the label to be set on the application and its resources.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;team.name&#39;: &#39;frontend&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h6 id=&#34;annotations&#34;&gt;annotations&lt;/h6&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;user defined annotation key&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The key and value of the annotation to be set on the application and its resources.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;app.io/port&#39;: &#39;8081&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Reference: Container service</title>
+      <link>https://docs.radapp.io/reference/resource-schema/core-schema/container-schema/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/reference/resource-schema/core-schema/container-schema/</guid>
+      <description>
+        
+        
+        &lt;p&gt;&lt;code&gt;Container&lt;/code&gt; provides an abstraction for a container workload that can be run on any platform Radius supports.&lt;/p&gt;
+&lt;h2 id=&#34;resource-format&#34;&gt;Resource format&lt;/h2&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; frontend &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/containers@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;frontend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    container: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      image: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;registry/container:tag&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      env:{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        DEPLOYMENT_ENV: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;prod&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        DB_CONNECTION: db.connectionString()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      ports: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        http: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          containerPort: 80
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          protocol: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;TCP&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      volumes: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ephemeralVolume: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;ephemeral&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          mountPath: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/tmpfs&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          managedStore: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;memory&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        persistentVolume: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;persistent&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          source: volume.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      readinessProbe:{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind:&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;httpGet&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        containerPort:8080
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        path: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/healthz&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        initialDelaySeconds:3
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        failureThreshold:4
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        periodSeconds:20
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      livenessProbe:{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind:&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;exec&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        command:&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;ls /tmp&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      command: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/bin/sh&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      args: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;-c&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;while true; do echo hello; sleep 10;done&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      workingDir: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/app&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    connections: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      inventory: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        source: db.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      azureStorage: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        source: azureStorage
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        iam: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;azure&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          roles: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Storage Blob Data Contributor&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    extensions: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;daprSidecar&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        appId: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;frontend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind:  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;manualScaling&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        replicas: 5
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kubernetesMetadata&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        labels: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.contact.name&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;frontend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    runtimes: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      kubernetes: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        base: &lt;span style=&#34;color:#a6e22e&#34;&gt;loadTextContent&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;base-container.yaml&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        pod: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          containers: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;log-collector&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              image: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;radiusdev.azurecr.io/fluent/fluent-bit:2.1.8&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          hostNetwork: true
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id=&#34;top-level&#34;&gt;Top-level&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The name of your resource. See &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/#common-values&#34;&gt;common values&lt;/a&gt; for more information.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;frontend&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;location&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The location of your resource. See &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/#common-values&#34;&gt;common values&lt;/a&gt; for more information.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;global&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#properties&#34;&gt;properties&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;Properties of the resource.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#properties&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;properties&#34;&gt;Properties&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;application&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The ID of the application resource this container belongs to.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;app.id&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#container&#34;&gt;container&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;Container configuration.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#container&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#connections&#34;&gt;connections&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;List of connections to other resources.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#connections&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#extensions&#34;&gt;extensions&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;List of extensions on the container.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#extensions&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#runtimes&#34;&gt;runtimes&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Runtime specific configurations for the container.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#runtimes&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;container&#34;&gt;Container&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;image&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The registry and image to download and run in your container. Follows the format &lt;code&gt;&amp;lt;registry-hostname&amp;gt;:&amp;lt;port&amp;gt;/&amp;lt;image-name&amp;gt;:&amp;lt;tag&amp;gt;&lt;/code&gt; where registry hostname is optional and defaults to the Docker public registry, port is optional and defaults to 443, tag is optional and defaults to &lt;code&gt;latest&lt;/code&gt;.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;myregistry.azurecr.io/myimage:latest&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;env&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;A list of environment variables to be set for the container.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;ENV_VAR&#39;: &#39;value&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;command&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Entrypoint array. Overrides the container image&amp;rsquo;s ENTRYPOINT.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;[&#39;/bin/sh&#39;]&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;args&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Arguments to the entrypoint. Overrides the container image&amp;rsquo;s CMD.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;[&#39;-c&#39;, &#39;while true; do echo hello; sleep 10;done&#39;]&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;imagePullPolicy&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;How to pull images. Defaults to the runtime&amp;rsquo;s default behavior. For Kubernetes behavior refer to &lt;a href=&#34;https://kubernetes.io/docs/concepts/containers/images/#required-image-pull&#34;&gt;https://kubernetes.io/docs/concepts/containers/images/#required-image-pull&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;Always&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;workingDir&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Working directory for the container.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;/app&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#ports&#34;&gt;ports&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Ports the container provides&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#ports&#34;&gt;See below&lt;/a&gt;.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#readiness-probe&#34;&gt;readinessProbe&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Readiness probe configuration.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#readiness-probe&#34;&gt;See below&lt;/a&gt;.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#liveness-probe&#34;&gt;livenessProbe&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Liveness probe configuration.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#liveness-probe&#34;&gt;See below&lt;/a&gt;.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#volumes&#34;&gt;volumes&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Volumes to mount into the container.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#volumes&#34;&gt;See below&lt;/a&gt;.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;ports&#34;&gt;Ports&lt;/h4&gt;
+&lt;p&gt;The ports offered by the container are  defined in the &lt;code&gt;ports&lt;/code&gt; section.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;A name key for the port.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;http&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;containerPort&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The port the container exposes.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;80&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;protocol&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The protocol the container exposes. Options are &amp;lsquo;TCP&amp;rsquo; and &amp;lsquo;UCP&amp;rsquo;.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;TCP&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;volumes&#34;&gt;Volumes&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;A name key for the volume.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;tempstore&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;kind&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The type of volume, either &lt;code&gt;ephemeral&lt;/code&gt; or &lt;code&gt;persistent&lt;/code&gt;.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ephemeral&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;mountPath&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The container path to mount the volume to.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;\tmp\mystore&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;managedStore&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y*&lt;/td&gt;
+&lt;td&gt;The backing storage medium to use when kind is &amp;rsquo;ephemeral&amp;rsquo;. Either &lt;code&gt;disk&lt;/code&gt; or &lt;code&gt;memory&lt;/code&gt;.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;memory&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;source&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y*&lt;/td&gt;
+&lt;td&gt;A volume resource to mount when kind is &amp;lsquo;persistent&amp;rsquo;.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;myvolume.id&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;rbac&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The role-based access control level when kind is &amp;lsquo;persistent&amp;rsquo;. Allowed values are &lt;code&gt;&#39;read&#39;&lt;/code&gt; and &lt;code&gt;&#39;write&#39;&lt;/code&gt;. Defaults to &amp;lsquo;read&amp;rsquo;.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;read&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;readiness-probe&#34;&gt;Readiness probe&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;kind&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;Type of readiness check, &lt;code&gt;httpGet&lt;/code&gt; or &lt;code&gt;tcp&lt;/code&gt; or &lt;code&gt;exec&lt;/code&gt;.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;httpGet&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;containerPort&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Used when kind is &lt;code&gt;httpGet&lt;/code&gt; or &lt;code&gt;tcp&lt;/code&gt;. The listening port number.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;8080&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;path&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Used when kind is &lt;code&gt;httpGet&lt;/code&gt;. The route to make the HTTP request on&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;/healthz&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;command&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Used when kind is &lt;code&gt;exec&lt;/code&gt;. Command to execute to probe readiness&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;/healthz&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;initialDelaySeconds&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Initial delay in seconds before probing for readiness.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;10&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;failureThreshold&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Threshold number of times the probe fails after which a failure would be reported.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;5&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;periodSeconds&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Interval for the readiness probe in seconds.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;5&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;liveness-probe&#34;&gt;Liveness probe&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;kind&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;Type of liveness check, &lt;code&gt;httpGet&lt;/code&gt; or &lt;code&gt;tcp&lt;/code&gt; or &lt;code&gt;exec&lt;/code&gt;.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;httpGet&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;containerPort&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Used when kind is &lt;code&gt;httpGet&lt;/code&gt; or &lt;code&gt;tcp&lt;/code&gt;. The listening port number.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;8080&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;path&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Used when kind is &lt;code&gt;httpGet&lt;/code&gt;. The route to make the HTTP request on&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;/healthz&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;command&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Used when kind is &lt;code&gt;exec&lt;/code&gt;. Command to execute to probe liveness&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;/healthz&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;initialDelaySeconds&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Initial delay in seconds before probing for liveness.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;10&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;failureThreshold&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Threshold number of times the probe fails after which a failure would be reported.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;5&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;periodSeconds&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Interval for the liveness probe in seconds.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;5&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;connections&#34;&gt;Connections&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;A name key for the port.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;inventory&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;source&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The id of the resource the container is connecting to. For network connections to other services this is in the form &lt;code&gt;&#39;[scheme]://[serviceName]:[port]&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;db.id&lt;/code&gt;, &lt;code&gt;&#39;http://inventory:8080&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#iam&#34;&gt;iam&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Identity and access management (IAM) roles to set on the target resource.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#iam&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;iam&#34;&gt;IAM&lt;/h4&gt;
+&lt;p&gt;Identity and access management (IAM) roles to set on the target resource.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;kind&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;Type of IAM role. Only &lt;code&gt;azure&lt;/code&gt; supported today&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;azure&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;roles&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The list IAM roles to set on the target resource.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;Owner&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;extensions&#34;&gt;Extensions&lt;/h3&gt;
+&lt;p&gt;Extensions define additional capabilities and configuration for a container.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;kind&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The kind of extension being used.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;kubernetesMetadataextension&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Additional properties are available and required depending on the &amp;lsquo;kind&amp;rsquo; of the extension.&lt;/p&gt;
+&lt;h4 id=&#34;kubernetesmetadata&#34;&gt;kubernetesMetadata&lt;/h4&gt;
+&lt;p&gt;The &lt;a href=&#34;https://docs.radapp.io/guides/operations/kubernetes/kubernetes-metadata/&#34;&gt;Kubernetes Metadata extension&lt;/a&gt; enables you set and cascade Kubernetes metadata such as labels and Annotations on all the Kubernetes resources defined with in your Radius Application. For examples refer to the extension overview page.&lt;/p&gt;
+&lt;h5 id=&#34;properties-1&#34;&gt;Properties&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;kind&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The kind of extension being used. Must be &amp;lsquo;kubernetesMetadata&amp;rsquo;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;kubernetesMetadata&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#labels&#34;&gt;labels&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The Kubernetes labels to be set on the application and its resources&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#labels&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#annotations&#34;&gt;annotations&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The Kubernetes annotations to set on your application and its resources&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#annotations&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h6 id=&#34;labels&#34;&gt;labels&lt;/h6&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;user defined label key&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The key and value of the label to be set on the application and its resources.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;team.name&#39;: &#39;frontend&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h6 id=&#34;annotations&#34;&gt;annotations&lt;/h6&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;user defined annotation key&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The key and value of the annotation to be set on the application and its resources.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;app.io/port&#39;: &#39;8081&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;daprsidecar&#34;&gt;daprSidecar&lt;/h4&gt;
+&lt;p&gt;The &lt;code&gt;daprSidecar&lt;/code&gt; extensions adds and configures a &lt;a href=&#34;https://dapr.io&#34;&gt;Dapr&lt;/a&gt; sidecar to your application.&lt;/p&gt;
+&lt;h5 id=&#34;properties-2&#34;&gt;Properties&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Property&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;kind&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The kind of extension.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;daprSidecar&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;appId&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The appId of the Dapr sidecar.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;backend&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;appPort&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The port your service exposes to Dapr&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;3500&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;config&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The configuration to use for the Dapr sidecar&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;manualscaling&#34;&gt;manualScaling&lt;/h4&gt;
+&lt;p&gt;The &lt;code&gt;manualScaling&lt;/code&gt; extension configures the number of replicas of a compute instance (such as a container) to run.&lt;/p&gt;
+&lt;h5 id=&#34;properties-3&#34;&gt;Properties&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Property&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;kind&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The kind of extension.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;manualScaling&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;replicas&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Y&lt;/td&gt;
+&lt;td&gt;The number of replicas to run&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;5&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;runtimes&#34;&gt;Runtimes&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;kubernetes&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Kubernetes specific configuration for the container.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#kubernetes&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;kubernetes&#34;&gt;Kubernetes&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;base&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The base Kubernetes resource manifest on top of which Radius specified properties will be applied. Supported resource types are documented &lt;a href=&#34;https://docs.radapp.io/guides/author-apps/containers/overview/#base-kubernetes-yaml&#34;&gt;here&lt;/a&gt;.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;loadTextContent(&#39;manifest/base-container.yaml&#39;)&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;pod&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The pod specifications to apply to the Kubernetes resource created by Radius. Any field defined on &lt;a href=&#34;https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#PodSpec&#34;&gt;PodSpec&lt;/a&gt; can be set here.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling&#34;&gt;&lt;code&gt;topologySpreadConstraints&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Reference: Gateway</title>
+      <link>https://docs.radapp.io/reference/resource-schema/core-schema/gateway/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/reference/resource-schema/core-schema/gateway/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;resource-format&#34;&gt;Resource format&lt;/h2&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; gateway &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/gateways@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;gateway&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    hostname: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// Omitting hostname properties results in gatewayname.appname.PUBLIC_HOSTNAME_OR_IP.nip.io&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// Results in prefix.appname.PUBLIC_HOSTNAME_OR_IP.nip.io&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      prefix: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;prefix&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// Alternately you can specify your own hostname that you&amp;#39;ve configured externally&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      fullyQualifiedHostname: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;hostname.radapp.io&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    routes: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        path: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/frontend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        destination: &amp;#39;http:&lt;span style=&#34;color:#75715e&#34;&gt;//${frontend.name}:3000&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        path: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/backend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        destination: &amp;#39;http:&lt;span style=&#34;color:#75715e&#34;&gt;//${backend.name}:8080&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    tls: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// Specify SSL Passthrough for your app (default: false)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      sslPassthrough: false
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// The Radius Secret Store holding TLS certificate data&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      certificateFrom: secretstore.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// The minimum TLS protocol version to support. Defaults to 1.2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      minimumProtocolVersion: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;1.2&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id=&#34;top-level&#34;&gt;Top-level&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The name of your Gateway.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;gateway&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;location&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The location of your resource. See &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/#common-values&#34;&gt;common values&lt;/a&gt; for more information.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;global&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#properties&#34;&gt;properties&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;Properties of the resource.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#properties&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;properties&#34;&gt;Properties&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;application&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The ID of the application resource this resource belongs to.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;app.id&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#hostname&#34;&gt;hostname&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The hostname information for this gateway.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#hostname&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#routes&#34;&gt;routes&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The routes attached to this gateway.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#routes&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#tls&#34;&gt;tls&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;TLS/SSL configuration for this gateway.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#tls&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;routes&#34;&gt;Routes&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;path&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y*&lt;/td&gt;
+&lt;td&gt;The path to match the incoming request path on. Not required when &lt;code&gt;tls.sslPassthrough&lt;/code&gt; is set to &lt;code&gt;&#39;true&#39;&lt;/code&gt;.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;/service&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;destination&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The service to route traffic to, in the form &lt;code&gt;&#39;[scheme]://[serviceName]:[port]&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;http://backend:80&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;replacePrefix&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The prefix to replace in the incoming request path that is sent to the destination route.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;/&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;hostname&#34;&gt;Hostname&lt;/h4&gt;
+&lt;p&gt;You can define hostname information for how to access your application. See &lt;a href=&#34;#hostname-generation&#34;&gt;below&lt;/a&gt; for more information.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;prefix&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;A custom DNS prefix for the generated hostname.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;prefix&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;fullyQualifiedHostname&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;A fully-qualified domain name to use for the gateway.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;myapp.mydomain.com&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;tls&#34;&gt;TLS&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;sslPassthrough&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Configures the gateway to passthrough encrypted SSL traffic to an HTTP route and container. Requires a single route to be set with no &amp;lsquo;path&amp;rsquo; defined (just destination). With sslPassthrough set to &lt;code&gt;true&lt;/code&gt;, the gateway can only support SNI routing. Path based routing cannot be supported. Defaults to &amp;lsquo;false&amp;rsquo;.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;hostname&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The hostname for TLS termination.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;hostname.radapp.io&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;certificateFrom&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The Radius Secret Store resource ID that holds the TLS certificate data for TLS termination.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;secretstore.id&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;minimumProtocolVersion&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The minimum TLS protocol to support for TLS termination.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;1.2&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Note that SSL passthrough and TLS termination functionality are mutually exclusive.&lt;/p&gt;
+&lt;h2 id=&#34;hostname-generation&#34;&gt;Hostname Generation&lt;/h2&gt;
+&lt;p&gt;There are three options for defining hostnames:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Omit the &lt;code&gt;hostname&lt;/code&gt; property, and Radius will generate the hostname for you with the format: &lt;code&gt;gatewayname.appname.PUBLIC_HOSTNAME_OR_IP.nip.io&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Declare &lt;code&gt;hostname.prefix&lt;/code&gt;, and Radius will generate the hostname based on your chosen prefix: &lt;code&gt;prefix.appname.PUBLIC_HOSTNAME_OR_IP.nip.io&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Declare &lt;code&gt;hostname.fullyQualifiedHostname&lt;/code&gt;, and Radius will use your fully-qualified domain name as the hostname: &lt;code&gt;myapp.mydomain.com&lt;/code&gt;. Note that you must map the public IP of the platform your app is running on to the chosen hostname. If you provide this property as well as &lt;code&gt;prefix&lt;/code&gt;, this property will take precedence.&lt;/li&gt;
+&lt;/ol&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Reference: Extender resource</title>
+      <link>https://docs.radapp.io/reference/resource-schema/core-schema/extender/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/reference/resource-schema/core-schema/extender/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;An extender resource could be used to bring in a custom resource into Radius for which there is no first class support to &amp;ldquo;extend&amp;rdquo; the Radius functionality. The resource can define arbitrary key-value pairs and secrets. These properties and secret values can then be used to connect it to other Radius resources.&lt;/p&gt;
+&lt;h2 id=&#34;resource-format&#34;&gt;Resource format&lt;/h2&gt;
+&lt;ul class=&#34;nav nav-tabs&#34; id=&#34;tabs-0&#34; role=&#34;tablist&#34;&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link active&#34;
+    id=&#34;tabs-0-recipe-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-0-recipe&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-0-recipe&#34; aria-selected=&#34;true&#34;&gt;
+    Recipe
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link&#34;
+    id=&#34;tabs-0-manual-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-0-manual&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-0-manual&#34; aria-selected=&#34;false&#34;&gt;
+    Manual
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;/ul&gt;
+
+
+&lt;div class=&#34;tab-content&#34; id=&#34;tabs-0-content&#34;&gt;
+
+
+&lt;div class=&#34;tab-pane fade show active&#34; id=&#34;tabs-0-recipe&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-0-recipe-tab&#34;&gt;
+&lt;br /&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;import radius as radius
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;param&lt;/span&gt; application &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;param&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// EXTENDER&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; twilio &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/extenders@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;twilio&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: application
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    recipe: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;twilio&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//EXTENDER&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; publisher &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/containers@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;publisher&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: application
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    container: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      image: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;radius.azurecr.io/magpie:latest&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      env: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        TWILIO_NUMBER: twilio.properties.fromNumber
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        TWILIO_SID: twilio.secrets(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;accountSid&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        TWILIO_ACCOUNT: twilio.secrets(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;authToken&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;/div&gt;
+
+&lt;div class=&#34;tab-pane fade&#34; id=&#34;tabs-0-manual&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-0-manual-tab&#34;&gt;
+&lt;br /&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; twilio &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/extenders@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;twilio&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    resourceProvisioning: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;manual&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    fromNumber: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;222-222-2222&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    secrets: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      accountSid: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;sid&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      authToken: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;token&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;/div&gt;
+
+
+&lt;/div&gt;
+&lt;h3 id=&#34;top-level&#34;&gt;Top-level&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The name of your resource.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;mongo&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;location&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The location of your resource. See &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/#common-values&#34;&gt;common values&lt;/a&gt; for more information.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;global&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#properties&#34;&gt;properties&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;Properties of the resource.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#properties&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;properties&#34;&gt;Properties&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;lt;user-defined key-value pairs&amp;gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;User-defined properties of the extender. Can accept any key name except &amp;lsquo;secrets&amp;rsquo;.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;fromNumber: &#39;222-222-2222&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;secrets&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Secrets in the form of key-value pairs&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;password: &#39;******&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;resourceProvisioning&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Specifies how to build the resource. Options are to build automatically via &amp;lsquo;recipe&amp;rsquo; or build manually via &amp;lsquo;manual&amp;rsquo;. Selection determines which set of fields to additionally require.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;manual&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#recipe&#34;&gt;recipe&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The recipe to deploy.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#recipe&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;recipe&#34;&gt;Recipe&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Property&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example(s)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Specifies the name of the Recipe that should be deployed. If not set, the name defaults to &lt;code&gt;default&lt;/code&gt;.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;name: &#39;twilio&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;parameters&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;An object that contains a list of parameters to set on the Recipe.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{ fromNumber: &#39;222-222-2222&#39; }&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;methods&#34;&gt;Methods&lt;/h2&gt;
+&lt;p&gt;The following methods are available on the Extender resource:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Method&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;secrets(&amp;lsquo;SECRET_NAME&amp;rsquo;)&lt;/td&gt;
+&lt;td&gt;Get the value of a secret.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;resource-provisioning&#34;&gt;Resource provisioning&lt;/h2&gt;
+&lt;h3 id=&#34;provision-with-a-recipe&#34;&gt;Provision with a Recipe&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.radapp.io/guides/recipes/overview/&#34;&gt;Recipes&lt;/a&gt; automate infrastructure provisioning using approved templates.
+You can specify a Recipe name that is registered in the environment or omit the name and use the &amp;ldquo;default&amp;rdquo; Recipe.&lt;/p&gt;
+&lt;p&gt;Parameters can also optionally be specified for the Recipe.&lt;/p&gt;
+&lt;h3 id=&#34;provision-manually&#34;&gt;Provision manually&lt;/h3&gt;
+&lt;p&gt;If you want to manually manage your infrastructure provisioning outside of Recipes, you can set &lt;code&gt;resourceProvisioning&lt;/code&gt; to &lt;code&gt;&#39;manual&#39;&lt;/code&gt; and provide all necessary parameters and values in order for Radius to be able to deploy/connect to the desired infrastructure.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Reference: Environment</title>
+      <link>https://docs.radapp.io/reference/resource-schema/core-schema/environment-schema/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/reference/resource-schema/core-schema/environment-schema/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;resource-format&#34;&gt;Resource format&lt;/h2&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/environments@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myenv&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    compute: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kubernetes&amp;#39;&lt;/span&gt;   &lt;span style=&#34;color:#75715e&#34;&gt;// Required. The kind of container runtime to use&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      namespace: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;default&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;// Required. The Kubernetes namespace in which to render application resources&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      identity: {          &lt;span style=&#34;color:#75715e&#34;&gt;// Optional. External identity providers to use for connections&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;azure.com.workload&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        oidcIssuer: oidcIssuer
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    extensions: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kubernetesMetadata&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        labels: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;team.contact.name&amp;#39;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;frontend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id=&#34;top-level&#34;&gt;Top-level&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The name of your resource. See &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/#common-values&#34;&gt;common values&lt;/a&gt; for more information.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;frontend&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;location&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The location of your resource. See &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/#common-values&#34;&gt;common values&lt;/a&gt; for more information.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;global&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#properties&#34;&gt;properties&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;Properties of the resource.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#properties&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;properties&#34;&gt;properties&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#compute&#34;&gt;compute&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;Container runtime configuration.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#compute&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#recipes&#34;&gt;recipes&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Recipes registered to the environment&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#recipes&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;compute&#34;&gt;compute&lt;/h3&gt;
+&lt;p&gt;Details on what to run and how to run it are defined in the &lt;code&gt;container&lt;/code&gt; property:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;kind&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The kind of container runtime to use. Only option is &lt;code&gt;&#39;kubernetes&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;kubernetes&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;namespace&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The Kubernetes namespace to render application resources into&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;default&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;resourceId&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The resource ID of the AKS cluster to render application resources into. Only required for Azure environments&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;aksCluster.id&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;identity&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The cluster identity configuration&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#identity&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;identity&#34;&gt;identity&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;kind&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The kind of identity. &amp;lsquo;azure.com.workload&amp;rsquo; is currently only supported.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;azure.com.workload&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;oidcIssuer&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The &lt;a href=&#34;https://azure.github.io/azure-workload-identity/docs/installation/self-managed-clusters/oidc-issuer.html&#34;&gt;OIDC issuer URL&lt;/a&gt; for your Kubernetes cluster.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;{IssuerURL}/.well-known/openid-configuration&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;recipes&#34;&gt;recipes&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;lt;resource-type&amp;gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The type of resource to register Recipes for.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;Applications.Datastores/redisCaches&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;recipes&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The list of Recipes registered to a given resource type&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#recipe-properties&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;recipe-properties&#34;&gt;recipe properties&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;lt;recipe-name&amp;gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The name of the Recipe. Must be unique within the resource-type.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;myrecipe&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;templateKind&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;Format of the template provided by the recipe. Allowed values: bicep&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;bicep&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;templatePath&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The path to the Recipe contents. For Bicep Recipes this is a Bicep module registry address.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;mycr.azurecr.io/recipes/myrecipe:1.0&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;parameters&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;A list of parameters to set on the Recipe for every Recipe usage and deployment. Can be overridden by the resource calling the Recipe.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;capacity: 1&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;extensions&#34;&gt;extensions&lt;/h3&gt;
+&lt;p&gt;Extensions allow you to customize how resources are generated or customized as part of deployment.&lt;/p&gt;
+&lt;h4 id=&#34;kubernetesmetadata&#34;&gt;kubernetesMetadata&lt;/h4&gt;
+&lt;p&gt;The &lt;a href=&#34;https://docs.radapp.io/guides/operations/kubernetes/kubernetes-metadata/&#34;&gt;Kubernetes Metadata extension&lt;/a&gt; enables you set and cascade Kubernetes metadata such as labels and Annotations on all the Kubernetes resources defined with in your Radius Application. For examples, please refer to the extension overview page.&lt;/p&gt;
+&lt;h5 id=&#34;properties-1&#34;&gt;Properties&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;kind&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The kind of extension being used. Must be &amp;lsquo;kubernetesMetadata&amp;rsquo;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;kubernetesMetadata&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#labels&#34;&gt;labels&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The Kubernetes labels to be set on the application and its resources&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#labels&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#annotations&#34;&gt;annotations&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The Kubernetes annotations to set on your application and its resources&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#annotations&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h5 id=&#34;labels&#34;&gt;labels&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;user defined label key&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The key and value of the label to be set on the application and its resources.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;team.name&#39;: &#39;frontend&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h5 id=&#34;annotations&#34;&gt;annotations&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;user defined annotation key&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The key and value of the annotation to be set on the application and its resources.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;app.io/port&#39;: &#39;8081&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;further-reading&#34;&gt;Further reading&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/guides/deploy-apps/environments/overview/&#34;&gt;Radius Environments&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Reference: Radius Secret Store</title>
+      <link>https://docs.radapp.io/reference/resource-schema/core-schema/secretstore/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/reference/resource-schema/core-schema/secretstore/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Note that only Kubernetes Secrets are currently supported with more to come in the future.&lt;/p&gt;
+&lt;h2 id=&#34;resource-format&#34;&gt;Resource format&lt;/h2&gt;
+&lt;h3 id=&#34;creating-a-new-secret-store&#34;&gt;Creating a new Secret Store&lt;/h3&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; appCert &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/secretStores@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;appcert&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties:{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    type: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;certificate&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    data: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;tls.key&amp;#39;&lt;/span&gt;: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        value: tlskey
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;tls.crt&amp;#39;&lt;/span&gt;: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        value: tlscrt
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id=&#34;referencing-an-existing-secret-store&#34;&gt;Referencing an existing Secret Store&lt;/h3&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; existingAppCert &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/secretStores@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;existing-appcert&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties:{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    resource: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;secret-app-existing-secret&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;// Reference to the name of an external secret store&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    type: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;certificate&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;// The type of secret in your resource&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    data: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// The keys in this object are the names of the secrets in an external secret store&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;tls.crt&amp;#39;&lt;/span&gt;: {}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;tls.key&amp;#39;&lt;/span&gt;: {}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id=&#34;top-level&#34;&gt;Top-level&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The name of your Secret Store.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;secret&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;location&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The location of your resource. See &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/#common-values&#34;&gt;common values&lt;/a&gt; for more information.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;global&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#properties&#34;&gt;properties&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;Properties of the resource.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#properties&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;properties&#34;&gt;properties&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;application&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The ID of the application resource this resource belongs to.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;app.id&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;resource&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Reference to the backing secret store resource, required only if valueFrom specifies referenced secret name.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;namespace/secretName&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;type&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The type of secret in your resource.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;certificate&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#data&#34;&gt;data&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;An object to represent key-value type secrets.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#data&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h5 id=&#34;data&#34;&gt;data&lt;/h5&gt;
+&lt;p&gt;This property is an object to represent key-value type secrets. You define your own key for each secret (e.g. &lt;code&gt;&#39;tls.key&#39;&lt;/code&gt;), with the &lt;code&gt;encoding&lt;/code&gt;, &lt;code&gt;value&lt;/code&gt;, and &lt;code&gt;valueFrom&lt;/code&gt; properties representing each secret value:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;value&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The value of the secret key.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;secretString&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;encoding&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The encoding type of the data value (default is &lt;code&gt;&#39;raw&#39;&lt;/code&gt;).&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;base64&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#valuefrom&#34;&gt;valueFrom&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;A reference to an external secret. This field is currently not in use, as it is meant for supporting more types of external secrets in the future.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#valuefrom&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h6 id=&#34;valuefrom&#34;&gt;valueFrom&lt;/h6&gt;
+&lt;p&gt;&lt;em&gt;Note:&lt;/em&gt; &lt;code&gt;valueFrom&lt;/code&gt; is not supported for Kubernetes Secrets, but may be used for other secret store types in the future.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The name of the secret or key of &lt;code&gt;properties.resource&lt;/code&gt;.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;secret_key1_name&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;version&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The version of the secret.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;1&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Reference: Radius Volumes</title>
+      <link>https://docs.radapp.io/reference/resource-schema/core-schema/volumes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/reference/resource-schema/core-schema/volumes/</guid>
+      <description>
+        
+        
+        &lt;p&gt;A Radius volume allows you to model an outside resource as a volume that can be mounted to one or more containers. It has a lifecycle that is separate from the container lifecycle, ensuring that data is persisted across container restarts and mounts.&lt;/p&gt;
+&lt;p&gt;Refer to the &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/core-schema/container-schema/&#34;&gt;container docs&lt;/a&gt; to learn how to mount a volume to a container.&lt;/p&gt;
+&lt;h2 id=&#34;supported-resources&#34;&gt;Supported resources&lt;/h2&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,259 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Radius Docs – Radius Volumes</title>
+    <link>https://docs.radapp.io/reference/resource-schema/core-schema/volumes/</link>
+    <description>Recent content in Radius Volumes on Radius Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	  <atom:link href="https://docs.radapp.io/reference/resource-schema/core-schema/volumes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Reference: Azure Key Vault volume</title>
+      <link>https://docs.radapp.io/reference/resource-schema/core-schema/volumes/azure-keyvault/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/reference/resource-schema/core-schema/volumes/azure-keyvault/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Radius supports mounting an Azure Key Vault as a persistent volume to the container using the Azure KeyVault CSI Driver.&lt;/p&gt;
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://azure.github.io/secrets-store-csi-driver-provider-azure/demos/standard-walkthrough/&#34;&gt;Azure Key Vault CSI Driver&lt;/a&gt; installed on your cluster&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://azure.github.io/azure-workload-identity/docs/installation.html&#34;&gt;Azure AD Workload Identity&lt;/a&gt; installed on your cluster&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;azure.com.workload&lt;/code&gt; identity configured on your &lt;a href=&#34;https://docs.radapp.io/guides/deploy-apps/environments/overview/&#34;&gt;environment&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Your Azure Key Vault access policy should be set to &lt;a href=&#34;https://learn.microsoft.com/azure/key-vault/general/rbac-guide?tabs=azure-cli&#34;&gt;Azure role-based access control&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;resource-format&#34;&gt;Resource format&lt;/h2&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; volume &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/volumes@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myvolume&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;azure.com.keyvault&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    resource: keyvault.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    secrets: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      mysecret: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;secret1&amp;#39;&lt;/span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// required&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        version: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;1&amp;#39;&lt;/span&gt;         &lt;span style=&#34;color:#75715e&#34;&gt;// optional, defaults to latest version&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        alias: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;secretalias&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;// optional, defaults to secret name (mysecret)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        encoding: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// optional, defaults to utf-8&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    certificates: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      mycertificate: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;cert1&amp;#39;&lt;/span&gt;              &lt;span style=&#34;color:#75715e&#34;&gt;// required&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        version: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;1&amp;#39;&lt;/span&gt;               &lt;span style=&#34;color:#75715e&#34;&gt;// optional, defaults to latest version&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        alias: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;certificatealias&amp;#39;&lt;/span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;// optional, defaults to certificate name (mycertificate)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        encoding: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;base64&amp;#39;&lt;/span&gt;         &lt;span style=&#34;color:#75715e&#34;&gt;// optional, defaults to utf-8&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        certType: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;privatekey&amp;#39;&lt;/span&gt;     &lt;span style=&#34;color:#75715e&#34;&gt;// optional, defaults to utf-8&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        format: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;pem&amp;#39;&lt;/span&gt;              &lt;span style=&#34;color:#75715e&#34;&gt;// optional, defaults to pfx&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    keys: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      mykey: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;key1&amp;#39;&lt;/span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;// required&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        version: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;1&amp;#39;&lt;/span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;// optional, defaults to latest version&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        alias: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;keyalias&amp;#39;&lt;/span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;// optional, defaults to key name (mycertificate)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id=&#34;properties&#34;&gt;Properties&lt;/h3&gt;
+&lt;p&gt;The following properties are available on the &lt;code&gt;Volume&lt;/code&gt; resource to which the container attaches:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;kind&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;The kind of persistent volume. Should be &amp;lsquo;azure.com.keyvault&amp;rsquo; for Azure Key Vault persistent volumes&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;azure.com.keyvault&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;resource&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Resource ID for the Azure KeyVault resource.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;kv.id&#39;&lt;/code&gt;, &lt;code&gt;&#39;/subscriptions/&amp;lt;subscription&amp;gt;/resourceGroups/&amp;lt;rg/providers/Microsoft.KeyVault/vaults/&amp;lt;keyvaultname&amp;gt;&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;secrets&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Map specify secret object name and secret properties. See &lt;a href=&#34;#secrets&#34;&gt;secret properties&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;mysecret: {&lt;br&gt;name: &amp;lsquo;mysecret&amp;rsquo;{&lt;br&gt;encoding: &amp;lsquo;utf-8{&lt;br&gt;}&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;keys&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Map specify key object name and key properties. See &lt;a href=&#34;#keys&#34;&gt;key properties&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;mykey: {&lt;br&gt;name: &amp;lsquo;mykey&amp;rsquo;&lt;br&gt;}&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;certificates&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Map specify certificate object name and [certificate properties]. See &lt;a href=&#34;#certificate&#34;&gt;certificate properties&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;mycert: {&lt;br&gt;name: &amp;lsquo;mycert&amp;rsquo;&lt;br&gt;value: &amp;lsquo;certificate&amp;rsquo;&lt;br&gt;}&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;secrets&#34;&gt;Secrets&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Description&lt;/th&gt;
+&lt;th&gt;Required&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;secret name in Azure Key Vault&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;mysecret&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;version&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;specific secret version. Default is latest&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;1234&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;encoding&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;encoding format &amp;lsquo;utf-8&amp;rsquo;, &amp;lsquo;hex&amp;rsquo;, &amp;lsquo;base64&amp;rsquo;. Default is &amp;lsquo;utf-8&amp;rsquo;&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;bas64&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;alias&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;file name created on the disk. Same as objectname if not specified&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;my-secret&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;keys&#34;&gt;Keys&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Description&lt;/th&gt;
+&lt;th&gt;Required&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;key name in Azure Key Vault&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;mykey&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;version&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;specific key version. Default is latest&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;1234&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;alias&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;file name created on the disk. Same as objectname if not specified&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;my-key&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;certificates&#34;&gt;Certificates&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Description&lt;/th&gt;
+&lt;th&gt;Required&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;certificate name in Azure Key Vault&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;mycert&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;value&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;value to download from Azure Key Vault &amp;lsquo;privatekey&amp;rsquo;, &amp;lsquo;publickey&amp;rsquo; or &amp;lsquo;certificate&amp;rsquo;&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;certificate&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;version&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;specific certificate version. Default is latest&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;1234&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;encoding&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;encoding format &amp;lsquo;utf-8&amp;rsquo;, &amp;lsquo;hex&amp;rsquo;, &amp;lsquo;base64&amp;rsquo;. Default is &amp;lsquo;utf-8&amp;rsquo; and this field can be specificed only when value is &amp;lsquo;privatekey&amp;rsquo;&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;bas64&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;alias&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;file name created on the disk. Same as objectname if not specified&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;my-cert&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;format&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;certificate format &amp;lsquo;pfx&amp;rsquo;, &amp;lsquo;pem&amp;rsquo;. Default is &amp;lsquo;pfx&amp;rsquo;&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;my-cert&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

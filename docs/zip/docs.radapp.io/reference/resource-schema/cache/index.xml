@@ -1,0 +1,391 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Radius Docs – Cache links</title>
+    <link>https://docs.radapp.io/reference/resource-schema/cache/</link>
+    <description>Recent content in Cache links on Radius Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	  <atom:link href="https://docs.radapp.io/reference/resource-schema/cache/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Reference: Redis cache</title>
+      <link>https://docs.radapp.io/reference/resource-schema/cache/redis/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/reference/resource-schema/cache/redis/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;redislabs.com/Redis&lt;/code&gt; is a &lt;a href=&#34;https://docs.radapp.io/guides/author-apps/portable-resources/&#34;&gt;resource&lt;/a&gt; which can be deployed to any platform Radius supports.&lt;/p&gt;
+&lt;h2 id=&#34;resource-format&#34;&gt;Resource format&lt;/h2&gt;
+&lt;ul class=&#34;nav nav-tabs&#34; id=&#34;tabs-1&#34; role=&#34;tablist&#34;&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link active&#34;
+    id=&#34;tabs-1-recipe-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-1-recipe&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-1-recipe&#34; aria-selected=&#34;true&#34;&gt;
+    Recipe
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link&#34;
+    id=&#34;tabs-1-manual-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-1-manual&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-1-manual&#34; aria-selected=&#34;false&#34;&gt;
+    Manual
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;/ul&gt;
+
+
+&lt;div class=&#34;tab-content&#34; id=&#34;tabs-1-content&#34;&gt;
+
+
+&lt;div class=&#34;tab-pane fade show active&#34; id=&#34;tabs-1-recipe&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-1-recipe-tab&#34;&gt;
+&lt;br /&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; redis &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Datastores/redisCaches@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;redis&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application:app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    recipe: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// Name a specific Recipe to use&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;azure-redis&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// Set optional/required parameters (specific to the Recipe)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      parameters: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        size: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;large&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;/div&gt;
+
+&lt;div class=&#34;tab-pane fade&#34; id=&#34;tabs-1-manual&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-1-manual-tab&#34;&gt;
+&lt;br /&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; redis &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Datastores/redisCaches@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;redis&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application:app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    resourceProvisioning: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;manual&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    resources: [{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      id: azureRedis.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    username: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myusername&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    host: azureRedis.properties.hostName
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    port: azureRedis.properties.port
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    secrets: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      password: azureRedis.&lt;span style=&#34;color:#a6e22e&#34;&gt;listKeys&lt;/span&gt;().primaryKey
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;/div&gt;
+
+
+&lt;/div&gt;
+&lt;h3 id=&#34;top-level&#34;&gt;Top-level&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The name of your resource.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;cache&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;location&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The location of your resource. See &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/#common-values&#34;&gt;common values&lt;/a&gt; for more information.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;global&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#properties&#34;&gt;properties&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;Properties of the resource.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#properties&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;properties&#34;&gt;Properties&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Property&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example(s)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;application&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The ID of the application resource this resource belongs to.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;app.id&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;environment&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The ID of the environment resource this resource belongs to.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;env.id&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;host&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The Redis host name.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;redis.hello.com&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;port&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The Redis port value.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;6379&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#resource-provisioning&#34;&gt;resourceProvisioning&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Specifies how the underlying service/resource is provisioned and managed. Options are to provision automatically via &amp;lsquo;recipe&amp;rsquo; or provision manually via &amp;lsquo;manual&amp;rsquo;. Selection determines which set of fields to additionally require. Defaults to &amp;lsquo;recipe&amp;rsquo;.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;manual&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#recipe&#34;&gt;recipe&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Configuration for the Recipe which will deploy the backing infrastructure.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#recipe&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#resources&#34;&gt;resources&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;An array of IDs of the underlying resources.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#resources&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;username&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The username for Redis cache.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;myusername&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#secrets&#34;&gt;secrets&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Secrets used when building the resource from values.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#secrets&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;tls&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Indicates if the Redis cache is configured with SSL connections. If the &lt;code&gt;port&lt;/code&gt; value is set to 6380 this defaults to &lt;code&gt;true&lt;/code&gt;. Otherwise it is defaulted to false. If your Redis cache offers SSL connections on ports other than 6380, explicitly set this value to &lt;code&gt;true&lt;/code&gt; to override the default behavior.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;recipe&#34;&gt;Recipe&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Property&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example(s)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;lt;recipe-name&amp;gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The name of the Recipe. Must be unique within the resource-type.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;myrecipe&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;parameters&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;A list of parameters to set on the Recipe for every Recipe usage and deployment. Can be overridden by the resource calling the Recipe.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;capacity: 1&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;resources&#34;&gt;Resources&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Property&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example(s)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;id&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Resource ID of the supporting resource.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;redisCache.id&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;secrets&#34;&gt;Secrets&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Property&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example(s)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;connectionString&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The connection string for the Redis cache. Write only.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;contoso5.redis.cache.windows.net,ssl=true,password=...&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;password&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The password for the Redis cache. Write only.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;mypassword&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;url&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The connection URL for the Redis cache. Set automatically based on the values provided for &lt;code&gt;host&lt;/code&gt;, &lt;code&gt;port&lt;/code&gt;, &lt;code&gt;username&lt;/code&gt;, and &lt;code&gt;password&lt;/code&gt;. Can be explicitly set to override default behavior. Write only.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;redis://username:password@localhost:6380/0?ssl=true&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;methods&#34;&gt;Methods&lt;/h3&gt;
+&lt;p&gt;The following methods are available on the Redis cache:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Method&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;connectionString()&lt;/td&gt;
+&lt;td&gt;Get the connection string for the Redis cache.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;password()&lt;/td&gt;
+&lt;td&gt;Get the password for the Redis cache.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;resource-provisioning&#34;&gt;Resource provisioning&lt;/h2&gt;
+&lt;h3 id=&#34;provision-with-a-recipe&#34;&gt;Provision with a Recipe&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.radapp.io/guides/recipes/howto-author-recipes/&#34;&gt;Recipes&lt;/a&gt; automate infrastructure provisioning using approved templates.
+When no Recipe configuration is set, Radius will use the currently registered Recipe as the &lt;strong&gt;default&lt;/strong&gt; in the environment for the given resource. Otherwise, a Recipe name and parameters can optionally be set to override this default.&lt;/p&gt;
+&lt;h3 id=&#34;provision-manually&#34;&gt;Provision manually&lt;/h3&gt;
+&lt;p&gt;If you want to manually manage your infrastructure provisioning without the use of Recipes, you can set &lt;code&gt;resourceProvisioning&lt;/code&gt; to &lt;code&gt;&#39;manual&#39;&lt;/code&gt; and provide all necessary parameters and values that enable Radius to deploy or connect to the desired infrastructure.&lt;/p&gt;
+&lt;h2 id=&#34;environment-variables-for-connections&#34;&gt;Environment variables for connections&lt;/h2&gt;
+&lt;p&gt;Other Radius resources, such as &lt;a href=&#34;https://docs.radapp.io/guides/author-apps/containers/&#34;&gt;containers&lt;/a&gt;, may connect to a Redis resource via &lt;a href=&#34;https://docs.radapp.io/concepts/application-graph/#connections-and-injected-values&#34;&gt;connections&lt;/a&gt;. When a connection to Redis named, for example, &lt;code&gt;myconnection&lt;/code&gt; is declared, Radius injects values into environment variables that are then used to access the connected Redis resource:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Environment variable&lt;/th&gt;
+&lt;th&gt;Example(s)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;CONNECTION_MYCONNECTION_HOST&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;mycache.redis.cache.windows.net&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CONNECTION_MYCONNECTION_PORT&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;6379&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CONNECTION_MYCONNECTION_TLS&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CONNECTION_MYCONNECTION_USERNAME&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;admin&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CONNECTION_MYCONNECTION_CONNECTIONSTRING&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;contoso5.redis.cache.windows.net,ssl=true,password=...&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CONNECTION_MYCONNECTION_PASSWORD&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;mypassword&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CONNECTION_MYCONNECTION_URL&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;rediss://username:password@localhost:6380/0&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>
