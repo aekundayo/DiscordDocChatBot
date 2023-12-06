@@ -446,8 +446,11 @@ def extract_yt_transcript(url):
     """
     Function to extract the YouTube video ID from a URL.
     """
-    parsed_url = urlparse.urlparse(url)
-    video_id = urlparse.parse_qs(parsed_url.query)['v'][0]
+    if "youtu.be" in url:
+        video_id = url.split('/')[-1].split('?')[0]
+    else:
+        parsed_url = urlparse.urlparse(url)
+        video_id = urlparse.parse_qs(parsed_url.query)['v'][0]
 
     transcriptlist = YouTubeTranscriptApi.get_transcript(video_id)
     transcript = json.dumps(transcriptlist, indent=4)
