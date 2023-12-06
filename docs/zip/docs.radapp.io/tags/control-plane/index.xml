@@ -1,0 +1,211 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Radius Docs – control plane</title>
+    <link>https://docs.radapp.io/tags/control-plane/</link>
+    <description>Recent content in control plane on Radius Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	  <atom:link href="https://docs.radapp.io/tags/control-plane/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Guides: Control plane</title>
+      <link>https://docs.radapp.io/guides/operations/control-plane/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/guides/operations/control-plane/</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Concepts: Radius architecture</title>
+      <link>https://docs.radapp.io/concepts/architecture/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/concepts/architecture/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Radius provides an HTTP-based API and supporting tools that can deploy and manage cloud-native applications as well as on-premises or cloud resources. The server-side API components are also sometimes called a control-plane. The Radius API can be hosted inside a Kubernetes cluster or as a standalone set of processes or containers. Tools that are used with Radius (like the &lt;code&gt;rad&lt;/code&gt; CLI) communicate with the API.&lt;/p&gt;
+&lt;p&gt;This page serves as documentation about the overall architecture of Radius to help educate contributors to the project or any user who wants a deeper understanding of the system and its capabilities.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Prerequisite:&lt;/strong&gt; Read the &lt;a href=&#34;https://docs.radapp.io/concepts/api-concept/&#34;&gt;API docs&lt;/a&gt; to understand the terminology and structure of the Radius API.&lt;/p&gt;
+&lt;h2 id=&#34;design-motivations-for-radius&#34;&gt;Design motivations for Radius&lt;/h2&gt;
+&lt;p&gt;The design of the Radius API is based on the team&amp;rsquo;s collected experience building and running hyper-scale cloud resource-management systems. Radius uses proven designs that provide extensibility, multi-tenancy, reliability, and scalability at the level of the world&amp;rsquo;s largest clouds. While Radius used with Kubernetes, the core of Radius is intentionally decoupled from Kubernetes so that Radius can be hosted in any scenario and at any scale.&lt;/p&gt;
+&lt;h2 id=&#34;understanding-the-overall-architecture&#34;&gt;Understanding the overall architecture&lt;/h2&gt;
+&lt;p&gt;The overall architecture of Radius has three parts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A general resource management API.&lt;/li&gt;
+&lt;li&gt;Resource providers for cloud-native applications.&lt;/li&gt;
+&lt;li&gt;Tools (&lt;code&gt;rad&lt;/code&gt; CLI, Bicep) for deploying and managing applications using the API.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This section will provide a summary of each of these components, as well as examples how common workflows fit together.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-info&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;🚧🚧🚧 Under construction 🚧🚧🚧&lt;/h4&gt;
+
+    We&amp;rsquo;re working on adding a diagram to illustrate these points.
+
+&lt;/div&gt;
+
+&lt;h3 id=&#34;ucp-a-general-resource-management-api&#34;&gt;UCP: a general resource management API&lt;/h3&gt;
+&lt;p&gt;The Radius API uses a centralized hub-and-spoke architecture. This API provides a single entry-point for authentication, authorization, routing, and other quality-of-service or correctness concerns. All HTTP traffic into the Radius API comes through this central point so that it can be validated before being routed to the appropriate resource provider microservice.&lt;/p&gt;
+&lt;p&gt;The service that performs this central functionality in Radius is called the Universal Control-Plane (UCP). UCP receives all inbound HTTP traffic to the Radius API and either serves the response itself or routes the request to a resource provider. UCP is also the central point for extensibility; each resource provider is registered centrally so that UCP knows where to send requests for that resource type.&lt;/p&gt;
+&lt;p&gt;UCP contains functionality for federating with separate resource managers as well as its resource providers. For example UCP can route requests to Azure or AWS to manage resources on those cloud systems.&lt;/p&gt;
+&lt;p&gt;UCP is a scalable REST API that can function either with a single global shard or using regional sharding. UCP is based on the design principles of the Azure Resource Manager (ARM) control-plane but generalizes to work across multiple clouds and systems. The UCP codebase is fully open-source and was created from scratch as part of the Radius project. UCP is written in Go.&lt;/p&gt;
+&lt;p&gt;UCP provides routing and federation with internal and external services:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The management of resources built-in to Radius (such as &lt;code&gt;Applications.Core/containers&lt;/code&gt;) is delegated to the appropriate resource provider.&lt;/li&gt;
+&lt;li&gt;The management of cloud resources external to Radius (such as an AWS S3 Bucket, or Azure CosmosDB database) is federated to an external cloud-provider API.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;resource-providers-built-into-radius&#34;&gt;Resource providers built into Radius&lt;/h3&gt;
+&lt;p&gt;The role of resource provider in the overall system is to perform the CRUDL+ operations associated with a one or more resource types. Resource providers only accept traffic from UCP and so can assume that any requests they receive are authorized. Each resource provider and the set of resource types it handles must be registered with UCP.&lt;/p&gt;
+&lt;p&gt;Like UCP, each resource provider is a scalable REST API that can be deployed as a single global shard or sharded by region.&lt;/p&gt;
+&lt;p&gt;Radius provides the following resource providers in the default installation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Applications.Core&lt;/strong&gt;: &lt;em&gt;Core&lt;/em&gt; resources of an application, including the application itself, containers, gateways, and routes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Applications.Dapr&lt;/strong&gt;: Integration with the &lt;a href=&#34;https://dapr.io/&#34;&gt;Dapr&lt;/a&gt; programming model. Supports management of Dapr building-blocks and configuration.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Applications.Datastores&lt;/strong&gt;: Abstractions for data-stores that can be used within an application.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Applications.Messaging&lt;/strong&gt;: Abstractions for messaging systems that can be used within an application.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Bicep.Deployments&lt;/strong&gt;: Functionality for processing Bicep deployments.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;applications-resource-provider&#34;&gt;Applications Resource Provider&lt;/h4&gt;
+&lt;p&gt;The &lt;strong&gt;Applications.&lt;/strong&gt;* resource providers implement the bulk of Radius&amp;rsquo; user-facing functionality, including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Creating and managing platform resources used to run an application (&lt;em&gt;eg: Kubernetes Deployments and Services&lt;/em&gt;).&lt;/li&gt;
+&lt;li&gt;Responding to queries from the CLI (&lt;em&gt;eg: list all applications, show configuration of a container&lt;/em&gt;).&lt;/li&gt;
+&lt;li&gt;Storing and retrieving dependency information like connection-strings, hostnames, and passwords.&lt;/li&gt;
+&lt;li&gt;Executing recipes to create cloud infrastructure.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All of Radius&amp;rsquo; core concepts are expressed using resources:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Applications&lt;/li&gt;
+&lt;li&gt;Environments&lt;/li&gt;
+&lt;li&gt;Containers&lt;/li&gt;
+&lt;li&gt;Dependency resources (eg: Mongo Database, Dapr State Store)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All of these resources can be manipulated using the CRUDL+ operations that the resource providers provide. Since the functionality is implemented as part of the API any number of tools can have access to this functionality.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;Applications.*&lt;/code&gt; resource providers are fully-open source and were created as part of the Radius project. The &lt;code&gt;Applications.Core&lt;/code&gt; and &lt;code&gt;Applications.*&lt;/code&gt; resource providers are written in Go.&lt;/p&gt;
+&lt;h4 id=&#34;bicep-deployments-resource-provider&#34;&gt;Bicep Deployments Resource Provider&lt;/h4&gt;
+&lt;p&gt;The &lt;strong&gt;Bicep.Deployments&lt;/strong&gt; resource provider implements the functionality for handling Bicep deployments.&lt;/p&gt;
+&lt;p&gt;First a Bicep file is compiled to an intermediate representation called ARM-JSON and then the compiled payload is sent to the server to create a &lt;code&gt;Bicep.Deployments/deployments&lt;/code&gt; resource. The deployments resource provider processes the ARM-JSON template to create or update other resources by making HTTP requests to UCP. After the processing is completed, the &lt;code&gt;Bicep.Deployments/deployments&lt;/code&gt; resource is retained for informational purposes.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-info&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;🚧🚧🚧 Under construction 🚧🚧🚧&lt;/h4&gt;
+
+    The &lt;code&gt;Bicep.Deployments&lt;/code&gt; resource provider shares some components with the Azure service for processing Bicep and ARM-JSON deployments. The codebase will be fully open-sourced and ownership will be split between the Bicep team and the Radius project. The &lt;code&gt;Bicep.Deployments&lt;/code&gt; resource provider is written in C#.
+
+&lt;/div&gt;
+
+&lt;h3 id=&#34;tools-rad-cli-bicep&#34;&gt;Tools (rad CLI, Bicep)&lt;/h3&gt;
+&lt;p&gt;Tools that work with Radius do so though the API. The CRUDL+ operations provided by resource providers are orchestrated by tools to perform tasks like application deployment, or listing cloud resources in use by an application.&lt;/p&gt;
+&lt;p&gt;This section will provide an overview of how various tools interact with the Radius APIs.&lt;/p&gt;
+&lt;h4 id=&#34;rad-cli&#34;&gt;rad CLI&lt;/h4&gt;
+&lt;p&gt;The bulk of rad CLI functionality can be described as &lt;em&gt;management functions&lt;/em&gt; that are serviced using the Read and List operations of the Radius API. A typical interaction like listing applications that have been created will only require one request to the API.&lt;/p&gt;
+&lt;h4 id=&#34;bicep&#34;&gt;Bicep&lt;/h4&gt;
+&lt;p&gt;Resources (&lt;em&gt;Radius, Azure, AWS, Kubernetes&lt;/em&gt;) can be expressed declaratively within a Bicep file and deployed via &lt;code&gt;rad deploy&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The functionality of &lt;code&gt;rad deploy&lt;/code&gt; to deploy a Bicep file also uses the Radius API. Once the deployment has been sent to the server, the CLI monitors the &lt;code&gt;Bicep.Deployments/deployments&lt;/code&gt; resource to display progress information to the user.&lt;/p&gt;
+&lt;h4 id=&#34;terraform&#34;&gt;Terraform&lt;/h4&gt;
+
+
+&lt;div class=&#34;alert alert-info&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;🚧🚧🚧 Under construction 🚧🚧🚧&lt;/h4&gt;
+
+    We have not yet published a Terraform provider for Radius. This section describes the architecture differences to help explain the architecture differences.
+
+&lt;/div&gt;
+
+&lt;p&gt;Processing of Terraform deployments takes place on the client that initiated the operation. The Radius Terraform provider makes requests through the API to Read or Create/Update resources as needed.&lt;/p&gt;
+&lt;p&gt;In contrast, processing of Bicep templates takes place on the server-side inside a resource provider. The tasks done by Terraform and Bicep are very similar but each tool has a different architecture.&lt;/p&gt;
+&lt;h4 id=&#34;example-tasks-and-data-flows&#34;&gt;Example tasks and data flows&lt;/h4&gt;
+&lt;p&gt;This section describes example tasks that can be performed with Radius and how the data flows through the overall system.&lt;/p&gt;
+&lt;ul class=&#34;nav nav-tabs&#34; id=&#34;tabs-4&#34; role=&#34;tablist&#34;&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link active&#34;
+    id=&#34;tabs-4-list-applications-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-4-list-applications&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-4-list-applications&#34; aria-selected=&#34;true&#34;&gt;
+    List applications
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link&#34;
+    id=&#34;tabs-4-deploy-bicep-file-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-4-deploy-bicep-file&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-4-deploy-bicep-file&#34; aria-selected=&#34;false&#34;&gt;
+    Deploy Bicep file
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link&#34;
+    id=&#34;tabs-4-deploy-terraform-file-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-4-deploy-terraform-file&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-4-deploy-terraform-file&#34; aria-selected=&#34;false&#34;&gt;
+    Deploy Terraform file
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;/ul&gt;
+
+
+&lt;div class=&#34;tab-content&#34; id=&#34;tabs-4-content&#34;&gt;
+
+
+&lt;div class=&#34;tab-pane fade show active&#34; id=&#34;tabs-4-list-applications&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-4-list-applications-tab&#34;&gt;
+&lt;br /&gt;&lt;p&gt;When listing applications using the &lt;code&gt;rad&lt;/code&gt; CLI:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The client sends an HTTP request to the Radius API requesting the list of applications.&lt;/li&gt;
+&lt;li&gt;UCP receives the request for the &lt;code&gt;Applications.Core/applications&lt;/code&gt; List operation and looks up the internal address for the &lt;code&gt;Applications.Core&lt;/code&gt; resource provider.&lt;/li&gt;
+&lt;li&gt;UCP proxies the HTTP request to the &lt;code&gt;Applications.Core&lt;/code&gt; resource provider.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;Applications.Core&lt;/code&gt; resource provider handles the request and responds with the list of applications.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img src=&#34;flow-list-apps.png&#34; alt=&#34;Diagram of the API flow described above&#34; width=&#34;1000px&#34; &gt;
+&lt;/div&gt;
+
+&lt;div class=&#34;tab-pane fade&#34; id=&#34;tabs-4-deploy-bicep-file&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-4-deploy-bicep-file-tab&#34;&gt;
+&lt;br /&gt;&lt;p&gt;When using Bicep to author and deploy Radius Applications:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The client compiles the Bicep file to an ARM-JSON template and submits a request for processing as a &lt;code&gt;Bicep.Deployments/deployments&lt;/code&gt; resource.&lt;/li&gt;
+&lt;li&gt;UCP receives the request for the &lt;code&gt;Bicep.Deployments/deployments&lt;/code&gt; Create operation and looks up the internal address for the &lt;code&gt;Bicep.Deployments&lt;/code&gt; resource provider.&lt;/li&gt;
+&lt;li&gt;UCP proxies the HTTP request to the &lt;code&gt;Bicep.Deployments&lt;/code&gt; resource provider.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;Bicep.Deployments&lt;/code&gt; resource provider processes the ARM-JSON template. For each resource in the template:
+a. The &lt;code&gt;Bicep.Deployments&lt;/code&gt; resource provider makes a request to UCP to Create/Update the resource.
+b. UCP routes the request to the appropriate resource provider to be handled.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img src=&#34;flow-deploy.png&#34; alt=&#34;Diagram of the API flow described above&#34; width=&#34;1000px&#34; &gt;
+&lt;/div&gt;
+
+&lt;div class=&#34;tab-pane fade&#34; id=&#34;tabs-4-deploy-terraform-file&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-4-deploy-terraform-file-tab&#34;&gt;
+&lt;br /&gt;&lt;p&gt;When using the &lt;code&gt;tf&lt;/code&gt; CLI to deploy a Radius Application using Terraform:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Terraform reads the configuration, loads credentials, parses the file, and instantiates its providers. For each resource in the file:
+a. Terraform asks the appropriate provider to Create or Update the resource.
+b. In the case of a non-Radius resource, (eg: AWS S3 Bucket) the Terraform provider processes the resource without involving the Radius API.
+c. In the case of a Radius resource the Terraform provider makes a request the Radius API to Create/Update a resource.
+d. UCP routes the request to the appropriate resource provider to be handled.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img src=&#34;flow-terraform.png&#34; alt=&#34;Diagram of the API flow described above&#34; width=&#34;1000px&#34; &gt;
+&lt;/div&gt;
+
+
+&lt;/div&gt;
+&lt;h2 id=&#34;next-step&#34;&gt;Next step&lt;/h2&gt;
+&lt;p&gt;Now that you have an understanding of the Radius architecture, try Radius out:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+&lt;a class=&#34;btn btn-lg btn-success&#34; href=&#34;https://docs.radapp.io/getting-started/&#34; role=&#34;button&#34;&gt;Get started&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

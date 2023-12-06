@@ -1,0 +1,1082 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Radius Docs – Tutorial</title>
+    <link>https://docs.radapp.io/categories/tutorial/</link>
+    <description>Recent content in Tutorial on Radius Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	  <atom:link href="https://docs.radapp.io/categories/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Tutorials: Tutorial: Create a Radius Application</title>
+      <link>https://docs.radapp.io/tutorials/new-app/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/tutorials/new-app/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This tutorial will teach you the basics of creating a new Radius Application. You will learn how to:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Define and deploy a Radius Environment and Application&lt;/li&gt;
+&lt;li&gt;Add a container to your application and customize that container&lt;/li&gt;
+&lt;li&gt;Add a Mongo database to your application and connect it to your container&lt;/li&gt;
+&lt;li&gt;Add a second container and connect it to your first container&lt;/li&gt;
+&lt;li&gt;Securely expose your application to the internet through a gateway&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;By the end of the tutorial, you will have created and deployed a new Radius Application.&lt;/p&gt;
+&lt;img src=&#34;diagram.png&#34; alt=&#34;Diagram of the application resources and their connections&#34; width=600px &gt;
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/guides/operations/kubernetes/overview/&#34;&gt;Supported Kubernetes cluster&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/installation/#step-1-install-the-rad-cli&#34;&gt;rad CLI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/installation/#step-2-install-the-radius-bicep-vs-code-extension&#34;&gt;Radius Bicep VSCode extension&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;step-1-initialize-a-radius-environment-and-application&#34;&gt;Step 1: Initialize a Radius Environment and Application&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.radapp.io/guides/deploy-apps/environments/overview/&#34;&gt;Radius Environments&lt;/a&gt; are where applications are deployed. Environments determine how an application runs on a particular platform (&lt;em&gt;like AWS or Azure&lt;/em&gt;).&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Begin by creating a new directory for your application:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mkdir myapp
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd myapp
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Initialize a new Radius Environment with &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_init/&#34;&gt;&lt;code&gt;rad init&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad init
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;When asked if you want to create a new application select &amp;ldquo;Yes&amp;rdquo;. This will create a new file named &lt;code&gt;app.bicep&lt;/code&gt; in your directory where your application will be defined.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-info&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;💡 Development Environments&lt;/h4&gt;
+
+    By default &lt;code&gt;rad init&lt;/code&gt; gets you up and running with a local, development-focused environment where most of the environment configuration is handled for you, including Recipes (&lt;em&gt;more on that soon&lt;/em&gt;). If you would like to fully customize your environment, you can run &lt;code&gt;rad init --full&lt;/code&gt;
+
+&lt;/div&gt;
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;step-2-inspect-your-application&#34;&gt;Step 2: Inspect your Application&lt;/h2&gt;
+&lt;p&gt;Radius Applications are where all your app&amp;rsquo;s resources and relationships come together. Let&amp;rsquo;s take a look at this Radius Application to learn more about it.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;View the full Application definition by running &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_application_show/&#34;&gt;&lt;code&gt;rad app show -o json&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad app show myapp -o json
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You will see the full App definition in its raw JSON format:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{
+  &amp;#34;id&amp;#34;: &amp;#34;/planes/radius/local/resourcegroups/default/providers/Applications.Core/applications/myapp&amp;#34;,
+  &amp;#34;location&amp;#34;: &amp;#34;global&amp;#34;,
+  &amp;#34;name&amp;#34;: &amp;#34;myapp&amp;#34;,
+  &amp;#34;properties&amp;#34;: {
+    &amp;#34;environment&amp;#34;: &amp;#34;/planes/radius/local/resourceGroups/default/providers/Applications.Core/environments/default&amp;#34;,
+    &amp;#34;provisioningState&amp;#34;: &amp;#34;Succeeded&amp;#34;,
+    &amp;#34;status&amp;#34;: {
+      &amp;#34;compute&amp;#34;: {
+        &amp;#34;kind&amp;#34;: &amp;#34;kubernetes&amp;#34;,
+        &amp;#34;namespace&amp;#34;: &amp;#34;default-myapp&amp;#34;
+      }
+    }
+  },
+  &amp;#34;systemData&amp;#34;: {},
+  &amp;#34;tags&amp;#34;: {},
+  &amp;#34;type&amp;#34;: &amp;#34;Applications.Core/applications&amp;#34;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;There are a few important things to note about the application definition:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;id&lt;/code&gt;&lt;/strong&gt; is the fully-qualified UCP resource ID of the application. This value is used to uniquely identify the application in the Radius system.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;location&lt;/code&gt;&lt;/strong&gt; is the &lt;em&gt;where&lt;/em&gt; your Application resides. For now, all applications are deployed to the &lt;code&gt;global&lt;/code&gt; location, which corresponds to the cluster where Radius is running.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;environment&lt;/code&gt;&lt;/strong&gt; specifies the Radius Environment which the Applications &amp;ldquo;binds&amp;rdquo; to at deployment. This is what determines where containers should run (&lt;em&gt;Kubernetes&lt;/em&gt;) and which namespace to deploy into (&lt;em&gt;prefixed with &amp;ldquo;default&amp;rdquo;&lt;/em&gt;). In this case, the application will be deployed into the &lt;code&gt;default&lt;/code&gt; Environment that was created by &lt;code&gt;rad init&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;compute&lt;/code&gt;&lt;/strong&gt; specifies the hosting platform where running services in the Application will run. In this case, the services will be deployed into the &lt;code&gt;default-myapp&lt;/code&gt; Kubernetes namespace within the same cluster where Radius is installed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Let&amp;rsquo;s take a look inside the Application to see what&amp;rsquo;s deployed. Run &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_application_connections/&#34;&gt;&lt;code&gt;rad app connections&lt;/code&gt;&lt;/a&gt; to print the Application&amp;rsquo;s resources and relationships:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad app connections
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You&amp;rsquo;ll see that nothing has been deployed yet and the app is empty:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Displaying application: myapp
+
+(empty)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Let&amp;rsquo;s deploy some resources to start building out the application.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;step-3-inspect-and-deploy-appbicep&#34;&gt;Step 3: Inspect and deploy &lt;code&gt;app.bicep&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;app.bicep&lt;/code&gt; will define all the resources (containers, gateways, cloud services, etc) that make up your application, including how those resources are connected to each other. Given this explicit and comprehensive application definition, Radius Application files make it simple to consistently deploy and manage your application.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Open &lt;code&gt;app.bicep&lt;/code&gt; and see the scaffolded application created by &lt;code&gt;rad init&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// Import the set of Radius resources (Applications.*) into Bicep&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;import radius as radius
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@&lt;span style=&#34;color:#a6e22e&#34;&gt;description&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;The ID of your Radius Application. Set automatically by the rad CLI.&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;param&lt;/span&gt; application &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; demo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/containers@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;demo&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: application
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    container: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      image: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;radius.azurecr.io/samples/demo:latest&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      ports: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        web: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          containerPort: 3000
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Deploy &lt;code&gt;app.bicep&lt;/code&gt; with &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_deploy/&#34;&gt;&lt;code&gt;rad deploy&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad deploy app.bicep
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see your container deployed:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Building .\app.bicep...
+Deploying template &amp;#39;.\app.bicep&amp;#39; for application &amp;#39;myapp&amp;#39; and environment &amp;#39;default&amp;#39; from workspace &amp;#39;default&amp;#39;...
+
+Deployment In Progress...
+
+
+Deployment Complete
+
+Resources:
+    demo            Applications.Core/containers
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Run &lt;code&gt;rad app connections&lt;/code&gt; again to see the container you just deployed:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad app connections
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see the container you just deployed, along with the underlying Kubernetes resources that were created to run it:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Displaying application: myapp
+
+Name: demo (Applications.Core/containers)
+Connections: (none)
+Resources:
+ demo (kubernetes: apps/Deployment)
+ demo (kubernetes: core/Service)
+ demo (kubernetes: core/ServiceAccount)
+ demo (kubernetes: rbac.authorization.k8s.io/Role)
+ demo (kubernetes: rbac.authorization.k8s.io/RoleBinding)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&#34;alert alert-info&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;💡 Kubernetes mapping&lt;/h4&gt;
+
+    Radius Environments map how Applications &amp;ldquo;bind&amp;rdquo; to a particular platform. Earlier we saw the Application compute was set to &lt;code&gt;kubernetes&lt;/code&gt; and the namespace was set to &lt;code&gt;default-myapp&lt;/code&gt;. This means the container resources were deployed to the &lt;code&gt;default-myapp&lt;/code&gt; namespace in the Kubernetes cluster where Radius is installed. Visit the &lt;a href=&#34;https://docs.radapp.io/guides/operations/kubernetes/overview/#resource-mapping&#34;&gt;Kubernetes mapping docs&lt;/a&gt; to learn more.
+
+&lt;/div&gt;
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;step-4-run-your-application&#34;&gt;Step 4: Run your application&lt;/h2&gt;
+&lt;p&gt;When working with Radius Applications you will probably want to access container endpoints and view logs. &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_run/&#34;&gt;&lt;code&gt;rad run&lt;/code&gt;&lt;/a&gt; makes it simple to deploy your application and automatically set up port-forwarding and log streaming:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad run app.bicep
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see the container deployed and the port-forward and log stream started:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Building .\app.bicep...
+Deploying template &amp;#39;.\app.bicep&amp;#39; for application &amp;#39;myapp&amp;#39; and environment &amp;#39;default&amp;#39; from workspace &amp;#39;default&amp;#39;...
+
+Deployment In Progress...
+
+..                   demo            Applications.Core/containers
+
+Deployment Complete
+
+Resources:
+    demo            Applications.Core/containers
+
+Starting log stream...
+
+demo-bb9df8798-b68rc › demo
+demo-bb9df8798-b68rc demo Using in-memory store: no connection string found
+demo-bb9df8798-b68rc demo Server is running at http://localhost:3000
+demo-bb9df8798-b68rc demo [port-forward] connected from localhost:3000 -&amp;gt; ::3000
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Open &lt;a href=&#34;http://localhost:3000&#34;&gt;http://localhost:3000&lt;/a&gt; to view the Radius demo container:&lt;/p&gt;
+&lt;img src=&#34;demo-landing.png&#34; alt=&#34;Screenshot of the Radius demo container&#34; width=500px &gt;
+&lt;p&gt;When you&amp;rsquo;re done press &lt;code&gt;CTRL + c&lt;/code&gt; to terminate the port-forward and log stream.&lt;/p&gt;
+&lt;h2 id=&#34;step-5-add-a-database-and-a-connection&#34;&gt;Step 5: Add a database and a connection&lt;/h2&gt;
+&lt;p&gt;In addition to containers, you can add dependencies like Redis caches, Dapr State Stores, Mongo databases, and more.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Add a Mongo database and an environment parameter to your &lt;code&gt;app.bicep&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@&lt;span style=&#34;color:#a6e22e&#34;&gt;description&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;The ID of your Radius Environment. Set automatically by the rad CLI.&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;param&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; mongodb &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Datastores/mongoDatabases@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;mongodb&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: application
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class=&#34;alert alert-info&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;💡 Radius Recipes&lt;/h4&gt;
+
+    Note that when you added the Mongo database to your application you didn&amp;rsquo;t need to specify &lt;em&gt;how or where&lt;/em&gt; to run the underlying infrastructure. The Radius Environment and its Recipes take care of that for you. Just like how the Radius Environment bound your container to a Kubernetes cluster, it also deploys and binds your Mongo database to underlying infrastructure using &lt;a href=&#34;https://docs.radapp.io/guides/recipes/overview/&#34;&gt;Recipes&lt;/a&gt;.
+
+&lt;/div&gt;
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;To learn about the underlying Recipe that will deploy and manage the Mongo infrastructure run &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_recipe_show/&#34;&gt;&lt;code&gt;rad recipe show&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad recipe show default --resource-type Applications.Datastores/mongoDatabases
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You&amp;rsquo;ll see details on the Recipe, including available parameters and defaults:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;NAME      TYPE                                    TEMPLATE KIND  TEMPLATE VERSION  TEMPLATE
+default   Applications.Datastores/mongoDatabases  bicep                            radius.azurecr.io/recipes/local-dev/mongodatabases:latest
+
+PARAMETER NAME  TYPE          DEFAULT VALUE   MIN       MAX
+username        string        admin           -         -
+password        secureString  Password1234==  -         -
+database        string                        -         -
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;If you want to learn more about the Recipe template it&amp;rsquo;s in the &lt;a href=&#34;https://github.com/radius-project/recipes/blob/main/local-dev/mongodatabases.bicep&#34;&gt;Recipes repo&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add a connection from your container to the Mongo database, which indicates to Radius that your container needs to communicate with the Mongo database:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; demo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/containers@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;demo&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: application
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    container: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      image: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;radius.azurecr.io/samples/demo:latest&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      env: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        FOO: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      ports: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        web: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          containerPort: 3000
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span&gt;    connections: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span&gt;      mongodb: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span&gt;        source: mongodb.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class=&#34;alert alert-info&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;💡 Radius Connections&lt;/h4&gt;
+
+    Radius Connections are more than just bookkeeping. They are used to automatically configure access for your containers. Learn more in the &lt;a href=&#34;https://docs.radapp.io/guides/author-apps/containers/overview/&#34;&gt;containers documentation&lt;/a&gt;.
+
+&lt;/div&gt;
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Re-run your app with &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_run/&#34;&gt;&lt;code&gt;rad run&lt;/code&gt;&lt;/a&gt; to deploy the Mongo database and container and start the port-forward and log stream:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad run app.bicep
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Building .\app.bicep...
+Deploying template &amp;#39;.\app.bicep&amp;#39; for application &amp;#39;myapp&amp;#39; and environment &amp;#39;default&amp;#39; from workspace &amp;#39;default&amp;#39;...
+
+Deployment In Progress...
+
+
+Deployment Complete
+
+Resources:
+    myapp           Applications.Core/applications
+    demo            Applications.Core/containers
+    mongodb         Applications.Datastores/mongoDatabases
+
+Starting log stream...
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Open &lt;a href=&#34;http://localhost:3000&#34;&gt;localhost:3000&lt;/a&gt; to interact with the demo container. You should see the container&amp;rsquo;s connections and metadata, this time with a connection to the Mongo database and new environment variables set:&lt;/p&gt;
+ &lt;img src=&#34;demo-landing-connection.png&#34; alt=&#34;Screenshot of the Radius demo container&#34; width=500px &gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Press CTRL+C to terminate the port-forward and log stream.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Run &lt;code&gt;rad app connections&lt;/code&gt; again to see the new dependency:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad app connections
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see the container and Mongo database you just deployed, along with the underlying Kubernetes resources that were created to run them:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Displaying application: myapp
+
+Name: demo (Applications.Core/containers)
+Connections:
+  demo -&amp;gt; mongodb (Applications.Datastores/mongoDatabases)
+Resources:
+  demo (kubernetes: apps/Deployment)
+  demo (kubernetes: core/Secret)
+  demo (kubernetes: core/Service)
+  demo (kubernetes: core/ServiceAccount)
+  demo (kubernetes: rbac.authorization.k8s.io/Role)
+  demo (kubernetes: rbac.authorization.k8s.io/RoleBinding)
+
+Name: mongodb (Applications.Datastores/mongoDatabases)
+Connections:
+  demo (Applications.Core/containers) -&amp;gt; mongodb
+Resources:
+  mongo-bzmp2btdgzez6 (kubernetes: apps/Deployment)
+  mongo-bzmp2btdgzez6 (kubernetes: core/Service)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;step-6-add-a-backend-container&#34;&gt;Step 6: Add a backend container&lt;/h2&gt;
+&lt;p&gt;In addition to dependencies, you can add more containers to make your application code more modular.  Containers can be configured to interact with each other as needed.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Add a second container named &lt;code&gt;backend&lt;/code&gt; to your &lt;code&gt;app.bicep&lt;/code&gt; file, specifying the image and port to open to other containers:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; backend &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/containers@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;backend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: application
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    container: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      image: &amp;#39;nginx:latest&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      ports: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        api: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          containerPort: 80
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add a new connection from your &lt;code&gt;demo&lt;/code&gt; container to the &lt;code&gt;backend&lt;/code&gt; container:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; demo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/containers@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;demo&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: application
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    container: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      image: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;radius.azurecr.io/samples/demo:latest&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      env: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        FOO: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      ports: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        web: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          containerPort: 3000
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    connections: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      mongodb: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        source: mongodb.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span&gt;      backend: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span&gt;        source: &amp;#39;http:&lt;span style=&#34;color:#75715e&#34;&gt;//backend:3000&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Re-run your app with &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_run/&#34;&gt;&lt;code&gt;rad run&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad run app.bicep
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Building .\app.bicep...
+Deploying template &amp;#39;.\app.bicep&amp;#39; for application &amp;#39;myapp&amp;#39; and environment &amp;#39;default&amp;#39; from workspace &amp;#39;default&amp;#39;...
+
+Deployment In Progress...
+
+
+Deployment Complete
+
+Resources:
+    demo            Applications.Core/containers
+    backend         Applications.Core/containers
+    mongodb         Applications.Datastores/mongoDatabases
+
+Starting log stream...
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Open &lt;a href=&#34;http://localhost:3000&#34;&gt;localhost:3000&lt;/a&gt; to interact with the demo container. You should see the container&amp;rsquo;s connections and metadata, this time with a connection to the backend container and new environment variables set:&lt;/p&gt;
+&lt;img src=&#34;demo-landing-backend.png&#34; alt=&#34;Screenshot of the demo container with a connection to the backend container&#34; width=600px&gt;
+&lt;p&gt;Note the environment variables that are set with connection information for the backend container.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;step-7-add-a-gateway&#34;&gt;Step 7: Add a gateway&lt;/h2&gt;
+&lt;p&gt;Finally, you can add a gateway to your application. Gateways are used to expose your application to the internet. They can expose a single container or multiple containers.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Add a gateway to your &lt;code&gt;app.bicep&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; gateway &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/gateways@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;gateway&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: application
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    routes: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        path: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        destination: &amp;#39;http:&lt;span style=&#34;color:#75715e&#34;&gt;//demo:3000&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Deploy your app with &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_deploy/&#34;&gt;&lt;code&gt;rad deploy&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad deploy app.bicep
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Building .\app.bicep...
+Deploying template &amp;#39;.\app.bicep&amp;#39; for application &amp;#39;myapp&amp;#39; and environment &amp;#39;default&amp;#39; from workspace &amp;#39;default&amp;#39;...
+
+Deployment In Progress...
+
+
+Deployment Complete
+
+Resources:
+    demo            Applications.Core/containers
+    backend         Applications.Core/containers
+    gateway         Applications.Core/gateways
+    mongodb         Applications.Datastores/mongoDatabases
+
+Public Endpoints:
+    gateway         Applications.Core/gateways http://localhost
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Open the gateway URL in your browser. Unlike before, you are connecting to the gateway instead of directly to the container. You will see the same container connections and metadata as before.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Done! You&amp;rsquo;ve successfully created your first Radius application.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;next-steps&#34;&gt;Next steps&lt;/h2&gt;
+&lt;p&gt;Now that you&amp;rsquo;ve created your first application, try out more &lt;a href=&#34;https://docs.radapp.io/tutorials/&#34;&gt;tutorials&lt;/a&gt; or jump into the &lt;a href=&#34;https://docs.radapp.io/guides/&#34;&gt;user guides&lt;/a&gt; to learn more about Radius.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Tutorials: Tutorial: Dapr Microservices</title>
+      <link>https://docs.radapp.io/tutorials/dapr/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/tutorials/dapr/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This tutorial will teach you the following about Dapr:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How to use Radius to deploy a Dapr microservices sample application for an online shop&lt;/li&gt;
+&lt;li&gt;How &lt;a href=&#34;https://docs.radapp.io/guides/author-apps/dapr/&#34;&gt;Dapr and Radius&lt;/a&gt; seamlessly work together&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more details on the app and access to the source code, visit the &lt;code&gt;tutorials/dapr&lt;/code&gt; directory in the &lt;a href=&#34;https://github.com/radius-project/samples&#34;&gt;samples repo&lt;/a&gt;. &lt;em&gt;For access to the radius-project GitHub org, please complete and submit &lt;a href=&#34;https://aka.ms/ProjectRadius/GitHubAccess&#34;&gt;this form&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/installation/#step-1-install-the-rad-cli&#34;&gt;rad CLI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/installation/#step-2-install-the-vs-code-extension&#34;&gt;Radius Bicep VSCode extension&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/installation/#step-3-initialize-radius&#34;&gt;Radius environment&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.dapr.io/operations/hosting/kubernetes/kubernetes-deploy/&#34;&gt;Dapr installed on your Kubernetes cluster&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;step-1-define-the-application-backend-container-and-dapr-state-store&#34;&gt;Step 1: Define the application, &lt;code&gt;backend&lt;/code&gt; container, and Dapr state store&lt;/h2&gt;
+&lt;p&gt;Begin by creating a new file named &lt;code&gt;dapr.bicep&lt;/code&gt; with a Radius Application that consists of a &lt;code&gt;backend&lt;/code&gt; container and Dapr state store with Redis:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;import radius as radius
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@&lt;span style=&#34;color:#a6e22e&#34;&gt;description&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Specifies the environment for resources.&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;param&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; app &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/applications@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;dapr&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// The backend container that is connected to the Dapr state store&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; backend &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/containers@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;backend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    container: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// This image is where the app&amp;#39;s backend code lives&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      image: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;radius.azurecr.io/samples/dapr-backend:latest&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      ports: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        orders: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          containerPort: 3000
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    connections: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      orders: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        source: stateStore.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    extensions: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;daprSidecar&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        appId: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;backend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        appPort: 3000
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// The Dapr state store that is connected to the backend container&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; stateStore &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Dapr/stateStores@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;statestore&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// Provision Redis Dapr state store automatically via the default Radius Recipe&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id=&#34;step-2-deploy-the-backend-application&#34;&gt;Step 2: Deploy the &lt;code&gt;backend&lt;/code&gt; application&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Deploy the application&amp;rsquo;s &lt;code&gt;backend&lt;/code&gt; container and Dapr state store:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad run dapr.bicep
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You can confirm all the resources were deployed by looking for &lt;code&gt;dapr&lt;/code&gt;, &lt;code&gt;backend&lt;/code&gt;, and &lt;code&gt;statestore&lt;/code&gt; resources in the console logs:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Deployment Complete
+
+Resources:
+ dapr            Applications.Core/applications
+ backend         Applications.Core/containers
+ statestore      Applications.Dapr/stateStores
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The &lt;code&gt;rad run&lt;/code&gt; command automatically sets up port forwarding. Visit the the URL &lt;a href=&#34;http://localhost:3000/order&#34;&gt;http://localhost:3000/order&lt;/a&gt; in your browser. You should see the following message, which confirms the container is able to communicate with the state store:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{&amp;#34;message&amp;#34;:&amp;#34;no orders yet&amp;#34;}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Press CTRL+C to terminate the port-forward.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A &lt;a href=&#34;https://docs.radapp.io/guides/recipes/overview/&#34;&gt;local-dev Recipe&lt;/a&gt; was run during application deployment to automatically create a lightweight Redis container plus a Dapr component configuration. Confirm that the Dapr Redis statestore was successfully created:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;dapr components -k -A
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see the following output:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;NAMESPACE      NAME         TYPE          VERSION  SCOPES  CREATED               AGE  
+default-dapr   statestore   state.redis   v1               2023-07-21 16:04.27   21m  
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;step-3-define-the-frontend-container&#34;&gt;Step 3: Define the &lt;code&gt;frontend&lt;/code&gt; container&lt;/h2&gt;
+&lt;p&gt;Add a &lt;code&gt;frontend&lt;/code&gt; &lt;a href=&#34;https://docs.radapp.io/guides/author-apps/containers/&#34;&gt;container&lt;/a&gt; which will serve as the application&amp;rsquo;s user interface.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// The frontend container that serves the application UI&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; frontend &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/containers@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;frontend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    container: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// This image is where the app&amp;#39;s frontend code lives&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      image: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;radius.azurecr.io/samples/dapr-frontend:latest&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      env: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// An environment variable to tell the frontend container where to find the backend&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        CONNECTION_BACKEND_APPID: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;backend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// The frontend container exposes port 8080, which is used to serve the UI&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      ports: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ui: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          containerPort: 8080
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// The extension to configure Dapr on the container, which is used to invoke the backend&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    extensions: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        kind: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;daprSidecar&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        appId: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;frontend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id=&#34;step-4-deploy-and-run-the-frontend-application&#34;&gt;Step 4. Deploy and run the &lt;code&gt;frontend&lt;/code&gt; application&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Use Radius to deploy and run the application with a single command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad run dapr.bicep
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Your console should output a series of deployment logs, which you may check to confirm the &lt;code&gt;frontend&lt;/code&gt; container was successfully deployed:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Deployment Complete
+
+Resources:
+   dapr            Applications.Core/applications
+   backend         Applications.Core/containers
+   frontend        Applications.Core/containers
+   statestore      Applications.Dapr/stateStores
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;step-5-test-your-application&#34;&gt;Step 5. Test your application&lt;/h2&gt;
+&lt;p&gt;In your browser, navigate to the endpoint (e.g. &lt;a href=&#34;http://localhost:8080&#34;&gt;http://localhost:8080&lt;/a&gt;) to view and interact with your application:&lt;/p&gt;
+   &lt;img src=&#34;frontend.png&#34; alt=&#34;Screenshot of frontend application&#34; width=500 &gt;
+&lt;h2 id=&#34;cleanup&#34;&gt;Cleanup&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Press CTRL+C to terminate the &lt;code&gt;rad run&lt;/code&gt; log console&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Run &lt;code&gt;rad app delete&lt;/code&gt; to cleanup your Radius Application, containers, and Dapr statestore. The Recipe resources (&lt;em&gt;Redis container and Dapr component&lt;/em&gt;) are also automatically cleaned up.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad app delete -a dapr
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;next-steps&#34;&gt;Next steps&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Related links for Dapr:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.dapr.io/&#34;&gt;Dapr documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dapr/quickstarts/tree/v1.0.0/hello-world&#34;&gt;Dapr quickstarts&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If you&amp;rsquo;d like to try another tutorial with your existing environment, go back to the &lt;a href=&#34;https://docs.radapp.io/tutorials/&#34;&gt;Radius tutorials&lt;/a&gt; page.&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Tutorials: Tutorial: Deploy Recipes in your Radius Application</title>
+      <link>https://docs.radapp.io/tutorials/recipes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/tutorials/recipes/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This tutorial will teach you the following about Recipes&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How to use “dev” Recipes in your Radius Environment to quickly run with containerized infrastructure.&lt;/li&gt;
+&lt;li&gt;How to deploy your own Recipes in your Radius Environment to leverage Azure/AWS resources.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;recipes-overview&#34;&gt;Recipes overview&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.radapp.io/guides/recipes/overview/&#34;&gt;Recipes&lt;/a&gt; enable a separation of concerns between infrastructure teams and developers by automating infrastructure deployment. Developers define &lt;em&gt;what&lt;/em&gt; they need (&lt;em&gt;Redis, Mongo, etc.&lt;/em&gt;), and operators define &lt;em&gt;how&lt;/em&gt; it will be deployed (&lt;em&gt;Azure/AWS/Kubernetes infrastructure&lt;/em&gt;).&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+&lt;a class=&#34;btn  btn-primary&#34; href=&#34;https://docs.radapp.io/guides/recipes/overview/&#34; role=&#34;button&#34;target=&#34;_blank&#34;&gt;Learn more about Recipes here&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;h2 id=&#34;application-overview&#34;&gt;Application overview&lt;/h2&gt;
+&lt;p&gt;This application is a simple to-do list which stores and visualizes to-do items. It consists of a frontend &lt;a href=&#34;https://docs.radapp.io/guides/author-apps/containers/&#34;&gt;container&lt;/a&gt; and a backend &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/cache/redis/&#34;&gt;Redis Cache&lt;/a&gt;.&lt;/p&gt;
+&lt;img src=&#34;recipe-tutorial-diagram.png&#34; alt=&#34;Screenshot of the todoapp with Kubernetes, Azure and AWS Redis Cache options&#34; style=&#34;width:500px&#34; &gt;
+
+
+&lt;div class=&#34;alert alert-info&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;💡 Portable resources&lt;/h4&gt;
+
+    Developers don&amp;rsquo;t need to specify what cloud resources they&amp;rsquo;re using in their application. Instead, they choose the portable Redis API which can be provided by any cloud provider (or a Docker container). When deployed, a Recipe will select what infrastructure to deploy and run.
+
+&lt;/div&gt;
+
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/installation/#step-1-install-the-rad-cli&#34;&gt;rad CLI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/installation/#step-2-install-the-vs-code-extension&#34;&gt;Radius Bicep VSCode extension&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/guides/operations/kubernetes/overview/#supported-clusters&#34;&gt;Setup a supported Kubernetes cluster&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;step-1-initialize-a-radius-environment&#34;&gt;Step 1: Initialize a Radius Environment&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Begin in a new directory for your application:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mkdir recipes
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd recipes
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Initialize a new dev environment:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad init
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Select &amp;lsquo;Yes&amp;rsquo; when prompted to create an application.&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_recipe_list/&#34;&gt;&lt;code&gt;rad recipe list&lt;/code&gt;&lt;/a&gt; to view the Recipes in your environment:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad recipe list 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see a table of available Recipes:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;NAME      TYPE                                    TEMPLATE KIND  TEMPLATE VERSION  TEMPLATE
+default   Applications.Datastores/sqlDatabases    bicep                            radius.azurecr.io/recipes/local-dev/sqldatabases:latest
+default   Applications.Messaging/rabbitMQQueues   bicep                            radius.azurecr.io/recipes/local-dev/rabbitmqqueues:latest
+default   Applications.Dapr/pubSubBrokers         bicep                            radius.azurecr.io/recipes/local-dev/pubsubbrokers:latest
+default   Applications.Dapr/secretStores          bicep                            radius.azurecr.io/recipes/local-dev/secretstores:latest
+default   Applications.Dapr/stateStores           bicep                            radius.azurecr.io/recipes/local-dev/statestores:latest
+default   Applications.Datastores/mongoDatabases  bicep                            radius.azurecr.io/recipes/local-dev/mongodatabases:latest
+default   Applications.Datastores/redisCaches     bicep                            radius.azurecr.io/recipes/local-dev/rediscaches:latest
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;div class=&#34;alert alert-info&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;💡 local-dev Recipes&lt;/h4&gt;
+
+    &lt;p&gt;Development environments are preloaded with &lt;a href=&#34;https://docs.radapp.io/guides/recipes/overview/#use-community-dev-recipes&#34;&gt;local-dev Recipes&lt;/a&gt;, a set of Recipes that allow you to quickly get up and running with lightweight containerized infrastructure. In this how-to guide, the local-dev Recipe for Redis deploys a lightweight Redis container into your Kubernetes cluster.&lt;/p&gt;
+&lt;p&gt;When a Recipe is named &amp;ldquo;default&amp;rdquo; it will be used by default when deploying resources when a Recipe is not specified.&lt;/p&gt;
+
+
+&lt;/div&gt;
+
+&lt;h2 id=&#34;step-2-define-your-application&#34;&gt;Step 2: Define your application&lt;/h2&gt;
+&lt;p&gt;Update &lt;code&gt;app.bicep&lt;/code&gt; with the following set of resources:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;app.bicep was created automatically when you ran &lt;code&gt;rad init&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;import radius as radius
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@&lt;span style=&#34;color:#a6e22e&#34;&gt;description&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;The ID of your Radius Environment. Automatically injected by the rad CLI.&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;param&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@&lt;span style=&#34;color:#a6e22e&#34;&gt;description&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;The ID of your Radius Application. Automatically injected by the rad CLI.&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;param&lt;/span&gt; application &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; frontend &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Core/containers@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;frontend&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: application
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    container: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      image: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;radius.azurecr.io/samples/demo:latest&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    connections: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// Define a connection to the redis container&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// Automatically injects conneciton information into the container&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      redis: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        source: db.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; db &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Datastores/redisCaches@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;db&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: application
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// recipe is not specified, so it uses &amp;#39;default&amp;#39; if present&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Note that no Recipe name is specified with &amp;lsquo;db&amp;rsquo;, so it will be using the default Recipe in your environment.&lt;/p&gt;
+&lt;h2 id=&#34;step-3-deploy-your-application&#34;&gt;Step 3: Deploy your application&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Run &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_deploy/&#34;&gt;&lt;code&gt;rad deploy&lt;/code&gt;&lt;/a&gt; to deploy your application:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad deploy ./app.bicep
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see the following output:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Building app.bicep...
+Deploying template &amp;#39;./app.bicep&amp;#39; for application &amp;#39;recipes&amp;#39; and environment &amp;#39;default&amp;#39; from workspace &amp;#39;default&amp;#39;...
+
+Deployment In Progress...
+
+Completed            db              Applications.Datastores/redisCaches
+Completed            webapp          Applications.Core/applications
+Completed            frontend        Applications.Core/containers
+
+Deployment Complete
+
+Resources:
+   webapp          Applications.Core/applications
+   frontend        Applications.Core/containers
+   db              Applications.Datastores/redisCaches
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Your application is now deployed and running in your Kubernetes cluster.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;List your Kubernetes Pods to see the infrastructure container deployed by the Recipe:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl get pods -n default-recipes
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You will see your &amp;lsquo;frontend&amp;rsquo; container, along with the Redis cache that was automatically created by the default local-dev Recipe:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;NAME                                   READY   STATUS    RESTARTS   AGE
+frontend-6d447f5994-pnmzv              1/1     Running   0          13m
+redis-ymbjcqyjzwkpg-66fdbf8bb6-brb6q   2/2     Running   0          13m
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Port-forward the container to your machine with &lt;code&gt;rad resource expose&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad resource expose containers frontend --port &lt;span style=&#34;color:#ae81ff&#34;&gt;3000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Visit &lt;a href=&#34;http://localhost:3000&#34;&gt;&lt;code&gt;http://localhost:3000&lt;/code&gt;&lt;/a&gt; in your browser.&lt;/p&gt;
+&lt;p&gt;You can now see both the environment variables of your container under Radius Connections as well as interact with the &lt;code&gt;Todo App&lt;/code&gt; and add/remove items in it as wanted:&lt;/p&gt;
+&lt;img src=&#34;todoapp.png&#34; width=&#34;700px&#34; alt=&#34;screenshot of the todo application&#34;&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;step-4-use-azureaws-recipes-in-your-application&#34;&gt;Step 4: Use Azure/AWS recipes in your application&lt;/h2&gt;
+&lt;p&gt;This step requires an Azure subscription or an AWS account to deploy cloud resources, which will incur costs. You will need to add the &lt;a href=&#34;https://docs.radapp.io/guides/operations/providers/&#34;&gt;Azure/AWS cloud provider&lt;/a&gt; to your environment in order to deploy Azure/AWS resources and leverage Azure Recipes.&lt;/p&gt;
+&lt;ul class=&#34;nav nav-tabs&#34; id=&#34;tabs-13&#34; role=&#34;tablist&#34;&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link active&#34;
+    id=&#34;tabs-13-azure-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-13-azure&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-13-azure&#34; aria-selected=&#34;true&#34;&gt;
+    Azure
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link&#34;
+    id=&#34;tabs-13-aws-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-13-aws&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-13-aws&#34; aria-selected=&#34;false&#34;&gt;
+    AWS
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;/ul&gt;
+
+
+&lt;div class=&#34;tab-content&#34; id=&#34;tabs-13-content&#34;&gt;
+
+
+&lt;div class=&#34;tab-pane fade show active&#34; id=&#34;tabs-13-azure&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-13-azure-tab&#34;&gt;
+&lt;br /&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Delete your existing Redis cache, which we will redeploy with an Azure resource:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad resource delete rediscaches db
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Manually add the Azure cloud provider to your Radius Environment&lt;/p&gt;
+&lt;p&gt;Follow the steps &lt;a href=&#34;https://docs.radapp.io/guides/operations/providers/howto-azure-provider/#manual-configuration&#34;&gt;here&lt;/a&gt; to add the Azure cloud provider to your existing environment.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Register the Recipe to your Radius Environment:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad recipe register azure --environment default --template-kind bicep --template-path radius.azurecr.io/recipes/azure/rediscaches:latest --resource-type Applications.Datastores/redisCaches 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Update your db resource to use the &lt;code&gt;azure&lt;/code&gt; Recipe, instead of the default Recipe:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; db &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Datastores/redisCaches@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;db&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: application
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    recipe: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// Name a specific recipe to use&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;azure&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Redeploy your application to your environment:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad deploy ./app.bicep 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This operation may take some time, as the &amp;lsquo;azure&amp;rsquo; Recipe is deploying an Azure Cache for Redis resource into your Azure subscription. Once complete, you should see:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Building ./app.bicep...
+Deploying template &amp;#39;./app.bicep&amp;#39; for application &amp;#39;recipes&amp;#39; and environment &amp;#39;default&amp;#39; from workspace &amp;#39;default&amp;#39;...
+
+Deployment In Progress... 
+
+Completed            webapp          Applications.Core/applications
+Completed            db              Applications.Datastores/redisCaches
+Completed            frontend        Applications.Core/containers
+
+Deployment Complete
+
+Resources:
+   webapp          Applications.Core/applications
+   frontend        Applications.Core/containers
+   db              Applications.Datastores/redisCaches
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use the az CLI to see your newly deployed Azure Cache for Redis:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;az redis list --subscription &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;My Subscription&amp;#34;&lt;/span&gt; --query &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;[].name&amp;#34;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see the name of your Redis cache, which is prefixed &lt;code&gt;cache&lt;/code&gt;:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[
+  &amp;#34;cache-goqoxgqkw2ogw&amp;#34;
+]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Port-forward the container to your machine with &lt;code&gt;rad resource expose&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad resource expose containers frontend --port &lt;span style=&#34;color:#ae81ff&#34;&gt;3000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Visit &lt;a href=&#34;http://localhost:3000&#34;&gt;&lt;code&gt;http://localhost:3000&lt;/code&gt;&lt;/a&gt; in your browser.&lt;/p&gt;
+&lt;p&gt;You can now see environment variables of your container under Radius Connections updated with the details of the Azure Cache for Redis and the Todo app now uses the Azure cache for Redis as the data store&lt;/p&gt;
+&lt;img src=&#34;todoapp.png&#34; width=&#34;700px&#34; alt=&#34;screenshot of the todo application&#34;&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+&lt;div class=&#34;tab-pane fade&#34; id=&#34;tabs-13-aws&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-13-aws-tab&#34;&gt;
+&lt;br /&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;You can run this only on an EKS cluster. Make sure that the each of the Subnets in your EKS cluster Subnet Group are within the &lt;a href=&#34;https://docs.aws.amazon.com/memorydb/latest/devguide/subnetgroups.html&#34;&gt;list of supported MemoryDB availability zones&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Delete your existing Redis cache, which we will redeploy with an AWS resource:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad resource delete rediscaches db
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Manually add the AWS cloud provider to your Radius Environment&lt;/p&gt;
+&lt;p&gt;Follow the steps &lt;a href=&#34;https://docs.radapp.io/guides/operations/providers/howto-aws-provider/#manual-configuration&#34;&gt;here&lt;/a&gt; to add the AWS cloud provider to your existing environment&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Register the Recipe to your Radius Environment:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad recipe register aws --environment default --template-kind bicep --template-path radius.azurecr.io/recipes/aws/rediscaches:latest --resource-type Applications.Datastores/redisCaches --parameters eksClusterName&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&amp;lt;EKS_CLUSTERNAME&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;Note: Passing the &lt;code&gt;eksClusterName&lt;/code&gt; during the registration of the Recipe is a temporary additional step as Radius builds up AWS support.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Update your db resource to use the &lt;code&gt;aws&lt;/code&gt; Recipe, instead of the default Recipe:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; db &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Datastores/redisCaches@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;db&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: application
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    recipe: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// Name a specific recipe to use&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;aws&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Update the recipe name to &lt;code&gt;aws&lt;/code&gt; to use the Amazon MemoryDB for Redis.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Deploy your application to your environment:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad deploy ./app.bicep 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This operation may take some time, as the ‘aws’ Recipe is deploying an AWS MemoryDB for Redis resource in your AWS account. Once complete, you should see:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Building ./app.bicep...
+Deploying template &amp;#39;./app.bicep&amp;#39; for application &amp;#39;recipes&amp;#39; and environment &amp;#39;default&amp;#39; from workspace &amp;#39;default&amp;#39;...
+
+Deployment In Progress... 
+
+Completed            webapp          Applications.Core/applications
+Completed            db              Applications.Link/redisCaches
+Completed            frontend        Applications.Core/containers
+
+Deployment Complete
+
+Resources:
+   webapp          Applications.Core/applications
+   frontend        Applications.Core/containers
+   db              Applications.Link/redisCaches
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Port-forward the container to your machine with &lt;code&gt;rad resource expose&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad resource expose containers frontend --port &lt;span style=&#34;color:#ae81ff&#34;&gt;3000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Visit &lt;a href=&#34;http://localhost:3000&#34;&gt;&lt;code&gt;http://localhost:3000&lt;/code&gt;&lt;/a&gt; in your browser.&lt;/p&gt;
+&lt;p&gt;You can now see environment variables of your container under Radius Connections updated with the details of the Amazon Memory Db for Redis and the Todo app now uses the Amazon Memory Db for Redis as the data store&lt;/p&gt;
+&lt;img src=&#34;todoapp.png&#34; width=&#34;700px&#34; alt=&#34;screenshot of the todo application&#34;&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+
+&lt;/div&gt;
+&lt;h2 id=&#34;step-5-cleanup-your-environment&#34;&gt;Step 5: Cleanup your environment&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;You can use the rad CLI to &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_env_delete/&#34;&gt;delete your environment&lt;/a&gt; and all the  Radius resources running on your cluster:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad env delete default --yes
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;next-steps&#34;&gt;Next steps&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;To learn how to create your own custom Recipe visit our &lt;a href=&#34;https://docs.radapp.io/guides/recipes/howto-author-recipes/&#34;&gt;administrator guide&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Tutorials: Tutorial: eShop on containers</title>
+      <link>https://docs.radapp.io/tutorials/eshop/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/tutorials/eshop/</guid>
+      <description>
+        
+        
+        
+
+&lt;div class=&#34;alert alert-info&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Preview&lt;/h4&gt;
+
+    The following sample is a preview of how eShop can be deployed with Radius. As we introduce additional features to Radius we will incorporate them into this tutorial. In the meantime, there are some rough edges we have temporary workarounds for.
+
+&lt;/div&gt;
+
+&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
+&lt;p&gt;The &lt;a href=&#34;https://github.com/dotnet-architecture/eShopOnContainers&#34;&gt;eShop on Containers&lt;/a&gt; reference application is a sample .NET Core microservices application. It contains 15 services plus additional containers or cloud services for infrastructure such as SQL, Redis, Mongo, and either RabbitMQ or Service Bus.&lt;/p&gt;
+&lt;h3 id=&#34;architecture&#34;&gt;Architecture&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;architecture.png&#34; alt=&#34;Architecture diagram of eShop on containers&#34; width=900 &gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;eShop on Containers uses a microservice oriented architecture implementation with multiple autonomous microservices (each one owning its own data/db) and implementing different approaches within each microservice (simple CRUD vs. DDD/CQRS patterns). The application uses HTTP as the communication protocol between the client apps and the microservices and supports asynchronous communication for data updates propagation across multiple services based on Integration Events and an Event Bus.&lt;/p&gt;
+&lt;h3 id=&#34;deployment-today&#34;&gt;Deployment today&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/dotnet-architecture/eShopOnContainers/tree/dev/deploy/k8s&#34;&gt;Deploying eShop without Radius&lt;/a&gt; requires deploying a cluster and the backing infrastructure, configuring multiple CLIs and tools, running deployment scripts, and manually copying/pasting credentials and endpoints.&lt;/p&gt;
+&lt;p&gt;eShop provides instructions to &lt;a href=&#34;https://github.com/dotnet-architecture/eShopOnContainers/wiki/Deploying-Azure-resources&#34;&gt;deploy to Azure&lt;/a&gt; or to &lt;a href=&#34;https://github.com/dotnet-architecture/eShopOnContainers/wiki/Deploy-to-Azure-Kubernetes-Service-(AKS)&#34;&gt;deploy to an AKS cluster&lt;/a&gt; (and even to &lt;a href=&#34;https://github.com/Azure/bicep/tree/main/docs/examples/101/aks&#34;&gt;deploy to AKS using ARM/Bicep templates&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Once the cluster and infrastructure resources are deployed, you can &lt;a href=&#34;https://github.com/dotnet-architecture/eShopOnContainers/wiki/Deploy-to-Azure-Kubernetes-Service-(AKS)#install-eshoponcontainers-using-helm&#34;&gt;deploy the eShop application using Helm charts and PowerShell&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;adding-radius&#34;&gt;Adding Radius&lt;/h2&gt;
+&lt;p&gt;Adding Radius to the eShop on containers application allows teams to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Define the entire collection of microservices and backing infrastructure as a single application&lt;/li&gt;
+&lt;li&gt;Easily manage configuration and credentials between infrastructure and services, all within the app model&lt;/li&gt;
+&lt;li&gt;Simplify deployment with Bicep and Azure Resource Manager (ARM)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+
+
+
+
+
+&lt;a class=&#34;btn btn-lg btn-success&#34; href=&#34;https://github.com/radius-project/samples/tree/v0.26/samples/eshop&#34; role=&#34;button&#34;&gt;View eShop sample&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;p&gt;&lt;em&gt;Visit the &lt;a href=&#34;https://docs.radapp.io/community/contributing/github/&#34;&gt;GitHub docs&lt;/a&gt; if you need access to the organization&lt;/em&gt;&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

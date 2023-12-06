@@ -1,0 +1,214 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Radius Docs – metrics</title>
+    <link>https://docs.radapp.io/tags/metrics/</link>
+    <description>Recent content in metrics on Radius Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	  <atom:link href="https://docs.radapp.io/tags/metrics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Guides: How-To: Collect metrics with Prometheus</title>
+      <link>https://docs.radapp.io/guides/operations/control-plane/metrics/prometheus/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/guides/operations/control-plane/metrics/prometheus/</guid>
+      <description>
+        
+        
+        &lt;p&gt;&lt;a href=&#34;https://prometheus.io/&#34;&gt;Prometheus&lt;/a&gt; collects and stores metrics as time series data. This guide will show you how to collect Radius control plane metrics to then be visualized and queried.&lt;/p&gt;
+&lt;h2 id=&#34;install-prometheus-on-kubernetes&#34;&gt;Install Prometheus on Kubernetes&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Make sure you have the following pre-requisites:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/guides/operations/kubernetes/overview/#supported-clusters&#34;&gt;Supported Kubernetes cluster&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/&#34;&gt;kubectl&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://helm.sh/&#34;&gt;Helm 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/guides/operations/kubernetes/install/&#34;&gt;Radius control plane installed&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create a namespace that can be used to deploy the Grafana and Prometheus monitoring tools:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl create namespace radius-monitoring
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Install Prometheus into your monitoring namespace:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;helm repo update
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;helm install radius-prom prometheus-community/prometheus -n radius-monitoring
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you are Minikube user or want to disable persistent volume for development purposes, you can disable it by using the following command.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;helm install radius-prom prometheus-community/prometheus -n radius-monitoring --set alertmanager.persistentVolume.enable&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;false --set pushgateway.persistentVolume.enabled&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;false --set server.persistentVolume.enabled&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;false
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Validate your Prometheus installation:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl get pods -n radius-monitoring
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see something similar to the following:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;NAME                                                  READY   STATUS    RESTARTS   AGE
+radius-prom-kube-state-metrics-9849d6cc6-t94p8        1/1     Running   0          4m58s
+radius-prom-prometheus-alertmanager-749cc46f6-9b5t8   2/2     Running   0          4m58s
+radius-prom-prometheus-node-exporter-5jh8p            1/1     Running   0          4m58s
+radius-prom-prometheus-node-exporter-88gbg            1/1     Running   0          4m58s
+radius-prom-prometheus-node-exporter-bjp9f            1/1     Running   0          4m58s
+radius-prom-prometheus-pushgateway-688665d597-h4xx2   1/1     Running   0          4m58s
+radius-prom-prometheus-server-694fd8d7c-q5d59         2/2     Running   0          4m58s
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Done! Prometheus is now installed and ready to collect metrics from the Radius control plane.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;next-step-add-a-grafana-dashboard&#34;&gt;Next step: Add a Grafana dashboard&lt;/h2&gt;
+&lt;p&gt;Now that you have Prometheus installed, you can visualize the metrics using Grafana. Follow the &lt;a href=&#34;https://docs.radapp.io/guides/operations/control-plane/metrics/grafana/&#34;&gt;Grafana installation guide&lt;/a&gt; to get up and running with a Grafana dashboard.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+&lt;a class=&#34;btn  btn-primary&#34; href=&#34;https://docs.radapp.io/guides/operations/control-plane/metrics/grafana/&#34; role=&#34;button&#34;&gt;Next: Add a Grafana dashboard&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;h2 id=&#34;further-reading&#34;&gt;Further reading&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/prometheus-community/helm-charts&#34;&gt;Prometheus Installation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://prometheus.io/docs/prometheus/latest/querying/basics/&#34;&gt;Prometheus Query Language&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Guides: How-To: Observe metrics with Grafana</title>
+      <link>https://docs.radapp.io/guides/operations/control-plane/metrics/grafana/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/guides/operations/control-plane/metrics/grafana/</guid>
+      <description>
+        
+        
+        &lt;p&gt;&lt;a href=&#34;https://grafana.com/&#34;&gt;Grafana&lt;/a&gt; is an open source visualization and analytics tool that allows you to query, visualize, alert on, and explore your metrics. This guide will show you how to install Grafana and configure it to visualize the Radius control plane metrics from Prometheus.&lt;/p&gt;
+&lt;h2 id=&#34;example-dashboards&#34;&gt;Example dashboards&lt;/h2&gt;
+&lt;p&gt;There are two example dashboards that you can import into Grafana to quickly get started visualizing your metrics and then customize them to meet your needs.&lt;/p&gt;
+&lt;h3 id=&#34;control-plane-overview&#34;&gt;Control plane overview&lt;/h3&gt;
+&lt;p&gt;The &lt;a href=&#34;https://raw.githubusercontent.com/radius-project/radius/main/grafana/radius-overview-dashboard.json&#34;&gt;radius-overview-dashboard.json&lt;/a&gt; template shows Radius and Deployment Engine statuses, including runtime, and server-side health:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;radius-overview-1.png&#34; alt=&#34;1st screenshot of the Radius Overview Dashboard&#34; width=1200&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;radius-overview-2.png&#34; alt=&#34;2nd screenshot of the Radius Overview Dashboard&#34; width=1200&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;resource-provider-overview&#34;&gt;Resource provider overview&lt;/h3&gt;
+&lt;p&gt;The &lt;a href=&#34;https://raw.githubusercontent.com/radius-project/radius/main/grafana/radius-resource-provider-dashboard.json&#34;&gt;radius-resource-provider-dashboard.json&lt;/a&gt; template shows Radius Resource Provider status, including runtime, server-side, and operations health:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;radius-resource-provider-1.png&#34; alt=&#34;1st screenshot of the Radius Resource Provider Dashboard&#34; width=1200&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;radius-resource-provider-2.png&#34; alt=&#34;2nd screenshot of the Radius Resource Provider Dashboard&#34; width=1200&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;setup-on-kubernetes&#34;&gt;Setup on Kubernetes&lt;/h2&gt;
+&lt;h3 id=&#34;pre-requisites&#34;&gt;Pre-requisites&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.radapp.io/guides/operations/control-plane/metrics/prometheus/&#34;&gt;Setup Prometheus&lt;/a&gt; on your Kubernetes cluster&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://helm.sh/&#34;&gt;Helm 3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;install-grafana&#34;&gt;Install Grafana&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Add the Grafana Helm repo:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;helm repo add grafana https://grafana.github.io/helm-charts
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;helm repo update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Install the chart:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;helm install grafana grafana/grafana -n radius-monitoring
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you are Minikube user or want to disable persistent volume for development purpose, you can disable it by using the following command instead:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;helm install grafana grafana/grafana -n radius-monitoring --set persistence.enabled&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;false
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Retrieve the admin password for Grafana login:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl get secret --namespace radius-monitoring grafana -o jsonpath&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{.data.admin-password}&amp;#34;&lt;/span&gt; | base64 --decode ; echo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You will get a password similar to &lt;code&gt;cj3m0OfBNx8SLzUlTx91dEECgzRlYJb60D2evof1%&lt;/code&gt;. Remove the &lt;code&gt;%&lt;/code&gt; character from the password to get &lt;code&gt;cj3m0OfBNx8SLzUlTx91dEECgzRlYJb60D2evof1&lt;/code&gt; as the admin password.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Validate that Grafana is running in your cluster:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl get pods -n radius-monitoring
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see something similar to the following:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;NAME                        READY   STATUS       RESTARTS   AGE
+grafana-c49889cff-x56vj     1/1     Running      0          5m10s
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;configure-prometheus-as-data-source&#34;&gt;Configure Prometheus as data source&lt;/h3&gt;
+&lt;p&gt;Now that Grafana is installed, you need to configure it to use Prometheus as a data source.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Port-forward to your Grafana service:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl port-forward svc/grafana 8080:80 -n radius-monitoring
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Open a browser to &lt;a href=&#34;http://localhost:8080&#34;&gt;&lt;code&gt;http://localhost:8080&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Login to Grafana&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Username: &lt;code&gt;admin&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Password: Password from above&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Select &lt;code&gt;Configuration&lt;/code&gt; and &lt;code&gt;Data Sources&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add Prometheus as a data source.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Get your Prometheus HTTP URL:&lt;/p&gt;
+&lt;p&gt;The Prometheus HTTP URL follows the format &lt;code&gt;http://&amp;lt;prometheus service endpoint&amp;gt;.&amp;lt;namespace&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Start by getting the Prometheus server endpoint by running the following command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl get svc -n radius-monitoring
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see something similar to the following:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;NAME                                     TYPE        CLUSTER-IP        EXTERNAL-IP   PORT(S)             AGE
+radius-prom-kube-state-metrics           ClusterIP   10.0.174.177      &amp;lt;none&amp;gt;        8080/TCP            7d9h
+radius-prom-prometheus-alertmanager      ClusterIP   10.0.255.199      &amp;lt;none&amp;gt;        80/TCP              7d9h
+radius-prom-prometheus-node-exporter     ClusterIP   None              &amp;lt;none&amp;gt;        9100/TCP            7d9h
+radius-prom-prometheus-pushgateway       ClusterIP   10.0.190.59       &amp;lt;none&amp;gt;        9091/TCP            7d9h
+radius-prom-prometheus-server            ClusterIP   10.0.172.191      &amp;lt;none&amp;gt;        80/TCP              7d9h
+grafana                                  ClusterIP   10.0.15.229       &amp;lt;none&amp;gt;        80/TCP              5d5h
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In this example the server name is &lt;code&gt;radius-prom-prometheus-server&lt;/code&gt; and the namespace is &lt;code&gt;radius-monitoring&lt;/code&gt;, so the HTTP URL will be &lt;code&gt;http://radius-prom-prometheus-server.radius-monitoring&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Fill in the following settings:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Name: &lt;code&gt;Radius&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;HTTP URL: &lt;code&gt;http://radius-prom-prometheus-server.radius-monitoring&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Default: On&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Click &lt;code&gt;Save &amp;amp; Test&lt;/code&gt; button to verify that the connection succeeded.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;import-dashboards-in-grafana&#34;&gt;Import dashboards in Grafana&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Download the Grafana dashboard templates:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://raw.githubusercontent.com/radius-project/radius/main/grafana/radius-overview-dashboard.json&#34;&gt;radius-overview-dashboard.json&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://raw.githubusercontent.com/radius-project/radius/main/grafana/radius-resource-provider-dashboard.json&#34;&gt;radius-resource-provider-dashboard.json&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;In the upper left corner of the Grafana home screen, click the &amp;ldquo;+&amp;rdquo; option, then &amp;ldquo;Import&amp;rdquo;, and select your templates.&lt;/li&gt;
+&lt;li&gt;Select the dashboard that you imported and enjoy!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/prometheus-community/helm-charts&#34;&gt;Prometheus Installation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/coreos/kube-prometheus&#34;&gt;Prometheus on Kubernetes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://prometheus.io/docs/prometheus/latest/querying/basics/&#34;&gt;Prometheus Query Language&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

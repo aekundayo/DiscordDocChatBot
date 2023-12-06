@@ -1,0 +1,150 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Radius Docs – tracing</title>
+    <link>https://docs.radapp.io/tags/tracing/</link>
+    <description>Recent content in tracing on Radius Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	  <atom:link href="https://docs.radapp.io/tags/tracing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Guides: How-To: Set up Jaeger for distributed tracing</title>
+      <link>https://docs.radapp.io/guides/operations/control-plane/traces/jaeger/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/guides/operations/control-plane/traces/jaeger/</guid>
+      <description>
+        
+        
+        &lt;p&gt;&lt;a href=&#34;https://www.jaegertracing.io/&#34;&gt;Jaeger&lt;/a&gt; is an open source distributed tracing system. It helps gather timing data needed to troubleshoot latency problems in microservice architectures. It manages both the collection and lookup of this data.&lt;/p&gt;
+&lt;p&gt;The following steps show you how to configure the Radius control plane to send distributed tracing data to Jaeger running as a container in your Kubernetes cluster and how to view the data.&lt;/p&gt;
+&lt;h2 id=&#34;pre-requisites&#34;&gt;Pre-requisites&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/&#34;&gt;kubectl CLI&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;step-1-install-jaeger-on-kubernetes&#34;&gt;Step 1: Install Jaeger on Kubernetes&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Create the namespace &lt;code&gt;radius-monitoring&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl create namespace radius-monitoring
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create the file &lt;code&gt;jaeger.yaml&lt;/code&gt;, and paste the following YAML:&lt;/p&gt;
+
+   
+   
+   
+   
+   
+   
+   
+   
+   &lt;a class=&#34;btn  btn-primary&#34; href=&#34;jaeger.yaml&#34; role=&#34;button&#34;&gt;Download jaeger.yaml&lt;/a&gt;&lt;br /&gt;
+   &lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Install Jaeger:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl apply -f jaeger.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Wait for Jaeger to be up and running&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl wait deploy --selector app&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;jaeger --for&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;condition&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;available -n radius-monitoring
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;step-2-configure-radius-control-plane&#34;&gt;Step 2: Configure Radius control plane&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Install the Radius control plane with your Zipkin endpoint set to your Jaeger collector endpoint using &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_install_kubernetes/&#34;&gt;&lt;code&gt;rad install kubernetes&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad install kubernetes --set  global.zipkin.url&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;http://jaeger-collector.radius-monitoring.svc.cluster.local:9411/api/v2/spans
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;code&gt;http://jaeger-collector.radius-monitoring.svc.cluster.local:9411/api/v2/spans&lt;/code&gt; is the default URL for Jaeger when installed using the above instructions. If you have changed the service name or namespace, use that instead.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;step-3-view-tracing-data&#34;&gt;Step 3: View Tracing Data&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Port forward the Jaeger service to your local machine:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl port-forward svc/tracing &lt;span style=&#34;color:#ae81ff&#34;&gt;16686&lt;/span&gt; -n radius-monitoring 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In your browser, go to &lt;a href=&#34;http://localhost:16686&#34;&gt;http://localhost:16686&lt;/a&gt; to see the Jaeger UI:&lt;/p&gt;
+&lt;img src=&#34;jaeger_ui.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34; &gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.jaegertracing.io/docs/1.21/getting-started/#all-in-one&#34;&gt;Jaeger Getting Started&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Guides: How-To: Set up Zipkin for distributed tracing</title>
+      <link>https://docs.radapp.io/guides/operations/control-plane/traces/zipkin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/guides/operations/control-plane/traces/zipkin/</guid>
+      <description>
+        
+        
+        &lt;p&gt;&lt;a href=&#34;https://zipkin.io/&#34;&gt;Zipkin&lt;/a&gt; is an open source distributed tracing system. It helps gather timing data needed to troubleshoot latency problems in microservice architectures. It manages both the collection and lookup of this data.&lt;/p&gt;
+&lt;p&gt;The following steps show you how to configure the &lt;a href=&#34;https://docs.radapp.io/concepts/architecture/&#34;&gt;Radius control plane&lt;/a&gt; components to send distributed tracing data to Zipkin running as a container in your Kubernetes cluster and how to view the data.&lt;/p&gt;
+&lt;h2 id=&#34;pre-requisites&#34;&gt;Pre-requisites&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/&#34;&gt;kubectl CLI&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;step-1-install-zipkin-on-kubernetes&#34;&gt;Step 1: Install Zipkin on Kubernetes&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Create the namespace &lt;code&gt;radius-monitoring&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl create namespace radius-monitoring
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Deploy the Zipkin deployment and service:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl create deployment zipkin --image openzipkin/zipkin -n radius-monitoring
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl expose deployment zipkin --type ClusterIP --port &lt;span style=&#34;color:#ae81ff&#34;&gt;9411&lt;/span&gt; -n radius-monitoring
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;step-2-configure-radius-control-plane&#34;&gt;Step 2: Configure Radius control plane&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Install the Radius control plane with your Zipkin endpoint set using &lt;a href=&#34;https://docs.radapp.io/reference/cli/rad_install_kubernetes/&#34;&gt;&lt;code&gt;rad install kubernetes&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rad install kubernetes --set  global.zipkin.url&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;http://zipkin.radius-monitoring.svc.cluster.local:9411/api/v2/spans
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;code&gt;http://zipkin.radius-monitoring.svc.cluster.local:9411/api/v2/spans&lt;/code&gt; is the default URL for Zipkin when installed using the above instructions. If you have changed the service name or namespace, use that instead.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;step-3-view-tracing-data&#34;&gt;Step 3: View Tracing Data&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Port forward the Zipkin service to your local machine:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl port-forward svc/zipkin 9411:9411 -n radius-monitoring
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In your browser, go to &lt;a href=&#34;http://localhost:9411&#34;&gt;http://localhost:9411&lt;/a&gt; to see the Zipkin UI and run a query:&lt;/p&gt;
+&lt;img src=&#34;zipkin_ui.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34; &gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Done! You can now use the Zipkin UI to view tracing data for your Radius control plane.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://zipkin.io/&#34;&gt;Zipkin for distributed tracing&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

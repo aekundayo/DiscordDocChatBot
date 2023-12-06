@@ -1,0 +1,402 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Radius Docs – Messaging</title>
+    <link>https://docs.radapp.io/reference/resource-schema/messaging/</link>
+    <description>Recent content in Messaging on Radius Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	  <atom:link href="https://docs.radapp.io/reference/resource-schema/messaging/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Reference: RabbitMQ message broker</title>
+      <link>https://docs.radapp.io/reference/resource-schema/messaging/rabbitmq/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.radapp.io/reference/resource-schema/messaging/rabbitmq/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;rabbitmq.com/MessageQueue&lt;/code&gt; resource offers a &lt;a href=&#34;https://www.rabbitmq.com/&#34;&gt;RabbitMQ message broker&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;resource-format&#34;&gt;Resource format&lt;/h2&gt;
+&lt;ul class=&#34;nav nav-tabs&#34; id=&#34;tabs-0&#34; role=&#34;tablist&#34;&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link active&#34;
+    id=&#34;tabs-0-recipe-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-0-recipe&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-0-recipe&#34; aria-selected=&#34;true&#34;&gt;
+    Recipe
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;li class=&#34;nav-item&#34;&gt;&lt;a class=&#34;nav-link&#34;
+    id=&#34;tabs-0-manual-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tabs-0-manual&#34; role=&#34;tab&#34;
+    aria-controls=&#34;tabs-0-manual&#34; aria-selected=&#34;false&#34;&gt;
+    Manual
+  &lt;/a&gt;
+  &lt;/li&gt;&lt;/ul&gt;
+
+
+&lt;div class=&#34;tab-content&#34; id=&#34;tabs-0-content&#34;&gt;
+
+
+&lt;div class=&#34;tab-pane fade show active&#34; id=&#34;tabs-0-recipe&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-0-recipe-tab&#34;&gt;
+&lt;br /&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; rabbitmq &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Messaging/rabbitmqQueues@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;rabbitmq&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    recipe: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// Name a specific Recipe to use&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;rabbit&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// Optionally set recipe parameters if needed (specific to the Recipe)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      parameters: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        queue: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;*****&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;/div&gt;
+
+&lt;div class=&#34;tab-pane fade&#34; id=&#34;tabs-0-manual&#34; role=&#34;tabpanel&#34; aria-labelled-by=&#34;tabs-0-manual-tab&#34;&gt;
+&lt;br /&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
+    
+
+    
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bicep&#34; data-lang=&#34;bicep&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;param&lt;/span&gt; rmqUsername &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@&lt;span style=&#34;color:#a6e22e&#34;&gt;secure&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;param&lt;/span&gt; rmqPassword &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;param&lt;/span&gt; rmqHost &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;param&lt;/span&gt; rmqPort &lt;span style=&#34;color:#a6e22e&#34;&gt;int&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;param&lt;/span&gt; vHost &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;resource&lt;/span&gt; rabbitmq &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Applications.Messaging/rabbitmqQueues@2023-10-01-preview&amp;#39;&lt;/span&gt; = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  name: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;rabbitmq&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  properties: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment: &lt;span style=&#34;color:#a6e22e&#34;&gt;environment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    application: app.id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    resourceProvisioning: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;manual&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    queue: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;radius-queue&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    host: rmqHost
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    port: rmqPort
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    vHost: vHost
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    username: rmqUsername
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    secrets: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      password: rmqPassword
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;/div&gt;
+
+
+&lt;/div&gt;
+&lt;h3 id=&#34;top-level&#34;&gt;Top-level&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The name of your resource.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;mongo&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;location&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The location of your resource. See &lt;a href=&#34;https://docs.radapp.io/reference/resource-schema/#common-values&#34;&gt;common values&lt;/a&gt; for more information.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;global&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#properties&#34;&gt;properties&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;Properties of the resource.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#properties&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;properties&#34;&gt;Properties&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;application&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The ID of the application resource this resource belongs to.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;app.id&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;environment&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The ID of the environment resource this resource belongs to.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;env.id&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#resource-provisioning&#34;&gt;resourceProvisioning&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Specifies how the underlying service/resource is provisioned and managed. Options are to provision automatically via &amp;lsquo;recipe&amp;rsquo; or provision manually via &amp;lsquo;manual&amp;rsquo;. Selection determines which set of fields to additionally require. Defaults to &amp;lsquo;recipe&amp;rsquo;.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;manual&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;host&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The hostname of the RabbitMQ instance.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;rabbitmq.hello.com&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;port&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The port of the RabbitMQ instance. Defaults to 5672.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;5672&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;vHost&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;The RabbitMQ virtual host (vHost) the client will connect to. Defaults to no vHost.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;vHost&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;tls&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Specifies whether to use SSL when connecting to the RabbitMQ instance.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;tls&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;username&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Username to use when connecting to the target rabbitMQ.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;myusername&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#recipe&#34;&gt;recipe&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Configuration for the Recipe which will deploy the backing infrastructure.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#recipe&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#resources&#34;&gt;resources&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;An array of IDs of the underlying resources.&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;#resources&#34;&gt;See below&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;queue&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;The name of the queue.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;orders&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;#secrets&#34;&gt;secrets&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;y&lt;/td&gt;
+&lt;td&gt;Configuration used to manually specify a RabbitMQ container or other service providing a RabbitMQ Queue.&lt;/td&gt;
+&lt;td&gt;See &lt;a href=&#34;#secrets&#34;&gt;secrets&lt;/a&gt; below.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;recipe&#34;&gt;Recipe&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Property&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example(s)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Specifies the name of the Recipe that should be deployed. If not set, the name defaults to &lt;code&gt;default&lt;/code&gt;.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;name: &#39;azure-prod&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;parameters&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;An object that contains a list of parameters to set on the Recipe.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{ port: &#39;10040&#39; }&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;resources&#34;&gt;Resources&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Property&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Required&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example(s)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;id&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;n&lt;/td&gt;
+&lt;td&gt;Resource ID of the supporting resource.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;queue.id&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;secrets&#34;&gt;Secrets&lt;/h4&gt;
+&lt;p&gt;Secrets are used when defining a RabbitMQ resource with a container or external service.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Property&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;uri&lt;/td&gt;
+&lt;td&gt;The URI to the Rabbit MQ Message Queue. Write only&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;amqp://${username}:${password}@${rmqContainer.properties.hostname}:${rmqContainer.properties.port}&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;password&lt;/td&gt;
+&lt;td&gt;The password used to connect to this RabbitMQ. Write only.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;mypassword&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;methods&#34;&gt;Methods&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Property&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;uri()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Returns the RabbitMQ uri used to connect to the resource.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;amqp://guest:***@rabbitmq.svc.local.cluster:5672&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;resource-provisioning&#34;&gt;Resource provisioning&lt;/h2&gt;
+&lt;h3 id=&#34;provision-with-a-recipe&#34;&gt;Provision with a Recipe&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.radapp.io/guides/recipes/howto-author-recipes/&#34;&gt;Recipes&lt;/a&gt; automate infrastructure provisioning using approved templates.
+When no Recipe configuration is set Radius will use the Recipe registered as the &lt;strong&gt;default&lt;/strong&gt; in the environment for the given resource. Otherwise, a Recipe name and parameters can optionally be set.&lt;/p&gt;
+&lt;h3 id=&#34;provision-manually&#34;&gt;Provision manually&lt;/h3&gt;
+&lt;p&gt;If you want to manually manage your infrastructure provisioning outside of Recipes, you can set &lt;code&gt;resourceProvisioning&lt;/code&gt; to &lt;code&gt;&#39;manual&#39;&lt;/code&gt; and provide all necessary parameters and values and values that enable Radius to deploy or connect to the desired infrastructure.&lt;/p&gt;
+&lt;h2 id=&#34;environment-variables-for-connections&#34;&gt;Environment variables for connections&lt;/h2&gt;
+&lt;p&gt;Other Radius resources, such as &lt;a href=&#34;https://docs.radapp.io/guides/author-apps/containers/&#34;&gt;containers&lt;/a&gt;, may connect to a RabbitMQ resource via &lt;a href=&#34;https://docs.radapp.io/concepts/application-graph/#connections-and-injected-values&#34;&gt;connections&lt;/a&gt;. When a connection to RabbitMQ named, for example, &lt;code&gt;myconnection&lt;/code&gt; is declared, Radius injects values into environment variables that are then used to access the connected RabbitMQ resource:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Environment variable&lt;/th&gt;
+&lt;th&gt;Example(s)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;CONNECTION_MYCONNECTION_QUEUE&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;orders&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CONNECTION_MYCONNECTION_HOST&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;rabbitmq.svc.local.cluster&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CONNECTION_MYCONNECTION_PORT&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;5672&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CONNECTION_MYCONNECTION_VHOST&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;qa1&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CONNECTION_MYCONNECTION_USERNAME&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;guest&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CONNECTION_MYCONNECTION_TLS&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;true&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CONNECTION_MYCONNECTION_URI&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;amqp://${username}:${password}@${rmqContainer.properties.hostname}:${rmqContainer.properties.port}&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CONNECTION_MYCONNECTION_PASSWORD&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;password&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

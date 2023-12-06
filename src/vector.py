@@ -4,7 +4,7 @@ from langchain.vectorstores import FAISS, qdrant, weaviate, Redis
 import os
 import asyncio
 
-vectorpath = './docs/vectorstore'
+vectorpath = 'docs/vectorstore'
 
 def get_vectorstore(text_chunks):
     embeddings = OpenAIEmbeddings()

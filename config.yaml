@@ -1,0 +1,52 @@
+routes:
+  - name: chat
+    route_type: llm/v1/chat
+    model:
+      provider: openai
+      name: gpt-3.5-turbo
+      config:
+        openai_api_key: $OPENAI_API_KEY
+
+  - name: completions
+    route_type: llm/v1/completions
+    model:
+      provider: openai
+      name: gpt-3.5-turbo
+      config:
+        openai_api_key: $OPENAI_API_KEY
+
+  
+  - name: gpt4-chat
+    route_type: llm/v1/chat
+    model:
+      provider: openai
+      name: gpt-4
+      config:
+        openai_api_key: $OPENAI_API_KEY
+
+  - name: gpt4-completions
+    route_type: llm/v1/completions
+    model:
+      provider: openai
+      name: gpt-4
+      config:
+        openai_api_key: $OPENAI_API_KEY
+
+  - name: embeddings
+    route_type: llm/v1/embeddings
+    model:
+      provider: openai
+      name: text-embedding-ada-002
+      config:
+        openai_api_key: $OPENAI_API_KEY
+  
+  - name: anthropic-completions
+    route_type: llm/v1/completions
+    model:
+      provider: bedrock
+      name: anthropic.claude-v2
+      config:
+        aws_config:
+          aws_region: us-east-1
+          aws_access_key_id: AKIASEWUADXRWLFM7CKU
+          aws_secret_access_key: 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
