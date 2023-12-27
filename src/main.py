@@ -481,49 +481,31 @@ class OpenAIAssistant:
 
 
     async def wait_for_run(self, thread_id, run_id, handle_actions=False):
+        # Mapping of function names to function objects
+        function_handlers = {
+            "get_subscription_id": get_subscription_id,
+            "list_resources_and_total_cost": list_resources_and_cost,
+            "calculate_aws_bill": calculate_aws_bill,
+            "list_resource_groups": list_resource_groups
+        }
+
         while True:
             await asyncio.sleep(self.polling_interval)
             self.run = self.client.beta.threads.runs.retrieve(thread_id=self.thread.id, run_id=self.run.id)
             
             tool_outputs ={}
-            if self.run.status == 'requires_action':
-              if self.run.required_action.type == "submit_tool_outputs":
+            # Dynamic function calling
+            if self.run.status == 'requires_action' and self.run.required_action.type == "submit_tool_outputs":
                 for tool_call in self.run.required_action.submit_tool_outputs.tool_calls:
-                  if tool_call.type == "function":
-                      if tool_call.function.name == "get_subscription_id":
-                          json_string = tool_call.function.arguments
-                          data = json.loads(json_string)
-                          subscription_name = data["subscription_name"]
-                          tool_outputs[tool_call.id] = get_subscription_id(subscription_name)
-                          
-                      elif tool_call.function.name == "list_resources_and_total_cost":
-                          json_string = tool_call.function.arguments
-                          data = json.loads(json_string)
-                          resource_group_name = data["resource_group_name"]
-                          tool_outputs[tool_call.id]=list_resources_and_cost(resource_group_name)
-                          
-                      elif tool_call.function.name == "calculate_aws_bill":
-                          json_string = tool_call.function.arguments
-                          data = json.loads(json_string)
-                          if len(data)>0:
-                            start_date = data["start_date"]
-                            end_date = data["end_date"]
-                            tool_outputs[tool_call.id]=calculate_aws_bill(start_date, end_date)
-                          else:
-                             tool_outputs[tool_call.id]=calculate_aws_bill()
-                      elif tool_call.function.name == "list_resource_groups":
-                          json_string = tool_call.function.arguments
-                          data = json.loads(json_string)
-                          subscription_id = data["subscription_id"]
-                          tool_outputs[tool_call.id]=list_resource_groups(subscription_id)
-                          
-                await self.submit_tool_outputs(thread_id, run_id, tool_outputs)
-                  
+                    if tool_call.type == "function":
+                        function_name = tool_call.function.name
+                        function_args = json.loads(tool_call.function.arguments)
 
-                  
-
-
-              
+                        if function_name in function_handlers:
+                            # Call the function with unpacked arguments
+                            tool_outputs[tool_call.id] = function_handlers[function_name](**function_args)
+                            await self.submit_tool_outputs(thread_id, run_id, tool_outputs)
+     
             elif self.run.status in ['cancelled', 'failed', 'completed', 'expired']:
                 message=None
                
