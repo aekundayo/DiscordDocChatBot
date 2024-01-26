@@ -142,11 +142,14 @@ async def on_raw_reaction_add(reaction):
 async def on_message(message):
   assistant = None
   load_dotenv()
-  folders=json.loads(os.getenv('FOLDERS'))
-  vectorpath = folders['VECTOR_FOLDER']
-  pdf_path = folders['PDF_FOLDER']
-  web_doc_path = folders['WEB_FOLDER']
-  zip_path = folders['ZIP_FOLDER']
+  
+  vectorpath = os.getenv('VECTOR_FOLDER')
+  pdf_path = os.getenv('PDF_FOLDER')
+  web_doc_path = os.getenv('WEB_FOLDER')
+  zip_path = os.getenv('ZIP_FOLDER')
+  log_path = os.getenv('LOG_FOLDER')
+  folders = [vectorpath, pdf_path, web_doc_path, zip_path]
+
   vector_flag = True
   if message.content.startswith('faiss'): 
     vector_flag = False
@@ -163,8 +166,7 @@ async def on_message(message):
     return
   #Process PDFs 
 
-  FOLDERS = json.loads(os.getenv('FOLDERS'))
-  for folder_name, folder_path in FOLDERS.items():
+  for folder_path in folders:
     create_directories_if_not_exists(folder_path)
 
 
