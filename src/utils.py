@@ -10,7 +10,7 @@ from googleapiclient.discovery import build
 import zipfile
 from bs4 import BeautifulSoup
 import threading
-from vector import persist_new_chunks
+
 from qdrant_vector import update_qdrant
 from langchain.document_loaders import PDFMinerLoader
 from langchain.docstore.document import Document 
@@ -22,6 +22,28 @@ from azure.mgmt.resource import ResourceManagementClient
 from azure.identity import DefaultAzureCredential
 
 import boto3
+
+def get_daily_costs(start_date, end_date):
+    try:
+        # Call the Cost Explorer API to get the cost data
+        client = boto3.client('ce', region_name='us-east-1')
+        response = client.get_cost_and_usage(
+            TimePeriod={
+                'Start': start_date,
+                'End': end_date
+            },
+            Granularity='DAILY',
+            Metrics=['UnblendedCost']
+        )
+        
+        # Process the response and print costs per day
+        for result in response.get('ResultsByTime', []):
+            print(f"Date: {result.get('TimePeriod').get('Start')} - Cost: {result.get('Total').get('UnblendedCost').get('Amount')} {result.get('Total').get('UnblendedCost').get('Unit')}")
+        
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+
 
 def calculate_aws_bill( start_date = None, end_date = None ):
     from datetime import datetime
@@ -36,7 +58,7 @@ def calculate_aws_bill( start_date = None, end_date = None ):
             'Start': start_date, #'2022-01-01'
             'End': end_date
         },
-        Granularity='MONTHLY',
+        Granularity='DAILY',
         Metrics=[
             'UnblendedCost',
         ],

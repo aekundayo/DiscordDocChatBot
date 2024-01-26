@@ -2,6 +2,7 @@
 FROM python:3.9.18-bullseye as builder
 
 
+
 # Set the working directory in the container to /app
 WORKDIR /app
 
@@ -19,17 +20,13 @@ RUN chown -R appuser /app
 
 
 # Install any needed packages specified in requirements.txt
-RUN apt-get update 
-RUN apt-get install -y --no-install-recommends gcc python3-dev 
-RUN pip install --no-cache-dir -r requirements.txt 
-RUN apt-get remove -y gcc python3-dev 
-RUN apt-get autoremove -y 
-RUN rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends gcc python3-dev && pip install --no-cache-dir -r requirements.txt && apt-get remove -y gcc python3-dev && apt-get autoremove -y && rm -rf /var/lib/apt/lists/* 
 
 
-
-# Switch to the new user
+# Final stage
+FROM python:3.9-slim-bullseye
+WORKDIR /app
+COPY --from=builder /app /app
+RUN useradd appuser && chown -R appuser /app
 USER appuser
-
-# Run bot.py when the container launches
 CMD ["python", "main.py"]
