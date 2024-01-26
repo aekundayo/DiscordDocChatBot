@@ -10,7 +10,7 @@ from langchain.llms import HuggingFaceHub,OpenAI
 from langchain.llms.huggingface_pipeline import HuggingFacePipeline
 from langchain.document_loaders import BSHTMLLoader, WebBaseLoader
 from summary_prompts import get_guidelines
-from utils import extract_urls, download_html, get_text_from_pdf, get_documents_from_pdf, get_text_chunks, create_directories_if_not_exists, extract_yt_transcript, extract_text_from_htmls, unzip_website, download_pdf_paper_from_url, split_text, convert_site_to_pdf, list_resource_groups, list_resources_and_cost, get_subscription_id, calculate_aws_bill
+from utils import extract_urls, download_html, get_text_from_pdf, get_documents_from_pdf, get_text_chunks, create_directories_if_not_exists, extract_yt_transcript, extract_text_from_htmls, unzip_website, download_pdf_paper_from_url, split_text, convert_site_to_pdf, list_resource_groups, list_resources_and_total_cost, get_subscription_id, calculate_aws_bill
 from vector import get_vectorstore, get_history_vectorstore, persist_new_chunks
 from qdrant_vector import get_Qvector_store, return_qdrant, get_Qvector_store_from_docs
 from concurrent.futures import ThreadPoolExecutor
@@ -479,7 +479,7 @@ class OpenAIAssistant:
         # Mapping of function names to function objects
         function_handlers = {
             "get_subscription_id": get_subscription_id,
-            "list_resources_and_total_cost": list_resources_and_cost,
+            "list_resources_and_total_cost": list_resources_and_total_cost,
             "calculate_aws_bill": calculate_aws_bill,
             "list_resource_groups": list_resource_groups
         }
@@ -499,7 +499,9 @@ class OpenAIAssistant:
                         if function_name in function_handlers:
                             # Call the function with unpacked arguments
                             tool_outputs[tool_call.id] = function_handlers[function_name](**function_args)
-                            await self.submit_tool_outputs(thread_id, run_id, tool_outputs)
+                            
+                await self.submit_tool_outputs(thread_id, run_id, tool_outputs)
+                            
      
             elif self.run.status in ['cancelled', 'failed', 'completed', 'expired']:
                 message=None

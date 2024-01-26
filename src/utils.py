@@ -101,7 +101,7 @@ from azure.identity import DefaultAzureCredential
 from azure.mgmt.resource import ResourceManagementClient
 from azure.mgmt.costmanagement import CostManagementClient
 
-def list_resources_and_cost(resource_group_name):
+def list_resources_and_total_cost(resource_group_name):
     # Get credentials
     credential = DefaultAzureCredential()
 
