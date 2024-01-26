@@ -457,11 +457,14 @@ def get_sentences_chunks(text):
 
 def create_directories_if_not_exists(pdf_path):
   if not os.path.exists(pdf_path):
-    # If it doesn't exist, create it
-    os.makedirs(pdf_path)
-    print(f"Directory '{pdf_path}' created")
-  else:
-      print(f"Directory '{pdf_path}' already exists") 
+    try:
+        # Create the directory
+        os.makedirs(pdf_path)
+        print(f"Directory {pdf_path} was created successfully.")
+    except OSError as error:
+        print(f"Creation of the directory {pdf_path} failed due to: {error}")
+    else:
+        print(f"The directory {pdf_path} already exists.")
 
 
 def extract_yt_transcript(url):
