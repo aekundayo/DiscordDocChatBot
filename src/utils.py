@@ -293,7 +293,7 @@ def download_pdf_paper_from_url(url):
     paper_number    =   os.path.basename(url).strip(".pdf")
     pdf_url = f"https://arxiv.org/pdf/{paper_number}.pdf"
     res             =   requests.get(pdf_url)
-    pdf_folder_path = json.loads(os.getenv('FOLDERS'))['PDF_FOLDER']
+    pdf_folder_path = os.getenv('PDF_FOLDER')
     pdf_path        =   f"{pdf_folder_path}/{paper_number}.pdf"
     with open(pdf_path, 'wb') as f:
         f.write(res.content)
@@ -543,7 +543,7 @@ def convert_site_to_pdf(parent_path):
                 html_filename = os.path.basename(file)
                 pdf_filename = html_filename + str(counter) + ".pdf"
                 html_path = os.path.join(root, file)
-                pdf_path = json.loads(os.getenv('FOLDERS'))['PDF_FOLDER']  + pdf_filename 
+                pdf_path =  os.getenv('PDF_FOLDER')  + pdf_filename 
                 convert_html_to_pdf(html_path, pdf_path)
 
 def convert_html_to_pdf(input_filename, output_filename):
