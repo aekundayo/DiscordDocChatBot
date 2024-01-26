@@ -43,7 +43,9 @@ def get_daily_costs(start_date, end_date):
     except Exception as e:
         print(f"An error occurred: {e}")
 
-
+def get_current_date():
+    from datetime import datetime
+    return datetime.now().strftime('%Y-%m-%d')
 
 def calculate_aws_bill( start_date = None, end_date = None ):
     from datetime import datetime

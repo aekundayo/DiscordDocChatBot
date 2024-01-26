@@ -10,7 +10,7 @@ from langchain.llms import HuggingFaceHub,OpenAI
 from langchain.llms.huggingface_pipeline import HuggingFacePipeline
 from langchain.document_loaders import BSHTMLLoader, WebBaseLoader
 from summary_prompts import get_guidelines
-from utils import extract_urls, download_html, get_text_from_pdf, get_documents_from_pdf, get_text_chunks, create_directories_if_not_exists, extract_yt_transcript, extract_text_from_htmls, unzip_website, download_pdf_paper_from_url, split_text, convert_site_to_pdf, list_resource_groups, list_resources_and_total_cost, get_subscription_id, calculate_aws_bill
+from utils import extract_urls, download_html, get_text_from_pdf, get_documents_from_pdf, get_text_chunks, create_directories_if_not_exists, extract_yt_transcript, extract_text_from_htmls, unzip_website, download_pdf_paper_from_url, split_text, convert_site_to_pdf, list_resource_groups, list_resources_and_total_cost, get_subscription_id, calculate_aws_bill, get_current_date
 from vector import get_vectorstore, get_history_vectorstore, persist_new_chunks
 from qdrant_vector import get_Qvector_store, return_qdrant, get_Qvector_store_from_docs
 from concurrent.futures import ThreadPoolExecutor
@@ -381,70 +381,86 @@ class OpenAIAssistant:
                         "required": ["resource_group_name"]
                       }
                     }
-                  }]
-            )
-        
-        if self.assistant=="":
-           self.assistant = client.beta.assistants.create(
-                instructions="You are a helpful assistant and a knowledgeable expert on software design development and delivery engineering practices",
-                model="gpt-4-1106-preview",
-                name = os.environ["DEVOPS_ASSISTANT_NAME"],
-                tools=[{
-                    "type": "function",
-                    "function": {
-                      "name": "list_resource_groups",
-                      "description": "Get Resource Groups From Subscription ID",
-                      "parameters": {
-                        "type": "object",
-                        "properties": {
-                          "subscription_id": {"type": "string", "description": "Subscription ID of Azure Subscription Containing Resource Groups"}
-                        },
-                        "required": ["subscription_id"]
-                      }
-                    }
-                  },{
-                    "type": "function",
-                    "function": {
-                      "name": "get_subscription_id",
-                      "description": "Get Subscription ID from Subscription Name",
-                      "parameters": {
-                        "type": "object",
-                        "properties": {
-                          "subscription_name": {"type": "string", "description": "Name of the Subscription"}
-                        },
-                        "required": ["subscription_name"]
-                      }
-                    }
-                  }
-                  , {
-                    "type": "function",
-                    "function": {
-                      "name": "calculate_aws_bill",
-                      "description": "Get the Cost of AWS Billing",
-                      "parameters": {
-                        "type": "object",
-                        "properties": {
-                          "start_date": {"type": "string", "description": "The start date of the period for measuring cost yyyy-mm-dd"},
-                          "end_date": {"type": "string", "description": "The end date of the period for measuring cost yyyy-mm-dd"},
-                        },
-                        "required": []
-                      }
-                    }
                   }, {
                     "type": "function",
                     "function": {
-                      "name": "list_resources_and_total_cost",
-                      "description": "Get the cost of resources in Resource Group",
+                      "name": "get_current_date",
+                      "description": "Get the Current Date of the System",
                       "parameters": {
-                        "type": "object",
-                        "properties": {
-                          "resource_group_name": {"type": "string", "description": "The name of the resource group to be costed"},
-                        },
-                        "required": ["resource_group_name"]
                       }
                     }
                   }]
             )
+        
+        #if self.assistant=="":
+        #   self.assistant = client.beta.assistants.create(
+        #        instructions="You are a helpful assistant and a knowledgeable expert on software design development and delivery engineering practices",
+        #        model="gpt-4-1106-preview",
+        #        name = os.environ["DEVOPS_ASSISTANT_NAME"],
+        #        tools=[{
+        #            "type": "function",
+        #            "function": {
+        #              "name": "list_resource_groups",
+        #              "description": "Get Resource Groups From Subscription ID",
+        #              "parameters": {
+        #                "type": "object",
+        #                "properties": {
+        #                  "subscription_id": {"type": "string", "description": "Subscription ID of Azure Subscription Containing Resource Groups"}
+        #                },
+        #                "required": ["subscription_id"]
+        #              }
+        #            }
+        #          },{
+        #            "type": "function",
+        #            "function": {
+        #              "name": "get_subscription_id",
+        #              "description": "Get Subscription ID from Subscription Name",
+        #              "parameters": {
+        #                "type": "object",
+        #                "properties": {
+        #                  "subscription_name": {"type": "string", "description": "Name of the Subscription"}
+        #                },
+        #                "required": ["subscription_name"]
+        #              }
+        #            }
+        #          }
+        #          , {
+        #            "type": "function",
+        #            "function": {
+        #              "name": "calculate_aws_bill",
+        #              "description": "Get the Cost of AWS Billing",
+        #              "parameters": {
+        #                "type": "object",
+        #                "properties": {
+        #                  "start_date": {"type": "string", "description": "The start date of the period for measuring cost yyyy-mm-dd"},
+        #                  "end_date": {"type": "string", "description": "The end date of the period for measuring cost yyyy-mm-dd"},
+        #                },
+        #                "required": []
+        #              }
+        #            }
+        #          }, {
+        #            "type": "function",
+        #            "function": {
+        #              "name": "list_resources_and_total_cost",
+        #              "description": "Get the cost of resources in Resource Group",
+        #              "parameters": {
+        #                "type": "object",
+        #                "properties": {
+        #                  "resource_group_name": {"type": "string", "description": "The name of the resource group to be costed"},
+        #                },
+        #                "required": ["resource_group_name"]
+        #              }
+        #            }
+        #          }, {
+        #            "type": "function",
+        #            "function": {
+        #              "name": "get_current_date",
+        #              "description": "Get the Current Date of the System",
+        #              "parameters": {
+        #              }
+        #            }
+        #          }]
+        #    )
          
 
             
@@ -481,7 +497,8 @@ class OpenAIAssistant:
             "get_subscription_id": get_subscription_id,
             "list_resources_and_total_cost": list_resources_and_total_cost,
             "calculate_aws_bill": calculate_aws_bill,
-            "list_resource_groups": list_resource_groups
+            "list_resource_groups": list_resource_groups,
+            "get_current_date": get_current_date
         }
 
         while True:
@@ -499,7 +516,7 @@ class OpenAIAssistant:
                         if function_name in function_handlers:
                             # Call the function with unpacked arguments
                             tool_outputs[tool_call.id] = function_handlers[function_name](**function_args)
-                            
+
                 await self.submit_tool_outputs(thread_id, run_id, tool_outputs)
                             
      
