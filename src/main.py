@@ -1,5 +1,5 @@
 from discord.ext import commands, tasks
-import asyncio, os, json, time, logging, wandb, discord, openai
+import asyncio, os, json, time, logging, discord, openai
 import openai 
 from dotenv import load_dotenv
 from langchain.chat_models import ChatOpenAI, ChatAnthropic
@@ -38,15 +38,12 @@ client = commands
 vectorstore=None
 dialog_contexts = {}
 vector_flag = True
-wandb.init(project="DiscordChatBot")
 assistant = None
 
 class DialogContext:
 #load dot env file
   load_dotenv()
-  if os.getenv('DEV_MODE'):
-    wandb.login
-    wandb_config = {"project": "DiscordChatBot"}
+
   def __init__(self, maxlen=5):
     self.maxlen = maxlen
     self.history = []
@@ -154,11 +151,7 @@ async def on_message(message):
   if message.author == bot.user:
     return
   
-  if os.getenv('DEV_MODE'):
-    global wandb_config
-    wandb_config = {"project": "DiscordChatBot"}
-  logging.info(f"MESSAGE RECEIVED!")
-  
+
   if message.author == bot.user:
     return
   #Process PDFs 
