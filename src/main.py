@@ -168,28 +168,32 @@ async def on_message(message):
   assistant = None
   load_dotenv()
   
-  vectorpath = os.getenv('VECTOR_FOLDER')
-  pdf_path = os.getenv('PDF_FOLDER')
-  web_doc_path = os.getenv('WEB_FOLDER')
-  zip_path = os.getenv('ZIP_FOLDER')
-  log_path = os.getenv('LOG_FOLDER')
-  folders = [vectorpath, pdf_path, web_doc_path, zip_path]
+  try:
+    vectorpath = os.getenv('VECTOR_FOLDER')
+    pdf_path = os.getenv('PDF_FOLDER')
+    web_doc_path = os.getenv('WEB_FOLDER')
+    zip_path = os.getenv('ZIP_FOLDER')
+    log_path = os.getenv('LOG_FOLDER')
+    folders = [vectorpath, pdf_path, web_doc_path, zip_path]
 
-  vector_flag = True
-  if message.content.startswith('faiss'): 
-    vector_flag = False
+    vector_flag = True
+    if message.content.startswith('faiss'): 
+      vector_flag = False
 
-  if message.author == bot.user:
-    return
-  
+    if message.author == bot.user:
+      return
+    
 
-  if message.author == bot.user:
-    return
-  #Process PDFs 
+    if message.author == bot.user:
+      return
+    #Process PDFs 
 
-  for folder_path in folders:
-    print(f"Checking if {folder_path} exists")
-    create_directories_if_not_exists(folder_path)
+    for folder_path in folders:
+      print(f"Checking if {folder_path} exists")
+      create_directories_if_not_exists(folder_path) 
+
+  except Exception as e:
+    print(e)
 
 
 
