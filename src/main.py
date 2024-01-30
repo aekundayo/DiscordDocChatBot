@@ -93,6 +93,34 @@ async def get_message_text_history(channel):
 
 @bot.event
 async def on_ready():
+  try:
+    vectorpath = os.getenv('VECTOR_FOLDER')
+    pdf_path = os.getenv('PDF_FOLDER')
+    web_doc_path = os.getenv('WEB_FOLDER')
+    zip_path = os.getenv('ZIP_FOLDER')
+    log_path = os.getenv('LOG_FOLDER')
+    folders = [vectorpath, pdf_path, web_doc_path, zip_path]
+
+    vector_flag = True
+    if message.content.startswith('faiss'): 
+      vector_flag = False
+
+    if message.author == bot.user:
+      return
+    
+
+    if message.author == bot.user:
+      return
+    #Process PDFs 
+
+    for folder_path in folders:
+      print(f"Checking if {folder_path} exists")
+      create_directories_if_not_exists(folder_path) 
+
+  except Exception as e:
+    print(e)
+  
+  
   logging.info(f'{bot.user} has connected to Discord!')
 
 def create_faiss_vector_from_data(chunks):
@@ -160,6 +188,7 @@ async def on_message(message):
   #Process PDFs 
 
   for folder_path in folders:
+    print(f"Checking if {folder_path} exists")
     create_directories_if_not_exists(folder_path)
 
 
